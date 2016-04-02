@@ -1,0 +1,4 @@
+F:\RMIS\DataMaper\DataMaper\bin\Debug\DataMaper.dll
+F:\RMIS\DataMaper\DataMaper\bin\Debug\DataMaper.pdb
+F:\RMIS\DataMaper\DataMaper\obj\Debug\DataMaper.dll
+F:\RMIS\DataMaper\DataMaper\obj\Debug\DataMaper.pdb

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataMaper", "DataMaper\DataMaper.csproj", "{34885AF3-8636-4D4C-A590-0AC5D5B39BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllInOne.Common.DataAccess", "AllInOne.Common.DataAccess\AllInOne.Common.DataAccess.csproj", "{B793909E-FF4C-4C27-8C1B-FA769674AB67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllInOne.Common.DataAccess.NHibernate", "AllInOne.Common.DataAccess.NHibernate\AllInOne.Common.DataAccess.NHibernate.csproj", "{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34885AF3-8636-4D4C-A590-0AC5D5B39BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34885AF3-8636-4D4C-A590-0AC5D5B39BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34885AF3-8636-4D4C-A590-0AC5D5B39BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34885AF3-8636-4D4C-A590-0AC5D5B39BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B793909E-FF4C-4C27-8C1B-FA769674AB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B793909E-FF4C-4C27-8C1B-FA769674AB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B793909E-FF4C-4C27-8C1B-FA769674AB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B793909E-FF4C-4C27-8C1B-FA769674AB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

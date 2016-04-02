@@ -1,0 +1,16 @@
+F:\OurProject\RMIS\Bin\RMIS.Entities.BackEnd.dll
+F:\OurProject\RMIS\Bin\RMIS.Entities.BackEnd.pdb
+F:\OurProject\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
+F:\OurProject\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb
+F:\RMIS\Bin\RMIS.Entities.BackEnd.dll
+F:\RMIS\Bin\RMIS.Entities.BackEnd.pdb
+F:\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
+F:\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb
+F:\Bin\RMISGitHub\RMIS\Bin\RMIS.Entities.BackEnd.dll
+F:\Bin\RMISGitHub\RMIS\Bin\RMIS.Entities.BackEnd.pdb
+F:\Bin\RMISGitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
+F:\Bin\RMISGitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Entities.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Entities.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb

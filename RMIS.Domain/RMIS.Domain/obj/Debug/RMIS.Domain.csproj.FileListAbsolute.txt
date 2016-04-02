@@ -1,0 +1,16 @@
+F:\OurProject\RMIS\Bin\RMIS.Domain.dll
+F:\OurProject\RMIS\Bin\RMIS.Domain.pdb
+F:\OurProject\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
+F:\OurProject\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
+F:\RMIS\Bin\RMIS.Domain.dll
+F:\RMIS\Bin\RMIS.Domain.pdb
+F:\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
+F:\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
+F:\Bin\RMISGitHub\RMIS\Bin\RMIS.Domain.dll
+F:\Bin\RMISGitHub\RMIS\Bin\RMIS.Domain.pdb
+F:\Bin\RMISGitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
+F:\Bin\RMISGitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.dll
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb

@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">        
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <br />
+    <div style="border-top: solid 1px black;">
+        <table border="0">
+            <tr>
+                <td>
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/images/iucon.gif" />
+                </td>
+                <td>
+                    Copyright 2008 by iucon GmbH. All rights reserved.<br />
+                    <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="http://www.iucon.com">www.iucon.com</asp:HyperLink>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>
