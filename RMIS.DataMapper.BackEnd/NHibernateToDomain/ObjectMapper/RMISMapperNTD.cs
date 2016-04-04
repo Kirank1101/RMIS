@@ -47,5 +47,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return sellerTypeEntity;
         }
+
+      public static SellerInfoEntity GetSellerInfoEntity(SellerInfo sellerInfo)
+      {
+          SellerInfoEntity sellerInfoEntity = null;
+
+          try
+          {
+              if (sellerInfo != null)
+              {
+                  sellerInfoEntity = Mapper.Map<SellerInfo, SellerInfoEntity>(sellerInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetSellerInfoEntity", ex);
+              throw;
+          }
+
+          return sellerInfoEntity;
+      }
     }
 }

@@ -50,7 +50,7 @@
             try
             {
                 objRMISMappingNTD.MapSellerTypeEntity();
-               
+                objRMISMappingNTD.MapSellerInfoEntity();               
             }
             catch (Exception ex)
             {

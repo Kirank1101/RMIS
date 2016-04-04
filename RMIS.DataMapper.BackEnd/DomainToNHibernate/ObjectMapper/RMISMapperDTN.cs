@@ -15,6 +15,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
     public interface IRMISMapper
     {
         MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity);
+        SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -48,6 +49,21 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return sellerType;
+        }
+
+        public SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity)
+        {
+            SellerInfo sellerInfo = null;
+            try
+            {
+                sellerInfo = Mapper.Map<SellerInfoEntity, SellerInfo>(SellerInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetSellerInfo", ex);
+                throw;
+            }
+            return sellerInfo;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace RMIS
             objEntity.ObsInd = YesNo.N;
             objEntity.LastModifiedDate = DateTime.Now;
             objEntity.LastModifiedBy = "test";
-            imp.SaveOrUpdatePatientInfoEntity(objEntity, true);
+            imp.SaveOrUpdateSellerTypeEntity(objEntity, true);
             imp.CommitAndCloseSession();
 
 

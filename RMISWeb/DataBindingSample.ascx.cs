@@ -28,7 +28,7 @@ public partial class DataBindingSample : System.Web.UI.UserControl
         objEntity.ObsInd = YesNo.N;
         objEntity.LastModifiedDate = DateTime.Now;
         objEntity.LastModifiedBy = "test";
-        imp.SaveOrUpdatePatientInfoEntity(objEntity, true);
+        imp.SaveOrUpdateSellerTypeEntity(objEntity, true);
         imp.CommitAndCloseSession();
 
 

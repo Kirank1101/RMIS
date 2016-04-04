@@ -18,3 +18,7 @@ C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Entities.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Entities.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Entities.BackEnd.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Entities.BackEnd.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb

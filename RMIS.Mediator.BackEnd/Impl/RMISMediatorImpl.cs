@@ -80,7 +80,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
-        public void SaveOrUpdatePatientInfoEntity(SellerTypeEntity sellertypeEntity, bool isCopy)
+        public void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy)
         {
             try
             {
@@ -95,6 +95,22 @@ namespace RMIS.Mediator.BackEnd.Impl
             }
         }
 
+        public void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<SellerInfo>(mapper.GetSellerInfo(sellerInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateSellerInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateSellerInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -104,7 +120,11 @@ namespace RMIS.Mediator.BackEnd.Impl
             RMISGateway auditGateway = new RMISGateway();
             return auditGateway.GetSellerTypeEntity(SellerTypeID);
         }
-
+        public SellerInfoEntity GetSellerInfoEntity(string SellerID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetSellerInfoEntity(SellerID);
+        }
         #endregion
 
 

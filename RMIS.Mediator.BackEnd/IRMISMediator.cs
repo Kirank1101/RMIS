@@ -34,13 +34,14 @@ namespace RMIS.Mediator.BackEnd
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
-        void SaveOrUpdatePatientInfoEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
-
+        void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
+        void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
         /// <returns></returns>
         SellerTypeEntity GetSellerTypeEntity(string SellerTypeID);
+        SellerInfoEntity GetSellerInfoEntity(string SellerID);
 
         #endregion
     }
