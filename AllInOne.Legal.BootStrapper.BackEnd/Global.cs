@@ -56,15 +56,16 @@ namespace AllInOne.BootStrapper.BackEnd
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            // Code that runs when an unhandled error occurs
-            HttpContext context = HttpContext.Current;
-            Exception exception = Context.Server.GetLastError();
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    // Code that runs when an unhandled error occurs
+        //    string errorLocation = Request.Path;
+        //    HttpContext context = HttpContext.Current;
+        //    Exception exception = Context.Server.GetLastError();
 
-            BootStrapper.CatchApplicationError(exception);
-            context.Server.ClearError();
-        }
+        //    BootStrapper.CatchApplicationError(exception);
+        //    context.Server.ClearError();
+        //}
 
         /// <summary>
         /// Handles the Start event of the Application control.
@@ -75,8 +76,8 @@ namespace AllInOne.BootStrapper.BackEnd
         {
             // Call to BootStrapper for configuring various startups.
             // Code that runs on application startup
-            string log4netConfigFile = ConfigurationManager.AppSettings["LogConfigFileLocation"];
-            BootStrapper.ConfigLogger(log4netConfigFile);
+           // string log4netConfigFile = ConfigurationManager.AppSettings["LogConfigFileLocation"];
+            BootStrapper.ConfigLogger(string.Empty);
             BootStrapper.StartUp();
         }
 

@@ -215,11 +215,11 @@
             {
                 try
                 {
-                    Container.Install(Configuration.FromAppConfig());
+                   // Container.Install(Configuration.FromAppConfig());
                 }
                 catch (Exception exception)
                 {
-                    Logger.Error("Make sure that the app.config/web.config has the castle configuration!", exception);
+                   // Logger.Error("Make sure that the app.config/web.config has the castle configuration!", exception);
                 }
             }
 

@@ -29,24 +29,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllInOne.Common.Library", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "PartialUpdatePanel\Control\Control.csproj", "{5D400DB4-C756-4B5C-8359-FE55084043F4}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWeb", "PartialUpdatePanel\TestWeb\", "{D37335C3-4056-4E6C-B644-702D4C3D6FB2}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RMISWeb", "RMISWeb\", "{D8DF257D-14E4-4991-8CF3-BD01A546826E}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/TestWeb"
-		Debug.AspNetCompiler.PhysicalPath = "PartialUpdatePanel\TestWeb\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TestWeb\"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		ProjectReferences = "{A787EB43-1149-4FE8-994E-E31BD4681FFB}|AllInOne.BootStrapper.BackEnd.dll;{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}|AllInOne.Common.Library.dll;{4FA95861-0AE6-4A5F-AED2-370978F27E94}|RMIS.DataMapper.BackEnd.dll;{45466F53-B987-4CB9-99F7-690232A451C5}|RMIS.Domain.dll;{35E2D4CF-780C-49E5-B14F-B48BB983DAE0}|RMIS.Entities.BackEnd.dll;{C0D852B7-9B69-43DD-AB12-1611E6D68F67}|RMlS.Binder.BackEnd.dll;{F09F40AB-44B2-4FBA-8ACD-B4BD40D53918}|RMIS.Mediator.BackEnd.dll;{418FDED6-080A-4360-BC0E-B01DFFB6E7C4}|AllInOne.Common.DataAccess.NHibernate.dll;{D4B6B302-630B-488E-8241-DA7B296B8BA1}|AllInOne.Common.DataAccess.Utilities.dll;{9A05A7FF-115B-43FD-A4F9-170404B47216}|RMIS.Repositories.BackEnd.dll;{25250813-B179-4581-B085-66E8A58BA27F}|RMIS.dll;{D8A2EEE9-F069-46F3-9ADC-A5B872D09982}|RMIS.Domain.Factory.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/RMISWeb"
+		Debug.AspNetCompiler.PhysicalPath = "RMISWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\RMISWeb\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/TestWeb"
-		Release.AspNetCompiler.PhysicalPath = "PartialUpdatePanel\TestWeb\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TestWeb\"
+		Release.AspNetCompiler.VirtualPath = "/RMISWeb"
+		Release.AspNetCompiler.PhysicalPath = "RMISWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\RMISWeb\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "10751"
+		VWDPort = "48249"
+		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
 Global
@@ -111,10 +113,10 @@ Global
 		{5D400DB4-C756-4B5C-8359-FE55084043F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D400DB4-C756-4B5C-8359-FE55084043F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D400DB4-C756-4B5C-8359-FE55084043F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D37335C3-4056-4E6C-B644-702D4C3D6FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D37335C3-4056-4E6C-B644-702D4C3D6FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D37335C3-4056-4E6C-B644-702D4C3D6FB2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{D37335C3-4056-4E6C-B644-702D4C3D6FB2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{D8DF257D-14E4-4991-8CF3-BD01A546826E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8DF257D-14E4-4991-8CF3-BD01A546826E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8DF257D-14E4-4991-8CF3-BD01A546826E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8DF257D-14E4-4991-8CF3-BD01A546826E}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -83,7 +83,11 @@ namespace AllInOne.BootStrapper.BackEnd
                 else
                 {
                     XmlConfigurator.Configure();
-                }              
+                }
+            }
+            else
+            {
+                XmlConfigurator.Configure();
             }
             logger = LogManager.GetLogger(typeof(BootStrapper));
             logger.Info("Configured the Log4Net Logging System!");

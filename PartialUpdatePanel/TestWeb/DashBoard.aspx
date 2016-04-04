@@ -4,7 +4,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html >
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
@@ -100,7 +100,7 @@
 
 
                             <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/DataBindingSample.ascx"
-                        InitialRenderBehaviour="Serverside" DisplayLoadingAfter="500">
+                      >
                         <ErrorTemplate>
                             Unable to refresh content
                         </ErrorTemplate>
@@ -120,7 +120,7 @@
 
                </a><a class="tile wide imagetext wideimage bg-color-green" href="#">
                     <h2>
-                        Long Running Process</h2>
+                        Data Binding 2 Process</h2>
                     <!--<a class="tile widepeek" href="#">-->
                     <!--<div class="tile wide image">-->
                     <!--<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Darvasa_gas_crater_panorama.jpg/640px-Darvasa_gas_crater_panorama.jpg" alt=""/>-->
@@ -131,13 +131,14 @@
                     <!--</a>-->
                    
 
-                         <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel2" UserControlPath="~/LongTimeUpdateSample.ascx">
+                         <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel1" UserControlPath="~/DataBindingSample.ascx"
+                        >
                         <ErrorTemplate>
                             Unable to refresh content
                         </ErrorTemplate>
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
-                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                                <asp:Image ID="Image2" runat="server" ImageUrl="~/images/loading.gif" />
                             </div>
                             <div style="text-align: center">
                                 Updating...
@@ -157,8 +158,24 @@
                     <div class="tile-column-span-2">
                         <a class="tile widepeek" href="#">
                             <div class="tile wide image">
-                                <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Fuso_Trial_Heading_Left.jpg/640px-Fuso_Trial_Heading_Left.jpg"
-                                    alt="" />
+                                  <h1>
+                    Long time to update sample</h1>
+                <div class="sample">
+                    <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel2" UserControlPath="~/LongTimeUpdateSample.ascx">
+                        <ErrorTemplate>
+                            Unable to refresh content
+                        </ErrorTemplate>
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
+                    Click on one of the other controls while this one is updating.
+                </div>
                             </div>
                             <div class="tile wide text">
                                 <div class="text-header">

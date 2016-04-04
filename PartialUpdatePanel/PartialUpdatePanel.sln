@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.csproj", "{5D400DB4-C756-4B5C-8359-FE55084043F4}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWeb", "TestWeb", "{E36F45DD-9E29-4AC4-9DF4-57EF5E28B6D2}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWeb", "TestWeb\", "{E36F45DD-9E29-4AC4-9DF4-57EF5E28B6D2}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
 		SccAuxPath = ""
@@ -27,6 +27,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWeb", "TestWeb", "{E36F
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "55524"
 		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RMISWeb", "RMISWeb\", "{D905789F-5239-4683-92A4-89E0E48AC0D8}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		ProjectReferences = "{5D400DB4-C756-4B5C-8359-FE55084043F4}|iucon.web.Controls.PartialUpdatePanel.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/RMISWeb"
+		Debug.AspNetCompiler.PhysicalPath = "RMISWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\RMISWeb\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/RMISWeb"
+		Release.AspNetCompiler.PhysicalPath = "RMISWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\RMISWeb\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51184"
 	EndProjectSection
 EndProject
 Global
@@ -59,6 +80,16 @@ Global
 		{E36F45DD-9E29-4AC4-9DF4-57EF5E28B6D2}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{E36F45DD-9E29-4AC4-9DF4-57EF5E28B6D2}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{E36F45DD-9E29-4AC4-9DF4-57EF5E28B6D2}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D905789F-5239-4683-92A4-89E0E48AC0D8}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
