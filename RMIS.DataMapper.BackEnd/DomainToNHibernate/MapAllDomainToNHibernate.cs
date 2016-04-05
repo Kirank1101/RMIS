@@ -73,7 +73,12 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
             try
             {
                 objRMISMappingDTN.MapSellerTypeEntityToSellerType();
-                objRMISMappingDTN.MapSellerInfoEntityToSellerInfo();                
+                objRMISMappingDTN.MapSellerInfoEntityToSellerInfo();
+                objRMISMappingDTN.MapCustomerInfoEntityToCustomerInfo();
+                objRMISMappingDTN.MapMUserTypeEntityToMUserType();
+                objRMISMappingDTN.MapUsersEntityToUsers();
+                objRMISMappingDTN.MapMPaddyTypeEntityToMPaddyType();
+                objRMISMappingDTN.MapPaddyStockInfoEntityToPaddyStockInfo();
             }
             catch (Exception exp)
             {

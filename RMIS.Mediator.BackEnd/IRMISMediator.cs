@@ -36,13 +36,23 @@ namespace RMIS.Mediator.BackEnd
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
         void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
         void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
+        void SaveOrUpdateCustomerInfoEntity(CustomerInfoEntity customerInfoEntity, bool isCopy);
+        void SaveOrUpdateMUserTypeEntity(MUserTypeEntity mUserTypeEntity, bool isCopy);
+        void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy);
+        void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
+        void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
         /// <returns></returns>
         SellerTypeEntity GetSellerTypeEntity(string SellerTypeID);
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
-
+        CustomerInfoEntity GetCustomerInfoEntity(string CustID);
+        MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
+        UsersEntity GetUsersEntity(string UserID);
+        MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
+        PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
+        
         #endregion
     }
 }

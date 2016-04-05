@@ -50,7 +50,12 @@
             try
             {
                 objRMISMappingNTD.MapSellerTypeEntity();
-                objRMISMappingNTD.MapSellerInfoEntity();               
+                objRMISMappingNTD.MapSellerInfoEntity();
+                objRMISMappingNTD.MapCustomerInfoEntity();
+                objRMISMappingNTD.MapMUserTypeEntity();
+                objRMISMappingNTD.MapUsersEntity();
+                objRMISMappingNTD.MapMPaddyTypeEntity();
+                objRMISMappingNTD.MapPaddyStockInfoEntity();
             }
             catch (Exception ex)
             {

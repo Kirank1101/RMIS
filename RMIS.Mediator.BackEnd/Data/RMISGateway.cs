@@ -15,7 +15,6 @@
 
 
     using RMIS.Domain.RiceMill;
-    using RMIS.Entities.BackEnd;
 
 
 
@@ -99,6 +98,145 @@
                 throw;
             }
         }
+
+        internal CustomerInfoEntity GetCustomerInfoEntity(string CustID)
+        {
+            try
+            {
+                CustomerInfoEntity customerInfoEntity = new CustomerInfoEntity();
+                IRepository<CustomerInfo> CustomerInfoRepository = new RepositoryImpl<CustomerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustID));
+                List<CustomerInfo> listCustomerInfoEntity = CustomerInfoRepository.GetAll(detachedCriteria) as List<CustomerInfo>;
+                if (listCustomerInfoEntity != null && listCustomerInfoEntity.Count > 0)
+                {
+                    foreach (CustomerInfo adMInfo in listCustomerInfoEntity)
+                    {
+                        customerInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustomerInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    customerInfoEntity = null;
+
+                return customerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustomerInfoEntity", ex);
+                throw;
+            }
+        }
+
+        internal MUserTypeEntity GetMUserTypeEntity(string UserTypeID)
+        {
+            try
+            {
+                MUserTypeEntity mUserTypeEntity = new MUserTypeEntity();
+                IRepository<MUserType> MUserTypeRepository = new RepositoryImpl<MUserType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUserType))
+                                                                   .Add(Expression.Eq("UserTypeID", UserTypeID));
+                List<MUserType> listMUserTypeEntity = MUserTypeRepository.GetAll(detachedCriteria) as List<MUserType>;
+                if (listMUserTypeEntity != null && listMUserTypeEntity.Count > 0)
+                {
+                    foreach (MUserType adMInfo in listMUserTypeEntity)
+                    {
+                        mUserTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUserTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    mUserTypeEntity = null;
+
+                return mUserTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUserTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal UsersEntity GetUsersEntity(string UserID)
+        {
+            try
+            {
+                UsersEntity usersEntity = new UsersEntity();
+                IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
+                                                                   .Add(Expression.Eq("UserID", UserID));
+                List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
+                if (listUsersEntity != null && listUsersEntity.Count > 0)
+                {
+                    foreach (Users adMInfo in listUsersEntity)
+                    {
+                        usersEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetUsersEntity(adMInfo);
+                    }
+                }
+                else
+                    usersEntity = null;
+
+                return usersEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUsersEntity", ex);
+                throw;
+            }
+        }
+        internal MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID)
+        {
+            try
+            {
+                MPaddyTypeEntity mPaddyTypeEntity = new MPaddyTypeEntity();
+                IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID));
+                List<MPaddyType> listMPaddyTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
+                if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
+                {
+                    foreach (MPaddyType adMInfo in listMPaddyTypeEntity)
+                    {
+                        mPaddyTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMPaddyTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    mPaddyTypeEntity = null;
+
+                return mPaddyTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntity", ex);
+                throw;
+            }
+        }
+        internal PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID)
+        {
+            try
+            {
+                PaddyStockInfoEntity paddyStockInfoEntity = new PaddyStockInfoEntity();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                   .Add(Expression.Eq("PaddyStockID", PaddyStockID));
+                List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
+                if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+                {
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfoEntity)
+                    {
+                        paddyStockInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    paddyStockInfoEntity = null;
+
+                return paddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
+
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

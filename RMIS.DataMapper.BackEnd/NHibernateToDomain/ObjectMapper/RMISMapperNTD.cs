@@ -67,5 +67,100 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return sellerInfoEntity;
       }
+      public static CustomerInfoEntity GetCustomerInfoEntity(CustomerInfo customerInfo)
+      {
+          CustomerInfoEntity customerInfoEntity = null;
+
+          try
+          {
+              if (customerInfo != null)
+              {
+                  customerInfoEntity = Mapper.Map<CustomerInfo, CustomerInfoEntity>(customerInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustomerInfoEntity", ex);
+              throw;
+          }
+
+          return customerInfoEntity;
+      }
+      public static MUserTypeEntity GetMUserTypeEntity(MUserType mUserType)
+      {
+          MUserTypeEntity mUserTypeEntity = null;
+
+          try
+          {
+              if (mUserType != null)
+              {
+                  mUserTypeEntity = Mapper.Map<MUserType, MUserTypeEntity>(mUserType);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMUserTypeEntity", ex);
+              throw;
+          }
+
+          return mUserTypeEntity;
+      }
+      public static UsersEntity GetUsersEntity(Users users)
+      {
+          UsersEntity usersEntity = null;
+
+          try
+          {
+              if (users != null)
+              {
+                  usersEntity = Mapper.Map<Users, UsersEntity>(users);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetUsersEntity", ex);
+              throw;
+          }
+
+          return usersEntity;
+      }
+      public static MPaddyTypeEntity GetMPaddyTypeEntity(MPaddyType mPaddyType)
+      {
+          MPaddyTypeEntity mPaddyTypeEntity = null;
+
+          try
+          {
+              if (mPaddyType != null)
+              {
+                  mPaddyTypeEntity = Mapper.Map<MPaddyType, MPaddyTypeEntity>(mPaddyType);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMPaddyTypeEntity", ex);
+              throw;
+          }
+
+          return mPaddyTypeEntity;
+      }
+      public static PaddyStockInfoEntity GetPaddyStockInfoEntity(PaddyStockInfo paddyStockInfo)
+      {
+          PaddyStockInfoEntity paddyStockInfoEntity = null;
+
+          try
+          {
+              if (paddyStockInfo != null)
+              {
+                  paddyStockInfoEntity = Mapper.Map<PaddyStockInfo, PaddyStockInfoEntity>(paddyStockInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetPaddyStockInfoEntity", ex);
+              throw;
+          }
+
+          return paddyStockInfoEntity;
+      }
     }
 }
