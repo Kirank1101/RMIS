@@ -56,6 +56,7 @@
                 objRMISMappingNTD.MapUsersEntity();
                 objRMISMappingNTD.MapMPaddyTypeEntity();
                 objRMISMappingNTD.MapPaddyStockInfoEntity();
+                objRMISMappingNTD.MapMLotDetailsEntity();
             }
             catch (Exception ex)
             {

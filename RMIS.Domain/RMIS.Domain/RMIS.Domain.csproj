@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
+    <Compile Include="RiceMill\MLotDetailsEntity.cs" />
     <Compile Include="RiceMill\PaddyStockInfoEntity.cs" />
     <Compile Include="RiceMill\MPaddyTypeEntity.cs" />
     <Compile Include="RiceMill\UsersEntity.cs" />

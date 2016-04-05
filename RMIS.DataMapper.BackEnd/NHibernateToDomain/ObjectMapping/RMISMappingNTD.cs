@@ -171,5 +171,24 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapMLotDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MLotDetails, MLotDetailsEntity>()
+                    .ForMember(dest => dest.MLotID, opts => opts.MapFrom(src => src.MLotID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.LotName, opts => opts.MapFrom(src => src.LotName))
+                    .ForMember(dest => dest.MGodownID, opts => opts.MapFrom(src => src.MGodownID))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMLotDetailsEntity", ex);
+                throw;
+            }
+        }
     }
 }

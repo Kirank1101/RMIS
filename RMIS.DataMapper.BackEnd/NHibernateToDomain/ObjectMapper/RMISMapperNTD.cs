@@ -162,5 +162,24 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return paddyStockInfoEntity;
       }
+      public static MLotDetailsEntity GetMLotDetailsEntity(MLotDetails mLotDetails)
+      {
+          MLotDetailsEntity MLotDetailsEntity = null;
+
+          try
+          {
+              if (mLotDetails != null)
+              {
+                  MLotDetailsEntity = Mapper.Map<MLotDetails, MLotDetailsEntity>(mLotDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMLotDetailsEntity", ex);
+              throw;
+          }
+
+          return MLotDetailsEntity;
+      }
     }
 }

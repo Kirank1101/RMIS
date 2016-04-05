@@ -79,6 +79,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapUsersEntityToUsers();
                 objRMISMappingDTN.MapMPaddyTypeEntityToMPaddyType();
                 objRMISMappingDTN.MapPaddyStockInfoEntityToPaddyStockInfo();
+                objRMISMappingDTN.MapMLotDetailsEntityToMLotDetails();
             }
             catch (Exception exp)
             {

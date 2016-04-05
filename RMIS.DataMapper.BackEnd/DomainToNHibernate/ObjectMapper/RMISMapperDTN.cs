@@ -21,6 +21,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         Users GetUsers(UsersEntity UsersEntity);
         MPaddyType GetMPaddyType(MPaddyTypeEntity mPaddyTypeEntity);
         PaddyStockInfo GetPaddyStockInfo(PaddyStockInfoEntity paddyStockInfoEntity);
+        MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -140,6 +141,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return paddyStockInfo;
+        }
+
+
+        public MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity)
+        {
+            MLotDetails mLotDetails = null;
+            try
+            {
+                mLotDetails = Mapper.Map<MLotDetailsEntity, MLotDetails>(mLotDetailsEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMLotDetails", ex);
+                throw;
+            }
+            return mLotDetails;
         }
     }
 }

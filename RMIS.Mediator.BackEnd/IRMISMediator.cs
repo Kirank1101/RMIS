@@ -41,6 +41,7 @@ namespace RMIS.Mediator.BackEnd
         void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy);
         void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
         void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
+        void SaveOrUpdateMLotDetailsEntity(MLotDetailsEntity mLotDetailsEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -52,6 +53,7 @@ namespace RMIS.Mediator.BackEnd
         UsersEntity GetUsersEntity(string UserID);
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
         PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
+        MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
         
         #endregion
     }

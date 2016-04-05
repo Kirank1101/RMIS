@@ -236,6 +236,33 @@
                 throw;
             }
         }
+        internal MLotDetailsEntity GetMLotDetailsEntity(string MLotID)
+        {
+            try
+            {
+                MLotDetailsEntity mLotDetailsEntity = new MLotDetailsEntity();
+                IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
+                                                                   .Add(Expression.Eq("MLotID", MLotID));
+                List<MLotDetails> listMLotDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
+                if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
+                {
+                    foreach (MLotDetails adMInfo in listMLotDetailsEntity)
+                    {
+                        mLotDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMLotDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    mLotDetailsEntity = null;
+
+                return mLotDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMLotDetailsEntity", ex);
+                throw;
+            }
+        }
 
         #endregion Methods
         private List<T> GetAllFromRepository<T>()

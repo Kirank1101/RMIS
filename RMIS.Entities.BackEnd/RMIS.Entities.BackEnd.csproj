@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Entities\MLotDetails.cs" />
     <Compile Include="Model\Entities\PaddyStockInfo.cs" />
     <Compile Include="Model\Entities\MPaddyType.cs" />
     <Compile Include="Model\Entities\Users.cs" />
@@ -70,6 +71,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Persistence\EntityMappings\MLotDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\PaddyStockInfo.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MPaddyType.hbm.xml" />
     <Content Include="Persistence\EntityMappings\Users.hbm.xml" />

@@ -239,5 +239,27 @@ namespace RMIS.Mediator.BackEnd.Impl
             RMISGateway auditGateway = new RMISGateway();
             return auditGateway.GetPaddyStockInfoEntity(PaddyStockID);
         }
+
+
+        public void SaveOrUpdateMLotDetailsEntity(MLotDetailsEntity mLotDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MLotDetails>(mapper.GetMLotDetails(mLotDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMLotDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMLotDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public MLotDetailsEntity GetMLotDetailsEntity(string MLotID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMLotDetailsEntity(MLotID);
+        }
     }
 }
