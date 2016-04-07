@@ -190,5 +190,223 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapMGodownDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MGodownDetails, MGodownDetailsEntity>()
+                    .ForMember(dest => dest.MGodownID, opts => opts.MapFrom(src => src.MGodownID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Place, opts => opts.MapFrom(src => src.Place))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMGodownDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapPaddyPaymentDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<PaddyPaymentDetails, PaddyPaymentDetailsEntity>()
+                    .ForMember(dest => dest.PaddyPaymentID, opts => opts.MapFrom(src => src.PaddyPaymentID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.AmountPaid, opts => opts.MapFrom(src => src.AmountPaid))
+                    .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
+                    .ForMember(dest => dest.HandoverTo, opts => opts.MapFrom(src => src.HandoverTo))
+                    .ForMember(dest => dest.NextPaymentDate, opts => opts.MapFrom(src => src.NextPaymentDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapPaddyPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMWeightDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MWeightDetails, MWeightDetailsEntity>()
+                    .ForMember(dest => dest.MWeightID, opts => opts.MapFrom(src => src.MWeightID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Weight, opts => opts.MapFrom(src => src.Weight))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MWeightDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerAddressInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerAddressInfo, CustomerAddressInfoEntity>()
+                    .ForMember(dest => dest.CustAdrsID, opts => opts.MapFrom(src => src.CustAdrsID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Street1, opts => opts.MapFrom(src => src.Street1))
+                    .ForMember(dest => dest.Street2, opts => opts.MapFrom(src => src.Street2))
+                    .ForMember(dest => dest.Town, opts => opts.MapFrom(src => src.Town))
+                    .ForMember(dest => dest.City, opts => opts.MapFrom(src => src.City))
+                    .ForMember(dest => dest.District, opts => opts.MapFrom(src => src.District))
+                    .ForMember(dest => dest.State, opts => opts.MapFrom(src => src.State))
+                    .ForMember(dest => dest.Pincode, opts => opts.MapFrom(src => src.Pincode))
+                    .ForMember(dest => dest.ContactNo, opts => opts.MapFrom(src => src.ContactNo))
+                    .ForMember(dest => dest.MobileNo, opts => opts.MapFrom(src => src.MobileNo))
+                    .ForMember(dest => dest.PhoneNo, opts => opts.MapFrom(src => src.PhoneNo))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerAddressInfoEntity", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerActivationEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerActivation, CustomerActivationEntity>()
+                    .ForMember(dest => dest.CustActiveID, opts => opts.MapFrom(src => src.CustActiveID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.ApplicationStartDate, opts => opts.MapFrom(src => src.ApplicationStartDate))
+                    .ForMember(dest => dest.ApplicationEndDate, opts => opts.MapFrom(src => src.ApplicationEndDate))
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerActivationEntity", ex);
+                throw;
+            }
+        }
+        internal void MapCustTrailUsageEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<CustTrailUsage, CustTrailUsageEntity>()
+                    .ForMember(dest => dest.CustTrailID, opts => opts.MapFrom(src => src.CustTrailID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TrailStartDate, opts => opts.MapFrom(src => src.TrailStartDate))
+                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))                    
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustTrailUsageEntity", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerPaymentEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerPayment, CustomerPaymentEntity>()
+                    .ForMember(dest => dest.CustPaymentID, opts => opts.MapFrom(src => src.CustPaymentID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))                    
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerPaymentEntity", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerPartPayDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerPartPayDetails, CustomerPartPayDetailsEntity>()
+                    .ForMember(dest => dest.CustPartPayID, opts => opts.MapFrom(src => src.CustPartPayID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.PaidAmount, opts => opts.MapFrom(src => src.PaidAmount))
+                    .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
+                    .ForMember(dest => dest.NextPayDate, opts => opts.MapFrom(src => src.NextPayDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerPartPayDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMDrierTypeDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MDrierTypeDetails, MDrierTypeDetailsEntity>()
+                    .ForMember(dest => dest.MDrierTypeID, opts => opts.MapFrom(src => src.MDrierTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.DrierName, opts => opts.MapFrom(src => src.DrierName))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMDrierTypeDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMRiceProductionTypeEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MRiceProductionType, MRiceProductionTypeEntity>()
+                    .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.RiceType, opts => opts.MapFrom(src => src.RiceType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMRiceProductionTypeEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMRiceBrandDetailsEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MRiceBrandDetails, MRiceBrandDetailsEntity>()
+                    .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMapMRiceBrandDetailsEntity", ex);
+                throw;
+            }
+        }
+
     }
 }

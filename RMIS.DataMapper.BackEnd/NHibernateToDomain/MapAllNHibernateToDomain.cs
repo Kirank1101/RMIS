@@ -57,6 +57,16 @@
                 objRMISMappingNTD.MapMPaddyTypeEntity();
                 objRMISMappingNTD.MapPaddyStockInfoEntity();
                 objRMISMappingNTD.MapMLotDetailsEntity();
+                objRMISMappingNTD.MapMGodownDetailsEntity();
+                objRMISMappingNTD.MapMWeightDetailsEntity();
+                objRMISMappingNTD.MapCustomerAddressInfoEntity();
+                objRMISMappingNTD.MapCustomerActivationEntity();
+                objRMISMappingNTD.MapCustTrailUsageEntity();
+                objRMISMappingNTD.MapCustomerPaymentEntity();
+                objRMISMappingNTD.MapCustomerPartPayDetailsEntity();
+                objRMISMappingNTD.MapMDrierTypeDetailsEntity();
+                objRMISMappingNTD.MapMRiceProductionTypeEntity();
+                objRMISMappingNTD.MapMRiceBrandDetailsEntity();
             }
             catch (Exception ex)
             {

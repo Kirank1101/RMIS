@@ -52,6 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
+    <Compile Include="RiceMill\MRiceBrandDetailsEntity.cs" />
+    <Compile Include="RiceMill\MRiceProductionTypeEntity.cs" />
+    <Compile Include="RiceMill\MDrierTypeDetailsEntity.cs" />
+    <Compile Include="RiceMill\CustomerPartPayDetailsEntity.cs" />
+    <Compile Include="RiceMill\CustomerPaymentEntity.cs" />
+    <Compile Include="RiceMill\CustTrailUsageEntity.cs" />
+    <Compile Include="RiceMill\CustomerActivationEntity.cs" />
+    <Compile Include="RiceMill\CustomerAddressInfoEntity.cs" />
+    <Compile Include="RiceMill\MWeightDetailsEntity.cs" />
+    <Compile Include="RiceMill\PaddyPaymentDetailsEntity.cs" />
+    <Compile Include="RiceMill\MGodownDetailsEntity.cs" />
     <Compile Include="RiceMill\MLotDetailsEntity.cs" />
     <Compile Include="RiceMill\PaddyStockInfoEntity.cs" />
     <Compile Include="RiceMill\MPaddyTypeEntity.cs" />

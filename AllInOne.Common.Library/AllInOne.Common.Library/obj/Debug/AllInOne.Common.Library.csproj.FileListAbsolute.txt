@@ -41,4 +41,3 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\AllInOne.Common.Library.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\AllInOne.Common.Library.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.pdb
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.csprojResolveAssemblyReference.cache

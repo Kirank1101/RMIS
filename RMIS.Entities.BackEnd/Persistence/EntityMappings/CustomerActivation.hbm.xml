@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="CustomerActivation" table="[dbo].[CustomerActivation]" optimistic-lock="none" >
+    <id name="CustActiveID" column="CustActiveID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="CustID" column="CustID" />
+    <property name="ApplicationStartDate" column="ApplicationStartDate" />
+    <property name="ApplicationEndDate" column="ApplicationEndDate" />
+    <property name="Status" column="Status" />
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

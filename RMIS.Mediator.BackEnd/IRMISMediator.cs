@@ -42,6 +42,17 @@ namespace RMIS.Mediator.BackEnd
         void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
         void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
         void SaveOrUpdateMLotDetailsEntity(MLotDetailsEntity mLotDetailsEntity, bool isCopy);
+        void SaveOrUpdateMGodownDetailsEntity(MGodownDetailsEntity mGodownDetailsEntity, bool isCopy);
+        void SaveOrUpdatePaddyPaymentDetailsEntity(PaddyPaymentDetailsEntity paddyPaymentDetailsEntity, bool isCopy);
+        void SaveOrUpdateMWeightDetailsEntity(MWeightDetailsEntity mWeightDetailsEntity, bool isCopy);
+        void SaveOrUpdateCustomerAddressInfoEntity(CustomerAddressInfoEntity customerAddressInfoEntity, bool isCopy);
+        void SaveOrUpdateCustomerActivationEntity(CustomerActivationEntity customerActivationEntity, bool isCopy);
+        void SaveOrUpdateCustTrailUsageEntity(CustTrailUsageEntity custTrailUsageEntity, bool isCopy);
+        void SaveOrUpdateCustomerPaymentEntity(CustomerPaymentEntity customerPaymentEntity, bool isCopy);
+        void SaveOrUpdateCustomerPartPayDetailsEntity(CustomerPartPayDetailsEntity customerPartPayDetailsEntity, bool isCopy);
+        void SaveOrUpdateMDrierTypeDetailsEntity(MDrierTypeDetailsEntity mDrierTypeDetailsEntity, bool isCopy);
+        void SaveOrUpdateMDrierTypeDetailsEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy);
+        void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -54,7 +65,18 @@ namespace RMIS.Mediator.BackEnd
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
         PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
-        
+        MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
+        PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID);
+        MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID);
+        CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID);
+        CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID);
+        CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID);
+        CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID);
+        CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID);
+        MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
+        MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
+        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
+
         #endregion
     }
 }

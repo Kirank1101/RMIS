@@ -263,6 +263,303 @@
                 throw;
             }
         }
+        internal MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID)
+        {
+            try
+            {
+                MGodownDetailsEntity MGodownDetailsEntity = new MGodownDetailsEntity();
+                IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID));
+                List<MGodownDetails> listMGodownDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
+                if (listMGodownDetailsEntity != null && listMGodownDetailsEntity.Count > 0)
+                {
+                    foreach (MGodownDetails adMInfo in listMGodownDetailsEntity)
+                    {
+                        MGodownDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    MGodownDetailsEntity = null;
+
+                return MGodownDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMGodownDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
+        {
+            try
+            {
+                PaddyPaymentDetailsEntity paddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                   .Add(Expression.Eq("PaddyPaymentID", PaddyPaymentID));
+                List<PaddyPaymentDetails> listPaddyPaymentDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<PaddyPaymentDetails>;
+                if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+                {
+                    foreach (PaddyPaymentDetails adMInfo in listPaddyPaymentDetailsEntity)
+                    {
+                        paddyPaymentDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyPaymentDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    paddyPaymentDetailsEntity = null;
+
+                return paddyPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID)
+        {
+            try
+            {
+                MWeightDetailsEntity mWeightDetailsEntity = new MWeightDetailsEntity();
+                IRepository<MWeightDetails> UsersRepository = new RepositoryImpl<MWeightDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MWeightDetails))
+                                                                   .Add(Expression.Eq("PaddyPaymentID", MWeightID));
+                List<MWeightDetails> listMWeightDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MWeightDetails>;
+                if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
+                {
+                    foreach (MWeightDetails adMInfo in listMWeightDetailsEntity)
+                    {
+                        mWeightDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMWeightDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    mWeightDetailsEntity = null;
+
+                return mWeightDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMWeightDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID)
+        {
+            try
+            {
+                CustomerAddressInfoEntity customerAddressInfoEntity = new CustomerAddressInfoEntity();
+                IRepository<CustomerAddressInfo> UsersRepository = new RepositoryImpl<CustomerAddressInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerAddressInfo))
+                                                                   .Add(Expression.Eq("CustAdrsID", CustAdrsID));
+                List<CustomerAddressInfo> listCustomerAddressInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerAddressInfo>;
+                if (listCustomerAddressInfoEntity != null && listCustomerAddressInfoEntity.Count > 0)
+                {
+                    foreach (CustomerAddressInfo adMInfo in listCustomerAddressInfoEntity)
+                    {
+                        customerAddressInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustomerAddressInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    customerAddressInfoEntity = null;
+
+                return customerAddressInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustomerAddressInfoEntity", ex);
+                throw;
+            }
+        }
+        internal CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID)
+        {
+            try
+            {
+                CustomerActivationEntity customerActivationEntity = new CustomerActivationEntity();
+                IRepository<CustomerActivation> UsersRepository = new RepositoryImpl<CustomerActivation>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerActivation))
+                                                                   .Add(Expression.Eq("CustActiveID", CustActiveID));
+                List<CustomerActivation> listCustomerActivationEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerActivation>;
+                if (listCustomerActivationEntity != null && listCustomerActivationEntity.Count > 0)
+                {
+                    foreach (CustomerActivation adMInfo in listCustomerActivationEntity)
+                    {
+                        customerActivationEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustomerActivationEntity(adMInfo);
+                    }
+                }
+                else
+                    customerActivationEntity = null;
+
+                return customerActivationEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustomerActivationEntity", ex);
+                throw;
+            }
+        }
+        internal CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID)
+        {
+            try
+            {
+                CustTrailUsageEntity custTrailUsageEntity = new CustTrailUsageEntity();
+                IRepository<CustTrailUsage> UsersRepository = new RepositoryImpl<CustTrailUsage>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustTrailUsage))
+                                                                   .Add(Expression.Eq("CustTrailID", CustTrailID));
+                List<CustTrailUsage> listCustTrailUsageEntity = UsersRepository.GetAll(detachedCriteria) as List<CustTrailUsage>;
+                if (listCustTrailUsageEntity != null && listCustTrailUsageEntity.Count > 0)
+                {
+                    foreach (CustTrailUsage adMInfo in listCustTrailUsageEntity)
+                    {
+                        custTrailUsageEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustTrailUsageEntity(adMInfo);
+                    }
+                }
+                else
+                    custTrailUsageEntity = null;
+
+                return custTrailUsageEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustTrailUsageEntity", ex);
+                throw;
+            }
+        }
+        internal CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID)
+        {
+            try
+            {
+                CustomerPaymentEntity customerPaymentEntity = new CustomerPaymentEntity();
+                IRepository<CustomerPayment> UsersRepository = new RepositoryImpl<CustomerPayment>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerPayment))
+                                                                   .Add(Expression.Eq("CustPaymentID", CustPaymentID));
+                List<CustomerPayment> listCustomerPaymentEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerPayment>;
+                if (listCustomerPaymentEntity != null && listCustomerPaymentEntity.Count > 0)
+                {
+                    foreach (CustomerPayment adMInfo in listCustomerPaymentEntity)
+                    {
+                        customerPaymentEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustomerPaymentEntity(adMInfo);
+                    }
+                }
+                else
+                    customerPaymentEntity = null;
+
+                return customerPaymentEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustomerPaymentEntity", ex);
+                throw;
+            }
+        }
+        internal CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID)
+        {
+            try
+            {
+                CustomerPartPayDetailsEntity customerPartPayDetailsEntity = new CustomerPartPayDetailsEntity();
+                IRepository<CustomerPartPayDetails> UsersRepository = new RepositoryImpl<CustomerPartPayDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerPartPayDetails))
+                                                                   .Add(Expression.Eq("CustPartPayID", CustPartPayID));
+                List<CustomerPartPayDetails> listCustomerPartPayDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerPartPayDetails>;
+                if (listCustomerPartPayDetailsEntity != null && listCustomerPartPayDetailsEntity.Count > 0)
+                {
+                    foreach (CustomerPartPayDetails adMInfo in listCustomerPartPayDetailsEntity)
+                    {
+                        customerPartPayDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetCustomerPartPayDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    customerPartPayDetailsEntity = null;
+
+                return customerPartPayDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetCustomerPartPayDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID)
+        {
+            try
+            {
+                MDrierTypeDetailsEntity mDrierTypeDetailsEntity = new MDrierTypeDetailsEntity();
+                IRepository<MDrierTypeDetails> UsersRepository = new RepositoryImpl<MDrierTypeDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MDrierTypeDetails))
+                                                                   .Add(Expression.Eq("MDrierTypeID", MDrierTypeID));
+                List<MDrierTypeDetails> listMDrierTypeDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MDrierTypeDetails>;
+                if (listMDrierTypeDetailsEntity != null && listMDrierTypeDetailsEntity.Count > 0)
+                {
+                    foreach (MDrierTypeDetails adMInfo in listMDrierTypeDetailsEntity)
+                    {
+                        mDrierTypeDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMDrierTypeDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    mDrierTypeDetailsEntity = null;
+
+                return mDrierTypeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMDrierTypeDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID)
+        {
+            try
+            {
+                MRiceProductionTypeEntity mRiceProductionTypeEntity = new MRiceProductionTypeEntity();
+                IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", MRiceProdTypeID));
+                List<MRiceProductionType> listMRiceProductionTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceProductionType>;
+                if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
+                {
+                    foreach (MRiceProductionType adMInfo in listMRiceProductionTypeEntity)
+                    {
+                        mRiceProductionTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceProductionTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    mRiceProductionTypeEntity = null;
+
+                return mRiceProductionTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceProductionTypeEntity", ex);
+                throw;
+            }
+        }
+        internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
+        {
+            try
+            {
+                MRiceBrandDetailsEntity mRiceBrandDetailsEntity = new MRiceBrandDetailsEntity();
+                IRepository<MRiceBrandDetails> UsersRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
+                                                                   .Add(Expression.Eq("MRiceBrandID", MRiceBrandID));
+                List<MRiceBrandDetails> listMRiceBrandDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceBrandDetails>;
+                if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
+                {
+                    foreach (MRiceBrandDetails adMInfo in listMRiceBrandDetailsEntity)
+                    {
+                        mRiceBrandDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    mRiceBrandDetailsEntity = null;
+
+                return mRiceBrandDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceBrandDetailsEntity", ex);
+                throw;
+            }
+        }
 
         #endregion Methods
         private List<T> GetAllFromRepository<T>()

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="CustomerAddressInfo" table="[dbo].[CustomerAddressInfo]" optimistic-lock="none" >
+    <id name="CustAdrsID" column="CustAdrsID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="CustID" column="CustID" />
+    <property name="Street1" column="Street1" />
+    <property name="Street2" column="Street2" />
+    <property name="Town" column="Town" />
+    <property name="City" column="City" />
+    <property name="District" column="District" />
+    <property name="State" column="State" />
+    <property name="Pincode" column="Pincode" />
+    <property name="ContactNo" column="ContactNo" />
+    <property name="MobileNo" column="MobileNo" />
+    <property name="PhoneNo" column="PhoneNo" />
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

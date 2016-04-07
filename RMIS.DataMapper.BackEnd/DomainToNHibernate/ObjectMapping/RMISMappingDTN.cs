@@ -207,5 +207,237 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapMGodownDetailsEntityToMGodownDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<MGodownDetailsEntity, MGodownDetails>()
+                    .ForMember(dest => dest.MGodownID, opts => opts.MapFrom(src => src.MGodownID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Place, opts => opts.MapFrom(src => src.Place))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMGodownDetailsEntityToMGodownDetails", ex);
+                throw;
+            }
+        }
+        internal void MapPaddyPaymentDetailsEntityToPaddyPaymentDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<PaddyPaymentDetailsEntity, PaddyPaymentDetails>()
+                    .ForMember(dest => dest.PaddyPaymentID, opts => opts.MapFrom(src => src.PaddyPaymentID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.AmountPaid, opts => opts.MapFrom(src => src.AmountPaid))
+                    .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
+                    .ForMember(dest => dest.HandoverTo, opts => opts.MapFrom(src => src.HandoverTo))
+                    .ForMember(dest => dest.NextPaymentDate, opts => opts.MapFrom(src => src.NextPaymentDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapPaddyPaymentDetailsEntityToPaddyPaymentDetails", ex);
+                throw;
+            }
+        }
+        internal void MapMWeightDetailsEntityToMWeightDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<MWeightDetailsEntity, MWeightDetails>()
+                    .ForMember(dest => dest.MWeightID, opts => opts.MapFrom(src => src.MWeightID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Weight, opts => opts.MapFrom(src => src.Weight))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMWeightDetailsEntityToMWeightDetails", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerAddressInfoEntityToCustomerAddressInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerAddressInfoEntity, CustomerAddressInfo>()
+                    .ForMember(dest => dest.CustAdrsID, opts => opts.MapFrom(src => src.CustAdrsID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Street1, opts => opts.MapFrom(src => src.Street1))
+                    .ForMember(dest => dest.Street2, opts => opts.MapFrom(src => src.Street2))
+                    .ForMember(dest => dest.Town, opts => opts.MapFrom(src => src.Town))
+                    .ForMember(dest => dest.City, opts => opts.MapFrom(src => src.City))
+                    .ForMember(dest => dest.District, opts => opts.MapFrom(src => src.District))
+                    .ForMember(dest => dest.State, opts => opts.MapFrom(src => src.State))
+                    .ForMember(dest => dest.Pincode, opts => opts.MapFrom(src => src.Pincode))
+                    .ForMember(dest => dest.ContactNo, opts => opts.MapFrom(src => src.ContactNo))
+                    .ForMember(dest => dest.MobileNo, opts => opts.MapFrom(src => src.MobileNo))
+                    .ForMember(dest => dest.PhoneNo, opts => opts.MapFrom(src => src.PhoneNo))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerAddressInfoEntityToCustomerAddressInfo", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerActivationEntityToCustomerActivation()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerActivationEntity, CustomerActivation>()
+                    .ForMember(dest => dest.CustActiveID, opts => opts.MapFrom(src => src.CustActiveID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.ApplicationStartDate, opts => opts.MapFrom(src => src.ApplicationStartDate))
+                    .ForMember(dest => dest.ApplicationEndDate, opts => opts.MapFrom(src => src.ApplicationEndDate))
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerActivationEntityToCustomerActivation", ex);
+                throw;
+            }
+        }
+        internal void MapCustTrailUsageEntityToCustTrailUsage()
+        {
+            try
+            {
+                Mapper.CreateMap<CustTrailUsageEntity, CustTrailUsage>()
+                    .ForMember(dest => dest.CustTrailID, opts => opts.MapFrom(src => src.CustTrailID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TrailStartDate, opts => opts.MapFrom(src => src.TrailStartDate))
+                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))                    
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustTrailUsageEntityToCustTrailUsage", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerPaymentEntityToCustomerPayment()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerPaymentEntity, CustomerPayment>()
+                    .ForMember(dest => dest.CustPaymentID, opts => opts.MapFrom(src => src.CustPaymentID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))                    
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerPaymentEntityToCustomerPayment", ex);
+                throw;
+            }
+        }
+        internal void MapCustomerPartPayDetailsEntityToCustomerPartPayDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<CustomerPartPayDetailsEntity, CustomerPartPayDetails>()
+                    .ForMember(dest => dest.CustPartPayID, opts => opts.MapFrom(src => src.CustPartPayID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.PaidAmount, opts => opts.MapFrom(src => src.PaidAmount))
+                    .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
+                    .ForMember(dest => dest.NextPayDate, opts => opts.MapFrom(src => src.NextPayDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapCustomerPartPayDetailsEntityToCustomerPartPayDetails", ex);
+                throw;
+            }
+        }
+        internal void MapMDrierTypeDetailsEntityToMDrierTypeDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<MDrierTypeDetailsEntity, MDrierTypeDetails>()
+                    .ForMember(dest => dest.MDrierTypeID, opts => opts.MapFrom(src => src.MDrierTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.DrierName, opts => opts.MapFrom(src => src.DrierName))                    
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMDrierTypeDetailsEntityToMDrierTypeDetails", ex);
+                throw;
+            }
+        }
+        internal void MapMRiceProductionTypeEntityToMRiceProductionType()
+        {
+            try
+            {
+                Mapper.CreateMap<MRiceProductionTypeEntity, MRiceProductionType>()
+                    .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.RiceType, opts => opts.MapFrom(src => src.RiceType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMRiceProductionTypeEntityToMRiceProductionType", ex);
+                throw;
+            }
+        }
+        internal void MapMRiceBrandDetailsEntityToMRiceBrandDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<MRiceBrandDetailsEntity, MRiceBrandDetails>()
+                    .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMRiceBrandDetailsEntityToMRiceBrandDetails", ex);
+                throw;
+            }
+        }
+
     }
 }

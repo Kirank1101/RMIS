@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="PaddyPaymentDetails" table="[dbo].[PaddyPaymentDetails]" optimistic-lock="none" >
+    <id name="PaddyPaymentID" column="PaddyPaymentID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="SellerID" column="SellerID" />
+    <property name="CustID" column="CustID" />
+    <property name="AmountPaid" column="AmountPaid" />
+    <property name="PaidDate" column="PaidDate" />
+    <property name="HandoverTo" column="HandoverTo" />
+    <property name="NextPaymentDate" column="NextPaymentDate" />    
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

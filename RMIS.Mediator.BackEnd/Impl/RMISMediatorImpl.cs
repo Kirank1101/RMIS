@@ -261,5 +261,248 @@ namespace RMIS.Mediator.BackEnd.Impl
             RMISGateway auditGateway = new RMISGateway();
             return auditGateway.GetMLotDetailsEntity(MLotID);
         }
+
+
+        public void SaveOrUpdateMGodownDetailsEntity(MGodownDetailsEntity mGodownDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MGodownDetails>(mapper.GetMGodownDetails(mGodownDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMGodownDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMGodownDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+
+        }
+
+        public MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMGodownDetailsEntity(MGodownID);
+        }
+
+
+        public void SaveOrUpdatePaddyPaymentDetailsEntity(PaddyPaymentDetailsEntity paddyPaymentDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<PaddyPaymentDetails>(mapper.GetPaddyPaymentDetails(paddyPaymentDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdatePaddyPaymentDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdatePaddyPaymentDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID);
+        }
+
+
+        public void SaveOrUpdateMWeightDetailsEntity(MWeightDetailsEntity mWeightDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MWeightDetails>(mapper.GetMWeightDetails(mWeightDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMWeightDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMWeightDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMWeightDetailsEntity(MWeightID);
+        }
+
+
+        public void SaveOrUpdateCustomerAddressInfoEntity(CustomerAddressInfoEntity customerAddressInfoEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<CustomerAddressInfo>(mapper.GetCustomerAddressInfo(customerAddressInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateCustomerAddressInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateCustomerAddressInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetCustomerAddressInfoEntity(CustAdrsID);
+        }
+
+
+        public void SaveOrUpdateCustomerActivationEntity(CustomerActivationEntity customerActivationEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<CustomerActivation>(mapper.GetCustomerActivation(customerActivationEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateCustomerActivationEntity", ex);
+                Logger.Error("Error in SaveOrUpdateCustomerActivationEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetCustomerActivationEntity(CustActiveID);
+        }
+
+
+        public void SaveOrUpdateCustTrailUsageEntity(CustTrailUsageEntity custTrailUsageEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<CustTrailUsage>(mapper.GetCustTrailUsage(custTrailUsageEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateCustTrailUsageEntity", ex);
+                Logger.Error("Error in SaveOrUpdateCustTrailUsageEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetCustTrailUsageEntity(CustTrailID);
+        }
+
+
+        public void SaveOrUpdateCustomerPaymentEntity(CustomerPaymentEntity customerPaymentEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<CustomerPayment>(mapper.GetCustomerPayment(customerPaymentEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateCustomerPaymentEntity", ex);
+                Logger.Error("Error in SaveOrUpdateCustomerPaymentEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetCustomerPaymentEntity(CustPaymentID);
+        }
+
+
+        public void SaveOrUpdateCustomerPartPayDetailsEntity(CustomerPartPayDetailsEntity customerPartPayDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<CustomerPartPayDetails>(mapper.GetCustomerPartPayDetails(customerPartPayDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateCustomerPartPayDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateCustomerPartPayDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetCustomerPartPayDetailsEntity(CustPartPayID);
+        }
+
+
+        public void SaveOrUpdateMDrierTypeDetailsEntity(MDrierTypeDetailsEntity mDrierTypeDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MDrierTypeDetails>(mapper.GetMDrierTypeDetails(mDrierTypeDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMDrierTypeDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMDrierTypeDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMDrierTypeDetailsEntity(MDrierTypeID);
+        }
+
+
+        public void SaveOrUpdateMDrierTypeDetailsEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MRiceProductionType>(mapper.GetMRiceProductionType(mRiceProductionTypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMDrierTypeDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMDrierTypeDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMRiceProductionTypeEntity(MRiceProdTypeID);
+        }
+
+
+        public void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy)
+        {
+            try
+            {
+                GenericGateway genericGateway = new GenericGateway();
+                genericGateway.SaveOrUpdateEntity<MRiceBrandDetails>(mapper.GetMRiceBrandDetails(mRiceBrandDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMRiceBrandDetailsEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMRiceBrandDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
+        {
+            RMISGateway auditGateway = new RMISGateway();
+            return auditGateway.GetMRiceBrandDetailsEntity(MRiceBrandID);
+        }
     }
 }

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RMIS.Entities.BackEnd;
-
 using AutoMapper;
 using log4net;
-using RMIS.Entities.BackEnd;
 using RMIS.Domain.RiceMill;
-using RMIS.Entities.BackEnd;
 
 namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 {
@@ -47,7 +44,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return sellerTypeEntity;
         }
-
       public static SellerInfoEntity GetSellerInfoEntity(SellerInfo sellerInfo)
       {
           SellerInfoEntity sellerInfoEntity = null;
@@ -181,5 +177,215 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return MLotDetailsEntity;
       }
+      public static MGodownDetailsEntity GetMGodownDetailsEntity(MGodownDetails mGodownDetails)
+      {
+          MGodownDetailsEntity mGodownDetailsEntity = null;
+
+          try
+          {
+              if (mGodownDetails != null)
+              {
+                  mGodownDetailsEntity = Mapper.Map<MGodownDetails, MGodownDetailsEntity>(mGodownDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMGodownDetailsEntity", ex);
+              throw;
+          }
+
+          return mGodownDetailsEntity;
+      }
+      public static PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(PaddyPaymentDetails paddyPaymentDetails)
+      {
+          PaddyPaymentDetailsEntity paddyPaymentDetailsEntity = null;
+
+          try
+          {
+              if (paddyPaymentDetails != null)
+              {
+                  paddyPaymentDetailsEntity = Mapper.Map<PaddyPaymentDetails, PaddyPaymentDetailsEntity>(paddyPaymentDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetPaddyPaymentDetailsEntity", ex);
+              throw;
+          }
+
+          return paddyPaymentDetailsEntity;
+      }
+      public static MWeightDetailsEntity GetMWeightDetailsEntity(MWeightDetails mWeightDetails)
+      {
+          MWeightDetailsEntity mWeightDetailsEntity = null;
+
+          try
+          {
+              if (mWeightDetails != null)
+              {
+                  mWeightDetailsEntity = Mapper.Map<MWeightDetails, MWeightDetailsEntity>(mWeightDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMWeightDetailsEntity", ex);
+              throw;
+          }
+
+          return mWeightDetailsEntity;
+      }
+      public static CustomerAddressInfoEntity GetCustomerAddressInfoEntity(CustomerAddressInfo customerAddressInfo)
+      {
+          CustomerAddressInfoEntity customerAddressInfoEntity = null;
+
+          try
+          {
+              if (customerAddressInfo != null)
+              {
+                  customerAddressInfoEntity = Mapper.Map<CustomerAddressInfo, CustomerAddressInfoEntity>(customerAddressInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustomerAddressInfoEntity", ex);
+              throw;
+          }
+
+          return customerAddressInfoEntity;
+      }
+      public static CustomerActivationEntity GetCustomerActivationEntity(CustomerActivation customerActivation)
+      {
+          CustomerActivationEntity customerActivationEntity = null;
+
+          try
+          {
+              if (customerActivation != null)
+              {
+                  customerActivationEntity = Mapper.Map<CustomerActivation, CustomerActivationEntity>(customerActivation);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustomerActivationEntity", ex);
+              throw;
+          }
+
+          return customerActivationEntity;
+      }
+      public static CustTrailUsageEntity GetCustTrailUsageEntity(CustTrailUsage custTrailUsage)
+      {
+          CustTrailUsageEntity custTrailUsageEntity = null;
+
+          try
+          {
+              if (custTrailUsage != null)
+              {
+                  custTrailUsageEntity = Mapper.Map<CustTrailUsage, CustTrailUsageEntity>(custTrailUsage);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustTrailUsageEntity", ex);
+              throw;
+          }
+
+          return custTrailUsageEntity;
+      }
+      public static CustomerPaymentEntity GetCustomerPaymentEntity(CustomerPayment customerPayment)
+      {
+          CustomerPaymentEntity customerPaymentEntity = null;
+
+          try
+          {
+              if (customerPayment != null)
+              {
+                  customerPaymentEntity = Mapper.Map<CustomerPayment, CustomerPaymentEntity>(customerPayment);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustomerPaymentEntity", ex);
+              throw;
+          }
+
+          return customerPaymentEntity;
+      }
+      public static CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(CustomerPartPayDetails customerPartPayDetails)
+      {
+          CustomerPartPayDetailsEntity customerPartPayDetailsEntity = null;
+
+          try
+          {
+              if (customerPartPayDetails != null)
+              {
+                  customerPartPayDetailsEntity = Mapper.Map<CustomerPartPayDetails, CustomerPartPayDetailsEntity>(customerPartPayDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetCustomerPartPayDetailsEntity", ex);
+              throw;
+          }
+
+          return customerPartPayDetailsEntity;
+      }
+      public static MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(MDrierTypeDetails mDrierTypeDetails)
+      {
+          MDrierTypeDetailsEntity mDrierTypeDetailsEntity = null;
+
+          try
+          {
+              if (mDrierTypeDetails != null)
+              {
+                  mDrierTypeDetailsEntity = Mapper.Map<MDrierTypeDetails, MDrierTypeDetailsEntity>(mDrierTypeDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMDrierTypeDetailsEntity", ex);
+              throw;
+          }
+
+          return mDrierTypeDetailsEntity;
+      }
+      public static MRiceProductionTypeEntity GetMRiceProductionTypeEntity(MRiceProductionType mRiceProductionType)
+      {
+          MRiceProductionTypeEntity mRiceProductionTypeEntity = null;
+
+          try
+          {
+              if (mRiceProductionType != null)
+              {
+                  mRiceProductionTypeEntity = Mapper.Map<MRiceProductionType, MRiceProductionTypeEntity>(mRiceProductionType);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMRiceProductionTypeEntity", ex);
+              throw;
+          }
+
+          return mRiceProductionTypeEntity;
+      }
+      public static MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(MRiceBrandDetails mRiceBrandDetails)
+      {
+          MRiceBrandDetailsEntity mRiceBrandDetailsEntity = null;
+
+          try
+          {
+              if (mRiceBrandDetails != null)
+              {
+                  mRiceBrandDetailsEntity = Mapper.Map<MRiceBrandDetails, MRiceBrandDetailsEntity>(mRiceBrandDetails);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMRiceBrandDetailsEntity", ex);
+              throw;
+          }
+
+          return mRiceBrandDetailsEntity;
+      }
+      
     }
 }

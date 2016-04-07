@@ -49,6 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Entities\MRiceBrandDetails.cs" />
+    <Compile Include="Model\Entities\MRiceProductionType.cs" />
+    <Compile Include="Model\Entities\MDrierTypeDetails.cs" />
+    <Compile Include="Model\Entities\CustomerPartPayDetails.cs" />
+    <Compile Include="Model\Entities\CustomerPayment.cs" />
+    <Compile Include="Model\Entities\CustTrailUsage.cs" />
+    <Compile Include="Model\Entities\CustomerActivation.cs" />
+    <Compile Include="Model\Entities\CustomerAddressInfo.cs" />
+    <Compile Include="Model\Entities\MWeightDetails.cs" />
+    <Compile Include="Model\Entities\PaddyPaymentDetails.cs" />
+    <Compile Include="Model\Entities\MGodownDetails.cs" />
     <Compile Include="Model\Entities\MLotDetails.cs" />
     <Compile Include="Model\Entities\PaddyStockInfo.cs" />
     <Compile Include="Model\Entities\MPaddyType.cs" />
@@ -71,6 +82,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Persistence\EntityMappings\MRiceBrandDetails.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\MRiceProductionType.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\MDrierTypeDetails.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\CustomerPartPayDetails.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\CustomerPayment.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\CustTrailUsage.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\CustomerActivation.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\CustomerAddressInfo.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\MWeightDetails.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\PaddyPaymentDetails.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\MGodownDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MLotDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\PaddyStockInfo.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MPaddyType.hbm.xml" />

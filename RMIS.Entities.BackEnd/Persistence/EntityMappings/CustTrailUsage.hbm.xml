@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="CustTrailUsage" table="[dbo].[CustTrailUsage]" optimistic-lock="none" >
+    <id name="CustTrailID" column="CustTrailID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="CustID" column="CustID" />
+    <property name="TrailStartDate" column="TrailStartDate" />
+    <property name="TrailEndDate" column="TrailEndDate" />    
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

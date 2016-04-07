@@ -80,6 +80,17 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMPaddyTypeEntityToMPaddyType();
                 objRMISMappingDTN.MapPaddyStockInfoEntityToPaddyStockInfo();
                 objRMISMappingDTN.MapMLotDetailsEntityToMLotDetails();
+                objRMISMappingDTN.MapMGodownDetailsEntityToMGodownDetails();
+                objRMISMappingDTN.MapPaddyPaymentDetailsEntityToPaddyPaymentDetails();
+                objRMISMappingDTN.MapMWeightDetailsEntityToMWeightDetails();
+                objRMISMappingDTN.MapCustomerAddressInfoEntityToCustomerAddressInfo();
+                objRMISMappingDTN.MapCustomerActivationEntityToCustomerActivation();
+                objRMISMappingDTN.MapCustTrailUsageEntityToCustTrailUsage();
+                objRMISMappingDTN.MapCustomerPaymentEntityToCustomerPayment();
+                objRMISMappingDTN.MapCustomerPartPayDetailsEntityToCustomerPartPayDetails();
+                objRMISMappingDTN.MapMDrierTypeDetailsEntityToMDrierTypeDetails();
+                objRMISMappingDTN.MapMRiceProductionTypeEntityToMRiceProductionType();
+                objRMISMappingDTN.MapMRiceBrandDetailsEntityToMRiceBrandDetails();
             }
             catch (Exception exp)
             {
