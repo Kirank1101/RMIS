@@ -18,5 +18,11 @@ namespace RMIS.Business
             return imp.GetSellerTypeEntities(custId);
         }
 
+        public void SaveSellerType(SellerTypeEntity objSellerTypeEntity)
+        {
+            IRMISMediator imp = BinderSingleton.Instance.GetInstance<IRMISMediator>();
+            imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
+        }
+
     }
 }
