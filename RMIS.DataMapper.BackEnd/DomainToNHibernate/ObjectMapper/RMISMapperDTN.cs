@@ -53,7 +53,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         /// </summary>
         /// <param name="SellerTypeEntity">The AASObjectionEntity.</param>
         /// <returns></returns>
-        public  MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity)
+        public MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity)
         {
             MSellerType sellerType = null;
             try
@@ -192,7 +192,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             PaddyPaymentDetails paddyPaymentDetails = null;
             try
             {
-                paddyPaymentDetails = Mapper.Map<PaddyPaymentDetailsEntity, PaddyPaymentDetails >(paddyPaymentDetailsEntity);
+                paddyPaymentDetails = Mapper.Map<PaddyPaymentDetailsEntity, PaddyPaymentDetails>(paddyPaymentDetailsEntity);
             }
             catch (Exception ex)
             {

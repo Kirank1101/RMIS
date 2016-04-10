@@ -58,6 +58,7 @@ namespace RMIS.Mediator.BackEnd
         /// </summary>
         /// <returns></returns>
         SellerTypeEntity GetSellerTypeEntity(string SellerTypeID);
+        List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);

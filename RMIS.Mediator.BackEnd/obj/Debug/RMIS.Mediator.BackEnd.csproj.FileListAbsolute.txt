@@ -13,11 +13,6 @@ F:\Bin\RMISGitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
 F:\Bin\RMISGitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.csprojResolveAssemblyReference.cache
 F:\Bin\RMISGitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
 F:\Bin\RMISGitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.dll
-C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.csprojResolveAssemblyReference.cache
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Mediator.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
@@ -28,3 +23,8 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb

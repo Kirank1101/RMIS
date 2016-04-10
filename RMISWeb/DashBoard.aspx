@@ -54,6 +54,8 @@
  <asp:ScriptManager ID="ScriptManager1" runat="server">
  </asp:ScriptManager>
 
+
+
     <!--[if lt IE 7]>
    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
    <![endif]-->
@@ -79,6 +81,50 @@
                 </div>
             </div>
         </div>
+
+
+        
+ <div id="home-tiles" class="container-fluid metro-responsive-tiles">
+      <div class="row-fluid">
+
+       <div class="span4">
+            <a class="tile wide imagetext bg-color-orange first" href="https://github.com/aozora/bootmetro">
+               <div class="image-wrapper">
+                  <span class="icon icon-github"></span>
+               </div>
+               <div class="column-text">
+                  <div class="text-header2">View project on GitHub</div>
+                  <div class="text4">
+                     <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=aozora&repo=bootmetro&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+                     <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=aozora&repo=bootmetro&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98px" height="20px"></iframe>
+                  </div>
+               </div>
+            </a>
+         </div>
+         <div class="span4">
+            <a class="tile wide imagetext bg-color-green middle" href="./hub.html">
+               <div class="image-wrapper">
+                  <span class="icon icon-grid"></span>
+               </div>
+               <div class="column-text">
+                  <div class="text-header3">View the Demo online</div>
+               </div>
+            </a>
+         </div>
+         <div class="span4">
+            <a class="tile wide imagetext bg-color-blue last" href="https://twitter.com/aozoralabs">
+               <div class="image-wrapper">
+                  <span class="icon icon-twitter"></span>
+               </div>
+               <div class="column-text">
+                  <div class="text-header3">Follow on Twitter</div>
+               </div>
+            </a>
+         </div>
+      </div>
+      </div> 
+
+
         <!--<div id="metro-container" class="-container">-->
         <!--<div class="row">-->
         <!--<div id="hub" class="metro">-->
@@ -194,7 +240,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="panorama-section tile-span-4">
+              <%--  <div class="panorama-section tile-span-4">
                     <h2>
                         Featured apps</h2>
                     <a class="tile app bg-color-orange" href="#">
@@ -234,8 +280,8 @@
                         <div class="app-label">
                             LinkedIn</div>
                     </a>
-                </div>
-                <div class="panorama-section tile-span-4">
+                </div>--%>
+                <%--<div class="panorama-section tile-span-4">
                     <h2>
                         Group two</h2>
                     <a class="tile wide imagetext bg-color-blue" href="#">
@@ -274,7 +320,7 @@
                                         <img src="src/assets/img/Devices.png" alt="" />
                                     </div>
                                     <span class="app-label">JAVASCRIPT</span> </a>
-                </div>
+                </div>--%>
             </div>
         </div>
         <a id="panorama-scroll-prev" href="#"></a><a id="panorama-scroll-next" href="#">

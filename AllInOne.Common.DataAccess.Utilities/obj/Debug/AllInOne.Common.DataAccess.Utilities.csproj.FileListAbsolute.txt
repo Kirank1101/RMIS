@@ -31,10 +31,6 @@ F:\Bin\RMISGitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.dll
 F:\Bin\RMISGitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
 F:\Bin\RMISGitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
 F:\Bin\RMISGitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.dll
-C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
-C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
@@ -43,3 +39,7 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilit
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.dll
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
+C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.pdb

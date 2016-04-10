@@ -40,6 +40,33 @@
 
         #region Methods
 
+        internal List<SellerTypeEntity> GetSellerTypeEntities(string custId)
+        {
+            try
+            {
+                List<SellerTypeEntity> ListsellerTypeEntity = new List<SellerTypeEntity>();
+                IRepository<MSellerType> SellerTypeRepository = new RepositoryImpl<MSellerType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSellerType))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MSellerType> listSellerType = SellerTypeRepository.GetAll(detachedCriteria) as List<MSellerType>;
+                if (listSellerType != null && listSellerType.Count > 0)
+                {
+                    foreach (MSellerType adMInfo in listSellerType)
+                    {
+                        ListsellerTypeEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListsellerTypeEntity = null;
+
+                return ListsellerTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetSellerInfoEntity", ex);
+                throw;
+            }
+        }
 
 
 
