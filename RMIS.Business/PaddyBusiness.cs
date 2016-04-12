@@ -8,10 +8,21 @@ using RMIS.Binder.BackEnd;
 
 namespace RMIS.Business
 {
+    interface IPaddyBusiness
+    {
+        List<SellerTypeEntity> GetMasterSellerTypeEntities();
+        void SaveSellerType(SellerTypeEntity objSellerTypeEntity);
+    }
+    
     public  class PaddyBusiness
     {
+        string custId = string.Empty;
+        public PaddyBusiness(string custId)
+        {
+            this.custId = custId;
+        }
 
-        public List<SellerTypeEntity> GetMasterSellerTypeEntities(string custId)
+        public List<SellerTypeEntity> GetMasterSellerTypeEntities()
         {
             IRMISMediator imp = BinderSingleton.Instance.GetInstance<IRMISMediator>();
            // imp.GetSellerTypeEntity(
