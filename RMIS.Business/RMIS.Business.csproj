@@ -55,10 +55,6 @@
       <Project>{45466F53-B987-4CB9-99F7-690232A451C5}</Project>
       <Name>RMIS.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RMIS.Mediator.BackEnd\RMIS.Mediator.BackEnd.csproj">
-      <Project>{F09F40AB-44B2-4FBA-8ACD-B4BD40D53918}</Project>
-      <Name>RMIS.Mediator.BackEnd</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,6 +10,7 @@ namespace RMIS.Mediator.BackEnd.Impl
     using log4net;    
     using System.Collections.Generic;    
     using RMIS.Domain.RiceMill;
+    using RMIS.Domain.Mediator;
     
     public class RMISMediatorImpl : IRMISMediator
     {

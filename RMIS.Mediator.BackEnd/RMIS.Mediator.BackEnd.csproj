@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Data\RMISGateway.cs" />
     <Compile Include="Impl\RMISMediatorImpl.cs" />
-    <Compile Include="IRMISMediator.cs" />
     <Compile Include="Data\GenericGateway.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,5 +1,9 @@
-﻿
-namespace RMIS.Mediator.BackEnd
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace RMIS.Domain.Mediator
 {
     using System.Collections.Generic;
     
@@ -80,4 +84,5 @@ namespace RMIS.Mediator.BackEnd
 
         #endregion
     }
+
 }

@@ -9,6 +9,7 @@ using RMIS.Domain.RiceMill;
 using AllInOne.BootStrapper.BackEnd;
 using RMIS.Domain;
 using RMIS.Binder.BackEnd;
+using RMIS.Domain.Mediator;
 
 namespace RMIS
 {

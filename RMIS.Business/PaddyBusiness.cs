@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RMIS.Domain.RiceMill;
-using RMIS.Mediator.BackEnd;
 using RMIS.Binder.BackEnd;
+using RMIS.Domain.Mediator;
 
 namespace RMIS.Business
 {
-    interface IPaddyBusiness
-    {
-        List<SellerTypeEntity> GetMasterSellerTypeEntities();
-        void SaveSellerType(SellerTypeEntity objSellerTypeEntity);
-    }
+  
     
     public  class PaddyBusiness
     {

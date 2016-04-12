@@ -72,10 +72,8 @@
 
             //Add more extensions here
             container.Install(
-                
-                new MediatorExtension(),
-                new AllInOneExtension(),
-                new BackEndExtension());
+
+                new RMSExtensions());          
         }
 
         #endregion Methods

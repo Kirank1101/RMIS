@@ -16,20 +16,21 @@
     using RMIS.Mediator.BackEnd;
     using RMIS.Mediator.BackEnd.Impl;
     using RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper;
+    using RMIS.Domain.Mediator;
 
-    
-   
+
+
     /// <summary>
     /// Description of BackEndExtension.
     /// </summary>
-    public  class BackEndExtension : IWindsorInstaller
+    public class RMSExtensions : IWindsorInstaller
     {
         #region Fields
 
         /// <summary>
         /// logging instance
         /// </summary>
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(BackEndExtension));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(RMSExtensions));
 
         #endregion Fields
 
@@ -44,7 +45,7 @@
 
             container.Register(
                 Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Singleton,
-                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton           
+                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton
                 );
         }
 

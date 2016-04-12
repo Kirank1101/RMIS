@@ -113,9 +113,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Windsor\CommonExtension.cs" />
-    <Compile Include="Windsor\MediatorExtension.cs" />
-    <Compile Include="Windsor\BackEndExtension.cs" />
     <Compile Include="Windsor\WindsorDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,13 +156,9 @@
       <Project>{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}</Project>
       <Name>AllInOne.Common.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RMIS.DataMapper.BackEnd\RMIS.DataMapper.BackEnd.csproj">
-      <Project>{4FA95861-0AE6-4A5F-AED2-370978F27E94}</Project>
-      <Name>AllInOne.Legal.DataMapper.BackEnd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RMIS.Mediator.BackEnd\RMIS.Mediator.BackEnd.csproj">
-      <Project>{F09F40AB-44B2-4FBA-8ACD-B4BD40D53918}</Project>
-      <Name>AllInOne.Legal.Mediator.BackEnd</Name>
+    <ProjectReference Include="..\..\RMIS.Windsor.Delegate\RMIS.Windsor.Delegate.csproj">
+      <Project>{5E6BE69C-A8AC-45FB-B964-DB3575A9BFF9}</Project>
+      <Name>RMIS.Windsor.Delegate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
