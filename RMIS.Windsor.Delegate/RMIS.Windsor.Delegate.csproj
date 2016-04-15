@@ -59,6 +59,10 @@
       <Project>{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}</Project>
       <Name>AllInOne.Common.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RMIS.Business\RMIS.Business.csproj">
+      <Project>{EBA030B0-07BE-414D-AAF1-7AC619B9F652}</Project>
+      <Name>RMIS.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RMIS.DataMapper.BackEnd\RMIS.DataMapper.BackEnd.csproj">
       <Project>{4FA95861-0AE6-4A5F-AED2-370978F27E94}</Project>
       <Name>RMIS.DataMapper.BackEnd</Name>

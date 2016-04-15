@@ -66,13 +66,19 @@ namespace RMIS.Domain.Mediator
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
+        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
         UsersEntity GetUsersEntity(string UserID);
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
+        List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
         PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
-        PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID);
+        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
+        PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string CustId);
         MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID);
+        List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId);
         CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID);
         CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID);
         CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID);
@@ -81,7 +87,6 @@ namespace RMIS.Domain.Mediator
         MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
-
         #endregion
     }
 

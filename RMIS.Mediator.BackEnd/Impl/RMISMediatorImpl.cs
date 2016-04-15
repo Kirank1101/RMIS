@@ -511,5 +511,36 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetSellerTypeEntities(CustId);
         }
+
+
+        public List<MUserTypeEntity> GetMUserTypeEntities(string CustId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

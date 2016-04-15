@@ -3,31 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RMIS.Domain.RiceMill;
-using RMIS.Binder.BackEnd;
+
 using RMIS.Domain.Mediator;
+using RMIS.Domain.Business;
 
 namespace RMIS.Business
 {
-  
-    
-    public  class PaddyBusiness
+    public class HttpSessionUserProvider : ICustomerProvider
+    {   
+
+        public string GetCurrentCustomerId()
+        {
+            return string.Empty;
+        }
+    }
+
+    public class PaddyBusiness : IPaddyBusiness
     {
         string custId = string.Empty;
-        public PaddyBusiness(string custId)
+        IRMISMediator imp;
+        public PaddyBusiness(IRMISMediator imp,ICustomerProvider provider)
         {
-            this.custId = custId;
+            this.custId = provider.GetCurrentCustomerId();
+            this.imp = imp;
         }
 
         public List<SellerTypeEntity> GetMasterSellerTypeEntities()
         {
-            IRMISMediator imp = BinderSingleton.Instance.GetInstance<IRMISMediator>();
+            
            // imp.GetSellerTypeEntity(
             return imp.GetSellerTypeEntities(custId);
         }
 
         public void SaveSellerType(SellerTypeEntity objSellerTypeEntity)
         {
-            IRMISMediator imp = BinderSingleton.Instance.GetInstance<IRMISMediator>();
+            
             imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
         }
 

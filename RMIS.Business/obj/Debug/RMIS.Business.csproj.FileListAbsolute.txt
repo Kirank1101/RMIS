@@ -3,7 +3,6 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Library.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Domain.dll
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMlS.Binder.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Remote.ServiceModel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\log4net.dll
@@ -12,7 +11,6 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Server.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Remote.Jsr262.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\Castle.MicroKernel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\Castle.Core.dll
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Windsor.Delegate.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\Castle.DynamicProxy2.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\WSMan.NET.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.DataMapper.BackEnd.dll
@@ -25,9 +23,7 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Da
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Repositories.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\Iesi.Collections.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Library.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMlS.Binder.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Domain.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Windsor.Delegate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.DataMapper.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Mediator.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Entities.BackEnd.pdb

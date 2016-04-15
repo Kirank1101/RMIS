@@ -224,7 +224,6 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\NetMX.Server.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\NetMX.Remote.Jsr262.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\Castle.MicroKernel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\Castle.Core.dll
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AutoMapper.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.NHibernate.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\NHibernate.dll
@@ -241,7 +240,6 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Domain.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Entities.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Mediator.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Repositories.BackEnd.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.NHibernate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll

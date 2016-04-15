@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
+    <Compile Include="Business\IPaddyBusiness.cs" />
+    <Compile Include="Business\ICustomerProvider.cs" />
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\MRiceBrandDetailsEntity.cs" />
     <Compile Include="RiceMill\MRiceProductionTypeEntity.cs" />

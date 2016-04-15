@@ -17,6 +17,8 @@
     using RMIS.Mediator.BackEnd.Impl;
     using RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper;
     using RMIS.Domain.Mediator;
+    using RMIS.Domain.Business;
+    using RMIS.Business;
 
 
 
@@ -45,7 +47,9 @@
 
             container.Register(
                 Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Singleton,
-                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton
+                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton,
+                 Component.For<ICustomerProvider>().ImplementedBy<HttpSessionUserProvider>().LifeStyle.Singleton,
+                 Component.For<IPaddyBusiness>().ImplementedBy<PaddyBusiness>().LifeStyle.Singleton
                 );
         }
 

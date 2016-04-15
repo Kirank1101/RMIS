@@ -71,9 +71,9 @@
             //disposableList.Add(externalExtension);
 
             //Add more extensions here
-            container.Install(
+            //container.Install(
 
-                new RMSExtensions());          
+            //    new RMSExtensions());          
         }
 
         #endregion Methods
