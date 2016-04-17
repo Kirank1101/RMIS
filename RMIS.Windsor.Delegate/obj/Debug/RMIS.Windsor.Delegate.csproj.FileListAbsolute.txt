@@ -34,3 +34,5 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\obj\Debug\RMIS.Winds
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\obj\Debug\RMIS.Windsor.Delegate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Business.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.HttpSessionProvider.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.HttpSessionProvider.pdb

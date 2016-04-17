@@ -46,9 +46,9 @@
             }
 
             container.Register(
-                Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Singleton,
+                Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Singleton ,
                 Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton,
-                 Component.For<ICustomerProvider>().ImplementedBy<HttpSessionUserProvider>().LifeStyle.Singleton,
+                 Component.For<ISessionProvider>().ImplementedBy<RMIS.HttpSessionProvider.HttpSessionProvider>().LifeStyle.Singleton,
                  Component.For<IPaddyBusiness>().ImplementedBy<PaddyBusiness>().LifeStyle.Singleton
                 );
         }

@@ -244,3 +244,9 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.NHiber
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb

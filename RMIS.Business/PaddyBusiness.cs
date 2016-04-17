@@ -9,20 +9,12 @@ using RMIS.Domain.Business;
 
 namespace RMIS.Business
 {
-    public class HttpSessionUserProvider : ICustomerProvider
-    {   
-
-        public string GetCurrentCustomerId()
-        {
-            return string.Empty;
-        }
-    }
-
+    
     public class PaddyBusiness : IPaddyBusiness
     {
         string custId = string.Empty;
         IRMISMediator imp;
-        public PaddyBusiness(IRMISMediator imp,ICustomerProvider provider)
+        public PaddyBusiness(IRMISMediator imp, ISessionProvider provider)
         {
             this.custId = provider.GetCurrentCustomerId();
             this.imp = imp;

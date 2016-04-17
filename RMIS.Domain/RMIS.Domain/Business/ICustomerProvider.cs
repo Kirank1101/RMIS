@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RMIS.Domain.Business
 {
-    public interface ICustomerProvider
+    public interface ISessionProvider
     {
         string  GetCurrentCustomerId();
     }
