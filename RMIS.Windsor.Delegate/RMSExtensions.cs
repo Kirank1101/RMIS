@@ -46,10 +46,10 @@
             }
 
             container.Register(
-                Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Singleton ,
-                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Singleton,
-                 Component.For<ISessionProvider>().ImplementedBy<RMIS.HttpSessionProvider.HttpSessionProvider>().LifeStyle.Singleton,
-                 Component.For<IPaddyBusiness>().ImplementedBy<PaddyBusiness>().LifeStyle.Singleton
+                Component.For<IRMISMapper>().ImplementedBy<RMISMapperDTN>().LifeStyle.Transient ,
+                Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Transient,
+                 Component.For<ISessionProvider>().ImplementedBy<RMIS.HttpSessionProvider.HttpSessionProvider>().LifeStyle.Transient,
+                 Component.For<IPaddyBusiness>().ImplementedBy<PaddyBusiness>().LifeStyle.Transient
                 );
         }
 

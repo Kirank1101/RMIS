@@ -33,6 +33,6 @@ public partial class DataBindingSample : System.Web.UI.UserControl
         imp.CommitAndCloseSession();
 
 
-        objEntity = imp.GetSellerTypeEntity(objEntity.SellerTypeID);
+       // objEntity = imp.GetSellerTypeEntity(objEntity.SellerTypeID);
     }
 }
