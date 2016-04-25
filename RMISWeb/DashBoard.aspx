@@ -177,20 +177,7 @@
                     <!--</a>-->
                    
 
-                         <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel1" UserControlPath="~/DataBindingSample.ascx"
-                        >
-                        <ErrorTemplate>
-                            Unable to refresh content
-                        </ErrorTemplate>
-                        <LoadingTemplate>
-                            <div style="margin-left: 84px; margin-top: 10px;">
-                                <asp:Image ID="Image2" runat="server" ImageUrl="~/images/loading.gif" />
-                            </div>
-                            <div style="text-align: center">
-                                Updating...
-                            </div>
-                        </LoadingTemplate>
-                    </iucon:PartialUpdatePanel>
+                       
 
 
                            
