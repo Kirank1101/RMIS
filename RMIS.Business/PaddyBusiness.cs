@@ -29,8 +29,9 @@ namespace RMIS.Business
 
         public void SaveSellerType(SellerTypeEntity objSellerTypeEntity)
         {
-            
+            imp.BeginTransaction();
             imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
+            imp.CommitAndCloseSession();
         }
 
     }

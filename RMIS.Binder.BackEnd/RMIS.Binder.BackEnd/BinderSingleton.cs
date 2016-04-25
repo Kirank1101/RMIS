@@ -75,9 +75,7 @@
                     Logger.Info("BackEnd Binder is using the Windsor Delegate...");
                     MBeanServerExtension mbeanServerExtension = MBeanServerExtension.Instance;
                     binderDelegate = new WindsorDelegate(mbeanServerExtension);
-
                     mbeanServerExtension.AddMBean("WindsorContainer", binderDelegate);
-
                     //Stopped exporting the MBeanServer via the JSR262 connection because of inability to make it work!
                     //It was working but due to some configuration change on the MOSS, this stopped.
                     //Given this, reverted to the WCF exported service of the MBeanServer!

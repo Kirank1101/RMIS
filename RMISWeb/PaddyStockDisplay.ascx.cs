@@ -17,7 +17,7 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 
-public partial class DataBindingSample : System.Web.UI.UserControl
+public partial class PaddyStockDisplay : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
