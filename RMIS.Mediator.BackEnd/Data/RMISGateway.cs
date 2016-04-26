@@ -158,7 +158,7 @@
                 IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("MGodownID", MGodownID));
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID));                                                                   
                 List<MLotDetails> listMLotDetails = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
                 if (listMLotDetails != null && listMLotDetails.Count > 0)
                 {
