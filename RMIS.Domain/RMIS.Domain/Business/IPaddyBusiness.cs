@@ -11,9 +11,10 @@ namespace RMIS.Domain.Business
     {
         List<SellerTypeDTO> GetMasterSellerTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
-        List<MPaddyTypeEntity> GetMPaddyTypeEntities();
+        List<PaddyTypeDTO> GetMPaddyTypeEntities();
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<MWeightDetailsEntity> GetMWeightDetailsEntities();
-        void SaveSellerType(string  sellerType);
+        ResultDTO SaveSellerType(string sellerType);
+        ResultDTO SavePaddyType(string paddyType);
     }
 }

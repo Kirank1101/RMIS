@@ -49,6 +49,7 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.DataM
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.HttpSessionProvider.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Mediator.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.UserMessageStore.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\NetMX.Remote.ServiceModel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\NetMX.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\NetMX.Server.dll
@@ -68,6 +69,7 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.DataM
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Domain.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.HttpSessionProvider.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Mediator.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.UserMessageStore.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Entities.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\AllInOne.Common.DataAccess.NHibernate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\AllInOne.Common.DataAccess.Utilities.pdb

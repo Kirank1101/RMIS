@@ -4,15 +4,18 @@
     <asp:Repeater ID="rptSellerType" runat="server">
     <HeaderTemplate>
               <table>
+               <thead>
               <tr>
                  <th><asp:Label runat="server" ID="lblHSellerType" 
                     text="<%$Resources:Resource,SellerType%>" ></asp:Label></th>
-                 <th>"<asp:Label runat="server" ID="lblHObsInd" 
+                 <th><asp:Label runat="server" ID="lblHObsInd" 
                     text="<%$Resources:Resource,IsSellerTypeDeleted%>" ></asp:Label></th>
               </tr>
+             </thead> 
           </HeaderTemplate>
 
           <ItemTemplate>
+           <tbody>
           <tr>
               <td >
                 <asp:Label runat="server" ID="lblSellerType" 
@@ -23,6 +26,7 @@
                       text='<%# Eval("Indicator") %>' />
               </td>
           </tr>
+          </tbody> 
           </ItemTemplate>          
 
           <FooterTemplate>

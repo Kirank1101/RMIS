@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RMIS.Domain.RiceMill;
-
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain;
 using AllInOne.Common.Library.Util;
+using RMIS.Domain.Constant;
+using log4net;
 
 namespace RMIS.Business
 {
 
     public class PaddyBusiness : IPaddyBusiness
     {
-       
         IRMISMediator imp;
         ISessionProvider provider;
-        public PaddyBusiness(IRMISMediator imp, ISessionProvider provider)
+        IUserMessage msgInstance;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PaddyBusiness));
+        public PaddyBusiness(IRMISMediator imp, ISessionProvider provider, IUserMessage msgInstance)
         {
             this.provider = provider;
             this.imp = imp;
+            this.msgInstance = msgInstance;
         }
 
         public List<SellerTypeDTO> GetMasterSellerTypeEntities()
@@ -36,7 +39,7 @@ namespace RMIS.Business
                 {
                     SellerTypeDTO objSellerTypeDTO = new SellerTypeDTO();
                     objSellerTypeDTO.SellerType = objSellerTypeEntity.SellerType;
-                    objSellerTypeDTO.Indicator = Enum.GetName(typeof(YesNo), objSellerTypeEntity.ObsInd);
+                    objSellerTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
                     listSellerTypeDTO.Add(objSellerTypeDTO);
                 }
 
@@ -47,7 +50,7 @@ namespace RMIS.Business
         {
             return imp.GetMUserTypeEntities(provider.GetCurrentCustomerId());
         }
-        public void SaveSellerType(string sellerType)
+        public ResultDTO SaveSellerType(string sellerType)
         {
             SellerTypeEntity objSellerTypeEntity = new SellerTypeEntity();
             objSellerTypeEntity.ObsInd = YesNo.N;
@@ -56,16 +59,22 @@ namespace RMIS.Business
             objSellerTypeEntity.SellerType = sellerType;
             objSellerTypeEntity.SellerTypeID = CommonUtil.CreateUniqueID("ST");
             objSellerTypeEntity.LastModifiedDate = DateTime.Now;
-            imp.BeginTransaction();
-            imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
-            imp.CommitAndCloseSession();
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01) };
         }
 
 
-        public List<MPaddyTypeEntity> GetMPaddyTypeEntities()
-        {
-            return imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId());
-        }
+
 
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
@@ -77,6 +86,65 @@ namespace RMIS.Business
         public List<MWeightDetailsEntity> GetMWeightDetailsEntities()
         {
             return imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId());
+        }
+
+        string GetYesorNo(YesNo yesNo)
+        {
+            if (yesNo == YesNo.Y)
+            {
+                return "Yes";
+            }
+            else
+                if (yesNo == YesNo.N)
+                {
+                    return "No";
+
+                }
+            return "No";
+        }
+
+        List<PaddyTypeDTO> IPaddyBusiness.GetMPaddyTypeEntities()
+        {
+            List<PaddyTypeDTO> listPaddyTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId());
+            if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
+            {
+                listPaddyTypeDTO = new List<PaddyTypeDTO>();
+                foreach (MPaddyTypeEntity objSellerTypeEntity in listMPaddyTypeEntity)
+                {
+                    PaddyTypeDTO objPaddyTypeDTO = new PaddyTypeDTO();
+                    objPaddyTypeDTO.PaddyType = objSellerTypeEntity.Name;
+                    objPaddyTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
+                    listPaddyTypeDTO.Add(objPaddyTypeDTO);
+                }
+
+            }
+            return listPaddyTypeDTO;
+        }
+
+
+        public ResultDTO SavePaddyType(string paddyType)
+        {
+            MPaddyTypeEntity objMPaddyTypeEntity = new MPaddyTypeEntity();
+            objMPaddyTypeEntity.ObsInd = YesNo.N;
+            objMPaddyTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMPaddyTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMPaddyTypeEntity.Name = paddyType;
+            objMPaddyTypeEntity.PaddyTypeID = CommonUtil.CreateUniqueID("PT");
+            objMPaddyTypeEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02) };
         }
     }
 }

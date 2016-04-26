@@ -238,6 +238,7 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.Utilit
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\Castle.DynamicProxy2.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\WSMan.NET.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.UserMessageStore.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\Iesi.Collections.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.Library.pdb
@@ -253,6 +254,7 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.NHibernate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.UserMessageStore.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.pdb

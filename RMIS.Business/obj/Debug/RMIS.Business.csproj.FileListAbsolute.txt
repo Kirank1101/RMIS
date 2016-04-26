@@ -36,11 +36,11 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.cspr
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Library.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\log4net.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Mediator.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Remote.ServiceModel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.dll
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\log4net.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\Castle.Windsor.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Server.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\NetMX.Remote.Jsr262.dll

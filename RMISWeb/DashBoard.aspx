@@ -124,6 +124,29 @@
       </div>
       </div> 
 
+       <div class="row">
+               <div class="span12">
+
+               
+
+                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/AddSellerType.ascx"
+                      >
+                        <ErrorTemplate>
+                            Unable to refresh content
+                        </ErrorTemplate>
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
+
+               </div>
+               </div> 
+
 
         <!--<div id="metro-container" class="-container">-->
         <!--<div class="row">-->
@@ -144,21 +167,6 @@
                     <div class="tile-column-span-2">
                         <a class="tile wide imagetext wideimage bg-color-blue" href="#">
 
-
-                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/AddSellerType.ascx"
-                      >
-                        <ErrorTemplate>
-                            Unable to refresh content
-                        </ErrorTemplate>
-                        <LoadingTemplate>
-                            <div style="margin-left: 84px; margin-top: 10px;">
-                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
-                            </div>
-                            <div style="text-align: center">
-                                Updating...
-                            </div>
-                        </LoadingTemplate>
-                    </iucon:PartialUpdatePanel>
 
 
                            

@@ -79,6 +79,10 @@
       <Project>{F09F40AB-44B2-4FBA-8ACD-B4BD40D53918}</Project>
       <Name>RMIS.Mediator.BackEnd</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RMIS.UserMessageStore\RMIS.UserMessageStore.csproj">
+      <Project>{4C9F24E2-548A-4874-A864-325138E575C9}</Project>
+      <Name>RMIS.UserMessageStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
