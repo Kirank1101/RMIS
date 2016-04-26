@@ -204,6 +204,12 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.N
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.pdb
@@ -250,9 +256,3 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.pdb
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.dll
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.dll
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.dll
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Windsor.Delegate.pdb
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.HttpSessionProvider.pdb
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb

@@ -6,54 +6,77 @@ using RMIS.Domain.RiceMill;
 
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
+using RMIS.Domain;
+using AllInOne.Common.Library.Util;
 
 namespace RMIS.Business
 {
-    
+
     public class PaddyBusiness : IPaddyBusiness
     {
-        string custId = string.Empty;
+       
         IRMISMediator imp;
+        ISessionProvider provider;
         public PaddyBusiness(IRMISMediator imp, ISessionProvider provider)
         {
-            this.custId = provider.GetCurrentCustomerId();
+            this.provider = provider;
             this.imp = imp;
         }
 
-        public List<SellerTypeEntity> GetMasterSellerTypeEntities()
+        public List<SellerTypeDTO> GetMasterSellerTypeEntities()
         {
-            
-           // imp.GetSellerTypeEntity(
-            return imp.GetSellerTypeEntities(custId);
+            List<SellerTypeDTO> listSellerTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<SellerTypeEntity> listSellerTypeEntity = imp.GetSellerTypeEntities(provider.GetCurrentCustomerId());
+            if (listSellerTypeEntity != null && listSellerTypeEntity.Count > 0)
+            {
+                listSellerTypeDTO = new List<SellerTypeDTO>();
+                foreach (SellerTypeEntity objSellerTypeEntity in listSellerTypeEntity)
+                {
+                    SellerTypeDTO objSellerTypeDTO = new SellerTypeDTO();
+                    objSellerTypeDTO.SellerType = objSellerTypeEntity.SellerType;
+                    objSellerTypeDTO.Indicator = Enum.GetName(typeof(YesNo), objSellerTypeEntity.ObsInd);
+                    listSellerTypeDTO.Add(objSellerTypeDTO);
+                }
+
+            }
+            return listSellerTypeDTO;
         }
         public List<MUserTypeEntity> GetMUserTypeEntities()
         {
-            return imp.GetMUserTypeEntities(custId);
+            return imp.GetMUserTypeEntities(provider.GetCurrentCustomerId());
         }
-        public void SaveSellerType(SellerTypeEntity objSellerTypeEntity)
+        public void SaveSellerType(string sellerType)
         {
+            SellerTypeEntity objSellerTypeEntity = new SellerTypeEntity();
+            objSellerTypeEntity.ObsInd = YesNo.N;
+            objSellerTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objSellerTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objSellerTypeEntity.SellerType = sellerType;
+            objSellerTypeEntity.SellerTypeID = CommonUtil.CreateUniqueID("ST");
+            objSellerTypeEntity.LastModifiedDate = DateTime.Now;
             imp.BeginTransaction();
             imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
             imp.CommitAndCloseSession();
         }
 
 
-
         public List<MPaddyTypeEntity> GetMPaddyTypeEntities()
         {
-            return imp.GetMPaddyTypeEntitiies(custId);
+            return imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId());
         }
 
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
         {
-            return imp.GetPaddyStockInfoEntities(custId);
+            return imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId());
         }
 
 
         public List<MWeightDetailsEntity> GetMWeightDetailsEntities()
         {
-            return imp.GetMWeightDetailsEntities(custId);
+            return imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId());
         }
     }
 }

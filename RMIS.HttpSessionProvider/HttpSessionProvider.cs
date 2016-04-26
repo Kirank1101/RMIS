@@ -19,5 +19,15 @@ namespace RMIS.HttpSessionProvider
             return "w32423";
           // throw new NotImplementedException();
         }
+
+        string sessionUserId = "UserId";
+        public string GetLoggedInUserId()
+        {
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionUserId] != null)
+            {
+                return Convert.ToString(HttpContext.Current.Session[sessionUserId]);
+            }
+            return "System";
+        }
     }
 }

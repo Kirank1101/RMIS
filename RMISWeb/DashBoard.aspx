@@ -145,7 +145,7 @@
                         <a class="tile wide imagetext wideimage bg-color-blue" href="#">
 
 
-                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/DataBindingSample.ascx"
+                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/AddSellerType.ascx"
                       >
                         <ErrorTemplate>
                             Unable to refresh content

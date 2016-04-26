@@ -54,6 +54,7 @@
     <Compile Include="Abstract\AbstractAllInOne.cs" />
     <Compile Include="Business\IPaddyBusiness.cs" />
     <Compile Include="Business\ICustomerProvider.cs" />
+    <Compile Include="DataTranserClass\SellerTypeDTO.cs" />
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\MRiceBrandDetailsEntity.cs" />
     <Compile Include="RiceMill\MRiceProductionTypeEntity.cs" />
