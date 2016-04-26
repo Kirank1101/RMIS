@@ -5,3 +5,10 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\bin\Debug\RMIS.Do
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\bin\Debug\RMIS.HttpSessionProvider.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\bin\Debug\RMIS.HttpSessionProvider.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\bin\Debug\RMIS.Domain.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\bin\Debug\RMIS.Domain.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.csprojResolveAssemblyReference.cache
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.HttpSessionProvider\obj\Debug\RMIS.HttpSessionProvider.pdb

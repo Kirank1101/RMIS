@@ -515,22 +515,22 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<MUserTypeEntity> GetMUserTypeEntities(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetMUserTypeEntities(CustId);
         }
 
         public List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetMPaddyTypeEntities(CustId);
         }
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetPaddyStockInfoEntities(CustId);
         }
 
         public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetMLotDetailsEntities(CustId, MGodownID);
         }
 
         public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID)
@@ -540,7 +540,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetMWeightDetailsEntities(CustId);
         }
     }
 }

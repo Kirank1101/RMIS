@@ -26,7 +26,10 @@ namespace RMIS.Business
            // imp.GetSellerTypeEntity(
             return imp.GetSellerTypeEntities(custId);
         }
-
+        public List<MUserTypeEntity> GetMUserTypeEntities()
+        {
+            return imp.GetMUserTypeEntities(custId);
+        }
         public void SaveSellerType(SellerTypeEntity objSellerTypeEntity)
         {
             imp.BeginTransaction();
@@ -34,5 +37,23 @@ namespace RMIS.Business
             imp.CommitAndCloseSession();
         }
 
+
+
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntities()
+        {
+            return imp.GetMPaddyTypeEntitiies(custId);
+        }
+
+
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
+        {
+            return imp.GetPaddyStockInfoEntities(custId);
+        }
+
+
+        public List<MWeightDetailsEntity> GetMWeightDetailsEntities()
+        {
+            return imp.GetMWeightDetailsEntities(custId);
+        }
     }
 }
