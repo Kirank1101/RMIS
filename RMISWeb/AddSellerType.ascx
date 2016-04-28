@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddSellerType.ascx.cs"
     Inherits="AddSellerType" %>
+ 
 <div class="table-responsive">
     
              <asp:Repeater ID="rptSellerType" runat="server">

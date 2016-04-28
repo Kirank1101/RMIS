@@ -58,7 +58,7 @@
     <Compile Include="Constant\RMSConstants.cs" />
     <Compile Include="DataTranserClass\PaddyTypeDTO.cs" />
     <Compile Include="DataTranserClass\ResultDTO.cs" />
-    <Compile Include="DataTranserClass\SellerTypeDTO.cs" />
+    <Compile Include="DataTranserClass\MasterDTO.cs" />
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\MRiceBrandDetailsEntity.cs" />
     <Compile Include="RiceMill\MRiceProductionTypeEntity.cs" />

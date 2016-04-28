@@ -74,9 +74,6 @@ namespace RMIS.Business
         }
 
 
-
-
-
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
         {
             return imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId());
@@ -145,6 +142,50 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
+        }
+
+
+        public List<GodownTypeDTO> GetMGodownTypeeEntities()
+        {
+
+            List<GodownTypeDTO> listGodownTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MGodownDetailsEntity> listGodownDetailsEntiy = imp.GetMGodownDetailsEntities(provider.GetCurrentCustomerId());
+            if (listGodownDetailsEntiy != null && listGodownDetailsEntiy.Count > 0)
+            {
+                listGodownTypeDTO = new List<GodownTypeDTO>();
+                foreach (MGodownDetailsEntity objMGodownDetailsEntity in listGodownDetailsEntiy)
+                {
+                    GodownTypeDTO objGodownTypeDTO = new GodownTypeDTO();
+                    objGodownTypeDTO.GodownType = objMGodownDetailsEntity.Name;
+                    objGodownTypeDTO.Indicator = GetYesorNo(objMGodownDetailsEntity.ObsInd);
+                    listGodownTypeDTO.Add(objGodownTypeDTO);
+                }
+            }
+            return listGodownTypeDTO;
+        }
+
+        public ResultDTO SaveGodownType(string godownType)
+        {
+            MGodownDetailsEntity objMGodownDetailsEntity = new MGodownDetailsEntity();
+            objMGodownDetailsEntity.ObsInd = YesNo.N;
+            objMGodownDetailsEntity.CustID = provider.GetCurrentCustomerId();
+            objMGodownDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMGodownDetailsEntity.Name = godownType;
+            objMGodownDetailsEntity.MGodownID = CommonUtil.CreateUniqueID("GD");
+            objMGodownDetailsEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMGodownDetailsEntity(objMGodownDetailsEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error03, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success03, provider.GetCurrentCustomerId()) };
         }
     }
 }
