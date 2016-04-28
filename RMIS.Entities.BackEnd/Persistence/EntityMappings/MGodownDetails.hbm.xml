@@ -9,6 +9,7 @@
     </id>
     <property name="CustID" column="CustID" />
     <property name="Place" column="Place" />
+    <property name="Name" column="Name" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

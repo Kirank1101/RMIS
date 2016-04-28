@@ -76,3 +76,5 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\AllInOne.C
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.Repositories.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\obj\Debug\RMIS.Windsor.Delegate.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\obj\Debug\RMIS.Windsor.Delegate.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.UserMessageStore.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Windsor.Delegate\bin\Debug\RMIS.UserMessageStore.pdb

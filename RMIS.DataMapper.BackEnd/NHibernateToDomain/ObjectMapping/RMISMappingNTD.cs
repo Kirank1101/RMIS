@@ -198,6 +198,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.MGodownID, opts => opts.MapFrom(src => src.MGodownID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Place, opts => opts.MapFrom(src => src.Place))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));

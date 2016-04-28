@@ -258,3 +258,5 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.UserMessageStore.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\bin\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS\obj\Debug\RMIS.pdb
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.UserMessageStore.dll
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS\bin\RMIS.UserMessageStore.pdb
