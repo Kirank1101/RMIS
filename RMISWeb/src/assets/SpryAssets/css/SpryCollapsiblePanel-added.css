@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+.container_minutesheet{
+	border-bottom: 1px solid #B5B5B5;
+}
+.CollapsiblePanel{
+	border: none;
+}
+.CollapsiblePanelTab{
+	font-weight: bold;
+	padding: 0 0 0 10px;
+}
+/* minute sheet style */
+.CollapsiblePanelTab, .CollapsiblePanelOpen .CollapsiblePanelTab, .CollapsiblePanelClosed .CollapsiblePanelTab, .CollapsiblePanelFocused .CollapsiblePanelTab{
+	border-bottom: none;
+	background: url(../images/tab_bg_left.gif) no-repeat 0% 0%;
+}
+.CollapsiblePanelTab div.right{
+	background: url(../images/tab_bg_right.gif) no-repeat 100% 0%;	
+	padding: 0 10px 3px 0;
+}
+.CollapsiblePanelTab td{
+	padding-top: 4px;
+	border-top: 1px solid #B5B5B5;
+}
+.CollapsiblePanelTab td.right{
+	text-align: right;
+	font-weight: normal;
+}
+.CollapsiblePanelTab td.right .date{
+	font-weight: bold;
+	margin-left: 1em;
+}
+.CollapsiblePanelContent{
+	border-left: 1px solid #B5B5B5;
+	border-right: 1px solid #B5B5B5;
+}
+/* end of minute sheet style */
+
+/* h2 style */
+.h2_style .CollapsiblePanelTab, .h2_style .CollapsiblePanelOpen .CollapsiblePanelTab, .h2_style .CollapsiblePanelClosed .CollapsiblePanelTab, .h2_style .CollapsiblePanelFocused .CollapsiblePanelTab {
+	background: #ECECEC;
+	border-left:14px solid #CDCDCD;
+	margin:1em 0 0.5em;
+	padding:0.75em 10px;
+	color:#000000;
+	font-size:1em;
+	font-weight:bold;
+	line-height:normal;
+	border-bottom: none;
+}
+.h2_style .CollapsiblePanelTab span{
+	COLOR: #000;
+	text-decoration: none;
+	display: block;
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../images/icon_arrow_open.gif);
+}
+.h2_style .CollapsiblePanelOpen .CollapsiblePanelTab span{
+	background-image: url(../images/icon_arrow_close.gif);
+}
+.h2_style .CollapsiblePanelContent {
+	padding: 0;
+	border: none;
+}
+/* end of h2 style */

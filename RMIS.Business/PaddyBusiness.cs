@@ -68,9 +68,9 @@ namespace RMIS.Business
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
             }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01) };
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
         }
 
 
@@ -142,9 +142,9 @@ namespace RMIS.Business
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
             }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02) };
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
     }
 }

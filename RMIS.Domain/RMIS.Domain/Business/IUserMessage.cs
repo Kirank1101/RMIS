@@ -7,6 +7,6 @@ namespace RMIS.Domain.Business
 {
    public interface IUserMessage
     {
-        string GetMessage(string msgCode);        
+        string GetMessage(string msgCode,string custId);        
     }
 }

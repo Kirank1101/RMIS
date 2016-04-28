@@ -1,0 +1,52 @@
+/* here you can put your own css to customize and override the theme */
+body{ background:#f3f3f3; margin:0; padding:0;}
+
+#outerContainer{ width:1000px; margin:0 auto;background-color:#FFF;}
+#innerContainer{ width:1000px; margin:auto auto;}
+
+#header{ background:#FFF; overflow:auto; position:relative; }
+#header .branding{ float:left; margin:10px 0px 10px 32px; }
+
+.home{ padding:10px 30px 5px 0px; text-align:right;}
+
+.bannerStatic {
+    background:url(/_layouts/1033/Styles/IELS/SICC/img/bannerStatic.jpg) no-repeat 0 0; 
+    height:247px; 
+    position:relative;
+}
+.bannerDiv{
+    position:absolute; 
+    top:80px; 
+    right:0;  
+    font-family:'MyWebFont',Arial, Helvetica, sans-serif; 
+    color:#ffffff; 
+    font-weight:lighter; 
+    font-size:1.5em; 
+    padding:0px 10px; 
+    width:300px; 
+    border-left:#991b1e solid 4px;
+}
+.bannerCtrl{
+	position:absolute;
+	display:block;
+	padding:3px 8px;
+	color:#fff;
+	text-decoration: none;
+	font-family:'MyWebFont',Arial, Helvetica, sans-serif;
+	left: 950px;
+	top: 9px;
+	z-index:1000;
+}
+#loginPane {
+    margin: 0 auto;
+    float:none; 
+    width:50%; 
+    background-color:#FFF; 
+    /*overflow:auto; */
+    position:relative
+}
+#loginPane h2 {
+    padding-bottom: 5px;
+    margin-bottom: 20px; 
+    border-bottom: #ffe0c1 solid 2px 
+}

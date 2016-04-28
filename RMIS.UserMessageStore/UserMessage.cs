@@ -8,7 +8,7 @@ namespace RMIS.UserMessageStore
 {
     public class UserMessage : IUserMessage
     {
-       public string GetMessage(string msgCode)
+       public string GetMessage(string msgCode,string custId)
        {
            return string.Empty;
        }     
