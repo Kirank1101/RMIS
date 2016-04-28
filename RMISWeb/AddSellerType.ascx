@@ -1,35 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddSellerType.ascx.cs"
     Inherits="AddSellerType" %>
-<asp:Panel ID="pnlSellerType" runat="server" style="padding-left:5%">
-    <table >
-        <tr>
-            <td>
-                <asp:GridView ID="rptSellerType" runat="server" AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                Seller Type
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="lblSellerType" Text='<%# Eval("SellerType") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                Is Deleted
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-            </td>
-        </tr>
-    </table>
-    <%--<asp:Repeater ID="rptSellerType" runat="server">
+<div class="table-responsive">
+    
+             <asp:Repeater ID="rptSellerType" runat="server">
         <HeaderTemplate>
-            <table>
+            <table class="table table-striped table-bordered" >
                 <thead>
                     <tr>
                         <th>
@@ -56,7 +31,7 @@
         <FooterTemplate>
             </table>
         </FooterTemplate>
-    </asp:Repeater>--%>
+    </asp:Repeater>
     <table>
         <tr>
             <td>
@@ -73,4 +48,4 @@
             </td>
         </tr>
     </table>
-</asp:Panel>
+</div> 
