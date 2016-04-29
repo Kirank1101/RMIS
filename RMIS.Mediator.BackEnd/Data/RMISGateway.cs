@@ -178,6 +178,38 @@
                 throw;
             }
         }
+
+
+        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId)
+        {
+            try
+            {
+                List<MLotDetailsEntity> listMLotDetailsEntity = new List<MLotDetailsEntity>();
+                IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId)
+                                                                   );
+                List<MLotDetails> listMLotDetails = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
+                if (listMLotDetails != null && listMLotDetails.Count > 0)
+                {
+                    foreach (MLotDetails adMInfo in listMLotDetails)
+                    {
+                        listMLotDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMLotDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listMLotDetailsEntity = null;
+
+                return listMLotDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMLotDetailsEntities", ex);
+                throw;
+            }
+        }
+
+
         internal List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
         {
             try

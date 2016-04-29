@@ -5,88 +5,103 @@ using System.Text;
 
 namespace RMIS.Domain.DataTranserClass
 {
-   public  class SellerTypeDTO
+
+    public  class MasterPaddyDTO
     {
-       public SellerTypeDTO()
+        public MasterPaddyDTO()
+        {
+            Id = Indicator =string.Empty;
+        }
+        public string Id
+        {
+            get;
+            set;
+        }
+
+        public string Indicator
+        {
+            get;
+            set;
+        }
+    }
+
+    public class PaddyTypeDTO : MasterPaddyDTO
+    {
+        public PaddyTypeDTO():base()
+        {
+            PaddyType = string.Empty;
+        }
+        public string PaddyType
+        {
+            get;
+            set;
+        }
+
+    }
+
+    public class SellerTypeDTO : MasterPaddyDTO
+    {
+       public SellerTypeDTO():base()
        {
-           SellerType = Indicator = string.Empty;
+           SellerType = string.Empty;
        }
        public string SellerType
        {
            get;
            set;
        }
-
-       public string Indicator
-       {
-           get;
-           set;
-       }
+      
     }
 
 
-   public class GodownTypeDTO
+    public class GodownTypeDTO : MasterPaddyDTO
    {
-       public GodownTypeDTO()
+        public GodownTypeDTO()
+            : base()
        {
-           GodownType = Indicator = string.Empty;
+           GodownType  = string.Empty;
        }
        public string GodownType
        {
            get;
            set;
        }
-
-       public string Indicator
-       {
-           get;
-           set;
-       }
    }
 
-   public class RiceBrandDTO
+    public class RiceBrandDTO : MasterPaddyDTO
    {
-       public RiceBrandDTO()
+        public RiceBrandDTO()
+            : base()
        {
-           RiceBrand = Indicator = string.Empty;
+           RiceBrand  = string.Empty;
        }
        public string RiceBrand
        {
            get;
            set;
-       }
-
-       public string Indicator
-       {
-           get;
-           set;
-       }
+       }     
    }
 
-   public class RiceProductDTO
+    public class RiceProductDTO : MasterPaddyDTO
    {
-       public RiceProductDTO()
+        public RiceProductDTO()
+            : base()
        {
-           RiceProduct = Indicator = string.Empty;
+           RiceProduct = string.Empty;
        }
        public string RiceProduct
        {
            get;
            set;
-       }
-
-       public string Indicator
-       {
-           get;
-           set;
-       }
+       }       
    }
 
-   public class LotDetailsDTO
+    public class LotDetailsDTO : MasterPaddyDTO
    {
-       public LotDetailsDTO()
+        public LotDetailsDTO()
+            : base()
        {
-           LotDetails =GodownId= Indicator = string.Empty;
+           LotDetails =GodownId = string.Empty;
        }
        public string LotDetails
        {
@@ -99,31 +114,20 @@ namespace RMIS.Domain.DataTranserClass
            get;
            set;
        }
+    }
 
-       public string Indicator
-       {
-           get;
-           set;
-       }
-   }
-
-   public class WeightDetailsDTO
+    public class WeightDetailsDTO : MasterPaddyDTO
    {
-       public WeightDetailsDTO()
-       {
-            Indicator = string.Empty;
+        public WeightDetailsDTO()
+            : base()
+       {            
             WeightDetails = 0;
        }
        public int  WeightDetails
        {
            get;
            set;
-       }      
+       }    
 
-       public string Indicator
-       {
-           get;
-           set;
-       }
    }
 }

@@ -10,7 +10,7 @@ namespace RMIS.Entities.BackEnd
         private string _PaddyPaymentID;
         private string _SellerID;
         private string _CustID;
-        private Int32 _AmountPaid; 
+        private double  _AmountPaid; 
         private DateTime _PaidDate;
         private string _HandoverTo;
         private DateTime _NextPaymentDate;
@@ -33,7 +33,7 @@ namespace RMIS.Entities.BackEnd
             get { return _CustID; }
             set { _CustID = value; }
         }
-        public virtual Int32 AmountPaid
+        public virtual double  AmountPaid
         {
             get { return _AmountPaid; }
             set { _AmountPaid = value; }

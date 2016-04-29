@@ -12,7 +12,7 @@ namespace RMIS.Domain.RiceMill
         public string PaddyPaymentID { get; set; }
         public string SellerID { get; set; }
         public string CustID { get; set; }
-        public Int32 AmountPaid { get; set; }
+        public double  AmountPaid { get; set; }
         public DateTime PaidDate { get; set; }
         public string HandoverTo { get; set; }
         public DateTime NextPaymentDate { get; set; }

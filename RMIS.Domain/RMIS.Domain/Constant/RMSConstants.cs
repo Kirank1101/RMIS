@@ -19,5 +19,11 @@ namespace RMIS.Domain.Constant
        public const string Success05 = "Success05";
        public const string Error06 = "Error06";
        public const string Success06 = "Success06";
+       public const string Error07 = "Error07";
+       public const string Success07 = "Success07";
+       public const string Error08 = "Error08";
+       public const string Success08 = "Success08";
+       public const string Error09 = "Error09";
+       public const string Success09 = "Success09";
     }
 }

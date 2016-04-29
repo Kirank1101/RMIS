@@ -74,6 +74,7 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
         List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
         PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string CustId);

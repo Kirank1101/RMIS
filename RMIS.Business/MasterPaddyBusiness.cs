@@ -41,6 +41,7 @@ namespace RMIS.Business
                     SellerTypeDTO objSellerTypeDTO = new SellerTypeDTO();
                     objSellerTypeDTO.SellerType = objSellerTypeEntity.SellerType;
                     objSellerTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
+                    objSellerTypeDTO.Id = objSellerTypeEntity.SellerTypeID;
                     listSellerTypeDTO.Add(objSellerTypeDTO);
                 }
 
@@ -62,10 +63,11 @@ namespace RMIS.Business
                 listRiceBrandDTO = new List<RiceBrandDTO>();
                 foreach (MRiceBrandDetailsEntity objMRiceBrandDetailsEntity in listMRiceBrandDetailsEntity)
                 {
-                    RiceBrandDTO objGodownTypeDTO = new RiceBrandDTO();
-                    objGodownTypeDTO.RiceBrand = objMRiceBrandDetailsEntity.Name;
-                    objGodownTypeDTO.Indicator = GetYesorNo(objMRiceBrandDetailsEntity.ObsInd);
-                    listRiceBrandDTO.Add(objGodownTypeDTO);
+                    RiceBrandDTO objRiceBrandDTO = new RiceBrandDTO();
+                    objRiceBrandDTO.RiceBrand = objMRiceBrandDetailsEntity.Name;
+                    objRiceBrandDTO.Indicator = GetYesorNo(objMRiceBrandDetailsEntity.ObsInd);
+                    objRiceBrandDTO.Id = objMRiceBrandDetailsEntity.MRiceBrandID;
+                    listRiceBrandDTO.Add(objRiceBrandDTO);
                 }
             }
             return listRiceBrandDTO;
@@ -79,11 +81,12 @@ namespace RMIS.Business
             if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
             {
                 listRiceProductDTO = new List<RiceProductDTO>();
-                foreach (MRiceProductionTypeEntity objMRiceBrandDetailsEntity in listMRiceProductionTypeEntity)
+                foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
                 {
                     RiceProductDTO objRiceProductDTO = new RiceProductDTO();
-                    objRiceProductDTO.RiceProduct = objMRiceBrandDetailsEntity.RiceType;
-                    objRiceProductDTO.Indicator = GetYesorNo(objMRiceBrandDetailsEntity.ObsInd);
+                    objRiceProductDTO.RiceProduct = objMRiceProductionTypeEntity.RiceType;
+                    objRiceProductDTO.Indicator = GetYesorNo(objMRiceProductionTypeEntity.ObsInd);
+                    objRiceProductDTO.Id = objMRiceProductionTypeEntity.MRiceProdTypeID;
                     listRiceProductDTO.Add(objRiceProductDTO);
                 }
             }
@@ -103,11 +106,32 @@ namespace RMIS.Business
                     LotDetailsDTO objLotDetailsDTO = new LotDetailsDTO();
                     objLotDetailsDTO.LotDetails = objMLotDetailsEntity.LotName;
                     objLotDetailsDTO.Indicator = GetYesorNo(objMLotDetailsEntity.ObsInd);
+                    objLotDetailsDTO.Id = objMLotDetailsEntity.MLotID;
                     listLotDetailsDTO.Add(objLotDetailsDTO);
                 }
             }
             return listLotDetailsDTO;
-        }       
+        }
+
+        public List<LotDetailsDTO> GetLotDetailsEntities()
+        {
+            List<LotDetailsDTO> listLotDetailsDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId());
+            if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
+            {
+                listLotDetailsDTO = new List<LotDetailsDTO>();
+                foreach (MLotDetailsEntity objMLotDetailsEntity in listMLotDetailsEntity)
+                {
+                    LotDetailsDTO objLotDetailsDTO = new LotDetailsDTO();
+                    objLotDetailsDTO.LotDetails = objMLotDetailsEntity.LotName;
+                    objLotDetailsDTO.Indicator = GetYesorNo(objMLotDetailsEntity.ObsInd);
+                    objLotDetailsDTO.Id = objMLotDetailsEntity.MLotID;
+                    listLotDetailsDTO.Add(objLotDetailsDTO);
+                }
+            }
+            return listLotDetailsDTO;
+        }
 
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
@@ -129,6 +153,7 @@ namespace RMIS.Business
                     WeightDetailsDTO objWeightDetailsDTO = new WeightDetailsDTO();
                     objWeightDetailsDTO.WeightDetails = objMLotDetailsEntity.Weight;
                     objWeightDetailsDTO.Indicator = GetYesorNo(objMLotDetailsEntity.ObsInd);
+                    objWeightDetailsDTO.Id = objMLotDetailsEntity.MWeightID;
                     listWeightDetailsDTO.Add(objWeightDetailsDTO);
                 }
             }
@@ -162,6 +187,7 @@ namespace RMIS.Business
                     PaddyTypeDTO objPaddyTypeDTO = new PaddyTypeDTO();
                     objPaddyTypeDTO.PaddyType = objSellerTypeEntity.Name;
                     objPaddyTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
+                    objPaddyTypeDTO.Id = objSellerTypeEntity.PaddyTypeID;
                     listPaddyTypeDTO.Add(objPaddyTypeDTO);
                 }
 
@@ -183,11 +209,12 @@ namespace RMIS.Business
                     GodownTypeDTO objGodownTypeDTO = new GodownTypeDTO();
                     objGodownTypeDTO.GodownType = objMGodownDetailsEntity.Name;
                     objGodownTypeDTO.Indicator = GetYesorNo(objMGodownDetailsEntity.ObsInd);
+                    objGodownTypeDTO.Id = objMGodownDetailsEntity.MGodownID;
                     listGodownTypeDTO.Add(objGodownTypeDTO);
                 }
             }
             return listGodownTypeDTO;
-        } 
+        }
         #endregion
 
 
@@ -329,7 +356,7 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error06, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success06, provider.GetCurrentCustomerId()) };
-        } 
+        }
         #endregion
 
         public ResultDTO SaveWeightDetails(string weight)
@@ -338,7 +365,7 @@ namespace RMIS.Business
             objMWeightDetailsEntity.ObsInd = YesNo.N;
             objMWeightDetailsEntity.CustID = provider.GetCurrentCustomerId();
             objMWeightDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objMWeightDetailsEntity.Weight =(short) weight.ConvertToInt();            
+            objMWeightDetailsEntity.Weight = (short)weight.ConvertToInt();
             objMWeightDetailsEntity.MWeightID = CommonUtil.CreateUniqueID("WE");
             objMWeightDetailsEntity.LastModifiedDate = DateTime.Now;
             try

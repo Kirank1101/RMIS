@@ -550,5 +550,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMRiceBrandDetailsEntities(CustId);
         }
+
+
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId)
+        {
+            return rmisGateway.GetMLotDetailsEntities(CustId);
+        }
     }
 }
