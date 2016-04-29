@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GodownName" xml:space="preserve">
+    <value>Godown Name</value>
+  </data>
+  <data name="IsGodownDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
   <data name="IsPaddyDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="IsRiceDeleted" xml:space="preserve">
     <value>Is Deleted</value>
   </data>
   <data name="IsSellerTypeDeleted" xml:space="preserve">
@@ -125,6 +134,9 @@
   </data>
   <data name="PaddyType" xml:space="preserve">
     <value>Paddy Type</value>
+  </data>
+  <data name="RiceType" xml:space="preserve">
+    <value>Rice Type</value>
   </data>
   <data name="SellerType" xml:space="preserve">
     <value>Seller Type</value>
