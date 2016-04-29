@@ -17,13 +17,13 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 
-public partial class AddSellerType : System.Web.UI.UserControl
+public partial class AddSellerType : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsControlPostBack)
         {
-            IPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IPaddyBusiness>();
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
             rptSellerType.DataBind();
         }   
@@ -32,9 +32,9 @@ public partial class AddSellerType : System.Web.UI.UserControl
     {
         if(!string.IsNullOrEmpty(txtSellerType.Text.Trim()))
         {
-            IPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IPaddyBusiness>();
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             imp.SaveSellerType(txtSellerType.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IPaddyBusiness>();
+            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
             rptSellerType.DataBind();
 

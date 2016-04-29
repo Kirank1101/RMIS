@@ -7,16 +7,23 @@ using RMIS.Domain.DataTranserClass;
 
 namespace RMIS.Domain.Business
 {
-    public interface IPaddyBusiness
+    public interface IMasterPaddyBusiness
     {
         List<SellerTypeDTO> GetMasterSellerTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
-        List<GodownTypeDTO> GetMGodownTypeeEntities();
+        List<GodownTypeDTO> GetMGodownTypeEntities();
+        List<RiceBrandDTO> GetRiceBrandEntities();
+        List<RiceProductDTO> GetRiceProductEntities();
+        List<LotDetailsDTO> GetLotDetailsEntities(string godownId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
-        List<MWeightDetailsEntity> GetMWeightDetailsEntities();
+        List<WeightDetailsDTO> GetMWeightDetailsEntities();
         ResultDTO SaveSellerType(string sellerType);
         ResultDTO SavePaddyType(string paddyType);
         ResultDTO SaveGodownType(string godownType);
+        ResultDTO SaveRiceBrandType(string riceBrand);
+        ResultDTO SaveRiceProductType(string riceProduct);
+        ResultDTO SaveLotDetails(string lotName,string godownId);
+        ResultDTO SaveWeightDetails(string weight);
     }
 }

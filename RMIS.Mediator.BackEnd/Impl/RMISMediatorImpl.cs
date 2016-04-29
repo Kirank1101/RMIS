@@ -2,27 +2,26 @@
 namespace RMIS.Mediator.BackEnd.Impl
 {
     using System;
-
     using AllInOne.Common.DataAccess.NHibernate.NHibernateSessionManagement;
-    using RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper;    
+    using RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper;
     using RMIS.Entities.BackEnd;
     using RMIS.Mediator.BackEnd.Data;
-    using log4net;    
-    using System.Collections.Generic;    
+    using log4net;
+    using System.Collections.Generic;
     using RMIS.Domain.RiceMill;
     using RMIS.Domain.Mediator;
-    
+
     public class RMISMediatorImpl : IRMISMediator
     {
         IRMISMapper mapper;
-        GenericGateway genericGateway =null ;
+        GenericGateway genericGateway = null;
         RMISGateway rmisGateway = null;
 
         public RMISMediatorImpl(IRMISMapper mapper)
         {
             this.mapper = mapper;
             genericGateway = new GenericGateway();
-           rmisGateway = new RMISGateway();
+            rmisGateway = new RMISGateway();
         }
 
         #region Fields
@@ -34,7 +33,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         #endregion Fields
 
-        
+
         /// <summary>
         /// Opens a session within a transaction at the beginning.  Note that
         /// it ONLY begins transactions for those designated as being transactional i.e. isTransactional="true" in web.config.
@@ -85,7 +84,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MSellerType>(mapper.GetSellerType(sellertypeEntity), isCopy);
             }
             catch (Exception ex)
@@ -100,7 +99,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<SellerInfo>(mapper.GetSellerInfo(sellerInfoEntity), isCopy);
             }
             catch (Exception ex)
@@ -118,12 +117,12 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// <returns></returns>
         public SellerTypeEntity GetSellerTypeEntity(string SellerTypeID)
         {
-            
+
             return rmisGateway.GetSellerTypeEntity(SellerTypeID);
         }
         public SellerInfoEntity GetSellerInfoEntity(string SellerID)
         {
-            
+
             return rmisGateway.GetSellerInfoEntity(SellerID);
         }
         #endregion
@@ -134,7 +133,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         public void SaveOrUpdateCustomerInfoEntity(CustomerInfoEntity customerInfoEntity, bool isCopy)
         {
             try
-            {               
+            {
                 genericGateway.SaveOrUpdateEntity<CustomerInfo>(mapper.GetCustomerInfo(customerInfoEntity), isCopy);
             }
             catch (Exception ex)
@@ -147,7 +146,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustomerInfoEntity GetCustomerInfoEntity(string CustID)
         {
-            
+
             return rmisGateway.GetCustomerInfoEntity(CustID);
         }
 
@@ -156,7 +155,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MUserType>(mapper.GetMUserType(mUserTypeEntity), isCopy);
             }
             catch (Exception ex)
@@ -169,7 +168,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MUserTypeEntity GetMUserTypeEntity(string UserTypeID)
         {
-            
+
             return rmisGateway.GetMUserTypeEntity(UserTypeID);
         }
 
@@ -178,7 +177,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<Users>(mapper.GetUsers(usersEntity), isCopy);
             }
             catch (Exception ex)
@@ -191,7 +190,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public UsersEntity GetUsersEntity(string UserID)
         {
-            
+
             return rmisGateway.GetUsersEntity(UserID);
         }
 
@@ -200,7 +199,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MPaddyType>(mapper.GetMPaddyType(mPaddyTypeEntity), isCopy);
             }
             catch (Exception ex)
@@ -214,9 +213,9 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID)
         {
-            
+
             return rmisGateway.GetMPaddyTypeEntity(PaddyTypeID);
-        
+
         }
 
 
@@ -224,7 +223,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<PaddyStockInfo>(mapper.GetPaddyStockInfo(paddyStockInfoEntity), isCopy);
             }
             catch (Exception ex)
@@ -237,7 +236,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID)
         {
-            
+
             return rmisGateway.GetPaddyStockInfoEntity(PaddyStockID);
         }
 
@@ -246,7 +245,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MLotDetails>(mapper.GetMLotDetails(mLotDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -259,7 +258,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MLotDetailsEntity GetMLotDetailsEntity(string MLotID)
         {
-            
+
             return rmisGateway.GetMLotDetailsEntity(MLotID);
         }
 
@@ -268,7 +267,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MGodownDetails>(mapper.GetMGodownDetails(mGodownDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -282,7 +281,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID)
         {
-            
+
             return rmisGateway.GetMGodownDetailsEntity(MGodownID);
         }
 
@@ -291,7 +290,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<PaddyPaymentDetails>(mapper.GetPaddyPaymentDetails(paddyPaymentDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -304,7 +303,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
         {
-            
+
             return rmisGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID);
         }
 
@@ -313,7 +312,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MWeightDetails>(mapper.GetMWeightDetails(mWeightDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -326,7 +325,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID)
         {
-            
+
             return rmisGateway.GetMWeightDetailsEntity(MWeightID);
         }
 
@@ -335,7 +334,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<CustomerAddressInfo>(mapper.GetCustomerAddressInfo(customerAddressInfoEntity), isCopy);
             }
             catch (Exception ex)
@@ -348,7 +347,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID)
         {
-            
+
             return rmisGateway.GetCustomerAddressInfoEntity(CustAdrsID);
         }
 
@@ -357,7 +356,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<CustomerActivation>(mapper.GetCustomerActivation(customerActivationEntity), isCopy);
             }
             catch (Exception ex)
@@ -370,7 +369,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID)
         {
-            
+
             return rmisGateway.GetCustomerActivationEntity(CustActiveID);
         }
 
@@ -379,7 +378,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<CustTrailUsage>(mapper.GetCustTrailUsage(custTrailUsageEntity), isCopy);
             }
             catch (Exception ex)
@@ -392,7 +391,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID)
         {
-            
+
             return rmisGateway.GetCustTrailUsageEntity(CustTrailID);
         }
 
@@ -401,7 +400,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<CustomerPayment>(mapper.GetCustomerPayment(customerPaymentEntity), isCopy);
             }
             catch (Exception ex)
@@ -414,7 +413,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID)
         {
-            
+
             return rmisGateway.GetCustomerPaymentEntity(CustPaymentID);
         }
 
@@ -423,7 +422,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<CustomerPartPayDetails>(mapper.GetCustomerPartPayDetails(customerPartPayDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -436,7 +435,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID)
         {
-            
+
             return rmisGateway.GetCustomerPartPayDetailsEntity(CustPartPayID);
         }
 
@@ -445,7 +444,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MDrierTypeDetails>(mapper.GetMDrierTypeDetails(mDrierTypeDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -458,16 +457,16 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID)
         {
-            
+
             return rmisGateway.GetMDrierTypeDetailsEntity(MDrierTypeID);
         }
 
 
-        public void SaveOrUpdateMDrierTypeDetailsEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy)
+        public void SaveOrUpdateMRiceProductionTypeEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy)
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MRiceProductionType>(mapper.GetMRiceProductionType(mRiceProductionTypeEntity), isCopy);
             }
             catch (Exception ex)
@@ -480,7 +479,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID)
         {
-            
+
             return rmisGateway.GetMRiceProductionTypeEntity(MRiceProdTypeID);
         }
 
@@ -489,7 +488,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-               
+
                 genericGateway.SaveOrUpdateEntity<MRiceBrandDetails>(mapper.GetMRiceBrandDetails(mRiceBrandDetailsEntity), isCopy);
             }
             catch (Exception ex)
@@ -502,7 +501,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
         {
-            
+
             return rmisGateway.GetMRiceBrandDetailsEntity(MRiceBrandID);
         }
 
@@ -541,6 +540,15 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
         {
             return rmisGateway.GetMWeightDetailsEntities(CustId);
+        }
+        public List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId)
+        {
+            return rmisGateway.GetMRiceProductionTypeEntities(CustId);
+        }
+
+        public List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId)
+        {
+            return rmisGateway.GetMRiceBrandDetailsEntities(CustId);
         }
     }
 }

@@ -692,6 +692,35 @@
                 throw;
             }
         }
+
+        internal List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string custID)
+        {
+            try
+            {
+                List<MRiceProductionTypeEntity> mRiceProductionTypeEntityList = new List<MRiceProductionTypeEntity>();
+                IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                   .Add(Expression.Eq("CustID", custID));
+                List<MRiceProductionType> listMRiceProductionTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceProductionType>;
+                if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
+                {
+                    foreach (MRiceProductionType adMInfo in listMRiceProductionTypeEntity)
+                    {
+                        mRiceProductionTypeEntityList.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceProductionTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    mRiceProductionTypeEntityList = null;
+
+                return mRiceProductionTypeEntityList;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceProductionTypeEntity", ex);
+                throw;
+            }
+        }
+
         internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
         {
             try
@@ -712,6 +741,34 @@
                     mRiceBrandDetailsEntity = null;
 
                 return mRiceBrandDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceBrandDetailsEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string custId)
+        {
+            try
+            {
+                List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = new List<MRiceBrandDetailsEntity>();
+                IRepository<MRiceBrandDetails> UsersRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MRiceBrandDetails> listMRiceBrandDetails = UsersRepository.GetAll(detachedCriteria) as List<MRiceBrandDetails>;
+                if (listMRiceBrandDetails != null && listMRiceBrandDetails.Count > 0)
+                {
+                    foreach (MRiceBrandDetails adMInfo in listMRiceBrandDetails)
+                    {
+                        listMRiceBrandDetailsEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listMRiceBrandDetailsEntity = null;
+
+                return listMRiceBrandDetailsEntity;
             }
             catch (Exception ex)
             {

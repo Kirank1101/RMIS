@@ -176,5 +176,14 @@ namespace AllInOne.Common.Library.Util
            return returnValue;
        }
 
+       public static int  ConvertToInt(this string  prefixText)
+       {
+           if (string.IsNullOrEmpty(prefixText))
+               return 0;
+           int value=0;
+           Int32.TryParse(prefixText, out value);
+           return value;
+       }
+
     }
 }

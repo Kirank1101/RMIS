@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PaddyBusiness.cs" />
+    <Compile Include="MasterPaddyBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionPaddyBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AllInOne.Common.Library\AllInOne.Common.Library\AllInOne.Common.Library.csproj">

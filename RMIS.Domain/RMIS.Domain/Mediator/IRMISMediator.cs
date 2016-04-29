@@ -55,7 +55,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateCustomerPaymentEntity(CustomerPaymentEntity customerPaymentEntity, bool isCopy);
         void SaveOrUpdateCustomerPartPayDetailsEntity(CustomerPartPayDetailsEntity customerPartPayDetailsEntity, bool isCopy);
         void SaveOrUpdateMDrierTypeDetailsEntity(MDrierTypeDetailsEntity mDrierTypeDetailsEntity, bool isCopy);
-        void SaveOrUpdateMDrierTypeDetailsEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy);
+        void SaveOrUpdateMRiceProductionTypeEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy);
         void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
@@ -86,7 +86,9 @@ namespace RMIS.Domain.Mediator
         CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID);
         MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
+        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
+        List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
         #endregion
     }
 

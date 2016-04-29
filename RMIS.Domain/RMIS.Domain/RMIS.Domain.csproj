@@ -52,8 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
-    <Compile Include="Business\IPaddyBusiness.cs" />
+    <Compile Include="Business\IMasterPaddyBusiness.cs" />
     <Compile Include="Business\ICustomerProvider.cs" />
+    <Compile Include="Business\ITransactionBusiness.cs" />
     <Compile Include="Business\IUserMessage.cs" />
     <Compile Include="Constant\RMSConstants.cs" />
     <Compile Include="DataTranserClass\PaddyTypeDTO.cs" />
