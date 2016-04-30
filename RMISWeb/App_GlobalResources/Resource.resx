@@ -153,6 +153,9 @@
   <data name="PaddyType" xml:space="preserve">
     <value>Paddy Type</value>
   </data>
+  <data name="PhoneNo" xml:space="preserve">
+    <value>Phone No</value>
+  </data>
   <data name="Pincode" xml:space="preserve">
     <value>PinCode</value>
   </data>
