@@ -62,24 +62,16 @@ namespace RMIS.Domain.Mediator
         /// </summary>
         /// <returns></returns>
         SellerTypeEntity GetSellerTypeEntity(string SellerTypeID);
-        List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
-        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
         UsersEntity GetUsersEntity(string UserID);
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
-        List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
-        PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
-        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
-        MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
-        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
-        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
-        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
+        MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
+        PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
         PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string CustId);
         MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID);
-        List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId);
         CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID);
         CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID);
         CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID);
@@ -87,8 +79,17 @@ namespace RMIS.Domain.Mediator
         CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID);
         MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
-        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
+        List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
+        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
+        List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
+        List<SellerInfoEntity> GetListSellerInfoEntities(string CustId);
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
+        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
+        List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId);
+        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
         #endregion
     }

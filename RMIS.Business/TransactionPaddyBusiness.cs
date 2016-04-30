@@ -117,5 +117,25 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success09, provider.GetCurrentCustomerId()) };
         }
+
+        public List<SellerInfoEntity> GetPaddySellerInfo()
+        {
+            List<SellerInfoEntity> listSellerInfoEntity = null;            
+            List<SellerInfoEntity> listSellerinfo = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId());
+            if (listSellerinfo != null && listSellerinfo.Count > 0)
+            {
+                listSellerInfoEntity = new List<SellerInfoEntity>();
+                foreach (SellerInfoEntity objSellerinfo in listSellerinfo)
+                {
+                    
+                    SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
+                    objSellerInfoEntity.SellerID = objSellerinfo.SellerID;
+                    objSellerInfoEntity.Name = objSellerinfo.Name;
+                    listSellerInfoEntity.Add(objSellerInfoEntity);
+                }
+
+            }
+            return listSellerInfoEntity;
+        }
     }
 }

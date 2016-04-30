@@ -159,6 +159,15 @@
   <data name="Pincode" xml:space="preserve">
     <value>PinCode</value>
   </data>
+  <data name="PruchaseDate" xml:space="preserve">
+    <value>Purchase Date</value>
+  </data>
+  <data name="QPrice" xml:space="preserve">
+    <value>Price per Qintal</value>
+  </data>
+  <data name="QWeight" xml:space="preserve">
+    <value>Total Weight</value>
+  </data>
   <data name="RiceType" xml:space="preserve">
     <value>Rice Type</value>
   </data>
@@ -177,7 +186,13 @@
   <data name="Street2" xml:space="preserve">
     <value>Street2</value>
   </data>
+  <data name="totalbags" xml:space="preserve">
+    <value>TotalBags</value>
+  </data>
   <data name="Town" xml:space="preserve">
     <value>Town</value>
+  </data>
+  <data name="VehicalNo" xml:space="preserve">
+    <value>Vehical No</value>
   </data>
 </root>

@@ -187,7 +187,7 @@ namespace RMIS.Business
                     PaddyTypeDTO objPaddyTypeDTO = new PaddyTypeDTO();
                     objPaddyTypeDTO.PaddyType = objSellerTypeEntity.Name;
                     objPaddyTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
-                    objPaddyTypeDTO.Id = objSellerTypeEntity.PaddyTypeID;
+                    objPaddyTypeDTO.Id = objSellerTypeEntity.PaddyTypeID;                    
                     listPaddyTypeDTO.Add(objPaddyTypeDTO);
                 }
 

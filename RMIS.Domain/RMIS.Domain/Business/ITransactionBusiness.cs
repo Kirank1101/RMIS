@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RMIS.Domain.DataTranserClass;
+using RMIS.Domain.RiceMill;
 
 namespace RMIS.Domain.Business
 {
@@ -18,6 +19,7 @@ namespace RMIS.Domain.Business
 
          ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid,
             DateTime paidDate, string handOverTo, DateTime nextPaymentDate);
+         List<SellerInfoEntity> GetPaddySellerInfo();
 
     }
 }

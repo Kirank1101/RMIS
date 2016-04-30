@@ -4,104 +4,83 @@
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,SellerType%>"></asp:Label>
+                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="ddlsellernames" runat="server">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox1" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,Street1%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="TextBox2" />
+                <asp:DropDownList ID="ddlPaddyType" runat="server">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label4" Text="<%$Resources:Resource,Street2%>"></asp:Label>
+                <asp:Label runat="server" ID="lblGodownName" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox3" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="Label5" Text="<%$Resources:Resource,Town%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="TextBox4" />
+                <asp:DropDownList ID="ddlGodownname" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged" runat="server">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label6" Text="<%$Resources:Resource,City%>"></asp:Label>
+                <asp:Label runat="server" ID="lblLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox5" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="Label7" Text="<%$Resources:Resource,District%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="TextBox6" />
+                <asp:DropDownList ID="ddlLotDetails" runat="server">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label8" Text="<%$Resources:Resource,State%>"></asp:Label>
+                <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox7" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="Label9" Text="<%$Resources:Resource,Pincode%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="TextBox8" />
+                <asp:TextBox runat="server" ID="txtVehicalNo" />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label10" Text="<%$Resources:Resource,ContactNo%>"></asp:Label>
+                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox9" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="Label11" Text="<%$Resources:Resource,MobileNo%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="TextBox10" />
+                <asp:TextBox runat="server" ID="txtTotalBags" />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label12" Text="<%$Resources:Resource,PhoneNo%>"></asp:Label>
+                <asp:Label runat="server" ID="lblQWeight" Text="<%$Resources:Resource,QWeight%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="TextBox11" />
+                <asp:TextBox runat="server" ID="txtQweight" />
             </td>
         </tr>
         <tr>
             <td>
-                <%--<asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />--%>
+                <asp:Label runat="server" ID="lblQPrice" Text="<%$Resources:Resource,QPrice%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtQprice" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtPruchaseDate" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
             </td>
         </tr>
