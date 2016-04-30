@@ -195,4 +195,16 @@
   <data name="VehicalNo" xml:space="preserve">
     <value>Vehical No</value>
   </data>
+  <data name="AmountPaid" xml:space="preserve">
+    <value>Amount Paid</value>
+  </data>
+  <data name="Nextpaymentdate" xml:space="preserve">
+    <value>Next Payment Date</value>
+  </data>
+  <data name="PaidDate" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="PaidTo" xml:space="preserve">
+    <value>Amount Paid To</value>
+  </data>
 </root>
