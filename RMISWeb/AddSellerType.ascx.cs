@@ -16,6 +16,7 @@ using RMIS.Domain;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
 
 public partial class AddSellerType : BaseUserControl
 {
@@ -23,21 +24,30 @@ public partial class AddSellerType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
+            lblHeader.Text = "Add Seller Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
             rptSellerType.DataBind();
-        }   
+        }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if(!string.IsNullOrEmpty(txtSellerType.Text.Trim()))
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSellerType(txtSellerType.Text);
+        if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            imp.SaveSellerType(txtSellerType.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
-            rptSellerType.DataBind();
-
+            resultDto = imp.SaveSellerType(txtSellerType.Text.Trim());
+            if (resultDto.IsSuccess)
+            {
+                imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
+                rptSellerType.DataBind();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            SetMessage(resultDto);
         }
     }
 }

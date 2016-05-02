@@ -10,7 +10,7 @@ namespace RMIS.UserMessageStore
     {
        public string GetMessage(string msgCode,string custId)
        {
-           return string.Empty;
+           return "Test1";
        }     
     }
 }

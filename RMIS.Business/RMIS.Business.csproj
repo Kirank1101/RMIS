@@ -46,6 +46,7 @@
     <Compile Include="MasterPaddyBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionPaddyBusiness.cs" />
+    <Compile Include="ValidateMasterBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AllInOne.Common.Library\AllInOne.Common.Library\AllInOne.Common.Library.csproj">

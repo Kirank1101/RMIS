@@ -51,7 +51,9 @@
                 Component.For<IRMISMediator>().ImplementedBy<RMISMediatorImpl>().LifeStyle.Transient,
                  Component.For<ISessionProvider>().ImplementedBy<RMIS.HttpSessionProvider.HttpSessionProvider>().LifeStyle.Transient,
                   Component.For<IUserMessage>().ImplementedBy<UserMessage>().LifeStyle.Transient,
-                 Component.For<IMasterPaddyBusiness>().ImplementedBy<MasterPaddyBusiness>().LifeStyle.Transient
+                 Component.For<IMasterPaddyBusiness>().ImplementedBy<MasterPaddyBusiness>().LifeStyle.Transient,
+                  Component.For<ITransactionBusiness>().ImplementedBy<TransactionPaddyBusiness>().LifeStyle.Transient,
+                   Component.For<IValidateMasterBusiness>().ImplementedBy<ValidateMasterBusiness>().LifeStyle.Transient
                 );
         }
 

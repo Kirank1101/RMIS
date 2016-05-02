@@ -17,11 +17,11 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 
-public partial class AddRiceType : System.Web.UI.UserControl
+public partial class AddRiceType : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsControlPostBack)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             BindRiceType(imp);

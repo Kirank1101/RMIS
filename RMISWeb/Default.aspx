@@ -67,7 +67,7 @@
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
  </asp:ScriptManager>
                    
-                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/AddSellerType.ascx" Width="50%"
+                            <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel3" UserControlPath="~/AddRiceType.ascx" Width="50%"
                       >
                         <ErrorTemplate>
                             Unable to refresh content
