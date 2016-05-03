@@ -207,4 +207,16 @@
   <data name="PaidTo" xml:space="preserve">
     <value>Amount Paid To</value>
   </data>
+  <data name="BagType" xml:space="preserve">
+    <value>Bag Type</value>
+  </data>
+  <data name="IsBagDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="DriverName" xml:space="preserve">
+    <value>Driver Name</value>
+  </data>
+  <data name="PricePerBag" xml:space="preserve">
+    <value>Price Per Bag</value>
+  </data>
 </root>

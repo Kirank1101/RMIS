@@ -32,7 +32,18 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-
+        public ResultDTO ValidateBagType(string BagType)
+        {
+            if (string.IsNullOrEmpty(BagType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (BagType.Trim().Length > 10)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
         public ResultDTO ValiadtePaddyType(string paddyType)
         {
             if (string.IsNullOrEmpty(paddyType.Trim()))
@@ -115,5 +126,6 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
     }
 }

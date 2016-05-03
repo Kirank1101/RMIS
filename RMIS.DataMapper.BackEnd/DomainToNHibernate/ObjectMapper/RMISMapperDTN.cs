@@ -15,12 +15,14 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
     public interface IRMISMapper
     {
         MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity);
+        MBagType GetBagType(MBagTypeEntity mBagTypeEntity);
         SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity);
         CustomerInfo GetCustomerInfo(CustomerInfoEntity CustomerInfoEntity);
         MUserType GetMUserType(MUserTypeEntity MUserTypeEntity);
         Users GetUsers(UsersEntity UsersEntity);
         MPaddyType GetMPaddyType(MPaddyTypeEntity mPaddyTypeEntity);
         PaddyStockInfo GetPaddyStockInfo(PaddyStockInfoEntity paddyStockInfoEntity);
+        BagStockInfo GetBagStockInfo(BagStockInfoEntity bagStockInfoEntity);
         MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity);
         MGodownDetails GetMGodownDetails(MGodownDetailsEntity mGodownDetailsEntity);
         PaddyPaymentDetails GetPaddyPaymentDetails(PaddyPaymentDetailsEntity paddyPaymentDetailsEntity);
@@ -66,6 +68,21 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return sellerType;
+        }
+
+        public MBagType GetBagType(MBagTypeEntity mBagTypeEntity)
+        {
+            MBagType BagType = null;
+            try
+            {
+                BagType = Mapper.Map<MBagTypeEntity, MBagType>(mBagTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagType", ex);
+                throw;
+            }
+            return BagType;
         }
 
         public SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity)
@@ -153,7 +170,20 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return paddyStockInfo;
         }
-
+        public BagStockInfo GetBagStockInfo(BagStockInfoEntity bagStockInfoEntity)
+        {
+            BagStockInfo BagStockInfo = null;
+            try
+            {
+                BagStockInfo = Mapper.Map<BagStockInfoEntity, BagStockInfo>(bagStockInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagStockInfo", ex);
+                throw;
+            }
+            return BagStockInfo;
+        }
 
         public MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity)
         {
@@ -339,5 +369,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return mRiceBrandDetails;
         }
+
+
     }
 }

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="BagStockInfo" table="[dbo].[BagStockInfo]" optimistic-lock="none" >
+    <id name="BagStockID" column="BagStockID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="SellerID" column="SellerID" />
+    <property name="BagTypeID" column="BagTypeID" />
+    <property name="CustID" column="CustID" />
+    <property name="VehicalNo" column="VehicalNo" />
+    <property name="DriverName" column="DriverName" />
+    <property name="TotalBags" column="TotalBags" />
+    <property name="PricePerBag" column="PricePerBag" />
+    <property name="PurchaseDate" column="PurchaseDate" />
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

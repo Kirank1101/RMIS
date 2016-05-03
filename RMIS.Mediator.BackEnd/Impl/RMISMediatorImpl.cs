@@ -568,5 +568,53 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetSellerInfoEntities(CustId);
         }
+
+
+        public void SaveOrUpdateMBagTypeEntity(MBagTypeEntity mBagtypeEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<MBagType>(mapper.GetBagType(mBagtypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBagTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBagTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<MBagTypeEntity> GetMBagTypeEntities(string CustId)
+        {
+            return rmisGateway.GetMBagTypeEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateBagStockInfoEntity(BagStockInfoEntity bagStockInfoEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<BagStockInfo>(mapper.GetBagStockInfo(bagStockInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBagStockInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBagStockInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public BagStockInfoEntity GetBagStockInfoEntity(string BagStockID)
+        {
+            return rmisGateway.GetBagStockInfoEntity(BagStockID);
+        }
+
+
+        public List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -44,6 +44,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return sellerTypeEntity;
         }
+      public static MBagTypeEntity GetMBagTypeEntity(MBagType mBagType)
+      {
+          MBagTypeEntity mBagTypeEntity = null;
+
+          try
+          {
+              if (mBagType != null)
+              {
+                  mBagTypeEntity = Mapper.Map<MBagType, MBagTypeEntity>(mBagType);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMBagTypeEntity", ex);
+              throw;
+          }
+
+          return mBagTypeEntity;
+      }
       public static SellerInfoEntity GetSellerInfoEntity(SellerInfo sellerInfo)
       {
           SellerInfoEntity sellerInfoEntity = null;
@@ -139,6 +158,26 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return mPaddyTypeEntity;
       }
+      public static BagStockInfoEntity GetBagStockInfoEntity(BagStockInfo BagStockInfo)
+      {
+          BagStockInfoEntity BagStockInfoEntity = null;
+
+          try
+          {
+              if (BagStockInfo != null)
+              {
+                  BagStockInfoEntity = Mapper.Map<BagStockInfo, BagStockInfoEntity>(BagStockInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetBagStockInfoEntity", ex);
+              throw;
+          }
+
+          return BagStockInfoEntity;
+      }
+      
       public static PaddyStockInfoEntity GetPaddyStockInfoEntity(PaddyStockInfo paddyStockInfo)
       {
           PaddyStockInfoEntity paddyStockInfoEntity = null;

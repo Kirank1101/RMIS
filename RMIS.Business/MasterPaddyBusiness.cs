@@ -48,6 +48,28 @@ namespace RMIS.Business
             }
             return listSellerTypeDTO;
         }
+
+        public List<MBagTypeDTO> GetMBagTypeEntities()
+        {
+            List<MBagTypeDTO> listMBagTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MBagTypeEntity> listMBagTypeEntity = imp.GetMBagTypeEntities(provider.GetCurrentCustomerId());
+            if (listMBagTypeEntity != null && listMBagTypeEntity.Count > 0)
+            {
+                listMBagTypeDTO = new List<MBagTypeDTO>();
+                foreach (MBagTypeEntity objMBagTypeEntity in listMBagTypeEntity)
+                {
+                    MBagTypeDTO objMBagTypeDTO = new MBagTypeDTO();
+                    objMBagTypeDTO.BagType = objMBagTypeEntity.BagType;
+                    objMBagTypeDTO.Indicator = GetYesorNo(objMBagTypeEntity.ObsInd);
+                    objMBagTypeDTO.Id = objMBagTypeEntity.BagTypeID;
+                    listMBagTypeDTO.Add(objMBagTypeDTO);
+                }
+
+            }
+            return listMBagTypeDTO;
+        }
+
         public List<MUserTypeEntity> GetMUserTypeEntities()
         {
             return imp.GetMUserTypeEntities(provider.GetCurrentCustomerId());
@@ -241,7 +263,28 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
         }
-
+        public ResultDTO SaveBagType(string BagType)
+        {
+            MBagTypeEntity objMBagTypeEntity = new MBagTypeEntity();
+            objMBagTypeEntity.ObsInd = YesNo.N;
+            objMBagTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMBagTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMBagTypeEntity.BagType = BagType;
+            objMBagTypeEntity.BagTypeID = CommonUtil.CreateUniqueID("BT");
+            objMBagTypeEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMBagTypeEntity(objMBagTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
+        }
         public ResultDTO SavePaddyType(string paddyType)
         {
             MPaddyTypeEntity objMPaddyTypeEntity = new MPaddyTypeEntity();
@@ -381,5 +424,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success06, provider.GetCurrentCustomerId()) };
         }
+
     }
 }

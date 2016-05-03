@@ -10,6 +10,8 @@ namespace RMIS.Domain.Business
     public interface IMasterPaddyBusiness
     {
         List<SellerTypeDTO> GetMasterSellerTypeEntities();
+        List<MBagTypeDTO> GetMBagTypeEntities();
+        
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
@@ -19,6 +21,7 @@ namespace RMIS.Domain.Business
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
         ResultDTO SaveSellerType(string sellerType);
+        ResultDTO SaveBagType(string BagType);
         ResultDTO SavePaddyType(string paddyType);
         ResultDTO SaveGodownType(string godownType);
         ResultDTO SaveRiceBrandType(string riceBrand);

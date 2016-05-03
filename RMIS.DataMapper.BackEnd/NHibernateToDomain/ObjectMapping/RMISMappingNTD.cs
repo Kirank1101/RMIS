@@ -42,6 +42,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             }
         }
 
+        internal void MapMBagTypeEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MBagType, MBagTypeEntity>()
+                    .ForMember(dest => dest.BagTypeID, opts => opts.MapFrom(src => src.BagTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.BagType, opts => opts.MapFrom(src => src.BagType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MBagTypeToMBagTypeEntity", ex);
+                throw;
+            }
+        }
+
         internal void MapSellerInfoEntity()
         {
             try
@@ -168,6 +187,30 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
+        internal void MapBagStockInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<BagStockInfo, BagStockInfoEntity>()
+                    .ForMember(dest => dest.BagStockID, opts => opts.MapFrom(src => src.BagStockID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.BagTypeID, opts => opts.MapFrom(src => src.BagTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
+                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.PricePerBag, opts => opts.MapFrom(src => src.PricePerBag))
+                    .ForMember(dest => dest.PurchaseDate, opts => opts.MapFrom(src => src.PurchaseDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBagStockInfoEntity", ex);
                 throw;
             }
         }

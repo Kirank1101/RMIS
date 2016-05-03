@@ -9,6 +9,7 @@ namespace RMIS.Domain.Business
    public  interface IValidateMasterBusiness
     {
         ResultDTO ValidateSellerType(string sellerType);
+        ResultDTO ValidateBagType(string BagType);
         ResultDTO ValiadtePaddyType(string paddyType);
         ResultDTO ValidateGodownType(string godownType);
         ResultDTO ValidateRiceBrandType(string riceBrand);

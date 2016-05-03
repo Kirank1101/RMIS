@@ -137,5 +137,36 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
+
+
+        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, int PricePerBag, DateTime purchaseDate)
+        {
+            BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
+            objBagStockInfoEntity.ObsInd = YesNo.N;
+            objBagStockInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objBagStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBagStockInfoEntity.LastModifiedDate = DateTime.Now;
+            objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");
+            objBagStockInfoEntity.BagTypeID = BagTypeId;
+            objBagStockInfoEntity.PurchaseDate = purchaseDate;
+            objBagStockInfoEntity.PricePerBag = (short)PricePerBag;
+            objBagStockInfoEntity.SellerID = sellerId;
+            objBagStockInfoEntity.TotalBags = (short)totalBags;
+            objBagStockInfoEntity.VehicalNo = vehicleNo;
+            objBagStockInfoEntity.DriverName = DriverName;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBagStockInfoEntity(objBagStockInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+
+        }
     }
 }

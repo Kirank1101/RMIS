@@ -67,6 +67,33 @@
                 throw;
             }
         }
+        internal List<MBagTypeEntity> GetMBagTypeEntities(string custId)
+        {
+            try
+            {
+                List<MBagTypeEntity> ListMBagTypeEntity = new List<MBagTypeEntity>();
+                IRepository<MBagType> BagTypeRepository = new RepositoryImpl<MBagType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBagType))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MBagType> listMBagType = BagTypeRepository.GetAll(detachedCriteria) as List<MBagType>;
+                if (listMBagType != null && listMBagType.Count > 0)
+                {
+                    foreach (MBagType adMInfo in listMBagType)
+                    {
+                        ListMBagTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBagTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMBagTypeEntity = null;
+
+                return ListMBagTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBagTypeEntities", ex);
+                throw;
+            }
+        }
 
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId)
         {
@@ -174,6 +201,33 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetPaddyStockInfoEntities", ex);
+                throw;
+            }
+        }
+        internal List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId)
+        {
+            try
+            {
+                List<BagStockInfoEntity> listBagStockInfoEntity = new List<BagStockInfoEntity>();
+                IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<BagStockInfo> listBagStockInfo = UsersRepository.GetAll(detachedCriteria) as List<BagStockInfo>;
+                if (listBagStockInfo != null && listBagStockInfo.Count > 0)
+                {
+                    foreach (BagStockInfo adMInfo in listBagStockInfo)
+                    {
+                        listBagStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listBagStockInfoEntity = null;
+
+                return listBagStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagStockInfoEntities", ex);
                 throw;
             }
         }
@@ -451,6 +505,33 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
+        internal BagStockInfoEntity GetBagStockInfoEntity(string BagStockID)
+        {
+            try
+            {
+                BagStockInfoEntity bagStockInfoEntity = new BagStockInfoEntity();
+                IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
+                                                                   .Add(Expression.Eq("BagStockID", BagStockID));
+                List<BagStockInfo> listBagStockInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<BagStockInfo>;
+                if (listBagStockInfoEntity != null && listBagStockInfoEntity.Count > 0)
+                {
+                    foreach (BagStockInfo adMInfo in listBagStockInfoEntity)
+                    {
+                        bagStockInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagStockInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    bagStockInfoEntity = null;
+
+                return bagStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagStockInfoEntity", ex);
                 throw;
             }
         }

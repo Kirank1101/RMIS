@@ -52,7 +52,20 @@ namespace RMIS.Domain.DataTranserClass
        }
       
     }
+    public class MBagTypeDTO : MasterPaddyDTO
+    {
+        public MBagTypeDTO()
+            : base()
+        {
+            BagType = string.Empty;
+        }
+        public string BagType
+        {
+            get;
+            set;
+        }
 
+    }
 
     public class GodownTypeDTO : MasterPaddyDTO
    {

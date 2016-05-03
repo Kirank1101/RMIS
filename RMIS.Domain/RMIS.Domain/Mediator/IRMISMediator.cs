@@ -39,12 +39,14 @@ namespace RMIS.Domain.Mediator
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
         void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
+        void SaveOrUpdateMBagTypeEntity(MBagTypeEntity mBagtypeEntity, bool isCopy);
         void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
         void SaveOrUpdateCustomerInfoEntity(CustomerInfoEntity customerInfoEntity, bool isCopy);
         void SaveOrUpdateMUserTypeEntity(MUserTypeEntity mUserTypeEntity, bool isCopy);
         void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy);
         void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
         void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
+        void SaveOrUpdateBagStockInfoEntity(BagStockInfoEntity bagStockInfoEntity, bool isCopy);
         void SaveOrUpdateMLotDetailsEntity(MLotDetailsEntity mLotDetailsEntity, bool isCopy);
         void SaveOrUpdateMGodownDetailsEntity(MGodownDetailsEntity mGodownDetailsEntity, bool isCopy);
         void SaveOrUpdatePaddyPaymentDetailsEntity(PaddyPaymentDetailsEntity paddyPaymentDetailsEntity, bool isCopy);
@@ -70,6 +72,7 @@ namespace RMIS.Domain.Mediator
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
         PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID);
+        BagStockInfoEntity GetBagStockInfoEntity(string BagStockID);
         PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string CustId);
         MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID);
         CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID);
@@ -83,8 +86,10 @@ namespace RMIS.Domain.Mediator
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
         List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
         List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
+        List<MBagTypeEntity> GetMBagTypeEntities(string CustId);
         List<SellerInfoEntity> GetListSellerInfoEntities(string CustId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
+        List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
         List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
