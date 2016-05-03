@@ -94,7 +94,33 @@
                 throw;
             }
         }
+        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId)
+        {
+            try
+            {
+                List<MUnitsTypeEntity> ListMUnitsTypeEntity = new List<MUnitsTypeEntity>();
+                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        ListMUnitsTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMUnitsTypeEntity = null;
 
+                return ListMUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                throw;
+            }
+        }
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId)
         {
             try

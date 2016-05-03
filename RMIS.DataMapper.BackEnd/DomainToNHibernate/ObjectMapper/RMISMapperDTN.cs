@@ -16,6 +16,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
     {
         MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity);
         MBagType GetBagType(MBagTypeEntity mBagTypeEntity);
+        MUnitsType GetUnitsType(MUnitsTypeEntity mUnitsTypeEntity);
         SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity);
         CustomerInfo GetCustomerInfo(CustomerInfoEntity CustomerInfoEntity);
         MUserType GetMUserType(MUserTypeEntity MUserTypeEntity);
@@ -371,5 +372,21 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         }
 
 
+
+
+        public MUnitsType GetUnitsType(MUnitsTypeEntity mUnitsTypeEntity)
+        {
+            MUnitsType UnitsType = null;
+            try
+            {
+                UnitsType = Mapper.Map<MUnitsTypeEntity, MUnitsType>(mUnitsTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUnitsType", ex);
+                throw;
+            }
+            return UnitsType;
+        }
     }
 }

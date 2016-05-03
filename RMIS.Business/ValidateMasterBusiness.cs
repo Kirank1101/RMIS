@@ -127,5 +127,19 @@ namespace RMIS.Business
             return new ResultDTO();
         }
 
+
+
+        public ResultDTO ValidateUnitsType(string UnitsType)
+        {
+            if (string.IsNullOrEmpty(UnitsType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateWeightDetailsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitsType.ConvertToInt() < 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateWeightDetailSize, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }

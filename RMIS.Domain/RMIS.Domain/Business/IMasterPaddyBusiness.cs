@@ -11,7 +11,7 @@ namespace RMIS.Domain.Business
     {
         List<SellerTypeDTO> GetMasterSellerTypeEntities();
         List<MBagTypeDTO> GetMBagTypeEntities();
-        
+        List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
@@ -22,6 +22,7 @@ namespace RMIS.Domain.Business
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
         ResultDTO SaveSellerType(string sellerType);
         ResultDTO SaveBagType(string BagType);
+        ResultDTO SaveUnitsType(string UnitsType);
         ResultDTO SavePaddyType(string paddyType);
         ResultDTO SaveGodownType(string godownType);
         ResultDTO SaveRiceBrandType(string riceBrand);

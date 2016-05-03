@@ -216,7 +216,13 @@
   <data name="DriverName" xml:space="preserve">
     <value>Driver Name</value>
   </data>
+  <data name="IsUnitsDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
   <data name="PricePerBag" xml:space="preserve">
     <value>Price Per Bag</value>
+  </data>
+  <data name="UnitsType" xml:space="preserve">
+    <value>Units Mesured In</value>
   </data>
 </root>

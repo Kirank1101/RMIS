@@ -425,5 +425,50 @@ namespace RMIS.Business
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success06, provider.GetCurrentCustomerId()) };
         }
 
+
+
+        public List<MUnitsTypeDTO> GetMUnitsTypeEntities()
+        {
+            List<MUnitsTypeDTO> listMUnitsTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId());
+            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+            {
+                listMUnitsTypeDTO = new List<MUnitsTypeDTO>();
+                foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                {
+                    MUnitsTypeDTO objMUnitsTypeDTO = new MUnitsTypeDTO();
+                    objMUnitsTypeDTO.UnitsType = objMUnitsTypeEntity.UnitsType;
+                    objMUnitsTypeDTO.Indicator = GetYesorNo(objMUnitsTypeEntity.ObsInd);
+                    objMUnitsTypeDTO.Id = objMUnitsTypeEntity.UnitsTypeID;
+                    listMUnitsTypeDTO.Add(objMUnitsTypeDTO);
+                }
+            }
+            return listMUnitsTypeDTO;
+        }
+
+
+        public ResultDTO SaveUnitsType(string UnitsType)
+        {
+            MUnitsTypeEntity objMUnitsTypeEntity = new MUnitsTypeEntity();
+            objMUnitsTypeEntity.ObsInd = YesNo.N;
+            objMUnitsTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMUnitsTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMUnitsTypeEntity.UnitsType = UnitsType;
+            objMUnitsTypeEntity.UnitsTypeID = CommonUtil.CreateUniqueID("BT");
+            objMUnitsTypeEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMUnitsTypeEntity(objMUnitsTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };            
+        }
     }
 }

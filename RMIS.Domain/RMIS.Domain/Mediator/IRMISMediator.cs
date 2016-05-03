@@ -40,6 +40,7 @@ namespace RMIS.Domain.Mediator
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
         void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
         void SaveOrUpdateMBagTypeEntity(MBagTypeEntity mBagtypeEntity, bool isCopy);
+        void SaveOrUpdateMUnitsTypeEntity(MUnitsTypeEntity mUnitstypeEntity, bool isCopy);
         void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
         void SaveOrUpdateCustomerInfoEntity(CustomerInfoEntity customerInfoEntity, bool isCopy);
         void SaveOrUpdateMUserTypeEntity(MUserTypeEntity mUserTypeEntity, bool isCopy);
@@ -94,6 +95,7 @@ namespace RMIS.Domain.Mediator
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
         List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
         List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId);
+        List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId);
         List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
         #endregion

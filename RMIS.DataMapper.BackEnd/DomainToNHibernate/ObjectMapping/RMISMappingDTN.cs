@@ -65,6 +65,26 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapMUnitsTypeEntityToMUnitsType()
+        {
+            try
+            {
+                Mapper.CreateMap<MUnitsTypeEntity, MUnitsType>()
+                    .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.UnitsType, opts => opts.MapFrom(src => src.UnitsType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMBagTypeEntityToMBagType", ex);
+                throw;
+            }
+        }
 
         internal void MapSellerInfoEntityToSellerInfo()
         {

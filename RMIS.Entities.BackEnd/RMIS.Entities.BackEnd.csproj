@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Entities\BagStockInfo.cs" />
+    <Compile Include="Model\Entities\MUnitsType.cs" />
     <Compile Include="Model\Entities\MBagType.cs" />
     <Compile Include="Model\Entities\MRiceBrandDetails.cs" />
     <Compile Include="Model\Entities\MRiceProductionType.cs" />
@@ -88,6 +89,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Persistence\EntityMappings\BagStockInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MUnitsType.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Persistence\EntityMappings\MRiceBrandDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MRiceProductionType.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MDrierTypeDetails.hbm.xml" />

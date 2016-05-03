@@ -66,6 +66,20 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
+    public class MUnitsTypeDTO : MasterPaddyDTO
+    {
+        public MUnitsTypeDTO()
+            : base()
+        {
+            UnitsType = string.Empty;
+        }
+        public string UnitsType
+        {
+            get;
+            set;
+        }
+
+    }
 
     public class GodownTypeDTO : MasterPaddyDTO
    {

@@ -62,6 +62,7 @@
     <Compile Include="DataTranserClass\MasterDTO.cs" />
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\BagStockInfoEntity.cs" />
+    <Compile Include="RiceMill\MunitsTypeEntity.cs" />
     <Compile Include="RiceMill\MBagTypeEntity.cs" />
     <Compile Include="RiceMill\MRiceBrandDetailsEntity.cs" />
     <Compile Include="RiceMill\MRiceProductionTypeEntity.cs" />

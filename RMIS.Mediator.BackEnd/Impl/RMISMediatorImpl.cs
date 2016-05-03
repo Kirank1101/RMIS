@@ -614,7 +614,29 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetBagStockInfoEntities(CustId);
+        }
+
+
+        public List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId)
+        {
+            return rmisGateway.GetMUnitsTypeEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateMUnitsTypeEntity(MUnitsTypeEntity mUnitstypeEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<MUnitsType>(mapper.GetUnitsType(mUnitstypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateUnitsTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateUnitsTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
         }
     }
 }

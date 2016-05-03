@@ -10,6 +10,7 @@ namespace RMIS.Domain.Business
     {
         ResultDTO ValidateSellerType(string sellerType);
         ResultDTO ValidateBagType(string BagType);
+        ResultDTO ValidateUnitsType(string UnitsType);
         ResultDTO ValiadtePaddyType(string paddyType);
         ResultDTO ValidateGodownType(string godownType);
         ResultDTO ValidateRiceBrandType(string riceBrand);
