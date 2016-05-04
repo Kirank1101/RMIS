@@ -38,7 +38,20 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
+    public class BrokenRiceTypeDTO : MasterPaddyDTO
+    {
+        public BrokenRiceTypeDTO()
+            : base()
+        {
+            BrokenRiceType = string.Empty;
+        }
+        public string BrokenRiceType
+        {
+            get;
+            set;
+        }
 
+    }
     public class SellerTypeDTO : MasterPaddyDTO
     {
        public SellerTypeDTO():base()

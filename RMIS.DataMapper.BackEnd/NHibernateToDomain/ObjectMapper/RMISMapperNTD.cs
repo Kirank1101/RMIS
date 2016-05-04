@@ -444,6 +444,44 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return mRiceBrandDetailsEntity;
       }
-      
+      public static MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(MBrokenRiceType mBrokenRiceType)
+      {
+          MBrokenRiceTypeEntity mBrokenRiceTypeEntity = null;
+
+          try
+          {
+              if (mBrokenRiceType != null)
+              {
+                  mBrokenRiceTypeEntity = Mapper.Map<MBrokenRiceType, MBrokenRiceTypeEntity>(mBrokenRiceType);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetMBrokenRiceTypeEntity", ex);
+              throw;
+          }
+
+          return mBrokenRiceTypeEntity;
+      }
+      public static RiceStockInfoEntity GetRiceStockInfoEntity(RiceStockInfo riceStockInfo)
+      {
+          RiceStockInfoEntity RiceStockInfoEntity = null;
+
+          try
+          {
+              if (riceStockInfo != null)
+              {
+                  RiceStockInfoEntity = Mapper.Map<RiceStockInfo, RiceStockInfoEntity>(riceStockInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetRiceStockInfoEntity", ex);
+              throw;
+          }
+
+          return RiceStockInfoEntity;
+      }
+            
     }
 }

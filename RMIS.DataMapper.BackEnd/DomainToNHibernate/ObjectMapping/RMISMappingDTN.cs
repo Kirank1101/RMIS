@@ -505,6 +505,47 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapMBrokenRiceTypeEntityToMBrokenRiceType()
+        {
+            try
+            {
+                Mapper.CreateMap<MBrokenRiceTypeEntity, MBrokenRiceType>()
+                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.BrokenRiceName, opts => opts.MapFrom(src => src.BrokenRiceName))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
 
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMBrokenRiceTypeEntityToMBrokenRiceType", ex);
+                throw;
+            }
+        }
+        internal void MapRiceStockInfoEntityToRiceStockInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<RiceStockInfoEntity, RiceStockInfo>()
+                    .ForMember(dest => dest.RiceStockID, opts => opts.MapFrom(src => src.RiceStockID))
+                    .ForMember(dest => dest.RiceTypeID, opts => opts.MapFrom(src => src.RiceTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.WeightUnits, opts => opts.MapFrom(src => src.WeightUnits))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapRiceStockInfoEntityToRiceStockInfo", ex);
+                throw;
+            }
+        }
     }
 }

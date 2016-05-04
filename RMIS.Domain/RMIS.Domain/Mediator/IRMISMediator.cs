@@ -46,7 +46,9 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMUserTypeEntity(MUserTypeEntity mUserTypeEntity, bool isCopy);
         void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy);
         void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
+        void SaveOrUpdateMBrokenRiceTypeEntity(MBrokenRiceTypeEntity mBrokenRiceTypeEntity, bool isCopy);
         void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
+        void SaveOrUpdateRiceStockInfoEntity(RiceStockInfoEntity riceStockInfoEntity, bool isCopy);
         void SaveOrUpdateBagStockInfoEntity(BagStockInfoEntity bagStockInfoEntity, bool isCopy);
         void SaveOrUpdateMLotDetailsEntity(MLotDetailsEntity mLotDetailsEntity, bool isCopy);
         void SaveOrUpdateMGodownDetailsEntity(MGodownDetailsEntity mGodownDetailsEntity, bool isCopy);
@@ -85,11 +87,13 @@ namespace RMIS.Domain.Mediator
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
+        List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
         List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
         List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
         List<MBagTypeEntity> GetMBagTypeEntities(string CustId);
         List<SellerInfoEntity> GetListSellerInfoEntities(string CustId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
+        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId);
         List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);

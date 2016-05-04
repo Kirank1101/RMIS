@@ -168,5 +168,36 @@ namespace RMIS.Business
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
 
         }
+
+
+        public ResultDTO SaveRiceStockInfo(string sellerId, string RiceTypeId, int totalBags, string WeightUnits)
+        {
+            RiceStockInfoEntity objRiceStockInfoEntity = new RiceStockInfoEntity();
+            objRiceStockInfoEntity.CustID = provider.GetCurrentCustomerId();            
+            objRiceStockInfoEntity.ObsInd = YesNo.N;
+            objRiceStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objRiceStockInfoEntity.LastModifiedDate = DateTime.Now;
+            objRiceStockInfoEntity.RiceStockID = CommonUtil.CreateUniqueID("RS");
+            objRiceStockInfoEntity.RiceTypeID = RiceTypeId;
+            objRiceStockInfoEntity.WeightUnits = WeightUnits;
+            objRiceStockInfoEntity.TotalBags = (short)totalBags;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateRiceStockInfoEntity(objRiceStockInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };            
+        }
+
+        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities()
+        {
+            return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId());
+        }
     }
 }

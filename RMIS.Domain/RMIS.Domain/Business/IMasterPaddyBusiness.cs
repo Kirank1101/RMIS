@@ -14,6 +14,7 @@ namespace RMIS.Domain.Business
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
+        List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
         List<RiceBrandDTO> GetRiceBrandEntities();
         List<RiceProductDTO> GetRiceProductEntities();
@@ -24,6 +25,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
         ResultDTO SavePaddyType(string paddyType);
+        ResultDTO SaveBrokenRiceType(string BrokenRiceType);
         ResultDTO SaveGodownType(string godownType);
         ResultDTO SaveRiceBrandType(string riceBrand);
         ResultDTO SaveRiceProductType(string riceProduct);

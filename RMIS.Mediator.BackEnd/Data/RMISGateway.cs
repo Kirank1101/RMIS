@@ -203,6 +203,33 @@
                 throw;
             }
         }
+        internal List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntities(string CustId)
+        {
+            try
+            {
+                List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = new List<MBrokenRiceTypeEntity>();
+                IRepository<MBrokenRiceType> UsersRepository = new RepositoryImpl<MBrokenRiceType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<MBrokenRiceType> listMBrokenRiceType = UsersRepository.GetAll(detachedCriteria) as List<MBrokenRiceType>;
+                if (listMBrokenRiceType != null && listMBrokenRiceType.Count > 0)
+                {
+                    foreach (MBrokenRiceType adMInfo in listMBrokenRiceType)
+                    {
+                        listMBrokenRiceTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBrokenRiceTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMBrokenRiceTypeEntity = null;
+
+                return listMBrokenRiceTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBrokenRiceTypeEntities", ex);
+                throw;
+            }
+        }
         internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)
         {
             try
@@ -942,7 +969,34 @@
                 throw;
             }
         }
+        internal List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId)
+        {
+            try
+            {
+                List<RiceStockInfoEntity> listRiceStockInfoEntity = new List<RiceStockInfoEntity>();
+                IRepository<RiceStockInfo> UsersRepository = new RepositoryImpl<RiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<RiceStockInfo> listRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceStockInfo>;
+                if (listRiceStockInfo != null && listRiceStockInfo.Count > 0)
+                {
+                    foreach (RiceStockInfo adMInfo in listRiceStockInfo)
+                    {
+                        listRiceStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRiceStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listRiceStockInfoEntity = null;
 
+                return listRiceStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceStockInfoEntities", ex);
+                throw;
+            }
+        }
+        
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

@@ -638,5 +638,49 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+
+
+        public void SaveOrUpdateMBrokenRiceTypeEntity(MBrokenRiceTypeEntity mBrokenRiceTypeEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<MBrokenRiceType>(mapper.GetMBrokenRiceType(mBrokenRiceTypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateUnitsTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateUnitsTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId)
+        {
+            return rmisGateway.GetMBrokenRiceTypeEntities(CustId);
+        
+        }
+
+
+        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllRiceStockInfoEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateRiceStockInfoEntity(RiceStockInfoEntity riceStockInfoEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<RiceStockInfo>(mapper.GetRiceStockInfo(riceStockInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateRiceStockInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateRiceStockInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
     }
 }

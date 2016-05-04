@@ -22,7 +22,9 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MUserType GetMUserType(MUserTypeEntity MUserTypeEntity);
         Users GetUsers(UsersEntity UsersEntity);
         MPaddyType GetMPaddyType(MPaddyTypeEntity mPaddyTypeEntity);
+        MBrokenRiceType GetMBrokenRiceType(MBrokenRiceTypeEntity mBrokenRiceTypeEntity);
         PaddyStockInfo GetPaddyStockInfo(PaddyStockInfoEntity paddyStockInfoEntity);
+        RiceStockInfo GetRiceStockInfo(RiceStockInfoEntity riceStockInfoEntity);
         BagStockInfo GetBagStockInfo(BagStockInfoEntity bagStockInfoEntity);
         MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity);
         MGodownDetails GetMGodownDetails(MGodownDetailsEntity mGodownDetailsEntity);
@@ -387,6 +389,40 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return UnitsType;
+        }
+
+
+        public MBrokenRiceType GetMBrokenRiceType(MBrokenRiceTypeEntity mBrokenRiceTypeEntity)
+        {
+
+            MBrokenRiceType mBrokenRiceType = null;
+            try
+            {
+                mBrokenRiceType = Mapper.Map<MBrokenRiceTypeEntity, MBrokenRiceType>(mBrokenRiceTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBrokenRiceType", ex);
+                throw;
+            }
+            return mBrokenRiceType;
+        }
+
+
+        public RiceStockInfo GetRiceStockInfo(RiceStockInfoEntity riceStockInfoEntity)
+        {
+
+            RiceStockInfo RiceStockInfo = null;
+            try
+            {
+                RiceStockInfo = Mapper.Map<RiceStockInfoEntity, RiceStockInfo>(riceStockInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceStockInfo", ex);
+                throw;
+            }
+            return RiceStockInfo;
         }
     }
 }

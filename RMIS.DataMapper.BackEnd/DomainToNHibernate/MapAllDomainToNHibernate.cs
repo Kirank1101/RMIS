@@ -91,6 +91,12 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMDrierTypeDetailsEntityToMDrierTypeDetails();
                 objRMISMappingDTN.MapMRiceProductionTypeEntityToMRiceProductionType();
                 objRMISMappingDTN.MapMRiceBrandDetailsEntityToMRiceBrandDetails();
+                objRMISMappingDTN.MapMBrokenRiceTypeEntityToMBrokenRiceType();
+                objRMISMappingDTN.MapMUnitsTypeEntityToMUnitsType();
+                objRMISMappingDTN.MapMBagTypeEntityToMBagType();
+                objRMISMappingDTN.MapBagStockInfoEntityToBagStockInfo();
+                objRMISMappingDTN.MapRiceStockInfoEntityToRiceStockInfo();
+                
             }
             catch (Exception exp)
             {

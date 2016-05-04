@@ -29,9 +29,9 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<MSellerType, SellerTypeEntity>()
                     .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID ))
-                    .ForMember(dest => dest.SellerType, opts => opts.MapFrom(src => src.SellerType ))
-                    .ForMember(dest => dest.ObsInd , opts => opts.MapFrom(src => src.ObsInd ))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.SellerType, opts => opts.MapFrom(src => src.SellerType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
             }
@@ -366,7 +366,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.CustTrailID, opts => opts.MapFrom(src => src.CustTrailID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.TrailStartDate, opts => opts.MapFrom(src => src.TrailStartDate))
-                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))                    
+                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
@@ -384,7 +384,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Mapper.CreateMap<CustomerPayment, CustomerPaymentEntity>()
                     .ForMember(dest => dest.CustPaymentID, opts => opts.MapFrom(src => src.CustPaymentID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))                    
+                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))
                     .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
@@ -467,6 +467,44 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapMapMRiceBrandDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMBrokenRiceTypeEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MBrokenRiceType, MBrokenRiceTypeEntity>()
+                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.BrokenRiceName, opts => opts.MapFrom(src => src.BrokenRiceName))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMBrokenRiceTypeEntity", ex);
+                throw;
+            }
+        }
+        internal void MapRiceStockInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<RiceStockInfo, RiceStockInfoEntity>()
+                    .ForMember(dest => dest.RiceStockID, opts => opts.MapFrom(src => src.RiceStockID))
+                    .ForMember(dest => dest.RiceTypeID, opts => opts.MapFrom(src => src.RiceTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.WeightUnits, opts => opts.MapFrom(src => src.WeightUnits))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapRiceStockInfoEntity", ex);
                 throw;
             }
         }
