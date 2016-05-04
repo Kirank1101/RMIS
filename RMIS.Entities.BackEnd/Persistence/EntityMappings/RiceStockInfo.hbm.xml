@@ -7,12 +7,12 @@
     <id name="RiceStockID" column="RiceStockID" >
       <generator class="assigned"/>
     </id>
-    <property name="RiceTypeID" column="RiceTypeID" />
-    <property name="RiceBrandID" column="RiceBrandID" />
+    <property name="MRiceProdTypeID" column="MRiceProdTypeID" />
+    <property name="MRiceBrandID" column="MRiceBrandID" />
     <property name="CustID" column="CustID" />
     <property name="TotalBags" column="TotalBags" />
     <property name="QWeight" column="QWeight" />
-    <property name="WeightUnits" column="WeightUnits" />
+    <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

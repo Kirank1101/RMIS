@@ -163,7 +163,7 @@ namespace RMIS.Business
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
 
         }
-        public ResultDTO SaveRiceStockInfo(string RiceTypeId, string RiceBrandID, int totalBags, int QWeight, string WeightUnits)
+        public ResultDTO SaveRiceStockInfo(string MRiceProdTypeID, string MRiceBrandID, int totalBags, int QWeight, string UnitsTypeID)
         {
             RiceStockInfoEntity objRiceStockInfoEntity = new RiceStockInfoEntity();
             objRiceStockInfoEntity.CustID = provider.GetCurrentCustomerId();
@@ -171,10 +171,10 @@ namespace RMIS.Business
             objRiceStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objRiceStockInfoEntity.LastModifiedDate = DateTime.Now;
             objRiceStockInfoEntity.RiceStockID = CommonUtil.CreateUniqueID("RS");
-            objRiceStockInfoEntity.RiceTypeID = RiceTypeId;
-            objRiceStockInfoEntity.RiceBrandID = RiceBrandID;
+            objRiceStockInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
+            objRiceStockInfoEntity.MRiceBrandID = MRiceBrandID;
             objRiceStockInfoEntity.QWeight = (short)QWeight;
-            objRiceStockInfoEntity.WeightUnits = WeightUnits;
+            objRiceStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objRiceStockInfoEntity.TotalBags = (short)totalBags;
             try
             {
@@ -193,7 +193,7 @@ namespace RMIS.Business
         {
             return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId());
         }
-        public ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string WeightUnits)
+        public ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string UnitsTypeID)
         {
             BrokenRiceStockInfoEntity objBrokenRiceStockInfoEntity = new BrokenRiceStockInfoEntity();
             objBrokenRiceStockInfoEntity.CustID = provider.GetCurrentCustomerId();
@@ -202,7 +202,7 @@ namespace RMIS.Business
             objBrokenRiceStockInfoEntity.LastModifiedDate = DateTime.Now;
             objBrokenRiceStockInfoEntity.BrokenRiceStockID = CommonUtil.CreateUniqueID("BR");
             objBrokenRiceStockInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
-            objBrokenRiceStockInfoEntity.WeightUnits = WeightUnits;
+            objBrokenRiceStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objBrokenRiceStockInfoEntity.TotalBags = (short)totalBags;
             objBrokenRiceStockInfoEntity.QWeight = (short)QWeight;
             try
@@ -222,7 +222,7 @@ namespace RMIS.Business
         {
             return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId());
         }
-        public ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string WeightUnits)
+        public ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string UnitsTypeID)
         {
             DustStockInfoEntity objDustStockInfoEntity = new DustStockInfoEntity();
             objDustStockInfoEntity.CustID = provider.GetCurrentCustomerId();
@@ -231,7 +231,7 @@ namespace RMIS.Business
             objDustStockInfoEntity.LastModifiedDate = DateTime.Now;
             objDustStockInfoEntity.DustStockID = CommonUtil.CreateUniqueID("DU");
             objDustStockInfoEntity.QWeight = (short)QWeight;
-            objDustStockInfoEntity.WeightUnits = WeightUnits;
+            objDustStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objDustStockInfoEntity.TotalBags = (short)totalBags;
             try
             {
@@ -252,17 +252,17 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveRiceSellingInfo(string sellerId, string RiceTypeId, string RiceBrandId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitWeight, int qPrice, DateTime SellingDate)
+        public ResultDTO SaveRiceSellingInfo(string sellerId, string MRiceProdTypeID, string MRiceBrandId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
             RiceSellingInfoEntity objRiceSellingInfoEntity = new RiceSellingInfoEntity();
             objRiceSellingInfoEntity.ObsInd = YesNo.N;
             objRiceSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
             objRiceSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objRiceSellingInfoEntity.RiceBrandID = RiceBrandId;
+            objRiceSellingInfoEntity.MRiceBrandID = MRiceBrandId;
             objRiceSellingInfoEntity.DriverName = DriverName;
             objRiceSellingInfoEntity.LastModifiedDate = DateTime.Now;
             objRiceSellingInfoEntity.RiceSellingID = CommonUtil.CreateUniqueID("RS");
-            objRiceSellingInfoEntity.RiceTypeID = RiceTypeId;
+            objRiceSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
             objRiceSellingInfoEntity.SellingDate = SellingDate;
             objRiceSellingInfoEntity.QPrice = (short)qPrice;
             objRiceSellingInfoEntity.QWeight = (short)qWeight;
@@ -289,7 +289,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveBrokenRiceSellingInfo(string sellerId, string RiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitWeight, int qPrice, DateTime SellingDate)
+        public ResultDTO SaveBrokenRiceSellingInfo(string sellerId, string BrokenRiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
             BrokenRiceSellingInfoEntity objBrokenRiceSellingInfoEntity = new BrokenRiceSellingInfoEntity();
             objBrokenRiceSellingInfoEntity.ObsInd = YesNo.N;
@@ -298,7 +298,7 @@ namespace RMIS.Business
             objBrokenRiceSellingInfoEntity.DriverName = DriverName;
             objBrokenRiceSellingInfoEntity.LastModifiedDate = DateTime.Now;
             objBrokenRiceSellingInfoEntity.BrokenRiceSellingID = CommonUtil.CreateUniqueID("BRS");
-            objBrokenRiceSellingInfoEntity.RiceTypeID = RiceTypeId;
+            objBrokenRiceSellingInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
             objBrokenRiceSellingInfoEntity.SellingDate = SellingDate;
             objBrokenRiceSellingInfoEntity.QPrice = (short)qPrice;
             objBrokenRiceSellingInfoEntity.QWeight = (short)qWeight;
@@ -322,7 +322,7 @@ namespace RMIS.Business
         {
             return imp.GetAllBrokenRiceSellingInfoEntities(provider.GetCurrentCustomerId());
         }
-        public ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitWeight, int qPrice, DateTime SellingDate)
+        public ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
             DustSellingInfoEntity objDustSellingInfoEntity = new DustSellingInfoEntity();
             objDustSellingInfoEntity.ObsInd = YesNo.N;

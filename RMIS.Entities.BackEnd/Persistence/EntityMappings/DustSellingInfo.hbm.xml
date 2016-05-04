@@ -14,7 +14,7 @@
     <property name="TotalBags" column="TotalBags" />
     <property name="QWeight" column="QWeight" />
     <property name="QPrice" column="QPrice" />
-    <property name="UnitWeight" column="UnitWeight" />
+    <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="SellingDate" column="SellingDate" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />

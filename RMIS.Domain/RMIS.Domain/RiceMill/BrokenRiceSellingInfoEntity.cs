@@ -11,10 +11,10 @@ namespace RMIS.Domain.RiceMill
     {
         public string BrokenRiceSellingID { get; set; }
         public string SellerID { get; set; }
-        public string RiceTypeID { get; set; }
+        public string BrokenRiceTypeID { get; set; }
         public string CustID { get; set; }
         public string DriverName { get; set; }
-        public string UnitWeight { get; set; }
+        public string UnitsTypeID { get; set; }
         public string VehicalNo { get; set; }
         public Int16 TotalBags { get; set; }
         public Int16 QWeight { get; set; }

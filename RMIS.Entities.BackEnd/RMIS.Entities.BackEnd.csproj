@@ -102,9 +102,13 @@
     <Content Include="Persistence\EntityMappings\BrokenRiceStockInfo.hbm.xml" />
     <Content Include="Persistence\EntityMappings\BrokenRiceSellingInfo.hbm.xml" />
     <Content Include="Persistence\EntityMappings\DustSellingInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\RiceSellingInfo.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\RiceSellingInfo.hbm.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Persistence\EntityMappings\DustStockInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\RiceStockInfo.hbm.xml" />
+    <Content Include="Persistence\EntityMappings\RiceStockInfo.hbm.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Persistence\EntityMappings\MBrokenRiceType.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MRiceBrandDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\MRiceProductionType.hbm.xml" />

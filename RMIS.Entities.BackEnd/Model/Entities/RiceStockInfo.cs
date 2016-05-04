@@ -8,12 +8,12 @@ namespace RMIS.Entities.BackEnd
     public class RiceStockInfo
     {
         private string _RiceStockID;
-        private string _RiceTypeID;
-        private string _RiceBrandID; 
+        private string _MRiceProdTypeID;
+        private string _MRiceBrandID; 
         private string _CustID;
         private Int16 _TotalBags; 
         private Int16 _QWeight;
-        private string _WeightUnits;
+        private string _UnitsTypeID;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -23,15 +23,15 @@ namespace RMIS.Entities.BackEnd
             get { return _RiceStockID; }
             set { _RiceStockID = value; }
         }
-        public virtual string RiceTypeID
+        public virtual string MRiceProdTypeID
         {
-            get { return _RiceTypeID; }
-            set { _RiceTypeID = value; }
+            get { return _MRiceProdTypeID; }
+            set { _MRiceProdTypeID = value; }
         }
-        public virtual string RiceBrandID
+        public virtual string MRiceBrandID
         {
-            get { return _RiceBrandID; }
-            set { _RiceBrandID = value; }
+            get { return _MRiceBrandID; }
+            set { _MRiceBrandID = value; }
         }
         public virtual string CustID
         {
@@ -48,10 +48,10 @@ namespace RMIS.Entities.BackEnd
             get { return _QWeight; }
             set { _QWeight = value; }
         }
-        public virtual string WeightUnits
+        public virtual string UnitsTypeID
         {
-            get { return _WeightUnits; }
-            set { _WeightUnits = value; }
+            get { return _UnitsTypeID; }
+            set { _UnitsTypeID = value; }
         }
         public virtual string LastModifiedBy
         {

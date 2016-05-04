@@ -9,14 +9,14 @@ namespace RMIS.Entities.BackEnd
     {
         private string _BrokenRiceSellingID;
         private string _SellerID;
-        private string _RiceTypeID;
+        private string _BrokenRiceTypeID;
         private string _CustID;
         private string _VehicalNo;
         private string _DriverName;
         private Int16 _TotalBags; 
         private Int16 _QWeight;
         private Int16 _QPrice;
-        private string _UnitWeight;
+        private string _UnitsTypeID;
         private DateTime _SellingDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -32,10 +32,10 @@ namespace RMIS.Entities.BackEnd
             get { return _SellerID; }
             set { _SellerID = value; }
         }
-        public virtual string RiceTypeID
+        public virtual string BrokenRiceTypeID
         {
-            get { return _RiceTypeID; }
-            set { _RiceTypeID = value; }
+            get { return _BrokenRiceTypeID; }
+            set { _BrokenRiceTypeID = value; }
         }
         public virtual string CustID
         {
@@ -67,10 +67,10 @@ namespace RMIS.Entities.BackEnd
             get { return _QPrice; }
             set { _QPrice = value; }
         }
-        public virtual string UnitWeight
+        public virtual string UnitsTypeID
         {
-            get { return _UnitWeight; }
-            set { _UnitWeight = value; }
+            get { return _UnitsTypeID; }
+            set { _UnitsTypeID = value; }
         }
         public virtual DateTime SellingDate
         {

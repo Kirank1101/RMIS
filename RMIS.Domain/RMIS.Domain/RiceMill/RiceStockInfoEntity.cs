@@ -10,12 +10,12 @@ namespace RMIS.Domain.RiceMill
     public class RiceStockInfoEntity : AbstractAllInOne
     {
         public string RiceStockID { get; set; }
-        public string RiceTypeID { get; set; }
-        public string RiceBrandID { get; set; }
+        public string MRiceProdTypeID { get; set; }
+        public string MRiceBrandID { get; set; }
         public string CustID { get; set; }
         public Int16 TotalBags { get; set; }
         public Int16 QWeight { get; set; }
-        public string WeightUnits { get; set; }
+        public string UnitsTypeID { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>

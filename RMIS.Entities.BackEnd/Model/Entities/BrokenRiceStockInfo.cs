@@ -12,7 +12,7 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private Int16 _TotalBags; 
         private Int16 _QWeight;
-        private string _WeightUnits;
+        private string _UnitsTypeID;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -42,10 +42,10 @@ namespace RMIS.Entities.BackEnd
             get { return _QWeight; }
             set { _QWeight = value; }
         }
-        public virtual string WeightUnits
+        public virtual string UnitsTypeID
         {
-            get { return _WeightUnits; }
-            set { _WeightUnits = value; }
+            get { return _UnitsTypeID; }
+            set { _UnitsTypeID = value; }
         }
         public virtual string LastModifiedBy
         {
