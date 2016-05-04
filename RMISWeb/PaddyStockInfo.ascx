@@ -48,6 +48,15 @@
         </tr>
         <tr>
             <td>
+                <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtDriverName" />
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
                 <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
             </td>
             <td>

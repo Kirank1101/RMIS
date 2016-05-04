@@ -45,7 +45,7 @@ public partial class PaddyStockInfo : BaseUserControl
             && !string.IsNullOrEmpty(txtQweight.Text.Trim()) && !string.IsNullOrEmpty(txtQprice.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(),Convert.ToInt16( txtTotalBags.Text.Trim()),Convert.ToInt16( txtQweight.Text.Trim()),Convert.ToInt16( txtQprice.Text.Trim()),Convert.ToDateTime( txtPruchaseDate.Text.Trim()));
+            imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
             ClearAllInputFields();
 
         }

@@ -682,5 +682,67 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+
+
+        public void SaveOrUpdateBrokenRiceStockInfoEntity(BrokenRiceStockInfoEntity brokenRiceStockInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<BrokenRiceStockInfo>(mapper.GetBrokenRiceStockInfo(brokenRiceStockInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBrokenRiceStockInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBrokenRiceStockInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllBrokenRiceStockInfoEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateDustStockInfoEntity(DustStockInfoEntity dustStockInfoEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<DustStockInfo>(mapper.GetDustStockInfo(dustStockInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateDustStockInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateDustStockInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllDustStockInfoEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateRiceSellingInfoEntity(RiceSellingInfoEntity riceSellingInfoEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<RiceSellingInfo>(mapper.GetRiceSellingInfo(riceSellingInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateRiceSellingInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateRiceSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllRiceSellingInfoEntities(CustId);
+        }
     }
 }

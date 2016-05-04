@@ -13,6 +13,7 @@
     <property name="MGodownID" column="MGodownID" />
     <property name="MLotID" column="MLotID" />
     <property name="VehicalNo" column="VehicalNo" />
+    <property name="DriverName" column="DriverName" />
     <property name="TotalBags" column="TotalBags" />
     <property name="QWeight" column="QWeight" />
     <property name="QPrice" column="QPrice" />

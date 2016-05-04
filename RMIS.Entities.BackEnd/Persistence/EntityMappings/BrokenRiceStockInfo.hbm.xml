@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="BrokenRiceStockInfo" table="[dbo].[BrokenRiceStockInfo]" optimistic-lock="none" >
+    <id name="BrokenRiceStockID" column="BrokenRiceStockID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="BrokenRiceTypeID" column="BrokenRiceTypeID" />
+    <property name="CustID" column="CustID" />
+    <property name="TotalBags" column="TotalBags" />
+    <property name="QWeight" column="QWeight" />
+    <property name="WeightUnits" column="WeightUnits" />
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

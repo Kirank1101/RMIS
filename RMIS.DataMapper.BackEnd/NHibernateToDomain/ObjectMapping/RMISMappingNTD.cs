@@ -195,6 +195,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.MGodownID, opts => opts.MapFrom(src => src.MGodownID))
                     .ForMember(dest => dest.MLotID, opts => opts.MapFrom(src => src.MLotID))
                     .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
+                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
                     .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
                     .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
                     .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
@@ -508,6 +509,71 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-
+        internal void MapBrokenRiceStockInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<BrokenRiceStockInfo, BrokenRiceStockInfoEntity>()
+                    .ForMember(dest => dest.BrokenRiceStockID, opts => opts.MapFrom(src => src.BrokenRiceStockID))
+                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.WeightUnits, opts => opts.MapFrom(src => src.WeightUnits))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBrokenRiceStockInfoEntity", ex);
+                throw;
+            }
+        }
+        internal void MapDustStockInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<DustStockInfo, DustStockInfoEntity>()
+                    .ForMember(dest => dest.DustStockID, opts => opts.MapFrom(src => src.DustStockID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.WeightUnits, opts => opts.MapFrom(src => src.WeightUnits))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapDustStockInfoEntity", ex);
+                throw;
+            }
+        }
+        internal void MapRiceSellingInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<RiceSellingInfo, RiceSellingInfoEntity>()
+                    .ForMember(dest => dest.RiceSellingID, opts => opts.MapFrom(src => src.RiceSellingID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.RiceTypeID, opts => opts.MapFrom(src => src.RiceTypeID))
+                    .ForMember(dest => dest.RiceBrandID, opts => opts.MapFrom(src => src.RiceBrandID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
+                    .ForMember(dest => dest.UnitWeight, opts => opts.MapFrom(src => src.UnitWeight))
+                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
+                    .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
+                    .ForMember(dest => dest.SellingDate, opts => opts.MapFrom(src => src.SellingDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapRiceSellingInfoEntity", ex);
+                throw;
+            }
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace RMIS.Business
             this.imp = imp;
             this.msgInstance = msgInstance;
         }
-
         public Domain.DataTranserClass.ResultDTO SaveSellerInfo(string sellerTypeId, string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
@@ -59,8 +58,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string vehicleNo, int totalBags, int qWeight, int qPrice, DateTime purchaseDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string vehicleNo, string DriverName, int totalBags, int qWeight, int qPrice, DateTime purchaseDate)
         {
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
             objPaddyStockInfoEntity.ObsInd = YesNo.N;
@@ -76,7 +74,8 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.QWeight  = (short) qWeight;
             objPaddyStockInfoEntity.SellerID  = sellerId;
             objPaddyStockInfoEntity.TotalBags  = (short) totalBags;
-            objPaddyStockInfoEntity.VehicalNo  = vehicleNo;          
+            objPaddyStockInfoEntity.VehicalNo  = vehicleNo;
+            objPaddyStockInfoEntity.DriverName = DriverName;
             try
             {
                 imp.BeginTransaction();
@@ -90,7 +89,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-
         public Domain.DataTranserClass.ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate)
         {
             PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
@@ -117,7 +115,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success09, provider.GetCurrentCustomerId()) };
         }
-
         public List<SellerInfoEntity> GetPaddySellerInfo()
         {
             List<SellerInfoEntity> listSellerInfoEntity = null;            
@@ -137,8 +134,6 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
-
-
         public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, int PricePerBag, DateTime purchaseDate)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
@@ -168,9 +163,7 @@ namespace RMIS.Business
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
 
         }
-
-
-        public ResultDTO SaveRiceStockInfo(string sellerId, string RiceTypeId, int totalBags, string WeightUnits)
+        public ResultDTO SaveRiceStockInfo(string RiceTypeId, int totalBags,int QWeight, string WeightUnits)
         {
             RiceStockInfoEntity objRiceStockInfoEntity = new RiceStockInfoEntity();
             objRiceStockInfoEntity.CustID = provider.GetCurrentCustomerId();            
@@ -179,6 +172,7 @@ namespace RMIS.Business
             objRiceStockInfoEntity.LastModifiedDate = DateTime.Now;
             objRiceStockInfoEntity.RiceStockID = CommonUtil.CreateUniqueID("RS");
             objRiceStockInfoEntity.RiceTypeID = RiceTypeId;
+            objRiceStockInfoEntity.QWeight =(short)QWeight;
             objRiceStockInfoEntity.WeightUnits = WeightUnits;
             objRiceStockInfoEntity.TotalBags = (short)totalBags;
             try
@@ -194,10 +188,103 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };            
         }
-
         public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities()
         {
             return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId());
+        }
+        public ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags,int QWeight, string WeightUnits)
+        {
+            BrokenRiceStockInfoEntity objBrokenRiceStockInfoEntity = new BrokenRiceStockInfoEntity();
+            objBrokenRiceStockInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objBrokenRiceStockInfoEntity.ObsInd = YesNo.N;
+            objBrokenRiceStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBrokenRiceStockInfoEntity.LastModifiedDate = DateTime.Now;
+            objBrokenRiceStockInfoEntity.BrokenRiceStockID = CommonUtil.CreateUniqueID("BR");
+            objBrokenRiceStockInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
+            objBrokenRiceStockInfoEntity.WeightUnits = WeightUnits;
+            objBrokenRiceStockInfoEntity.TotalBags = (short)totalBags;
+            objBrokenRiceStockInfoEntity.QWeight = (short)QWeight;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBrokenRiceStockInfoEntity(objBrokenRiceStockInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };            
+        }
+        public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities()
+        {
+            return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId());
+        }
+        public ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string WeightUnits)
+        {
+            DustStockInfoEntity objDustStockInfoEntity = new DustStockInfoEntity();
+            objDustStockInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objDustStockInfoEntity.ObsInd = YesNo.N;
+            objDustStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objDustStockInfoEntity.LastModifiedDate = DateTime.Now;
+            objDustStockInfoEntity.DustStockID = CommonUtil.CreateUniqueID("DU");            
+            objDustStockInfoEntity.QWeight = (short)QWeight;
+            objDustStockInfoEntity.WeightUnits = WeightUnits;
+            objDustStockInfoEntity.TotalBags = (short)totalBags;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateDustStockInfoEntity(objDustStockInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };            
+        }
+        public List<DustStockInfoEntity> GetAllDustStockInfoEntities()
+        {
+            return imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId());
+        }
+
+
+        public ResultDTO SaveRiceSellingInfo(string sellerId, string RiceTypeId, string RiceBrandId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitWeight, int qPrice, DateTime SellingDate)
+        {
+            RiceSellingInfoEntity objRiceSellingInfoEntity = new RiceSellingInfoEntity();
+            objRiceSellingInfoEntity.ObsInd = YesNo.N;
+            objRiceSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objRiceSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objRiceSellingInfoEntity.RiceBrandID = RiceBrandId;
+            objRiceSellingInfoEntity.DriverName = DriverName;
+            objRiceSellingInfoEntity.LastModifiedDate = DateTime.Now;
+            objRiceSellingInfoEntity.RiceSellingID = CommonUtil.CreateUniqueID("RS");
+            objRiceSellingInfoEntity.RiceTypeID = RiceTypeId;
+            objRiceSellingInfoEntity.SellingDate = SellingDate;
+            objRiceSellingInfoEntity.QPrice = (short)qPrice;
+            objRiceSellingInfoEntity.QWeight = (short)qWeight;
+            objRiceSellingInfoEntity.SellerID = sellerId;
+            objRiceSellingInfoEntity.TotalBags = (short)totalBags;
+            objRiceSellingInfoEntity.VehicalNo = vehicleNo;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateRiceSellingInfoEntity(objRiceSellingInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities()
+        {
+            return imp.GetAllRiceSellingInfoEntities(provider.GetCurrentCustomerId());
         }
     }
 }

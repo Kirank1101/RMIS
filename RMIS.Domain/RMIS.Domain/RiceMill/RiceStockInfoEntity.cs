@@ -13,6 +13,7 @@ namespace RMIS.Domain.RiceMill
         public string RiceTypeID { get; set; }
         public string CustID { get; set; }
         public Int16 TotalBags { get; set; }
+        public Int16 QWeight { get; set; }
         public string WeightUnits { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

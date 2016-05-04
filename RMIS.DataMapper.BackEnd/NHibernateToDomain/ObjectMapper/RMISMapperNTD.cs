@@ -482,6 +482,63 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return RiceStockInfoEntity;
       }
-            
+      public static BrokenRiceStockInfoEntity GetBrokenRiceStockInfoEntity(BrokenRiceStockInfo brokenRiceStockInfo)
+      {
+          BrokenRiceStockInfoEntity brokenRiceStockInfoEntity = null;
+
+          try
+          {
+              if (brokenRiceStockInfo != null)
+              {
+                  brokenRiceStockInfoEntity = Mapper.Map<BrokenRiceStockInfo, BrokenRiceStockInfoEntity>(brokenRiceStockInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetBrokenRiceStockInfoEntity", ex);
+              throw;
+          }
+
+          return brokenRiceStockInfoEntity;
+      }
+      public static DustStockInfoEntity GetDustStockInfoEntity(DustStockInfo dustStockInfo)
+      {
+          DustStockInfoEntity dustStockInfoEntity = null;
+
+          try
+          {
+              if (dustStockInfo != null)
+              {
+                  dustStockInfoEntity = Mapper.Map<DustStockInfo, DustStockInfoEntity>(dustStockInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetDustStockInfoEntity", ex);
+              throw;
+          }
+
+          return dustStockInfoEntity;
+      }
+      public static RiceSellingInfoEntity GetRiceSellingInfoEntity(RiceSellingInfo riceSellingInfo)
+      {
+          RiceSellingInfoEntity RiceSellingInfoEntity = null;
+
+          try
+          {
+              if (riceSellingInfo != null)
+              {
+                  RiceSellingInfoEntity = Mapper.Map<RiceSellingInfo, RiceSellingInfoEntity>(riceSellingInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetRiceSellingInfoEntity", ex);
+              throw;
+          }
+
+          return RiceSellingInfoEntity;
+      }
     }
+
 }

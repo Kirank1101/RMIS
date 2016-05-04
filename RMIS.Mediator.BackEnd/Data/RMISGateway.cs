@@ -996,7 +996,87 @@
                 throw;
             }
         }
-        
+        internal List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId)
+        {
+            try
+            {
+                List<BrokenRiceStockInfoEntity> listBrokenRiceStockInfoEntity = new List<BrokenRiceStockInfoEntity>();
+                IRepository<BrokenRiceStockInfo> UsersRepository = new RepositoryImpl<BrokenRiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<BrokenRiceStockInfo> listBrokenRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<BrokenRiceStockInfo>;
+                if (listBrokenRiceStockInfo != null && listBrokenRiceStockInfo.Count > 0)
+                {
+                    foreach (BrokenRiceStockInfo adMInfo in listBrokenRiceStockInfo)
+                    {
+                        listBrokenRiceStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBrokenRiceStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listBrokenRiceStockInfoEntity = null;
+
+                return listBrokenRiceStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBrokenRiceStockInfoEntities", ex);
+                throw;
+            }
+        }
+        internal List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId)
+        {
+            try
+            {
+                List<DustStockInfoEntity> listDustStockInfoEntity = new List<DustStockInfoEntity>();
+                IRepository<DustStockInfo> UsersRepository = new RepositoryImpl<DustStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(DustStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<DustStockInfo> listDustStockInfo = UsersRepository.GetAll(detachedCriteria) as List<DustStockInfo>;
+                if (listDustStockInfo != null && listDustStockInfo.Count > 0)
+                {
+                    foreach (DustStockInfo adMInfo in listDustStockInfo)
+                    {
+                        listDustStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetDustStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listDustStockInfoEntity = null;
+
+                return listDustStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetDustStockInfoEntities", ex);
+                throw;
+            }
+        }
+        internal List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId)
+        {
+            try
+            {
+                List<RiceSellingInfoEntity> listRiceSellingInfoEntity = new List<RiceSellingInfoEntity>();
+                IRepository<RiceSellingInfo> UsersRepository = new RepositoryImpl<RiceSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<RiceSellingInfo> listRiceSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceSellingInfo>;
+                if (listRiceSellingInfo != null && listRiceSellingInfo.Count > 0)
+                {
+                    foreach (RiceSellingInfo adMInfo in listRiceSellingInfo)
+                    {
+                        listRiceSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRiceSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listRiceSellingInfoEntity = null;
+
+                return listRiceSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceSellingInfoEntities", ex);
+                throw;
+            }
+        }
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

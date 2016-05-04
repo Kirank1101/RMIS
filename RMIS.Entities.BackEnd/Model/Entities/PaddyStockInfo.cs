@@ -13,7 +13,8 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private string _MGodownID;
         private string _MLotID;
-        private string _VehicalNo; 
+        private string _VehicalNo;
+        private string _DriverName;
         private Int16 _TotalBags; 
         private Int16 _QWeight;
         private Int16 _QPrice;
@@ -56,6 +57,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _VehicalNo; }
             set { _VehicalNo = value; }
+        }
+        public virtual string DriverName
+        {
+            get { return _DriverName; }
+            set { _DriverName = value; }
         }
         public virtual Int16 TotalBags
         {
