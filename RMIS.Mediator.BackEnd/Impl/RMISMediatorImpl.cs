@@ -658,7 +658,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId)
         {
             return rmisGateway.GetMBrokenRiceTypeEntities(CustId);
-        
+
         }
 
 
@@ -743,6 +743,45 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId)
         {
             return rmisGateway.GetAllRiceSellingInfoEntities(CustId);
+        }
+        public void SaveOrUpdateBrokenRiceSellingInfoEntity(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<BrokenRiceSellingInfo>(mapper.GetBrokenRiceSellingInfo(brokenRiceSellingInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBrokenRiceSellingInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBrokenRiceSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllBrokenRiceSellingInfoEntities(CustId);
+        }
+
+
+        public void SaveOrUpdateDustSellingInfoEntity(DustSellingInfoEntity dustSellingInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<DustSellingInfo>(mapper.GetDustSellingInfo(dustSellingInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateDustSellingInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateDustSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllDustSellingInfoEntities(CustId);
         }
     }
 }

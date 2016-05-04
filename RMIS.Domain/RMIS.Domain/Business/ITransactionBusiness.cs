@@ -20,18 +20,23 @@ namespace RMIS.Domain.Business
                      DateTime purchaseDate);
         ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid,
            DateTime paidDate, string handOverTo, DateTime nextPaymentDate);
-        ResultDTO SaveRiceStockInfo(string RiceTypeId, int totalBags, int QWeight, string WeightUnits);
+        ResultDTO SaveRiceStockInfo(string RiceTypeId,string RiceBrandID, int totalBags, int QWeight, string WeightUnits);
         ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string WeightUnits);
         ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string WeightUnits);
         ResultDTO SaveRiceSellingInfo(string sellerId, string RiceTypeId, string RiceBrandId,
             string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitWeight, int qPrice,
             DateTime SellingDate);
-        
+        ResultDTO SaveBrokenRiceSellingInfo(string sellerId, string RiceTypeId, string vehicleNo, string DriverName,
+            int totalBags, int qWeight, string UnitWeight, int qPrice, DateTime SellingDate);
+        ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags,
+            int qWeight, string UnitWeight, int qPrice, DateTime SellingDate);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
         List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities();
         List<DustStockInfoEntity> GetAllDustStockInfoEntities();
         List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities();
+        List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities();
+        List<DustSellingInfoEntity> GetAllDustSellingInfoEntities();
     }
 }

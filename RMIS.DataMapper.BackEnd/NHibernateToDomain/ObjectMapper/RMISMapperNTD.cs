@@ -539,6 +539,45 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
           return RiceSellingInfoEntity;
       }
+      public static BrokenRiceSellingInfoEntity GetBrokenRiceSellingInfoEntity(BrokenRiceSellingInfo brokenRiceSellingInfo)
+      {
+          BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity = null;
+
+          try
+          {
+              if (brokenRiceSellingInfo != null)
+              {
+                  brokenRiceSellingInfoEntity = Mapper.Map<BrokenRiceSellingInfo, BrokenRiceSellingInfoEntity>(brokenRiceSellingInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetBrokenRiceSellingInfoEntity", ex);
+              throw;
+          }
+
+          return brokenRiceSellingInfoEntity;
+      }
+      public static DustSellingInfoEntity GetDustSellingInfoEntity(DustSellingInfo dustSellingInfo)
+      {
+          DustSellingInfoEntity DustSellingInfoEntity = null;
+
+          try
+          {
+              if (dustSellingInfo != null)
+              {
+                  DustSellingInfoEntity = Mapper.Map<DustSellingInfo, DustSellingInfoEntity>(dustSellingInfo);
+              }
+          }
+          catch (Exception ex)
+          {
+              Logger.Error("Error at GetDustSellingInfoEntity", ex);
+              throw;
+          }
+
+          return DustSellingInfoEntity;
+      }
     }
+
 
 }

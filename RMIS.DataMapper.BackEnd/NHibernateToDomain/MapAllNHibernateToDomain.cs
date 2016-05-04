@@ -75,6 +75,8 @@
                 objRMISMappingNTD.MapBrokenRiceStockInfoEntity();
                 objRMISMappingNTD.MapDustStockInfoEntity();
                 objRMISMappingNTD.MapRiceSellingInfoEntity();
+                objRMISMappingNTD.MapBrokenRiceSellingInfoEntity();
+                objRMISMappingNTD.MapDustSellingInfoEntity();
             }
             catch (Exception ex)
             {

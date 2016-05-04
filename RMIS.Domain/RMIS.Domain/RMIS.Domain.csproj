@@ -63,6 +63,8 @@
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\BagStockInfoEntity.cs" />
     <Compile Include="RiceMill\BrokenRiceStockInfoEntity.cs" />
+    <Compile Include="RiceMill\BrokenRiceSellingInfoEntity.cs" />
+    <Compile Include="RiceMill\DustSellingInfoEntity.cs" />
     <Compile Include="RiceMill\RiceSellingInfoEntity.cs" />
     <Compile Include="RiceMill\DustStockInfoEntity.cs" />
     <Compile Include="RiceMill\RiceStockInfoEntity.cs" />

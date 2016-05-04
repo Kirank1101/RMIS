@@ -47,6 +47,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy);
         void SaveOrUpdateMPaddyTypeEntity(MPaddyTypeEntity mPaddyTypeEntity, bool isCopy);
         void SaveOrUpdateMBrokenRiceTypeEntity(MBrokenRiceTypeEntity mBrokenRiceTypeEntity, bool isCopy);
+        void SaveOrUpdateBrokenRiceSellingInfoEntity(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity, bool isCopy);
         void SaveOrUpdatePaddyStockInfoEntity(PaddyStockInfoEntity paddyStockInfoEntity, bool isCopy);
         void SaveOrUpdateRiceStockInfoEntity(RiceStockInfoEntity riceStockInfoEntity, bool isCopy);
         void SaveOrUpdateRiceSellingInfoEntity(RiceSellingInfoEntity riceSellingInfoEntity, bool isCopy);
@@ -65,6 +66,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMDrierTypeDetailsEntity(MDrierTypeDetailsEntity mDrierTypeDetailsEntity, bool isCopy);
         void SaveOrUpdateMRiceProductionTypeEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy);
         void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy);
+        void SaveOrUpdateDustSellingInfoEntity(DustSellingInfoEntity dustSellingInfoEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -98,6 +100,7 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId);
         List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId);
+        List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId);
         List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId);
         List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId);
         List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId);
@@ -108,6 +111,7 @@ namespace RMIS.Domain.Mediator
         List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId);
         List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
+        List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId);
         #endregion
     }
 

@@ -8,6 +8,7 @@
       <generator class="assigned"/>
     </id>
     <property name="RiceTypeID" column="RiceTypeID" />
+    <property name="RiceBrandID" column="RiceBrandID" />
     <property name="CustID" column="CustID" />
     <property name="TotalBags" column="TotalBags" />
     <property name="QWeight" column="QWeight" />

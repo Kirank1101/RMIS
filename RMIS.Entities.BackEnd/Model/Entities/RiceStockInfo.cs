@@ -8,7 +8,8 @@ namespace RMIS.Entities.BackEnd
     public class RiceStockInfo
     {
         private string _RiceStockID;
-        private string _RiceTypeID; 
+        private string _RiceTypeID;
+        private string _RiceBrandID; 
         private string _CustID;
         private Int16 _TotalBags; 
         private Int16 _QWeight;
@@ -26,6 +27,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _RiceTypeID; }
             set { _RiceTypeID = value; }
+        }
+        public virtual string RiceBrandID
+        {
+            get { return _RiceBrandID; }
+            set { _RiceBrandID = value; }
         }
         public virtual string CustID
         {

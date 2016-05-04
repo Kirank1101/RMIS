@@ -41,6 +41,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MRiceBrandDetails GetMRiceBrandDetails(MRiceBrandDetailsEntity mRiceBrandDetailsEntity);
         BrokenRiceStockInfo GetBrokenRiceStockInfo(BrokenRiceStockInfoEntity brokenRiceStockInfoEntity);
         RiceSellingInfo GetRiceSellingInfo(RiceSellingInfoEntity riceSellingInfoEntity);
+        BrokenRiceSellingInfo GetBrokenRiceSellingInfo(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity);
+        DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -393,8 +395,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return UnitsType;
         }
-
-
         public MBrokenRiceType GetMBrokenRiceType(MBrokenRiceTypeEntity mBrokenRiceTypeEntity)
         {
 
@@ -410,8 +410,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return mBrokenRiceType;
         }
-
-
         public RiceStockInfo GetRiceStockInfo(RiceStockInfoEntity riceStockInfoEntity)
         {
 
@@ -442,8 +440,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return brokenRiceStockInfo;
         }
-
-
         public DustStockInfo GetDustStockInfo(DustStockInfoEntity dustStockInfoEntity)
         {
             DustStockInfo dustStockInfo = null;
@@ -458,8 +454,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return dustStockInfo;
         }
-
-
         public RiceSellingInfo GetRiceSellingInfo(RiceSellingInfoEntity riceSellingInfoEntity)
         {
             RiceSellingInfo RiceSellingInfo = null;
@@ -473,6 +467,34 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return RiceSellingInfo;
+        }
+        public BrokenRiceSellingInfo GetBrokenRiceSellingInfo(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity)
+        {
+            BrokenRiceSellingInfo brokenRiceSellingInfo = null;
+            try
+            {
+                brokenRiceSellingInfo = Mapper.Map<BrokenRiceSellingInfoEntity, BrokenRiceSellingInfo>(brokenRiceSellingInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBrokenRiceSellingInfo", ex);
+                throw;
+            }
+            return brokenRiceSellingInfo;
+        }
+        public DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity)
+        {
+            DustSellingInfo DustSellingInfo = null;
+            try
+            {
+                DustSellingInfo = Mapper.Map<DustSellingInfoEntity, DustSellingInfo>(dustSellingInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetDustSellingInfo", ex);
+                throw;
+            }
+            return DustSellingInfo;
         }
     }
 }

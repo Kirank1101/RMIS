@@ -99,6 +99,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapBrokenRiceStockInfoEntityToBrokenRiceStockInfo();
                 objRMISMappingDTN.MapDustStockInfoEntityToDustStockInfo();
                 objRMISMappingDTN.MapRiceSellingInfoEntityToRiceSellingInfo();
+                objRMISMappingDTN.MapBrokenRiceSellingInfoEntityToBrokenRiceSellingInfo();
+                objRMISMappingDTN.MapDustSellingInfoEntityToDustSellingInfo();
             }
             catch (Exception exp)
             {

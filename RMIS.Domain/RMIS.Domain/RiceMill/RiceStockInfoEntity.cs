@@ -11,6 +11,7 @@ namespace RMIS.Domain.RiceMill
     {
         public string RiceStockID { get; set; }
         public string RiceTypeID { get; set; }
+        public string RiceBrandID { get; set; }
         public string CustID { get; set; }
         public Int16 TotalBags { get; set; }
         public Int16 QWeight { get; set; }
