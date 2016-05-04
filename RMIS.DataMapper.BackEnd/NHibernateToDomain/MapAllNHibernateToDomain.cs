@@ -67,10 +67,10 @@
                 objRMISMappingNTD.MapMDrierTypeDetailsEntity();
                 objRMISMappingNTD.MapMRiceProductionTypeEntity();
                 objRMISMappingNTD.MapMRiceBrandDetailsEntity();
-                objRMISMappingNTD.MapMBrokenRiceTypeEntity();
                 objRMISMappingNTD.MapMUnitsTypeEntity();
                 objRMISMappingNTD.MapMBagTypeEntity();
                 objRMISMappingNTD.MapBagStockInfoEntity();
+                objRMISMappingNTD.MapMBrokenRiceTypeEntity();
                 objRMISMappingNTD.MapRiceStockInfoEntity();
                 objRMISMappingNTD.MapBrokenRiceStockInfoEntity();
                 objRMISMappingNTD.MapDustStockInfoEntity();
