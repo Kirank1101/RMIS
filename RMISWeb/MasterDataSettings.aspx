@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MasterDataSettings.aspx.cs"
     Inherits="MasterDataSettings" %>
 
+<%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
+    TagPrefix="iucon" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,8 +33,20 @@
     <script type="text/javascript" src="src/assets/scripts/sicc-lib.js?v=1.0.1"></script>
     <script type="text/javascript" src="src/assets/scripts/custom.js?v=1.0.0"></script>
     <title>Rice Management Systems </title>
+
+      <script type="text/javascript">
+          function changeControlSample(path) {
+              $find('<%= pnlMain.ClientID %>').set_UserControlPath(path);
+              $find('<%= pnlMain.ClientID %>').refresh();
+          }
+                    </script>
+
 </head>
 <body>
+<form id="MainForm" runat="server">
+                   
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+ </asp:ScriptManager>
     <div class="container-fluid">
         <!-- BEGIN Header -->
         <div id="rowheader" class="topbarlogo">
@@ -59,46 +75,41 @@
         <!-- END Header -->
         <!-- BEGIN MainContent -->
         <div class="row" id="elitforms">
-            <div class="col-md-2" id="menu_items">
-                <ul class="nav nav-pills nav-stacked">
-                </ul>
-            </div>
+          
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMenu" UserControlPath="~/MenuItems.ascx"
+                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
+                
+
+
+               
+            
+
+            
             <div id="main-div">
-                <form id="form1" runat="server">
+                
                 <div>
-                    <h2>
-                        Master Data Settings</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <h4>
-                                            <a href="#">Paddy Type</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4>
-                                            <a href="#">Godown Details </a>
-                                        </h4>
-                                    </li>
-                                    <li>
-                                        <h4>
-                                            <a href="#">Lot Details</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4>
-                                            <a href="#">Rice Type</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4>
-                                            <a href="#">Seller Type</a></h4>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddSellerType.ascx"
+                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
                 </div>
-                </form>
+               
             </div>
         </div>
         <!-- BEGIN MainContent -->
@@ -114,12 +125,13 @@
                     </div>
                     <div class="col-md-6">
                         <p class="text-right">
-                            2014 © Goverment of Singapore
+                            2016 © Goverment of India
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </form> 
 </body>
 </html>

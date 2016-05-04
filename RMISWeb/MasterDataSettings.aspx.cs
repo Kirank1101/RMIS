@@ -11,4 +11,6 @@ public partial class MasterDataSettings : System.Web.UI.Page
     {
 
     }
+
+    
 }

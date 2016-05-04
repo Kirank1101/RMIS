@@ -4,7 +4,7 @@
                    namespace="RMIS.Entities.BackEnd">
 
   <class name="MBagType" table="[dbo].[MBagType]" optimistic-lock="none" >
-    <id name="SellerTypeID" column="BagTypeID" >
+    <id name="BagTypeID" column="BagTypeID" >
       <generator class="assigned"/>
     </id>   
     <property name="CustID" column="CustID" />
