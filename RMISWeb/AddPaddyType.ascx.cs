@@ -3,12 +3,13 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 
 
-public partial class AddPaddyType : System.Web.UI.UserControl
+public partial class AddPaddyType : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-        if (!IsPostBack)
         {
+        if (!IsControlPostBack)
+        {
+            Header = "Add Paddy Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             BindPaddyType(imp);
         }

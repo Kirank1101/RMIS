@@ -16,13 +16,15 @@ using RMIS.Domain;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
 
-public partial class AddGodownDetails : System.Web.UI.UserControl
+public partial class AddGodownDetails : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsControlPostBack)
         {
+            Header = "Add Godown Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             BindGodownDetails(imp);
         }
@@ -35,8 +37,9 @@ public partial class AddGodownDetails : System.Web.UI.UserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtGodownName.Text.Trim()))
-        {
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBagType(txtGodownName.Text);
+        if (resultDto.IsSuccess)
+        {        
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             imp.SaveGodownType(txtGodownName.Text.Trim());
             imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();

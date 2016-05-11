@@ -38,26 +38,60 @@ public partial class MenuItems : BaseUserControl
             item.Url = "AddPaddyType.ascx";
             items.Add(item);
 
-            CreateHTMLTable(items, "Master Config");
+            item = new MMenuItem();
+            item.Title = "Add Unit Types";
+            item.MenuId = "AUT";
+            item.Url = "AddUnitsType.ascx";
+            items.Add(item);
 
+            item = new MMenuItem();
+            item.Title = "Add Bag Types";
+            item.MenuId = "ABT";
+            item.Url = "AddBagType.ascx";
+            items.Add(item);
+
+            item = new MMenuItem();
+            item.Title = "Add Godown Types";
+            item.MenuId = "AGT";
+            item.Url = "AddGodownDetails.ascx";
+            items.Add(item);
+
+            item = new MMenuItem();
+            item.Title = "Add Lot Types";
+            item.MenuId = "ALT";
+            item.Url = "AddLotDetails.ascx";
+            items.Add(item);
+
+            item = new MMenuItem();
+            item.Title = "Add Rice Types";
+            item.MenuId = "ART";
+            item.Url = "AddRiceType.ascx";
+            items.Add(item);        
+
+            CreateHTMLTable(items, "Master Config");
         }
+
+        string script = @" function changeActiveClass(id) {    
+                     
+             document.getElementById(id).className = 'active';         }";
+        ScriptManager.RegisterStartupScript(this, GetType(), "changeActiveClass", script, true);
     }
 
     private void CreateHTMLTable(List<MMenuItem> menuItems, string innerMenuText)
     {
-        var li = new HtmlGenericControl("li");
-        li.ID = "ids";
-        li.InnerHtml = innerMenuText;
         
+        int count=0;
         foreach (MMenuItem menuItem in menuItems)
-        {           
-
+        {
+            var li = new HtmlGenericControl("li");
+            li.ID = "Menuids" + count.ToString();
+            //li.Attributes.Add("class", "active");
             HtmlGenericControl anchor = new HtmlGenericControl("a");
             anchor.Attributes.Add("href", "#");
-            anchor.Attributes.Add("onclick", string.Format("changeControlSample('{0}')", menuItem.Url));
+            anchor.Attributes.Add("onclick", string.Format("changeControlSample('{0}'); changeActiveClass('{1}');", menuItem.Url, "MenuItems1_" + li.ClientID));
             anchor.InnerText = menuItem.Title;
             li.Controls.Add(anchor);
-
+            count++;
             phMenuItems.Controls.Add(li);
         }
     }

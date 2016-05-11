@@ -24,7 +24,7 @@ public partial class AddSellerType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            lblHeader.Text = "Add Seller Information";
+            Header = "Add Seller Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
             rptSellerType.DataBind();

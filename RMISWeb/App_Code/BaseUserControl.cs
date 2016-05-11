@@ -55,13 +55,13 @@ public class BaseUserControl : System.Web.UI.UserControl
         }
         set
         {
-            ViewState[viewstateIsControlPostBack] = value;
+            ViewState[viewstateHeader] = value;
         }
     }
 
     protected Panel pnlMessage;
     protected Label lblMessage;
-    protected Label lblHeader;
+    protected   Label lblHeader;
 
     protected override void OnInit(EventArgs e)
     {
@@ -74,7 +74,7 @@ public class BaseUserControl : System.Web.UI.UserControl
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        pnlMessage.Visible = false;
+        pnlMessage.Visible = false;        
     }
 
     protected  void SetMessage(ResultDTO result)
@@ -91,9 +91,11 @@ public class BaseUserControl : System.Web.UI.UserControl
     }
 
     protected override void OnPreRender(EventArgs e)
-    {
+        {
         base.OnPreRender(e);
         if(!IsControlPostBack)
         IsControlPostBack = true;
+
+        lblHeader.Text = "<div><h2>" + this.Header + "</h2></div>";
     }
 }

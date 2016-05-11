@@ -24,7 +24,7 @@ public partial class AddUnitsType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            lblHeader.Text = "Add Seller Information";
+            Header  = "Add Unit type Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptUnitsType.DataSource = imp.GetMUnitsTypeEntities();
             rptUnitsType.DataBind();

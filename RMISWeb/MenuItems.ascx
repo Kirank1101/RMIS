@@ -1,13 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MenuItems.ascx.cs" Inherits="MenuItems" %>
-
-
-           <div class="col-md-2" id="menu_items">
-                <ul class="nav nav-pills nav-stacked">
-                
-<asp:PlaceHolder ID="phMenuItems" runat ="server"></asp:PlaceHolder>
-
-
-
-
-                </ul>
-            </div>
+<ul class="nav side-menu">
+    <li><a><i class="fa fa-sitemap"></i>All Config<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <asp:PlaceHolder ID="phMenuItems" runat="server"></asp:PlaceHolder>
+        </ul>
+    </li>
+</ul>

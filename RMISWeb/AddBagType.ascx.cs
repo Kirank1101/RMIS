@@ -24,7 +24,7 @@ public partial class AddBagType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            lblHeader.Text = "Add Seller Information";
+            Header  = "Add Bag Type Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             rptBagType.DataSource = imp.GetMBagTypeEntities();
             rptBagType.DataBind();

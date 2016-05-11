@@ -3009,7 +3009,7 @@ border-bottom-color:#fff
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
 	color:#fff;
-	background-color:#991b1e;
+	background-color:#006699;
 }
 .nav-pills>li.active>a .caret, .nav-pills>li.active>a:hover .caret, .nav-pills>li.active>a:focus .caret {
 	border-top-color:#fff;

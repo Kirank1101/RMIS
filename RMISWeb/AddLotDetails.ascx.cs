@@ -23,6 +23,7 @@ public partial class AddLotDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
+            Header = "Add Lot Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             BindLotDetails(imp);
            

@@ -23,6 +23,7 @@ public partial class AddRiceType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
+            Header = "Add Rice Type Information";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             BindRiceType(imp);
         }
