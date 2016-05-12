@@ -24,12 +24,19 @@ public partial class AddBagType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header  = "Add Bag Type Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            rptBagType.DataSource = imp.GetMBagTypeEntities();
-            rptBagType.DataBind();
+            Header = "Add Bag Type Information";
+            bindBagType();
         }
     }
+
+    private void bindBagType()
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        rptBagType.DataSource = imp.GetMBagTypeEntities();
+        rptBagType.DataBind();
+    }
+
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBagType(txtBagType.Text);
@@ -39,9 +46,7 @@ public partial class AddBagType : BaseUserControl
             resultDto = imp.SaveBagType(txtBagType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-                rptBagType.DataSource = imp.GetMBagTypeEntities();
-                rptBagType.DataBind();
+                bindBagType();
             }
             SetMessage(resultDto);
         }

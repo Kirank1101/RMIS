@@ -16,6 +16,7 @@ using RMIS.Domain;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
 
 public partial class AddLotDetails : BaseUserControl
 {
@@ -23,26 +24,34 @@ public partial class AddLotDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Lot Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            BindLotDetails(imp);
-           
+            Header = "Add Lot Information";           
+            bindLotDetails();
+
         }
     }
 
-    private void BindLotDetails(IMasterPaddyBusiness imp)
+    private void bindLotDetails()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptLotDetails.DataSource = imp.GetLotDetailsEntities(ddlGodownName.SelectedValue);
         rptLotDetails.DataBind();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtLotDetails.Text.Trim()))
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
+        if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            imp.SaveSellerType(txtLotDetails.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            txtLotDetails.Text = string.Empty;
+            resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
+            if (resultDto.IsSuccess)
+            {
+                bindLotDetails();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            SetMessage(resultDto);
         }
     }
 }

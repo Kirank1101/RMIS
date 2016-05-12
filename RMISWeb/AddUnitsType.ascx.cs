@@ -24,12 +24,19 @@ public partial class AddUnitsType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header  = "Add Unit type Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            rptUnitsType.DataSource = imp.GetMUnitsTypeEntities();
-            rptUnitsType.DataBind();
+            Header = "Add Unit type Information";
+            bindUnitType();
         }
     }
+
+
+    private void bindUnitType()
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        rptUnitsType.DataSource = imp.GetMUnitsTypeEntities();
+        rptUnitsType.DataBind();
+    }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateUnitsType(txtUnitsType.Text);
@@ -39,9 +46,7 @@ public partial class AddUnitsType : BaseUserControl
             resultDto = imp.SaveUnitsType(txtUnitsType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-                rptUnitsType.DataSource = imp.GetMBagTypeEntities();
-                rptUnitsType.DataBind();
+                bindUnitType();
             }
             SetMessage(resultDto);
         }

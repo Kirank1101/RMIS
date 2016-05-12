@@ -9,8 +9,7 @@ namespace RMIS.Entities.BackEnd
     {
         private string _PaddyTypeID;
         private string _CustID;
-        private string _Name;
-        private string _OrganizationName;
+        private string _Name;        
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;

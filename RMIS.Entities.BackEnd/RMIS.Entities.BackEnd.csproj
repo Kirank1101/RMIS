@@ -95,39 +95,39 @@
     <EmbeddedResource Include="Persistence\EntityMappings\MBagType.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Persistence\EntityMappings\BagStockInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\BagStockInfo.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\MUnitsType.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Persistence\EntityMappings\BrokenRiceStockInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\BrokenRiceSellingInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\DustSellingInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\RiceSellingInfo.hbm.xml">
+    <EmbeddedResource Include="Persistence\EntityMappings\BrokenRiceStockInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\BrokenRiceSellingInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\DustSellingInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\RiceSellingInfo.hbm.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Persistence\EntityMappings\DustStockInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\RiceStockInfo.hbm.xml">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\EntityMappings\DustStockInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\RiceStockInfo.hbm.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Persistence\EntityMappings\MBrokenRiceType.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MRiceBrandDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MRiceProductionType.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MDrierTypeDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustomerPartPayDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustomerPayment.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustTrailUsage.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustomerActivation.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustomerAddressInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MWeightDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\PaddyPaymentDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MGodownDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MLotDetails.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\PaddyStockInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MPaddyType.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\Users.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\MUserType.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\CustomerInfo.hbm.xml" />
-    <Content Include="Persistence\EntityMappings\SellerInfo.hbm.xml" />
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\EntityMappings\MBrokenRiceType.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MRiceBrandDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MRiceProductionType.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MDrierTypeDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustomerPartPayDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustomerPayment.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustTrailUsage.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustomerActivation.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustomerAddressInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MWeightDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\PaddyPaymentDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MGodownDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MLotDetails.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\PaddyStockInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MPaddyType.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\Users.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MUserType.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\CustomerInfo.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\SellerInfo.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

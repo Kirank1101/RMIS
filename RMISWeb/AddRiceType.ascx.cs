@@ -16,6 +16,7 @@ using RMIS.Domain;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
 
 public partial class AddRiceType : BaseUserControl
 {
@@ -23,25 +24,34 @@ public partial class AddRiceType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Rice Type Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            BindRiceType(imp);
+            Header = "Add Rice Type Information";           
+            bindRiceType();
         }
     }
 
-    private void BindRiceType(IMasterPaddyBusiness imp)
+    private void bindRiceType()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptRiceType.DataSource = imp.GetRiceProductEntities();
         rptRiceType.DataBind();
     }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtRiceType.Text.Trim()))
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceProductType(txtRiceType.Text);
+        if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            imp.SaveSellerType(txtRiceType.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            txtRiceType.Text = string.Empty;
+            resultDto = imp.SaveRiceProductType(txtRiceType.Text.Trim());
+            if (resultDto.IsSuccess)
+            {
+                bindRiceType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            SetMessage(resultDto);
         }
     }
 }

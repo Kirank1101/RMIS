@@ -25,11 +25,18 @@ public partial class AddSellerType : BaseUserControl
         if (!IsControlPostBack)
         {
             Header = "Add Seller Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
-            rptSellerType.DataBind();
+            bindSelleType();
+
         }
     }
+
+    private void bindSelleType()
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
+        rptSellerType.DataBind();
+    }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSellerType(txtSellerType.Text);
@@ -39,9 +46,7 @@ public partial class AddSellerType : BaseUserControl
             resultDto = imp.SaveSellerType(txtSellerType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-                rptSellerType.DataSource = imp.GetMasterSellerTypeEntities();
-                rptSellerType.DataBind();
+                bindSelleType();
             }
             SetMessage(resultDto);
         }

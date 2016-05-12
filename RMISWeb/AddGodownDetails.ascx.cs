@@ -24,27 +24,34 @@ public partial class AddGodownDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Godown Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            BindGodownDetails(imp);
+            Header = "Add Godown Information";            
+            bindGodownDetails();
         }
     }
 
-    private void BindGodownDetails(IMasterPaddyBusiness imp)
+    private void bindGodownDetails()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptGodownDetails.DataSource = imp.GetMGodownTypeEntities();
         rptGodownDetails.DataBind();
     }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBagType(txtGodownName.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSellerType(txtGodownName.Text);
         if (resultDto.IsSuccess)
-        {        
+        {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            imp.SaveGodownType(txtGodownName.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            BindGodownDetails(imp);
-            txtGodownName.Text = string.Empty;
+            resultDto = imp.SaveGodownType(txtGodownName.Text.Trim());
+            if (resultDto.IsSuccess)
+            {
+                bindGodownDetails();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            SetMessage(resultDto);
         }
     }
 }

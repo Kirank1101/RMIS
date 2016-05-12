@@ -1,33 +1,42 @@
 ﻿using System;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
+using RMIS.Domain.DataTranserClass;
 
 
 public partial class AddPaddyType : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
-        {
+    {
         if (!IsControlPostBack)
         {
-            Header = "Add Paddy Information";
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            BindPaddyType(imp);
+            Header = "Add Paddy Information";            
+            bindPaddyType();
         }
     }
 
-    private void BindPaddyType(IMasterPaddyBusiness imp)
+    private void bindPaddyType()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptPaddyType.DataSource = imp.GetMPaddyTypeEntities();
         rptPaddyType.DataBind();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtPaddyType.Text.Trim()))
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValiadtePaddyType(txtPaddyType.Text);
+        if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            imp.SavePaddyType(txtPaddyType.Text.Trim());
-            imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            txtPaddyType.Text = string.Empty;
+            resultDto = imp.SavePaddyType(txtPaddyType.Text.Trim());
+            if (resultDto.IsSuccess)
+            {
+                bindPaddyType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            SetMessage(resultDto);
         }
     }
 }
