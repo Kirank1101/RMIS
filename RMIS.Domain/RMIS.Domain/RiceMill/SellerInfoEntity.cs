@@ -43,7 +43,7 @@ namespace RMIS.Domain.RiceMill
         public override int GetHashCode()
         {
             int toReturn = base.GetHashCode();
-            toReturn ^= this.SellerTypeID.GetHashCode();
+            toReturn ^= this.SellerID.GetHashCode();
             return toReturn;
         }
 

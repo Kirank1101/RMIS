@@ -1,14 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SellerInfoDetails.ascx.cs"
     Inherits="SellerInfoDetails" %>
 <div class="table-responsive">
-<h3>Seller Info</h3>
+
     <table>
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblSellerType" Text="<%$Resources:Resource,SellerType%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlSellerType" runat="server">
+                <asp:DropDownList ID="ddlSellerType" runat="server"  AppendDataBoundItems="true">
+                <asp:ListItem Selected ="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
         </tr>

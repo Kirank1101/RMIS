@@ -21,10 +21,20 @@ using System.Collections.Generic;
 
 public partial class MenuItems : BaseUserControl
 {
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
+
+            LiteralControl control = new LiteralControl();
+            control.Text = @"<ul class='nav side-menu'>
+    <li><a><i class='fa fa-sitemap'></i>Master Config<span class='fa fa-chevron-down'></span></a>
+        <ul class='nav child_menu'>";
+            phMenuItems.Controls.Add(control);
+
             List<MMenuItem> items = new List<MMenuItem>();
             MMenuItem item = new MMenuItem();
             item.Title = "Add Seller Types";
@@ -66,9 +76,45 @@ public partial class MenuItems : BaseUserControl
             item.Title = "Add Rice Types";
             item.MenuId = "ART";
             item.Url = "AddRiceType.ascx";
-            items.Add(item);        
+            items.Add(item);
 
             CreateHTMLTable(items, "Master Config");
+
+            control = new LiteralControl();
+            control.Text = @" </ul>
+    </li>
+</ul>";
+            phMenuItems.Controls.Add(control);
+
+
+            control = new LiteralControl();
+            control.Text = @"<ul class='nav side-menu'>
+    <li><a><i class='fa fa-sitemap'></i>Paddy process<span class='fa fa-chevron-down'></span></a>
+        <ul class='nav child_menu'>";
+            phMenuItems.Controls.Add(control);
+
+            items = new List<MMenuItem>();
+
+            item = new MMenuItem();
+            item.Title = "Add Seller details";
+            item.MenuId = "SEID";
+            item.Url = "SellerInfoDetails.ascx";
+            items.Add(item);
+
+            item = new MMenuItem();
+            item.Title = "Add Paddy details";
+            item.MenuId = "APSD";
+            item.Url = "PaddyStockInfo.ascx";
+            items.Add(item);
+
+            CreateHTMLTable(items, "Transac Config");
+
+            control = new LiteralControl();
+            control.Text = @" </ul>
+    </li>
+ </ul>";
+            phMenuItems.Controls.Add(control);
+
         }
 
         string script = @" function changeActiveClass(id) {    
@@ -79,8 +125,8 @@ public partial class MenuItems : BaseUserControl
 
     private void CreateHTMLTable(List<MMenuItem> menuItems, string innerMenuText)
     {
-        
-        int count=0;
+
+        int count = 0;
         foreach (MMenuItem menuItem in menuItems)
         {
             var li = new HtmlGenericControl("li");

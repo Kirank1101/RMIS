@@ -61,7 +61,7 @@ public class BaseUserControl : System.Web.UI.UserControl
 
     protected Panel pnlMessage;
     protected Label lblMessage;
-    protected   Label lblHeader;
+    Label lblHeader;
 
     protected override void OnInit(EventArgs e)
     {
@@ -96,6 +96,6 @@ public class BaseUserControl : System.Web.UI.UserControl
         if(!IsControlPostBack)
         IsControlPostBack = true;
 
-        lblHeader.Text = "<div><h2>" + this.Header + "</h2></div>";
+        lblHeader.Text = "<div><h3>" + this.Header + "</h3></div>";
     }
 }

@@ -16,7 +16,7 @@ namespace RMIS.HttpSessionProvider
             {
                return  Convert.ToString(HttpContext.Current.Session[sessionCustomerId]);
             }
-            return "w32423";
+            return "test1";
           // throw new NotImplementedException();
         }
 

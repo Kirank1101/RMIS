@@ -17,6 +17,7 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
+using System.Collections.Generic;
 
 public partial class AddLotDetails : BaseUserControl
 {
@@ -24,9 +25,14 @@ public partial class AddLotDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Lot Information";           
+            Header = "Add Lot Information";
             bindLotDetails();
-
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            List<GodownTypeDTO> listGodownTypeDTO = imp.GetMGodownTypeEntities();
+            ddlGodownName.DataSource = listGodownTypeDTO;
+            ddlGodownName.DataTextField = GodownTypeDTO.dataColumnGodownType;
+            ddlGodownName.DataValueField = GodownTypeDTO.dataColumnId;
+            ddlGodownName.DataBind();
         }
     }
 

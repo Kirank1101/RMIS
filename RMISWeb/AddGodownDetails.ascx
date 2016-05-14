@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <asp:Label runat="server" ID="lblGodownName" Text='<%# Eval("GodownName") %>' />
+                        <asp:Label runat="server" ID="lblGodownName" Text='<%# Eval("GodownType") %>' />
                     </td>
                     <td>
                         <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />

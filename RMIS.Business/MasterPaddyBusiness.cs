@@ -142,7 +142,7 @@ namespace RMIS.Business
                 foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
                 {
                     RiceProductDTO objRiceProductDTO = new RiceProductDTO();
-                    objRiceProductDTO.RiceProduct = objMRiceProductionTypeEntity.RiceType;
+                    objRiceProductDTO.RiceType = objMRiceProductionTypeEntity.RiceType;
                     objRiceProductDTO.Indicator = GetYesorNo(objMRiceProductionTypeEntity.ObsInd);
                     objRiceProductDTO.Id = objMRiceProductionTypeEntity.MRiceProdTypeID;
                     listRiceProductDTO.Add(objRiceProductDTO);

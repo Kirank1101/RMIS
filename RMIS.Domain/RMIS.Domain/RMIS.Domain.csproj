@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
+    <Compile Include="Business\IValidateTransactionBusiness.cs" />
     <Compile Include="Business\IMasterPaddyBusiness.cs" />
     <Compile Include="Business\ICustomerProvider.cs" />
     <Compile Include="Business\ITransactionBusiness.cs" />

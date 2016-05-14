@@ -532,9 +532,9 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetMLotDetailsEntities(CustId, MGodownID);
         }
 
-        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID)
+        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetAllMGodownDetailsEntity(CustId);
         }
 
         public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)

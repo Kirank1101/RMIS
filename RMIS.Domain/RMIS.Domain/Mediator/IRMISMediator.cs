@@ -106,7 +106,7 @@ namespace RMIS.Domain.Mediator
         List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID);
         List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId);
-        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string MGodownID);
+        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId);
         List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId);
         List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId);
         List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);

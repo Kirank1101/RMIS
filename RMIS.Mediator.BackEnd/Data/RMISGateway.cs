@@ -642,6 +642,36 @@
                 throw;
             }
         }
+
+
+        internal List<MGodownDetailsEntity> GetAllMGodownDetailsEntity(string custId)
+        {
+            try
+            {
+                List<MGodownDetailsEntity> listMGodownDetailsEntity = new List<MGodownDetailsEntity>();
+                IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                    .Add(Expression.Eq("CustID", custId));
+                List<MGodownDetails> listMGodownDetails = UsersRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
+                if (listMGodownDetails != null && listMGodownDetails.Count > 0)
+                {
+                    foreach (MGodownDetails objMGodownDetail in listMGodownDetails)
+                    {
+                        listMGodownDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(objMGodownDetail));
+                    }
+                }
+                else
+                    listMGodownDetailsEntity = null;
+
+                return listMGodownDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMGodownDetailsEntity", ex);
+                throw;
+            }
+        }
+
         internal PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
         {
             try

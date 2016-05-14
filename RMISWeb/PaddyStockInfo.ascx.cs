@@ -6,11 +6,12 @@ using RMIS.Domain.DataTranserClass;
 public partial class PaddyStockInfo : BaseUserControl
 {
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
+            base.Header = "Paddy Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlsellernames.DataSource = imp.GetPaddySellerInfo();
             ddlsellernames.DataTextField = "Name";
@@ -30,7 +31,7 @@ public partial class PaddyStockInfo : BaseUserControl
     }
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlGodownname.SelectedIndex > 0)
+        if (ddlGodownname.SelectedIndex > -1)
         {
             ddlLotDetails.DataSource = impb.GetLotDetailsEntities(ddlGodownname.SelectedValue);
             ddlLotDetails.DataTextField = "LotDetails";
@@ -40,15 +41,20 @@ public partial class PaddyStockInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (ddlLotDetails.SelectedIndex > 0 && ddlGodownname.SelectedIndex > 0 && ddlPaddyType.SelectedIndex > 0 && ddlsellernames.SelectedIndex > 0 
-            && !string.IsNullOrEmpty(txtVehicalNo.Text.Trim()) && !string.IsNullOrEmpty(txtTotalBags.Text.Trim()) 
-            && !string.IsNullOrEmpty(txtQweight.Text.Trim()) && !string.IsNullOrEmpty(txtQprice.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlPaddyType.SelectedIndex, ddlsellernames.SelectedIndex, txtVehicalNo.Text, txtTotalBags.Text, txtQweight.Text, txtQprice.Text, txtPruchaseDate.Text);
+        if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
-            ClearAllInputFields();
-
+            resultDto=imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
+            SetMessage(resultDto);
+            if (resultDto.IsSuccess)
+                ClearAllInputFields();
         }
+        else
+        {
+            SetMessage(resultDto);
+        }
+
     }
 
     private void ClearAllInputFields()
