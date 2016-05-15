@@ -48,6 +48,12 @@ namespace RMIS.Business
             }
             return listSellerTypeDTO;
         }
+
+        public List<MenuInfoEntity> GetMenuInfoEnity()
+        {
+            return imp.GetAllMenuInfoEntities(provider.GetCurrentCustomerId());
+        }
+
         public List<MBagTypeDTO> GetMBagTypeEntities()
         {
             List<MBagTypeDTO> listMBagTypeDTO = null;

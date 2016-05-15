@@ -22,105 +22,55 @@ using System.Collections.Generic;
 public partial class MenuItems : BaseUserControl
 {
 
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            List<MenuInfoEntity> listMenuInfoEntity = imp.GetMenuInfoEnity();
+            if (listMenuInfoEntity.Count > 0)
+            {
+                List<MenuInfoEntity> listParentMenuInfoEntity = listMenuInfoEntity.FindAll(A => A.ParentMenuID == 0);
+               
+                if (listParentMenuInfoEntity != null)
+                    foreach (MenuInfoEntity objMenuInfoEntity in listParentMenuInfoEntity)
+                    {
+                        LiteralControl control = new LiteralControl();
+                        control.Text = string.Format(@"<ul class='nav side-menu'>
+                 <li><a><i ></i>{0}<span class='fa fa-chevron-down'></span></a>
+                    <ul class='nav child_menu'>", objMenuInfoEntity.Title);
+                        phMenuItems.Controls.Add(control);
+                        List<MenuInfoEntity> listChildMenuInfoEntity = listMenuInfoEntity.FindAll(A => A.ParentMenuID == objMenuInfoEntity.MenuID);
+                        if (listChildMenuInfoEntity != null && listChildMenuInfoEntity.Count > 0)
+                        {
+                            List<MMenuItem> items = new List<MMenuItem>();
+                            foreach (MenuInfoEntity objChildMenuInfoEntity in listChildMenuInfoEntity)
+                            {
+                                MMenuItem item = new MMenuItem();
+                                item.Title = objChildMenuInfoEntity.Title;
+                                item.MenuId = "AST";
+                                item.Url = objChildMenuInfoEntity.URL;
+                                items.Add(item);
 
-            LiteralControl control = new LiteralControl();
-            control.Text = @"<ul class='nav side-menu'>
-    <li><a><i class='fa fa-sitemap'></i>Master Config<span class='fa fa-chevron-down'></span></a>
-        <ul class='nav child_menu'>";
-            phMenuItems.Controls.Add(control);
+                            }
+                            CreateHTMLTable(items, objMenuInfoEntity.Title);
+                        }
 
-            List<MMenuItem> items = new List<MMenuItem>();
-            MMenuItem item = new MMenuItem();
-            item.Title = "Add Seller Types";
-            item.MenuId = "AST";
-            item.Url = "AddSellerType.ascx";
-            items.Add(item);
+                        control = new LiteralControl();
+                        control.Text = @" </ul>
+                      </li>
+                    </ul>";
+                        phMenuItems.Controls.Add(control);
 
-            item = new MMenuItem();
-            item.Title = "Add Paddy Types";
-            item.MenuId = "APT";
-            item.Url = "AddPaddyType.ascx";
-            items.Add(item);
+                    }
 
-            item = new MMenuItem();
-            item.Title = "Add Unit Types";
-            item.MenuId = "AUT";
-            item.Url = "AddUnitsType.ascx";
-            items.Add(item);
+            }
 
-            item = new MMenuItem();
-            item.Title = "Add Bag Types";
-            item.MenuId = "ABT";
-            item.Url = "AddBagType.ascx";
-            items.Add(item);
-
-            item = new MMenuItem();
-            item.Title = "Add Godown Types";
-            item.MenuId = "AGT";
-            item.Url = "AddGodownDetails.ascx";
-            items.Add(item);
-
-            item = new MMenuItem();
-            item.Title = "Add Lot Types";
-            item.MenuId = "ALT";
-            item.Url = "AddLotDetails.ascx";
-            items.Add(item);
-
-            item = new MMenuItem();
-            item.Title = "Add Rice Types";
-            item.MenuId = "ART";
-            item.Url = "AddRiceType.ascx";
-            items.Add(item);
-
-            CreateHTMLTable(items, "Master Config");
-
-            control = new LiteralControl();
-            control.Text = @" </ul>
-    </li>
-</ul>";
-            phMenuItems.Controls.Add(control);
-
-
-            control = new LiteralControl();
-            control.Text = @"<ul class='nav side-menu'>
-    <li><a><i class='fa fa-sitemap'></i>Paddy process<span class='fa fa-chevron-down'></span></a>
-        <ul class='nav child_menu'>";
-            phMenuItems.Controls.Add(control);
-
-            items = new List<MMenuItem>();
-
-            item = new MMenuItem();
-            item.Title = "Add Seller details";
-            item.MenuId = "SEID";
-            item.Url = "SellerInfoDetails.ascx";
-            items.Add(item);
-
-            item = new MMenuItem();
-            item.Title = "Add Paddy details";
-            item.MenuId = "APSD";
-            item.Url = "PaddyStockInfo.ascx";
-            items.Add(item);
-
-            CreateHTMLTable(items, "Transac Config");
-
-            control = new LiteralControl();
-            control.Text = @" </ul>
-    </li>
- </ul>";
-            phMenuItems.Controls.Add(control);
-
-        }
-
-        string script = @" function changeActiveClass(id) {    
+            string script = @" function changeActiveClass(id) {    
                      
              document.getElementById(id).className = 'active';         }";
-        ScriptManager.RegisterStartupScript(this, GetType(), "changeActiveClass", script, true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "changeActiveClass", script, true);
+        }
     }
 
     private void CreateHTMLTable(List<MMenuItem> menuItems, string innerMenuText)

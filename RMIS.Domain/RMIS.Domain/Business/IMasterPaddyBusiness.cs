@@ -31,5 +31,6 @@ namespace RMIS.Domain.Business
         ResultDTO SaveRiceProductType(string riceProduct);
         ResultDTO SaveLotDetails(string lotName,string godownId);
         ResultDTO SaveWeightDetails(string weight);
+        List<MenuInfoEntity> GetMenuInfoEnity();
     }
 }

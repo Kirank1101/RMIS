@@ -53,7 +53,7 @@
                 {
                     foreach (MSellerType adMInfo in listSellerType)
                     {
-                        ListsellerTypeEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerTypeEntity(adMInfo));
+                        ListsellerTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerTypeEntity(adMInfo));
                     }
                 }
                 else
@@ -292,7 +292,7 @@
                 IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("MGodownID", MGodownID));                                                                   
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID));
                 List<MLotDetails> listMLotDetails = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
                 if (listMLotDetails != null && listMLotDetails.Count > 0)
                 {
@@ -985,7 +985,7 @@
                 {
                     foreach (MRiceBrandDetails adMInfo in listMRiceBrandDetails)
                     {
-                        listMRiceBrandDetailsEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo));
+                        listMRiceBrandDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo));
                     }
                 }
                 else
@@ -1161,6 +1161,36 @@
                 throw;
             }
         }
+
+        internal List<MenuInfoEntity> GetMenuInfoEntities(string custID)
+        {
+            try
+            {
+                List<MenuInfoEntity> menuInfoEntityList = new List<MenuInfoEntity>();
+                IRepository<MenuInfo> UsersRepository = new RepositoryImpl<MenuInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuInfo))
+                                                                   .Add(Expression.Eq("CustID", custID));
+                List<MenuInfo> listMenuInfo = UsersRepository.GetAll(detachedCriteria) as List<MenuInfo>;
+                if (listMenuInfo != null && listMenuInfo.Count > 0)
+                {
+                    foreach (MenuInfo adMInfo in listMenuInfo)
+                    {
+                        menuInfoEntityList.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMenuInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    menuInfoEntityList = null;
+
+                return menuInfoEntityList;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMenuInfoEntities", ex);
+                throw;
+            }
+        }
+
+
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

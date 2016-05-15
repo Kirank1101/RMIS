@@ -676,5 +676,29 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+
+        internal void MapMenuInfoEntityToMenuInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<MenuInfoEntity , MenuInfo>()
+                    .ForMember(dest => dest.MenuID , opts => opts.MapFrom(src => src.MenuID))
+                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Title , opts => opts.MapFrom(src => src.Title ))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description ))
+                    .ForMember(dest => dest.URL , opts => opts.MapFrom(src => src.URL))                    
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMenuInfoEntityToMenuInfo", ex);
+                throw;
+            }
+        }
     }
 }

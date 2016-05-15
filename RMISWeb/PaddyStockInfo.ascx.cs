@@ -45,7 +45,7 @@ public partial class PaddyStockInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto=imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
+            resultDto = imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();

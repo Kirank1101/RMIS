@@ -608,7 +608,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<DustSellingInfo, DustSellingInfoEntity>()
                     .ForMember(dest => dest.DustSellingID, opts => opts.MapFrom(src => src.DustSellingID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))                    
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
@@ -624,6 +624,30 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapDustSellingInfoEntity", ex);
+                throw;
+            }
+        }
+
+        internal void MapMenuInfoToMenuInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MenuInfo, MenuInfoEntity>()
+                    .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
+                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.Title))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.URL, opts => opts.MapFrom(src => src.URL))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMenuInfoToMenuInfoEntity", ex);
                 throw;
             }
         }
