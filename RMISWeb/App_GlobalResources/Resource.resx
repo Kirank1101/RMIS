@@ -225,4 +225,16 @@
   <data name="UnitsType" xml:space="preserve">
     <value>Units Mesured In</value>
   </data>
+  <data name="BrokenRiceType" xml:space="preserve">
+    <value>Broken Rice Type</value>
+  </data>
+  <data name="IsBrokenRiceDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="RiceBrandName" xml:space="preserve">
+    <value>Rice Brand Name</value>
+  </data>
+  <data name="UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
 </root>

@@ -141,5 +141,19 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateBrokenRiceType(string BrkenRiceType)
+        {
+            if (string.IsNullOrEmpty(BrkenRiceType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceProductTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (BrkenRiceType.Trim().Length > 30)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceProductTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }

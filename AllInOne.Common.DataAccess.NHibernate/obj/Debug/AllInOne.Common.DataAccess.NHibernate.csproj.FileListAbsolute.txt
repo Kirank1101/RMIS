@@ -51,3 +51,4 @@ C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.NHibernate.
 C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.NHibernate\obj\Debug\AllInOne.Common.DataAccess.NHibernate.dll
 C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.NHibernate\obj\Debug\AllInOne.Common.DataAccess.NHibernate.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.NHibernate\obj\Debug\AllInOne.Common.DataAccess.NHibernate.csprojResolveAssemblyReference.cache
+C:\Users\Nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.NHibernate\obj\Debug\AllInOne.Common.DataAccess.NHibernate.csprojResolveAssemblyReference.cache

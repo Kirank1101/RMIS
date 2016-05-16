@@ -126,6 +126,70 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType, string totalbags, string weight)
+        {
+
+            if (RiceType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsRiceType, provider.GetCurrentCustomerId()) };
+            }
+            else if (RiceBrand <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsRiceBrand, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitsType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsUnitsType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(totalbags.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (totalbags.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(weight.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (weight.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
+            }
+            
+            return new ResultDTO();
+        }
+        public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string weight)
+        {
+
+            if (BrokenRiceType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsRiceType, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitsType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsUnitsType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(totalbags.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (totalbags.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(weight.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (weight.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
+            }
+
+            return new ResultDTO();
+        }
 
     }
 }

@@ -59,6 +59,7 @@ namespace RMIS.Domain.Constant
         public const string ValidateSellerDetailsStateLength = "Validate24";
         public const string ValidateSellerDetailsContactNoLength = "Validate25";
 
+
         public const string ValidateValidatePaddyStockDetailsGodown = "Validate26";
         public const string ValidateValidatePaddyStockDetailsLotDetails = "Validate27";
         public const string ValidateValidatePaddyStockDetailsSeller = "Validate28";
@@ -73,5 +74,14 @@ namespace RMIS.Domain.Constant
         public const string ValidateValidatePaddyStockDetailsPurchaseDateEmpty = "Validate37";
         public const string ValidateValidatePaddyStockDetailsPurchaseDateValidate = "Validate36";
 
+        public const string ValidateValidateRiceStockDetailsRiceType = "Validate37";
+        public const string ValidateValidateRiceStockDetailsRiceBrand = "Validate38";
+        public const string ValidateValidateRiceStockDetailsUnitsType = "Validate39";
+        public const string ValidateValidateRiceStockDetailsTotalbagsEmpty = "Validate40";
+        public const string ValidateValidateRiceStockDetailsTotalbagsValidate = "Validate41";
+        public const string ValidateValidateRiceStockDetailsWeightEmpty = "Validate42";
+        public const string ValidateValidateRiceStockDetailsWeightValidate = "Validate43";
+        public const string ValidateBrokenRiceProductTypeEmpty = "Validate44";
+        public const string ValidateBrokenRiceProductTypeLength = "Validate45";
     }
 }
