@@ -355,5 +355,29 @@ namespace RMIS.Business
         {
             return imp.GetAllDustSellingInfoEntities(provider.GetCurrentCustomerId());
         }
+
+
+        public bool SaveCustomerInformation(string customerName, string organizationName)
+        {
+            CustomerInfoEntity custEntity = new CustomerInfoEntity();
+            custEntity.CustID = CommonUtil.CreateUniqueID("CI"); ;
+            custEntity.Name = customerName;
+            custEntity.OrganizationName = organizationName;
+            custEntity.ObsInd = YesNo.N;            
+            custEntity.LastModifiedBy = provider.GetLoggedInUserId();            
+            custEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateCustomerInfoEntity(custEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
     }
 }

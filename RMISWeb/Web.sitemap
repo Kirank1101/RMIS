@@ -5,6 +5,7 @@
             <siteMapNode url="~/Membership/EnhancedCreateUserWizard.aspx" title="Creating User Accounts" />
             <siteMapNode url="~/Membership/UserBasedAuthorization.aspx" title="User-Based Authorization" />
             <siteMapNode url="~/Membership/Guestbook.aspx" title="Storing Additional User Information" />
+          <siteMapNode url="~/Membership/AddCustomer.aspx" title="Add Customer" />
         </siteMapNode>
 
         <siteMapNode title="Roles">
