@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblRiceBrankName" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblRiceBrandName" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
             </td>
             <td>
                 <asp:DropDownList ID="ddlRiceBrand" 

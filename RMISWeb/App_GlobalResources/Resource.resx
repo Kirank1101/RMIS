@@ -237,4 +237,7 @@
   <data name="UnitType" xml:space="preserve">
     <value>Unit Type</value>
   </data>
+  <data name="SellingDate" xml:space="preserve">
+    <value>Selling Date</value>
+  </data>
 </root>

@@ -83,5 +83,58 @@ namespace RMIS.Domain.Constant
         public const string ValidateValidateRiceStockDetailsWeightValidate = "Validate43";
         public const string ValidateBrokenRiceProductTypeEmpty = "Validate44";
         public const string ValidateBrokenRiceProductTypeLength = "Validate45";
+        public const string ValidateDustStockDetailsUnitsType = "Validate46";
+        public const string ValidateDustStockDetailsTotalbagsEmpty = "Validate47";
+        public const string ValidateDustStockDetailsTotalbagsValidate = "Validate48";
+        public const string ValidateDustStockDetailsWeightEmpty = "Validate49";
+        public const string ValidateDustStockDetailsWeightValidate = "Validate50";
+        public const string ValidateBrokenRiceStockDetailsRiceType = "Validate51";
+        public const string ValidateBrokenRiceStockDetailsUnitsType = "Validate52";
+        public const string ValidateBrokenRiceStockDetailsTotalbagsEmpty = "Validate53";
+        public const string ValidateBrokenRiceStockDetailsTotalbagsValidate = "Validate54";
+        public const string ValidateBrokenRiceStockDetailsWeightEmpty = "Validate55";
+        public const string ValidateBrokenRiceStockDetailsWeightValidate = "Validate56";
+        
+        public const string ValidateRiceSellingDetailsSeller = "Validate57";
+        public const string ValidateRiceSellingDetailsRiceType = "Validate58";
+        public const string ValidateRiceSellingDetailsRiceBrand = "Validate59";
+        public const string ValidateRiceSellingDetailsVehicleNoEmpty = "Validate60";
+        public const string ValidateRiceSellingDetailsVehicleNoLength = "Validate61";
+        public const string ValidateRiceSellingDetailsTotalbagsEmpty = "Validate62";
+        public const string ValidateRiceSellingDetailsTotalbagsValidate = "Validate63";
+        public const string ValidateRiceSellingDetailsWeightEmpty = "Validate64";
+        public const string ValidateRiceSellingDetailsWeightValidate = "Validate65";
+        public const string ValidateRiceSellingDetailsPriceEmpty = "Validate66";
+        public const string ValidateRiceSellingDetailsPriceValidate = "Validate67";
+        public const string ValidateRiceSellingDetailsSelingDateEmpty = "Validate68";
+        public const string ValidateRiceSellingDetailsSellingDateValidate = "Validate69";
+        public const string ValidateRiceSellingDetailsUnitsType = "Validate70";
+
+        public const string ValidateBrokenRiceSellingDetailsSeller= "Validate71";
+        public const string ValidateBrokenRiceSellingDetailsBrokenRiceType= "Validate72";
+        public const string ValidateBrokenRiceSellingDetailsUnitsType= "Validate73";
+        public const string ValidateBrokenRiceSellingDetailsVehicleNoEmpty= "Validate74";
+        public const string ValidateBrokenRiceSellingDetailsVehicleNoLength= "Validate75";
+        public const string ValidateBrokenRiceSellingDetailsTotalbagsEmpty= "Validate76";
+        public const string ValidateBrokenRiceSellingDetailsTotalbagsValidate= "Validate77";
+        public const string ValidateBrokenRiceSellingDetailsWeightEmpty= "Validate78";
+        public const string ValidateBrokenRiceSellingDetailsWeightValidate= "Validate79";
+        public const string ValidateBrokenRiceSellingDetailsPriceEmpty= "Validate80";
+        public const string ValidateBrokenRiceSellingDetailsPriceValidate= "Validate81";
+        public const string ValidateBrokenRiceSellingDetailsSelingDateEmpty= "Validate82";
+        public const string ValidateBrokenRiceSellingDetailsSellingDateValidate = "Validate83";
+
+        public const string ValidateDustSellingDetailsSeller= "Validate84";
+        public const string ValidateDustSellingDetailsUnitsType= "Validate85";
+        public const string ValidateDustSellingDetailsVehicleNoEmpty= "Validate86";
+        public const string ValidateDustSellingDetailsVehicleNoLength= "Validate87";
+        public const string ValidateDustSellingDetailsTotalbagsEmpty= "Validate88";
+        public const string ValidateDustSellingDetailsTotalbagsValidate= "Validate89";
+        public const string ValidateDustSellingDetailsWeightEmpty= "Validate90";
+        public const string ValidateDustSellingDetailsWeightValidate= "Validate91";
+        public const string ValidateDustSellingDetailsPriceEmpty= "Validate92";
+        public const string ValidateDustSellingDetailsPriceValidate= "Validate93";
+        public const string ValidateDustSellingDetailsSelingDateEmpty= "Validate94";
+        public const string ValidateDustSellingDetailsSellingDateValidate = "Validate95";
     }
 }
