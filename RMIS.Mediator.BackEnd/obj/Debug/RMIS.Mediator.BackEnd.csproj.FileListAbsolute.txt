@@ -24,3 +24,7 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Mediator.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.dll
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Mediator.BackEnd\obj\Debug\RMIS.Mediator.BackEnd.pdb
