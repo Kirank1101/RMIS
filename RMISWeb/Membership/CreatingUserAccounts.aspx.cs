@@ -11,21 +11,26 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class Membership_CreatingUserAccounts : System.Web.UI.Page
+
+public partial class Membership_CreatingUserAccounts : BasePage 
 {
     const string passwordQuestion = "What is your favorite color";
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
+        {
             SecurityQuestion.Text = passwordQuestion;
+        }
     }
 
     protected void CreateAccountButton_Click(object sender, EventArgs e)
     {
+
+        Membership.ApplicationName = "test";
+
         MembershipCreateStatus createStatus;
 
-        MembershipUser newUser = 
+        MembershipUser newUser =
              Membership.CreateUser(Username.Text, Password.Text,
                                    Email.Text, passwordQuestion,
                                    SecurityAnswer.Text, true,

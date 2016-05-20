@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class Roles_CreateUserWizardWithRoles : System.Web.UI.Page
+public partial class Roles_CreateUserWizardWithRoles : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

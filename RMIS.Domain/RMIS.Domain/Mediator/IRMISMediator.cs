@@ -113,6 +113,7 @@ namespace RMIS.Domain.Mediator
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
         List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId);
         List<MenuInfoEntity> GetAllMenuInfoEntities(string CustId);
+        List<CustomerInfoEntity> GetCustomerInfoEntities();
         #endregion
     }
 

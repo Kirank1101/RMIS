@@ -13,7 +13,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Security.Permissions;
 
-public partial class Membership_UserBasedAuthorization : System.Web.UI.Page
+public partial class Membership_UserBasedAuthorization : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

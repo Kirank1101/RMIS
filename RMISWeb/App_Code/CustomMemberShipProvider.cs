@@ -30,6 +30,35 @@ using System.Text;
             throw new NotImplementedException();
         }
 
+
+        public  MembershipUser CreateUser(string username, string password,string customerId, out MembershipCreateStatus status)
+        {
+            ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
+            OnValidatingPassword(args);
+
+            if (args.Cancel)
+            {
+                status = MembershipCreateStatus.InvalidPassword;
+                return null;
+            }
+            MembershipUser user = GetUser(username, true);
+            if (user == null)
+            {
+               
+
+                status = MembershipCreateStatus.Success;
+                return GetUser(username, true);
+            }
+            else
+            {
+                status = MembershipCreateStatus.DuplicateUserName;
+            }
+
+            return null;
+
+
+        }
+
       
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)

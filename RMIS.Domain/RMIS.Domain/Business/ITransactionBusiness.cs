@@ -38,6 +38,7 @@ namespace RMIS.Domain.Business
         List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities();
         List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities();
         List<DustSellingInfoEntity> GetAllDustSellingInfoEntities();
+        List<CustomerInfoEntity> GetAllCustomerInfoEntities();
         bool SaveCustomerInformation(string customerName, string organizationName);
     }
 }

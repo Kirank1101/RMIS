@@ -788,5 +788,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMenuInfoEntities(CustId);
         }
+
+
+        public List<CustomerInfoEntity> GetCustomerInfoEntities()
+        {
+            return rmisGateway.GetCustomerInfoEntities();
+        }
     }
 }

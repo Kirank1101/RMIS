@@ -1,20 +1,22 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="EnhancedCreateUserWizard.aspx.cs" Inherits="Membership_EnhancedCreateUserWizard" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="EnhancedCreateUserWizard.aspx.cs"
+    Inherits="Membership_EnhancedCreateUserWizard" Title="Untitled Page" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-    <h2>Create a New User Account (and a Record in <code>UserProfiles</code>)</h2>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <h2>
+        Create a New User Account (and a Record in <code>UserProfiles</code>)</h2>
     <p>
-        This CreateUserWizard control not only adds the new user account to the
-        Membership framework, but also adds a corresponding record to the
-        <code>UserProfiles</code> table.
+        This CreateUserWizard control not only adds the new user account to the Membership
+        framework, but also adds a corresponding record to the <code>UserProfiles</code>
+        table.
     </p>
-    <asp:CreateUserWizard ID="NewUserWizard" runat="server" 
-        ContinueDestinationPageUrl="~/Membership/AdditionalUserInfo.aspx" 
-        oncreateduser="NewUserWizard_CreatedUser" 
-        onactivestepchanged="NewUserWizard_ActiveStepChanged">
+    <asp:CreateUserWizard ID="NewUserWizard" runat="server" ContinueDestinationPageUrl="~/Membership/AdditionalUserInfo.aspx"
+        OnCreatedUser="NewUserWizard_CreatedUser" OnActiveStepChanged="NewUserWizard_ActiveStepChanged">
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
             </asp:CreateUserWizardStep>
             <asp:WizardStep ID="UserSettings" runat="server" StepType="Step" Title="Your Settings">
+                
+                <br />
                 <p>
                     <b>Home Town:</b><br />
                     <asp:TextBox ID="HomeTown" runat="server"></asp:TextBox>

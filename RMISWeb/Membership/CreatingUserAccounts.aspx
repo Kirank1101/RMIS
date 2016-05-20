@@ -16,8 +16,12 @@
     <p>
         <asp:Label runat="server" id="InvalidUserNameOrPasswordMessage" Visible="false" EnableViewState="false" ForeColor="Red"></asp:Label>
     </p>
+
     
-    <p>
+    
+    <p>     
+
+         
         Enter a username: 
         <asp:TextBox ID="Username" runat="server"></asp:TextBox>
         <br />

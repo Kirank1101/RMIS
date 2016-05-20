@@ -363,8 +363,8 @@ namespace RMIS.Business
             custEntity.CustID = CommonUtil.CreateUniqueID("CI"); ;
             custEntity.Name = customerName;
             custEntity.OrganizationName = organizationName;
-            custEntity.ObsInd = YesNo.N;            
-            custEntity.LastModifiedBy = provider.GetLoggedInUserId();            
+            custEntity.ObsInd = YesNo.N;
+            custEntity.LastModifiedBy = provider.GetLoggedInUserId();
             custEntity.LastModifiedDate = DateTime.Now;
             try
             {
@@ -378,6 +378,12 @@ namespace RMIS.Business
                 return false;
             }
             return true;
+        }
+
+
+        public List<CustomerInfoEntity> GetAllCustomerInfoEntities()
+        {
+            return imp.GetCustomerInfoEntities();
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Security.Permissions;
 
-public partial class Roles_RoleBasedAuthorization : System.Web.UI.Page
+public partial class Roles_RoleBasedAuthorization : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
