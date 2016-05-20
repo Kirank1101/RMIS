@@ -683,8 +683,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<MenuInfoEntity , MenuInfo>()
                     .ForMember(dest => dest.MenuID , opts => opts.MapFrom(src => src.MenuID))
-                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))                   
                     .ForMember(dest => dest.Title , opts => opts.MapFrom(src => src.Title ))
                     .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description ))
                     .ForMember(dest => dest.URL , opts => opts.MapFrom(src => src.URL))                    
@@ -700,5 +699,28 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+
+        internal void MapMenuConfigEntiryToMenuConfig()
+        {
+            try
+            {
+                Mapper.CreateMap<MenuConfigurationEntity, MenuConfiguration>()
+                    .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.MenuConfigId, opts => opts.MapFrom(src => src.MenuConfigId))
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))                    
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMenuInfoEntityToMenuInfo", ex);
+                throw;
+            }
+        }
+
     }
 }

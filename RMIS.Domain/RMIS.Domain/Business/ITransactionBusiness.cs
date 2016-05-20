@@ -30,6 +30,8 @@ namespace RMIS.Domain.Business
             int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate);
         ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags,
             int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate);
+        bool SaveCustomerInformation(string customerName, string organizationName,string custId);
+        bool SaveMenuConfiguration(string custId, string roleId, string menuId);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -39,6 +41,8 @@ namespace RMIS.Domain.Business
         List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities();
         List<DustSellingInfoEntity> GetAllDustSellingInfoEntities();
         List<CustomerInfoEntity> GetAllCustomerInfoEntities();
-        bool SaveCustomerInformation(string customerName, string organizationName);
+        List<MenuConfigurationEntity> GetMenuConfigurationEntities();
+        List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId);
+    
     }
 }

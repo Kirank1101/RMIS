@@ -22,7 +22,7 @@ public class BasePage : Page
     }
 
     string sessionApplicationName = "ApplicationName";
-    string ApplicationName
+    protected string ApplicationName
     {
 
         get
@@ -30,6 +30,21 @@ public class BasePage : Page
             if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionApplicationName] != null)
             {
                 return Convert.ToString(HttpContext.Current.Session[sessionApplicationName]);
+            }
+            return null;
+        }
+        // throw new NotImplementedException();
+    }
+
+    string sessionCustomerId = "sessionCustomerId";
+    protected string CustomerId
+    {
+
+        get
+        {
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionCustomerId] != null)
+            {
+                return Convert.ToString(HttpContext.Current.Session[sessionCustomerId]);
             }
             return null;
         }

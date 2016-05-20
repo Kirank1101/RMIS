@@ -635,7 +635,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Mapper.CreateMap<MenuInfo, MenuInfoEntity>()
                     .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
                     .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.Title))
                     .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
                     .ForMember(dest => dest.URL, opts => opts.MapFrom(src => src.URL))
@@ -651,5 +650,29 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+
+
+        internal void MapMenuConfigurationToMenuConfigurationEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MenuConfiguration, MenuConfigurationEntity>()
+                    .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
+                    .ForMember(dest => dest.MenuConfigId, opts => opts.MapFrom(src => src.MenuConfigId))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))                   
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMenuConfigurationToMenuConfigurationEntity", ex);
+                throw;
+            }
+        }
+
     }
 }

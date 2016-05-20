@@ -51,7 +51,7 @@ namespace RMIS.Business
 
         public List<MenuInfoEntity> GetMenuInfoEnity()
         {
-            return imp.GetAllMenuInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllMenuInfoEntities();
         }
 
         public List<MBagTypeDTO> GetMBagTypeEntities()

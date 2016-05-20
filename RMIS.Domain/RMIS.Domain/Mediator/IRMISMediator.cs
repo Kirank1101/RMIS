@@ -6,9 +6,6 @@ using System.Text;
 namespace RMIS.Domain.Mediator
 {
     using System.Collections.Generic;
-    
-    
-    
     using RMIS.Domain.RiceMill;
 
     public interface IRMISMediator
@@ -67,6 +64,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMRiceProductionTypeEntity(MRiceProductionTypeEntity mRiceProductionTypeEntity, bool isCopy);
         void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy);
         void SaveOrUpdateDustSellingInfoEntity(DustSellingInfoEntity dustSellingInfoEntity, bool isCopy);
+        void SaveOrUpdateMenuConfigEntity(MenuConfigurationEntity menuConfigEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -112,8 +110,9 @@ namespace RMIS.Domain.Mediator
         List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId);
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId);
         List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId);
-        List<MenuInfoEntity> GetAllMenuInfoEntities(string CustId);
+        List<MenuInfoEntity> GetAllMenuInfoEntities();
         List<CustomerInfoEntity> GetCustomerInfoEntities();
+        List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId);
         #endregion
     }
 

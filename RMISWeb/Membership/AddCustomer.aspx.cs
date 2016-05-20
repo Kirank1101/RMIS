@@ -27,8 +27,9 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
 
     protected void btnCreateCustomer_Click(object sender, EventArgs e)
     {
+        string custId = Guid.NewGuid().ToString();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text);
+        imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text, custId);
 
         string connectionString = ConfigurationManager.ConnectionStrings["SecurityTutorialsConnectionString"].ConnectionString;
         string insertSql = "INSERT INTO [aspnet_Applications]([ApplicationName], [LoweredApplicationName], [ApplicationId]) VALUES(@ApplicationName, @LoweredApplicationName, @ApplicationId)";
@@ -38,7 +39,7 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
             SqlCommand myCommand = new SqlCommand(insertSql, myConnection);
             myCommand.Parameters.AddWithValue("@ApplicationName", txtUsername.Text.Trim());
             myCommand.Parameters.AddWithValue("@LoweredApplicationName", txtUsername.Text.Trim());
-            myCommand.Parameters.AddWithValue("@ApplicationId", Guid.NewGuid());
+            myCommand.Parameters.AddWithValue("@ApplicationId", custId);
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
@@ -47,11 +48,13 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
     }
 
     string sessionApplicationName = "ApplicationName";
+    string sessionCustomerId = "sessionCustomerId";
     protected void btnSetCustomer_Click(object sender, EventArgs e)
     {
         if (ddlCustomeList.SelectedIndex > 0)
         {
             HttpContext.Current.Session[sessionApplicationName] = ddlCustomeList.SelectedItem.Text;
+            HttpContext.Current.Session[sessionCustomerId] = ddlCustomeList.SelectedValue;
         }
     }
 }

@@ -3,17 +3,17 @@
                    assembly="RMIS.Entities.BackEnd"
                    namespace="RMIS.Entities.BackEnd">
 
-  <class name="MenuInfo" table="[dbo].[MenuInfo]" optimistic-lock="none" >
-    <id name="MenuID" column="MenuID" >
+  <class name="MenuConfiguration" table="[dbo].[MenuConfiguration]" optimistic-lock="none" >
+    <id name="MenuConfigId" column="MenuConfigId" >
       <generator class="assigned"/>
-    </id>   
-    <property name="ParentMenuID" column="ParentMenuID" />
-    <property name="Title" column="Title" />
-    <property name="Description" column="Description" />
-    <property name="URL" column="URL" />
+    </id>
+    <property name="MenuID" column="MenuID" />  
+    <property name="CustID" column="CustID" />
+    <property name="RoleId" column="RoleId" />
+    <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />
-    <property name="ObsInd" column="ObsInd" />
+
   </class>
 </hibernate-mapping>
 

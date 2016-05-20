@@ -7,13 +7,12 @@ using RMIS.Domain.Abstract;
 namespace RMIS.Domain.RiceMill
 {
     [Serializable]
-    public class MenuInfoEntity : AbstractAllInOne
+    public class MenuConfigurationEntity : AbstractAllInOne
     {
-        public int MenuID { get; set; }        
-        public int ParentMenuID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string URL { get; set; }
+        public string MenuConfigId { get; set; }
+        public int MenuID { get; set; }
+        public string CustID { get; set; }
+        public string RoleId { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
@@ -25,8 +24,8 @@ namespace RMIS.Domain.RiceMill
                 return false;
             }
 
-            MenuInfoEntity toCompareWith = obj as MenuInfoEntity;
-            return toCompareWith == null ? false : ((this.MenuID == toCompareWith.MenuID));
+            MenuConfigurationEntity toCompareWith = obj as MenuConfigurationEntity;
+            return toCompareWith == null ? false : ((this.MenuConfigId == toCompareWith.MenuConfigId));
         }
 
         /// <summary>Returns a hash code for this instance.</summary>
@@ -34,7 +33,7 @@ namespace RMIS.Domain.RiceMill
         public override int GetHashCode()
         {
             int toReturn = base.GetHashCode();
-            toReturn ^= this.MenuID.GetHashCode();
+            toReturn ^= this.MenuConfigId.GetHashCode();
             return toReturn;
         }
 

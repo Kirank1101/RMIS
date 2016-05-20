@@ -44,6 +44,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         BrokenRiceSellingInfo GetBrokenRiceSellingInfo(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity);
         DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity);
         MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity);
+        MenuConfiguration GetMenuConfig(MenuConfigurationEntity menuConfigEntity);
+
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -512,6 +514,26 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             catch (Exception ex)
             {
                 Logger.Error("Error at GetBrokenRiceSellingInfoEntity", ex);
+                throw;
+            }
+
+            return menuInfo;
+        }
+
+
+        public MenuConfiguration GetMenuConfig(MenuConfigurationEntity menuConfigEntity)
+        {
+            MenuConfiguration menuInfo = null;
+            try
+            {
+                if (menuConfigEntity != null)
+                {
+                    menuInfo = Mapper.Map<MenuConfigurationEntity, MenuConfiguration>(menuConfigEntity);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMenuConfig", ex);
                 throw;
             }
 

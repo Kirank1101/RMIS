@@ -7,8 +7,7 @@ namespace RMIS.Entities.BackEnd
 {
     public class MenuInfo
     {
-        private int _MenuID;
-        private string _CustID;
+        private int _MenuID;        
         private int _ParentMenuID;
         private string _Title;
         private string _Description;
@@ -22,11 +21,7 @@ namespace RMIS.Entities.BackEnd
             get { return _MenuID; }
             set { _MenuID = value; }
         }
-        public virtual string CustID
-        {
-            get { return _CustID; }
-            set { _CustID = value; }
-        }
+      
 
         public virtual int ParentMenuID
         {

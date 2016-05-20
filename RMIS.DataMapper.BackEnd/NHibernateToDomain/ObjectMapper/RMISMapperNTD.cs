@@ -592,7 +592,27 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             }
             catch (Exception ex)
             {
-                Logger.Error("Error at GetBrokenRiceSellingInfoEntity", ex);
+                Logger.Error("Error at GetMenuInfoEntity", ex);
+                throw;
+            }
+
+            return menuInfoEntity;
+        }
+
+        public static MenuConfigurationEntity GetMenuConfigEntity(MenuConfiguration  menuInfo)
+        {
+            MenuConfigurationEntity menuInfoEntity = null;
+
+            try
+            {
+                if (menuInfo != null)
+                {
+                    menuInfoEntity = Mapper.Map<MenuConfiguration, MenuConfigurationEntity>(menuInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMenuConfigEntity", ex);
                 throw;
             }
 

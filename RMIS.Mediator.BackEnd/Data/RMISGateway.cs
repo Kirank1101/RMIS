@@ -1194,14 +1194,14 @@
             }
         }
 
-        internal List<MenuInfoEntity> GetMenuInfoEntities(string custID)
+        internal List<MenuInfoEntity> GetMenuInfoEntities()
         {
             try
             {
                 List<MenuInfoEntity> menuInfoEntityList = new List<MenuInfoEntity>();
                 IRepository<MenuInfo> UsersRepository = new RepositoryImpl<MenuInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuInfo))
-                                                                   .Add(Expression.Eq("CustID", custID));
+                                                                   .Add(Expression.Eq("ObsInd", "N"));
                 List<MenuInfo> listMenuInfo = UsersRepository.GetAll(detachedCriteria) as List<MenuInfo>;
                 if (listMenuInfo != null && listMenuInfo.Count > 0)
                 {
@@ -1218,6 +1218,35 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetMenuInfoEntities", ex);
+                throw;
+            }
+        }
+
+
+        internal List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId)
+        {
+            try
+            {
+                List<MenuConfigurationEntity> MenuConfigurationEntityList = new List<MenuConfigurationEntity>();
+                IRepository<MenuConfiguration> UsersRepository = new RepositoryImpl<MenuConfiguration>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuConfiguration))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<MenuConfiguration> listMenuConfiguration = UsersRepository.GetAll(detachedCriteria) as List<MenuConfiguration>;
+                if (listMenuConfiguration != null && listMenuConfiguration.Count > 0)
+                {
+                    foreach (MenuConfiguration adMInfo in listMenuConfiguration)
+                    {
+                        MenuConfigurationEntityList.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMenuConfigEntity(adMInfo));
+                    }
+                }
+                else
+                    MenuConfigurationEntityList = null;
+
+                return MenuConfigurationEntityList;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMenuConfigurationEntities", ex);
                 throw;
             }
         }

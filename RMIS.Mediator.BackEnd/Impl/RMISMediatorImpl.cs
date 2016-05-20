@@ -95,6 +95,27 @@ namespace RMIS.Mediator.BackEnd.Impl
             }
         }
 
+
+        /// <summary>
+        /// Saves the or update audit entity.
+        /// </summary>
+        /// <param name="auditEntity">The audit entity.</param>
+        /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
+        public void SaveOrUpdateMenuConfigEntity(MenuConfigurationEntity menuConfigEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MenuConfiguration>(mapper.GetMenuConfig(menuConfigEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMenuConfigEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMenuConfigEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+
         public void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy)
         {
             try
@@ -784,15 +805,21 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetAllDustSellingInfoEntities(CustId);
         }
 
-        public List<MenuInfoEntity> GetAllMenuInfoEntities(string CustId)
+        public List<MenuInfoEntity> GetAllMenuInfoEntities()
         {
-            return rmisGateway.GetMenuInfoEntities(CustId);
+            return rmisGateway.GetMenuInfoEntities();
         }
 
 
         public List<CustomerInfoEntity> GetCustomerInfoEntities()
         {
             return rmisGateway.GetCustomerInfoEntities();
+        }
+
+
+        public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId)
+        {
+            return rmisGateway.GetMenuConfigurationEntities(CustId);
         }
     }
 }

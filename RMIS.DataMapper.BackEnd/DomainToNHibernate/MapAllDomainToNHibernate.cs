@@ -56,7 +56,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
         public MapAllDomainToNHibernate()
         {
             objRMISMappingDTN = new RMISMappingDTN();
-            
+
         }
 
         #endregion Constructors
@@ -102,6 +102,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapBrokenRiceSellingInfoEntityToBrokenRiceSellingInfo();
                 objRMISMappingDTN.MapDustSellingInfoEntityToDustSellingInfo();
                 objRMISMappingDTN.MapMenuInfoEntityToMenuInfo();
+                objRMISMappingDTN.MapMenuConfigEntiryToMenuConfig();
             }
             catch (Exception exp)
             {

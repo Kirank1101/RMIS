@@ -357,10 +357,10 @@ namespace RMIS.Business
         }
 
 
-        public bool SaveCustomerInformation(string customerName, string organizationName)
+        public bool SaveCustomerInformation(string customerName, string organizationName, string custId)
         {
             CustomerInfoEntity custEntity = new CustomerInfoEntity();
-            custEntity.CustID = CommonUtil.CreateUniqueID("CI"); ;
+            custEntity.CustID = custId;
             custEntity.Name = customerName;
             custEntity.OrganizationName = organizationName;
             custEntity.ObsInd = YesNo.N;
@@ -385,5 +385,41 @@ namespace RMIS.Business
         {
             return imp.GetCustomerInfoEntities();
         }
+
+        public bool SaveMenuConfiguration(string custId, string roleId, string menuId)
+        {
+            MenuConfigurationEntity menuConfigEntity = new MenuConfigurationEntity();
+            menuConfigEntity.MenuConfigId = CommonUtil.CreateUniqueID("MC"); ;
+            menuConfigEntity.CustID = custId;
+            menuConfigEntity.MenuID = menuId.ConvertToInt();
+            menuConfigEntity.RoleId = roleId;
+            menuConfigEntity.ObsInd = YesNo.N;
+            menuConfigEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            menuConfigEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMenuConfigEntity(menuConfigEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return false;
+            }
+            return true;
+        }
+
+        public List<MenuConfigurationEntity> GetMenuConfigurationEntities()
+        {
+            return imp.GetMenuConfigurationEntities(provider.GetCurrentCustomerId());
+        }
+
+        public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId)
+        {
+            return imp.GetMenuConfigurationEntities(custId);
+        }
+
+
     }
 }

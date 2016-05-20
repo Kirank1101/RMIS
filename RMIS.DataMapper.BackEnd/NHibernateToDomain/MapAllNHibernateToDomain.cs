@@ -78,6 +78,7 @@
                 objRMISMappingNTD.MapBrokenRiceSellingInfoEntity();
                 objRMISMappingNTD.MapDustSellingInfoEntity();
                 objRMISMappingNTD.MapMenuInfoToMenuInfoEntity();
+                objRMISMappingNTD.MapMenuConfigurationToMenuConfigurationEntity();
             }
             catch (Exception ex)
             {
