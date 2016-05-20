@@ -162,8 +162,8 @@
   <data name="PruchaseDate" xml:space="preserve">
     <value>Purchase Date</value>
   </data>
-  <data name="QPrice" xml:space="preserve">
-    <value>Price per Qintal</value>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
   </data>
   <data name="QWeight" xml:space="preserve">
     <value>Total Weight</value>
@@ -239,5 +239,8 @@
   </data>
   <data name="SellingDate" xml:space="preserve">
     <value>Selling Date</value>
+  </data>
+  <data name="QPrice" xml:space="preserve">
+    <value>Price per Quintal</value>
   </data>
 </root>

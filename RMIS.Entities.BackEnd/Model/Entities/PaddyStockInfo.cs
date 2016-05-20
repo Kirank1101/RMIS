@@ -15,9 +15,8 @@ namespace RMIS.Entities.BackEnd
         private string _MLotID;
         private string _VehicalNo;
         private string _DriverName;
-        private Int16 _TotalBags; 
-        private Int16 _QWeight;
-        private Int16 _QPrice;
+        private decimal _TotalBags; 
+        private decimal _Price;
         private DateTime _PurchaseDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -63,20 +62,15 @@ namespace RMIS.Entities.BackEnd
             get { return _DriverName; }
             set { _DriverName = value; }
         }
-        public virtual Int16 TotalBags
+        public virtual decimal TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }
         }
-        public virtual Int16 QWeight
+        public virtual decimal Price
         {
-            get { return _QWeight; }
-            set { _QWeight = value; }
-        }
-        public virtual Int16 QPrice
-        {
-            get { return _QPrice; }
-            set { _QPrice = value; }
+            get { return _Price; }
+            set { _Price = value; }
         }
         public virtual DateTime PurchaseDate
         {

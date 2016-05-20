@@ -14,9 +14,8 @@
     <property name="MLotID" column="MLotID" />
     <property name="VehicalNo" column="VehicalNo" />
     <property name="DriverName" column="DriverName" />
-    <property name="TotalBags" column="TotalBags" />
-    <property name="QWeight" column="QWeight" />
-    <property name="QPrice" column="QPrice" />
+    <property name="TotalBags" column="TotalBags" />    
+    <property name="Price" column="Price" />
     <property name="PurchaseDate" column="PurchaseDate" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />

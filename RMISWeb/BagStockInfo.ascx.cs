@@ -26,7 +26,7 @@ public partial class BagStockInfo : BaseUserControl
             && !string.IsNullOrEmpty(txtpricePerBag.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtpricePerBag.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
+            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtpricePerBag.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
             ClearAllInputFields();
 
         }

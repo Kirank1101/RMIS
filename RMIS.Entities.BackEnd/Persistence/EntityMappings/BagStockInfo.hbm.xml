@@ -13,7 +13,7 @@
     <property name="VehicalNo" column="VehicalNo" />
     <property name="DriverName" column="DriverName" />
     <property name="TotalBags" column="TotalBags" />
-    <property name="PricePerBag" column="PricePerBag" />
+    <property name="Price" column="Price" />
     <property name="PurchaseDate" column="PurchaseDate" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />

@@ -69,8 +69,6 @@ namespace RMIS.Domain.Constant
         public const string ValidateValidatePaddyStockDetailsTotalbagsValidate = "Validate32";
         public const string ValidateValidatePaddyStockDetailsPriceEmpty = "Validate33";
         public const string ValidateValidatePaddyStockDetailsPriceValidate = "Validate34";
-        public const string ValidateValidatePaddyStockDetailsWeightEmpty = "Validate35";
-        public const string ValidateValidatePaddyStockDetailsWeightValidate = "Validate36";
         public const string ValidateValidatePaddyStockDetailsPurchaseDateEmpty = "Validate37";
         public const string ValidateValidatePaddyStockDetailsPurchaseDateValidate = "Validate36";
 

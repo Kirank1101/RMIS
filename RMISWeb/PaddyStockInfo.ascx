@@ -69,18 +69,10 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblQWeight" Text="<%$Resources:Resource,QWeight%>"></asp:Label>
+                <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtQweight" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lblQPrice" Text="<%$Resources:Resource,QPrice%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtQprice" />
+                <asp:TextBox runat="server" ID="txtPrice" />
             </td>
         </tr>
         <tr>

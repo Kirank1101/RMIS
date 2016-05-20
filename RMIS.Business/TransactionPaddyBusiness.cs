@@ -58,7 +58,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string vehicleNo, string DriverName, int totalBags, int qWeight, int qPrice, DateTime purchaseDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate)
         {
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
             objPaddyStockInfoEntity.ObsInd = YesNo.N;
@@ -70,10 +70,9 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.PaddyStockID = CommonUtil.CreateUniqueID("PS");
             objPaddyStockInfoEntity.PaddyTypeID = paddyTypeId;
             objPaddyStockInfoEntity.PurchaseDate = purchaseDate;
-            objPaddyStockInfoEntity.QPrice = (short)qPrice;
-            objPaddyStockInfoEntity.QWeight = (short)qWeight;
+            objPaddyStockInfoEntity.Price = Price;
             objPaddyStockInfoEntity.SellerID = sellerId;
-            objPaddyStockInfoEntity.TotalBags = (short)totalBags;
+            objPaddyStockInfoEntity.TotalBags = totalBags;
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
             try
@@ -134,7 +133,7 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
-        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, int PricePerBag, DateTime purchaseDate)
+        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, decimal Price, DateTime purchaseDate)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
             objBagStockInfoEntity.ObsInd = YesNo.N;
@@ -144,7 +143,7 @@ namespace RMIS.Business
             objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");
             objBagStockInfoEntity.BagTypeID = BagTypeId;
             objBagStockInfoEntity.PurchaseDate = purchaseDate;
-            objBagStockInfoEntity.PricePerBag = (short)PricePerBag;
+            objBagStockInfoEntity.Price = Price;
             objBagStockInfoEntity.SellerID = sellerId;
             objBagStockInfoEntity.TotalBags = (short)totalBags;
             objBagStockInfoEntity.VehicalNo = vehicleNo;

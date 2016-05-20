@@ -17,9 +17,8 @@ namespace RMIS.Domain.RiceMill
         public string MLotID { get; set; }
         public string VehicalNo { get; set; }
         public string DriverName { get; set; }
-        public Int16 TotalBags { get; set; }
-        public Int16 QWeight { get; set; }
-        public Int16 QPrice { get; set; }
+        public decimal TotalBags { get; set; }
+        public decimal Price { get; set; }
         public DateTime PurchaseDate { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
