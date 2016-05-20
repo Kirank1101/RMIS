@@ -1,12 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
-    Inherits="MasterDataSettings" %>
-
-<%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
-    TagPrefix="iucon" %>
-
-
-<%@ Register src="MenuItems.ascx" tagname="MenuItems" tagprefix="uc1" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogOnNew.aspx.cs" Inherits="LogOnNew" %>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit"
+    Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,14 +30,7 @@
     <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
 
-      <script type="text/javascript">
-          function changeControlSample(path) {             
-
-              $find('<%= pnlMain.ClientID %>').set_UserControlPath(path);
-              $find('<%= pnlMain.ClientID %>').refresh();              
-
-          }
-                    </script>
+     
 
 </head>
 <body class="nav-md">
@@ -57,78 +46,31 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>RMIS!</span></a>
+             <span>RMIS!</span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
               <div class="profile_info">
-                 <asp:LoginView ID="LoginView1" runat="server">
-                        <LoggedInTemplate>
-                            Welcome back,
-                            <asp:LoginName ID="LoginName1" runat="server" />.
-                            <br />
-                           
-                        </LoggedInTemplate>
-                        <AnonymousTemplate>
-                            Hello, stranger.
-                        </AnonymousTemplate>
-                    </asp:LoginView>
-                    <br />
-                    <asp:LoginStatus ID="LoginStatus1" runat="server"  onloggingout="LoginStatus1_LoggingOut" />
+                 
               </div>
             </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>All</h3>
-                <uc1:MenuItems ID="MenuItems1" runat="server" />              
-              </div>
-
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
           </div>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
+          <div class="top_nav">
 
           <div class="nav_menu">
-            <nav class="" role="navigation">
+              <nav class="" role="navigation">
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  <i class="fa fa-bars"></i>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -141,9 +83,9 @@
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:;">Help</a>
+                    
                     </li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    
                     </li>
                   </ul>
                 </li>
@@ -151,74 +93,9 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    
                   </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a href="inbox.html">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
+               
                 </li>
 
               </ul>
@@ -226,30 +103,51 @@
           </div>
 
         </div>
+        </div>
         <!-- /top navigation -->
 
 
         <!-- page content -->
         <div class="right_col" role="main">
-
-
-            <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddSellerType.ascx"
-                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
-                        <LoadingTemplate>
-                            <div style="margin-left: 84px; margin-top: 10px;">
-                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+         
+                <fieldset>
+                     <table width="100%">
+                            
+                             <tr >
+                            <td colspan="2"  >
+                            <div  style="float:right;" >
+                            <asp:LinkButton ID="lnkContactUs" runat="server" onclick="lnkContactUs_Click">Contact Us</asp:LinkButton>
                             </div>
-                            <div style="text-align: center">
-                                Updating...
-                            </div>
-                        </LoadingTemplate>
-                    </iucon:PartialUpdatePanel>
-                </div>
+                            </td>
+                            </tr>
+                            <tr>
 
-                     
-                          
-        </div>
+                                <td class="style1"  >     
+                                 <b>Select a customer: </b><br />
+                    <asp:DropDownList ID="ddlCustomeList" runat="server" AppendDataBoundItems="true"
+                        DataTextField="Name" DataValueField="CustId">
+                        <asp:ListItem Text="[Select]" Value=""></asp:ListItem>
+                    </asp:DropDownList>     &nbsp;  &nbsp;  &nbsp;
+                    <asp:Button ID="btnSetCustomer" runat="server" Text="Set Customer" 
+                        onclick="btnSetCustomer_Click" />
+                                                              
+                                    <asp:Login ID="lgAbalone" runat="server" 
+                                        OnAuthenticate="lgAbalone_Authenticate" Height="145px">
+                                    </asp:Login>
+                                </td>
+                                <td align="left">
+                                    <div style="font-family: Calibri; font-size: x-large; font-weight: bolder; font-style: oblique;">
+                                        Rice Management</div>
+                                    <div style="font-family: Calibri; font-size: xx-large; font-weight: bolder; font-style: oblique;">
+                                        Information System</div>
+                                </td>
+                            </tr>
+                           
+                        </table>
+                    
+                </fieldset>
+                
+           </div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -276,7 +174,8 @@
     <script src="vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="vendors/nprogress/nprogress.js"></script>
-
+    <!-- Chart.js -->
+   
     <!-- bootstrap-progressbar -->
     <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
@@ -425,6 +324,7 @@
     </script>
     <!-- /Skycons -->
 
+
     
     <!-- bootstrap-daterangepicker -->
     <script>
@@ -501,6 +401,7 @@
     <!-- /bootstrap-daterangepicker -->
 
     
+
                
             
 
