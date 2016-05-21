@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.UI;
 
 
-    /// <summary>
-    /// Summary description for RegisterBasePage
-    /// </summary>
+/// <summary>
+/// Summary description for RegisterBasePage
+/// </summary>
 public class RegisterBasePage : BasePage
-    {
-        
-    }
+{
+
+}

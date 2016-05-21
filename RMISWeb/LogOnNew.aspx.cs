@@ -10,20 +10,24 @@ using RMIS.Binder.BackEnd;
 
 public partial class LogOnNew : RegisterBasePage
 {
-
     protected void lgAbalone_Authenticate(object sender, AuthenticateEventArgs e)
     {
-        Membership.ApplicationName = ApplicationName;
-        Roles.ApplicationName = ApplicationName;
+        Membership.ApplicationName = ddlCustomeList.SelectedItem.Text;
+        Roles.ApplicationName = ddlCustomeList.SelectedItem.Text;
         if (Membership.ValidateUser(lgAbalone.UserName, lgAbalone.Password))
         {
+            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
+            imp.SetApplicationName(ddlCustomeList.SelectedItem.Text);
+            imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
+            imp.SetLoggedInUserId(lgAbalone.UserName);
             // Username/password are valid, check email
             MembershipUser usrInfo = Membership.GetUser(lgAbalone.UserName);
             if (usrInfo != null)
             {
                 // Email matches, the credentials are valid
                 e.Authenticated = true;
-                Response.Redirect("Default.aspx");               
+                FormsAuthentication.SetAuthCookie(lgAbalone.UserName, false);
+                Response.Redirect("Default.aspx");
             }
             else
             {
@@ -35,8 +39,8 @@ public partial class LogOnNew : RegisterBasePage
         {
             // Username/password are not valid...
             e.Authenticated = false;
-        }          
-        
+        }
+
     }
 
 
@@ -79,12 +83,5 @@ public partial class LogOnNew : RegisterBasePage
     //} 
     string sessionApplicationName = "ApplicationName";
     string sessionCustomerId = "sessionCustomerId";
-    protected void btnSetCustomer_Click(object sender, EventArgs e)
-    {
-        if (ddlCustomeList.SelectedIndex > 0)
-        {
-            HttpContext.Current.Session[sessionApplicationName] = ddlCustomeList.SelectedItem.Text;
-            HttpContext.Current.Session[sessionCustomerId] = ddlCustomeList.SelectedValue;
-        }
-    }
+
 }

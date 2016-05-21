@@ -15,6 +15,8 @@ using RMIS.Binder.BackEnd;
 
 public partial class Roles_SetRolesOnMenu : BasePage
 {
+
+    ISessionProvider impSession = BinderSingleton.Instance.GetInstance<ISessionProvider>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -22,7 +24,7 @@ public partial class Roles_SetRolesOnMenu : BasePage
             // Bind the users and roles
             BindUsersToUserList();
             BindRolesToList();
-            lblCustomer.Text = base.ApplicationName;
+            lblCustomer.Text = impSession.GetApplicationName();
         }
     }
 
@@ -43,14 +45,14 @@ public partial class Roles_SetRolesOnMenu : BasePage
         UserList.DataBind();
     }
 
-    
+
     #endregion
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        imp.SaveMenuConfiguration(CustomerId, RoleList.SelectedValue, UserList.SelectedValue);
+        imp.SaveMenuConfiguration(impSession.GetCurrentCustomerId(), RoleList.SelectedValue, UserList.SelectedValue);
         imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        gdAll.DataSource = imp.GetMenuConfigurationEntities(CustomerId);
+        gdAll.DataSource = imp.GetMenuConfigurationEntities(impSession.GetCurrentCustomerId());
         gdAll.DataBind();
     }
 

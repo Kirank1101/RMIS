@@ -47,14 +47,14 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
         bindCustomers();
     }
 
-    string sessionApplicationName = "ApplicationName";
-    string sessionCustomerId = "sessionCustomerId";
+   
     protected void btnSetCustomer_Click(object sender, EventArgs e)
     {
         if (ddlCustomeList.SelectedIndex > 0)
         {
-            HttpContext.Current.Session[sessionApplicationName] = ddlCustomeList.SelectedItem.Text;
-            HttpContext.Current.Session[sessionCustomerId] = ddlCustomeList.SelectedValue;
+            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
+            imp.SetApplicationName(ddlCustomeList.SelectedItem.Text);
+            imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
         }
     }
 }

@@ -12,13 +12,23 @@ namespace RMIS.HttpSessionProvider
         string sessionCustomerId = "CustomerId";
         public string GetCurrentCustomerId()
         {
-            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionCustomerId]!=null)
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionCustomerId] != null)
             {
-               return  Convert.ToString(HttpContext.Current.Session[sessionCustomerId]);
+                return Convert.ToString(HttpContext.Current.Session[sessionCustomerId]);
             }
             return "test1";
-          // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
+
+        public void SetCurrentCustomerId(string customerId)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                HttpContext.Current.Session[sessionCustomerId] = customerId;
+            }
+            // throw new NotImplementedException();
+        }
+
 
         string sessionUserId = "UserId";
         public string GetLoggedInUserId()
@@ -29,5 +39,34 @@ namespace RMIS.HttpSessionProvider
             }
             return "System";
         }
+
+
+        public void SetLoggedInUserId(string userId)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                HttpContext.Current.Session[sessionUserId] = userId;
+            }
+        }
+
+
+        string sessionApplicationName = "ApplicationName";
+        public string GetApplicationName()
+        {
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionApplicationName] != null)
+            {
+                return Convert.ToString(HttpContext.Current.Session[sessionApplicationName]);
+            }
+            return "System";
+        }
+
+        public void SetApplicationName(string applicationName)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                HttpContext.Current.Session[sessionApplicationName] = applicationName;
+            }
+        }
+
     }
 }

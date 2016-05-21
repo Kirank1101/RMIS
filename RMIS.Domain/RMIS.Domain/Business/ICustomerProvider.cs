@@ -7,10 +7,12 @@ namespace RMIS.Domain.Business
 {
     public interface ISessionProvider
     {
-        string  GetCurrentCustomerId();
+        string GetCurrentCustomerId();
+        void SetCurrentCustomerId(string customerId);
         string GetLoggedInUserId();
-
-
+        void SetLoggedInUserId(string userId);
+        string GetApplicationName();
+        void SetApplicationName(string applicationName);
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace AllInOne.BootStrapper.BackEnd
 {
@@ -59,8 +60,18 @@ namespace AllInOne.BootStrapper.BackEnd
         /// <summary>Initializes any data/resources on HTTP module start.</summary>
         /// <param name="context">The application context that instantiated and will be running this module.</param>
         public virtual void OnInit(HttpApplication context)
+        {            
+            context.AuthenticateRequest += new EventHandler(context_AuthenticateRequest);
+            //throw new NotImplementedException();
+        }
+
+        void context_AuthenticateRequest(object sender, EventArgs e)
         {
-            // put your module initialization code here
+            //if (!string.IsNullOrEmpty(ApplicationName))
+            //{
+            //string appName = Membership.ApplicationName;// = ApplicationName;
+            //string appName2 = Roles.ApplicationName;// = ApplicationName;
+            //}
         }
     }
 
@@ -84,7 +95,17 @@ namespace AllInOne.BootStrapper.BackEnd
         public void Init(HttpApplication context)
         {
             base.Init(context);
+            context.AuthenticateRequest += new EventHandler(context_AuthenticateRequest);
             //throw new NotImplementedException();
+        }
+
+        void context_AuthenticateRequest(object sender, EventArgs e)
+        {
+            //if (!string.IsNullOrEmpty(ApplicationName))
+            //{
+             string appName=   Membership.ApplicationName;// = ApplicationName;
+             string appName2 = Roles.ApplicationName;// = ApplicationName;
+            //}
         }
 
         public override void OnStart(HttpApplication context)
