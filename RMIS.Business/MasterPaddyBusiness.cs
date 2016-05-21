@@ -498,5 +498,52 @@ namespace RMIS.Business
         }
         #endregion
 
+
+
+        public List<ProductSellingTypeDTO> GetMProductSellingTypeEntities()
+        {
+
+            List<ProductSellingTypeDTO> listProductSellingTypeDTO = null;
+            // imp.GetSellerTypeEntity(
+            List<MProductSellingTypeEntity> listMProductSellingTypeEntity = imp.GetMProductSellingTypeEnties(provider.GetCurrentCustomerId());
+            if (listMProductSellingTypeEntity != null && listMProductSellingTypeEntity.Count > 0)
+            {
+                listProductSellingTypeDTO = new List<ProductSellingTypeDTO>();
+                foreach (MProductSellingTypeEntity objProductSellingTypeEntity in listMProductSellingTypeEntity)
+                {
+                    ProductSellingTypeDTO objProductSellingTypeDTO = new ProductSellingTypeDTO();
+                    objProductSellingTypeDTO.ProductSellingType = objProductSellingTypeEntity.ProductType;
+                    objProductSellingTypeDTO.Indicator = GetYesorNo(objProductSellingTypeEntity.ObsInd);
+                    objProductSellingTypeDTO.Id = objProductSellingTypeEntity.ProductTypeID;
+                    listProductSellingTypeDTO.Add(objProductSellingTypeDTO);
+                }
+
+            }
+            return listProductSellingTypeDTO;
+        }
+
+        public ResultDTO SaveProductSellingType(string productSellingType)
+        {
+
+            MProductSellingTypeEntity objMProductSellingTypeEntity = new MProductSellingTypeEntity();
+            objMProductSellingTypeEntity.ObsInd = YesNo.N;
+            objMProductSellingTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMProductSellingTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMProductSellingTypeEntity.ProductType = productSellingType;
+            objMProductSellingTypeEntity.ProductTypeID = CommonUtil.CreateUniqueID("PRT");
+            objMProductSellingTypeEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMProductSellingTypeEntity(objMProductSellingTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
+        }
     }
 }

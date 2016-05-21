@@ -16,6 +16,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateRiceSellingDetails(int seller, int RiceType, int RiceBrand, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
         ResultDTO ValidateBrokenRiceSellingDetails(int seller, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
         ResultDTO ValidateDustSellingDetails(int seller, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
+        ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
         
     }
 }

@@ -65,6 +65,8 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMRiceBrandDetailsEntity(MRiceBrandDetailsEntity mRiceBrandDetailsEntity, bool isCopy);
         void SaveOrUpdateDustSellingInfoEntity(DustSellingInfoEntity dustSellingInfoEntity, bool isCopy);
         void SaveOrUpdateMenuConfigEntity(MenuConfigurationEntity menuConfigEntity, bool isCopy);
+        void SaveOrUpdateMProductSellingTypeEntity(MProductSellingTypeEntity mProductSellingTypeEntity, bool isCopy);
+        void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -113,6 +115,8 @@ namespace RMIS.Domain.Mediator
         List<MenuInfoEntity> GetAllMenuInfoEntities();
         List<CustomerInfoEntity> GetCustomerInfoEntities();
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId);
+        List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId);
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId);
         #endregion
     }
 

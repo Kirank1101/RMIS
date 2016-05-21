@@ -21,6 +21,7 @@ namespace RMIS.Domain.Business
         List<LotDetailsDTO> GetLotDetailsEntities(string godownId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
+        List<ProductSellingTypeDTO> GetMProductSellingTypeEntities();
         ResultDTO SaveSellerType(string sellerType);
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
@@ -32,5 +33,6 @@ namespace RMIS.Domain.Business
         ResultDTO SaveLotDetails(string lotName,string godownId);
         ResultDTO SaveWeightDetails(string weight);
         List<MenuInfoEntity> GetMenuInfoEnity();
+        ResultDTO SaveProductSellingType(string productSellingType);
     }
 }

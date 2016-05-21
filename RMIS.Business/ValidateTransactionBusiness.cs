@@ -377,6 +377,76 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
+        {
+            if (ProductSellingTypeId <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsProductSellingTypeId, provider.GetCurrentCustomerId()) };
+            } 
+            else if (seller <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsSeller, provider.GetCurrentCustomerId()) };
+            }
+            else if (RiceType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceType, provider.GetCurrentCustomerId()) };
+            }
+            else if (RiceBrand <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceBrand, provider.GetCurrentCustomerId()) };
+            }
+            else if (BrokenRiceType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitsType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(vehicleNo.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (vehicleNo.Trim().Length > 10)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(totalbags.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (totalbags.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(weight.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (weight.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsWeightValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(price.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsPriceEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (price.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsPriceValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(SellingDate.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsSelingDateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (!SellingDate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsSellingDateValidate, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }
 

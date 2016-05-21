@@ -618,6 +618,44 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return menuInfoEntity;
         }
+        public static MProductSellingTypeEntity GetMProductSellingTypeEntity(MProductSellingType mProductSellingType)
+        {
+            MProductSellingTypeEntity mProductSellingTypeEntity = null;
+
+            try
+            {
+                if (mProductSellingType != null)
+                {
+                    mProductSellingTypeEntity = Mapper.Map<MProductSellingType, MProductSellingTypeEntity>(mProductSellingType);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMProductSellingTypeEntity", ex);
+                throw;
+            }
+
+            return mProductSellingTypeEntity;
+        }
+        public static ProductSellingInfoEntity GetProductSellingInfoEntity(ProductSellingInfo productSellingInfo)
+        {
+            ProductSellingInfoEntity ProductSellingInfoEntity = null;
+
+            try
+            {
+                if (productSellingInfo != null)
+                {
+                    ProductSellingInfoEntity = Mapper.Map<ProductSellingInfo, ProductSellingInfoEntity>(productSellingInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetProductSellingInfoEntity", ex);
+                throw;
+            }
+
+            return ProductSellingInfoEntity;
+        }
 
     }
 

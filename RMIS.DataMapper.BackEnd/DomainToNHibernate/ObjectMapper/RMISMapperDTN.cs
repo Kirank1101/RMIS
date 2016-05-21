@@ -45,7 +45,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity);
         MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity);
         MenuConfiguration GetMenuConfig(MenuConfigurationEntity menuConfigEntity);
-
+        MProductSellingType GetMProductSellingType(MProductSellingTypeEntity mProductSellingTypeEntity);
+        ProductSellingInfo GetProductSellingInfo(ProductSellingInfoEntity productSellingInfoEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -538,6 +539,40 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
 
             return menuInfo;
+        }
+
+
+        public MProductSellingType GetMProductSellingType(MProductSellingTypeEntity mProductSellingTypeEntity)
+        {
+
+            MProductSellingType mProductSellingType = null;
+            try
+            {
+                mProductSellingType = Mapper.Map<MProductSellingTypeEntity, MProductSellingType>(mProductSellingTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMProductSellingType", ex);
+                throw;
+            }
+            return mProductSellingType;
+        }
+
+
+        public ProductSellingInfo GetProductSellingInfo(ProductSellingInfoEntity productSellingInfoEntity)
+        {
+
+            ProductSellingInfo ProductSellingInfo = null;
+            try
+            {
+                ProductSellingInfo = Mapper.Map<ProductSellingInfoEntity, ProductSellingInfo>(productSellingInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfo", ex);
+                throw;
+            }
+            return ProductSellingInfo;
         }
     }
 }

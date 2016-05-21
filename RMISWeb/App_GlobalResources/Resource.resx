@@ -243,4 +243,10 @@
   <data name="QPrice" xml:space="preserve">
     <value>Price per Quintal</value>
   </data>
+  <data name="IsProductDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="ProductSellingType" xml:space="preserve">
+    <value>Selling Product Type</value>
+  </data>
 </root>

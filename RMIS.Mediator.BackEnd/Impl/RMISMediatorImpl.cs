@@ -821,5 +821,47 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMenuConfigurationEntities(CustId);
         }
+
+
+        public List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId)
+        {
+            return rmisGateway.GetMProductSellingTypeEnties(CustId);
+        }
+
+
+        public void SaveOrUpdateMProductSellingTypeEntity(MProductSellingTypeEntity mProductSellingTypeEntity, bool isCopy)
+        {
+
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MProductSellingType>(mapper.GetMProductSellingType(mProductSellingTypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMProductSellingTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMProductSellingTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+
+        public void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<ProductSellingInfo>(mapper.GetProductSellingInfo(productSellingInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateProductSellingInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateProductSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId)
+        {
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId);
+        }
     }
 }

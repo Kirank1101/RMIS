@@ -155,5 +155,19 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValiadteProductSellingType(string ProductSellingType)
+        {
+            if (string.IsNullOrEmpty(ProductSellingType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (ProductSellingType.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }

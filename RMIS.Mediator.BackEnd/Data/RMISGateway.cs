@@ -1250,8 +1250,62 @@
                 throw;
             }
         }
+        internal List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId)
+        {
+            try
+            {
+                List<MProductSellingTypeEntity> listMProductSellingTypeEntity = new List<MProductSellingTypeEntity>();
+                IRepository<MProductSellingType> UsersRepository = new RepositoryImpl<MProductSellingType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MProductSellingType))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<MProductSellingType> listMProductSellingType = UsersRepository.GetAll(detachedCriteria) as List<MProductSellingType>;
+                if (listMProductSellingType != null && listMProductSellingType.Count > 0)
+                {
+                    foreach (MProductSellingType adMInfo in listMProductSellingType)
+                    {
+                        listMProductSellingTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMProductSellingTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMProductSellingTypeEntity = null;
 
+                return listMProductSellingTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMProductSellingTypeEnties", ex);
+                throw;
+            }
+        }
 
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId)
+        {
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoEntities", ex);
+                throw;
+            }
+        }
+        
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

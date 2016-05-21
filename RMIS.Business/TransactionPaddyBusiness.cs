@@ -420,5 +420,45 @@ namespace RMIS.Business
         }
 
 
+
+
+        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId,string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
+        {
+
+            ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
+            objProductSellingInfoEntity.ObsInd = YesNo.N;
+            objProductSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objProductSellingInfoEntity.ProductTypeID = ProductSellingTypeId;
+            objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objProductSellingInfoEntity.MRiceBrandID = MRiceBrandId;
+            objProductSellingInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
+            objProductSellingInfoEntity.DriverName = DriverName;
+            objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
+            objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PI");
+            objProductSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
+            objProductSellingInfoEntity.SellingDate = SellingDate;
+            objProductSellingInfoEntity.QPrice = (short)qPrice;
+            objProductSellingInfoEntity.QWeight = (short)qWeight;
+            objProductSellingInfoEntity.SellerID = sellerId;
+            objProductSellingInfoEntity.TotalBags = (short)totalBags;
+            objProductSellingInfoEntity.VehicalNo = vehicleNo;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateProductSellingInfoEntity(objProductSellingInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities()
+        {
+            return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId());
+        }
     }
 }

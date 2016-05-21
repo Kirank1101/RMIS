@@ -108,6 +108,7 @@ namespace RMIS.Domain.Constant
         public const string ValidateRiceSellingDetailsSellingDateValidate = "Validate69";
         public const string ValidateRiceSellingDetailsUnitsType = "Validate70";
 
+
         public const string ValidateBrokenRiceSellingDetailsSeller= "Validate71";
         public const string ValidateBrokenRiceSellingDetailsBrokenRiceType= "Validate72";
         public const string ValidateBrokenRiceSellingDetailsUnitsType= "Validate73";
@@ -134,5 +135,24 @@ namespace RMIS.Domain.Constant
         public const string ValidateDustSellingDetailsPriceValidate= "Validate93";
         public const string ValidateDustSellingDetailsSelingDateEmpty= "Validate94";
         public const string ValidateDustSellingDetailsSellingDateValidate = "Validate95";
+
+        public const string ValidateProductSellingTypeEmpty= "Validate96";
+        public const string ValidateProductSellingTypeLength = "Validate97";        
+        public const string ValidateProductSellingDetailsSeller = "Validate98";
+        public const string ValidateProductSellingDetailsRiceType = "Validate99";
+        public const string ValidateProductSellingDetailsRiceBrand = "Validate100";
+        public const string ValidateProductSellingDetailsVehicleNoEmpty = "Validate101";
+        public const string ValidateProductSellingDetailsVehicleNoLength = "Validate102";
+        public const string ValidateProductSellingDetailsTotalbagsEmpty = "Validate103";
+        public const string ValidateProductSellingDetailsTotalbagsValidate = "Validate104";
+        public const string ValidateProductSellingDetailsWeightEmpty = "Validate105";
+        public const string ValidateProductSellingDetailsWeightValidate = "Validate106";
+        public const string ValidateProductSellingDetailsPriceEmpty = "Validate107";
+        public const string ValidateProductSellingDetailsPriceValidate = "Validate108";
+        public const string ValidateProductSellingDetailsSelingDateEmpty = "Validate109";
+        public const string ValidateProductSellingDetailsSellingDateValidate = "Validate110";
+        public const string ValidateProductSellingDetailsUnitsType = "Validate111";
+        public const string ValidateProductSellingDetailsBrokenRiceType = "Validate112";
+        public const string ValidateProductSellingDetailsProductSellingTypeId = "Validate113";
     }
 }
