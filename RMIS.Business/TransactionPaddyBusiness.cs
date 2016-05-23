@@ -466,7 +466,8 @@ namespace RMIS.Business
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
-            objHullingProcessEntity.HullingProcessID = CommonUtil.CreateUniqueID("PI");
+            objHullingProcessEntity.HullingProcessID = CommonUtil.CreateUniqueID("HP");
+            objHullingProcessEntity.PaddyTypeID = PaddyTypeID;
             objHullingProcessEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
             objHullingProcessEntity.TotalBags = (short)TotalBags;
@@ -492,6 +493,43 @@ namespace RMIS.Business
         public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
         {
             return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId());
+        }
+
+
+        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price)
+        {
+            HullingProcessTransactionEntity objHullingProcessTransEntity = new HullingProcessTransactionEntity();
+            objHullingProcessTransEntity.ObsInd = YesNo.N;
+            objHullingProcessTransEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+            objHullingProcessTransEntity.HullingProcessID = HullingProcessID;
+            objHullingProcessTransEntity.ProductTypeID = ProductTypeID;
+            objHullingProcessTransEntity.PaddyTypeID = PaddyTypeID;
+            objHullingProcessTransEntity.MRiceProdTypeID = RiceType;
+            objHullingProcessTransEntity.BrokenRiceTypeID = BrokenRiceType;
+            objHullingProcessTransEntity.IsDust = IsDust;
+            objHullingProcessTransEntity.CustID = provider.GetCurrentCustomerId();
+            objHullingProcessTransEntity.UnitsTypeID = UnitsTypeID;
+            objHullingProcessTransEntity.TotalBags = (short)TotalBags;
+            objHullingProcessTransEntity.Price = Price;            
+            objHullingProcessTransEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objHullingProcessTransEntity.LastModifiedDate = DateTime.Now;            
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateHullingProcessTransInfoEntity(objHullingProcessTransEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities()
+        {
+            return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId());
         }
     }
 }

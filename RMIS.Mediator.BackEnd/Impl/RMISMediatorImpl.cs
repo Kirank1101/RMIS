@@ -882,5 +882,25 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetHullingProcessInfoEntities(CustId);
         }
+
+
+        public void SaveOrUpdateHullingProcessTransInfoEntity(HullingProcessTransactionEntity hullingProcessTransactionEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<HullingProcessTransaction>(mapper.GetHullingProcessTransaction(hullingProcessTransactionEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateHullingProcessTransInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateHullingProcessTransInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId)
+        {
+            return rmisGateway.GetHullingProcessTransInfoEntities(CustId);
+        }
     }
 }

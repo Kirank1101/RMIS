@@ -675,6 +675,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return hullingProcessEntity;
         }
+        public static HullingProcessTransactionEntity GetHullingProcessTransInfoEntity(HullingProcessTransaction hullingProcessTransaction)
+        {
+            HullingProcessTransactionEntity HullingProcessTransactionEntity = null;
+
+            try
+            {
+                if (hullingProcessTransaction != null)
+                {
+                    HullingProcessTransactionEntity = Mapper.Map<HullingProcessTransaction, HullingProcessTransactionEntity>(hullingProcessTransaction);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetHullingProcessTransInfoEntity", ex);
+                throw;
+            }
+
+            return HullingProcessTransactionEntity;
+        }
         
 
     }

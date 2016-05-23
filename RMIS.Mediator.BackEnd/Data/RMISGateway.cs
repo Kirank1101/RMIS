@@ -1332,7 +1332,33 @@
                 throw;
             }
         }
-        
+        internal List<HullingProcessTransactionEntity> GetHullingProcessTransInfoEntities(string CustId)
+        {
+            try
+            {
+                List<HullingProcessTransactionEntity> listHullingProcessTrnsEntity = new List<HullingProcessTransactionEntity>();
+                IRepository<HullingProcessTransaction> UsersRepository = new RepositoryImpl<HullingProcessTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcessTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<HullingProcessTransaction> listHullingProcessTrans = UsersRepository.GetAll(detachedCriteria) as List<HullingProcessTransaction>;
+                if (listHullingProcessTrans != null && listHullingProcessTrans.Count > 0)
+                {
+                    foreach (HullingProcessTransaction adMInfo in listHullingProcessTrans)
+                    {
+                        listHullingProcessTrnsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessTransInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listHullingProcessTrnsEntity = null;
+
+                return listHullingProcessTrnsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessTransInfoEntities", ex);
+                throw;
+            }
+        }
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

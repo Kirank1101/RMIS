@@ -43,7 +43,34 @@ public partial class HullingProcess : BaseUserControl
         }
 
     }
-
+    protected void btnHullingProcess_Click(object sender, EventArgs e)
+    { }
+    protected void btnCalculate_Click(object sender, EventArgs e)
+    { }
+    protected void btnSaveClose_Click(object sender, EventArgs e)
+    {
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlpaddypaddytype.SelectedIndex, ddlRiceType.SelectedIndex,ddlBRType.SelectedIndex, ddlpaddyunittype.SelectedIndex,ddlriceUnittype.SelectedIndex,ddlBRUnitsType.SelectedIndex,ddlDustUnitsType.SelectedIndex, txtpadyTotalBags.Text,txtricetotalbags.Text,txtBRTotalBags.Text,txtDustTotalBags.Text,txtPaddyPriceperbag.Text,txtricepriceperbag.Text,txtBRPriceperbag.Text,txtDustPriceperbag.Text);
+        if (resultDto.IsSuccess)
+        {
+            
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            //Save Paddy details
+            resultDto = imp.SaveHullingProcessTransInfo("","Paddy", ddlpaddypaddytype.SelectedValue,null,null,'N',ddlpaddyunittype.SelectedValue, Convert.ToInt16(txtpadyTotalBags.Text.Trim()), Convert.ToDouble(txtPaddyPriceperbag.Text.Trim()));
+            //Save Rice details
+            resultDto = imp.SaveHullingProcessTransInfo("", "Rice", null,ddlRiceType.SelectedValue, null, 'N', ddlriceUnittype.SelectedValue, Convert.ToInt16(txtricetotalbags.Text.Trim()), Convert.ToDouble(txtricepriceperbag.Text.Trim()));
+            //Save BrokenRiceDetails
+            resultDto = imp.SaveHullingProcessTransInfo("", "BrokenRice", null, null, ddlBRType.SelectedValue, 'N', ddlBRUnitsType.SelectedValue, Convert.ToInt16(txtBRTotalBags.Text.Trim()), Convert.ToDouble(txtBRPriceperbag.Text.Trim()));
+            //Save Dust Details
+            resultDto = imp.SaveHullingProcessTransInfo("", "Dust", null, null, null, 'Y', ddlDustUnitsType.SelectedValue, Convert.ToInt16(txtDustTotalBags.Text.Trim()), Convert.ToDouble(txtDustPriceperbag.Text.Trim()));
+            SetMessage(resultDto);
+            if (resultDto.IsSuccess)
+                ClearAllInputFields();
+        }
+        else
+        {
+            SetMessage(resultDto);
+        }
+    }
     private void ClearAllInputFields()
     {
         ddlPaddyType.SelectedIndex = 0;

@@ -82,6 +82,7 @@
                 objRMISMappingNTD.MapMProductSellingTypeEntity();
                 objRMISMappingNTD.MapProductSellingInfoEntity();
                 objRMISMappingNTD.MapHullingProcessInfoEntity();
+                objRMISMappingNTD.MapHullingProcessTransInfoEntity();
             }
             catch (Exception ex)
             {
