@@ -31,7 +31,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<SellerTypeEntity, MSellerType>()
                     .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID ))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.SellerType, opts => opts.MapFrom(src => src.SellerType))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
@@ -392,7 +392,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.CustTrailID, opts => opts.MapFrom(src => src.CustTrailID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.TrailStartDate, opts => opts.MapFrom(src => src.TrailStartDate))
-                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))                    
+                    .ForMember(dest => dest.TrailEndDate, opts => opts.MapFrom(src => src.TrailEndDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -411,7 +411,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 Mapper.CreateMap<CustomerPaymentEntity, CustomerPayment>()
                     .ForMember(dest => dest.CustPaymentID, opts => opts.MapFrom(src => src.CustPaymentID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))                    
+                    .ForMember(dest => dest.OutstandingAmount, opts => opts.MapFrom(src => src.OutstandingAmount))
                     .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
@@ -452,7 +452,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 Mapper.CreateMap<MDrierTypeDetailsEntity, MDrierTypeDetails>()
                     .ForMember(dest => dest.MDrierTypeID, opts => opts.MapFrom(src => src.MDrierTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.DrierName, opts => opts.MapFrom(src => src.DrierName))                    
+                    .ForMember(dest => dest.DrierName, opts => opts.MapFrom(src => src.DrierName))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -627,7 +627,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 Mapper.CreateMap<BrokenRiceSellingInfoEntity, BrokenRiceSellingInfo>()
                     .ForMember(dest => dest.BrokenRiceSellingID, opts => opts.MapFrom(src => src.BrokenRiceSellingID))
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))                    
+                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
@@ -680,12 +680,12 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
         {
             try
             {
-                Mapper.CreateMap<MenuInfoEntity , MenuInfo>()
-                    .ForMember(dest => dest.MenuID , opts => opts.MapFrom(src => src.MenuID))
-                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))                   
-                    .ForMember(dest => dest.Title , opts => opts.MapFrom(src => src.Title ))
-                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description ))
-                    .ForMember(dest => dest.URL , opts => opts.MapFrom(src => src.URL))                    
+                Mapper.CreateMap<MenuInfoEntity, MenuInfo>()
+                    .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
+                    .ForMember(dest => dest.ParentMenuID, opts => opts.MapFrom(src => src.ParentMenuID))
+                    .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.Title))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.URL, opts => opts.MapFrom(src => src.URL))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -707,7 +707,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.MenuConfigId, opts => opts.MapFrom(src => src.MenuConfigId))
-                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))                    
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -768,6 +768,31 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapProductSellingInfoEntityToRiceSellingInfo", ex);
+                throw;
+            }
+        }
+        internal void MapHullingProcessInfoEntityToHullingProcessInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<HullingProcessEntity, HullingProcess>()
+                    .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
+                    .ForMember(dest => dest.PaddyTypeID, opts => opts.MapFrom(src => src.PaddyTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.ProcessDate, opts => opts.MapFrom(src => src.ProcessDate))
+                    .ForMember(dest => dest.ProcessedBy, opts => opts.MapFrom(src => src.ProcessedBy))
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapHullingProcessInfoEntityToHullingProcessInfo", ex);
                 throw;
             }
         }

@@ -67,6 +67,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMenuConfigEntity(MenuConfigurationEntity menuConfigEntity, bool isCopy);
         void SaveOrUpdateMProductSellingTypeEntity(MProductSellingTypeEntity mProductSellingTypeEntity, bool isCopy);
         void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy);
+        void SaveOrUpdateHullingProcessInfoEntity(HullingProcessEntity hullingProcessInfoEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -90,7 +91,7 @@ namespace RMIS.Domain.Mediator
         CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID);
         MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
-        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
+        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);        
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
         List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
         List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
@@ -117,6 +118,7 @@ namespace RMIS.Domain.Mediator
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId);
         List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId);
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId);
+        List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId);
         #endregion
     }
 

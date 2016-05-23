@@ -249,4 +249,10 @@
   <data name="ProductSellingType" xml:space="preserve">
     <value>Selling Product Type</value>
   </data>
+  <data name="HullingProcessBy" xml:space="preserve">
+    <value>ProcessBy</value>
+  </data>
+  <data name="HullingProcessDate" xml:space="preserve">
+    <value>Process Date</value>
+  </data>
 </root>

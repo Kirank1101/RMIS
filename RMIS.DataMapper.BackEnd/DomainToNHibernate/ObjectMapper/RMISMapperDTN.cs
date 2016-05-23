@@ -47,6 +47,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MenuConfiguration GetMenuConfig(MenuConfigurationEntity menuConfigEntity);
         MProductSellingType GetMProductSellingType(MProductSellingTypeEntity mProductSellingTypeEntity);
         ProductSellingInfo GetProductSellingInfo(ProductSellingInfoEntity productSellingInfoEntity);
+        HullingProcess GetHullingProcessInfo(HullingProcessEntity hullingProcessEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -573,6 +574,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return ProductSellingInfo;
+        }
+
+
+        public HullingProcess GetHullingProcessInfo(HullingProcessEntity hullingProcessEntity)
+        {
+            HullingProcess HullingProcess = null;
+            try
+            {
+                HullingProcess = Mapper.Map<HullingProcessEntity, HullingProcess>(hullingProcessEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessInfo", ex);
+                throw;
+            }
+            return HullingProcess;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
             string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice,
             DateTime SellingDate);
+        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -47,6 +48,7 @@ namespace RMIS.Domain.Business
         List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities();
         List<MenuConfigurationEntity> GetMenuConfigurationEntities();
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId);
+        List<HullingProcessEntity> GetAllHullingProcessInfoEntities();
     
     }
 }

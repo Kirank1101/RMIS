@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="HullingProcess" table="[dbo].[HullingProcess]" optimistic-lock="none" >
+    <id name="HullingProcessID" column="HullingProcessID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="PaddyTypeID" column="PaddyTypeID" />
+    <property name="CustID" column="CustID" />
+    <property name="UnitsTypeID" column="UnitsTypeID" />
+    <property name="TotalBags" column="TotalBags" />
+    <property name="ProcessedBy" column="ProcessedBy" />
+    <property name="ProcessDate" column="ProcessDate" />
+    <property name="Status" column="Status" />  
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

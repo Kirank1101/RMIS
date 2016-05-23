@@ -460,5 +460,38 @@ namespace RMIS.Business
         {
             return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId());
         }
+
+
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status)
+        {
+            HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
+            objHullingProcessEntity.ObsInd = YesNo.N;
+            objHullingProcessEntity.HullingProcessID = CommonUtil.CreateUniqueID("PI");
+            objHullingProcessEntity.CustID = provider.GetCurrentCustomerId();
+            objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
+            objHullingProcessEntity.TotalBags = (short)TotalBags;
+            objHullingProcessEntity.ProcessDate = ProcessDate;
+            objHullingProcessEntity.ProcessedBy= ProcessBy;
+            objHullingProcessEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objHullingProcessEntity.LastModifiedDate = DateTime.Now;
+            objHullingProcessEntity.Status= Status;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
+        {
+            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId());
+        }
     }
 }

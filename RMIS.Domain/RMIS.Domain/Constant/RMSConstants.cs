@@ -154,5 +154,13 @@ namespace RMIS.Domain.Constant
         public const string ValidateProductSellingDetailsUnitsType = "Validate111";
         public const string ValidateProductSellingDetailsBrokenRiceType = "Validate112";
         public const string ValidateProductSellingDetailsProductSellingTypeId = "Validate113";
+
+        public const string ValidateHullingProcessDetailsPaddyType = "Validate114";
+        public const string ValidateHullingProcessDetailsUnitsType = "Validate115";
+        public const string ValidateHullingProcessDetailsTotalbagsEmpty = "Validate116";
+        public const string ValidateHullingProcessDetailsTotalbagsValidate = "Validate117";
+        public const string ValidateHullingProcessDetailsProcessBy = "Validate118";
+        public const string ValidateHullingProcessDetailsProcessDateEmpty = "Validate119";
+        public const string ValidateHullingProcessDetailsProcessDateValidate = "Validate120";
     }
 }

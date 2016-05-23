@@ -81,6 +81,7 @@
                 objRMISMappingNTD.MapMenuConfigurationToMenuConfigurationEntity();
                 objRMISMappingNTD.MapMProductSellingTypeEntity();
                 objRMISMappingNTD.MapProductSellingInfoEntity();
+                objRMISMappingNTD.MapHullingProcessInfoEntity();
             }
             catch (Exception ex)
             {

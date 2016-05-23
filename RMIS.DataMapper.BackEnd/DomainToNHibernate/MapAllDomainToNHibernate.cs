@@ -105,6 +105,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMenuConfigEntiryToMenuConfig();
                 objRMISMappingDTN.MapMProductSellingTypeEntityToMProductSellingType();
                 objRMISMappingDTN.MapProductSellingInfoEntityToProductSellingInfo();
+                objRMISMappingDTN.MapHullingProcessInfoEntityToHullingProcessInfo();
             }
             catch (Exception exp)
             {

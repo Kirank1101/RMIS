@@ -447,6 +447,40 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string ProcessBy, string ProcessDate)
+        {
+            if (paddyType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsPaddyType, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitsType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(totalbags.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (totalbags.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(ProcessBy.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessBy, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(ProcessDate.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessDateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (!ProcessDate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessDateValidate, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }
 
