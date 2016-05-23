@@ -52,7 +52,7 @@
     <Compile Include="Model\Entities\BagStockInfo.cs" />
     <Compile Include="Model\Entities\BrokenRiceStockInfo.cs" />
     <Compile Include="Model\Entities\BrokenRiceSellingInfo.cs" />
-    <Compile Include="Model\Entities\HullingProcessTransaction.cs" />
+    <Compile Include="Model\Entities\HullingTransaction.cs" />
     <Compile Include="Model\Entities\HullingProcess.cs" />
     <Compile Include="Model\Entities\ProductSellingInfo.cs" />
     <Compile Include="Model\Entities\MProductSellingType.cs" />

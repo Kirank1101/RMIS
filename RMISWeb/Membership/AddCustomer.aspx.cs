@@ -29,31 +29,17 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
     {
         string custId = Guid.NewGuid().ToString();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text, custId);
-
-        string connectionString = ConfigurationManager.ConnectionStrings["SecurityTutorialsConnectionString"].ConnectionString;
-        string insertSql = "INSERT INTO [aspnet_Applications]([ApplicationName], [LoweredApplicationName], [ApplicationId]) VALUES(@ApplicationName, @LoweredApplicationName, @ApplicationId)";
-        using (SqlConnection myConnection = new SqlConnection(connectionString))
-        {
-            myConnection.Open();
-            SqlCommand myCommand = new SqlCommand(insertSql, myConnection);
-            myCommand.Parameters.AddWithValue("@ApplicationName", txtUsername.Text.Trim());
-            myCommand.Parameters.AddWithValue("@LoweredApplicationName", txtUsername.Text.Trim());
-            myCommand.Parameters.AddWithValue("@ApplicationId", custId);
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-        }
+        imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text, custId);        
         ddlCustomeList.Items.Clear();
         bindCustomers();
     }
 
-   
+
     protected void btnSetCustomer_Click(object sender, EventArgs e)
     {
         if (ddlCustomeList.SelectedIndex > 0)
         {
             ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
-            imp.SetApplicationName(ddlCustomeList.SelectedItem.Text);
             imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
         }
     }

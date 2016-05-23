@@ -162,8 +162,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<UsersEntity, Users>()
                     .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.UserTypeID, opts => opts.MapFrom(src => src.UserTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))                  
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.PassWord, opts => opts.MapFrom(src => src.PassWord))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
@@ -800,7 +799,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
         {
             try
             {
-                Mapper.CreateMap<HullingProcessTransactionEntity, HullingProcessTransaction>()
+                Mapper.CreateMap<HullingProcessTransactionEntity, HullingTransaction>()
                     .ForMember(dest => dest.HullingTransID, opts => opts.MapFrom(src => src.HullingTransID))
                     .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
                     .ForMember(dest => dest.ProductTypeID, opts => opts.MapFrom(src => src.ProductTypeID))

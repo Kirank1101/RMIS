@@ -23,8 +23,7 @@ public partial class Roles_SetRolesOnMenu : BasePage
         {
             // Bind the users and roles
             BindUsersToUserList();
-            BindRolesToList();
-            lblCustomer.Text = impSession.GetApplicationName();
+            BindRolesToList();           
         }
     }
 

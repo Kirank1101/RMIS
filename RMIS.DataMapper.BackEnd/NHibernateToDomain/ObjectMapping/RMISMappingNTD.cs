@@ -151,8 +151,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<Users, UsersEntity>()
                     .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.UserTypeID, opts => opts.MapFrom(src => src.UserTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))                    
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.PassWord, opts => opts.MapFrom(src => src.PassWord))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
@@ -746,7 +745,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
         {
             try
             {
-                Mapper.CreateMap<HullingProcessTransaction, HullingProcessTransactionEntity>()
+                Mapper.CreateMap<HullingTransaction, HullingProcessTransactionEntity>()
                     .ForMember(dest => dest.HullingTransID, opts => opts.MapFrom(src => src.HullingTransID))
                     .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
                     .ForMember(dest => dest.ProductTypeID, opts => opts.MapFrom(src => src.ProductTypeID))

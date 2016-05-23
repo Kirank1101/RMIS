@@ -27,11 +27,7 @@ namespace RMIS.Entities.BackEnd
             set { _CustID = value; }
         }
 
-        public virtual string UserTypeID
-        {
-            get { return _UserTypeID; }
-            set { _UserTypeID = value; }
-        }
+       
         public virtual string Name
         {
             get { return _Name; }

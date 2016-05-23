@@ -12,12 +12,10 @@ public partial class LogOnNew : RegisterBasePage
 {
     protected void lgAbalone_Authenticate(object sender, AuthenticateEventArgs e)
     {
-        Membership.ApplicationName = ddlCustomeList.SelectedItem.Text;
-        Roles.ApplicationName = ddlCustomeList.SelectedItem.Text;
+        
         if (Membership.ValidateUser(lgAbalone.UserName, lgAbalone.Password))
         {
-            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
-            imp.SetApplicationName(ddlCustomeList.SelectedItem.Text);
+            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();            
             imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
             imp.SetLoggedInUserId(lgAbalone.UserName);
             // Username/password are valid, check email

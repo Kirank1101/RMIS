@@ -47,26 +47,7 @@ namespace RMIS.HttpSessionProvider
             {
                 HttpContext.Current.Session[sessionUserId] = userId;
             }
-        }
-
-
-        string sessionApplicationName = "ApplicationName";
-        public string GetApplicationName()
-        {
-            if (HttpContext.Current.Session != null && HttpContext.Current.Session[sessionApplicationName] != null)
-            {
-                return Convert.ToString(HttpContext.Current.Session[sessionApplicationName]);
-            }
-            return "System";
-        }
-
-        public void SetApplicationName(string applicationName)
-        {
-            if (HttpContext.Current.Session != null)
-            {
-                HttpContext.Current.Session[sessionApplicationName] = applicationName;
-            }
-        }
+        }      
 
     }
 }

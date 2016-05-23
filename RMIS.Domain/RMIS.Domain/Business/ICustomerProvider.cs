@@ -11,8 +11,5 @@ namespace RMIS.Domain.Business
         void SetCurrentCustomerId(string customerId);
         string GetLoggedInUserId();
         void SetLoggedInUserId(string userId);
-        string GetApplicationName();
-        void SetApplicationName(string applicationName);
     }
-
 }

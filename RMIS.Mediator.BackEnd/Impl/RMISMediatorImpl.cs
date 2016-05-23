@@ -888,7 +888,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             try
             {
-                genericGateway.SaveOrUpdateEntity<HullingProcessTransaction>(mapper.GetHullingProcessTransaction(hullingProcessTransactionEntity), isCopy);
+                genericGateway.SaveOrUpdateEntity<HullingTransaction>(mapper.GetHullingProcessTransaction(hullingProcessTransactionEntity), isCopy);
             }
             catch (Exception ex)
             {

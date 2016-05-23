@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Security.Cryptography;
 using System.Text;
+using System.Web.Security;
 
-  public class CustomMembershipProvider : MembershipProvider
+namespace RMIS.CustomMembershipProvider
+{
+    public class CustomMembershipProvider : MembershipProvider
     {
         public override string ApplicationName
         {
@@ -31,7 +31,7 @@ using System.Text;
         }
 
 
-        public  MembershipUser CreateUser(string username, string password,string customerId, out MembershipCreateStatus status)
+        public MembershipUser CreateUser(string username, string password, string customerId, out MembershipCreateStatus status)
         {
             ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
             OnValidatingPassword(args);
@@ -44,8 +44,6 @@ using System.Text;
             MembershipUser user = GetUser(username, true);
             if (user == null)
             {
-               
-
                 status = MembershipCreateStatus.Success;
                 return GetUser(username, true);
             }
@@ -59,7 +57,7 @@ using System.Text;
 
         }
 
-      
+
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
@@ -241,3 +239,4 @@ using System.Text;
         }
 
     }
+}

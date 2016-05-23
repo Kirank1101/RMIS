@@ -14,12 +14,6 @@ public class BasePage : Page
 {
     protected override void OnInit(EventArgs e)
     {
-        base.OnInit(e);
-        ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
-        if (!string.IsNullOrEmpty(imp.GetApplicationName()))
-        {
-            Membership.ApplicationName = imp.GetApplicationName();
-            Roles.ApplicationName = imp.GetApplicationName();
-        }
+        base.OnInit(e);        
     }
 }

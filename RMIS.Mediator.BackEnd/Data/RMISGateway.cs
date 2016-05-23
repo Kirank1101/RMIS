@@ -1337,13 +1337,13 @@
             try
             {
                 List<HullingProcessTransactionEntity> listHullingProcessTrnsEntity = new List<HullingProcessTransactionEntity>();
-                IRepository<HullingProcessTransaction> UsersRepository = new RepositoryImpl<HullingProcessTransaction>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcessTransaction))
+                IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingTransaction))
                                                                    .Add(Expression.Eq("CustID", CustId));
-                List<HullingProcessTransaction> listHullingProcessTrans = UsersRepository.GetAll(detachedCriteria) as List<HullingProcessTransaction>;
+                List<HullingTransaction> listHullingProcessTrans = UsersRepository.GetAll(detachedCriteria) as List<HullingTransaction>;
                 if (listHullingProcessTrans != null && listHullingProcessTrans.Count > 0)
                 {
-                    foreach (HullingProcessTransaction adMInfo in listHullingProcessTrans)
+                    foreach (HullingTransaction adMInfo in listHullingProcessTrans)
                     {
                         listHullingProcessTrnsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessTransInfoEntity(adMInfo));
                     }

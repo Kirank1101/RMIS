@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RMIS.Entities.BackEnd
 {
-    public class HullingProcessTransaction
+    public class HullingTransaction
     {
         private string _HullingTransID;
         private string _HullingProcessID;
