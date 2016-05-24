@@ -69,6 +69,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy);
         void SaveOrUpdateHullingProcessInfoEntity(HullingProcessEntity hullingProcessInfoEntity, bool isCopy);
         void SaveOrUpdateHullingProcessTransInfoEntity(HullingProcessTransactionEntity hullingProcessTransactionEntity, bool isCopy);
+        void SaveOrUpdateRoleEntity(MRolesEntity mRoleEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -78,6 +79,7 @@ namespace RMIS.Domain.Mediator
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
         UsersEntity GetUsersEntity(string UserID);
+        UsersEntity GetUsersEntity(string userName,string custId);
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
@@ -92,7 +94,7 @@ namespace RMIS.Domain.Mediator
         CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID);
         MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID);
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
-        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);        
+        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
         List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
         List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
@@ -121,6 +123,7 @@ namespace RMIS.Domain.Mediator
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId);
         List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId);
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
+        List<MRolesEntity> GetAllRolesEntity();
         #endregion
     }
 

@@ -156,13 +156,36 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+
+        internal void MapMRolesEntityToMRoles()
+        {
+            try
+            {
+                Mapper.CreateMap<MRolesEntity, MRoles>()
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
+                    .ForMember(dest => dest.RoleName, opts => opts.MapFrom(src => src.RoleName))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMRolesEntityToMRoles", ex);
+                throw;
+            }
+        }
+
+
         internal void MapUsersEntityToUsers()
         {
             try
             {
                 Mapper.CreateMap<UsersEntity, Users>()
                     .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))                  
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.PassWord, opts => opts.MapFrom(src => src.PassWord))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))

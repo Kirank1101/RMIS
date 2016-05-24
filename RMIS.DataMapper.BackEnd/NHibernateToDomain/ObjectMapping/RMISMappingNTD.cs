@@ -766,6 +766,28 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Logger.Error("Error encountered at MapHullingProcessTransInfoEntity", ex);
                 throw;
             }
+            
+        }
+
+        internal void MapMRolesToMRolesEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MRoles, MRolesEntity>()
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
+                    .ForMember(dest => dest.RoleName, opts => opts.MapFrom(src => src.RoleName))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMRolesToMRolesEntity", ex);
+                throw;
+            }
         }
     }
 }

@@ -512,6 +512,37 @@
                 throw;
             }
         }
+
+        internal UsersEntity GetUsersEntity(string Username, string custId)
+        {
+            try
+            {
+                UsersEntity usersEntity = new UsersEntity();
+                IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
+                                                                   .Add(Expression.Eq("Name", Username))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
+                if (listUsersEntity != null && listUsersEntity.Count > 0)
+                {
+                    foreach (Users adMInfo in listUsersEntity)
+                    {
+                        usersEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetUsersEntity(adMInfo);
+                    }
+                }
+                else
+                    usersEntity = null;
+
+                return usersEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUsersEntity", ex);
+                throw;
+            }
+        }
+
+
         internal UsersEntity GetUsersEntity(string UserID)
         {
             try
@@ -1218,6 +1249,35 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetMenuInfoEntities", ex);
+                throw;
+            }
+        }
+
+
+        internal List<MRolesEntity> GetRoleEntities()
+        {
+            try
+            {
+                List<MRolesEntity> mRolesEntityList = new List<MRolesEntity>();
+                IRepository<MenuInfo> UsersRepository = new RepositoryImpl<MenuInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuInfo))
+                                                                   .Add(Expression.Eq("ObsInd", "N"));
+                List<MRoles> listMRoles = UsersRepository.GetAll(detachedCriteria) as List<MRoles>;
+                if (listMRoles != null && listMRoles.Count > 0)
+                {
+                    foreach (MRoles adMInfo in listMRoles)
+                    {
+                        mRolesEntityList.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRoleEntity(adMInfo));
+                    }
+                }
+                else
+                    mRolesEntityList = null;
+
+                return mRolesEntityList;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRoleEntities", ex);
                 throw;
             }
         }

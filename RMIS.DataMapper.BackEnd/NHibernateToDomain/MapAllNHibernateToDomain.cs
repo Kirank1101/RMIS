@@ -19,7 +19,7 @@
         private static readonly ILog Logger = LogManager.GetLogger(typeof(MapAllNHibernateToDomain));
 
 
-       // HospitalMapping hospitalMapping=null ;
+        // HospitalMapping hospitalMapping=null ;
         RMISMappingNTD objRMISMappingNTD = null;
 
         #endregion Fields
@@ -31,8 +31,8 @@
         /// </summary>
         /// <remarks>Initializes all the mapping.</remarks>
         public MapAllNHibernateToDomain()
-        {           
-           // hospitalMapping = new HospitalMapping();
+        {
+            // hospitalMapping = new HospitalMapping();
             objRMISMappingNTD = new RMISMappingNTD();
 
         }
@@ -83,6 +83,7 @@
                 objRMISMappingNTD.MapProductSellingInfoEntity();
                 objRMISMappingNTD.MapHullingProcessInfoEntity();
                 objRMISMappingNTD.MapHullingProcessTransInfoEntity();
+                objRMISMappingNTD.MapMRolesToMRolesEntity();
             }
             catch (Exception ex)
             {

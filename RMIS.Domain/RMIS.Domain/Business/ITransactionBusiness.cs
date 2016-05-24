@@ -37,6 +37,7 @@ namespace RMIS.Domain.Business
             DateTime SellingDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID,string ProductTypeID,string PaddyTypeID, string RiceType,string BrokenRiceType,char IsDust, string UnitsTypeID, int TotalBags, double Price);
+        ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -51,6 +52,7 @@ namespace RMIS.Domain.Business
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId);
         List<HullingProcessEntity> GetAllHullingProcessInfoEntities();
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities();
+        UsersEntity GetUsersEntity(string userName, string custId, string password);
     
     }
 }

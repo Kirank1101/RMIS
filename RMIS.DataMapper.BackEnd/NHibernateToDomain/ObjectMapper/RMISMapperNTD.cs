@@ -694,6 +694,26 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return HullingProcessTransactionEntity;
         }
+
+        public static MRolesEntity GetRoleEntity(MRoles mrole)
+        {
+            MRolesEntity mRoleEntity = null;
+
+            try
+            {
+                if (mrole != null)
+                {
+                    mRoleEntity = Mapper.Map<MRoles, MRolesEntity>(mrole);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetRolesEntity", ex);
+                throw;
+            }
+
+            return mRoleEntity;
+        }
         
 
     }

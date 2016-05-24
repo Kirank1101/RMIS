@@ -7,12 +7,11 @@ using RMIS.Domain.Abstract;
 namespace RMIS.Domain.RiceMill
 {
     [Serializable]
-    public class UsersEntity : AbstractAllInOne
+    public class MRolesEntity : AbstractAllInOne
     {
-        public string UserID { get; set; }
-        public string CustID { get; set; }       
-        public string Name { get; set; }
-        public string PassWord { get; set; }
+        public string RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string Description { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
@@ -24,8 +23,8 @@ namespace RMIS.Domain.RiceMill
                 return false;
             }
 
-            UsersEntity toCompareWith = obj as UsersEntity;
-            return toCompareWith == null ? false : ((this.UserID == toCompareWith.UserID));
+            MRolesEntity toCompareWith = obj as MRolesEntity;
+            return toCompareWith == null ? false : ((this.RoleId == toCompareWith.RoleId));
         }
 
         /// <summary>Returns a hash code for this instance.</summary>
@@ -33,7 +32,7 @@ namespace RMIS.Domain.RiceMill
         public override int GetHashCode()
         {
             int toReturn = base.GetHashCode();
-            toReturn ^= this.UserID.GetHashCode();
+            toReturn ^= this.RoleId.GetHashCode();
             return toReturn;
         }
 

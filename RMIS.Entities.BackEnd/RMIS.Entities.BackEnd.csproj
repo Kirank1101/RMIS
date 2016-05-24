@@ -52,6 +52,7 @@
     <Compile Include="Model\Entities\BagStockInfo.cs" />
     <Compile Include="Model\Entities\BrokenRiceStockInfo.cs" />
     <Compile Include="Model\Entities\BrokenRiceSellingInfo.cs" />
+    <Compile Include="Model\Entities\MRoles.cs" />
     <Compile Include="Model\Entities\HullingTransaction.cs" />
     <Compile Include="Model\Entities\HullingProcess.cs" />
     <Compile Include="Model\Entities\ProductSellingInfo.cs" />
@@ -154,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\HullingTransaction.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\MRoles.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

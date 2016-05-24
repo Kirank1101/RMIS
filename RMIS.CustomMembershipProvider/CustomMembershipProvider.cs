@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
+using RMIS.Domain.RiceMill;
+using RMIS.Domain.Business;
+using RMIS.Binder.BackEnd;
 
 namespace RMIS.CustomMembershipProvider
 {
@@ -53,8 +56,6 @@ namespace RMIS.CustomMembershipProvider
             }
 
             return null;
-
-
         }
 
 
@@ -63,23 +64,23 @@ namespace RMIS.CustomMembershipProvider
         {
             ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
             OnValidatingPassword(args);
-
             if (args.Cancel)
             {
                 status = MembershipCreateStatus.InvalidPassword;
                 return null;
-            }
-
-            if (RequiresUniqueEmail && GetUserNameByEmail(email) != string.Empty)
-            {
-                status = MembershipCreateStatus.DuplicateEmail;
-                return null;
-            }
-
+            }          
             MembershipUser user = GetUser(username, true);
-
             if (user == null)
             {
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                //imp.SaveÜserInfo(username,password,
+                //UsersEntity entity = new UsersEntity();
+                //entity.CustID = "";
+                //entity.Name=username;
+                //entity.PassWord = Utilities.Encrypt(password, true);
+                //entity.ObsInd=
+
+                 
                 //EmployeeInfo userObj = new EmployeeInfo();
                 //userObj.EmployeeId = username;
                 //userObj.Name = username;
@@ -93,7 +94,6 @@ namespace RMIS.CustomMembershipProvider
                 //userRep.RegisterUser(userObj);
 
                 status = MembershipCreateStatus.Success;
-
                 return GetUser(username, true);
             }
             else
@@ -238,5 +238,7 @@ namespace RMIS.CustomMembershipProvider
             return false;
         }
 
+
+       
     }
 }

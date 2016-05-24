@@ -902,5 +902,31 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetHullingProcessTransInfoEntities(CustId);
         }
+
+
+        public void SaveOrUpdateRoleEntity(MRolesEntity mRoleEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MRoles>(mapper.GetRoles(mRoleEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateRoleEntity", ex);
+                Logger.Error("Error in SaveOrUpdateRoleEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<MRolesEntity> GetAllRolesEntity()
+        {
+            return rmisGateway.GetRoleEntities();
+        }
+
+
+        public UsersEntity GetUsersEntity(string userName, string custId)
+        {
+            return rmisGateway.GetUsersEntity(userName,custId);
+        }
     }
 }

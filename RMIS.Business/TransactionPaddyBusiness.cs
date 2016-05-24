@@ -422,7 +422,7 @@ namespace RMIS.Business
 
 
 
-        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId,string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
+        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
 
             ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
@@ -472,10 +472,10 @@ namespace RMIS.Business
             objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
             objHullingProcessEntity.TotalBags = (short)TotalBags;
             objHullingProcessEntity.ProcessDate = ProcessDate;
-            objHullingProcessEntity.ProcessedBy= ProcessBy;
+            objHullingProcessEntity.ProcessedBy = ProcessBy;
             objHullingProcessEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objHullingProcessEntity.LastModifiedDate = DateTime.Now;
-            objHullingProcessEntity.Status= Status;
+            objHullingProcessEntity.Status = Status;
             try
             {
                 imp.BeginTransaction();
@@ -510,9 +510,9 @@ namespace RMIS.Business
             objHullingProcessTransEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessTransEntity.UnitsTypeID = UnitsTypeID;
             objHullingProcessTransEntity.TotalBags = (short)TotalBags;
-            objHullingProcessTransEntity.Price = Price;            
+            objHullingProcessTransEntity.Price = Price;
             objHullingProcessTransEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objHullingProcessTransEntity.LastModifiedDate = DateTime.Now;            
+            objHullingProcessTransEntity.LastModifiedDate = DateTime.Now;
             try
             {
                 imp.BeginTransaction();
@@ -530,6 +530,39 @@ namespace RMIS.Business
         public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities()
         {
             return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId());
+        }
+
+        public ResultDTO SaveÜserInfo(string userName, string passWord, string custId)
+        {
+            UsersEntity objUsersEntity = new UsersEntity();
+            objUsersEntity.ObsInd = YesNo.N;
+            objUsersEntity.CustID = custId;
+            objUsersEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objUsersEntity.PassWord = Utilities.Encrypt(passWord, true);
+            objUsersEntity.UserID = CommonUtil.CreateUniqueID("UI");
+            objUsersEntity.Name = userName;
+            objUsersEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateUsersEntity(objUsersEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = "Not working" };
+            }
+            return new ResultDTO() { Message = "User Name created" };
+        }
+
+
+        public UsersEntity GetUsersEntity(string userName, string custId, string password)
+        {
+            UsersEntity userEntity = imp.GetUsersEntity(userName, custId);
+            if (userEntity != null)
+                userEntity.PassWord = Utilities.Decrypt(password, true);
+            return userEntity;
         }
     }
 }
