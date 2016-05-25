@@ -30,14 +30,15 @@ namespace RMIS.Domain.Business
             int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate);
         ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags,
             int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate);
-        bool SaveCustomerInformation(string customerName, string organizationName,string custId);
+        bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
         ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
             string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice,
             DateTime SellingDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status);
-        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID,string ProductTypeID,string PaddyTypeID, string RiceType,string BrokenRiceType,char IsDust, string UnitsTypeID, int TotalBags, double Price);
+        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
+        ResultDTO SaveÜserRole(string userId, string roleId, string custId);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -52,7 +53,8 @@ namespace RMIS.Domain.Business
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId);
         List<HullingProcessEntity> GetAllHullingProcessInfoEntities();
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities();
-        UsersEntity GetUsersEntity(string userName, string custId, string password);
-    
+        UsersEntity ValidateUsersEntity(string userName, string custId, string password);
+        UsersEntity GetUsersEntity(string userName, string custId);
+        List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
     }
 }

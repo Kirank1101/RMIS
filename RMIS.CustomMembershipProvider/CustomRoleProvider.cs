@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
+using RMIS.Domain.Business;
+using RMIS.Binder.BackEnd;
+using RMIS.Domain.RiceMill;
+using AllInOne.Common.Library.Util;
 
 namespace RMIS.CustomMembershipProvider
 {
@@ -10,35 +14,119 @@ namespace RMIS.CustomMembershipProvider
     {
         public override bool IsUserInRole(string username, string roleName)
         {
+            if (username.IsUserNameValid())
+            {
+                
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split('/')[1], username.Split('/')[0]);
+                if (listRMUserRoleEntity != null && listRMUserRoleEntity.Count > 0)
+                {
+                    IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                    List<MRolesEntity> listMRolesEntity = impMaster.GetAllRolesEntities();
+                    if (listMRolesEntity != null)
+                    {
+                        listMRolesEntity=listMRolesEntity.FindAll(A=>A.RoleName==roleName).ToList();
+                        foreach (MRolesEntity objlistMRolesEntity in listMRolesEntity)
+                        {
+                            if (listRMUserRoleEntity.Find(A => A.RoleId == objlistMRolesEntity.RoleId) != null)
+                            {
+                                return true;
+                            }
+                        }
 
-            //EmployeeBusiness business = new EmployeeBusiness();
-            //return business.IsUserInRole(username, roleName);
-            throw new NotImplementedException();
+                    }
+
+                }
+            }
+            return false;
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            //EmployeeBusiness business = new EmployeeBusiness();
-            //return business.GetRolesForUser(username);
-            throw new NotImplementedException();
+            List<string> roles = null;
+            if (username.IsUserNameValid())
+            {
+                roles = new List<string>();
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split('/')[1], username.Split('/')[0]);
+                if (listRMUserRoleEntity != null && listRMUserRoleEntity.Count > 0)
+                {
+                    IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                    List<MRolesEntity> listMRolesEntity = impMaster.GetAllRolesEntities();
+                    if (listMRolesEntity != null)
+                    {
+                        foreach (MRolesEntity objlistMRolesEntity in listMRolesEntity)
+                        {
+                            if (listRMUserRoleEntity.Find(A => A.RoleId == objlistMRolesEntity.RoleId) != null)
+                                roles.Add(objlistMRolesEntity.RoleName);
+                        }
+
+                    }
+
+                }
+                //EmployeeBusiness business = new EmployeeBusiness();
+                //return business.GetRolesForUser(username);
+               return  roles.ToArray();
+            }
+            return null ;
         }
 
         // -- Snip --
 
         public override string[] GetAllRoles()
         {
-            //EmployeeBusiness business = new EmployeeBusiness();
-            //return business.GetAllRoles().Select(u => u.RoleName).ToArray();
-            throw new NotImplementedException();
+
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            List<MRolesEntity> listMRolesEntity = imp.GetAllRolesEntities();
+            if (listMRolesEntity != null)
+                return listMRolesEntity.Select(u => u.RoleName).ToArray();
+            return null;
         }
 
         // -- Snip --
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
+            if (usernames != null)
+            {
+                foreach (string username in usernames)
+                {
+                    if (username.IsUserNameValid())
+                    {
+                        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                        UsersEntity user = imp.GetUsersEntity(username.Split('/')[1], username.Split('/')[0]);
+                        if (user is UsersEntity)
+                        {
+                            if (roleNames != null)
+                            {
+                                foreach (string roleName in roleNames)
+                                {
+
+                                    IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                                    List<MRolesEntity> listMRolesEntity = impMaster.GetAllRolesEntities();
+                                    if (listMRolesEntity != null)
+                                    {
+                                        MRolesEntity roleEntity = listMRolesEntity.FindAll(A => A.RoleName == roleName).FirstOrDefault();
+                                        if (roleEntity != null)
+                                        {
+                                            imp.SaveÜserRole(user.UserID, roleEntity.RoleId, user.CustID);
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
             //EmployeeBusiness business = new EmployeeBusiness();
             //business.AddUsersToRoles(usernames, roleNames);
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public override string ApplicationName

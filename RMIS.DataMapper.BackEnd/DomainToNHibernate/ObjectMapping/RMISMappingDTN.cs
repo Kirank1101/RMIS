@@ -721,6 +721,28 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             }
         }
 
+        internal void MapRMUserRoleEntityToRMUserRole()
+        {
+            try
+            {
+                Mapper.CreateMap<RMUserRoleEntity, RMUserRole>()
+                    .ForMember(dest => dest.UserRoleId, opts => opts.MapFrom(src => src.UserRoleId))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
+                    .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))                   
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapRMUserRoleEntityToRMUserRole", ex);
+                throw;
+            }
+        }
+
         internal void MapMenuConfigEntiryToMenuConfig()
         {
             try

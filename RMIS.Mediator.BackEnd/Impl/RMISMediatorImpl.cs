@@ -928,5 +928,25 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetUsersEntity(userName,custId);
         }
+
+        public List<RMUserRoleEntity> GetUserRoleEntities(string userId)
+        {
+            return rmisGateway.GetUserRoles(userId);
+        }
+
+        public void SaveOrUpdateUserRoleEntity(RMUserRoleEntity muserRoleEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<RMUserRole>(mapper.GetUserRole(muserRoleEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateUserRoleEntity", ex);
+                Logger.Error("Error in SaveOrUpdateUserRoleEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
     }
 }

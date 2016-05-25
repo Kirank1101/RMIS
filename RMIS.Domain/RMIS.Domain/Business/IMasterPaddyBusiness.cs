@@ -33,7 +33,8 @@ namespace RMIS.Domain.Business
         ResultDTO SaveLotDetails(string lotName,string godownId);
         ResultDTO SaveWeightDetails(string weight);
         List<MenuInfoEntity> GetMenuInfoEnity();
-        ResultDTO SaveProductSellingType(string productSellingType);        
+        ResultDTO SaveProductSellingType(string productSellingType);
+        List<MRolesEntity> GetAllRolesEntities();
 
     }
 }

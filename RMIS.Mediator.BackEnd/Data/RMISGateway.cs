@@ -543,6 +543,39 @@
         }
 
 
+
+        internal List<RMUserRoleEntity> GetUserRoles(string userId)
+        {
+            try
+            {
+                List<RMUserRoleEntity> listRMUserRoleEntity = new List<RMUserRoleEntity>();
+                IRepository<RMUserRole> UsersRepository = new RepositoryImpl<RMUserRole>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RMUserRole))
+                                                                   .Add(Expression.Eq("UserID", userId))
+                                                                   .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+                List<RMUserRole> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<RMUserRole>;
+                if (listUsersEntity != null && listUsersEntity.Count > 0)
+                {
+                    foreach (RMUserRole adMInfo in listUsersEntity)
+                    {
+                        listRMUserRoleEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetUserRoleEntity(adMInfo));
+                    }
+                }
+                else
+                    listRMUserRoleEntity = null;
+
+                return listRMUserRoleEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUserRoles", ex);
+                throw;
+            }
+        }
+
+
+
         internal UsersEntity GetUsersEntity(string UserID)
         {
             try

@@ -557,12 +557,60 @@ namespace RMIS.Business
         }
 
 
-        public UsersEntity GetUsersEntity(string userName, string custId, string password)
+        public ResultDTO SaveÜserRole(string userId, string roleId, string custId)
+        {
+            RMUserRoleEntity objUsersEntity = new RMUserRoleEntity();
+            objUsersEntity.ObsInd = YesNo.N;
+            objUsersEntity.CustID = custId;
+            objUsersEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objUsersEntity.UserID = userId;
+            objUsersEntity.UserRoleId = CommonUtil.CreateUniqueID("UR");
+            objUsersEntity.RoleId = roleId;
+            objUsersEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateUserRoleEntity(objUsersEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = "Not working" };
+            }
+            return new ResultDTO() { Message = "User Name created" };
+        }
+
+
+        public UsersEntity ValidateUsersEntity(string userName, string custId, string password)
         {
             UsersEntity userEntity = imp.GetUsersEntity(userName, custId);
             if (userEntity != null)
-                userEntity.PassWord = Utilities.Decrypt(password, true);
-            return userEntity;
+            {
+                if (password == Utilities.Decrypt(userEntity.PassWord, true))
+                    return userEntity;
+               
+            }
+
+            return null;
+        }
+
+
+        public List<RMUserRoleEntity> GetUserRoles(string userName, string custId)
+        {
+            List<RMUserRoleEntity> listRMUserRoleEntity = null;
+            UsersEntity objUsersEntity = GetUsersEntity(userName, custId);
+            if (objUsersEntity != null)
+            {
+               return  imp.GetUserRoleEntities(objUsersEntity.UserID);              
+
+            }
+            return listRMUserRoleEntity;
+        }
+
+        public UsersEntity GetUsersEntity(string userName, string custId)
+        {
+            return imp.GetUsersEntity(userName, custId);
         }
     }
 }

@@ -547,6 +547,12 @@ namespace RMIS.Business
         }
 
 
-        
+
+
+
+        public List<MRolesEntity> GetAllRolesEntities()
+        {
+           return  imp.GetAllRolesEntity();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Security;
 using RMIS.Domain.RiceMill;
 using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
+using AllInOne.Common.Library.Util;
 
 namespace RMIS.CustomMembershipProvider
 {
@@ -59,46 +60,34 @@ namespace RMIS.CustomMembershipProvider
         }
 
 
-
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
-            OnValidatingPassword(args);
-            if (args.Cancel)
+            if (username.IsUserNameValid())
             {
-                status = MembershipCreateStatus.InvalidPassword;
-                return null;
-            }          
-            MembershipUser user = GetUser(username, true);
-            if (user == null)
-            {
-                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                //imp.SaveÜserInfo(username,password,
-                //UsersEntity entity = new UsersEntity();
-                //entity.CustID = "";
-                //entity.Name=username;
-                //entity.PassWord = Utilities.Encrypt(password, true);
-                //entity.ObsInd=
-
-                 
-                //EmployeeInfo userObj = new EmployeeInfo();
-                //userObj.EmployeeId = username;
-                //userObj.Name = username;
-                //userObj.Password = Utilities.GetMD5Hash(password);
-                //userObj.WEmail = email;
-                //userObj.JoiningDate = DateTime.Now;
-                //userObj.LastModifiedDate = DateTime.Now;
-                //userObj.ObsInd = Constant.No;
-                //new EmployeeBusiness().AddOrUpdateUser(userObj);
-                //User userRep = new User();
-                //userRep.RegisterUser(userObj);
-
-                status = MembershipCreateStatus.Success;
-                return GetUser(username, true);
+                ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
+                OnValidatingPassword(args);
+                if (args.Cancel)
+                {
+                    status = MembershipCreateStatus.InvalidPassword;
+                    return null;
+                }
+                MembershipUser user = GetUser(username, true);
+                if (user == null)
+                {
+                    ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                    imp.SaveÜserInfo(username.Split('/')[1], password, username.Split('/')[0]);
+                    status = MembershipCreateStatus.Success;
+                    return GetUser(username, true);
+                }
+                else
+                {
+                    status = MembershipCreateStatus.DuplicateUserName;
+                }
             }
             else
             {
-                status = MembershipCreateStatus.DuplicateUserName;
+                status = MembershipCreateStatus.InvalidUserName;
+                return null;
             }
 
             return null;
@@ -146,20 +135,23 @@ namespace RMIS.CustomMembershipProvider
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
+
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            UsersEntity user= imp.GetUsersEntity(username.Split('/')[1], username.Split('/')[0]);     
             //EmployeeBusiness userRep = new EmployeeBusiness();
             //EmployeeInfo user = userRep.GetUserObjByUserName(username);
             //// EmployeeDetail userDetail = userRep.GetAllEmployeeDetails().SingleOrDefault(u => u.EmployeeId == username);
 
-            //if (user != null)
-            //{
-            //    MembershipUser memUser = new MembershipUser("CustomMembershipProvider", username, user.EmployeeId, user.WEmail,
-            //                                                string.Empty, string.Empty,
-            //                                                true, false, DateTime.MinValue,
-            //                                                DateTime.MinValue,
-            //                                                DateTime.MinValue,
-            //                                                DateTime.Now, DateTime.Now);
-            //    return memUser;
-            //}
+            if (user != null)
+            {
+                MembershipUser memUser = new MembershipUser("CustomMembershipProvider", username, string.Empty, string.Empty,
+                                                            string.Empty, string.Empty,
+                                                            true, false, DateTime.MinValue,
+                                                            DateTime.MinValue,
+                                                            DateTime.MinValue,
+                                                            DateTime.Now, DateTime.Now);
+                return memUser;
+            }
             return null;
         }
 
@@ -230,11 +222,13 @@ namespace RMIS.CustomMembershipProvider
 
         public override bool ValidateUser(string username, string password)
         {
-            //string sha1Pswd = Utilities.GetMD5Hash(password);
-            //EmployeeBusiness user = new EmployeeBusiness();
-            //EmployeeInfo userObj = user.GetUserObjByUserName(username, sha1Pswd);
-            //if (userObj != null)
-            //    return true;
+            if (username.IsUserNameValid())
+            {
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                UsersEntity userObj = imp.ValidateUsersEntity(username.Split('/')[1], username.Split('/')[0], password);
+                if (userObj != null)
+                    return true;
+            }
             return false;
         }
 

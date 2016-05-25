@@ -28,5 +28,25 @@
               
                 </p>
 
+                <p>     
+
+         
+        Enter a username: 
+        <asp:TextBox ID="Username" runat="server"></asp:TextBox>
+        <br />
+        
+        Choose a password:
+        <asp:TextBox ID="Password" TextMode="Password" runat="server"></asp:TextBox>        
+        <br />
+        
+       
+                
+        <asp:Button ID="CreateAccountButton" runat="server" 
+            Text="Create the User Account" onclick="CreateAccountButton_Click" />
+    </p>
+    <p>
+        <asp:Label ID="CreateAccountResults" runat="server"></asp:Label>
+    </p>    
+
 </asp:Content>
 

@@ -599,7 +599,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             return menuInfoEntity;
         }
 
-        public static MenuConfigurationEntity GetMenuConfigEntity(MenuConfiguration  menuInfo)
+        public static MenuConfigurationEntity GetMenuConfigEntity(MenuConfiguration menuInfo)
         {
             MenuConfigurationEntity menuInfoEntity = null;
 
@@ -714,7 +714,27 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return mRoleEntity;
         }
-        
+
+        public static RMUserRoleEntity GetUserRoleEntity(RMUserRole mrole)
+        {
+            RMUserRoleEntity mRoleEntity = null;
+
+            try
+            {
+                if (mrole != null)
+                {
+                    mRoleEntity = Mapper.Map<RMUserRole, RMUserRoleEntity>(mrole);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetUserRoleEntity", ex);
+                throw;
+            }
+
+            return mRoleEntity;
+        }
+
 
     }
 

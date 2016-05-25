@@ -196,5 +196,23 @@ namespace AllInOne.Common.Library.Util
             return DateTime.TryParse(prefixText, out dtTemp);
         }
 
+        public static bool IsUserNameValid(this string username)
+        {
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                string[] splitWord = username.Split('/');
+                if (splitWord != null && splitWord.Length != 2)
+                {
+
+                    return false;
+                }
+                else
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }
