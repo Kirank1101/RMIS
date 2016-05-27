@@ -51,6 +51,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         HullingTransaction GetHullingProcessTransaction(HullingProcessTransactionEntity hullingProcessTransactionEntity);
         MRoles GetRoles(MRolesEntity hullingProcessTransactionEntity);
         RMUserRole GetUserRole(RMUserRoleEntity userRoleEntity);
+        HullingProcessExpenses GetHullingProcessExpensesinfo(HullingProcessExpensesEntity hullingProcessExpensesEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -641,6 +642,20 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return mRole;
+        }
+        public HullingProcessExpenses GetHullingProcessExpensesinfo(HullingProcessExpensesEntity hullingProcessExpensesEntity)
+        {
+            HullingProcessExpenses HullingProcessExpenses = null;
+            try
+            {
+                HullingProcessExpenses = Mapper.Map<HullingProcessExpensesEntity, HullingProcessExpenses>(hullingProcessExpensesEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessExpensesinfo", ex);
+                throw;
+            }
+            return HullingProcessExpenses;
         }
     }
 }

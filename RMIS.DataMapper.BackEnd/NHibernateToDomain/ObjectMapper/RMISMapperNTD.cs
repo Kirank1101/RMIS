@@ -734,8 +734,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return mRoleEntity;
         }
+        public static HullingProcessExpensesEntity GetHullingProcessExpensesEntityInfoEntity(HullingProcessExpenses hullingProcessExpensesInfo)
+        {
+            HullingProcessExpensesEntity hullingProcessExpensesEntity = null;
 
+            try
+            {
+                if (hullingProcessExpensesInfo != null)
+                {
+                    hullingProcessExpensesEntity = Mapper.Map<HullingProcessExpenses, HullingProcessExpensesEntity>(hullingProcessExpensesInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetHullingProcessExpensesEntityInfoEntity", ex);
+                throw;
+            }
 
+            return hullingProcessExpensesEntity;
+        }
     }
 
 

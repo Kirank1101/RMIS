@@ -868,6 +868,30 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapHullingProcessExpensesInfoEntityToHullingProcessExpensesInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<HullingProcessExpensesEntity, HullingProcessExpenses>()
+                    .ForMember(dest => dest.HullingProcessExpenID, opts => opts.MapFrom(src => src.HullingProcessExpenID))
+                    .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.PowerExpenses, opts => opts.MapFrom(src => src.PowerExpenses))
+                    .ForMember(dest => dest.LabourExpenses, opts => opts.MapFrom(src => src.LabourExpenses))
+                    .ForMember(dest => dest.OtherExpenses, opts => opts.MapFrom(src => src.OtherExpenses))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapHullingProcessExpensesInfoEntityToHullingProcessExpensesInfo", ex);
+                throw;
+            }
+        }
+
 
     }
 }

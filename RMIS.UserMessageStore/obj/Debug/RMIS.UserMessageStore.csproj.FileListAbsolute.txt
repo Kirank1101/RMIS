@@ -2,7 +2,6 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\bin\Debug\RMIS.
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\bin\Debug\RMIS.UserMessageStore.pdb
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\bin\Debug\RMIS.Domain.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\bin\Debug\RMIS.Domain.pdb
-C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\obj\Debug\RMIS.UserMessageStore.csprojResolveAssemblyReference.cache
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\obj\Debug\RMIS.UserMessageStore.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.UserMessageStore\obj\Debug\RMIS.UserMessageStore.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.UserMessageStore\bin\Debug\RMIS.UserMessageStore.dll

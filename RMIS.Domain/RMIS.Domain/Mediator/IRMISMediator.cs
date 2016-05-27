@@ -71,6 +71,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateHullingProcessTransInfoEntity(HullingProcessTransactionEntity hullingProcessTransactionEntity, bool isCopy);
         void SaveOrUpdateRoleEntity(MRolesEntity mRoleEntity, bool isCopy);
         void SaveOrUpdateUserRoleEntity(RMUserRoleEntity muserRoleEntity, bool isCopy);
+        void SaveOrUpdateHullingProcessExpensesInfoEntity(HullingProcessExpensesEntity hullingProcessExpensesEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -123,6 +124,7 @@ namespace RMIS.Domain.Mediator
         List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId);
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId);
         List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId);
+        List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId); 
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);

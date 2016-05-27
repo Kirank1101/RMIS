@@ -1452,6 +1452,34 @@
                 throw;
             }
         }
+        internal List<HullingProcessExpensesEntity> GetHullingProcessExpensesEntities(string CustId)
+        {
+            try
+            {
+                List<HullingProcessExpensesEntity> listHullingProcessExpensesEntity = new List<HullingProcessExpensesEntity>();
+                IRepository<HullingProcessExpenses> UsersRepository = new RepositoryImpl<HullingProcessExpenses>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcessExpenses))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<HullingProcessExpenses> listHullingProcessExpenses = UsersRepository.GetAll(detachedCriteria) as List<HullingProcessExpenses>;
+                if (listHullingProcessExpenses != null && listHullingProcessExpenses.Count > 0)
+                {
+                    foreach (HullingProcessExpenses adMInfo in listHullingProcessExpenses)
+                    {
+                        listHullingProcessExpensesEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessExpensesEntityInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listHullingProcessExpensesEntity = null;
+
+                return listHullingProcessExpensesEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessExpensesEntities", ex);
+                throw;
+            }
+        }
+ 
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

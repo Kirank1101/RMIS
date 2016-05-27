@@ -85,6 +85,7 @@
                 objRMISMappingNTD.MapHullingProcessTransInfoEntity();
                 objRMISMappingNTD.MapMRolesToMRolesEntity();
                 objRMISMappingNTD.MapRMUserRoleToRMUserRoleEntity();
+                objRMISMappingNTD.MapHullingProcessExpensesInfoEntity();
             }
             catch (Exception ex)
             {

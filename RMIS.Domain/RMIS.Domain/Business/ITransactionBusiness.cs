@@ -39,6 +39,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
+        ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -56,5 +57,6 @@ namespace RMIS.Domain.Business
         UsersEntity ValidateUsersEntity(string userName, string custId, string password);
         UsersEntity GetUsersEntity(string userName, string custId);
         List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
+        List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
     }
 }

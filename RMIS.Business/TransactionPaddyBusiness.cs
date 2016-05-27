@@ -612,5 +612,35 @@ namespace RMIS.Business
         {
             return imp.GetUsersEntity(userName, custId);
         }
+        public ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses)
+        {
+            HullingProcessExpensesEntity objHullingProcessExpensesEntity = new HullingProcessExpensesEntity();
+            objHullingProcessExpensesEntity.ObsInd = YesNo.N;
+            objHullingProcessExpensesEntity.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
+            objHullingProcessExpensesEntity.HullingProcessID = HullingProcessID;
+            objHullingProcessExpensesEntity.CustID = provider.GetCurrentCustomerId();
+            objHullingProcessExpensesEntity.PowerExpenses = PowerExpenses;
+            objHullingProcessExpensesEntity.LabourExpenses = LabourExpenses;
+            objHullingProcessExpensesEntity.OtherExpenses = OtherExpenses;
+            objHullingProcessExpensesEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objHullingProcessExpensesEntity.LastModifiedDate = DateTime.Now;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateHullingProcessExpensesInfoEntity(objHullingProcessExpensesEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+        public List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities()
+        {
+            return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId());
+        }
     }
 }

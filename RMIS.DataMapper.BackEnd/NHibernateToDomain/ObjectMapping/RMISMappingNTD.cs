@@ -151,7 +151,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<Users, UsersEntity>()
                     .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))                    
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.PassWord, opts => opts.MapFrom(src => src.PassWord))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
@@ -195,7 +195,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.MLotID, opts => opts.MapFrom(src => src.MLotID))
                     .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
                     .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
-                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))                    
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
                     .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
                     .ForMember(dest => dest.PurchaseDate, opts => opts.MapFrom(src => src.PurchaseDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
@@ -658,7 +658,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.MenuID, opts => opts.MapFrom(src => src.MenuID))
                     .ForMember(dest => dest.MenuConfigId, opts => opts.MapFrom(src => src.MenuConfigId))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))                   
+                    .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -766,7 +766,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Logger.Error("Error encountered at MapHullingProcessTransInfoEntity", ex);
                 throw;
             }
-            
+
         }
 
         internal void MapMRolesToMRolesEntity()
@@ -812,6 +812,28 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapHullingProcessExpensesInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<HullingProcessExpenses, HullingProcessExpensesEntity>()
+                    .ForMember(dest => dest.HullingProcessExpenID, opts => opts.MapFrom(src => src.HullingProcessExpenID))
+                    .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.PowerExpenses, opts => opts.MapFrom(src => src.PowerExpenses))
+                    .ForMember(dest => dest.LabourExpenses, opts => opts.MapFrom(src => src.LabourExpenses))
+                    .ForMember(dest => dest.OtherExpenses, opts => opts.MapFrom(src => src.OtherExpenses))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapHullingProcessExpensesInfoEntity", ex);
+                throw;
+            }
+        }
+
 
     }
 }

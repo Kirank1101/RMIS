@@ -947,6 +947,23 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId)
+        {
+            return rmisGateway.GetHullingProcessExpensesEntities(CustId);
+        }
+        public void SaveOrUpdateHullingProcessExpensesInfoEntity(HullingProcessExpensesEntity hullingProcessExpensesEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<HullingProcessExpenses>(mapper.GetHullingProcessExpensesinfo(hullingProcessExpensesEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateHullingProcessTransInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateHullingProcessTransInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
 
     }
 }
