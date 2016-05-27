@@ -1292,8 +1292,8 @@
             try
             {
                 List<MRolesEntity> mRolesEntityList = new List<MRolesEntity>();
-                IRepository<MenuInfo> UsersRepository = new RepositoryImpl<MenuInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuInfo))
+                IRepository<MRoles> UsersRepository = new RepositoryImpl<MRoles>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRoles))
                                                                    .Add(Expression.Eq("ObsInd", "N"));
                 List<MRoles> listMRoles = UsersRepository.GetAll(detachedCriteria) as List<MRoles>;
                 if (listMRoles != null && listMRoles.Count > 0)

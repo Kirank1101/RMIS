@@ -35,6 +35,8 @@ namespace RMIS.Domain.Business
         List<MenuInfoEntity> GetMenuInfoEnity();
         ResultDTO SaveProductSellingType(string productSellingType);
         List<MRolesEntity> GetAllRolesEntities();
+        ResultDTO SaveRoleEntity(string roleName);
+      
 
     }
 }

@@ -60,6 +60,8 @@ namespace RMIS.CustomMembershipProvider
         }
 
 
+       
+
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             if (username.IsUserNameValid())
@@ -120,7 +122,8 @@ namespace RMIS.CustomMembershipProvider
 
         public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            totalRecords = 0;
+            return null;
         }
 
         public override int GetNumberOfUsersOnline()

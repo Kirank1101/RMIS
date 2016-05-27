@@ -547,7 +547,30 @@ namespace RMIS.Business
         }
 
 
+        public ResultDTO SaveRoleEntity(string roleName)
+        {
 
+            MRolesEntity objMRolesEntity = new MRolesEntity();
+            objMRolesEntity.ObsInd = YesNo.N;
+            objMRolesEntity.RoleId  = CommonUtil.CreateUniqueID("RL");
+            objMRolesEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMRolesEntity.RoleName = roleName;
+            objMRolesEntity.Description = roleName;
+            objMRolesEntity.LastModifiedDate = DateTime.Now;
+            
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateRoleEntity(objMRolesEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = "Role was not created" };
+            }
+            return new ResultDTO() { Message = "Role created successfully." };
+        }
 
 
         public List<MRolesEntity> GetAllRolesEntities()

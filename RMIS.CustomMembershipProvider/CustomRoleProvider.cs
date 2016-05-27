@@ -143,12 +143,14 @@ namespace RMIS.CustomMembershipProvider
 
         public override void CreateRole(string roleName)
         {
-            throw new NotImplementedException();
+            IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+           // impMaster.SaveimpMaster
+            impMaster.SaveRoleEntity(roleName);
         }
 
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override string[] FindUsersInRole(string roleName, string usernameToMatch)
@@ -168,7 +170,15 @@ namespace RMIS.CustomMembershipProvider
 
         public override bool RoleExists(string roleName)
         {
-            throw new NotImplementedException();
+            IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            List<MRolesEntity> listMRolesEntity = impMaster.GetAllRolesEntities();
+            if (listMRolesEntity != null)
+            {
+                listMRolesEntity = listMRolesEntity.FindAll(A => A.RoleName == roleName).ToList();
+                if (listMRolesEntity != null && listMRolesEntity.Count > 0)
+                    return true;
+            }
+            return false;
         }
     }
 }

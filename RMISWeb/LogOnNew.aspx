@@ -123,11 +123,7 @@
                             <tr>
 
                                 <td class="style1"  >     
-                                 <b>Select a customer: </b><br />
-                    <asp:DropDownList ID="ddlCustomeList" runat="server" AppendDataBoundItems="true"
-                        DataTextField="Name" DataValueField="CustId" Height="16px" Width="174px">
-                        <asp:ListItem Text="[Select]" Value=""></asp:ListItem>
-                    </asp:DropDownList>     &nbsp;  &nbsp;  &nbsp;
+                                 
                     
                                                               
                                     <asp:Login ID="lgAbalone" runat="server" 

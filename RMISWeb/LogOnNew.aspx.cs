@@ -15,8 +15,8 @@ public partial class LogOnNew : RegisterBasePage
         
         if (Membership.ValidateUser(lgAbalone.UserName, lgAbalone.Password))
         {
-            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();            
-            imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
+            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
+            imp.SetCurrentCustomerId(lgAbalone.UserName.Split('/')[1]);
             imp.SetLoggedInUserId(lgAbalone.UserName);
             // Username/password are valid, check email
             MembershipUser usrInfo = Membership.GetUser(lgAbalone.UserName);
@@ -44,17 +44,17 @@ public partial class LogOnNew : RegisterBasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
-            bindCustomers();
+        //if (!Page.IsPostBack)
+           // bindCustomers();
     }
 
 
-    void bindCustomers()
-    {
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        ddlCustomeList.DataSource = imp.GetAllCustomerInfoEntities();
-        ddlCustomeList.DataBind();
-    }
+    //void bindCustomers()
+    //{
+    //    ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+    //    ddlCustomeList.DataSource = imp.GetAllCustomerInfoEntities();
+    //    ddlCustomeList.DataBind();
+    //}
 
     protected void lnkContactUs_Click(object sender, EventArgs e)
     {

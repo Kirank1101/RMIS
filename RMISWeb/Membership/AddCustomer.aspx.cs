@@ -26,7 +26,16 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
+        {
             bindCustomers();
+            // Bind the users and roles
+            BindUsersToUserList();
+            BindRolesToList();
+
+            DisplayRolesInGrid();
+        }
+
+        CreateAccountResults.Text = ActionStatus.Text = string.Empty;
     }
 
     void bindCustomers()
@@ -38,11 +47,18 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
 
     protected void btnCreateCustomer_Click(object sender, EventArgs e)
     {
-        string custId = Guid.NewGuid().ToString();
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text, custId);        
-        ddlCustomeList.Items.Clear();
-        bindCustomers();
+        if (!string.IsNullOrEmpty(txtUsername.Text))
+        {
+            //string custId = Guid.NewGuid().ToString();
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            imp.SaveCustomerInformation(txtUsername.Text.Trim(), txtOrganization.Text, txtUsername.Text.Trim());
+            ddlCustomeList.Items.Clear();
+            bindCustomers();
+        }
+        else
+        {
+            CreateAccountResults.Text = "Please enter customer name";
+        }
     }
 
 
@@ -50,7 +66,6 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
     {
         if (ddlCustomeList.SelectedIndex > 0)
         {
-            
             imp.SetCurrentCustomerId(ddlCustomeList.SelectedValue);
         }
     }
@@ -58,45 +73,142 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
     protected void CreateAccountButton_Click(object sender, EventArgs e)
     {
 
-        
-
-        MembershipCreateStatus createStatus;
-
-        MembershipUser newUser =
-             Membership.CreateUser( imp.GetCurrentCustomerId() + @"//" + Username.Text, Password.Text,
-                                   string.Empty, string.Empty,
-                                   string.Empty, true,null,
-                                   out createStatus);
-
-        switch (createStatus)
+        if (ddlCustomeList.SelectedIndex > 0)
         {
-            case MembershipCreateStatus.Success:
-                CreateAccountResults.Text = "The user account was successfully created!";
-                break;
 
-            case MembershipCreateStatus.DuplicateUserName:
-                CreateAccountResults.Text = "There already exists a user with this username.";
-                break;
+            MembershipCreateStatus createStatus;
 
-            case MembershipCreateStatus.DuplicateEmail:
-                CreateAccountResults.Text = "There already exists a user with this email address.";
-                break;
+            MembershipUser newUser =
+                 Membership.CreateUser(ddlCustomeList.SelectedItem.Text   + @"/" + Username.Text, Password.Text,
+                                       "k@k.com", "Yes, I am here ?",
+                                       "Yes, I am here ?", true, null,
+                                       out createStatus);
 
-            case MembershipCreateStatus.InvalidEmail:
-                CreateAccountResults.Text = "There email address you provided in invalid.";
-                break;
+            Roles.AddUsersToRoles(new string[] { ddlCustomeList.SelectedItem.Text + @"/" + Username.Text }, new string[] { ddlRoles.SelectedItem.Text });
 
-            case MembershipCreateStatus.InvalidAnswer:
-                CreateAccountResults.Text = "There security answer was invalid.";
-                break;
+            switch (createStatus)
+            {
+                case MembershipCreateStatus.Success:
+                    CreateAccountResults.Text = "The user account was successfully created!";
+                    break;
 
-            case MembershipCreateStatus.InvalidPassword:
-                CreateAccountResults.Text = "The password you provided is invalid. It must be seven characters long and have at least one non-alphanumeric character.";
-                break;
+                case MembershipCreateStatus.DuplicateUserName:
+                    CreateAccountResults.Text = "There already exists a user with this username.";
+                    break;
 
-            default:
-                CreateAccountResults.Text = "There was an unknown error; the user account was NOT created.";
-                break;
+                case MembershipCreateStatus.DuplicateEmail:
+                    CreateAccountResults.Text = "There already exists a user with this email address.";
+                    break;
+
+                case MembershipCreateStatus.InvalidEmail:
+                    CreateAccountResults.Text = "There email address you provided in invalid.";
+                    break;
+
+                case MembershipCreateStatus.InvalidAnswer:
+                    CreateAccountResults.Text = "There security answer was invalid.";
+                    break;
+
+                case MembershipCreateStatus.InvalidPassword:
+                    CreateAccountResults.Text = "The password you provided is invalid. It must be seven characters long and have at least one non-alphanumeric character.";
+                    break;
+
+                default:
+                    CreateAccountResults.Text = "There was an unknown error; the user account was NOT created.";
+                    break;
+            }
+
+            gdUsers.DataSource = Roles.GetRolesForUser(ddlCustomeList.SelectedItem.Text + @"/" + Username.Text);
+            gdUsers.DataBind();
+        }
+        else
+        {
+            CreateAccountResults.Text = "Please select customer.";
         }
     }
+
+    private void BindRolesToList()
+    {
+        // Get all of the roles
+        string[] roles = Roles.GetAllRoles();
+        ddlRoles.DataSource = roles;
+        RoleList.DataSource = roles;
+        RoleList.DataBind();
+        ddlRoles.DataBind();
+    }
+
+    #region 'By User' Interface-Specific Methods
+    private void BindUsersToUserList()
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        UserList.DataSource = imp.GetMenuInfoEnity();
+        UserList.DataBind();
+    }
+
+    void bindMenuConfiguration()
+    {
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        gdAll.DataSource = imp.GetMenuConfigurationEntities(ddlCustomeList.SelectedValue);
+        gdAll.DataBind();
+    }
+
+
+
+    #endregion
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        if (ddlCustomeList.SelectedIndex > 0)
+        {
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            imp.SaveMenuConfiguration(ddlCustomeList.SelectedValue, RoleList.SelectedValue, UserList.SelectedValue);
+            bindMenuConfiguration();
+        }
+        else
+        {
+            ActionStatus.Text = "Please select customer.";
+        }
+    }
+    protected void ddlCustomeList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        lblCustomer.Text = ddlCustomeList.SelectedItem.Text;
+        bindMenuConfiguration();
+    }
+
+
+
+    private void DisplayRolesInGrid()
+    {
+        gdRoleList.DataSource = Roles.GetAllRoles();
+        gdRoleList.DataBind();
+    }
+
+    protected void CreateRoleButton_Click(object sender, EventArgs e)
+    {
+        string newRoleName = RoleName.Text.Trim();
+
+        if (!Roles.RoleExists(newRoleName))
+        {
+            // Create the role
+            Roles.CreateRole(newRoleName);
+
+            // Refresh the RoleList Grid
+            DisplayRolesInGrid();
+            BindRolesToList();
+        }
+
+        RoleName.Text = string.Empty;
+    }
+
+    protected void RoleList_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        // Get the RoleNameLabel
+        Label RoleNameLabel = gdRoleList.Rows[e.RowIndex].FindControl("RoleNameLabel") as Label;
+
+        // Delete the role
+        Roles.DeleteRole(RoleNameLabel.Text, false);
+
+        // Rebind the data to the RoleList grid
+        DisplayRolesInGrid();
+    }
+
+
 }
