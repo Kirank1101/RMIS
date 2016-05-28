@@ -15,7 +15,6 @@
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
             </asp:CreateUserWizardStep>
             <asp:WizardStep ID="UserSettings" runat="server" StepType="Step" Title="Your Settings">
-                
                 <br />
                 <p>
                     <b>Home Town:</b><br />
