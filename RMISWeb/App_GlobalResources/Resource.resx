@@ -270,4 +270,28 @@
   <data name="PricePerBags" xml:space="preserve">
     <value>PricePerBags</value>
   </data>
+  <data name="BalanceAmount" xml:space="preserve">
+    <value>BalanceAmount</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>BankName</value>
+  </data>
+  <data name="ChequeNo" xml:space="preserve">
+    <value>Cheque No</value>
+  </data>
+  <data name="DDNo" xml:space="preserve">
+    <value>DDNo</value>
+  </data>
+  <data name="PaymentId" xml:space="preserve">
+    <value>PaymentId</value>
+  </data>
+  <data name="PaymentMode" xml:space="preserve">
+    <value>Payment Mode</value>
+  </data>
+  <data name="ReceivedAmount" xml:space="preserve">
+    <value>Received Amount</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
 </root>

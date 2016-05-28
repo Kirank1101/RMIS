@@ -12,7 +12,6 @@
                 </asp:DropDownList>
             </td>
         </tr>
-        
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
@@ -23,7 +22,6 @@
                 </asp:DropDownList>
             </td>
         </tr>
-        
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblRiceType" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
@@ -39,8 +37,7 @@
                 <asp:Label runat="server" ID="lblRiceBrandName" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlRiceBrand" 
-                    runat="server" AutoPostBack="true" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlRiceBrand" runat="server" AutoPostBack="true" AppendDataBoundItems="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -111,6 +108,93 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtSellingDate" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>
+                    Payment Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblrpaymentid" Text="<%$Resources:Resource,PaymentId%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblpaymentid" ></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lbltotalamount" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblTotalProductCost" ></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Vertical"
+                                RepeatLayout="Table">
+                                <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
+                                <asp:ListItem Text="Cheque" Value="Cheque"></asp:ListItem>
+                                <asp:ListItem Text="Demand Draft" Value="DD"></asp:ListItem>
+                                <asp:ListItem Text="Fund Transfer" Value="Transfer"></asp:ListItem>
+                                <asp:ListItem Text="Credit" Value="Credit"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblchequeno" Text="<%$Resources:Resource,ChequeNo%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtChequeNo" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblddno" Text="<%$Resources:Resource,DDNo%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtDDno" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblbankname" Text="<%$Resources:Resource,BankName%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="BankName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblreceivedamount" Text="<%$Resources:Resource,ReceivedAmount%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtReceivedAmount" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblBalanceAmount" Text="<%$Resources:Resource,BalanceAmount%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtBalanceAmount" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtNextPaymentDate" />
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>
