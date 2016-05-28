@@ -255,4 +255,19 @@
   <data name="HullingProcessDate" xml:space="preserve">
     <value>Process Date</value>
   </data>
+  <data name="LabourExpenses" xml:space="preserve">
+    <value>Labour Expenses</value>
+  </data>
+  <data name="OtherExpenses" xml:space="preserve">
+    <value>Other Expenses</value>
+  </data>
+  <data name="PaddyPurchasedDate" xml:space="preserve">
+    <value>PurchasedDate</value>
+  </data>
+  <data name="PowerExpenses" xml:space="preserve">
+    <value>Power Expenses</value>
+  </data>
+  <data name="PricePerBags" xml:space="preserve">
+    <value>PricePerBags</value>
+  </data>
 </root>

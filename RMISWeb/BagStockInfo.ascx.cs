@@ -17,6 +17,12 @@ public partial class BagStockInfo : BaseUserControl
             ddlsellernames.DataValueField = "SellerID";
             ddlsellernames.DataBind();
 
+            ddlBagType.DataSource = impb.GetMBagTypeEntities();
+            ddlBagType.DataTextField = "BagType";
+            ddlBagType.DataValueField = "Id";
+            ddlBagType.DataBind();
+
+            
         }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)

@@ -62,6 +62,8 @@ public partial class HullingProcess : BaseUserControl
             resultDto = imp.SaveHullingProcessTransInfo("", "BrokenRice", null, null, ddlBRType.SelectedValue, 'N', ddlBRUnitsType.SelectedValue, Convert.ToInt16(txtBRTotalBags.Text.Trim()), Convert.ToDouble(txtBRPriceperbag.Text.Trim()));
             //Save Dust Details
             resultDto = imp.SaveHullingProcessTransInfo("", "Dust", null, null, null, 'Y', ddlDustUnitsType.SelectedValue, Convert.ToInt16(txtDustTotalBags.Text.Trim()), Convert.ToDouble(txtDustPriceperbag.Text.Trim()));
+            //Hulling Process Expenses
+            resultDto = imp.SaveHullingProcessExpensesInfo("", Convert.ToDouble(txtPowerExpenses.Text.Trim()), Convert.ToDouble(txtLabourExpenses.Text.Trim()), Convert.ToDouble(txtOtherExpenses.Text.Trim()));
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();

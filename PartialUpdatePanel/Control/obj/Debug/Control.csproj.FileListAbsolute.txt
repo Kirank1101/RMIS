@@ -49,4 +49,3 @@ C:\Users\kirank\Documents\GitHub\RMIS\PartialUpdatePanel\Control\obj\Debug\iucon
 C:\Users\kirank\Documents\GitHub\RMIS\PartialUpdatePanel\Control\obj\Debug\Control.csproj.GenerateResource.Cache
 C:\Users\kirank\Documents\GitHub\RMIS\PartialUpdatePanel\Control\obj\Debug\iucon.web.Controls.PartialUpdatePanel.dll
 C:\Users\kirank\Documents\GitHub\RMIS\PartialUpdatePanel\Control\obj\Debug\iucon.web.Controls.PartialUpdatePanel.pdb
-C:\Users\nagavardhan\Documents\GitHub\RMIS\PartialUpdatePanel\Control\obj\Debug\Control.csprojResolveAssemblyReference.cache

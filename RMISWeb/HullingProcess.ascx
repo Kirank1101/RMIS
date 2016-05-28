@@ -54,6 +54,7 @@
         </tr>
     </table>
     <h3>
+        Hulling Process
         Paddy Details</h3>
     <table>
         <tr>
@@ -90,6 +91,7 @@
         </tr>
     </table>
     <h3>
+        Hulling Process
         Rice Details</h3>
     <table>
         <tr>
@@ -126,6 +128,7 @@
         </tr>
     </table>
     <h3>
+        Hulling Process
         Broken Rice Details</h3>
     <table>
         <tr>
@@ -162,17 +165,18 @@
         </tr>
     </table>
     <h3>
+        Hulling Process
         Dust Details</h3>
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                <asp:Label runat="server" ID="lbldustUnitType" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
             </td>
             <td>
-                <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                <asp:Label runat="server" ID="lbldusttotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
             </td>
             <td>
-                <asp:Label runat="server" ID="Label4" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>                
             </td>
         </tr>
         <tr>
@@ -189,11 +193,40 @@
             </td>
         </tr>
     </table>
+    <h3>
+        Hulling Process Expenses Details</h3>
     <table>
         <tr>
             <td>
+                <asp:Label runat="server" ID="lblPowerExpenses" Text="<%$Resources:Resource,PowerExpenses%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtPowerExpenses" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblLabourExpenses" Text="<%$Resources:Resource,LabourExpenses%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtLabourExpenses" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblOtherExpenses" Text="<%$Resources:Resource,OtherExpenses%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtOtherExpenses" />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <asp:Button ID="btnCalculate" runat="server" Text="Calculate" OnClick="btnCalculate_Click" />
                 <asp:Button ID="btnSaveandClose" runat="server" Text="Save and Close" OnClick="btnSaveClose_Click" />
-                <asp:Button ID="Button2" runat="server" Text="Calculate" OnClick="btnCalculate_Click" />
+                
             </td>
         </tr>
     </table>
