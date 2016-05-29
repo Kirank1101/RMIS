@@ -3,7 +3,7 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 
-public partial class RPTPaddyPaymentInfo : BaseUserControl
+public partial class ProductReturnInfo : BaseUserControl
 {
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
 
@@ -12,29 +12,30 @@ public partial class RPTPaddyPaymentInfo : BaseUserControl
         if (!IsControlPostBack)
         {
             base.Header = "Paddy Stock Information";
+
+            ddlProductTypeID.DataSource = impb.GetMProductSellingTypeEntities();
+            ddlProductTypeID.DataTextField = "ProductSellingType";
+            ddlProductTypeID.DataValueField = "SellerID";
+            ddlProductTypeID.DataBind();
+
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlsellernames.DataSource = imp.GetPaddySellerInfo();
             ddlsellernames.DataTextField = "Name";
             ddlsellernames.DataValueField = "SellerID";
             ddlsellernames.DataBind();
 
-            ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
-            ddlPaddyType.DataTextField = "PaddyType";
-            ddlPaddyType.DataValueField = "Id";
-            ddlPaddyType.DataBind();
-
         }
     }
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
-        
 
     }
 
     private void ClearAllInputFields()
     {
-        ddlPaddyType.SelectedIndex = 0;
-        ddlsellernames.SelectedIndex = 0;     
+        ddlsellernames.SelectedIndex = 0;
+        ddlProductTypeID.SelectedIndex = 0;
+        txtorderno.Text = string.Empty;
     }
 
 }

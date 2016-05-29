@@ -58,5 +58,6 @@ namespace RMIS.Domain.Business
         UsersEntity GetUsersEntity(string userName, string custId);
         List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
         List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
+        List<SellerInfoEntity> GetAllSellerInfo(string SellerType);
     }
 }

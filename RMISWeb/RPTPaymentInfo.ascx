@@ -1,13 +1,14 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RPTPaddyPaymentInfo.ascx.cs"
-    Inherits="RPTPaddyPaymentInfo" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RPTPaymentInfo.ascx.cs"
+    Inherits="RPTPaymentInfo" %>
 <div class="table-responsive">
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                <asp:Label runat="server" ID="lblSellerType" Text="<%$Resources:Resource,SellerType%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlSellerType" runat="server" AppendDataBoundItems="true" 
+                    onselectedindexchanged="ddlSellerType_SelectedIndexChanged">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>

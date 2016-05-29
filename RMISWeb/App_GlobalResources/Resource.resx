@@ -282,8 +282,8 @@
   <data name="DDNo" xml:space="preserve">
     <value>DDNo</value>
   </data>
-  <data name="PaymentId" xml:space="preserve">
-    <value>PaymentId</value>
+  <data name="OrderNo" xml:space="preserve">
+    <value>OrderNo</value>
   </data>
   <data name="PaymentMode" xml:space="preserve">
     <value>Payment Mode</value>

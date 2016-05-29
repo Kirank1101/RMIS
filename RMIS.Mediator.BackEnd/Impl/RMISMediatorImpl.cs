@@ -965,5 +965,11 @@ namespace RMIS.Mediator.BackEnd.Impl
             }
         }
 
+
+
+        public List<SellerInfoEntity> GetAllSellerInfoEntities(string CustId, string SellerType)
+        {
+            return rmisGateway.GetAllSellerInfoEntities(CustId, SellerType);
+        }
     }
 }

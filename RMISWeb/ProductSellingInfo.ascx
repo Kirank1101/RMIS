@@ -4,20 +4,20 @@
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlsellernames" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlProductTypeID" runat="server" AppendDataBoundItems="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
+                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlProductTypeID" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlsellernames" runat="server" AppendDataBoundItems="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -117,10 +117,10 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblrpaymentid" Text="<%$Resources:Resource,PaymentId%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblrOrderNo" Text="<%$Resources:Resource,OrderNo%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblpaymentid" ></asp:Label>
+                            <asp:Label runat="server" ID="lblOrderNo" ></asp:Label>
                         </td>
                     </tr>
                     <tr>
