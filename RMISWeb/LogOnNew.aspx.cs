@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
+using AllInOne.Common.Library.Util;
 
 public partial class LogOnNew : RegisterBasePage
 {
@@ -15,8 +16,9 @@ public partial class LogOnNew : RegisterBasePage
         
         if (Membership.ValidateUser(lgAbalone.UserName, lgAbalone.Password))
         {
+            
             ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
-            imp.SetCurrentCustomerId(lgAbalone.UserName.Split('/')[1]);
+            imp.SetCurrentCustomerId(lgAbalone.UserName.Split(CommonUtil.splilChar)[0]);
             imp.SetLoggedInUserId(lgAbalone.UserName);
             // Username/password are valid, check email
             MembershipUser usrInfo = Membership.GetUser(lgAbalone.UserName);

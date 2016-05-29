@@ -16,16 +16,16 @@ namespace RMIS.CustomMembershipProvider
         {
             if (username.IsUserNameValid())
             {
-                
+
                 ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split('/')[1], username.Split('/')[0]);
+                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split(CommonUtil.splilChar)[1], username.Split(CommonUtil.splilChar)[0]);
                 if (listRMUserRoleEntity != null && listRMUserRoleEntity.Count > 0)
                 {
                     IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
                     List<MRolesEntity> listMRolesEntity = impMaster.GetAllRolesEntities();
                     if (listMRolesEntity != null)
                     {
-                        listMRolesEntity=listMRolesEntity.FindAll(A=>A.RoleName==roleName).ToList();
+                        listMRolesEntity = listMRolesEntity.FindAll(A => A.RoleName == roleName).ToList();
                         foreach (MRolesEntity objlistMRolesEntity in listMRolesEntity)
                         {
                             if (listRMUserRoleEntity.Find(A => A.RoleId == objlistMRolesEntity.RoleId) != null)
@@ -48,7 +48,7 @@ namespace RMIS.CustomMembershipProvider
             {
                 roles = new List<string>();
                 ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split('/')[1], username.Split('/')[0]);
+                List<RMUserRoleEntity> listRMUserRoleEntity = imp.GetUserRoles(username.Split(CommonUtil.splilChar)[1], username.Split(CommonUtil.splilChar)[0]);
                 if (listRMUserRoleEntity != null && listRMUserRoleEntity.Count > 0)
                 {
                     IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
@@ -66,9 +66,9 @@ namespace RMIS.CustomMembershipProvider
                 }
                 //EmployeeBusiness business = new EmployeeBusiness();
                 //return business.GetRolesForUser(username);
-               return  roles.ToArray();
+                return roles.ToArray();
             }
-            return null ;
+            return null;
         }
 
         // -- Snip --
@@ -94,7 +94,7 @@ namespace RMIS.CustomMembershipProvider
                     if (username.IsUserNameValid())
                     {
                         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                        UsersEntity user = imp.GetUsersEntity(username.Split('/')[1], username.Split('/')[0]);
+                        UsersEntity user = imp.GetUsersEntity(username.Split(CommonUtil.splilChar)[1], username.Split(CommonUtil.splilChar)[0]);
                         if (user is UsersEntity)
                         {
                             if (roleNames != null)
@@ -126,7 +126,7 @@ namespace RMIS.CustomMembershipProvider
 
             //EmployeeBusiness business = new EmployeeBusiness();
             //business.AddUsersToRoles(usernames, roleNames);
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public override string ApplicationName
@@ -144,7 +144,7 @@ namespace RMIS.CustomMembershipProvider
         public override void CreateRole(string roleName)
         {
             IMasterPaddyBusiness impMaster = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-           // impMaster.SaveimpMaster
+            // impMaster.SaveimpMaster
             impMaster.SaveRoleEntity(roleName);
         }
 

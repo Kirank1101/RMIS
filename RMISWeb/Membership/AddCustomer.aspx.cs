@@ -79,12 +79,12 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
             MembershipCreateStatus createStatus;
 
             MembershipUser newUser =
-                 Membership.CreateUser(ddlCustomeList.SelectedItem.Text   + @"/" + Username.Text, Password.Text,
+                 Membership.CreateUser(ddlCustomeList.SelectedItem.Text + CommonUtil.splilChar + Username.Text, Password.Text,
                                        "k@k.com", "Yes, I am here ?",
                                        "Yes, I am here ?", true, null,
                                        out createStatus);
 
-            Roles.AddUsersToRoles(new string[] { ddlCustomeList.SelectedItem.Text + @"/" + Username.Text }, new string[] { ddlRoles.SelectedItem.Text });
+            Roles.AddUsersToRoles(new string[] { ddlCustomeList.SelectedItem.Text + CommonUtil.splilChar + Username.Text }, new string[] { ddlRoles.SelectedItem.Text });
 
             switch (createStatus)
             {
@@ -117,7 +117,7 @@ public partial class Membership_AddCustomer : System.Web.UI.Page
                     break;
             }
 
-            gdUsers.DataSource = Roles.GetRolesForUser(ddlCustomeList.SelectedItem.Text + @"/" + Username.Text);
+            gdUsers.DataSource = Roles.GetRolesForUser(ddlCustomeList.SelectedItem.Text + CommonUtil.splilChar + Username.Text);
             gdUsers.DataBind();
         }
         else

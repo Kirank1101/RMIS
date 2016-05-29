@@ -23,6 +23,7 @@ namespace AllInOne.Common.Library.Util
         /// </summary>
         private const string ELITFormatDateTime = "dd-MMM-yyyy hh:mm tt";
         private const string ELITFormatDate = "dd-MMM-yyyy";
+        public const Char splilChar = '\\';
 
         private static ILog log = LogManager.GetLogger(typeof(CommonUtil));
 
@@ -201,7 +202,7 @@ namespace AllInOne.Common.Library.Util
 
             if (!string.IsNullOrEmpty(username))
             {
-                string[] splitWord = username.Split('/');
+                string[] splitWord = username.Split('\\');
                 if (splitWord != null && splitWord.Length != 2)
                 {
 

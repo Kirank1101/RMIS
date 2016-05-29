@@ -77,7 +77,7 @@ namespace RMIS.CustomMembershipProvider
                 if (user == null)
                 {
                     ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                    imp.SaveÜserInfo(username.Split('/')[1], password, username.Split('/')[0]);
+                    imp.SaveÜserInfo(username.Split(CommonUtil.splilChar)[1], password, username.Split(CommonUtil.splilChar)[0]);
                     status = MembershipCreateStatus.Success;
                     return GetUser(username, true);
                 }
@@ -140,7 +140,7 @@ namespace RMIS.CustomMembershipProvider
         {
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            UsersEntity user= imp.GetUsersEntity(username.Split('/')[1], username.Split('/')[0]);     
+            UsersEntity user = imp.GetUsersEntity(username.Split(CommonUtil.splilChar)[1], username.Split(CommonUtil.splilChar)[0]);     
             //EmployeeBusiness userRep = new EmployeeBusiness();
             //EmployeeInfo user = userRep.GetUserObjByUserName(username);
             //// EmployeeDetail userDetail = userRep.GetAllEmployeeDetails().SingleOrDefault(u => u.EmployeeId == username);
@@ -228,7 +228,7 @@ namespace RMIS.CustomMembershipProvider
             if (username.IsUserNameValid())
             {
                 ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-                UsersEntity userObj = imp.ValidateUsersEntity(username.Split('/')[1], username.Split('/')[0], password);
+                UsersEntity userObj = imp.ValidateUsersEntity(username.Split(CommonUtil.splilChar)[1], username.Split(CommonUtil.splilChar)[0], password);
                 if (userObj != null)
                     return true;
             }
