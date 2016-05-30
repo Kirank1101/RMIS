@@ -15,6 +15,7 @@ namespace RMIS.Domain.RiceMill
         public string CustID { get; set; }
         public string MGodownID { get; set; }
         public string MLotID { get; set; }
+        public string UnitsTypeID { get; set; }
         public string VehicalNo { get; set; }
         public string DriverName { get; set; }
         public decimal TotalBags { get; set; }

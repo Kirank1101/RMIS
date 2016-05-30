@@ -162,5 +162,7 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessDetailsProcessBy = "Validate118";
         public const string ValidateHullingProcessDetailsProcessDateEmpty = "Validate119";
         public const string ValidateHullingProcessDetailsProcessDateValidate = "Validate120";
+
+        public const string ValidateValidatePaddyStockDetailsUnitstype = "Validate121";
     }
 }

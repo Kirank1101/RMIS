@@ -13,6 +13,7 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private string _MGodownID;
         private string _MLotID;
+        private string _UnitsTypeID;
         private string _VehicalNo;
         private string _DriverName;
         private decimal _TotalBags; 
@@ -51,6 +52,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _MLotID; }
             set { _MLotID = value; }
+        }
+        public virtual string UnitsTypeID
+        {
+            get { return _UnitsTypeID; }
+            set { _UnitsTypeID = value; }
         }
         public virtual string VehicalNo
         {

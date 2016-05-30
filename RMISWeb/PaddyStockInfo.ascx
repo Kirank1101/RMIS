@@ -43,6 +43,17 @@
                 </asp:DropDownList>
             </td>
         </tr>
+        
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
+                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>

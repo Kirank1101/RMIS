@@ -294,4 +294,10 @@
   <data name="TotalAmount" xml:space="preserve">
     <value>Total Amount</value>
   </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
 </root>

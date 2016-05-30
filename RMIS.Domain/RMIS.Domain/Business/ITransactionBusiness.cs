@@ -13,7 +13,7 @@ namespace RMIS.Domain.Business
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId,
-           string godownId, string lotId, string vehicleNo, string DriverName, decimal totalBags, decimal Price,
+           string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price,
            DateTime purchaseDate);
         ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId,
                      string vehicleNo, string DriverName, int totalBags, decimal Price,

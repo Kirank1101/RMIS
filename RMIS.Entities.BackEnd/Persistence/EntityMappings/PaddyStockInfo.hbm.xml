@@ -12,6 +12,7 @@
     <property name="CustID" column="CustID" />
     <property name="MGodownID" column="MGodownID" />
     <property name="MLotID" column="MLotID" />
+    <property name="UnitsTypeID" column="UnitsTypeID" />    
     <property name="VehicalNo" column="VehicalNo" />
     <property name="DriverName" column="DriverName" />
     <property name="TotalBags" column="TotalBags" />    

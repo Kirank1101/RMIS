@@ -58,7 +58,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate)
         {
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
             objPaddyStockInfoEntity.ObsInd = YesNo.N;
@@ -66,6 +66,7 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objPaddyStockInfoEntity.MGodownID = godownId;
             objPaddyStockInfoEntity.MLotID = lotId;
+            objPaddyStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objPaddyStockInfoEntity.LastModifiedDate = DateTime.Now;
             objPaddyStockInfoEntity.PaddyStockID = CommonUtil.CreateUniqueID("PS");
             objPaddyStockInfoEntity.PaddyTypeID = paddyTypeId;
