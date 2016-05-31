@@ -49,7 +49,6 @@
             Logger.Debug("Initialised MapAll");
             try
             {
-                objRMISMappingNTD.MapSellerTypeEntity();
                 objRMISMappingNTD.MapSellerInfoEntity();
                 objRMISMappingNTD.MapCustomerInfoEntity();
                 objRMISMappingNTD.MapMUserTypeEntity();

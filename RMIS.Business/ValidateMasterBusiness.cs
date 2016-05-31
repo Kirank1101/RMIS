@@ -20,27 +20,28 @@ namespace RMIS.Business
         }
 
         #region Set Methods
-        public ResultDTO ValidateSellerType(string sellerType)
+        public ResultDTO ValidateGodownDetails(string GodownName)
         {
-            if (string.IsNullOrEmpty(sellerType.Trim()))
+            if (string.IsNullOrEmpty(GodownName.Trim()))
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeEmpty, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGodownNameEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (sellerType.Trim().Length > 10)
+            else if (GodownName.Trim().Length > 10)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeLength, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGodownNameLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }
+        
         public ResultDTO ValidateBagType(string BagType)
         {
             if (string.IsNullOrEmpty(BagType.Trim()))
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeEmpty, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBagTypeEmpty, provider.GetCurrentCustomerId()) };
             }
             else if (BagType.Trim().Length > 10)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerTypeLength, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBagTypeLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

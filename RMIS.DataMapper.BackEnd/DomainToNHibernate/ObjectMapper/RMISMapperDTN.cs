@@ -13,8 +13,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
 {
 
     public interface IRMISMapper
-    {
-        MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity);
+    {   
         MBagType GetBagType(MBagTypeEntity mBagTypeEntity);
         MUnitsType GetUnitsType(MUnitsTypeEntity mUnitsTypeEntity);
         SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity);
@@ -73,21 +72,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         /// </summary>
         /// <param name="SellerTypeEntity">The AASObjectionEntity.</param>
         /// <returns></returns>
-        public MSellerType GetSellerType(SellerTypeEntity SellerTypeEntity)
-        {
-            MSellerType sellerType = null;
-            try
-            {
-                sellerType = Mapper.Map<SellerTypeEntity, MSellerType>(SellerTypeEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetSellerType", ex);
-                throw;
-            }
-            return sellerType;
-        }
-
         public MBagType GetBagType(MBagTypeEntity mBagTypeEntity)
         {
             MBagType BagType = null;

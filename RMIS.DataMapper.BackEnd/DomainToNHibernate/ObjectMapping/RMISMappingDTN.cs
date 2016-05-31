@@ -25,26 +25,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
 
         #endregion Fields
 
-        internal void MapSellerTypeEntityToSellerType()
-        {
-            try
-            {
-                Mapper.CreateMap<SellerTypeEntity, MSellerType>()
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.SellerType, opts => opts.MapFrom(src => src.SellerType))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapSellerTypeEntityToSellerType", ex);
-                throw;
-            }
-        }
         internal void MapMBagTypeEntityToMBagType()
         {
             try
@@ -92,7 +72,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<SellerInfoEntity, SellerInfo>()
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.Street, opts => opts.MapFrom(src => src.Street))
@@ -900,7 +879,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.BRMSID, opts => opts.MapFrom(src => src.BRMSID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
                     .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
                     .ForMember(dest => dest.Remarks, opts => opts.MapFrom(src => src.Remarks))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))

@@ -35,7 +35,6 @@ namespace RMIS.Domain.Mediator
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
-        void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy);
         void SaveOrUpdateMBagTypeEntity(MBagTypeEntity mBagtypeEntity, bool isCopy);
         void SaveOrUpdateMUnitsTypeEntity(MUnitsTypeEntity mUnitstypeEntity, bool isCopy);
         void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
@@ -77,7 +76,7 @@ namespace RMIS.Domain.Mediator
         /// Gets all audit module visit.
         /// </summary>
         /// <returns></returns>
-        SellerTypeEntity GetSellerTypeEntity(string SellerTypeID);
+        
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
@@ -100,8 +99,7 @@ namespace RMIS.Domain.Mediator
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
         List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
-        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
-        List<SellerTypeEntity> GetSellerTypeEntities(string CustId);
+        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);        
         List<MBagTypeEntity> GetMBagTypeEntities(string CustId);
         List<SellerInfoEntity> GetListSellerInfoEntities(string CustId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
@@ -129,7 +127,7 @@ namespace RMIS.Domain.Mediator
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);
-        List<SellerInfoEntity> GetAllSellerInfoEntities(string CustId, string SellerType);
+        
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         #endregion
     }

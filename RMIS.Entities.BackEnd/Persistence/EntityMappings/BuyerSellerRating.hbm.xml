@@ -8,7 +8,6 @@
       <generator class="assigned"/>
     </id>
     <property name="SellerID" column="SellerID"/>
-    <property name="SellerTypeID" column="SellerTypeID"/>
     <property name="CustID" column="CustID" />
     <property name="Remarks" column="Remarks" />
     <property name="Rating" column="Rating" />    

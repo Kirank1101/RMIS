@@ -26,8 +26,8 @@ namespace RMIS.Domain.Constant
         public const string Error09 = "Error09";
         public const string Success09 = "Success09";
 
-        public const string ValidateSellerTypeEmpty = "Validate01";
-        public const string ValidateSellerTypeLength = "Validate02";
+        public const string ValidateBagTypeEmpty = "Validate01";
+        public const string ValidateBagTypeLength = "Validate02";
         public const string ValidatePaddyTypeEmpty = "Validate03";
         public const string ValidatePaddyTypeLength = "Validate04";
 
@@ -166,10 +166,11 @@ namespace RMIS.Domain.Constant
         public const string ValidateValidatePaddyStockDetailsUnitstype = "Validate121";
 
         public const string ValidateBuyerSellerRatingSellerID = "Validate122";
-        public const string ValidateBuyerSellerRatingSellerTypeID = "Validate123";
         public const string ValidateBuyerSellerRatingRateing = "Validate124";
         public const string ValidateBuyerSellerRatingRemark = "Validate125";
         public const string ValidateBuyerSellerRatingRemarkEmpty = "Validate126";
-
+        public const string ValidateGodownNameEmpty = "Validate01";
+        public const string ValidateGodownNameLength = "Validate02";
+        
     }
 }

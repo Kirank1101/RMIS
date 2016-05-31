@@ -18,13 +18,9 @@ namespace RMIS.Business
             this.msgInstance = msgInstance;
             this.provider = provider;
         }
-        public ResultDTO ValidateSellerDetails(int sellerType, string sellerName, string city, string district, string state, string contactNo)
+        public ResultDTO ValidateSellerDetails(string sellerName, string city, string district, string state, string contactNo)
         {
-            if (sellerType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerDetailsSelleTypes, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(sellerName.Trim()))
+            if (string.IsNullOrEmpty(sellerName.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSellerDetailsSellerNameEmpty, provider.GetCurrentCustomerId()) };
             }
@@ -70,7 +66,7 @@ namespace RMIS.Business
             return new ResultDTO();
         }
 
-        public ResultDTO ValidatePaddyStockDetails(int godown,int lot,int Unitstype, int paddy,int seller, string vehicleNo, string totalbags, string price, string purchaseDate)
+        public ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate)
         {
             if (godown <= 0)
             {
@@ -80,7 +76,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsLotDetails, provider.GetCurrentCustomerId()) };
             }
-            else if (Unitstype<= 0)
+            else if (Unitstype <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsUnitstype, provider.GetCurrentCustomerId()) };
             }
@@ -100,7 +96,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (totalbags.ConvertToInt()<=0)
+            else if (totalbags.ConvertToInt() <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
@@ -153,7 +149,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
             }
-            
+
             return new ResultDTO();
         }
         public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string weight)
@@ -230,7 +226,7 @@ namespace RMIS.Business
             else if (UnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }            
+            }
             else if (string.IsNullOrEmpty(vehicleNo.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
@@ -273,7 +269,7 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-        public ResultDTO ValidateBrokenRiceSellingDetails(int seller,int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
+        public ResultDTO ValidateBrokenRiceSellingDetails(int seller, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
         {
             if (seller <= 0)
             {
@@ -282,7 +278,7 @@ namespace RMIS.Business
             else if (BrokenRiceType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
-            }            
+            }
             else if (UnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
@@ -383,12 +379,12 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
         {
             if (ProductSellingTypeId <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsProductSellingTypeId, provider.GetCurrentCustomerId()) };
-            } 
+            }
             else if (seller <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsSeller, provider.GetCurrentCustomerId()) };
@@ -491,15 +487,15 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsPaddyType, provider.GetCurrentCustomerId()) };
             }
-            else if (RiceType<= 0)
+            else if (RiceType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
             }
-            else if (BrokenRiceType<= 0)
+            else if (BrokenRiceType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
             }
-            else if (PaddyUnitsType<= 0)
+            else if (PaddyUnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
             }
@@ -507,7 +503,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
             }
-            else if (BrokenRiceUnitsType<= 0)
+            else if (BrokenRiceUnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
             }
@@ -582,20 +578,16 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-        public ResultDTO ValidateBuyerSellerRating(int SellerID, int sellerTypeID,Int16 Rating, string Remark)
+        public ResultDTO ValidateBuyerSellerRating(int SellerID, Int16 Rating, string Remark)
         {
             if (SellerID <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingSellerID, provider.GetCurrentCustomerId()) };
             }
-            else if (sellerTypeID <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingSellerTypeID, provider.GetCurrentCustomerId()) };
-            }
             else if (Rating <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingRateing, provider.GetCurrentCustomerId()) };
-            }                        
+            }
             else if (Remark.Trim().Length > 50)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingRemark, provider.GetCurrentCustomerId()) };

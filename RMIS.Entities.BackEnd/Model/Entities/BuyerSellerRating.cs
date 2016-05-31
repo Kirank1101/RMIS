@@ -9,7 +9,6 @@ namespace RMIS.Entities.BackEnd
     {
         private string _BRMSID;
         private string _SellerID;
-        private string _SellerTypeID;
         private string _CustID;
         private string _Remarks;
         private Int16 _Rating;
@@ -27,11 +26,7 @@ namespace RMIS.Entities.BackEnd
             get { return _SellerID; }
             set { _SellerID = value; }
         }
-        public virtual string SellerTypeID
-        {
-            get { return _SellerTypeID; }
-            set { _SellerTypeID = value; }
-        }
+        
         public virtual string CustID
         {
             get { return _CustID; }

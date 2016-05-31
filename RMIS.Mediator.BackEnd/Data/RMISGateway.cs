@@ -40,33 +40,7 @@
 
         #region Methods
 
-        internal List<SellerTypeEntity> GetSellerTypeEntities(string custId)
-        {
-            try
-            {
-                List<SellerTypeEntity> ListsellerTypeEntity = new List<SellerTypeEntity>();
-                IRepository<MSellerType> SellerTypeRepository = new RepositoryImpl<MSellerType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSellerType))
-                                                                   .Add(Expression.Eq("CustID", custId));
-                List<MSellerType> listSellerType = SellerTypeRepository.GetAll(detachedCriteria) as List<MSellerType>;
-                if (listSellerType != null && listSellerType.Count > 0)
-                {
-                    foreach (MSellerType adMInfo in listSellerType)
-                    {
-                        ListsellerTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerTypeEntity(adMInfo));
-                    }
-                }
-                else
-                    ListsellerTypeEntity = null;
-
-                return ListsellerTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetSellerInfoEntity", ex);
-                throw;
-            }
-        }
+        
         internal List<MBagTypeEntity> GetMBagTypeEntities(string custId)
         {
             try
@@ -121,34 +95,7 @@
                 throw;
             }
         }
-        internal List<SellerInfoEntity> GetAllSellerInfoEntities(string custId,string SellerType)
-        {
-            try
-            {
-                List<SellerInfoEntity> ListSellerInfoEntity = new List<SellerInfoEntity>();
-                IRepository<SellerInfo> SellerTypeRepository = new RepositoryImpl<SellerInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
-                                                                   .Add(Expression.Eq("CustID", custId))
-                                                                   .Add(Expression.Eq("SellerTypeID", SellerType));
-                List<SellerInfo> listSellerInfo = SellerTypeRepository.GetAll(detachedCriteria) as List<SellerInfo>;
-                if (listSellerInfo != null && listSellerInfo.Count > 0)
-                {
-                    foreach (SellerInfo adMInfo in listSellerInfo)
-                    {
-                        ListSellerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerInfoEntity(adMInfo));
-                    }
-                }
-                else
-                    ListSellerInfoEntity = null;
-
-                return ListSellerInfoEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetSellerInfoEntities", ex);
-                throw;
-            }
-        }
+        
 
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId)
         {
@@ -400,33 +347,7 @@
                 throw;
             }
         }
-        internal SellerTypeEntity GetSellerTypeEntity(string SellerTypeID)
-        {
-            try
-            {
-                SellerTypeEntity sellerTypeEntity = new SellerTypeEntity();
-                IRepository<MSellerType> SellerTypeRepository = new RepositoryImpl<MSellerType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSellerType))
-                                                                   .Add(Expression.Eq("SellerTypeID", SellerTypeID));
-                List<MSellerType> listSellerType = SellerTypeRepository.GetAll(detachedCriteria) as List<MSellerType>;
-                if (listSellerType != null && listSellerType.Count > 0)
-                {
-                    foreach (MSellerType adMInfo in listSellerType)
-                    {
-                        sellerTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerTypeEntity(adMInfo);
-                    }
-                }
-                else
-                    sellerTypeEntity = null;
-
-                return sellerTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetSellerInfoEntity", ex);
-                throw;
-            }
-        }
+        
 
         internal SellerInfoEntity GetSellerInfoEntity(string SellerID)
         {

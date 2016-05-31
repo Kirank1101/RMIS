@@ -38,7 +38,7 @@ public partial class AddGodownDetails : BaseUserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSellerType(txtGodownName.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateGodownDetails(txtGodownName.Text);
         if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();

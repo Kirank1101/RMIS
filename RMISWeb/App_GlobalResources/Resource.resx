@@ -141,9 +141,6 @@
   <data name="IsRiceDeleted" xml:space="preserve">
     <value>Is Deleted</value>
   </data>
-  <data name="IsSellerTypeDeleted" xml:space="preserve">
-    <value>Is Deleted</value>
-  </data>
   <data name="LotDetails" xml:space="preserve">
     <value>Lot Details</value>
   </data>
@@ -173,9 +170,6 @@
   </data>
   <data name="SellerName" xml:space="preserve">
     <value>Seller Name</value>
-  </data>
-  <data name="SellerType" xml:space="preserve">
-    <value>Seller Type</value>
   </data>
   <data name="State" xml:space="preserve">
     <value>State</value>

@@ -8,7 +8,6 @@ namespace RMIS.Entities.BackEnd
     public class SellerInfo
     {
         private string _SellerID;
-        private string _SellerTypeID;
         private string _CustID;
         private string _Name;
         private string _Street;
@@ -29,11 +28,6 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _SellerID; }
             set { _SellerID = value; }
-        }
-        public virtual string SellerTypeID
-        {
-            get { return _SellerTypeID; }
-            set { _SellerTypeID = value; }
         }
         public virtual string CustID
         {

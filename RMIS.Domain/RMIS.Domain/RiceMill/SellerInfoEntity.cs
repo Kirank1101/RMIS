@@ -10,7 +10,6 @@ namespace RMIS.Domain.RiceMill
     public class SellerInfoEntity : AbstractAllInOne
     {
         public string SellerID { get; set; }
-        public string SellerTypeID { get; set; }
         public string CustID { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }

@@ -28,26 +28,6 @@ namespace RMIS.Business
         }
 
         #region Get Methods
-        public List<SellerTypeDTO> GetMasterSellerTypeEntities()
-        {
-            List<SellerTypeDTO> listSellerTypeDTO = null;
-            // imp.GetSellerTypeEntity(
-            List<SellerTypeEntity> listSellerTypeEntity = imp.GetSellerTypeEntities(provider.GetCurrentCustomerId());
-            if (listSellerTypeEntity != null && listSellerTypeEntity.Count > 0)
-            {
-                listSellerTypeDTO = new List<SellerTypeDTO>();
-                foreach (SellerTypeEntity objSellerTypeEntity in listSellerTypeEntity)
-                {
-                    SellerTypeDTO objSellerTypeDTO = new SellerTypeDTO();
-                    objSellerTypeDTO.SellerType = objSellerTypeEntity.SellerType;
-                    objSellerTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
-                    objSellerTypeDTO.Id = objSellerTypeEntity.SellerTypeID;
-                    listSellerTypeDTO.Add(objSellerTypeDTO);
-                }
-
-            }
-            return listSellerTypeDTO;
-        }
 
         public List<MenuInfoEntity> GetMenuInfoEnity()
         {
@@ -57,7 +37,7 @@ namespace RMIS.Business
         public List<MBagTypeDTO> GetMBagTypeEntities()
         {
             List<MBagTypeDTO> listMBagTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MBagTypeEntity> listMBagTypeEntity = imp.GetMBagTypeEntities(provider.GetCurrentCustomerId());
             if (listMBagTypeEntity != null && listMBagTypeEntity.Count > 0)
             {
@@ -77,7 +57,7 @@ namespace RMIS.Business
         public List<PaddyTypeDTO> GetMPaddyTypeEntities()
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId());
             if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
             {
@@ -98,7 +78,7 @@ namespace RMIS.Business
         {
 
             List<GodownTypeDTO> listGodownTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MGodownDetailsEntity> listGodownDetailsEntiy = imp.GetMGodownDetailsEntities(provider.GetCurrentCustomerId());
             if (listGodownDetailsEntiy != null && listGodownDetailsEntiy.Count > 0)
             {
@@ -121,7 +101,7 @@ namespace RMIS.Business
         public List<RiceBrandDTO> GetRiceBrandEntities()
         {
             List<RiceBrandDTO> listRiceBrandDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId());
             if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
             {
@@ -140,7 +120,7 @@ namespace RMIS.Business
         public List<RiceProductDTO> GetRiceProductEntities()
         {
             List<RiceProductDTO> listRiceProductDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId());
             if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
             {
@@ -159,7 +139,7 @@ namespace RMIS.Business
         public List<LotDetailsDTO> GetLotDetailsEntities(string GodownId)
         {
             List<LotDetailsDTO> listLotDetailsDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), GodownId);
             if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
             {
@@ -178,7 +158,7 @@ namespace RMIS.Business
         public List<LotDetailsDTO> GetLotDetailsEntities()
         {
             List<LotDetailsDTO> listLotDetailsDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId());
             if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
             {
@@ -201,7 +181,7 @@ namespace RMIS.Business
         public List<WeightDetailsDTO> GetMWeightDetailsEntities()
         {
             List<WeightDetailsDTO> listWeightDetailsDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MWeightDetailsEntity> listMWeightDetailsEntity = imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId());
             if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
             {
@@ -234,17 +214,17 @@ namespace RMIS.Business
         public List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities()
         {
             List<BrokenRiceTypeDTO> listBrokenRiceTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId());
             if (listMBrokenRiceTypeEntity != null && listMBrokenRiceTypeEntity.Count > 0)
             {
                 listBrokenRiceTypeDTO = new List<BrokenRiceTypeDTO>();
-                foreach (MBrokenRiceTypeEntity objSellerTypeEntity in listMBrokenRiceTypeEntity)
+                foreach (MBrokenRiceTypeEntity objMBrokenRiceTypeEntity in listMBrokenRiceTypeEntity)
                 {
                     BrokenRiceTypeDTO objBrokenRiceTypeDTO = new BrokenRiceTypeDTO();
-                    objBrokenRiceTypeDTO.BrokenRiceType = objSellerTypeEntity.BrokenRiceName;
-                    objBrokenRiceTypeDTO.Indicator = GetYesorNo(objSellerTypeEntity.ObsInd);
-                    objBrokenRiceTypeDTO.Id = objSellerTypeEntity.BrokenRiceTypeID;
+                    objBrokenRiceTypeDTO.BrokenRiceType = objMBrokenRiceTypeEntity.BrokenRiceName;
+                    objBrokenRiceTypeDTO.Indicator = GetYesorNo(objMBrokenRiceTypeEntity.ObsInd);
+                    objBrokenRiceTypeDTO.Id = objMBrokenRiceTypeEntity.BrokenRiceTypeID;
                     listBrokenRiceTypeDTO.Add(objBrokenRiceTypeDTO);
                 }
 
@@ -254,7 +234,7 @@ namespace RMIS.Business
         public List<MUnitsTypeDTO> GetMUnitsTypeEntities()
         {
             List<MUnitsTypeDTO> listMUnitsTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId());
             if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
             {
@@ -274,28 +254,7 @@ namespace RMIS.Business
 
 
         #region Set Methods
-        public ResultDTO SaveSellerType(string sellerType)
-        {
-            SellerTypeEntity objSellerTypeEntity = new SellerTypeEntity();
-            objSellerTypeEntity.ObsInd = YesNo.N;
-            objSellerTypeEntity.CustID = provider.GetCurrentCustomerId();
-            objSellerTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objSellerTypeEntity.SellerType = sellerType;
-            objSellerTypeEntity.SellerTypeID = CommonUtil.CreateUniqueID("ST");
-            objSellerTypeEntity.LastModifiedDate = DateTime.Now;
-            try
-            {
-                imp.BeginTransaction();
-                imp.SaveOrUpdateSellerTypeEntity(objSellerTypeEntity, false);
-                imp.CommitAndCloseSession();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
-        }
+        
         public ResultDTO SaveBagType(string BagType)
         {
             MBagTypeEntity objMBagTypeEntity = new MBagTypeEntity();
@@ -504,7 +463,7 @@ namespace RMIS.Business
         {
 
             List<ProductSellingTypeDTO> listProductSellingTypeDTO = null;
-            // imp.GetSellerTypeEntity(
+            
             List<MProductSellingTypeEntity> listMProductSellingTypeEntity = imp.GetMProductSellingTypeEnties(provider.GetCurrentCustomerId());
             if (listMProductSellingTypeEntity != null && listMProductSellingTypeEntity.Count > 0)
             {

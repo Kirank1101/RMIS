@@ -25,7 +25,7 @@ namespace RMIS.Business
             this.imp = imp;
             this.msgInstance = msgInstance;
         }
-        public Domain.DataTranserClass.ResultDTO SaveSellerInfo(string sellerTypeId, string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        public Domain.DataTranserClass.ResultDTO SaveSellerInfo( string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
             objSellerInfoEntity.ObsInd = YesNo.N;
@@ -39,7 +39,6 @@ namespace RMIS.Business
             objSellerInfoEntity.Name = name;
             objSellerInfoEntity.PhoneNo = phoneNo;
             objSellerInfoEntity.PinCode = pincode;
-            objSellerInfoEntity.SellerTypeID = sellerTypeId;
             objSellerInfoEntity.State = state;
             objSellerInfoEntity.Street = street;
             objSellerInfoEntity.Street1 = street1;
@@ -646,20 +645,16 @@ namespace RMIS.Business
             return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId());
         }
 
-        public List<SellerInfoEntity> GetAllSellerInfo(string SellerType)
-        {
-            return imp.GetAllSellerInfoEntities(provider.GetCurrentCustomerId(), SellerType);
-        }
+        
 
 
-        public ResultDTO SaveBuyerSellerRating(string SellerTypeID, string SellerID, Int16 Rating, string Remarks)
+        public ResultDTO SaveBuyerSellerRating( string SellerID, Int16 Rating, string Remarks)
         {
             BuyerSellerRatingEntity objBuyerSellerRatingEntity = new BuyerSellerRatingEntity();
             objBuyerSellerRatingEntity.ObsInd = YesNo.N;
             objBuyerSellerRatingEntity.BRMSID = CommonUtil.CreateUniqueID("BRM");
             objBuyerSellerRatingEntity.SellerID= SellerID;
             objBuyerSellerRatingEntity.CustID = provider.GetCurrentCustomerId();
-            objBuyerSellerRatingEntity.SellerTypeID = SellerTypeID;
             objBuyerSellerRatingEntity.Rating = Rating;
             objBuyerSellerRatingEntity.Remarks = Remarks;
             objBuyerSellerRatingEntity.LastModifiedBy = provider.GetLoggedInUserId();

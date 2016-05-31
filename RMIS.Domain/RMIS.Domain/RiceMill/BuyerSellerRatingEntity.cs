@@ -11,7 +11,6 @@ namespace RMIS.Domain.RiceMill
     {
         public string BRMSID { get; set; }
         public string SellerID { get; set; }
-        public string SellerTypeID { get; set; }
         public string CustID { get; set; }
         public string Remarks { get; set; }
         public Int16 Rating { get; set; }

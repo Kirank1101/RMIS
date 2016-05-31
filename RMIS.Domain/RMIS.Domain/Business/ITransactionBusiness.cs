@@ -9,7 +9,7 @@ namespace RMIS.Domain.Business
 {
     public interface ITransactionBusiness
     {
-        ResultDTO SaveSellerInfo(string sellerTypeId, string name,
+        ResultDTO SaveSellerInfo( string name,
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId,
@@ -40,7 +40,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
-        ResultDTO SaveBuyerSellerRating(string SellerTypeID, string SellerID, Int16 Rating, string Remarks);
+        ResultDTO SaveBuyerSellerRating( string SellerID, Int16 Rating, string Remarks);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -59,7 +59,6 @@ namespace RMIS.Domain.Business
         UsersEntity GetUsersEntity(string userName, string custId);
         List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
         List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
-        List<SellerInfoEntity> GetAllSellerInfo(string SellerType);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities();
     }
 }

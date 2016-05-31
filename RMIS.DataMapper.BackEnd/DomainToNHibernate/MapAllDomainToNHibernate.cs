@@ -72,7 +72,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
             Logger.Debug("MapAll Initialised");
             try
             {
-                objRMISMappingDTN.MapSellerTypeEntityToSellerType();
                 objRMISMappingDTN.MapSellerInfoEntityToSellerInfo();
                 objRMISMappingDTN.MapCustomerInfoEntityToCustomerInfo();
                 objRMISMappingDTN.MapMUserTypeEntityToMUserType();

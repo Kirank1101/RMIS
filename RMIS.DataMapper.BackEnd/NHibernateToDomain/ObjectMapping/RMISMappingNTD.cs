@@ -23,25 +23,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
         /// <summary>
         /// Method which maps the <see cref="AffidavitDeponentDetail"/> to <see cref="AffidavitDeponentDetailEntity"/>.
         /// </summary>
-        internal void MapSellerTypeEntity()
-        {
-            try
-            {
-                Mapper.CreateMap<MSellerType, SellerTypeEntity>()
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.SellerType, opts => opts.MapFrom(src => src.SellerType))
-                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapSellerTypeToSellerTypeEntity", ex);
-                throw;
-            }
-        }
-
         internal void MapMBagTypeEntity()
         {
             try
@@ -86,7 +67,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<SellerInfo, SellerInfoEntity>()
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.Street, opts => opts.MapFrom(src => src.Street))
@@ -842,7 +822,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.BRMSID, opts => opts.MapFrom(src => src.BRMSID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
                     .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
                     .ForMember(dest => dest.Remarks, opts => opts.MapFrom(src => src.Remarks))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))

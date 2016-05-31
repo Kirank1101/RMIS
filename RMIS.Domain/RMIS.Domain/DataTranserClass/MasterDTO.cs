@@ -67,20 +67,7 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
-    public class SellerTypeDTO : MasterPaddyDTO
-    {
-        public SellerTypeDTO()
-            : base()
-        {
-            SellerType = string.Empty;
-        }
-        public string SellerType
-        {
-            get;
-            set;
-        }
-
-    }
+    
     public class MBagTypeDTO : MasterPaddyDTO
     {
         public MBagTypeDTO()

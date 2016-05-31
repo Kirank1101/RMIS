@@ -26,11 +26,7 @@ public partial class BuyerSellerRating : BaseUserControl
         if (!IsControlPostBack)
         {
             Header = "Add Lot Information";
-            IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            ddlSellerType.DataSource = impb.GetMasterSellerTypeEntities();
-            ddlSellerType.DataTextField = "SellerType";
-            ddlSellerType.DataValueField = "ID";
-            ddlSellerType.DataBind();
+            
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlsellernames.DataSource = imp.GetPaddySellerInfo();
             ddlsellernames.DataTextField = "Name";
@@ -42,11 +38,11 @@ public partial class BuyerSellerRating : BaseUserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerSellerRating(ddlsellernames.SelectedIndex, ddlSellerType.SelectedIndex,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerSellerRating(ddlsellernames.SelectedIndex,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveBuyerSellerRating(ddlSellerType.SelectedValue,ddlsellernames.SelectedValue,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
+            resultDto = imp.SaveBuyerSellerRating(ddlsellernames.SelectedValue,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
@@ -60,7 +56,6 @@ public partial class BuyerSellerRating : BaseUserControl
     private void ClearAllInputFields()
     {
         ddlsellernames.SelectedIndex = 0;
-        ddlSellerType.SelectedIndex = 0;
         rbtLstRating.ClearSelection();
         txtRemarks.Text = string.Empty;
     }

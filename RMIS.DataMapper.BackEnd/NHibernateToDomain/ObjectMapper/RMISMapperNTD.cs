@@ -25,25 +25,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
         /// </summary>
         /// <param name="reportConfigUserEntity"><see cref="ReportConfigUserEntity"/></param>
         /// <returns>Returns <see cref="ReportConfigUser"/>, else null.</returns>
-        public static SellerTypeEntity GetSellerTypeEntity(MSellerType sellerType)
-        {
-            SellerTypeEntity sellerTypeEntity = null;
-
-            try
-            {
-                if (sellerType != null)
-                {
-                    sellerTypeEntity = Mapper.Map<MSellerType, SellerTypeEntity>(sellerType);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetSellerTypeEntity", ex);
-                throw;
-            }
-
-            return sellerTypeEntity;
-        }
+        
         public static MBagTypeEntity GetMBagTypeEntity(MBagType mBagType)
         {
             MBagTypeEntity mBagTypeEntity = null;

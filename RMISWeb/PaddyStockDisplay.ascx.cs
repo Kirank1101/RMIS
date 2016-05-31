@@ -21,17 +21,6 @@ public partial class PaddyStockDisplay : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-    //    IPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IPaddyBusiness>();        
-    //    SellerTypeEntity objEntity = new SellerTypeEntity();
-    //    objEntity.SellerTypeID = AllInOne.Common.Library.Util.CommonUtil.CreateUniqueID("BE");
-    //    objEntity.CustID = "w32423";
-    //    objEntity.SellerType = "test";
-    //    objEntity.ObsInd = YesNo.N;
-    //    objEntity.LastModifiedDate = DateTime.Now;
-    //    objEntity.LastModifiedBy = "test";
-    //    imp.SaveSellerType(objEntity);
-
-
-    //    //objEntity = imp.GetMasterSellerTypeEntities(objEntity.SellerTypeID);
+    
     }
 }

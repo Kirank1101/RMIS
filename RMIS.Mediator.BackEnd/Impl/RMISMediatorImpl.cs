@@ -80,20 +80,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
-        public void SaveOrUpdateSellerTypeEntity(SellerTypeEntity sellertypeEntity, bool isCopy)
-        {
-            try
-            {
-
-                genericGateway.SaveOrUpdateEntity<MSellerType>(mapper.GetSellerType(sellertypeEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateSellerTypeEntity", ex);
-                Logger.Error("Error in SaveOrUpdateSellerTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
+        
 
 
         /// <summary>
@@ -136,11 +123,6 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// Gets all audit module visit.
         /// </summary>
         /// <returns></returns>
-        public SellerTypeEntity GetSellerTypeEntity(string SellerTypeID)
-        {
-
-            return rmisGateway.GetSellerTypeEntity(SellerTypeID);
-        }
         public SellerInfoEntity GetSellerInfoEntity(string SellerID)
         {
 
@@ -525,14 +507,6 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.GetMRiceBrandDetailsEntity(MRiceBrandID);
         }
-
-
-        public List<SellerTypeEntity> GetSellerTypeEntities(string CustId)
-        {
-            return rmisGateway.GetSellerTypeEntities(CustId);
-        }
-
-
         public List<MUserTypeEntity> GetMUserTypeEntities(string CustId)
         {
             return rmisGateway.GetMUserTypeEntities(CustId);
@@ -965,12 +939,6 @@ namespace RMIS.Mediator.BackEnd.Impl
             }
         }
 
-
-
-        public List<SellerInfoEntity> GetAllSellerInfoEntities(string CustId, string SellerType)
-        {
-            return rmisGateway.GetAllSellerInfoEntities(CustId, SellerType);
-        }
 
 
         public void SaveOrUpdateBuyyerSellerRatingEnity(BuyerSellerRatingEntity buyerSellerRatingEntity, bool isCopy)

@@ -86,7 +86,6 @@
     <Compile Include="Model\Entities\Users.cs" />
     <Compile Include="Model\Entities\MUserType.cs" />
     <Compile Include="Model\Entities\CustomerInfo.cs" />
-    <Compile Include="Model\Entities\MSellerType.cs" />
     <Compile Include="Model\Entities\SellerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,11 +94,6 @@
     <Folder Include="Model\TypedView\" />
     <Folder Include="Model\ValueTypes\" />
     <Folder Include="Persistence\TypedViewMappings\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Persistence\EntityMappings\MSellerType.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\MBagType.hbm.xml">
