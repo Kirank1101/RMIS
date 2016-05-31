@@ -4,7 +4,7 @@
                    namespace="RMIS.Entities.BackEnd">
 
   <class name="BuyerSellerRating" table="[dbo].[BuyerSellerRating]" optimistic-lock="none" >
-    <id name="MLotID" column="BRMSID" >
+    <id name="BRMSID" column="BRMSID" >
       <generator class="assigned"/>
     </id>
     <property name="SellerID" column="SellerID"/>
