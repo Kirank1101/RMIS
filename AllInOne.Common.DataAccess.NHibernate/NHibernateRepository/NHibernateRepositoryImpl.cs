@@ -31,6 +31,7 @@ using log4net;
 
 using NHibernate;
 using NHibernate.Criterion;
+using AllInOne.Common.Library.Repository;
 
 namespace AllInOne.Common.DataAccess.NHibernate
 {
@@ -278,6 +279,26 @@ namespace AllInOne.Common.DataAccess.NHibernate
                 .SetProjection(Projections.Count(Projections.Id()))
                 //.FutureValue<Int32>().Value;
                 .UniqueResult<Int32>();
+        }
+
+
+        public PagedList<T> PagedList(DetachedCriteria detachedCriteria, int pageIndex, int pageSize) 
+        {
+            if (pageIndex < 0)
+                pageIndex = 0;
+
+            ICriteria criteria = RepositoryHelper<T>.GetExecutableCriteria(this.session, detachedCriteria);
+            var countCrit = (ICriteria)criteria.Clone();
+            countCrit.ClearOrders(); // so we don’t have missing group by exceptions
+
+            var results = session.CreateMultiCriteria()
+                .Add<long>(countCrit.SetProjection(Projections.RowCountInt64()))
+                .Add<T>(criteria.SetFirstResult(pageIndex * pageSize).SetMaxResults(pageSize))
+                .List();
+
+            var totalCount = ((IList<long>)results[0])[0];
+
+            return new PagedList<T>((IList<T>)results[1], totalCount, pageIndex, pageSize);
         }
 
         /// <summary>

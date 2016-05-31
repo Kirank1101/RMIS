@@ -11,7 +11,7 @@ namespace RMIS.Domain.RiceMill
     {
         public string PaddyTypeID { get; set; }
         public string CustID { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }       
         
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

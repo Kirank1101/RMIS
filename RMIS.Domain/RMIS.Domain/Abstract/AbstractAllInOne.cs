@@ -41,6 +41,8 @@ namespace RMIS.Domain.Abstract
             set;
         }
 
+
+        public int TotalCount { get; set; }
         #endregion Properties
     }
 }

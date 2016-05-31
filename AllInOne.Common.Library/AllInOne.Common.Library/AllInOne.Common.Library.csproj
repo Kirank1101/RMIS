@@ -118,6 +118,7 @@
     <Compile Include="Encryption\SimpleEncryption.cs" />
     <Compile Include="File\ConfigFileLocator.cs" />
     <Compile Include="Binder\IBinder.cs" />
+    <Compile Include="Repository\PagedList.cs" />
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\EncodeUtil.cs" />
     <Compile Include="Validator\CommonValidator.cs" />

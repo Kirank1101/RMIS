@@ -1,6 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddPaddyType.ascx.cs" Inherits="AddPaddyType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
-    <asp:Repeater ID="rptPaddyType" runat="server">
+
+<asp:PagingGridView ID="rptPaddyType"  runat="server"  AllowSorting="true" 
+					 AllowPaging="True" CellPadding="4"  PageSize="5" AutoGenerateColumns="false"
+                    					 SelectedIndex="0"   OrderBy="">
+					<Columns>
+                    <asp:TemplateField >
+   
         <HeaderTemplate>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -29,7 +36,12 @@
         <FooterTemplate>
             </table>
         </FooterTemplate>
-    </asp:Repeater>
+        </asp:TemplateField>
+    </Columns>
+				  <PagerSettings Mode="NumericFirstLast" />	
+				</asp:PagingGridView>
+				
+				
     <table>
         <tr>
             <td>

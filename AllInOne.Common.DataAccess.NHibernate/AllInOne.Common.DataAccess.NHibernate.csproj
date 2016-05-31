@@ -83,6 +83,12 @@
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkImpl.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AllInOne.Common.Library\AllInOne.Common.Library\AllInOne.Common.Library.csproj">
+      <Project>{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}</Project>
+      <Name>AllInOne.Common.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

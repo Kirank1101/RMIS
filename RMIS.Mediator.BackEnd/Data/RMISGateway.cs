@@ -40,7 +40,7 @@
 
         #region Methods
 
-        
+
         internal List<MBagTypeEntity> GetMBagTypeEntities(string custId)
         {
             try
@@ -48,7 +48,10 @@
                 List<MBagTypeEntity> ListMBagTypeEntity = new List<MBagTypeEntity>();
                 IRepository<MBagType> BagTypeRepository = new RepositoryImpl<MBagType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBagType))
-                                                                   .Add(Expression.Eq("CustID", custId));
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
                 List<MBagType> listMBagType = BagTypeRepository.GetAll(detachedCriteria) as List<MBagType>;
                 if (listMBagType != null && listMBagType.Count > 0)
                 {
@@ -75,7 +78,9 @@
                 List<MUnitsTypeEntity> ListMUnitsTypeEntity = new List<MUnitsTypeEntity>();
                 IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
-                                                                   .Add(Expression.Eq("CustID", custId));
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
                 if (listMUnitsType != null && listMUnitsType.Count > 0)
                 {
@@ -95,7 +100,7 @@
                 throw;
             }
         }
-        
+
 
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId)
         {
@@ -104,7 +109,9 @@
                 List<SellerInfoEntity> ListSellerInfoEntity = new List<SellerInfoEntity>();
                 IRepository<SellerInfo> SellerTypeRepository = new RepositoryImpl<SellerInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
-                                                                   .Add(Expression.Eq("CustID", custId));
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<SellerInfo> listSellerInfo = SellerTypeRepository.GetAll(detachedCriteria) as List<SellerInfo>;
                 if (listSellerInfo != null && listSellerInfo.Count > 0)
                 {
@@ -132,7 +139,9 @@
                 List<MUserTypeEntity> lstMUserTypeEntity = new List<MUserTypeEntity>();
                 IRepository<MUserType> MUserTypeRepository = new RepositoryImpl<MUserType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUserType))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MUserType> listMUserType = MUserTypeRepository.GetAll(detachedCriteria) as List<MUserType>;
                 if (listMUserType != null && listMUserType.Count > 0)
                 {
@@ -152,6 +161,39 @@
                 throw;
             }
         }
+
+
+        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId,int pageindex,int pageSize)
+        {
+            try
+            {
+                List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
+                IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria) as List<MPaddyType>;
+                if (listMPaddyType != null && listMPaddyType.Count > 0)
+                {
+                    foreach (MPaddyType adMInfo in listMPaddyType)
+                    {
+                        listMPaddyTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMPaddyTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMPaddyTypeEntity = null;
+
+                return listMPaddyTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntities", ex);
+                throw;
+            }
+        }
+
+
         internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId)
         {
             try
@@ -159,8 +201,12 @@
                 List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
-                                                                   .Add(Expression.Eq("CustID", CustId));
-                List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
+               // int count = UsersRepository.GetCountUsingFuture(detachedCriteria);
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAllUsingFuture (detachedCriteria) as List<MPaddyType>;
                 if (listMPaddyType != null && listMPaddyType.Count > 0)
                 {
                     foreach (MPaddyType adMInfo in listMPaddyType)
@@ -186,7 +232,10 @@
                 List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = new List<MBrokenRiceTypeEntity>();
                 IRepository<MBrokenRiceType> UsersRepository = new RepositoryImpl<MBrokenRiceType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
                 List<MBrokenRiceType> listMBrokenRiceType = UsersRepository.GetAll(detachedCriteria) as List<MBrokenRiceType>;
                 if (listMBrokenRiceType != null && listMBrokenRiceType.Count > 0)
                 {
@@ -213,7 +262,9 @@
                 List<PaddyStockInfoEntity> listPaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<PaddyStockInfo> listPaddyStockInfo = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
                 if (listPaddyStockInfo != null && listPaddyStockInfo.Count > 0)
                 {
@@ -240,7 +291,10 @@
                 List<BagStockInfoEntity> listBagStockInfoEntity = new List<BagStockInfoEntity>();
                 IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
                 List<BagStockInfo> listBagStockInfo = UsersRepository.GetAll(detachedCriteria) as List<BagStockInfo>;
                 if (listBagStockInfo != null && listBagStockInfo.Count > 0)
                 {
@@ -268,7 +322,9 @@
                 IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("MGodownID", MGodownID));
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MLotDetails> listMLotDetails = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
                 if (listMLotDetails != null && listMLotDetails.Count > 0)
                 {
@@ -298,6 +354,8 @@
                 IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId)
+                                                                   )
+                                                                    .Add(Expression.Eq("ObsInd", "N")
                                                                    );
                 List<MLotDetails> listMLotDetails = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
                 if (listMLotDetails != null && listMLotDetails.Count > 0)
@@ -327,7 +385,9 @@
                 List<MWeightDetailsEntity> listMWeightDetailsEntity = new List<MWeightDetailsEntity>();
                 IRepository<MWeightDetails> UsersRepository = new RepositoryImpl<MWeightDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MWeightDetails))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MWeightDetails> listMWeightDetails = UsersRepository.GetAll(detachedCriteria) as List<MWeightDetails>;
                 if (listMWeightDetails != null && listMWeightDetails.Count > 0)
                 {
@@ -347,7 +407,7 @@
                 throw;
             }
         }
-        
+
 
         internal SellerInfoEntity GetSellerInfoEntity(string SellerID)
         {
@@ -356,7 +416,9 @@
                 SellerInfoEntity sellerInfoEntity = new SellerInfoEntity();
                 IRepository<SellerInfo> SellerInfoRepository = new RepositoryImpl<SellerInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
-                                                                   .Add(Expression.Eq("SellerID", SellerID));
+                                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<SellerInfo> listSellerInfoEntity = SellerInfoRepository.GetAll(detachedCriteria) as List<SellerInfo>;
                 if (listSellerInfoEntity != null && listSellerInfoEntity.Count > 0)
                 {
@@ -383,7 +445,9 @@
                 CustomerInfoEntity customerInfoEntity = new CustomerInfoEntity();
                 IRepository<CustomerInfo> CustomerInfoRepository = new RepositoryImpl<CustomerInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerInfo))
-                                                                   .Add(Expression.Eq("CustID", CustID));
+                                                                   .Add(Expression.Eq("CustID", CustID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerInfo> listCustomerInfoEntity = CustomerInfoRepository.GetAll(detachedCriteria) as List<CustomerInfo>;
                 if (listCustomerInfoEntity != null && listCustomerInfoEntity.Count > 0)
                 {
@@ -413,7 +477,9 @@
                 List<CustomerInfoEntity> customerInfoEntityList = new List<CustomerInfoEntity>();
                 IRepository<CustomerInfo> CustomerInfoRepository = new RepositoryImpl<CustomerInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerInfo))
-                                                                   .Add(Expression.Eq("ObsInd", "N"));
+                                                                   .Add(Expression.Eq("ObsInd", "N"))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerInfo> listCustomerInfoEntity = CustomerInfoRepository.GetAll(detachedCriteria) as List<CustomerInfo>;
                 if (listCustomerInfoEntity != null && listCustomerInfoEntity.Count > 0)
                 {
@@ -442,7 +508,9 @@
                 MUserTypeEntity mUserTypeEntity = new MUserTypeEntity();
                 IRepository<MUserType> MUserTypeRepository = new RepositoryImpl<MUserType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUserType))
-                                                                   .Add(Expression.Eq("UserTypeID", UserTypeID));
+                                                                   .Add(Expression.Eq("UserTypeID", UserTypeID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MUserType> listMUserTypeEntity = MUserTypeRepository.GetAll(detachedCriteria) as List<MUserType>;
                 if (listMUserTypeEntity != null && listMUserTypeEntity.Count > 0)
                 {
@@ -471,7 +539,9 @@
                 IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
                                                                    .Add(Expression.Eq("Name", Username))
-                                                                   .Add(Expression.Eq("CustID", custId));
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
                 if (listUsersEntity != null && listUsersEntity.Count > 0)
                 {
@@ -533,7 +603,9 @@
                 UsersEntity usersEntity = new UsersEntity();
                 IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
-                                                                   .Add(Expression.Eq("UserID", UserID));
+                                                                   .Add(Expression.Eq("UserID", UserID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
                 if (listUsersEntity != null && listUsersEntity.Count > 0)
                 {
@@ -560,7 +632,9 @@
                 MPaddyTypeEntity mPaddyTypeEntity = new MPaddyTypeEntity();
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
-                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID));
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MPaddyType> listMPaddyTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
                 if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
                 {
@@ -587,7 +661,9 @@
                 PaddyStockInfoEntity paddyStockInfoEntity = new PaddyStockInfoEntity();
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                   .Add(Expression.Eq("PaddyStockID", PaddyStockID));
+                                                                   .Add(Expression.Eq("PaddyStockID", PaddyStockID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
                 if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
                 {
@@ -614,7 +690,9 @@
                 BagStockInfoEntity bagStockInfoEntity = new BagStockInfoEntity();
                 IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
-                                                                   .Add(Expression.Eq("BagStockID", BagStockID));
+                                                                   .Add(Expression.Eq("BagStockID", BagStockID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<BagStockInfo> listBagStockInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<BagStockInfo>;
                 if (listBagStockInfoEntity != null && listBagStockInfoEntity.Count > 0)
                 {
@@ -641,7 +719,9 @@
                 MLotDetailsEntity mLotDetailsEntity = new MLotDetailsEntity();
                 IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
-                                                                   .Add(Expression.Eq("MLotID", MLotID));
+                                                                   .Add(Expression.Eq("MLotID", MLotID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MLotDetails> listMLotDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MLotDetails>;
                 if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
                 {
@@ -668,7 +748,9 @@
                 MGodownDetailsEntity MGodownDetailsEntity = new MGodownDetailsEntity();
                 IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
-                                                                   .Add(Expression.Eq("MGodownID", MGodownID));
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MGodownDetails> listMGodownDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
                 if (listMGodownDetailsEntity != null && listMGodownDetailsEntity.Count > 0)
                 {
@@ -697,7 +779,9 @@
                 List<MGodownDetailsEntity> listMGodownDetailsEntity = new List<MGodownDetailsEntity>();
                 IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
-                                                                    .Add(Expression.Eq("CustID", custId));
+                                                                    .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MGodownDetails> listMGodownDetails = UsersRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
                 if (listMGodownDetails != null && listMGodownDetails.Count > 0)
                 {
@@ -725,7 +809,9 @@
                 PaddyPaymentDetailsEntity paddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
                 IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
-                                                                   .Add(Expression.Eq("PaddyPaymentID", PaddyPaymentID));
+                                                                   .Add(Expression.Eq("PaddyPaymentID", PaddyPaymentID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<PaddyPaymentDetails> listPaddyPaymentDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<PaddyPaymentDetails>;
                 if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
                 {
@@ -752,7 +838,9 @@
                 MWeightDetailsEntity mWeightDetailsEntity = new MWeightDetailsEntity();
                 IRepository<MWeightDetails> UsersRepository = new RepositoryImpl<MWeightDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MWeightDetails))
-                                                                   .Add(Expression.Eq("PaddyPaymentID", MWeightID));
+                                                                   .Add(Expression.Eq("PaddyPaymentID", MWeightID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MWeightDetails> listMWeightDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MWeightDetails>;
                 if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
                 {
@@ -779,7 +867,9 @@
                 CustomerAddressInfoEntity customerAddressInfoEntity = new CustomerAddressInfoEntity();
                 IRepository<CustomerAddressInfo> UsersRepository = new RepositoryImpl<CustomerAddressInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerAddressInfo))
-                                                                   .Add(Expression.Eq("CustAdrsID", CustAdrsID));
+                                                                   .Add(Expression.Eq("CustAdrsID", CustAdrsID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerAddressInfo> listCustomerAddressInfoEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerAddressInfo>;
                 if (listCustomerAddressInfoEntity != null && listCustomerAddressInfoEntity.Count > 0)
                 {
@@ -806,7 +896,9 @@
                 CustomerActivationEntity customerActivationEntity = new CustomerActivationEntity();
                 IRepository<CustomerActivation> UsersRepository = new RepositoryImpl<CustomerActivation>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerActivation))
-                                                                   .Add(Expression.Eq("CustActiveID", CustActiveID));
+                                                                   .Add(Expression.Eq("CustActiveID", CustActiveID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerActivation> listCustomerActivationEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerActivation>;
                 if (listCustomerActivationEntity != null && listCustomerActivationEntity.Count > 0)
                 {
@@ -833,7 +925,9 @@
                 CustTrailUsageEntity custTrailUsageEntity = new CustTrailUsageEntity();
                 IRepository<CustTrailUsage> UsersRepository = new RepositoryImpl<CustTrailUsage>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustTrailUsage))
-                                                                   .Add(Expression.Eq("CustTrailID", CustTrailID));
+                                                                   .Add(Expression.Eq("CustTrailID", CustTrailID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustTrailUsage> listCustTrailUsageEntity = UsersRepository.GetAll(detachedCriteria) as List<CustTrailUsage>;
                 if (listCustTrailUsageEntity != null && listCustTrailUsageEntity.Count > 0)
                 {
@@ -860,7 +954,9 @@
                 CustomerPaymentEntity customerPaymentEntity = new CustomerPaymentEntity();
                 IRepository<CustomerPayment> UsersRepository = new RepositoryImpl<CustomerPayment>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerPayment))
-                                                                   .Add(Expression.Eq("CustPaymentID", CustPaymentID));
+                                                                   .Add(Expression.Eq("CustPaymentID", CustPaymentID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerPayment> listCustomerPaymentEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerPayment>;
                 if (listCustomerPaymentEntity != null && listCustomerPaymentEntity.Count > 0)
                 {
@@ -887,7 +983,9 @@
                 CustomerPartPayDetailsEntity customerPartPayDetailsEntity = new CustomerPartPayDetailsEntity();
                 IRepository<CustomerPartPayDetails> UsersRepository = new RepositoryImpl<CustomerPartPayDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(CustomerPartPayDetails))
-                                                                   .Add(Expression.Eq("CustPartPayID", CustPartPayID));
+                                                                   .Add(Expression.Eq("CustPartPayID", CustPartPayID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<CustomerPartPayDetails> listCustomerPartPayDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<CustomerPartPayDetails>;
                 if (listCustomerPartPayDetailsEntity != null && listCustomerPartPayDetailsEntity.Count > 0)
                 {
@@ -914,7 +1012,9 @@
                 MDrierTypeDetailsEntity mDrierTypeDetailsEntity = new MDrierTypeDetailsEntity();
                 IRepository<MDrierTypeDetails> UsersRepository = new RepositoryImpl<MDrierTypeDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MDrierTypeDetails))
-                                                                   .Add(Expression.Eq("MDrierTypeID", MDrierTypeID));
+                                                                   .Add(Expression.Eq("MDrierTypeID", MDrierTypeID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MDrierTypeDetails> listMDrierTypeDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MDrierTypeDetails>;
                 if (listMDrierTypeDetailsEntity != null && listMDrierTypeDetailsEntity.Count > 0)
                 {
@@ -941,7 +1041,9 @@
                 MRiceProductionTypeEntity mRiceProductionTypeEntity = new MRiceProductionTypeEntity();
                 IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
-                                                                   .Add(Expression.Eq("MRiceProdTypeID", MRiceProdTypeID));
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", MRiceProdTypeID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MRiceProductionType> listMRiceProductionTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceProductionType>;
                 if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
                 {
@@ -969,7 +1071,9 @@
                 List<MRiceProductionTypeEntity> mRiceProductionTypeEntityList = new List<MRiceProductionTypeEntity>();
                 IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
-                                                                   .Add(Expression.Eq("CustID", custID));
+                                                                   .Add(Expression.Eq("CustID", custID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MRiceProductionType> listMRiceProductionTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceProductionType>;
                 if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
                 {
@@ -997,7 +1101,9 @@
                 MRiceBrandDetailsEntity mRiceBrandDetailsEntity = new MRiceBrandDetailsEntity();
                 IRepository<MRiceBrandDetails> UsersRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
-                                                                   .Add(Expression.Eq("MRiceBrandID", MRiceBrandID));
+                                                                   .Add(Expression.Eq("MRiceBrandID", MRiceBrandID))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MRiceBrandDetails> listMRiceBrandDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MRiceBrandDetails>;
                 if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
                 {
@@ -1025,7 +1131,9 @@
                 List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = new List<MRiceBrandDetailsEntity>();
                 IRepository<MRiceBrandDetails> UsersRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
-                                                                   .Add(Expression.Eq("CustID", custId));
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MRiceBrandDetails> listMRiceBrandDetails = UsersRepository.GetAll(detachedCriteria) as List<MRiceBrandDetails>;
                 if (listMRiceBrandDetails != null && listMRiceBrandDetails.Count > 0)
                 {
@@ -1052,7 +1160,9 @@
                 List<RiceStockInfoEntity> listRiceStockInfoEntity = new List<RiceStockInfoEntity>();
                 IRepository<RiceStockInfo> UsersRepository = new RepositoryImpl<RiceStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<RiceStockInfo> listRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceStockInfo>;
                 if (listRiceStockInfo != null && listRiceStockInfo.Count > 0)
                 {
@@ -1079,7 +1189,9 @@
                 List<BrokenRiceStockInfoEntity> listBrokenRiceStockInfoEntity = new List<BrokenRiceStockInfoEntity>();
                 IRepository<BrokenRiceStockInfo> UsersRepository = new RepositoryImpl<BrokenRiceStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<BrokenRiceStockInfo> listBrokenRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<BrokenRiceStockInfo>;
                 if (listBrokenRiceStockInfo != null && listBrokenRiceStockInfo.Count > 0)
                 {
@@ -1106,7 +1218,9 @@
                 List<DustStockInfoEntity> listDustStockInfoEntity = new List<DustStockInfoEntity>();
                 IRepository<DustStockInfo> UsersRepository = new RepositoryImpl<DustStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(DustStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<DustStockInfo> listDustStockInfo = UsersRepository.GetAll(detachedCriteria) as List<DustStockInfo>;
                 if (listDustStockInfo != null && listDustStockInfo.Count > 0)
                 {
@@ -1133,7 +1247,9 @@
                 List<RiceSellingInfoEntity> listRiceSellingInfoEntity = new List<RiceSellingInfoEntity>();
                 IRepository<RiceSellingInfo> UsersRepository = new RepositoryImpl<RiceSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<RiceSellingInfo> listRiceSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceSellingInfo>;
                 if (listRiceSellingInfo != null && listRiceSellingInfo.Count > 0)
                 {
@@ -1160,7 +1276,9 @@
                 List<BrokenRiceSellingInfoEntity> listBrokenRiceSellingInfoEntity = new List<BrokenRiceSellingInfoEntity>();
                 IRepository<BrokenRiceSellingInfo> UsersRepository = new RepositoryImpl<BrokenRiceSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<BrokenRiceSellingInfo> listBrokenRiceSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<BrokenRiceSellingInfo>;
                 if (listBrokenRiceSellingInfo != null && listBrokenRiceSellingInfo.Count > 0)
                 {
@@ -1187,7 +1305,9 @@
                 List<DustSellingInfoEntity> listDustSellingInfoEntity = new List<DustSellingInfoEntity>();
                 IRepository<DustSellingInfo> UsersRepository = new RepositoryImpl<DustSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(DustSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<DustSellingInfo> listDustSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<DustSellingInfo>;
                 if (listDustSellingInfo != null && listDustSellingInfo.Count > 0)
                 {
@@ -1273,7 +1393,9 @@
                 List<MenuConfigurationEntity> MenuConfigurationEntityList = new List<MenuConfigurationEntity>();
                 IRepository<MenuConfiguration> UsersRepository = new RepositoryImpl<MenuConfiguration>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MenuConfiguration))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MenuConfiguration> listMenuConfiguration = UsersRepository.GetAll(detachedCriteria) as List<MenuConfiguration>;
                 if (listMenuConfiguration != null && listMenuConfiguration.Count > 0)
                 {
@@ -1300,7 +1422,9 @@
                 List<MProductSellingTypeEntity> listMProductSellingTypeEntity = new List<MProductSellingTypeEntity>();
                 IRepository<MProductSellingType> UsersRepository = new RepositoryImpl<MProductSellingType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MProductSellingType))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<MProductSellingType> listMProductSellingType = UsersRepository.GetAll(detachedCriteria) as List<MProductSellingType>;
                 if (listMProductSellingType != null && listMProductSellingType.Count > 0)
                 {
@@ -1328,7 +1452,9 @@
                 List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
                 IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
                 if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
                 {
@@ -1355,7 +1481,9 @@
                 List<HullingProcessEntity> listHullingProcessEntity = new List<HullingProcessEntity>();
                 IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcess))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<HullingProcess> listHullingProcess = UsersRepository.GetAll(detachedCriteria) as List<HullingProcess>;
                 if (listHullingProcess != null && listHullingProcess.Count > 0)
                 {
@@ -1382,7 +1510,9 @@
                 List<HullingProcessTransactionEntity> listHullingProcessTrnsEntity = new List<HullingProcessTransactionEntity>();
                 IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingTransaction))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<HullingTransaction> listHullingProcessTrans = UsersRepository.GetAll(detachedCriteria) as List<HullingTransaction>;
                 if (listHullingProcessTrans != null && listHullingProcessTrans.Count > 0)
                 {
@@ -1409,7 +1539,9 @@
                 List<HullingProcessExpensesEntity> listHullingProcessExpensesEntity = new List<HullingProcessExpensesEntity>();
                 IRepository<HullingProcessExpenses> UsersRepository = new RepositoryImpl<HullingProcessExpenses>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcessExpenses))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
                 List<HullingProcessExpenses> listHullingProcessExpenses = UsersRepository.GetAll(detachedCriteria) as List<HullingProcessExpenses>;
                 if (listHullingProcessExpenses != null && listHullingProcessExpenses.Count > 0)
                 {
@@ -1435,8 +1567,11 @@
             {
                 List<BuyerSellerRatingEntity> listBuyerSellerRatingEntity = new List<BuyerSellerRatingEntity>();
                 IRepository<BuyerSellerRating> UsersRepository = new RepositoryImpl<BuyerSellerRating>(applicationSession);
+               
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerSellerRating))
-                                                                   .Add(Expression.Eq("CustID", CustId));
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   ).SetFirstResult(0).SetMaxResults(10);
                 List<BuyerSellerRating> listBuyerSellerRating = UsersRepository.GetAll(detachedCriteria) as List<BuyerSellerRating>;
                 if (listBuyerSellerRating != null && listBuyerSellerRating.Count > 0)
                 {
@@ -1456,8 +1591,8 @@
                 throw;
             }
         }
- 
- 
+
+
         #endregion Methods
         private List<T> GetAllFromRepository<T>()
         {

@@ -512,6 +512,8 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetMUserTypeEntities(CustId);
         }
 
+
+
         public List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId)
         {
             return rmisGateway.GetMPaddyTypeEntities(CustId);
