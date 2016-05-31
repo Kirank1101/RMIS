@@ -72,6 +72,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateRoleEntity(MRolesEntity mRoleEntity, bool isCopy);
         void SaveOrUpdateUserRoleEntity(RMUserRoleEntity muserRoleEntity, bool isCopy);
         void SaveOrUpdateHullingProcessExpensesInfoEntity(HullingProcessExpensesEntity hullingProcessExpensesEntity, bool isCopy);
+        void SaveOrUpdateBuyyerSellerRatingEnity(BuyerSellerRatingEntity buyerSellerRatingEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -129,6 +130,7 @@ namespace RMIS.Domain.Mediator
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);
         List<SellerInfoEntity> GetAllSellerInfoEntities(string CustId, string SellerType);
+        List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         #endregion
     }
 

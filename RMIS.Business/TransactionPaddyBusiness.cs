@@ -650,5 +650,39 @@ namespace RMIS.Business
         {
             return imp.GetAllSellerInfoEntities(provider.GetCurrentCustomerId(), SellerType);
         }
+
+
+        public ResultDTO SaveBuyerSellerRating(string SellerTypeID, string SellerID, Int16 Rating, string Remarks)
+        {
+            BuyerSellerRatingEntity objBuyerSellerRatingEntity = new BuyerSellerRatingEntity();
+            objBuyerSellerRatingEntity.ObsInd = YesNo.N;
+            objBuyerSellerRatingEntity.BRMSID = CommonUtil.CreateUniqueID("BRM");
+            objBuyerSellerRatingEntity.SellerID= SellerID;
+            objBuyerSellerRatingEntity.CustID = provider.GetCurrentCustomerId();
+            objBuyerSellerRatingEntity.SellerTypeID = SellerTypeID;
+            objBuyerSellerRatingEntity.Rating = Rating;
+            objBuyerSellerRatingEntity.Remarks = Remarks;
+            objBuyerSellerRatingEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBuyerSellerRatingEntity.LastModifiedDate = DateTime.Now;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBuyyerSellerRatingEnity(objBuyerSellerRatingEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        
+        }
+
+        public List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities()
+        {
+            return imp.GetAllBuyerSellerRatingEntities(provider.GetCurrentCustomerId());
+        }
     }
 }

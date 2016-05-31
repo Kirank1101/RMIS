@@ -110,6 +110,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMRolesEntityToMRoles();
                 objRMISMappingDTN.MapRMUserRoleEntityToRMUserRole();
                 objRMISMappingDTN.MapHullingProcessExpensesInfoEntityToHullingProcessExpensesInfo();
+                objRMISMappingDTN.MapBuyerSellerRatingEntityToBuyerSellerRating();
             }
             catch (Exception exp)
             {

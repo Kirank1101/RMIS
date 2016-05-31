@@ -42,20 +42,26 @@ public partial class BuyerSellerRating : BaseUserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        //ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
-        //if (resultDto.IsSuccess)
-        //{
-        //    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        //    resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
-        //    if (resultDto.IsSuccess)
-        //    {
-        //        bindLotDetails();
-        //    }
-        //    SetMessage(resultDto);
-        //}
-        //else
-        //{
-        //    SetMessage(resultDto);
-        //}
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerSellerRating(ddlsellernames.SelectedIndex, ddlSellerType.SelectedIndex,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
+        if (resultDto.IsSuccess)
+        {
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            resultDto = imp.SaveBuyerSellerRating(ddlSellerType.SelectedValue,ddlsellernames.SelectedValue,Convert.ToInt16(rbtLstRating.SelectedValue),txtRemarks.Text.Trim());
+            SetMessage(resultDto);
+            if (resultDto.IsSuccess)
+                ClearAllInputFields();
+        }
+        else
+        {
+            SetMessage(resultDto);
+        }
+    }
+
+    private void ClearAllInputFields()
+    {
+        ddlsellernames.SelectedIndex = 0;
+        ddlSellerType.SelectedIndex = 0;
+        rbtLstRating.ClearSelection();
+        txtRemarks.Text = string.Empty;
     }
 }

@@ -164,5 +164,12 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessDetailsProcessDateValidate = "Validate120";
 
         public const string ValidateValidatePaddyStockDetailsUnitstype = "Validate121";
+
+        public const string ValidateBuyerSellerRatingSellerID = "Validate122";
+        public const string ValidateBuyerSellerRatingSellerTypeID = "Validate123";
+        public const string ValidateBuyerSellerRatingRateing = "Validate124";
+        public const string ValidateBuyerSellerRatingRemark = "Validate125";
+        public const string ValidateBuyerSellerRatingRemarkEmpty = "Validate126";
+
     }
 }

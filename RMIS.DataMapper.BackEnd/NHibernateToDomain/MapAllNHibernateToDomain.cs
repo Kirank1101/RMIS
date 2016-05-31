@@ -86,6 +86,7 @@
                 objRMISMappingNTD.MapMRolesToMRolesEntity();
                 objRMISMappingNTD.MapRMUserRoleToRMUserRoleEntity();
                 objRMISMappingNTD.MapHullingProcessExpensesInfoEntity();
+                objRMISMappingNTD.MapBuyerSellerRatingEntity();
             }
             catch (Exception ex)
             {

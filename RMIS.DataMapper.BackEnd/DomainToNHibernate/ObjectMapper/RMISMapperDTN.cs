@@ -52,6 +52,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MRoles GetRoles(MRolesEntity hullingProcessTransactionEntity);
         RMUserRole GetUserRole(RMUserRoleEntity userRoleEntity);
         HullingProcessExpenses GetHullingProcessExpensesinfo(HullingProcessExpensesEntity hullingProcessExpensesEntity);
+        BuyerSellerRating GetBuyerSellerRating(BuyerSellerRatingEntity buyerSellerRatingEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -656,6 +657,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return HullingProcessExpenses;
+        }
+
+
+        public BuyerSellerRating GetBuyerSellerRating(BuyerSellerRatingEntity buyerSellerRatingEntity)
+        {
+            BuyerSellerRating BuyerSellerRating = null;
+            try
+            {
+                BuyerSellerRating = Mapper.Map<BuyerSellerRatingEntity, BuyerSellerRating>(buyerSellerRatingEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerSellerRating", ex);
+                throw;
+            }
+            return BuyerSellerRating;
         }
     }
 }

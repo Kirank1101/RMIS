@@ -1508,6 +1508,34 @@
                 throw;
             }
         }
+        internal List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId)
+        {
+            try
+            {
+                List<BuyerSellerRatingEntity> listBuyerSellerRatingEntity = new List<BuyerSellerRatingEntity>();
+                IRepository<BuyerSellerRating> UsersRepository = new RepositoryImpl<BuyerSellerRating>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerSellerRating))
+                                                                   .Add(Expression.Eq("CustID", CustId));
+                List<BuyerSellerRating> listBuyerSellerRating = UsersRepository.GetAll(detachedCriteria) as List<BuyerSellerRating>;
+                if (listBuyerSellerRating != null && listBuyerSellerRating.Count > 0)
+                {
+                    foreach (BuyerSellerRating adMInfo in listBuyerSellerRating)
+                    {
+                        listBuyerSellerRatingEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerSellerRatingEntity(adMInfo));
+                    }
+                }
+                else
+                    listBuyerSellerRatingEntity = null;
+
+                return listBuyerSellerRatingEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerSellerRatingEntities", ex);
+                throw;
+            }
+        }
+ 
  
         #endregion Methods
         private List<T> GetAllFromRepository<T>()

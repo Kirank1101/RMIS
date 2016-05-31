@@ -753,6 +753,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return hullingProcessExpensesEntity;
         }
+        public static BuyerSellerRatingEntity GetBuyerSellerRatingEntity(BuyerSellerRating BuyerSellerRating)
+        {
+            BuyerSellerRatingEntity BuyerSellerRatingEntity = null;
+
+            try
+            {
+                if (BuyerSellerRating != null)
+                {
+                    BuyerSellerRatingEntity = Mapper.Map<BuyerSellerRating, BuyerSellerRatingEntity>(BuyerSellerRating);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetBuyerSellerRatingEntity", ex);
+                throw;
+            }
+
+            return BuyerSellerRatingEntity;
+        }
     }
 
 

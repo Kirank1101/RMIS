@@ -485,10 +485,6 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-
-
-
-
         public ResultDTO ValidateHullingProcessTrans(int paddyType, int RiceType, int BrokenRiceType, int PaddyUnitsType, int RiceUnitsType, int BrokenRiceUnitsType, int DustUnitsType, string Paddytotalbags, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string PaddyPrice, string RicePrice, string BrokenRicePrice, string DustPrice)
         {
             if (paddyType <= 0)
@@ -586,6 +582,31 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO ValidateBuyerSellerRating(int SellerID, int sellerTypeID,Int16 Rating, string Remark)
+        {
+            if (SellerID <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingSellerID, provider.GetCurrentCustomerId()) };
+            }
+            else if (sellerTypeID <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingSellerTypeID, provider.GetCurrentCustomerId()) };
+            }
+            else if (Rating <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingRateing, provider.GetCurrentCustomerId()) };
+            }                        
+            else if (Remark.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingRemark, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Remark.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerSellerRatingRemarkEmpty, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
+
     }
 }
 

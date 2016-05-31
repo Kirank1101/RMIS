@@ -892,6 +892,30 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapBuyerSellerRatingEntityToBuyerSellerRating()
+        {
+            try
+            {
+                Mapper.CreateMap<BuyerSellerRatingEntity, BuyerSellerRating>()
+                    .ForMember(dest => dest.BRMSID, opts => opts.MapFrom(src => src.BRMSID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.SellerTypeID, opts => opts.MapFrom(src => src.SellerTypeID))
+                    .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
+                    .ForMember(dest => dest.Remarks, opts => opts.MapFrom(src => src.Remarks))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBuyerSellerRatingEntityToBuyerSellerRating", ex);
+                throw;
+            }
+        }
+        
 
 
     }
