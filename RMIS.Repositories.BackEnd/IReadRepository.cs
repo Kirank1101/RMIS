@@ -73,6 +73,13 @@ namespace RMIS.Repositories.BackEnd
         /// <returns>A collection which contains a list of objects and total number of objects.</returns>
         IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria);
 
+
+         /// Method to get the total number of result based on MultiCriteria.
+        /// </summary>
+        /// <param name="detachedCriteria">criteria</param>
+        /// <returns>A collection which contains a list of objects and total number of objects.</returns>
+        IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria, int pageIndex, int pageSize, out int totalCount);
+
         /// <summary>
         /// Method to get the total number of result based on criteria.
         /// </summary>

@@ -13,6 +13,7 @@ namespace RMIS.Domain.Business
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
+        List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count);
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
         List<RiceBrandDTO> GetRiceBrandEntities();

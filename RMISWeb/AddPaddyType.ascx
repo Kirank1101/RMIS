@@ -2,18 +2,18 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
 
-<asp:PagingGridView ID="rptPaddyType"  runat="server"  AllowSorting="true" 
+<asp:PagingGridView ID="rptPaddyType"  runat="server"  AllowSorting="true"  OnPageIndexChanging="rptPaddyType_PageIndexChanging" OnSorting="rptPaddyType_Sorting" 
 					 AllowPaging="True" CellPadding="4"  PageSize="5" AutoGenerateColumns="false"
                     					 SelectedIndex="0"   OrderBy="">
 					<Columns>
-                    <asp:TemplateField >
+                    <asp:TemplateField SortExpression="PaddyType" >
    
-        <HeaderTemplate>
+        <HeaderTemplate >
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>
-                            <asp:Label runat="server" ID="lblHPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                            <asp:Label  runat="server" ID="lblHPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
                         </th>
                         <th>
                             <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsPaddyDeleted%>"></asp:Label>

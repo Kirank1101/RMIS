@@ -206,6 +206,16 @@ namespace RMIS.Repositories.BackEnd
         }
 
         /// <summary>
+        /// Method to get the total number of result based on MultiCriteria.
+        /// </summary>
+        /// <param name="detachedCriteria">criteria</param>
+        /// <returns>A collection which contains a list of objects and total number of objects.</returns>
+        public IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria, int pageIndex, int pageSize, out int totalCount)
+        {
+            return this.INHibernateRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageIndex, pageSize, out totalCount);
+        }
+
+        /// <summary>
         /// Method to get the total number of result based on criteria.
         /// </summary>
         /// <param name="detachedCriteria">criteria</param>

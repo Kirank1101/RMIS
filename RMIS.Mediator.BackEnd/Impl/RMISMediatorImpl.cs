@@ -519,6 +519,11 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetMPaddyTypeEntities(CustId);
         }
 
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count)
+        {
+            return rmisGateway.GetMPaddyTypeEntities(CustId, pageindex, pageSize, out count);
+        }
+
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)
         {
             return rmisGateway.GetPaddyStockInfoEntities(CustId);

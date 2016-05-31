@@ -163,7 +163,7 @@
         }
 
 
-        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId,int pageindex,int pageSize)
+        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize,out int count)
         {
             try
             {
@@ -172,8 +172,8 @@
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                     .Add(Expression.Eq("ObsInd", "N")
-                                                                   );
-                List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria) as List<MPaddyType>;
+                                                                   );                
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<MPaddyType>;
                 if (listMPaddyType != null && listMPaddyType.Count > 0)
                 {
                     foreach (MPaddyType adMInfo in listMPaddyType)
@@ -205,8 +205,7 @@
                                                                     .Add(Expression.Eq("ObsInd", "N")
                                                                    );
 
-               // int count = UsersRepository.GetCountUsingFuture(detachedCriteria);
-                List<MPaddyType> listMPaddyType = UsersRepository.GetAllUsingFuture (detachedCriteria) as List<MPaddyType>;
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
                 if (listMPaddyType != null && listMPaddyType.Count > 0)
                 {
                     foreach (MPaddyType adMInfo in listMPaddyType)
@@ -1567,7 +1566,7 @@
             {
                 List<BuyerSellerRatingEntity> listBuyerSellerRatingEntity = new List<BuyerSellerRatingEntity>();
                 IRepository<BuyerSellerRating> UsersRepository = new RepositoryImpl<BuyerSellerRating>(applicationSession);
-               
+
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerSellerRating))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                     .Add(Expression.Eq("ObsInd", "N")

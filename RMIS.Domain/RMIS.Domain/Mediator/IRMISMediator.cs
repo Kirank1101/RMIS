@@ -127,7 +127,7 @@ namespace RMIS.Domain.Mediator
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);
-        
+        List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count);        
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         #endregion
     }

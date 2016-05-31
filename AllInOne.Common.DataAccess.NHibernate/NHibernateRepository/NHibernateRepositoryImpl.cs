@@ -282,7 +282,26 @@ namespace AllInOne.Common.DataAccess.NHibernate
         }
 
 
-        public PagedList<T> PagedList(DetachedCriteria detachedCriteria, int pageIndex, int pageSize) 
+        public IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria, int pageIndex, int pageSize, out int totalCount) 
+        {
+            if (pageIndex < 0)
+                pageIndex = 0;
+
+            ICriteria criteria = RepositoryHelper<T>.GetExecutableCriteria(this.session, detachedCriteria);
+            var countCrit = (ICriteria)criteria.Clone();
+            countCrit.ClearOrders(); // so we don’t have missing group by exceptions
+
+            var results = session.CreateMultiCriteria()
+                .Add<int>(countCrit.SetProjection(Projections.RowCount()))
+                .Add<T>(criteria.SetFirstResult(pageIndex * pageSize).SetMaxResults(pageSize))
+                .List();
+
+             totalCount = ((IList<int>)results[0])[0];
+
+             return (IList)results[1];
+        }
+
+        public PagedList<T> PagedList(DetachedCriteria detachedCriteria, int pageIndex, int pageSize)
         {
             if (pageIndex < 0)
                 pageIndex = 0;
