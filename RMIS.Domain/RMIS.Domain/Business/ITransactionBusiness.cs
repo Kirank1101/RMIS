@@ -41,6 +41,8 @@ namespace RMIS.Domain.Business
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
         ResultDTO SaveBuyerSellerRating( string SellerID, Int16 Rating, string Remarks);
+        ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state,
+                   string pincode, string contactNo, string mobileNo, string phoneNo);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -60,5 +62,6 @@ namespace RMIS.Domain.Business
         List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
         List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities();
+        List<BuyerInfoEntity> GetBuyerInfo();
     }
 }

@@ -966,5 +966,23 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllBuyerSellerRatingEntities(CustId);
         }
+        public void SaveOrUpdateBuyerInfoEntity(BuyerInfoEntity BuyerInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<BuyerInfo>(mapper.GetBuyerInfo(BuyerInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBuyerInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBuyerInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<BuyerInfoEntity> GetListBuyerInfoEntities()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

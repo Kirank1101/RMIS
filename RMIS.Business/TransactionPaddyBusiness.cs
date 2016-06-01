@@ -679,5 +679,42 @@ namespace RMIS.Business
         {
             return imp.GetAllBuyerSellerRatingEntities(provider.GetCurrentCustomerId());
         }
+        public ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        {
+            BuyerInfoEntity objBuyerInfoEntity = new BuyerInfoEntity();
+            objBuyerInfoEntity.ObsInd = YesNo.N;
+            objBuyerInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBuyerInfoEntity.City = city;
+            objBuyerInfoEntity.ContactNo = contactNo;
+            objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
+            objBuyerInfoEntity.District = district;
+            objBuyerInfoEntity.MobileNo = mobileNo;
+            objBuyerInfoEntity.Name = name;
+            objBuyerInfoEntity.PhoneNo = phoneNo;
+            objBuyerInfoEntity.PinCode = pincode;
+            objBuyerInfoEntity.State = state;
+            objBuyerInfoEntity.Street = street;
+            objBuyerInfoEntity.Street1 = street1;
+            objBuyerInfoEntity.BuyerID = CommonUtil.CreateUniqueID("BI");
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBuyerInfoEntity(objBuyerInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<BuyerInfoEntity> GetBuyerInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -834,6 +834,34 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapBuyerInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<BuyerInfo, BuyerInfoEntity>()
+                    .ForMember(dest => dest.BuyerID, opts => opts.MapFrom(src => src.BuyerID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Street, opts => opts.MapFrom(src => src.Street))
+                    .ForMember(dest => dest.Street1, opts => opts.MapFrom(src => src.Street1))
+                    .ForMember(dest => dest.Town, opts => opts.MapFrom(src => src.Town))
+                    .ForMember(dest => dest.City, opts => opts.MapFrom(src => src.City))
+                    .ForMember(dest => dest.District, opts => opts.MapFrom(src => src.District))
+                    .ForMember(dest => dest.State, opts => opts.MapFrom(src => src.State))
+                    .ForMember(dest => dest.PinCode, opts => opts.MapFrom(src => src.PinCode))
+                    .ForMember(dest => dest.ContactNo, opts => opts.MapFrom(src => src.ContactNo))
+                    .ForMember(dest => dest.MobileNo, opts => opts.MapFrom(src => src.MobileNo))
+                    .ForMember(dest => dest.PhoneNo, opts => opts.MapFrom(src => src.PhoneNo))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBuyerInfoEntity", ex);
+                throw;
+            }
+        }
 
     }
 }

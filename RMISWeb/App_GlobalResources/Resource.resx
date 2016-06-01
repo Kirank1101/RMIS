@@ -300,4 +300,7 @@
   <data name="RiceBrandType" xml:space="preserve">
     <value>Rice Brand Type</value>
   </data>
+  <data name="BuyerName" xml:space="preserve">
+    <value>Buyer Name</value>
+  </data>
 </root>

@@ -169,8 +169,19 @@ namespace RMIS.Domain.Constant
         public const string ValidateBuyerSellerRatingRateing = "Validate124";
         public const string ValidateBuyerSellerRatingRemark = "Validate125";
         public const string ValidateBuyerSellerRatingRemarkEmpty = "Validate126";
-        public const string ValidateGodownNameEmpty = "Validate01";
-        public const string ValidateGodownNameLength = "Validate02";
-        
+        public const string ValidateGodownNameEmpty = "Validate127";
+        public const string ValidateGodownNameLength = "Validate128";
+
+        public const string ValidateBuyerDetailsBuyeTypes = "Validate129";
+        public const string ValidateBuyerDetailsBuyerNameEmpty = "Validate130";
+        public const string ValidateBuyerDetailCityEmpty = "Validate131";
+        public const string ValidateBuyerDetailsDistrictEmpty = "Validate132";
+        public const string ValidateBuyerDetailsStateEmpty = "Validate133";
+        public const string ValidateBuyerDetailsContactNoEmpty = "Validate134";
+        public const string ValidateBuyerDetailsBuyerNameLenth = "Validate135";
+        public const string ValidateBuyerDetailCityLength = "Validate136";
+        public const string ValidateBuyerDetailsDistrictLength = "Validate137";
+        public const string ValidateBuyerDetailsStateLength = "Validate138";
+        public const string ValidateBuyerDetailsContactNoLength = "Validate139";
     }
 }

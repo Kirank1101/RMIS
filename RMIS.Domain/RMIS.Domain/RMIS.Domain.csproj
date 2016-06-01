@@ -66,6 +66,7 @@
     <Compile Include="RiceMill\BagStockInfoEntity.cs" />
     <Compile Include="RiceMill\BrokenRiceStockInfoEntity.cs" />
     <Compile Include="RiceMill\BrokenRiceSellingInfoEntity.cs" />
+    <Compile Include="RiceMill\BuyerInfoEntity.cs" />
     <Compile Include="RiceMill\BuyerSellerRatingEntity.cs" />
     <Compile Include="RiceMill\HullingProcessExpensesEntity.cs" />
     <Compile Include="RiceMill\RMUserRoleEntity.cs" />
