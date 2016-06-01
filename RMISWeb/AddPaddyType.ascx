@@ -30,41 +30,22 @@
         </tr>
     </table>
     
-    <asp:PagingGridView ID="rptPaddyType" runat="server" AllowSorting="true" OnPageIndexChanging="rptPaddyType_PageIndexChanging"
-        OnSorting="rptPaddyType_Sorting" AllowPaging="True" CellPadding="4" PageSize="5"
-        AutoGenerateColumns="false" SelectedIndex="0" OrderBy="">
+    <asp:PagingGridView ID="rptPaddyType" runat="server" AllowSorting="true" OnPageIndexChanging="rptPaddyType_PageIndexChanging" DataKeyNames="Id" 
+        OnSorting="rptPaddyType_Sorting" AllowPaging="True"  PageSize="5"
+        AutoGenerateColumns="false"  OrderBy=""  OnRowCancelingEdit="rptPaddyType_RowCancelingEdit" OnRowDeleting="rptPaddyType_RowDeleting" OnRowEditing="rptPaddyType_RowEditing" OnRowUpdating="rptPaddyType_RowUpdating">
         <Columns>
-            <asp:TemplateField SortExpression="PaddyType">
-                <HeaderTemplate>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <asp:Label runat="server" ID="lblHPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
-                                </th>
-                                <th>
-                                    <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsPaddyDeleted%>"></asp:Label>
-                                </th>
-                            </tr>
-                        </thead>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <asp:Label runat="server" ID="lblPaddyType" Text='<%# Eval("PaddyType") %>' />
-                            </td>
-                            <td>
-                                <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                            </td>
-                        </tr>
-                    </tbody>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </table>
-                </FooterTemplate>
-            </asp:TemplateField>
+
+         <asp:BoundField DataField="PaddyType" SortExpression="PaddyType" HeaderText="<%$Resources:Resource,PaddyType%>" />
+
+        <asp:BoundField DataField="Indicator"  ReadOnly="True" HeaderText="<%$Resources:Resource,IsPaddyDeleted%>" />
+
+       
+
+
+            
+             <asp:CommandField ShowEditButton="true" />
+             <asp:CommandField ShowDeleteButton="true" />
         </Columns>
-        <PagerSettings Mode="NumericFirstLast" />
+      
     </asp:PagingGridView>
 </div>

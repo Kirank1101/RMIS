@@ -322,6 +322,58 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
+
+        public ResultDTO DeletePaddyType(string Id)
+        {
+
+            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id);
+            if (objMPaddyTypeEntity is MPaddyTypeEntity)
+            {
+                objMPaddyTypeEntity.ObsInd = YesNo.Y;
+                objMPaddyTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMPaddyTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true );
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
+        public ResultDTO UpdatePaddyType(string Id, string paddyType)
+        {
+
+            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id);
+            if (objMPaddyTypeEntity is MPaddyTypeEntity)
+            {
+                objMPaddyTypeEntity.Name = paddyType;
+                objMPaddyTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMPaddyTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                   
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true );
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
+
+
         public ResultDTO SaveGodownType(string godownType)
         {
             MGodownDetailsEntity objMGodownDetailsEntity = new MGodownDetailsEntity();

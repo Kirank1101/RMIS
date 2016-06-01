@@ -36,6 +36,8 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingType(string productSellingType);
         List<MRolesEntity> GetAllRolesEntities();
         ResultDTO SaveRoleEntity(string roleName);
+        ResultDTO DeletePaddyType(string Id);
+        ResultDTO UpdatePaddyType(string Id, string paddyType);
       
 
     }
