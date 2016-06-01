@@ -26,19 +26,24 @@
                 <asp:Label runat="server" ID="lblPaidDate" Text="<%$Resources:Resource,PaidDate%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtPaidDate" />
+                <asp:TextBox runat="server" ID="txtPaidDate" />                
             </td>
         </tr>
         <tr>
-            <td><asp:Label runat="server" ID="lblHandoverto" Text="<%$Resources:Resource,PaidTo%>"></asp:Label>
+            <td>
+                <asp:Label runat="server" ID="lblHandoverto" Text="<%$Resources:Resource,PaidTo%>"></asp:Label>
             </td>
-            <td><asp:TextBox runat="server" ID="txtHandoverto" />
+            <td>
+                <asp:TextBox runat="server" ID="txtHandoverto" />
             </td>
         </tr>
         <tr>
-            <td><asp:Label runat="server" ID="lblNextpaymentdate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
+            <td>
+                <asp:Label runat="server" ID="lblNextpaymentdate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
             </td>
-            <td><asp:TextBox runat="server" ID="txtNextpaymentdate" />
+            <td>
+                <asp:TextBox runat="server" ID="txtNextpaymentdate" />
+                
             </td>
         </tr>
         <tr>

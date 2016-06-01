@@ -53,143 +53,157 @@
             </td>
         </tr>
     </table>
-    <h3>
-        Hulling Process
-        Paddy Details</h3>
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblpaddypadytype" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                <h3>
+                    Hulling Process Paddy Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblpaddypadytype" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblpaddyunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblpaddytotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblpaddypriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="ddlpaddypaddytype" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlpaddyunittype" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtpadyTotalBags" />
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtPaddyPriceperbag" />
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
             </td>
             <td>
-                <asp:Label runat="server" ID="lblpaddyunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblpaddytotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblpaddypriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:DropDownList ID="ddlpaddypaddytype" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlpaddyunittype" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtpadyTotalBags" />
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtPaddyPriceperbag" />
-            </td>
-        </tr>
-    </table>
-    <h3>
-        Hulling Process
-        Rice Details</h3>
-    <table>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lblricetype" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblricetotalbag" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblricepriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlriceUnittype" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtricetotalbags" />
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtricepriceperbag" />
-            </td>
-        </tr>
-    </table>
-    <h3>
-        Hulling Process
-        Broken Rice Details</h3>
-    <table>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lblBRType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblBRUnittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblBRTotalBags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lblBRPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                <h3>
+                    Hulling Process Rice Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblricetype" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblricetotalbag" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblricepriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlriceUnittype" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtricetotalbags" />
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtricepriceperbag" />
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:DropDownList ID="ddlBRType" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
+                <h3>
+                    Hulling Process Broken Rice Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblBRType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblBRUnittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblBRTotalBags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblBRPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="ddlBRType" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlBRUnitsType" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtBRTotalBags" />
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtBRPriceperbag" />
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
             <td>
-                <asp:DropDownList ID="ddlBRUnitsType" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtBRTotalBags" />
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtBRPriceperbag" />
-            </td>
-        </tr>
-    </table>
-    <h3>
-        Hulling Process
-        Dust Details</h3>
-    <table>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lbldustUnitType" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lbldusttotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
-            </td>
-            <td>
-                <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>                
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:DropDownList ID="ddlDustUnitsType" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtDustTotalBags" />
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtDustPriceperbag" />
+                <h3>
+                    Hulling Process Dust Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lbldustUnitType" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbldusttotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="ddlDustUnitsType" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtDustTotalBags" />
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtDustPriceperbag" />
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
         </tr>
     </table>
@@ -226,7 +240,6 @@
             <td>
                 <asp:Button ID="btnCalculate" runat="server" Text="Calculate" OnClick="btnCalculate_Click" />
                 <asp:Button ID="btnSaveandClose" runat="server" Text="Save and Close" OnClick="btnSaveClose_Click" />
-                
             </td>
         </tr>
     </table>
