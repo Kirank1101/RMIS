@@ -25,27 +25,27 @@ public partial class AddRiceBrandType : BaseUserControl
         if (!IsControlPostBack)
         {
             Header = "Add Rice Type Information";           
-            bindRiceType();
+            bindRiceBrandType();
         }
     }
 
-    private void bindRiceType()
+    private void bindRiceBrandType()
     {
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        rptRiceType.DataSource = imp.GetRiceProductEntities();
-        rptRiceType.DataBind();
+        rptRiceBrandType.DataSource = imp.GetRiceBrandEntities();
+        rptRiceBrandType.DataBind();
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceProductType(txtRiceType.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceBrandType(txtRiceBrandType.Text);
         if (resultDto.IsSuccess)
         {
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveRiceProductType(txtRiceType.Text.Trim());
+            resultDto = imp.SaveRiceBrandType(txtRiceBrandType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                bindRiceType();
+                bindRiceBrandType();
             }
             SetMessage(resultDto);
         }

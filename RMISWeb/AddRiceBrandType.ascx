@@ -1,15 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddRiceBrandType.ascx.cs" Inherits="AddRiceBrandType" %>
 <div class="table-responsive">
-    <asp:Repeater ID="rptRiceType" runat="server">
+    <asp:Repeater ID="rptRiceBrandType" runat="server">
         <HeaderTemplate>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>
-                            <asp:Label runat="server" ID="lblHRiceType" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblHRiceType" Text="<%$Resources:Resource,RiceBrandType%>"></asp:Label>
                         </th>
                         <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsRiceDeleted%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsRiceBrandDeleted%>"></asp:Label>
                         </th>
                     </tr>
                 </thead>
@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <asp:Label runat="server" ID="lblRiceType" Text='<%# Eval("RiceType") %>' />
+                        <asp:Label runat="server" ID="lblRiceType" Text='<%# Eval("RiceBrandType") %>' />
                     </td>
                     <td>
                         <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
@@ -34,10 +34,10 @@
         <tr>
             <td>
                 <h4>
-                    Rice Type</h4>
+                    Rice Brand Type</h4>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtRiceType" />
+                <asp:TextBox runat="server" ID="txtRiceBrandType" />
             </td>
         </tr>
         <tr>

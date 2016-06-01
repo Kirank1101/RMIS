@@ -234,7 +234,7 @@
 
 
             <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddSellerType.ascx"
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddPaddyType.ascx"
                         DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
