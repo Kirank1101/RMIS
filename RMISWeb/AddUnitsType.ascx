@@ -1,5 +1,33 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddUnitsType.ascx.cs" Inherits="AddUnitsType" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddUnitsType.ascx.cs"
+    Inherits="AddUnitsType" %>
 <div class="table-responsive">
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <h4>
+                                Units Type</h4>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtUnitsType" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
     <asp:Repeater ID="rptUnitsType" runat="server">
         <HeaderTemplate>
             <table class="table table-striped table-bordered">
@@ -30,21 +58,4 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
-    <table>
-        <tr>
-            <td>
-                <h4>
-                    Units Type</h4>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtUnitsType" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
-            </td>
-        </tr>
-    </table>
 </div>
