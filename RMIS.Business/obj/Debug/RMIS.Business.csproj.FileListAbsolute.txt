@@ -32,7 +32,6 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Entities
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.csprojResolveAssemblyReference.cache
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.dll
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Business.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Library.dll
@@ -64,5 +63,6 @@ C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.Da
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Entities.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\bin\Debug\RMIS.Repositories.BackEnd.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Business\obj\Debug\RMIS.Business.pdb

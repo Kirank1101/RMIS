@@ -76,11 +76,11 @@ namespace RMIS.Business
         }
 
 
-        public List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count)
+        public List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count,SortExpression expression)
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
 
-            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count);
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression);
             if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
             {
                 listPaddyTypeDTO = new List<PaddyTypeDTO>();

@@ -30,7 +30,7 @@
         </tr>
     </table>
     
-    <asp:PagingGridView ID="rptPaddyType" runat="server" AllowSorting="true" OnPageIndexChanging="rptPaddyType_PageIndexChanging" DataKeyNames="Id" 
+    <asp:PagingGridView ID="rptPaddyType" Width="80%" runat="server" AllowSorting="true" OnPageIndexChanging="rptPaddyType_PageIndexChanging" DataKeyNames="Id" 
         OnSorting="rptPaddyType_Sorting" AllowPaging="True"  PageSize="5"
         AutoGenerateColumns="false"  OrderBy=""  OnRowCancelingEdit="rptPaddyType_RowCancelingEdit" OnRowDeleting="rptPaddyType_RowDeleting" OnRowEditing="rptPaddyType_RowEditing" OnRowUpdating="rptPaddyType_RowUpdating">
         <Columns>

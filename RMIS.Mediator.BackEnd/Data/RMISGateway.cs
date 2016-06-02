@@ -15,6 +15,7 @@
 
 
     using RMIS.Domain.RiceMill;
+using RMIS.Domain.Constant;
 
 
 
@@ -163,16 +164,25 @@
         }
 
 
-        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize,out int count)
+        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize,out int count,SortExpression  expression)
         {
             try
             {
                 List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                DetachedCriteria detachedCriteria =null;
+                if(expression==SortExpression.Desc )
+                 detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                     .Add(Expression.Eq("ObsInd", "N")
-                                                                   );                
+                                                                   ).AddOrder(Order.Asc("PaddyTypeID"));    
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   ).AddOrder(Order.Desc("PaddyTypeID")); 
+
+            
                 List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<MPaddyType>;
                 if (listMPaddyType != null && listMPaddyType.Count > 0)
                 {

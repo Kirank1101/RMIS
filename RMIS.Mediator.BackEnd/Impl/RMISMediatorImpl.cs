@@ -10,6 +10,7 @@ namespace RMIS.Mediator.BackEnd.Impl
     using System.Collections.Generic;
     using RMIS.Domain.RiceMill;
     using RMIS.Domain.Mediator;
+    using RMIS.Domain.Constant;
 
     public class RMISMediatorImpl : IRMISMediator
     {
@@ -519,9 +520,9 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetMPaddyTypeEntities(CustId);
         }
 
-        public List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count)
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
         {
-            return rmisGateway.GetMPaddyTypeEntities(CustId, pageindex, pageSize, out count);
+            return rmisGateway.GetMPaddyTypeEntities(CustId, pageindex, pageSize, out count, expression);
         }
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)

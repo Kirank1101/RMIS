@@ -184,4 +184,10 @@ namespace RMIS.Domain.Constant
         public const string ValidateBuyerDetailsStateLength = "Validate138";
         public const string ValidateBuyerDetailsContactNoLength = "Validate139";
     }
+
+    public enum SortExpression
+    {
+        Desc,
+        Asc
+    }
 }

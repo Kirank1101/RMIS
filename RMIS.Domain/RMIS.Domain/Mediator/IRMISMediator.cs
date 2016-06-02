@@ -7,6 +7,7 @@ namespace RMIS.Domain.Mediator
 {
     using System.Collections.Generic;
     using RMIS.Domain.RiceMill;
+    using RMIS.Domain.Constant;
 
     public interface IRMISMediator
     {
@@ -128,7 +129,7 @@ namespace RMIS.Domain.Mediator
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);
-        List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count);        
+        List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression);        
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         List<BuyerInfoEntity> GetListBuyerInfoEntities();
         #endregion

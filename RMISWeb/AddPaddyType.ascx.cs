@@ -4,6 +4,7 @@ using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Web.UI.WebControls;
 using RMIS.Domain.RiceMill;
+using RMIS.Domain.Constant;
 
 
 public partial class AddPaddyType : BaseUserControl
@@ -21,14 +22,13 @@ public partial class AddPaddyType : BaseUserControl
     {
         int count = 0;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        rptPaddyType.DataSource = imp.GetMPaddyTypeEntities(rptPaddyType.PageIndex, rptPaddyType.PageSize, out count);
-        rptPaddyType.VirtualItemCount = count;    
+        rptPaddyType.DataSource = imp.GetMPaddyTypeEntities(rptPaddyType.PageIndex, rptPaddyType.PageSize, out count, expression);
+        rptPaddyType.VirtualItemCount = count;
         rptPaddyType.DataBind();
     }
 
 
     const string viewStatePageIndex = "viewStatePageIndex";
-
     protected int gridPageIndex
     {
         get
@@ -43,6 +43,23 @@ public partial class AddPaddyType : BaseUserControl
         }
     }
 
+
+
+    const string viewStateSortExpression = "viewStateSortExpression";
+    protected SortExpression expression
+    {
+        get
+        {
+            if (ViewState[viewStateSortExpression] == null)
+                ViewState[viewStateSortExpression] = SortExpression.Asc; ;
+            return (SortExpression)ViewState[viewStateSortExpression];
+        }
+        set
+        {
+            ViewState[viewStateSortExpression] = value;
+        }
+    }
+
     protected void rptPaddyType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         rptPaddyType.PageIndex = gridPageIndex = e.NewPageIndex;
@@ -51,13 +68,17 @@ public partial class AddPaddyType : BaseUserControl
 
     protected void rptPaddyType_Sorting(object sender, GridViewSortEventArgs e)
     {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
         bindPaddyType();
     }
 
     protected void rptPaddyType_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         GridViewRow row = (GridViewRow)rptPaddyType.Rows[e.RowIndex];
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();        
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         imp.DeletePaddyType(rptPaddyType.DataKeys[e.RowIndex].Value.ToString());
         bindPaddyType();
 
@@ -103,6 +124,7 @@ public partial class AddPaddyType : BaseUserControl
     protected void rptPaddyType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         rptPaddyType.EditIndex = -1;
+        rptPaddyType.PageIndex = gridPageIndex;
         bindPaddyType();
     }
 
