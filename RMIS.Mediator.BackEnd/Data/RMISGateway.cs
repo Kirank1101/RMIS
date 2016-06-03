@@ -204,6 +204,43 @@ using RMIS.Domain.Constant;
         }
 
 
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+            try
+            {
+                List<PaddyStockInfoEntity> listpaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.Eq("ObsInd", "N")
+                                                                      ).AddOrder(Order.Asc("PaddyStockID"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   ).AddOrder(Order.Desc("PaddyStockID")); 
+                List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyStockInfo>;
+                if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+                {
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfoEntity)
+                    {
+                        listpaddyStockInfoEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listpaddyStockInfoEntity = null;
+
+                return listpaddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
+
         internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId)
         {
             try

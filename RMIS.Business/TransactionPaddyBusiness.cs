@@ -532,6 +532,13 @@ namespace RMIS.Business
             return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId());
         }
 
+        public List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+            count = 0;
+            return null; ;
+        }
+
+
         public ResultDTO SaveÜserInfo(string userName, string passWord, string custId)
         {
             UsersEntity objUsersEntity = new UsersEntity();

@@ -985,5 +985,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             throw new NotImplementedException();
         }
+
+
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+           return   rmisGateway. GetPaddyStockInfoEntity( CustId,  pageindex,  pageSize, out  count,  expression);
+        }
     }
 }

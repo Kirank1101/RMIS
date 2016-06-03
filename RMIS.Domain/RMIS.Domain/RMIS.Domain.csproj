@@ -62,6 +62,7 @@
     <Compile Include="DataTranserClass\MMenuItem.cs" />
     <Compile Include="DataTranserClass\ResultDTO.cs" />
     <Compile Include="DataTranserClass\MasterDTO.cs" />
+    <Compile Include="DataTranserClass\TransactionDTO.cs" />
     <Compile Include="Mediator\IRMISMediator.cs" />
     <Compile Include="RiceMill\BagStockInfoEntity.cs" />
     <Compile Include="RiceMill\BrokenRiceStockInfoEntity.cs" />

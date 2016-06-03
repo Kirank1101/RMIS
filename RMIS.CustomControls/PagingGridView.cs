@@ -13,6 +13,7 @@ namespace RMIS.CustomControls
             this.AllowPaging = true;
             this.AllowSorting = true;
             this.PagerSettings.Mode = PagerButtons.NumericFirstLast;
+            this.PageSize = 15;
         }
 
         #region Custom properties
