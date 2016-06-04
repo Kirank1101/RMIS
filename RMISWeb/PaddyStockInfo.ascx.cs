@@ -38,6 +38,8 @@ public partial class PaddyStockInfo : BaseUserControl
     {
         if (ddlGodownname.SelectedIndex > -1)
         {
+            ddlLotDetails.Items.Clear();
+            ddlLotDetails.Items.Insert(0, "[Select]");
             ddlLotDetails.DataSource = impb.GetLotDetailsEntities(ddlGodownname.SelectedValue);
             ddlLotDetails.DataTextField = "LotDetails";
             ddlLotDetails.DataValueField = "Id";
