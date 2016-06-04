@@ -198,8 +198,8 @@
   <data name="PaidDate" xml:space="preserve">
     <value>Payment Date</value>
   </data>
-  <data name="PaidTo" xml:space="preserve">
-    <value>Amount Paid To</value>
+  <data name="AmountGivenTo" xml:space="preserve">
+    <value>Amount Given To</value>
   </data>
   <data name="BagType" xml:space="preserve">
     <value>Bag Type</value>

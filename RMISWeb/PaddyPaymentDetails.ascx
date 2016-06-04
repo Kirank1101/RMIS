@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblHandoverto" Text="<%$Resources:Resource,PaidTo%>"></asp:Label>
+                <asp:Label runat="server" ID="lblHandoverto" Text="<%$Resources:Resource,AmountGivenTo%>"></asp:Label>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtHandoverto" />
