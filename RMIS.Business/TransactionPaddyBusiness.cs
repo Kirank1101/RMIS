@@ -25,7 +25,7 @@ namespace RMIS.Business
             this.imp = imp;
             this.msgInstance = msgInstance;
         }
-        public Domain.DataTranserClass.ResultDTO SaveSellerInfo( string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        public Domain.DataTranserClass.ResultDTO SaveSellerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
             objSellerInfoEntity.ObsInd = YesNo.N;
@@ -534,8 +534,53 @@ namespace RMIS.Business
 
         public List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {
-            count = 0;
-            return null; ;
+            List<PaddyStockDTO> listPaddyStockDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                listPaddyStockDTO = new List<PaddyStockDTO>();
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                {
+                    PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
+                    objPaddyStockDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID);
+                    if (objMGodownDetailsEntity != null)
+                    {
+                        objPaddyStockDTO.GodownName = objMGodownDetailsEntity.Name;
+                    }
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID);
+                    if (objMLotDetailsEntity != null)
+                    {
+                        objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
+                    }
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objPaddyStockInfoEntity.SellerID);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID);
+                    if (objMPaddyTypeEntity != null)
+                    {
+                        objPaddyStockDTO.PaddyName = objMPaddyTypeEntity.Name;
+                    }
+
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID);
+                    if (objMUnitsTypeEntity != null)
+                    {
+                        objPaddyStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+                    }
+
+                    objPaddyStockDTO.DriverName = objPaddyStockInfoEntity.DriverName;
+                    objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
+                    objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
+                    objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
+                    listPaddyStockDTO.Add(objPaddyStockDTO);
+                }
+            }
+
+            return listPaddyStockDTO;
         }
 
 
@@ -652,15 +697,15 @@ namespace RMIS.Business
             return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId());
         }
 
-        
 
 
-        public ResultDTO SaveBuyerSellerRating( string SellerID, Int16 Rating, string Remarks)
+
+        public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Remarks)
         {
             BuyerSellerRatingEntity objBuyerSellerRatingEntity = new BuyerSellerRatingEntity();
             objBuyerSellerRatingEntity.ObsInd = YesNo.N;
             objBuyerSellerRatingEntity.BRMSID = CommonUtil.CreateUniqueID("BRM");
-            objBuyerSellerRatingEntity.SellerID= SellerID;
+            objBuyerSellerRatingEntity.SellerID = SellerID;
             objBuyerSellerRatingEntity.CustID = provider.GetCurrentCustomerId();
             objBuyerSellerRatingEntity.Rating = Rating;
             objBuyerSellerRatingEntity.Remarks = Remarks;
@@ -679,7 +724,7 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
-        
+
         }
 
         public List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities()

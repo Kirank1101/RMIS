@@ -133,6 +133,7 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         List<BuyerInfoEntity> GetListBuyerInfoEntities();
+        MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
         #endregion
     }
 

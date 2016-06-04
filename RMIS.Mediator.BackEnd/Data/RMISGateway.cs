@@ -72,6 +72,38 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+
+        internal MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
+        {
+            try
+            {
+                MUnitsTypeEntity mUnitsTypeEntity = new MUnitsTypeEntity();
+                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("UnitsTypeID", unitTypeId)                                                                  
+                                                                   );
+                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        mUnitsTypeEntity=(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    mUnitsTypeEntity = null;
+
+                return mUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                throw;
+            }
+        }
+
+
         internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId)
         {
             try

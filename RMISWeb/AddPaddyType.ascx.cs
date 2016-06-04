@@ -28,37 +28,7 @@ public partial class AddPaddyType : BaseUserControl
     }
 
 
-    const string viewStatePageIndex = "viewStatePageIndex";
-    protected int gridPageIndex
-    {
-        get
-        {
-            if (ViewState[viewStatePageIndex] == null)
-                ViewState[viewStatePageIndex] = 0;
-            return (Int32)ViewState[viewStatePageIndex];
-        }
-        set
-        {
-            ViewState[viewStatePageIndex] = value;
-        }
-    }
-
-
-
-    const string viewStateSortExpression = "viewStateSortExpression";
-    protected SortExpression expression
-    {
-        get
-        {
-            if (ViewState[viewStateSortExpression] == null)
-                ViewState[viewStateSortExpression] = SortExpression.Asc; ;
-            return (SortExpression)ViewState[viewStateSortExpression];
-        }
-        set
-        {
-            ViewState[viewStateSortExpression] = value;
-        }
-    }
+   
 
     protected void rptPaddyType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {

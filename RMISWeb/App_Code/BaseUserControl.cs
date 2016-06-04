@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using RMIS.Domain.DataTranserClass;
+using RMIS.Domain.Constant;
 
 /// <summary>
 /// Summary description for BaseUserControl
@@ -40,6 +41,38 @@ public class BaseUserControl : System.Web.UI.UserControl
         set
         {
             ViewState[viewstateIsControlPostBack] = value;
+        }
+    }
+
+    const string viewStatePageIndex = "viewStatePageIndex";
+    protected int gridPageIndex
+    {
+        get
+        {
+            if (ViewState[viewStatePageIndex] == null)
+                ViewState[viewStatePageIndex] = 0;
+            return (Int32)ViewState[viewStatePageIndex];
+        }
+        set
+        {
+            ViewState[viewStatePageIndex] = value;
+        }
+    }
+
+
+
+    const string viewStateSortExpression = "viewStateSortExpression";
+    protected SortExpression expression
+    {
+        get
+        {
+            if (ViewState[viewStateSortExpression] == null)
+                ViewState[viewStateSortExpression] = SortExpression.Asc; ;
+            return (SortExpression)ViewState[viewStateSortExpression];
+        }
+        set
+        {
+            ViewState[viewStateSortExpression] = value;
         }
     }
 

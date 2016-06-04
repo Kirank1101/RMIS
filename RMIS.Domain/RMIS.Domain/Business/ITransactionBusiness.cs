@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.RiceMill;
+using RMIS.Domain.Constant;
 
 namespace RMIS.Domain.Business
 {
@@ -63,5 +64,6 @@ namespace RMIS.Domain.Business
         List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities();
         List<BuyerInfoEntity> GetBuyerInfo();
+        List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
     }
 }

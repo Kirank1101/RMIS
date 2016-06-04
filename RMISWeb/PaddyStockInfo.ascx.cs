@@ -2,6 +2,8 @@
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
+using System.Web.UI.WebControls;
+using RMIS.Domain.Constant;
 
 public partial class PaddyStockInfo : BaseUserControl
 {
@@ -32,8 +34,22 @@ public partial class PaddyStockInfo : BaseUserControl
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";
             ddlUnitsType.DataBind();
+
+            bindPaddyStockInfo();
         }
     }
+
+
+
+    private void bindPaddyStockInfo()
+    {
+        int count = 0;
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        rptPaddyStockInfo.DataSource = imp.GetPaddyStockDTO(rptPaddyStockInfo.PageIndex, rptPaddyStockInfo.PageSize, out count, expression);
+        rptPaddyStockInfo.VirtualItemCount = count;
+        rptPaddyStockInfo.DataBind();
+    }
+
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlGodownname.SelectedIndex > -1)
@@ -56,6 +72,7 @@ public partial class PaddyStockInfo : BaseUserControl
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
+            bindPaddyStockInfo();
         }
         else
         {
@@ -63,6 +80,15 @@ public partial class PaddyStockInfo : BaseUserControl
         }
 
     }
+
+
+    protected void rptPaddyStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
+        bindPaddyStockInfo();
+    }
+
+
 
     private void ClearAllInputFields()
     {

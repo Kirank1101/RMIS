@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="PaddyStockInfo.ascx.cs"
     Inherits="PaddyStockInfo" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -192,3 +193,10 @@
         </tr>
     </table>
 </div>
+
+<asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"  DataKeyNames="Id" 
+         AllowPaging="True"  
+        AutoGenerateColumns="true"  OrderBy=""  >
+       
+      
+    </asp:PagingGridView>

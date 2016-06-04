@@ -81,7 +81,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
-        
+
 
 
         /// <summary>
@@ -908,7 +908,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public UsersEntity GetUsersEntity(string userName, string custId)
         {
-            return rmisGateway.GetUsersEntity(userName,custId);
+            return rmisGateway.GetUsersEntity(userName, custId);
         }
 
         public List<RMUserRoleEntity> GetUserRoleEntities(string userId)
@@ -986,10 +986,14 @@ namespace RMIS.Mediator.BackEnd.Impl
             throw new NotImplementedException();
         }
 
+        public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
+        {
+            return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
+        }
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
         {
-           return   rmisGateway. GetPaddyStockInfoEntity( CustId,  pageindex,  pageSize, out  count,  expression);
+            return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression);
         }
     }
 }
