@@ -1,13 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
-    Inherits="MasterDataSettings" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings" %>
 
 <%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
     TagPrefix="iucon" %>
-
-
-<%@ Register src="MenuItems.ascx" tagname="MenuItems" tagprefix="uc1" %>
-
-
+<%@ Register Src="MenuItems.ascx" TagName="MenuItems" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,111 +11,91 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    
-
     <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="vendors/bernii/gauge.js/assets/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+        rel="stylesheet">
     <!-- jVectorMap -->
-    <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
-
+    <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
+    <script type="text/javascript">
+        function changeControlSample(path) {
 
-      <script type="text/javascript">
-          function changeControlSample(path) {             
+            $find('<%= pnlMain.ClientID %>').set_UserControlPath(path);
+            $find('<%= pnlMain.ClientID %>').refresh();
 
-              $find('<%= pnlMain.ClientID %>').set_UserControlPath(path);
-              $find('<%= pnlMain.ClientID %>').refresh();              
-
-          }
-                    </script>
-
+        }
+    </script>
 </head>
 <body class="nav-md">
-<form id="MainForm" runat="server">
-                   
-                    <asp:ScriptManager ID="ScriptManager1" runat="server">
- </asp:ScriptManager>
-
-
-
- <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>RMIS!</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                 <asp:LoginView ID="LoginView1" runat="server">
-                        <LoggedInTemplate>
-                            Welcome back,
-                            <asp:LoginName ID="LoginName1" runat="server" />.
+    <form id="MainForm" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>RMIS!</span></a>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <!-- menu profile quick info -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <asp:LoginView ID="LoginView1" runat="server">
+                                <LoggedInTemplate>
+                                    Welcome back,
+                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                    .
+                                    <br />
+                                </LoggedInTemplate>
+                                <AnonymousTemplate>
+                                    Hello, stranger.
+                                </AnonymousTemplate>
+                            </asp:LoginView>
                             <br />
-                           
-                        </LoggedInTemplate>
-                        <AnonymousTemplate>
-                            Hello, stranger.
-                        </AnonymousTemplate>
-                    </asp:LoginView>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" OnLoggingOut="LoginStatus1_LoggingOut" />
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
                     <br />
-                    <asp:LoginStatus ID="LoginStatus1" runat="server"  onloggingout="LoginStatus1_LoggingOut" />
-              </div>
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>
+                                All</h3>
+                            <uc1:MenuItems ID="MenuItems1" runat="server" />
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings"><span class="glyphicon glyphicon-cog"
+                            aria-hidden="true"></span></a><a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock"><span class="glyphicon glyphicon-eye-close"
+                            aria-hidden="true"></span></a><a data-toggle="tooltip" data-placement="top" title="Logout">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
             </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>All</h3>
-                <uc1:MenuItems ID="MenuItems1" runat="server" />              
-              </div>
-
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-
-          <div class="nav_menu">
-            <nav class="" role="navigation">
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
@@ -223,17 +198,12 @@
 
               </ul>
             </nav>
-          </div>
-
-        </div>
-        <!-- /top navigation -->
-
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-
-
-            <div>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div>
                     <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddPaddyType.ascx"
                         DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
                         <LoadingTemplate>
@@ -246,37 +216,27 @@
                         </LoadingTemplate>
                     </iucon:PartialUpdatePanel>
                 </div>
-
-                     
-                          
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
           <div class="pull-right">
               
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
-        <!-- /footer content -->
-      </div>
+            <!-- /footer content -->
+        </div>
     </div>
-
-
-                   
-                
-
     <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/select2/docs/vendor/js/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendors/select2/docs/vendor/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="vendors/nprogress/nprogress.js"></script>
-
     <!-- bootstrap-progressbar -->
     <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
@@ -299,10 +259,8 @@
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
-
     <!-- Flot -->
     <script>
       $(document).ready(function() {
@@ -378,7 +336,6 @@
       });
     </script>
     <!-- /Flot -->
-
     <!-- jVectorMap -->
     <script src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
@@ -403,7 +360,6 @@
         });
     </script>
     <!-- /jVectorMap -->
-
     <!-- Skycons -->
     <script>
         $(document).ready(function () {
@@ -424,8 +380,6 @@
         });
     </script>
     <!-- /Skycons -->
-
-    
     <!-- bootstrap-daterangepicker -->
     <script>
         $(document).ready(function () {
@@ -499,11 +453,6 @@
         });
     </script>
     <!-- /bootstrap-daterangepicker -->
-
-    
-               
-            
-
-    </form> 
+    </form>
 </body>
 </html>
