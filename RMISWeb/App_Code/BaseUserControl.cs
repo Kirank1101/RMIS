@@ -5,14 +5,16 @@ using System.Web;
 using System.Web.UI.WebControls;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
+using RMIS.Domain.Business;
+using RMIS.Binder.BackEnd;
 
 /// <summary>
 /// Summary description for BaseUserControl
 /// </summary>
 public class BaseUserControl : System.Web.UI.UserControl
 {
-	public BaseUserControl()
-	{
+    public BaseUserControl()
+    {
 
         lblHeader = new Label();
         lblHeader.ID = "lblHeader";
@@ -25,12 +27,12 @@ public class BaseUserControl : System.Web.UI.UserControl
         lblMessage = new Label();
         lblMessage.ID = "lblMessage";
         pnlMessage.Controls.Add(lblMessage);
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+        //
+        // TODO: Add constructor logic here
+        //
+    }
     string viewstateIsControlPostBack = "IsControlPostBack";
-    protected  bool IsControlPostBack
+    protected bool IsControlPostBack
     {
         get
         {
@@ -78,12 +80,12 @@ public class BaseUserControl : System.Web.UI.UserControl
 
 
     string viewstateHeader = "viewstateHeader";
-    protected string  Header
+    protected string Header
     {
         get
         {
             if (ViewState[viewstateHeader] == null)
-                ViewState[viewstateHeader] = string.Empty ;
+                ViewState[viewstateHeader] = string.Empty;
             return ViewState[viewstateHeader] as string;
         }
         set
@@ -98,19 +100,21 @@ public class BaseUserControl : System.Web.UI.UserControl
 
     protected override void OnInit(EventArgs e)
     {
-       
-
         base.OnInit(e);
-
+        ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
+        if (imp.GetCurrentCustomerId() == null)
+        {
+            Response.Redirect("LogOnNew.aspx");
+        }
     }
 
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        pnlMessage.Visible = false;        
+        pnlMessage.Visible = false;
     }
 
-    protected  void SetMessage(ResultDTO result)
+    protected void SetMessage(ResultDTO result)
     {
         if (result != null && !string.IsNullOrEmpty(result.Message))
         {
@@ -124,10 +128,10 @@ public class BaseUserControl : System.Web.UI.UserControl
     }
 
     protected override void OnPreRender(EventArgs e)
-        {
+    {
         base.OnPreRender(e);
-        if(!IsControlPostBack)
-        IsControlPostBack = true;
+        if (!IsControlPostBack)
+            IsControlPostBack = true;
 
         lblHeader.Text = "<div><h3>" + this.Header + "</h3></div>";
     }

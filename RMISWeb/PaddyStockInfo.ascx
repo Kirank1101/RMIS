@@ -5,7 +5,8 @@
     <table>
         <tr>
             <td valign="top" style="padding-right: 70px">
-            <h3>Paddy Stock Info</h3>
+                <h3>
+                    Paddy Stock Info</h3>
                 <table>
                     <tr>
                         <td>
@@ -101,7 +102,8 @@
                 </table>
             </td>
             <td valign="top">
-            <h3>Paddy Payment Info</h3>
+                <h3>
+                    Paddy Payment Info</h3>
                 <table>
                     <tr>
                         <td>
@@ -185,7 +187,7 @@
         </tr>
     </table>
     <table>
-        <tr>
+        <tr>ss
             <td>
                 <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
@@ -193,10 +195,18 @@
         </tr>
     </table>
 </div>
-
-<asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"  DataKeyNames="Id" 
-         AllowPaging="True"  
-        AutoGenerateColumns="true"  OrderBy=""  >
-       
-      
-    </asp:PagingGridView>
+<asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
+    DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false" >
+    <Columns>
+        <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
+        <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />
+        <asp:BoundField DataField="GodownName" HeaderText="Godown Name" />
+        <asp:BoundField DataField="LotName" HeaderText="Lot Name" />
+        <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
+        <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
+        <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />
+        <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
+        <asp:BoundField DataField="Price" HeaderText="Price" />
+        <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
+    </Columns>
+</asp:PagingGridView>

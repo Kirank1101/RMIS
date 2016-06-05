@@ -11,7 +11,7 @@ public partial class ProductSellingInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            base.Header = "Product Stock Information";
 
             ddlProductTypeID.DataSource = impb.GetMProductSellingTypeEntities();
             ddlProductTypeID.DataTextField = "ProductSellingType";
