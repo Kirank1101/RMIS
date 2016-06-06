@@ -33,6 +33,7 @@ public partial class AddLotDetails : BaseUserControl
             ddlGodownName.DataTextField = GodownTypeDTO.dataColumnGodownType;
             ddlGodownName.DataValueField = GodownTypeDTO.dataColumnId;
             ddlGodownName.DataBind();
+            ddlGodownName.Items.Insert(0, "[Select]");
         }
     }
 

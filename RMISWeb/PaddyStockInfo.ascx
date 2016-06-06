@@ -3,11 +3,6 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <div class="table-responsive">
-    <script type="text/javascript">
-        function txtOnKeyPress() {
-            alert("hi");
-        }
-    </script>
     <table>
         <tr>
             <td valign="top" style="padding-right: 70px">
@@ -71,6 +66,8 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtVehicalNo" />
+                            <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtVehicalNo"
+                                ValidationGroup="OnSave" ErrorMessage="*" />
                         </td>
                     </tr>
                     <tr>
@@ -96,7 +93,7 @@
                             <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtPrice" MaxLength="6" onkeypress="txtOnKeyPress(this);" />
+                            <asp:TextBox runat="server" ID="txtPrice" MaxLength="6" />
                         </td>
                     </tr>
                     <tr>
@@ -207,16 +204,16 @@
     </table>
     <table>
         <tr>
-            ss
             <td>
-                <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="OnSave" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
             </td>
         </tr>
     </table>
 </div>
 <asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
-    DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false">
+    AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
+      CssClass= "table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
     <Columns>
         <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
         <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />
