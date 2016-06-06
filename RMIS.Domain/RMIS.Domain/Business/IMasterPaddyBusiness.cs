@@ -14,6 +14,7 @@ namespace RMIS.Domain.Business
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
+        bool CheckPaddyTypeExist(string PaddyType);
         List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();

@@ -65,7 +65,7 @@
                             <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtVehicalNo" />
+                            <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="10" />
                             <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtVehicalNo"
                                 ValidationGroup="OnSave" ErrorMessage="*" />
                         </td>
@@ -75,7 +75,9 @@
                             <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtDriverName" />
+                            <asp:TextBox runat="server" ID="txtDriverName" MaxLength="50" />
+                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="LowercaseLetters,UppercaseLetters"
+                                TargetControlID="txtDriverName" />
                         </td>
                     </tr>
                     <tr>
@@ -185,6 +187,8 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtHandoverto" MaxLength="50" />
+                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" FilterType="LowercaseLetters,UppercaseLetters"
+                                TargetControlID="txtHandoverto" />
                         </td>
                     </tr>
                     <tr>
@@ -213,7 +217,7 @@
 </div>
 <asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
     AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
-      CssClass= "table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
+    CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
     <Columns>
         <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
         <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />

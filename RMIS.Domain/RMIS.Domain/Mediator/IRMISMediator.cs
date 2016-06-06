@@ -100,6 +100,7 @@ namespace RMIS.Domain.Mediator
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
+        List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId,string PaddyType);
         List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
         List<MUserTypeEntity> GetMUserTypeEntities(string CustId);        
         List<MBagTypeEntity> GetMBagTypeEntities(string CustId);

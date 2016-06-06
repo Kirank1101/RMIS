@@ -9,6 +9,8 @@ using RMIS.Domain.Constant;
 
 public partial class AddPaddyType : BaseUserControl
 {
+    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -17,19 +19,13 @@ public partial class AddPaddyType : BaseUserControl
             bindPaddyType();
         }
     }
-
     private void bindPaddyType()
     {
         int count = 0;
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptPaddyType.DataSource = imp.GetMPaddyTypeEntities(rptPaddyType.PageIndex, rptPaddyType.PageSize, out count, expression);
         rptPaddyType.VirtualItemCount = count;
         rptPaddyType.DataBind();
     }
-
-
-   
-
     protected void rptPaddyType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         rptPaddyType.PageIndex = gridPageIndex = e.NewPageIndex;
@@ -89,8 +85,6 @@ public partial class AddPaddyType : BaseUserControl
 
     }
 
-
-
     protected void rptPaddyType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         rptPaddyType.EditIndex = -1;
@@ -98,23 +92,31 @@ public partial class AddPaddyType : BaseUserControl
         bindPaddyType();
     }
 
-
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+
+        bool IsPaddyTypeExist = imp.CheckPaddyTypeExist(txtPaddyType.Text.Trim());
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValiadtePaddyType(txtPaddyType.Text);
-        if (resultDto.IsSuccess)
+            
+        if (!IsPaddyTypeExist)
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SavePaddyType(txtPaddyType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                bindPaddyType();
+                resultDto = imp.SavePaddyType(txtPaddyType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindPaddyType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
-        else
-        {
+        else {
+            resultDto.Message = "Paddy Type already exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
     }

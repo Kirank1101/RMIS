@@ -303,6 +303,37 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+        internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId,string paddytype)
+        {
+            try
+            {
+                List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
+                IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Name",paddytype))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
+                if (listMPaddyType != null && listMPaddyType.Count > 0)
+                {
+                    foreach (MPaddyType adMInfo in listMPaddyType)
+                    {
+                        listMPaddyTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMPaddyTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMPaddyTypeEntity = null;
+
+                return listMPaddyTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntities", ex);
+                throw;
+            }
+        }
         internal List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntities(string CustId)
         {
             try

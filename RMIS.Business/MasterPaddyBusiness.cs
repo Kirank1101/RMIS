@@ -75,6 +75,16 @@ namespace RMIS.Business
             return listPaddyTypeDTO;
         }
 
+        public bool CheckPaddyTypeExist(string paddytype)
+        {
+            bool IsPaddyTypeExist = false;
+
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.CheckPaddyTypeExist(provider.GetCurrentCustomerId(), paddytype);
+            if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
+                IsPaddyTypeExist = true;
+
+            return IsPaddyTypeExist;
+        }
 
         public List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count,SortExpression expression)
         {

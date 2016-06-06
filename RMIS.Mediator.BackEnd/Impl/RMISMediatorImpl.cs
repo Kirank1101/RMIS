@@ -995,5 +995,12 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression);
         }
+
+
+        public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType)
+        {
+
+            return rmisGateway.CheckPaddyTypeExist(CustId, PaddyType);
+        }
     }
 }
