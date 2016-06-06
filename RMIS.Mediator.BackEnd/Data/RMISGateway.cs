@@ -102,7 +102,67 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+        internal MUnitsTypeEntity CheckUnitTypeExist(string custId, string UnitsType)
+        {
+            try
+            {
+                MUnitsTypeEntity mUnitsTypeEntity = new MUnitsTypeEntity();
+                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("UnitsType", UnitsType))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        mUnitsTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    mUnitsTypeEntity = null;
 
+                return mUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                throw;
+            }
+        }
+
+        internal MGodownDetailsEntity CheckGodownNameExist(string custId, string GodownName)
+        {
+            try
+            {
+                MGodownDetailsEntity MGodownDetailsEntity = new MGodownDetailsEntity();
+                IRepository<MGodownDetails> unitsTypeRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                   .Add(Expression.Eq("Name", GodownName))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MGodownDetails> listMGodownDetails = unitsTypeRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
+                if (listMGodownDetails != null && listMGodownDetails.Count > 0)
+                {
+                    foreach (MGodownDetails adMInfo in listMGodownDetails)
+                    {
+                        MGodownDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MGodownDetailsEntity = null;
+
+                return MGodownDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckGodownNameExist", ex);
+                throw;
+            }
+        }
 
         internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId)
         {
@@ -1727,8 +1787,37 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
- 
 
+        internal MLotDetailsEntity CheckLotNameExist(string custId, string LotName)
+        {
+            try
+            {
+                MLotDetailsEntity MLotDetailsEntity = new MLotDetailsEntity();
+                IRepository<MLotDetails> unitsTypeRepository = new RepositoryImpl<MLotDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
+                                                                   .Add(Expression.Eq("LotName", LotName))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MLotDetails> listMLotDetails = unitsTypeRepository.GetAll(detachedCriteria) as List<MLotDetails>;
+                if (listMLotDetails != null && listMLotDetails.Count > 0)
+                {
+                    foreach (MLotDetails adMInfo in listMLotDetails)
+                    {
+                        MLotDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMLotDetailsEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MLotDetailsEntity = null;
+
+                return MLotDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckLotNameExist", ex);
+                throw;
+            }
+        }
 
         #endregion Methods
         private List<T> GetAllFromRepository<T>()

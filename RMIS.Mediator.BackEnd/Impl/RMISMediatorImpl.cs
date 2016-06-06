@@ -1002,5 +1002,23 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.CheckPaddyTypeExist(CustId, PaddyType);
         }
+
+
+        public MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType)
+        {
+            return rmisGateway.CheckUnitTypeExist(CustId, UnitType);
+        }
+
+
+        public MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName)
+        {
+            return rmisGateway.CheckGodownNameExist(CustId, GodownName);
+        }
+
+
+        public MLotDetailsEntity CheckLotNameExist(string CustId, string LotName)
+        {
+            return rmisGateway.CheckLotNameExist(CustId, LotName);
+        }
     }
 }

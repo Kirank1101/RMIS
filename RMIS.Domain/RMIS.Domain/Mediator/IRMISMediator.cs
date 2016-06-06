@@ -135,6 +135,9 @@ namespace RMIS.Domain.Mediator
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         List<BuyerInfoEntity> GetListBuyerInfoEntities();
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
+        MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType);
+        MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName);
+        MLotDetailsEntity CheckLotNameExist(string CustId, string LotName);
         #endregion
     }
 

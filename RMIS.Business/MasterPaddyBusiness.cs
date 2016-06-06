@@ -86,7 +86,18 @@ namespace RMIS.Business
             return IsPaddyTypeExist;
         }
 
-        public List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count,SortExpression expression)
+        public bool CheckUnitTypeExist(string UnitType)
+        {
+            bool IsUnitTypeExist = false;
+
+            MUnitsTypeEntity UnitTypeEntity = imp.CheckUnitTypeExist(provider.GetCurrentCustomerId(), UnitType);
+            if (UnitTypeEntity != null)
+                IsUnitTypeExist = true;
+
+            return IsUnitTypeExist;
+        }
+
+        public List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
 
@@ -345,7 +356,7 @@ namespace RMIS.Business
                 try
                 {
                     imp.BeginTransaction();
-                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true );
+                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true);
                     imp.CommitAndCloseSession();
                 }
                 catch (Exception ex)
@@ -368,9 +379,9 @@ namespace RMIS.Business
                 objMPaddyTypeEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-                   
+
                     imp.BeginTransaction();
-                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true );
+                    imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true);
                     imp.CommitAndCloseSession();
                 }
                 catch (Exception ex)
@@ -620,6 +631,30 @@ namespace RMIS.Business
         public List<MRolesEntity> GetAllRolesEntities()
         {
             return imp.GetAllRolesEntity();
+        }
+
+
+        public bool CheckGodownNameExist(string GodownName)
+        {
+            bool IsGodownNameExist = false;
+
+            MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName);
+            if (MGodownDetailsEntity != null )
+                IsGodownNameExist = true;
+
+            return IsGodownNameExist;
+        }
+
+
+        public bool CheckLotNameExist(string LotName)
+        {
+            bool IsLotNameExist = false;
+
+            MLotDetailsEntity MLotDetailsEntity = imp.CheckLotNameExist(provider.GetCurrentCustomerId(), LotName);
+            if (MLotDetailsEntity != null)
+                IsLotNameExist = true;
+
+            return IsLotNameExist;
         }
     }
 }

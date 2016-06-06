@@ -20,6 +20,8 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddGodownDetails : BaseUserControl
 {
+    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -31,26 +33,36 @@ public partial class AddGodownDetails : BaseUserControl
 
     private void bindGodownDetails()
     {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptGodownDetails.DataSource = imp.GetMGodownTypeEntities();
         rptGodownDetails.DataBind();
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateGodownDetails(txtGodownName.Text);
-        if (resultDto.IsSuccess)
+        bool IsGodownExist = false;
+        ResultDTO resultDto = new ResultDTO();
+        IsGodownExist = imp.CheckGodownNameExist(txtGodownName.Text.Trim());
+        if (!IsGodownExist)
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveGodownType(txtGodownName.Text.Trim());
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateGodownDetails(txtGodownName.Text);
             if (resultDto.IsSuccess)
             {
-                bindGodownDetails();
+                resultDto = imp.SaveGodownType(txtGodownName.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindGodownDetails();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
         else
-        {
+        {            
+            resultDto.Message = "GodownName already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
     }

@@ -10,7 +10,7 @@
                             <asp:Label runat="server" ID="lblHGodownName" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlGodownName" runat="server" >                            
+                            <asp:DropDownList ID="ddlGodownName" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlGodownName_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
                     </tr>

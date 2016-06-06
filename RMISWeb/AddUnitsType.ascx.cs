@@ -20,6 +20,8 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddUnitsType : BaseUserControl
 {
+    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -32,7 +34,6 @@ public partial class AddUnitsType : BaseUserControl
 
     private void bindUnitType()
     {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptUnitsType.DataSource = imp.GetMUnitsTypeEntities();
         rptUnitsType.DataBind();
     }
@@ -40,18 +41,26 @@ public partial class AddUnitsType : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateUnitsType(txtUnitsType.Text);
-        if (resultDto.IsSuccess)
+        bool IsUnitTypeExist = imp.CheckUnitTypeExist(txtUnitsType.Text.Trim());
+        if (!IsUnitTypeExist)
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveUnitsType(txtUnitsType.Text.Trim());
             if (resultDto.IsSuccess)
             {
-                bindUnitType();
+                resultDto = imp.SaveUnitsType(txtUnitsType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindUnitType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
-        else
-        {
+        else {
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Already UnitType exist.";
             SetMessage(resultDto);
         }
     }

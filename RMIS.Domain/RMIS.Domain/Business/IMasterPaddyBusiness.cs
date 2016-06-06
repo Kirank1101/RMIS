@@ -12,9 +12,12 @@ namespace RMIS.Domain.Business
     {
         List<MBagTypeDTO> GetMBagTypeEntities();
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
+        bool CheckUnitTypeExist(string UnitType);
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
         bool CheckPaddyTypeExist(string PaddyType);
+        bool CheckGodownNameExist(string GodownName);
+        bool CheckLotNameExist(string LotName);
         List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();

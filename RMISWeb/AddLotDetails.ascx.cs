@@ -21,13 +21,14 @@ using System.Collections.Generic;
 
 public partial class AddLotDetails : BaseUserControl
 {
+    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
             Header = "Add Lot Information";
             bindLotDetails();
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             List<GodownTypeDTO> listGodownTypeDTO = imp.GetMGodownTypeEntities();
             ddlGodownName.DataSource = listGodownTypeDTO;
             ddlGodownName.DataTextField = GodownTypeDTO.dataColumnGodownType;
@@ -39,26 +40,40 @@ public partial class AddLotDetails : BaseUserControl
 
     private void bindLotDetails()
     {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptLotDetails.DataSource = imp.GetLotDetailsEntities(ddlGodownName.SelectedValue);
         rptLotDetails.DataBind();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
-        if (resultDto.IsSuccess)
+        ResultDTO resultDto = new ResultDTO();
+        bool IsLotNameExist = false;
+        IsLotNameExist = imp.CheckLotNameExist(txtLotDetails.Text.Trim());
+        if (!IsLotNameExist)
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
             if (resultDto.IsSuccess)
             {
-                bindLotDetails();
+                resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
+                if (resultDto.IsSuccess)
+                {
+                    bindLotDetails();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
         else
         {
+            resultDto.Message = "LotName already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+    protected void ddlGodownName_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        bindLotDetails();
     }
 }
