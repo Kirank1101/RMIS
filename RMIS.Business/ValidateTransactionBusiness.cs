@@ -66,7 +66,8 @@ namespace RMIS.Business
             return new ResultDTO();
         }
 
-        public ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate)
+        public ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate,
+            string paymentmode,string ChequeuNo, string Bankname,double amountpaid, string paiddate,string Handoverto,string nextpaymentdate)
         {
             if (godown <= 0)
             {
@@ -115,6 +116,69 @@ namespace RMIS.Business
             else if (!purchaseDate.IsDate())
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsPurchaseDateValidate, provider.GetCurrentCustomerId()) };
+            }
+            else if (paymentmode == "Cash")
+            {
+                #region Validate on Cash
+                if (!paiddate.IsDate())
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsPaidDate, provider.GetCurrentCustomerId()) };
+                }
+                else if (amountpaid <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsAmountPaid, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(Handoverto.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsHandOverToEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (Handoverto.Trim().Length > 50)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsHandOverToLength, provider.GetCurrentCustomerId()) };
+                }
+
+                #endregion
+            }
+            else if (paymentmode == "Cheque")
+            {
+                #region Validate Cheque Payment
+                if (!paiddate.IsDate())
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsPaidDate, provider.GetCurrentCustomerId()) };
+                }
+                else if (amountpaid <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsAmountPaid, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(ChequeuNo.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsChequeNoEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (ChequeuNo.Trim().Length > 50)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsChequeNoLength, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(Bankname.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsBankNameEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (Bankname.Trim().Length > 50)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsBankNameLength, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(Handoverto.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsHandOverToEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (Handoverto.Trim().Length > 50)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsHandOverToLength, provider.GetCurrentCustomerId()) };
+                }
+                #endregion
+            }
+            else if (!nextpaymentdate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockDetailsnextpaymentdate, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

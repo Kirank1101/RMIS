@@ -22,7 +22,7 @@ public partial class PaddyPaymentDetails : BaseUserControl
             && !string.IsNullOrEmpty(txtHandoverto.Text.Trim()) && !string.IsNullOrEmpty(txtNextpaymentdate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SavePaddyPaymentDetails(ddlsellernames.SelectedValue,Convert.ToDouble(txtamountpaid.Text.Trim()),Convert.ToDateTime(txtPaidDate.Text.Trim()),txtHandoverto.Text.Trim(),Convert.ToDateTime(txtNextpaymentdate.Text.Trim()));
+            //imp.SavePaddyPaymentDetails(ddlsellernames.SelectedValue,Convert.ToDouble(txtamountpaid.Text.Trim()),Convert.ToDateTime(txtPaidDate.Text.Trim()),txtHandoverto.Text.Trim(),Convert.ToDateTime(txtNextpaymentdate.Text.Trim()));
             ClearAllInputFields();
 
         }

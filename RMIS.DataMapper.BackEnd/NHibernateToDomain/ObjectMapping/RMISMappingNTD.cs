@@ -263,6 +263,10 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
                     .ForMember(dest => dest.HandoverTo, opts => opts.MapFrom(src => src.HandoverTo))
                     .ForMember(dest => dest.NextPaymentDate, opts => opts.MapFrom(src => src.NextPaymentDate))
+                    .ForMember(dest => dest.PaddyStockID, opts => opts.MapFrom(src => src.PaddyStockID))
+                    .ForMember(dest => dest.PaymentMode, opts => opts.MapFrom(src => src.PaymentMode))
+                    .ForMember(dest => dest.ChequeNo, opts => opts.MapFrom(src => src.ChequeNo))
+                    .ForMember(dest => dest.BankName, opts => opts.MapFrom(src => src.BankName))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));

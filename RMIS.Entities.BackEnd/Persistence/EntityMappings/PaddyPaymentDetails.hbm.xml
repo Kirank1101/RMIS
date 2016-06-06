@@ -12,7 +12,11 @@
     <property name="AmountPaid" column="AmountPaid" />
     <property name="PaidDate" column="PaidDate" />
     <property name="HandoverTo" column="HandoverTo" />
-    <property name="NextPaymentDate" column="NextPaymentDate" />    
+    <property name="NextPaymentDate" column="NextPaymentDate" />
+    <property name="PaddyStockID" column="PaddyStockID" />
+    <property name="PaymentMode" column="PaymentMode" />
+    <property name="ChequeNo" column="ChequeNo" />
+    <property name="BankName" column="BankName" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

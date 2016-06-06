@@ -183,6 +183,16 @@ namespace RMIS.Domain.Constant
         public const string ValidateBuyerDetailsDistrictLength = "Validate137";
         public const string ValidateBuyerDetailsStateLength = "Validate138";
         public const string ValidateBuyerDetailsContactNoLength = "Validate139";
+
+        public const string ValidatePaddyStockDetailsPaidDate = "Validate140";
+        public const string ValidatePaddyStockDetailsAmountPaid = "Validate141";
+        public const string ValidatePaddyStockDetailsHandOverToEmpty = "Validate142";
+        public const string ValidatePaddyStockDetailsHandOverToLength = "Validate143";
+        public const string ValidatePaddyStockDetailsChequeNoEmpty = "Validate144";
+        public const string ValidatePaddyStockDetailsChequeNoLength = "Validate145";
+        public const string ValidatePaddyStockDetailsBankNameEmpty = "Validate146";
+        public const string ValidatePaddyStockDetailsBankNameLength = "Validate144";
+        public const string ValidatePaddyStockDetailsnextpaymentdate = "Validate145";
     }
 
     public enum SortExpression

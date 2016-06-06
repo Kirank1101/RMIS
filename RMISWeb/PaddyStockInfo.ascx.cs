@@ -64,11 +64,15 @@ public partial class PaddyStockInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, ddlsellernames.SelectedIndex, txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, ddlsellernames.SelectedIndex, txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtBankName.Text.Trim(), Convert.ToDouble(txtamountpaid.Text), txtPaidDate.Text.Trim(), txtHandoverto.Text.Trim(), txtNextpaymentdate.Text.Trim());
+        
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToDecimal(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtPrice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
+            resultDto = imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToDecimal(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtPrice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim())
+                ,Convert.ToDouble(txtamountpaid.Text.Trim()), Convert.ToDateTime(txtPaidDate.Text.Trim()), txtHandoverto.Text.Trim(),
+                Convert.ToDateTime(txtNextpaymentdate.Text.Trim()),rbtPaymnetMode.SelectedValue,txtChequeNo.Text.Trim(),txtBankName.Text.Trim());
+            
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();

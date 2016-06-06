@@ -14,6 +14,10 @@ namespace RMIS.Entities.BackEnd
         private DateTime _PaidDate;
         private string _HandoverTo;
         private DateTime _NextPaymentDate;
+        private string _PaddyStockID;
+        private string _PaymentMode;
+        private string _ChequeNo;
+        private string _BankName;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -52,6 +56,26 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _NextPaymentDate; }
             set { _NextPaymentDate = value; }
+        }
+        public virtual string PaddyStockID
+        {
+            get { return _PaddyStockID; }
+            set { _PaddyStockID = value; }
+        }
+        public virtual string PaymentMode
+        {
+            get { return _PaymentMode; }
+            set { _PaymentMode = value; }
+        }
+        public virtual string ChequeNo
+        {
+            get { return _ChequeNo; }
+            set { _ChequeNo = value; }
+        }
+        public virtual string BankName
+        {
+            get { return _BankName; }
+            set { _BankName = value; }
         }
         public virtual string LastModifiedBy
         {

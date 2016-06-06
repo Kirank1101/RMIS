@@ -16,6 +16,10 @@ namespace RMIS.Domain.RiceMill
         public DateTime PaidDate { get; set; }
         public string HandoverTo { get; set; }
         public DateTime NextPaymentDate { get; set; }
+        public string PaddyStockID { get; set; }
+        public string PaymentMode { get; set; }
+        public string ChequeNo { get; set; }
+        public string BankName { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>

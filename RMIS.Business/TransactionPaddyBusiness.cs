@@ -57,8 +57,9 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate, double AmountPaid, DateTime PaidDate, string HandOverTo, DateTime NextPaymentDate, string PaymentMode, string ChequeuNo, string BankName)
         {
+            #region Save PaddyStock
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
             objPaddyStockInfoEntity.ObsInd = YesNo.N;
             objPaddyStockInfoEntity.CustID = provider.GetCurrentCustomerId();
@@ -75,10 +76,29 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.TotalBags = totalBags;
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
+            #endregion
+            #region Save PaddyPayment
+            PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
+            objPaddyPaymentDetailsEntity.ObsInd = YesNo.N;
+            objPaddyPaymentDetailsEntity.CustID = provider.GetCurrentCustomerId();
+            objPaddyPaymentDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objPaddyPaymentDetailsEntity.AmountPaid = AmountPaid;
+            objPaddyPaymentDetailsEntity.HandoverTo = HandOverTo;
+            objPaddyPaymentDetailsEntity.LastModifiedDate = DateTime.Now;
+            objPaddyPaymentDetailsEntity.PaddyPaymentID = CommonUtil.CreateUniqueID("PP");
+            objPaddyPaymentDetailsEntity.PaidDate = PaidDate;
+            objPaddyPaymentDetailsEntity.NextPaymentDate = NextPaymentDate;
+            objPaddyPaymentDetailsEntity.SellerID = sellerId;
+            objPaddyPaymentDetailsEntity.PaddyStockID = objPaddyStockInfoEntity.PaddyStockID;
+            objPaddyPaymentDetailsEntity.PaymentMode = PaymentMode;
+            objPaddyPaymentDetailsEntity.ChequeNo = ChequeuNo;
+            objPaddyPaymentDetailsEntity.BankName = BankName;
+            #endregion
             try
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdatePaddyStockInfoEntity(objPaddyStockInfoEntity, false);
+                imp.SaveOrUpdatePaddyPaymentDetailsEntity(objPaddyPaymentDetailsEntity, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -88,7 +108,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName)
         {
             PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
             objPaddyPaymentDetailsEntity.ObsInd = YesNo.N;
@@ -101,6 +121,10 @@ namespace RMIS.Business
             objPaddyPaymentDetailsEntity.PaidDate = paidDate;
             objPaddyPaymentDetailsEntity.NextPaymentDate = nextPaymentDate;
             objPaddyPaymentDetailsEntity.SellerID = sellerId;
+            objPaddyPaymentDetailsEntity.PaddyStockID = PaddyStockID;
+            objPaddyPaymentDetailsEntity.PaymentMode = PaymentMode;
+            objPaddyPaymentDetailsEntity.ChequeNo = ChequeuNo;
+            objPaddyPaymentDetailsEntity.BankName = BankName;
             try
             {
                 imp.BeginTransaction();

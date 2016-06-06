@@ -1,7 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="PaddyStockInfo.ascx.cs"
     Inherits="PaddyStockInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <div class="table-responsive">
+    <script type="text/javascript">
+        function txtOnKeyPress() {
+            alert("hi");
+        }
+    </script>
     <table>
         <tr>
             <td valign="top" style="padding-right: 70px">
@@ -80,7 +86,9 @@
                             <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtTotalBags" />
+                            <asp:TextBox runat="server" ID="txtTotalBags" MaxLength="3" />
+                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" FilterType="Numbers"
+                                TargetControlID="txtPrice" />
                         </td>
                     </tr>
                     <tr>
@@ -88,7 +96,7 @@
                             <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtPrice" />
+                            <asp:TextBox runat="server" ID="txtPrice" MaxLength="6" onkeypress="txtOnKeyPress(this);" />
                         </td>
                     </tr>
                     <tr>
@@ -97,6 +105,9 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtPruchaseDate" />
+                            <ajax:CalendarExtender ID="CalendarExtender1" TargetControlID="txtPruchaseDate" Format="dd/MM/yyyy"
+                                runat="server">
+                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                 </table>
@@ -131,7 +142,7 @@
                             <asp:Label runat="server" ID="lblchequeno" Text="<%$Resources:Resource,ChequeNo%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtChequeNo" />
+                            <asp:TextBox runat="server" ID="txtChequeNo" MaxLength="50" />
                         </td>
                     </tr>
                     <tr>
@@ -139,7 +150,7 @@
                             <asp:Label runat="server" ID="lblbankname" Text="<%$Resources:Resource,BankName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="BankName" />
+                            <asp:TextBox runat="server" ID="txtBankName" MaxLength="50" />
                         </td>
                     </tr>
                     <tr>
@@ -147,7 +158,9 @@
                             <asp:Label runat="server" ID="lblamount" Text="<%$Resources:Resource,AmountPaid%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtamountpaid" />
+                            <asp:TextBox runat="server" ID="txtamountpaid" MaxLength="10" />
+                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Numbers"
+                                TargetControlID="txtamountpaid" />
                         </td>
                     </tr>
                     <tr>
@@ -156,6 +169,9 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtPaidDate" />
+                            <ajax:CalendarExtender ID="CalendarExtender2" TargetControlID="txtPaidDate" Format="dd/MM/yyyy"
+                                runat="server">
+                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -171,7 +187,7 @@
                             <asp:Label runat="server" ID="lblHandoverto" Text="<%$Resources:Resource,AmountGivenTo%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtHandoverto" />
+                            <asp:TextBox runat="server" ID="txtHandoverto" MaxLength="50" />
                         </td>
                     </tr>
                     <tr>
@@ -180,6 +196,9 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtNextpaymentdate" />
+                            <ajax:CalendarExtender ID="CalendarExtender3" TargetControlID="txtNextpaymentdate"
+                                Format="dd/MM/yyyy" runat="server">
+                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                 </table>
@@ -187,7 +206,8 @@
         </tr>
     </table>
     <table>
-        <tr>ss
+        <tr>
+            ss
             <td>
                 <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
@@ -196,7 +216,7 @@
     </table>
 </div>
 <asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
-    DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false" >
+    DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false">
     <Columns>
         <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
         <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />

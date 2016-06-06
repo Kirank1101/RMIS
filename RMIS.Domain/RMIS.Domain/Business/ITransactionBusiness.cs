@@ -15,12 +15,12 @@ namespace RMIS.Domain.Business
            string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId,
            string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price,
-           DateTime purchaseDate);
+           DateTime purchaseDate,double AmountPaid,DateTime PaidDate,string HandOverTo,DateTime NextPaymentDate,string PaymentMode, string ChequeuNo,string BankName);
         ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId,
                      string vehicleNo, string DriverName, int totalBags, decimal Price,
                      DateTime purchaseDate);
         ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid,
-           DateTime paidDate, string handOverTo, DateTime nextPaymentDate);
+           DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName);
         ResultDTO SaveRiceStockInfo(string MRiceProdTypeID, string MRiceBrandID, int totalBags, int QWeight, string UnitsTypeID);
         ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string UnitsTypeID);
         ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string UnitsTypeID);
