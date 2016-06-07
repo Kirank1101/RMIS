@@ -54,6 +54,7 @@
     <Compile Include="Model\Entities\BrokenRiceSellingInfo.cs" />
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
+    <Compile Include="Model\Entities\EmployeeDetails.cs" />
     <Compile Include="Model\Entities\MSalaryType.cs" />
     <Compile Include="Model\Entities\MEmployeeDesignation.cs" />
     <Compile Include="Model\Entities\HullingProcessExpenses.cs" />
@@ -171,6 +172,7 @@
     <EmbeddedResource Include="Persistence\EntityMappings\MSalaryType.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\EntityMappings\EmployeeDetails.hbm.xml" />
     <Content Include="Persistence\EntityMappings\HullingProcessExpenses.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

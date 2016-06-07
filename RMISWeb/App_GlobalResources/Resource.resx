@@ -306,6 +306,9 @@
   <data name="DesigType" xml:space="preserve">
     <value>Designation Type</value>
   </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
   <data name="IsDesigDeleted" xml:space="preserve">
     <value>IsDeleted</value>
   </data>
