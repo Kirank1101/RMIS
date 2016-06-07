@@ -114,6 +114,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMEmployeeDesignationEntityToMEmployeeDesignation();
                 objRMISMappingDTN.MapMSalaryTypeEntityToMSalaryType();
                 objRMISMappingDTN.MapEmployeeDetailsEntityToEmployeeDetails();
+                objRMISMappingDTN.MapEmployeeSalaryEntityToEmployeeSalary();
             }
             catch (Exception exp)
             {

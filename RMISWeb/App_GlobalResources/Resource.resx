@@ -303,6 +303,9 @@
   <data name="BuyerName" xml:space="preserve">
     <value>Buyer Name</value>
   </data>
+  <data name="Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
   <data name="DesigType" xml:space="preserve">
     <value>Designation Type</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="IsSalaryTypeDeleted" xml:space="preserve">
     <value>IsDeleted</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
   </data>
   <data name="SalaryType" xml:space="preserve">
     <value>Salary Type</value>

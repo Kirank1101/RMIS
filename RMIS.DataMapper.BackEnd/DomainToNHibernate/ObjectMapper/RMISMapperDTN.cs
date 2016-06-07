@@ -13,7 +13,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
 {
 
     public interface IRMISMapper
-    {   
+    {
         MBagType GetBagType(MBagTypeEntity mBagTypeEntity);
         MUnitsType GetUnitsType(MUnitsTypeEntity mUnitsTypeEntity);
         SellerInfo GetSellerInfo(SellerInfoEntity SellerInfoEntity);
@@ -56,6 +56,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MEmployeeDesignation GetMEmployeeDesignation(MEmployeeDesignationEntity MEmployeeDesignationEntity);
         MSalaryType GetMSalaryType(MSalaryTypeEntity MSalaryTypeEntity);
         EmployeeDetails GetEmployeeDetails(EmployeeDetailsEntity EmployeeDetailsEntity);
+        EmployeeSalary GetEmployeeSalary(EmployeeSalaryEntity EmployeeSalaryEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -495,7 +496,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             return DustSellingInfo;
         }
 
-        public  MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity)
+        public MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity)
         {
             MenuInfo menuInfo = null;
 
@@ -721,6 +722,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return EmployeeDetails;
+        }
+
+
+        public EmployeeSalary GetEmployeeSalary(EmployeeSalaryEntity EmployeeSalaryEntity)
+        {
+            EmployeeSalary EmployeeSalary = null;
+            try
+            {
+                EmployeeSalary = Mapper.Map<EmployeeSalaryEntity, EmployeeSalary>(EmployeeSalaryEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalary", ex);
+                throw;
+            }
+            return EmployeeSalary;
         }
     }
 }

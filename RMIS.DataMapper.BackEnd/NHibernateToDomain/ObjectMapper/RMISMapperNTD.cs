@@ -828,6 +828,23 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             }
             return EmployeeDetailsEntity;
         }
+        public static EmployeeSalaryEntity GetEmployeeSalaryEntity(EmployeeSalary EmployeeSalary)
+        {
+            EmployeeSalaryEntity EmployeeSalaryEntity = null;
+            try
+            {
+                if (EmployeeSalary != null)
+                {
+                    EmployeeSalaryEntity = Mapper.Map<EmployeeSalary, EmployeeSalaryEntity>(EmployeeSalary);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetEmployeeSalaryEntity", ex);
+                throw;
+            }
+            return EmployeeSalaryEntity;
+        }
     }
 
 

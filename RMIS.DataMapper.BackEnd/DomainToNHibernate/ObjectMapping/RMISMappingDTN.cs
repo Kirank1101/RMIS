@@ -713,7 +713,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.UserRoleId, opts => opts.MapFrom(src => src.UserRoleId))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.RoleId, opts => opts.MapFrom(src => src.RoleId))
-                    .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))                   
+                    .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
@@ -994,6 +994,27 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapEmployeeDetailsEntityToEmployeeDetails", ex);
+                throw;
+            }
+        }
+        internal void MapEmployeeSalaryEntityToEmployeeSalary()
+        {
+            try
+            {
+                Mapper.CreateMap<EmployeeSalaryEntity, EmployeeSalary>()
+                    .ForMember(dest => dest.EmpSalaryID, opts => opts.MapFrom(src => src.EmpSalaryID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.EmployeeID, opts => opts.MapFrom(src => src.EmpSalaryID))
+                    .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
+                    .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
+                    .ForMember(dest => dest.Salary, opts => opts.MapFrom(src => src.Salary))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapEmployeeSalaryEntityToEmployeeSalary", ex);
                 throw;
             }
         }

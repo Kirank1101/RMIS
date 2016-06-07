@@ -90,6 +90,7 @@
                 objRMISMappingNTD.MapMEmployeeDesignationEntity();
                 objRMISMappingNTD.MapMSalaryTypeEntity();
                 objRMISMappingNTD.MapEmployeeDetailsEntity();
+                objRMISMappingNTD.MapEmployeeSalaryEntity();
             }
             catch (Exception ex)
             {

@@ -827,7 +827,23 @@ namespace RMIS.Business
 
         public List<EmployeeDetailsEntity> GetEmployeeDetails()
         {
-            return imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId());
+            List<EmployeeDetailsEntity> listEmployeeDetailsEntity = null;
+            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId());
+            if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
+            {
+                listEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
+                foreach (EmployeeDetailsEntity objEmployeeinfo in listEmployeeDetails)
+                {
+
+                    EmployeeDetailsEntity objEmployeeDetailsEntity = new EmployeeDetailsEntity();
+                    objEmployeeDetailsEntity.EmployeeID = objEmployeeinfo.EmployeeID;
+                    objEmployeeDetailsEntity.Name = objEmployeeinfo.Name;
+                    listEmployeeDetailsEntity.Add(objEmployeeDetailsEntity);
+                }
+
+            }
+            return listEmployeeDetailsEntity;
+            
         }
 
 

@@ -930,5 +930,26 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapEmployeeSalaryEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<EmployeeSalary, EmployeeSalaryEntity>()
+                    .ForMember(dest => dest.EmpSalaryID, opts => opts.MapFrom(src => src.EmpSalaryID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.EmployeeID, opts => opts.MapFrom(src => src.EmpSalaryID))
+                    .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
+                    .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
+                    .ForMember(dest => dest.Salary, opts => opts.MapFrom(src => src.Salary))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapEmployeeSalaryEntity", ex);
+                throw;
+            }
+        }
     }
 }
