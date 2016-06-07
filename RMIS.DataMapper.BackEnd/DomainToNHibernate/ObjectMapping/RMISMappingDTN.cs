@@ -927,5 +927,45 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapMEmployeeDesignationEntityToMEmployeeDesignation()
+        {
+            try
+            {
+                Mapper.CreateMap<MEmployeeDesignationEntity, MEmployeeDesignation>()
+                    .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.DesignationType, opts => opts.MapFrom(src => src.DesignationType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MEmployeeDesignationEntityToMEmployeeDesignation", ex);
+                throw;
+            }
+        }
+        internal void MapMSalaryTypeEntityToMSalaryType()
+        {
+            try
+            {
+                Mapper.CreateMap<MSalaryTypeEntity, MSalaryType>()
+                    .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Salarytype, opts => opts.MapFrom(src => src.Salarytype))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMSalaryTypeEntityToMSalaryType", ex);
+                throw;
+            }
+        }
     }
 }

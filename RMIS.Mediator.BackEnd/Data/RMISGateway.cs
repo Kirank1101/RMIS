@@ -1787,6 +1787,60 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+        internal List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string custId)
+        {
+            try
+            {
+                List<MEmployeeDesignationEntity> ListMEmployeeDesignationEntity = new List<MEmployeeDesignationEntity>();
+                IRepository<MEmployeeDesignation> EmpDesigTypeRepository = new RepositoryImpl<MEmployeeDesignation>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MEmployeeDesignation> listMEmployeeDesignation = EmpDesigTypeRepository.GetAll(detachedCriteria) as List<MEmployeeDesignation>;
+                if (listMEmployeeDesignation != null && listMEmployeeDesignation.Count > 0)
+                {
+                    foreach (MEmployeeDesignation adMInfo in listMEmployeeDesignation)
+                    {
+                        ListMEmployeeDesignationEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMEmployeeDesignationEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMEmployeeDesignationEntity = null;
+
+                return ListMEmployeeDesignationEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMEmployeeDesignationEntities", ex);
+                throw;
+            }
+        }
+        internal List<MSalaryTypeEntity> GetMSalaryTypeEntities(string custId)
+        {
+            try
+            {
+                List<MSalaryTypeEntity> ListMSalaryTypeEntity = new List<MSalaryTypeEntity>();
+                IRepository<MSalaryType> EmpSalaryRepository = new RepositoryImpl<MSalaryType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<MSalaryType> listMSalaryType = EmpSalaryRepository.GetAll(detachedCriteria) as List<MSalaryType>;
+                if (listMSalaryType != null && listMSalaryType.Count > 0)
+                {
+                    foreach (MSalaryType adMInfo in listMSalaryType)
+                    {
+                        ListMSalaryTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMSalaryTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMSalaryTypeEntity = null;
+
+                return ListMSalaryTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMSalaryTypeEntities", ex);
+                throw;
+            }
+        }
 
         internal MLotDetailsEntity CheckLotNameExist(string custId, string LotName)
         {
@@ -1815,6 +1869,66 @@ using RMIS.Domain.Constant;
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at CheckLotNameExist", ex);
+                throw;
+            }
+        }
+        internal MEmployeeDesignationEntity CheckEmpDesigExist(string custId, string DesignationType)
+        {
+            try
+            {
+                MEmployeeDesignationEntity MEmployeeDesignationEntity = new MEmployeeDesignationEntity();
+                IRepository<MEmployeeDesignation> DesigTypeRepository = new RepositoryImpl<MEmployeeDesignation>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                   .Add(Expression.Eq("DesignationType", DesignationType))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MEmployeeDesignation> listMEmployeeDesignation = DesigTypeRepository.GetAll(detachedCriteria) as List<MEmployeeDesignation>;
+                if (listMEmployeeDesignation != null && listMEmployeeDesignation.Count > 0)
+                {
+                    foreach (MEmployeeDesignation adMInfo in listMEmployeeDesignation)
+                    {
+                        MEmployeeDesignationEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMEmployeeDesignationEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MEmployeeDesignationEntity = null;
+
+                return MEmployeeDesignationEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckEmpDesigExist", ex);
+                throw;
+            }
+        }
+        internal MSalaryTypeEntity CheckSalaryTypeExist(string custId, string SalaryType)
+        {
+            try
+            {
+                MSalaryTypeEntity MSalaryTypeEntity = new MSalaryTypeEntity();
+                IRepository<MSalaryType> DesigTypeRepository = new RepositoryImpl<MSalaryType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                   .Add(Expression.Eq("Salarytype", SalaryType))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MSalaryType> listMSalaryType = DesigTypeRepository.GetAll(detachedCriteria) as List<MSalaryType>;
+                if (listMSalaryType != null && listMSalaryType.Count > 0)
+                {
+                    foreach (MSalaryType adMInfo in listMSalaryType)
+                    {
+                        MSalaryTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMSalaryTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MSalaryTypeEntity = null;
+
+                return MSalaryTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckSalaryTypeExist", ex);
                 throw;
             }
         }

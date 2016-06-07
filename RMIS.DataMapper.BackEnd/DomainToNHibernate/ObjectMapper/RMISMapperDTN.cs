@@ -53,6 +53,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         HullingProcessExpenses GetHullingProcessExpensesinfo(HullingProcessExpensesEntity hullingProcessExpensesEntity);
         BuyerSellerRating GetBuyerSellerRating(BuyerSellerRatingEntity buyerSellerRatingEntity);
         BuyerInfo GetBuyerInfo(BuyerInfoEntity BuyerInfoEntity);
+        MEmployeeDesignation GetMEmployeeDesignation(MEmployeeDesignationEntity MEmployeeDesignationEntity);
+        MSalaryType GetMSalaryType(MSalaryTypeEntity MSalaryTypeEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -672,6 +674,38 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return BuyerInfo;
+        }
+
+
+        public MEmployeeDesignation GetMEmployeeDesignation(MEmployeeDesignationEntity MEmployeeDesignationEntity)
+        {
+            MEmployeeDesignation MEmployeeDesignation = null;
+            try
+            {
+                MEmployeeDesignation = Mapper.Map<MEmployeeDesignationEntity, MEmployeeDesignation>(MEmployeeDesignationEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMEmployeeDesignation", ex);
+                throw;
+            }
+            return MEmployeeDesignation;
+        }
+
+
+        public MSalaryType GetMSalaryType(MSalaryTypeEntity MSalaryTypeEntity)
+        {
+            MSalaryType MSalaryType = null;
+            try
+            {
+                MSalaryType = Mapper.Map<MSalaryTypeEntity, MSalaryType>(MSalaryTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMSalaryType", ex);
+                throw;
+            }
+            return MSalaryType;
         }
     }
 }

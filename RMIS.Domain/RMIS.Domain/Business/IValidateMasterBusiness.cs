@@ -18,6 +18,9 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateRiceProductType(string riceProduct);
         ResultDTO ValidateLotDetails(string lotName, string godownId);
         ResultDTO ValidateWeightDetails(string weight);
-       ResultDTO ValiadteProductSellingType(string ProductSellingType);       
+       ResultDTO ValiadteProductSellingType(string ProductSellingType);
+       ResultDTO ValidateDesignationType(string DesignationType);
+       ResultDTO ValidateSalaryType(string SalaryType);
+        
     }
 }

@@ -980,45 +980,78 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateMEmployeeDesignationEntity(MEmployeeDesignationEntity MEmployeeDesignationEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MEmployeeDesignation>(mapper.GetMEmployeeDesignation(MEmployeeDesignationEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMEmployeeDesignationEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMEmployeeDesignationEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+        public void SaveOrUpdateMSalaryTypeEntity(MSalaryTypeEntity MSalaryTypeEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MSalaryType>(mapper.GetMSalaryType(MSalaryTypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMSalaryTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMSalaryTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
 
         public List<BuyerInfoEntity> GetListBuyerInfoEntities()
         {
             throw new NotImplementedException();
         }
-
         public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
         }
-
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
         {
             return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression);
         }
-
+        public List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId)
+        {
+            return rmisGateway.GetMEmployeeDesignationEntities(CustId);
+        }
+        public List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId)
+        {
+            return rmisGateway.GetMSalaryTypeEntities(CustId);
+        }
 
         public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType)
         {
-
             return rmisGateway.CheckPaddyTypeExist(CustId, PaddyType);
         }
-
-
         public MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType)
         {
             return rmisGateway.CheckUnitTypeExist(CustId, UnitType);
         }
-
-
         public MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName)
         {
             return rmisGateway.CheckGodownNameExist(CustId, GodownName);
         }
-
-
         public MLotDetailsEntity CheckLotNameExist(string CustId, string LotName)
         {
             return rmisGateway.CheckLotNameExist(CustId, LotName);
+        }
+        public MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType)
+        {
+            return rmisGateway.CheckEmpDesigExist(CustId, DesignationType);
+        }
+        public MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType)
+        {
+            return rmisGateway.CheckSalaryTypeExist(CustId, SalartyType);
         }
     }
 }

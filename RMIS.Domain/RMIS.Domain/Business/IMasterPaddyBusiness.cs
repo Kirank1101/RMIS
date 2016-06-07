@@ -10,14 +10,17 @@ namespace RMIS.Domain.Business
 {
     public interface IMasterPaddyBusiness
     {
-        List<MBagTypeDTO> GetMBagTypeEntities();
-        List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         bool CheckUnitTypeExist(string UnitType);
-        List<MUserTypeEntity> GetMUserTypeEntities();
-        List<PaddyTypeDTO> GetMPaddyTypeEntities();
         bool CheckPaddyTypeExist(string PaddyType);
         bool CheckGodownNameExist(string GodownName);
         bool CheckLotNameExist(string LotName);
+        bool CheckEmpDesigExist(string DesignationType);
+        bool CheckSalaryTypeExist(string SalartyType);
+
+        List<MBagTypeDTO> GetMBagTypeEntities();
+        List<MUnitsTypeDTO> GetMUnitsTypeEntities();
+        List<MUserTypeEntity> GetMUserTypeEntities();
+        List<PaddyTypeDTO> GetMPaddyTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
@@ -27,6 +30,8 @@ namespace RMIS.Domain.Business
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
         List<ProductSellingTypeDTO> GetMProductSellingTypeEntities();
+        List<MEmpDesigDTO> GetMEmpDesigTypeEntities();
+        List<MSalartytypeDTO> GetMSalaryTypeEntities();
         
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
@@ -43,7 +48,8 @@ namespace RMIS.Domain.Business
         ResultDTO SaveRoleEntity(string roleName);
         ResultDTO DeletePaddyType(string Id);
         ResultDTO UpdatePaddyType(string Id, string paddyType);
-      
+        ResultDTO SaveEmpDesigType(string DesignationType);
+        ResultDTO SaveSalartyType(string SalartyType);      
 
     }
 }

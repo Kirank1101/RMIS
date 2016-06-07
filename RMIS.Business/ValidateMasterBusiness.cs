@@ -170,5 +170,30 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+        public ResultDTO ValidateDesignationType(string DesignationType)
+        {
+            if (string.IsNullOrEmpty(DesignationType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDesigTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (DesignationType.Trim().Length > 100)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDesigTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO ValidateSalaryType(string SalaryType)
+        {
+            if (string.IsNullOrEmpty(SalaryType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSalaryTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (SalaryType.Trim().Length > 100)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSalaryTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }

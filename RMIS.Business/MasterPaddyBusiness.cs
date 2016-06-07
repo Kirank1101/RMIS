@@ -241,20 +241,6 @@ namespace RMIS.Business
             }
             return listWeightDetailsDTO;
         }
-        string GetYesorNo(YesNo yesNo)
-        {
-            if (yesNo == YesNo.Y)
-            {
-                return "Yes";
-            }
-            else
-                if (yesNo == YesNo.N)
-                {
-                    return "No";
-
-                }
-            return "No";
-        }
         public List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities()
         {
             List<BrokenRiceTypeDTO> listBrokenRiceTypeDTO = null;
@@ -293,6 +279,41 @@ namespace RMIS.Business
                 }
             }
             return listMUnitsTypeDTO;
+        }
+        public List<MEmpDesigDTO> GetMEmpDesigTypeEntities()
+        {
+            List<MEmpDesigDTO> listMEmpDesigDTO = null;
+
+            List<MEmployeeDesignationEntity> listMEmployeeDesignationEntity = imp.GetListMEmployeeDesignationEntities(provider.GetCurrentCustomerId());
+            if (listMEmployeeDesignationEntity != null && listMEmployeeDesignationEntity.Count > 0)
+            {
+                listMEmpDesigDTO = new List<MEmpDesigDTO>();
+                foreach (MEmployeeDesignationEntity objMEmpDesigEntity in listMEmployeeDesignationEntity)
+                {
+                    MEmpDesigDTO objMEmpDesigDTO = new MEmpDesigDTO();
+                    objMEmpDesigDTO.DesignationType = objMEmpDesigEntity.DesignationType;
+                    objMEmpDesigDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
+                    objMEmpDesigDTO.Id = objMEmpDesigEntity.MEmpDsgID;
+                    listMEmpDesigDTO.Add(objMEmpDesigDTO);
+                }
+
+            }
+            return listMEmpDesigDTO;
+        }
+
+        string GetYesorNo(YesNo yesNo)
+        {
+            if (yesNo == YesNo.Y)
+            {
+                return "Yes";
+            }
+            else
+                if (yesNo == YesNo.N)
+                {
+                    return "No";
+
+                }
+            return "No";
         }
         #endregion
 
@@ -639,7 +660,7 @@ namespace RMIS.Business
             bool IsGodownNameExist = false;
 
             MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName);
-            if (MGodownDetailsEntity != null )
+            if (MGodownDetailsEntity != null)
                 IsGodownNameExist = true;
 
             return IsGodownNameExist;
@@ -655,6 +676,95 @@ namespace RMIS.Business
                 IsLotNameExist = true;
 
             return IsLotNameExist;
+        }
+
+
+
+        public ResultDTO SaveEmpDesigType(string DesignationType)
+        {
+            MEmployeeDesignationEntity objMEmployeeDesignationEntity = new MEmployeeDesignationEntity();
+            objMEmployeeDesignationEntity.ObsInd = YesNo.N;
+            objMEmployeeDesignationEntity.MEmpDsgID = CommonUtil.CreateUniqueID("EI");
+            objMEmployeeDesignationEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMEmployeeDesignationEntity.DesignationType = DesignationType;
+            objMEmployeeDesignationEntity.LastModifiedDate = DateTime.Now;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMEmployeeDesignationEntity(objMEmployeeDesignationEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
+        }
+        public bool CheckEmpDesigExist(string DesignationType)
+        {
+            bool IsDesignationExist = false;
+
+            MEmployeeDesignationEntity MEmployeeDesignationEntity = imp.CheckEmpDesigExist(provider.GetCurrentCustomerId(), DesignationType);
+            if (MEmployeeDesignationEntity != null)
+                IsDesignationExist = true;
+
+            return IsDesignationExist;
+        }
+        public bool CheckSalaryTypeExist(string SalartyType)
+        {
+            bool IsSalaryTypeExist = false;
+
+            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalartyType);
+            if (MSalaryTypeEntityEntity != null)
+                IsSalaryTypeExist = true;
+
+            return IsSalaryTypeExist;
+        }
+
+        public List<MSalartytypeDTO> GetMSalaryTypeEntities()
+        {
+            List<MSalartytypeDTO> listMSalartytypeDTO = null;
+
+            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId());
+            if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
+            {
+                listMSalartytypeDTO = new List<MSalartytypeDTO>();
+                foreach (MSalaryTypeEntity objMEmpDesigEntity in listMSalaryTypeEntity)
+                {
+                    MSalartytypeDTO objMSalartytypeDTO = new MSalartytypeDTO();
+                    objMSalartytypeDTO.SalartyType = objMEmpDesigEntity.Salarytype;
+                    objMSalartytypeDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
+                    objMSalartytypeDTO.Id = objMEmpDesigEntity.MSalaryTypeID;
+                    listMSalartytypeDTO.Add(objMSalartytypeDTO);
+                }
+
+            }
+            return listMSalartytypeDTO;            
+        }
+
+        public ResultDTO SaveSalartyType(string SalartyType)
+        {
+            MSalaryTypeEntity objMSalaryTypeEntity = new MSalaryTypeEntity();
+            objMSalaryTypeEntity.ObsInd = YesNo.N;
+            objMSalaryTypeEntity.MSalaryTypeID = CommonUtil.CreateUniqueID("ST");
+            objMSalaryTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMSalaryTypeEntity.Salarytype = SalartyType;
+            objMSalaryTypeEntity.LastModifiedDate = DateTime.Now;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMSalaryTypeEntity(objMSalaryTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
     }
 }

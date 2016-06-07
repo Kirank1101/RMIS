@@ -773,6 +773,44 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return BuyerInfoEntity;
         }
+        public static MEmployeeDesignationEntity GetMEmployeeDesignationEntity(MEmployeeDesignation MEmployeeDesignation)
+        {
+            MEmployeeDesignationEntity MEmployeeDesignationEntity = null;
+
+            try
+            {
+                if (MEmployeeDesignation != null)
+                {
+                    MEmployeeDesignationEntity = Mapper.Map<MEmployeeDesignation, MEmployeeDesignationEntity>(MEmployeeDesignation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMEmployeeDesignationEntity", ex);
+                throw;
+            }
+
+            return MEmployeeDesignationEntity;
+        }
+        public static MSalaryTypeEntity GetMSalaryTypeEntity(MSalaryType MSalaryType)
+        {
+            MSalaryTypeEntity MSalaryTypeEntity = null;
+
+            try
+            {
+                if (MSalaryType != null)
+                {
+                    MSalaryTypeEntity = Mapper.Map<MSalaryType, MSalaryTypeEntity>(MSalaryType);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMSalaryTypeEntity", ex);
+                throw;
+            }
+
+            return MSalaryTypeEntity;
+        }
     }
 
 

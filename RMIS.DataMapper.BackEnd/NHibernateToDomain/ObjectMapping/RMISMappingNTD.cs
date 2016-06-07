@@ -866,6 +866,41 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-
+        internal void MapMEmployeeDesignationEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MEmployeeDesignation, MEmployeeDesignationEntity>()
+                    .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.DesignationType, opts => opts.MapFrom(src => src.DesignationType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMEmployeeDesignationEntity", ex);
+                throw;
+            }
+        }
+        internal void MapMSalaryTypeEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MSalaryType, MSalaryTypeEntity>()
+                    .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Salarytype, opts => opts.MapFrom(src => src.Salarytype))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapSalarytypeEntity", ex);
+                throw;
+            }
+        }
     }
 }

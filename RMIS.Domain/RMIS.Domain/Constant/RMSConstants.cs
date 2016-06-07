@@ -191,8 +191,14 @@ namespace RMIS.Domain.Constant
         public const string ValidatePaddyStockDetailsChequeNoEmpty = "Validate144";
         public const string ValidatePaddyStockDetailsChequeNoLength = "Validate145";
         public const string ValidatePaddyStockDetailsBankNameEmpty = "Validate146";
-        public const string ValidatePaddyStockDetailsBankNameLength = "Validate144";
-        public const string ValidatePaddyStockDetailsnextpaymentdate = "Validate145";
+        public const string ValidatePaddyStockDetailsBankNameLength = "Validate147";
+        public const string ValidatePaddyStockDetailsnextpaymentdate = "Validate148";
+
+        public const string ValidateDesigTypeEmpty = "Validate149";
+        public const string ValidateDesigTypeLength = "Validate150";
+        public const string ValidateSalaryTypeEmpty = "Validate151";
+        public const string ValidateSalaryTypeLength = "Validate152";
+        
     }
 
     public enum SortExpression

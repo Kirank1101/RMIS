@@ -87,6 +87,8 @@
                 objRMISMappingNTD.MapHullingProcessExpensesInfoEntity();
                 objRMISMappingNTD.MapBuyerSellerRatingEntity();
                 objRMISMappingNTD.MapBuyerInfoEntity();
+                objRMISMappingNTD.MapMEmployeeDesignationEntity();
+                objRMISMappingNTD.MapMSalaryTypeEntity();
             }
             catch (Exception ex)
             {

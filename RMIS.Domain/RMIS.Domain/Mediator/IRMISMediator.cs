@@ -74,6 +74,8 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateHullingProcessExpensesInfoEntity(HullingProcessExpensesEntity hullingProcessExpensesEntity, bool isCopy);
         void SaveOrUpdateBuyyerSellerRatingEnity(BuyerSellerRatingEntity buyerSellerRatingEntity, bool isCopy);
         void SaveOrUpdateBuyerInfoEntity(BuyerInfoEntity BuyerInfoEntity, bool isCopy);
+        void SaveOrUpdateMEmployeeDesignationEntity(MEmployeeDesignationEntity MEmployeeDesignationEntity, bool isCopy);
+        void SaveOrUpdateMSalaryTypeEntity(MSalaryTypeEntity MSalaryTypeEntity, bool isCopy);
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
@@ -134,10 +136,15 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId);
         List<BuyerInfoEntity> GetListBuyerInfoEntities();
+        List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId);
+        List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId);
+
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
         MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType);
         MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName);
         MLotDetailsEntity CheckLotNameExist(string CustId, string LotName);
+        MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType);
+        MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType);
         #endregion
     }
 

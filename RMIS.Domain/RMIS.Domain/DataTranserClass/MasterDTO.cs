@@ -67,7 +67,7 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
-    
+
     public class MBagTypeDTO : MasterPaddyDTO
     {
         public MBagTypeDTO()
@@ -104,7 +104,7 @@ namespace RMIS.Domain.DataTranserClass
         {
             GodownType = string.Empty;
         }
-        public const string dataColumnGodownType="GodownType";
+        public const string dataColumnGodownType = "GodownType";
         public const string dataColumnId = "Id";
         public string GodownType
         {
@@ -175,4 +175,33 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
+    public class MEmpDesigDTO : MasterPaddyDTO
+    {
+        public MEmpDesigDTO()
+            : base()
+        {
+            DesignationType = string.Empty;
+        }
+        public string DesignationType
+        {
+            get;
+            set;
+        }
+
+    }
+    public class MSalartytypeDTO : MasterPaddyDTO
+    {
+        public MSalartytypeDTO()
+            : base()
+        {
+            SalartyType = string.Empty;
+        }
+        public string SalartyType
+        {
+            get;
+            set;
+        }
+
+    }
+
 }
