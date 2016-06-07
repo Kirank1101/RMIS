@@ -15,7 +15,7 @@
 
 
     using RMIS.Domain.RiceMill;
-using RMIS.Domain.Constant;
+    using RMIS.Domain.Constant;
 
 
 
@@ -39,9 +39,7 @@ using RMIS.Domain.Constant;
 
         #endregion Constructors
 
-        #region Methods
-
-
+        #region Get Methods
         internal List<MBagTypeEntity> GetMBagTypeEntities(string custId)
         {
             try
@@ -72,7 +70,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
         {
             try
@@ -80,38 +77,8 @@ using RMIS.Domain.Constant;
                 MUnitsTypeEntity mUnitsTypeEntity = new MUnitsTypeEntity();
                 IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
-                                                                   .Add(Expression.Eq("UnitsTypeID", unitTypeId)                                                                  
+                                                                   .Add(Expression.Eq("UnitsTypeID", unitTypeId)
                                                                    );
-                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
-                if (listMUnitsType != null && listMUnitsType.Count > 0)
-                {
-                    foreach (MUnitsType adMInfo in listMUnitsType)
-                    {
-                        mUnitsTypeEntity=(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
-                        break;
-                    }
-                }
-                else
-                    mUnitsTypeEntity = null;
-
-                return mUnitsTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
-                throw;
-            }
-        }
-        internal MUnitsTypeEntity CheckUnitTypeExist(string custId, string UnitsType)
-        {
-            try
-            {
-                MUnitsTypeEntity mUnitsTypeEntity = new MUnitsTypeEntity();
-                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
-                                                                   .Add(Expression.Eq("UnitsType", UnitsType))
-                                                                   .Add(Expression.Eq("CustID", custId))
-                                                                    .Add(Expression.Eq("ObsInd", "N"));
                 List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
                 if (listMUnitsType != null && listMUnitsType.Count > 0)
                 {
@@ -132,38 +99,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-        internal MGodownDetailsEntity CheckGodownNameExist(string custId, string GodownName)
-        {
-            try
-            {
-                MGodownDetailsEntity MGodownDetailsEntity = new MGodownDetailsEntity();
-                IRepository<MGodownDetails> unitsTypeRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
-                                                                   .Add(Expression.Eq("Name", GodownName))
-                                                                   .Add(Expression.Eq("CustID", custId))
-                                                                    .Add(Expression.Eq("ObsInd", "N"));
-                List<MGodownDetails> listMGodownDetails = unitsTypeRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
-                if (listMGodownDetails != null && listMGodownDetails.Count > 0)
-                {
-                    foreach (MGodownDetails adMInfo in listMGodownDetails)
-                    {
-                        MGodownDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
-                        break;
-                    }
-                }
-                else
-                    MGodownDetailsEntity = null;
-
-                return MGodownDetailsEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at CheckGodownNameExist", ex);
-                throw;
-            }
-        }
-
         internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId)
         {
             try
@@ -193,8 +128,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId)
         {
             try
@@ -224,7 +157,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<MUserTypeEntity> GetMUserTypeEntities(string CustId)
         {
             try
@@ -254,27 +186,25 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
-        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize,out int count,SortExpression  expression)
+        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
         {
             try
             {
                 List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
-                DetachedCriteria detachedCriteria =null;
-                if(expression==SortExpression.Desc )
-                 detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                    .Add(Expression.Eq("ObsInd", "N")
-                                                                   ).AddOrder(Order.Asc("PaddyTypeID"));    
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.Eq("ObsInd", "N")
+                                                                      ).AddOrder(Order.Asc("PaddyTypeID"));
                 else
                     detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                     .Add(Expression.Eq("ObsInd", "N")
-                                                                   ).AddOrder(Order.Desc("PaddyTypeID")); 
+                                                                   ).AddOrder(Order.Desc("PaddyTypeID"));
 
-            
+
                 List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<MPaddyType>;
                 if (listMPaddyType != null && listMPaddyType.Count > 0)
                 {
@@ -294,8 +224,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
         {
             try
@@ -312,13 +240,13 @@ using RMIS.Domain.Constant;
                     detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                     .Add(Expression.Eq("ObsInd", "N")
-                                                                   ).AddOrder(Order.Desc("PaddyStockID")); 
+                                                                   ).AddOrder(Order.Desc("PaddyStockID"));
                 List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyStockInfo>;
                 if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
                 {
                     foreach (PaddyStockInfo adMInfo in listPaddyStockInfoEntity)
                     {
-                        listpaddyStockInfoEntity.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                        listpaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
                     }
                 }
                 else
@@ -332,7 +260,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId)
         {
             try
@@ -341,37 +268,6 @@ using RMIS.Domain.Constant;
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                    .Add(Expression.Eq("ObsInd", "N")
-                                                                   );
-
-                List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
-                if (listMPaddyType != null && listMPaddyType.Count > 0)
-                {
-                    foreach (MPaddyType adMInfo in listMPaddyType)
-                    {
-                        listMPaddyTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMPaddyTypeEntity(adMInfo));
-                    }
-                }
-                else
-                    listMPaddyTypeEntity = null;
-
-                return listMPaddyTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMPaddyTypeEntities", ex);
-                throw;
-            }
-        }
-        internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId,string paddytype)
-        {
-            try
-            {
-                List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
-                IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("Name",paddytype))
                                                                     .Add(Expression.Eq("ObsInd", "N")
                                                                    );
 
@@ -513,8 +409,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId)
         {
             try
@@ -545,8 +439,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
         {
             try
@@ -576,8 +468,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal SellerInfoEntity GetSellerInfoEntity(string SellerID)
         {
             try
@@ -636,9 +526,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
-
         internal List<CustomerInfoEntity> GetCustomerInfoEntities()
         {
             try
@@ -668,8 +555,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal MUserTypeEntity GetMUserTypeEntity(string UserTypeID)
         {
             try
@@ -699,7 +584,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal UsersEntity GetUsersEntity(string Username, string custId)
         {
             try
@@ -730,9 +614,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
-
         internal List<RMUserRoleEntity> GetUserRoles(string userId)
         {
             try
@@ -762,9 +643,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
-
         internal UsersEntity GetUsersEntity(string UserID)
         {
             try
@@ -939,8 +817,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<MGodownDetailsEntity> GetAllMGodownDetailsEntity(string custId)
         {
             try
@@ -970,7 +846,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
         {
             try
@@ -1232,7 +1107,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string custID)
         {
             try
@@ -1262,7 +1136,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
         {
             try
@@ -1292,7 +1165,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string custId)
         {
             try
@@ -1496,7 +1368,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<MenuInfoEntity> GetMenuInfoEntities()
         {
             try
@@ -1524,8 +1395,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<MRolesEntity> GetRoleEntities()
         {
             try
@@ -1553,8 +1422,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
-
         internal List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId)
         {
             try
@@ -1613,7 +1480,6 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
-
         internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId)
         {
             try
@@ -1841,7 +1707,127 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+        internal List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId)
+        {
+            try
+            {
+                List<EmployeeDetailsEntity> ListEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
+                IRepository<EmployeeDetails> EmployeeDetailsRepository = new RepositoryImpl<EmployeeDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeDetails))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<EmployeeDetails> listEmployeeDetails = EmployeeDetailsRepository.GetAll(detachedCriteria) as List<EmployeeDetails>;
+                if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
+                {
+                    foreach (EmployeeDetails adMInfo in listEmployeeDetails)
+                    {
+                        ListEmployeeDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    ListEmployeeDetailsEntity = null;
 
+                return ListEmployeeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeDetailsEntities", ex);
+                throw;
+            }
+        }
+        #endregion
+ 
+        #region Check Data Exist
+        internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string paddytype)
+        {
+            try
+            {
+                List<MPaddyTypeEntity> listMPaddyTypeEntity = new List<MPaddyTypeEntity>();
+                IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Name", paddytype))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+
+                List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
+                if (listMPaddyType != null && listMPaddyType.Count > 0)
+                {
+                    foreach (MPaddyType adMInfo in listMPaddyType)
+                    {
+                        listMPaddyTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMPaddyTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMPaddyTypeEntity = null;
+
+                return listMPaddyTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntities", ex);
+                throw;
+            }
+        }
+        internal MGodownDetailsEntity CheckGodownNameExist(string custId, string GodownName)
+        {
+            try
+            {
+                MGodownDetailsEntity MGodownDetailsEntity = new MGodownDetailsEntity();
+                IRepository<MGodownDetails> unitsTypeRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                   .Add(Expression.Eq("Name", GodownName))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MGodownDetails> listMGodownDetails = unitsTypeRepository.GetAll(detachedCriteria) as List<MGodownDetails>;
+                if (listMGodownDetails != null && listMGodownDetails.Count > 0)
+                {
+                    foreach (MGodownDetails adMInfo in listMGodownDetails)
+                    {
+                        MGodownDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MGodownDetailsEntity = null;
+
+                return MGodownDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckGodownNameExist", ex);
+                throw;
+            }
+        }
+        internal MUnitsTypeEntity CheckUnitTypeExist(string custId, string UnitsType)
+        {
+            try
+            {
+                MUnitsTypeEntity mUnitsTypeEntity = new MUnitsTypeEntity();
+                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("UnitsType", UnitsType))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        mUnitsTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    mUnitsTypeEntity = null;
+
+                return mUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                throw;
+            }
+        }
         internal MLotDetailsEntity CheckLotNameExist(string custId, string LotName)
         {
             try
@@ -1932,8 +1918,37 @@ using RMIS.Domain.Constant;
                 throw;
             }
         }
+        internal EmployeeDetailsEntity CheckEmployeeExist(string custId, string EmployeeName)
+        {
+            try
+            {
+                EmployeeDetailsEntity EmployeeDetailsEntity = new EmployeeDetailsEntity();
+                IRepository<EmployeeDetails> DesigTypeRepository = new RepositoryImpl<EmployeeDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeDetails))
+                                                                   .Add(Expression.Eq("Name", EmployeeName))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<EmployeeDetails> listEmployeeDetails = DesigTypeRepository.GetAll(detachedCriteria) as List<EmployeeDetails>;
+                if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
+                {
+                    foreach (EmployeeDetails adMInfo in listEmployeeDetails)
+                    {
+                        EmployeeDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeDetailsEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    EmployeeDetailsEntity = null;
 
-        #endregion Methods
+                return EmployeeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckEmployeeExist", ex);
+                throw;
+            }
+        }
+        #endregion
         private List<T> GetAllFromRepository<T>()
         {
             IRepository<T> repository = new RepositoryImpl<T>(applicationSession);

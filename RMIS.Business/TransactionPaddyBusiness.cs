@@ -790,7 +790,56 @@ namespace RMIS.Business
 
         public List<BuyerInfoEntity> GetBuyerInfo()
         {
-            throw new NotImplementedException();
+            return imp.GetListBuyerInfoEntities();
+        }
+        public ResultDTO SaveEmployeeDetails(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        {
+            EmployeeDetailsEntity objEmployeeDetailsEntity = new EmployeeDetailsEntity();
+            objEmployeeDetailsEntity.ObsInd = YesNo.N;
+            objEmployeeDetailsEntity.CustID = provider.GetCurrentCustomerId();
+            objEmployeeDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objEmployeeDetailsEntity.City = city;
+            objEmployeeDetailsEntity.ContactNo = contactNo;
+            objEmployeeDetailsEntity.LastModifiedDate = DateTime.Now;
+            objEmployeeDetailsEntity.District = district;
+            objEmployeeDetailsEntity.MobileNo = mobileNo;
+            objEmployeeDetailsEntity.Name = name;
+            objEmployeeDetailsEntity.PhoneNo = phoneNo;
+            objEmployeeDetailsEntity.PinCode = pincode;
+            objEmployeeDetailsEntity.State = state;
+            objEmployeeDetailsEntity.Street = street;
+            objEmployeeDetailsEntity.Street1 = street1;
+            objEmployeeDetailsEntity.EmployeeID = CommonUtil.CreateUniqueID("EI");
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateEmployeeDetailsEntity(objEmployeeDetailsEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<EmployeeDetailsEntity> GetEmployeeDetails()
+        {
+            return imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId());
+        }
+
+
+        public bool CheckEmployeeExist(string EmployeeName)
+        {
+            bool IsEmployeeExist = false;
+
+            EmployeeDetailsEntity EmployeeDetailsEntity = imp.CheckEmployeeExist(provider.GetCurrentCustomerId(), EmployeeName);
+            if (EmployeeDetailsEntity != null)
+                IsEmployeeExist = true;
+
+            return IsEmployeeExist;
         }
     }
 }

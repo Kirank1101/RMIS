@@ -198,6 +198,17 @@ namespace RMIS.Domain.Constant
         public const string ValidateDesigTypeLength = "Validate150";
         public const string ValidateSalaryTypeEmpty = "Validate151";
         public const string ValidateSalaryTypeLength = "Validate152";
+
+        public const string ValidateEmployeeDetailEmployeeNameEmpty = "Validate153";
+        public const string ValidateEmployeeDetailEmployeeNameLength = "Validate154";
+        public const string ValidateEmployeeDetailCityEmpty = "Validate155";
+        public const string ValidateEmployeeDetailCityLength = "Validate156";
+        public const string ValidateEmployeeDetailsDistrictEmpty = "Validate157";
+        public const string ValidateEmployeeDetailsDistrictLength = "Validate158";
+        public const string ValidateEmployeeDetailsStateEmpty = "Validate159";
+        public const string ValidateEmployeeDetailsStateLength = "Validate160";
+        public const string ValidateEmployeeDetailsContactNoLength = "Validate170";
+        public const string ValidateEmployeeDetailsContactNoEmpty = "Validate171";
         
     }
 

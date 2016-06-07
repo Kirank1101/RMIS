@@ -19,23 +19,23 @@ namespace RMIS.Domain.Mediator
         /// </summary>
         /// <param name="sender"></param>
         void BeginTransaction();
-
         /// <summary>
         /// Method to Close the session.
         /// </summary>
         void CloseSession();
-
         /// <summary>
         /// Method to Commit and Close the session.
         /// If exception occurs, rollback will be handled automatically.
         /// </summary>
         void CommitAndCloseSession();
 
+        #region SaveOrUpdate
         /// <summary>
         /// Saves the or update audit entity.
         /// </summary>
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
+
         void SaveOrUpdateMBagTypeEntity(MBagTypeEntity mBagtypeEntity, bool isCopy);
         void SaveOrUpdateMUnitsTypeEntity(MUnitsTypeEntity mUnitstypeEntity, bool isCopy);
         void SaveOrUpdateSellerInfoEntity(SellerInfoEntity sellerInfoEntity, bool isCopy);
@@ -76,16 +76,19 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateBuyerInfoEntity(BuyerInfoEntity BuyerInfoEntity, bool isCopy);
         void SaveOrUpdateMEmployeeDesignationEntity(MEmployeeDesignationEntity MEmployeeDesignationEntity, bool isCopy);
         void SaveOrUpdateMSalaryTypeEntity(MSalaryTypeEntity MSalaryTypeEntity, bool isCopy);
+        void SaveOrUpdateEmployeeDetailsEntity(EmployeeDetailsEntity EmployeeDetailsEntity, bool isCopy);
+        #endregion
+        #region Get
         /// <summary>
         /// Gets all audit module visit.
         /// </summary>
         /// <returns></returns>
-        
+
         SellerInfoEntity GetSellerInfoEntity(string SellerID);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID);
         UsersEntity GetUsersEntity(string UserID);
-        UsersEntity GetUsersEntity(string userName,string custId);
+        UsersEntity GetUsersEntity(string userName, string custId);
         MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID);
         MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID);
         MLotDetailsEntity GetMLotDetailsEntity(string MLotID);
@@ -102,9 +105,9 @@ namespace RMIS.Domain.Mediator
         MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID);
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID);
         List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId);
-        List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId,string PaddyType);
+        List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType);
         List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId);
-        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);        
+        List<MUserTypeEntity> GetMUserTypeEntities(string CustId);
         List<MBagTypeEntity> GetMBagTypeEntities(string CustId);
         List<SellerInfoEntity> GetListSellerInfoEntities(string CustId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId);
@@ -128,7 +131,7 @@ namespace RMIS.Domain.Mediator
         List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId);
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId);
         List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId);
-        List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId); 
+        List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId);
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId);
         List<MRolesEntity> GetAllRolesEntity();
         List<RMUserRoleEntity> GetUserRoleEntities(string userId);
@@ -138,13 +141,23 @@ namespace RMIS.Domain.Mediator
         List<BuyerInfoEntity> GetListBuyerInfoEntities();
         List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId);
         List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId);
-
+        List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId);
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
+        #endregion
+        #region Check
+        /// <summary>
+        /// Check Data Exist before Save
+        /// </summary>
+        /// <param name="CustId"></param>
+        /// <param name="UnitType"></param>
+        /// <returns></returns>
         MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType);
         MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName);
         MLotDetailsEntity CheckLotNameExist(string CustId, string LotName);
         MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType);
         MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType);
+        EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName);
+        #endregion
         #endregion
     }
 
