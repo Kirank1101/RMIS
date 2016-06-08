@@ -160,7 +160,7 @@ namespace RMIS.Domain.Mediator
         MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName);
         MLotDetailsEntity CheckLotNameExist(string CustId, string LotName);
         MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType);
-        MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType);
+        MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalaryType);
         EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName);
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID);
         #endregion

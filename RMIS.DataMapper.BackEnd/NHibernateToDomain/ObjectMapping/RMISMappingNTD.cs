@@ -937,7 +937,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Mapper.CreateMap<EmployeeSalary, EmployeeSalaryEntity>()
                     .ForMember(dest => dest.EmpSalaryID, opts => opts.MapFrom(src => src.EmpSalaryID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.EmployeeID, opts => opts.MapFrom(src => src.EmpSalaryID))
+                    .ForMember(dest => dest.EmployeeID, opts => opts.MapFrom(src => src.EmployeeID))
                     .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
                     .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
                     .ForMember(dest => dest.Salary, opts => opts.MapFrom(src => src.Salary))

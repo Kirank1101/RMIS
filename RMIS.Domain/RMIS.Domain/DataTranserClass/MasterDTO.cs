@@ -189,14 +189,14 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
-    public class MSalartytypeDTO : MasterPaddyDTO
+    public class MSalarytypeDTO : MasterPaddyDTO
     {
-        public MSalartytypeDTO()
+        public MSalarytypeDTO()
             : base()
         {
-            SalartyType = string.Empty;
+            SalaryType = string.Empty;
         }
-        public string SalartyType
+        public string SalaryType
         {
             get;
             set;

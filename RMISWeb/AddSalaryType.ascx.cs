@@ -48,7 +48,7 @@ public partial class AddSalaryType : BaseUserControl
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSalaryType(txtSalaryType.Text);
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveSalartyType(txtSalaryType.Text.Trim());
+                resultDto = imp.SaveSalaryType(txtSalaryType.Text.Trim());
                 if (resultDto.IsSuccess)
                 {
                     bindSalaryType();

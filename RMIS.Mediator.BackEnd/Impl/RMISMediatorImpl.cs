@@ -959,9 +959,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.CheckEmpDesigExist(CustId, DesignationType);
         }
-        public MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType)
+        public MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalaryType)
         {
-            return rmisGateway.CheckSalaryTypeExist(CustId, SalartyType);
+            return rmisGateway.CheckSalaryTypeExist(CustId, SalaryType);
         }
         public EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName)
         {

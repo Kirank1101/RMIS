@@ -686,6 +686,7 @@ namespace RMIS.Business
             objMEmployeeDesignationEntity.ObsInd = YesNo.N;
             objMEmployeeDesignationEntity.MEmpDsgID = CommonUtil.CreateUniqueID("EI");
             objMEmployeeDesignationEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMEmployeeDesignationEntity.CustID = provider.GetCurrentCustomerId();
             objMEmployeeDesignationEntity.DesignationType = DesignationType;
             objMEmployeeDesignationEntity.LastModifiedDate = DateTime.Now;
 
@@ -712,45 +713,46 @@ namespace RMIS.Business
 
             return IsDesignationExist;
         }
-        public bool CheckSalaryTypeExist(string SalartyType)
+        public bool CheckSalaryTypeExist(string SalaryType)
         {
             bool IsSalaryTypeExist = false;
 
-            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalartyType);
+            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalaryType);
             if (MSalaryTypeEntityEntity != null)
                 IsSalaryTypeExist = true;
 
             return IsSalaryTypeExist;
         }
 
-        public List<MSalartytypeDTO> GetMSalaryTypeEntities()
+        public List<MSalarytypeDTO> GetMSalaryTypeEntities()
         {
-            List<MSalartytypeDTO> listMSalartytypeDTO = null;
+            List<MSalarytypeDTO> listMSalarytypeDTO = null;
 
             List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId());
             if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
             {
-                listMSalartytypeDTO = new List<MSalartytypeDTO>();
+                listMSalarytypeDTO = new List<MSalarytypeDTO>();
                 foreach (MSalaryTypeEntity objMEmpDesigEntity in listMSalaryTypeEntity)
                 {
-                    MSalartytypeDTO objMSalartytypeDTO = new MSalartytypeDTO();
-                    objMSalartytypeDTO.SalartyType = objMEmpDesigEntity.Salarytype;
-                    objMSalartytypeDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
-                    objMSalartytypeDTO.Id = objMEmpDesigEntity.MSalaryTypeID;
-                    listMSalartytypeDTO.Add(objMSalartytypeDTO);
+                    MSalarytypeDTO objMSalarytypeDTO = new MSalarytypeDTO();
+                    objMSalarytypeDTO.SalaryType = objMEmpDesigEntity.Salarytype;
+                    objMSalarytypeDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
+                    objMSalarytypeDTO.Id = objMEmpDesigEntity.MSalaryTypeID;
+                    listMSalarytypeDTO.Add(objMSalarytypeDTO);
                 }
 
             }
-            return listMSalartytypeDTO;            
+            return listMSalarytypeDTO;            
         }
 
-        public ResultDTO SaveSalartyType(string SalartyType)
+        public ResultDTO SaveSalaryType(string SalaryType)
         {
             MSalaryTypeEntity objMSalaryTypeEntity = new MSalaryTypeEntity();
             objMSalaryTypeEntity.ObsInd = YesNo.N;
             objMSalaryTypeEntity.MSalaryTypeID = CommonUtil.CreateUniqueID("ST");
             objMSalaryTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objMSalaryTypeEntity.Salarytype = SalartyType;
+            objMSalaryTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMSalaryTypeEntity.Salarytype = SalaryType;
             objMSalaryTypeEntity.LastModifiedDate = DateTime.Now;
 
             try

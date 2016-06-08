@@ -15,7 +15,7 @@ namespace RMIS.Domain.Business
         bool CheckGodownNameExist(string GodownName);
         bool CheckLotNameExist(string LotName);
         bool CheckEmpDesigExist(string DesignationType);
-        bool CheckSalaryTypeExist(string SalartyType);
+        bool CheckSalaryTypeExist(string SalaryType);
 
         List<MBagTypeDTO> GetMBagTypeEntities();
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
@@ -31,7 +31,7 @@ namespace RMIS.Domain.Business
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
         List<ProductSellingTypeDTO> GetMProductSellingTypeEntities();
         List<MEmpDesigDTO> GetMEmpDesigTypeEntities();
-        List<MSalartytypeDTO> GetMSalaryTypeEntities();
+        List<MSalarytypeDTO> GetMSalaryTypeEntities();
         
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
@@ -49,7 +49,7 @@ namespace RMIS.Domain.Business
         ResultDTO DeletePaddyType(string Id);
         ResultDTO UpdatePaddyType(string Id, string paddyType);
         ResultDTO SaveEmpDesigType(string DesignationType);
-        ResultDTO SaveSalartyType(string SalartyType); 
+        ResultDTO SaveSalaryType(string SalaryType); 
         string GetEmployeeDesignation(string DesignationID);
         string GetSalaryType(string SalaryTypeId);
     }

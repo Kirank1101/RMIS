@@ -36,9 +36,9 @@ public partial class EmployeeSalary : BaseUserControl
             ddlEmployeeName.DataValueField = "EmployeeID";
             ddlEmployeeName.DataBind();
             ddlEmployeeName.Items.Insert(0, "[Select]");
-            List<MSalartytypeDTO> listSalarytypedetails = imp.GetMSalaryTypeEntities();
+            List<MSalarytypeDTO> listSalarytypedetails = imp.GetMSalaryTypeEntities();
             ddlSalaryType.DataSource = listSalarytypedetails;
-            ddlSalaryType.DataTextField = "SalartyType";
+            ddlSalaryType.DataTextField = "SalaryType";
             ddlSalaryType.DataValueField = "Id";
             ddlSalaryType.DataBind();
             ddlSalaryType.Items.Insert(0, "[Select]");
@@ -86,14 +86,17 @@ public partial class EmployeeSalary : BaseUserControl
     private void BindEmployeeSalaryInfo()
     {
         List<EmployeeSalaryEntity> lstemployeesalary = impt.GetEmployeeSalary();
-        foreach (EmployeeSalaryEntity empsal in lstemployeesalary)
+        if (lstemployeesalary != null && lstemployeesalary.Count > 0)
         {
-            empsal.EmployeeID = impt.GetEmployeeName(empsal.EmployeeID);
-            empsal.MEmpDsgID = imp.GetEmployeeDesignation(empsal.MEmpDsgID);
-            empsal.MSalaryTypeID = imp.GetSalaryType(empsal.MSalaryTypeID);
+            foreach (EmployeeSalaryEntity empsal in lstemployeesalary)
+            {
+                empsal.EmployeeID = impt.GetEmployeeName(empsal.EmployeeID);
+                empsal.MEmpDsgID = imp.GetEmployeeDesignation(empsal.MEmpDsgID);
+                empsal.MSalaryTypeID = imp.GetSalaryType(empsal.MSalaryTypeID);
+            }
+            rptSalaryDetails.DataSource = lstemployeesalary;
+            rptSalaryDetails.DataBind();
         }
-        rptSalaryDetails.DataSource = lstemployeesalary;
-        rptSalaryDetails.DataBind();
     }
 
 }
