@@ -20,7 +20,7 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddGodownDetails : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
         
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +33,7 @@ public partial class AddGodownDetails : BaseUserControl
 
     private void bindGodownDetails()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptGodownDetails.DataSource = imp.GetMGodownTypeEntities();
         rptGodownDetails.DataBind();
     }
@@ -41,13 +42,15 @@ public partial class AddGodownDetails : BaseUserControl
     {
         bool IsGodownExist = false;
         ResultDTO resultDto = new ResultDTO();
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         IsGodownExist = imp.CheckGodownNameExist(txtGodownName.Text.Trim());
         if (!IsGodownExist)
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateGodownDetails(txtGodownName.Text);
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveGodownType(txtGodownName.Text.Trim());
+                IMasterPaddyBusiness imp1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                resultDto = imp1.SaveGodownType(txtGodownName.Text.Trim());
                 if (resultDto.IsSuccess)
                 {
                     bindGodownDetails();

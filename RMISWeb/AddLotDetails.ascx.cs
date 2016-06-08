@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 public partial class AddLotDetails : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,6 +29,7 @@ public partial class AddLotDetails : BaseUserControl
         {
             Header = "Add Lot Information";
             bindLotDetails();
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             List<GodownTypeDTO> listGodownTypeDTO = imp.GetMGodownTypeEntities();
             ddlGodownName.DataSource = listGodownTypeDTO;
             ddlGodownName.DataTextField = GodownTypeDTO.dataColumnGodownType;
@@ -40,6 +41,7 @@ public partial class AddLotDetails : BaseUserControl
 
     private void bindLotDetails()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptLotDetails.DataSource = imp.GetLotDetailsEntities(ddlGodownName.SelectedValue);
         rptLotDetails.DataBind();
     }
@@ -47,6 +49,7 @@ public partial class AddLotDetails : BaseUserControl
     {
         ResultDTO resultDto = new ResultDTO();
         bool IsLotNameExist = false;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         IsLotNameExist = imp.CheckLotNameExist(txtLotDetails.Text.Trim());
         if (!IsLotNameExist)
         {

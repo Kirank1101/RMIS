@@ -46,7 +46,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <asp:Label runat="server" ID="lblRiceType" Text='<%# Eval("RiceBrandType") %>' />
+                        <asp:Label runat="server" ID="lblRiceType" Text='<%# Eval("RiceBrand") %>' />
                     </td>
                     <td>
                         <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />

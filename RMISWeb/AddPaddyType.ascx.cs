@@ -9,7 +9,6 @@ using RMIS.Domain.Constant;
 
 public partial class AddPaddyType : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,6 +21,8 @@ public partial class AddPaddyType : BaseUserControl
     private void bindPaddyType()
     {
         int count = 0;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
         rptPaddyType.DataSource = imp.GetMPaddyTypeEntities(rptPaddyType.PageIndex, rptPaddyType.PageSize, out count, expression);
         rptPaddyType.VirtualItemCount = count;
         rptPaddyType.DataBind();
@@ -94,7 +95,8 @@ public partial class AddPaddyType : BaseUserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
         bool IsPaddyTypeExist = imp.CheckPaddyTypeExist(txtPaddyType.Text.Trim());
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValiadtePaddyType(txtPaddyType.Text);
             
