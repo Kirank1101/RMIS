@@ -5,7 +5,7 @@ using RMIS.Domain.DataTranserClass;
 using System.Web.UI.WebControls;
 using RMIS.Domain.Constant;
 
-public partial class PaddyStockInfo : BaseUserControl
+public partial class TransactionPaddyStockInfo : BaseUserControl
 {
 
     protected void Page_Load(object sender, EventArgs e)
