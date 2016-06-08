@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="PaddyStockInfo.ascx.cs"
     Inherits="PaddyStockInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -66,8 +65,7 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="10" />
-                            <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtVehicalNo"
-                                ValidationGroup="OnSave" ErrorMessage="*" />
+                    
                         </td>
                     </tr>
                     <tr>
@@ -76,8 +74,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtDriverName" MaxLength="50" />
-                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" FilterType="LowercaseLetters,UppercaseLetters"
-                                TargetControlID="txtDriverName" />
                         </td>
                     </tr>
                     <tr>
@@ -86,8 +82,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtTotalBags" MaxLength="3" />
-                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" FilterType="Numbers"
-                                TargetControlID="txtPrice" />
                         </td>
                     </tr>
                     <tr>
@@ -104,9 +98,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtPruchaseDate" />
-                            <ajax:CalendarExtender ID="CalendarExtender1" TargetControlID="txtPruchaseDate" Format="dd/MM/yyyy"
-                                runat="server">
-                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                 </table>
@@ -158,8 +149,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtamountpaid" MaxLength="10" />
-                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Numbers"
-                                TargetControlID="txtamountpaid" />
                         </td>
                     </tr>
                     <tr>
@@ -168,9 +157,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtPaidDate" />
-                            <ajax:CalendarExtender ID="CalendarExtender2" TargetControlID="txtPaidDate" Format="dd/MM/yyyy"
-                                runat="server">
-                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -187,8 +173,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtHandoverto" MaxLength="50" />
-                            <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" FilterType="LowercaseLetters,UppercaseLetters"
-                                TargetControlID="txtHandoverto" />
                         </td>
                     </tr>
                     <tr>
@@ -197,9 +181,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtNextpaymentdate" />
-                            <ajax:CalendarExtender ID="CalendarExtender3" TargetControlID="txtNextpaymentdate"
-                                Format="dd/MM/yyyy" runat="server">
-                            </ajax:CalendarExtender>
                         </td>
                     </tr>
                 </table>
