@@ -49,7 +49,8 @@ namespace RMIS.Domain.Business
         ResultDTO DeletePaddyType(string Id);
         ResultDTO UpdatePaddyType(string Id, string paddyType);
         ResultDTO SaveEmpDesigType(string DesignationType);
-        ResultDTO SaveSalartyType(string SalartyType);      
-
+        ResultDTO SaveSalartyType(string SalartyType); 
+        string GetEmployeeDesignation(string DesignationID);
+        string GetSalaryType(string SalaryTypeId);
     }
 }

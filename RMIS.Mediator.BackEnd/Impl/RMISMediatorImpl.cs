@@ -925,6 +925,18 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetEmployeeSalaryEntities(CustId);
         }
+        public EmployeeDetailsEntity GetEmployeeDetailsEntity(String CustId,string EmployeeID)
+        {
+            return rmisGateway.GetEmployeeDetailsEntity(CustId, EmployeeID);
+        }
+        public MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID)
+        {
+            return rmisGateway.GetMEmployeeDesignationEntity(CustID, DesignationID);
+        }
+        public MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId)
+        {
+            return rmisGateway.GetListMSalaryTypeEntity(custId, SalaryTypeId);
+        }
         #endregion
         #region Check Enitity
         public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType)
@@ -960,7 +972,5 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.CheckEmployeeSalaryExist(CustId, EmployeeID);
         }
         #endregion
-
-        
     }
 }

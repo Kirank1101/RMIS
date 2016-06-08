@@ -897,5 +897,16 @@ namespace RMIS.Business
         {
             return imp.GetAllEmployeeSalaryEntities(provider.GetCurrentCustomerId());
         }
+
+
+        public string GetEmployeeName(string EmployeeID)
+        {
+            string EmployeeName = string.Empty;
+            EmployeeDetailsEntity EmployeeDetails = imp.GetEmployeeDetailsEntity(provider.GetCurrentCustomerId(), EmployeeID);
+            if (EmployeeDetails != null) 
+                EmployeeName = EmployeeDetails.Name;
+
+            return EmployeeName;
+        }
     }
 }

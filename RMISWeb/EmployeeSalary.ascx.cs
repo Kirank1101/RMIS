@@ -29,7 +29,7 @@ public partial class EmployeeSalary : BaseUserControl
         if (!IsControlPostBack)
         {
             Header = "Add Employee Salary";
-            
+
             List<EmployeeDetailsEntity> listemployeedetails = impt.GetEmployeeDetails();
             ddlEmployeeName.DataSource = listemployeedetails;
             ddlEmployeeName.DataTextField = "Name";
@@ -49,7 +49,7 @@ public partial class EmployeeSalary : BaseUserControl
             ddlDesignation.DataBind();
             ddlDesignation.Items.Insert(0, "[Select]");
 
-
+            BindEmployeeSalaryInfo();
         }
     }
 
@@ -60,13 +60,13 @@ public partial class EmployeeSalary : BaseUserControl
         IsSalaryAlotedtoEmployee = impt.CheckEmployeeSalaryExist(txtSalary.Text.Trim());
         if (!IsSalaryAlotedtoEmployee)
         {
-            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex,ddlDesignation.SelectedIndex,Convert.ToDouble(txtSalary.Text.Trim()));
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex, ddlDesignation.SelectedIndex, Convert.ToDouble(txtSalary.Text.Trim()));
             if (resultDto.IsSuccess)
             {
-                resultDto = impt.SaveEmployeeSalary(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue,ddlDesignation.SelectedValue,Convert.ToDouble(txtSalary.Text.Trim()));
+                resultDto = impt.SaveEmployeeSalary(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue, ddlDesignation.SelectedValue, Convert.ToDouble(txtSalary.Text.Trim()));
                 if (resultDto.IsSuccess)
                 {
-                    
+                    BindEmployeeSalaryInfo();
                 }
                 SetMessage(resultDto);
             }
@@ -82,5 +82,18 @@ public partial class EmployeeSalary : BaseUserControl
             SetMessage(resultDto);
         }
     }
-    
+
+    private void BindEmployeeSalaryInfo()
+    {
+        List<EmployeeSalaryEntity> lstemployeesalary = impt.GetEmployeeSalary();
+        foreach (EmployeeSalaryEntity empsal in lstemployeesalary)
+        {
+            empsal.EmployeeID = impt.GetEmployeeName(empsal.EmployeeID);
+            empsal.MEmpDsgID = imp.GetEmployeeDesignation(empsal.MEmpDsgID);
+            empsal.MSalaryTypeID = imp.GetSalaryType(empsal.MSalaryTypeID);
+        }
+        rptSalaryDetails.DataSource = lstemployeesalary;
+        rptSalaryDetails.DataBind();
+    }
+
 }

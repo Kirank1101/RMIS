@@ -766,5 +766,24 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
+
+
+        public string GetEmployeeDesignation(string DesignationID)
+        {
+            string designation = string.Empty;
+            MEmployeeDesignationEntity empdesig = imp.GetMEmployeeDesignationEntity(provider.GetCurrentCustomerId(), DesignationID);
+            if (empdesig != null)
+                designation = empdesig.DesignationType;
+
+            return designation;
+        }
+        public string GetSalaryType(string SalaryTypeId)
+        {
+            string SalaryType = string.Empty;
+            MSalaryTypeEntity Msalarytype = imp.GetListMSalaryTypeEntity(provider.GetCurrentCustomerId(), SalaryTypeId);
+            if (Msalarytype != null)
+                SalaryType = Msalarytype.Salarytype;
+            return SalaryType;
+        }
     }
 }

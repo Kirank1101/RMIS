@@ -1761,6 +1761,97 @@
                 throw;
             }
         }
+        internal EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID)
+        {
+            try
+            {
+                EmployeeDetailsEntity EmployeeDetailsEntity = new EmployeeDetailsEntity();
+                IRepository<EmployeeDetails> UsersRepository = new RepositoryImpl<EmployeeDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeDetails))
+                                                                   .Add(Expression.Eq("EmployeeID", EmployeeID))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+                List<EmployeeDetails> listEmployeeDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<EmployeeDetails>;
+                if (listEmployeeDetailsEntity != null && listEmployeeDetailsEntity.Count > 0)
+                {
+                    foreach (EmployeeDetails adMInfo in listEmployeeDetailsEntity)
+                    {
+                        EmployeeDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeDetailsEntity(adMInfo);
+                    }
+                }
+                else
+                    EmployeeDetailsEntity = null;
+
+                return EmployeeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeDetailsEntity", ex);
+                throw;
+            }
+        }
+        internal MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string custId, string DesignationID)
+        {
+            try
+            {
+                MEmployeeDesignationEntity MEmployeeDesignationEntity = new MEmployeeDesignationEntity();
+                IRepository<MEmployeeDesignation> UsersRepository = new RepositoryImpl<MEmployeeDesignation>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                   .Add(Expression.Eq("MEmpDsgID", DesignationID))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+                List<MEmployeeDesignation> listMEmployeeDesignationEntity = UsersRepository.GetAll(detachedCriteria) as List<MEmployeeDesignation>;
+                if (listMEmployeeDesignationEntity != null && listMEmployeeDesignationEntity.Count > 0)
+                {
+                    foreach (MEmployeeDesignation adMInfo in listMEmployeeDesignationEntity)
+                    {
+                        MEmployeeDesignationEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMEmployeeDesignationEntity(adMInfo);
+                    }
+                }
+                else
+                    MEmployeeDesignationEntity = null;
+
+                return MEmployeeDesignationEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMEmployeeDesignationEntity", ex);
+                throw;
+            }
+        }
+        internal MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId)
+        {
+            try
+            {
+                MSalaryTypeEntity MSalaryTypeEntity = new MSalaryTypeEntity();
+                IRepository<MSalaryType> UsersRepository = new RepositoryImpl<MSalaryType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                   .Add(Expression.Eq("MSalaryTypeID", SalaryTypeId))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N")
+                                                                   );
+                List<MSalaryType> listMSalaryTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MSalaryType>;
+                if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
+                {
+                    foreach (MSalaryType adMInfo in listMSalaryTypeEntity)
+                    {
+                        MSalaryTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMSalaryTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    MSalaryTypeEntity = null;
+
+                return MSalaryTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMSalaryTypeEntity", ex);
+                throw;
+            }
+        }
+        
         #endregion
 
         #region Check Data Exist

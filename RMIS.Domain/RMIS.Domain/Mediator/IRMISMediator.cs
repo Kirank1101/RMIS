@@ -145,6 +145,9 @@ namespace RMIS.Domain.Mediator
         List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId);
         List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId);
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
+        EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID);
+        MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID);
+        MSalaryTypeEntity GetListMSalaryTypeEntity(string p, string SalaryTypeId);
         #endregion
         #region Check
         /// <summary>
@@ -162,6 +165,10 @@ namespace RMIS.Domain.Mediator
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID);
         #endregion
         #endregion
+
+
+
+        
     }
 
 }
