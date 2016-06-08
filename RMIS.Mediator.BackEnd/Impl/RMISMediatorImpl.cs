@@ -11,6 +11,7 @@ namespace RMIS.Mediator.BackEnd.Impl
     using RMIS.Domain.RiceMill;
     using RMIS.Domain.Mediator;
     using RMIS.Domain.Constant;
+    using RMIS.Domain;
 
     public class RMISMediatorImpl : IRMISMediator
     {
@@ -665,237 +666,237 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
         #endregion
         #region Get Enitity
-        public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID)
+        public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMDrierTypeDetailsEntity(MDrierTypeID);
+            return rmisGateway.GetMDrierTypeDetailsEntity(MDrierTypeID, yesNo);
         }
-        public MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID)
+        public MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMRiceProductionTypeEntity(MRiceProdTypeID);
+            return rmisGateway.GetMRiceProductionTypeEntity(MRiceProdTypeID, yesNo);
         }
-        public MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID)
+        public MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMGodownDetailsEntity(MGodownID);
+            return rmisGateway.GetMGodownDetailsEntity(MGodownID, yesNo);
         }
-        public PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID)
+        public PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID, YesNo yesNo)
         {
 
-            return rmisGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID);
+            return rmisGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID, yesNo);
         }
-        public MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID)
+        public MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMWeightDetailsEntity(MWeightID);
+            return rmisGateway.GetMWeightDetailsEntity(MWeightID, yesNo);
         }
-        public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID)
+        public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerAddressInfoEntity(CustAdrsID);
+            return rmisGateway.GetCustomerAddressInfoEntity(CustAdrsID, yesNo);
         }
-        public CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID)
+        public CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerActivationEntity(CustActiveID);
+            return rmisGateway.GetCustomerActivationEntity(CustActiveID, yesNo);
         }
-        public CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID)
+        public CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustTrailUsageEntity(CustTrailID);
+            return rmisGateway.GetCustTrailUsageEntity(CustTrailID, yesNo);
         }
-        public CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID)
+        public CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerPaymentEntity(CustPaymentID);
+            return rmisGateway.GetCustomerPaymentEntity(CustPaymentID, yesNo);
         }
-        public CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID)
+        public CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerPartPayDetailsEntity(CustPartPayID);
+            return rmisGateway.GetCustomerPartPayDetailsEntity(CustPartPayID, yesNo);
         }
-        public SellerInfoEntity GetSellerInfoEntity(string SellerID)
+        public SellerInfoEntity GetSellerInfoEntity(string SellerID, YesNo yesNo)
         {
 
-            return rmisGateway.GetSellerInfoEntity(SellerID);
+            return rmisGateway.GetSellerInfoEntity(SellerID, yesNo);
         }
-        public CustomerInfoEntity GetCustomerInfoEntity(string CustID)
+        public CustomerInfoEntity GetCustomerInfoEntity(string CustID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerInfoEntity(CustID);
+            return rmisGateway.GetCustomerInfoEntity(CustID, yesNo);
         }
-        public MUserTypeEntity GetMUserTypeEntity(string UserTypeID)
+        public MUserTypeEntity GetMUserTypeEntity(string UserTypeID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMUserTypeEntity(UserTypeID);
+            return rmisGateway.GetMUserTypeEntity(UserTypeID, yesNo);
         }
-        public UsersEntity GetUsersEntity(string UserID)
+        public UsersEntity GetUsersEntity(string UserID, YesNo yesNo)
         {
 
-            return rmisGateway.GetUsersEntity(UserID);
+            return rmisGateway.GetUsersEntity(UserID, yesNo);
         }
-        public MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID)
+        public MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMPaddyTypeEntity(PaddyTypeID);
+            return rmisGateway.GetMPaddyTypeEntity(PaddyTypeID, yesNo);
 
         }
-        public PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID)
+        public PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID, YesNo yesNo)
         {
 
-            return rmisGateway.GetPaddyStockInfoEntity(PaddyStockID);
+            return rmisGateway.GetPaddyStockInfoEntity(PaddyStockID, yesNo);
         }
-        public MLotDetailsEntity GetMLotDetailsEntity(string MLotID)
+        public MLotDetailsEntity GetMLotDetailsEntity(string MLotID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMLotDetailsEntity(MLotID);
+            return rmisGateway.GetMLotDetailsEntity(MLotID, yesNo);
         }
-        public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID)
+        public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID, YesNo yesNo)
         {
 
-            return rmisGateway.GetMRiceBrandDetailsEntity(MRiceBrandID);
+            return rmisGateway.GetMRiceBrandDetailsEntity(MRiceBrandID, yesNo);
         }
-        public List<MUserTypeEntity> GetMUserTypeEntities(string CustId)
+        public List<MUserTypeEntity> GetMUserTypeEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMUserTypeEntities(CustId);
+            return rmisGateway.GetMUserTypeEntities(CustId, yesNo);
         }
-        public List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId)
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntitiies(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMPaddyTypeEntities(CustId);
+            return rmisGateway.GetMPaddyTypeEntities(CustId, yesNo);
         }
-        public List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
+        public List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
-            return rmisGateway.GetMPaddyTypeEntities(CustId, pageindex, pageSize, out count, expression);
+            return rmisGateway.GetMPaddyTypeEntities(CustId, pageindex, pageSize, out count, expression, yesNo);
         }
-        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId)
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockInfoEntities(CustId);
+            return rmisGateway.GetPaddyStockInfoEntities(CustId, yesNo);
         }
-        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID)
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID, YesNo yesNo)
         {
-            return rmisGateway.GetMLotDetailsEntities(CustId, MGodownID);
+            return rmisGateway.GetMLotDetailsEntities(CustId, MGodownID, yesNo);
         }
-        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId)
+        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllMGodownDetailsEntity(CustId);
+            return rmisGateway.GetAllMGodownDetailsEntity(CustId, yesNo);
         }
-        public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId)
+        public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMWeightDetailsEntities(CustId);
+            return rmisGateway.GetMWeightDetailsEntities(CustId, yesNo);
         }
-        public List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId)
+        public List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMRiceProductionTypeEntities(CustId);
+            return rmisGateway.GetMRiceProductionTypeEntities(CustId, yesNo);
         }
-        public List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId)
+        public List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMRiceBrandDetailsEntities(CustId);
+            return rmisGateway.GetMRiceBrandDetailsEntities(CustId, yesNo);
         }
-        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId)
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMLotDetailsEntities(CustId);
+            return rmisGateway.GetMLotDetailsEntities(CustId, yesNo);
         }
-        public List<SellerInfoEntity> GetSellerInfoEntities(string CustId)
+        public List<SellerInfoEntity> GetSellerInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetSellerInfoEntities(CustId);
+            return rmisGateway.GetSellerInfoEntities(CustId, yesNo);
         }
-        public List<SellerInfoEntity> GetListSellerInfoEntities(string CustId)
+        public List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetSellerInfoEntities(CustId);
+            return rmisGateway.GetSellerInfoEntities(CustId, yesNo);
         }
-        public List<MBagTypeEntity> GetMBagTypeEntities(string CustId)
+        public List<MBagTypeEntity> GetMBagTypeEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMBagTypeEntities(CustId);
+            return rmisGateway.GetMBagTypeEntities(CustId, yesNo);
         }
-        public BagStockInfoEntity GetBagStockInfoEntity(string BagStockID)
+        public BagStockInfoEntity GetBagStockInfoEntity(string BagStockID, YesNo yesNo)
         {
-            return rmisGateway.GetBagStockInfoEntity(BagStockID);
+            return rmisGateway.GetBagStockInfoEntity(BagStockID, yesNo);
         }
-        public List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId)
+        public List<BagStockInfoEntity> GetBagStockInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetBagStockInfoEntities(CustId);
+            return rmisGateway.GetBagStockInfoEntities(CustId, yesNo);
         }
-        public List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId)
+        public List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMUnitsTypeEntities(CustId);
+            return rmisGateway.GetMUnitsTypeEntities(CustId, yesNo);
         }
-        public List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId)
+        public List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMBrokenRiceTypeEntities(CustId);
+            return rmisGateway.GetMBrokenRiceTypeEntities(CustId, yesNo);
 
         }
-        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId)
+        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllRiceStockInfoEntities(CustId);
+            return rmisGateway.GetAllRiceStockInfoEntities(CustId, yesNo);
         }
-        public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId)
+        public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllBrokenRiceStockInfoEntities(CustId);
+            return rmisGateway.GetAllBrokenRiceStockInfoEntities(CustId, yesNo);
         }
-        public List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId)
+        public List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllDustStockInfoEntities(CustId);
+            return rmisGateway.GetAllDustStockInfoEntities(CustId, yesNo);
         }
-        public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId)
+        public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllRiceSellingInfoEntities(CustId);
+            return rmisGateway.GetAllRiceSellingInfoEntities(CustId, yesNo);
         }
-        public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId)
+        public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllBrokenRiceSellingInfoEntities(CustId);
+            return rmisGateway.GetAllBrokenRiceSellingInfoEntities(CustId, yesNo);
         }
-        public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId)
+        public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllDustSellingInfoEntities(CustId);
+            return rmisGateway.GetAllDustSellingInfoEntities(CustId, yesNo);
         }
-        public List<MenuInfoEntity> GetAllMenuInfoEntities()
+        public List<MenuInfoEntity> GetAllMenuInfoEntities(YesNo yesNo)
         {
-            return rmisGateway.GetMenuInfoEntities();
+            return rmisGateway.GetMenuInfoEntities(yesNo);
         }
-        public List<CustomerInfoEntity> GetCustomerInfoEntities()
+        public List<CustomerInfoEntity> GetCustomerInfoEntities(YesNo yesNo)
         {
-            return rmisGateway.GetCustomerInfoEntities();
+            return rmisGateway.GetCustomerInfoEntities(yesNo);
         }
-        public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId)
+        public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMenuConfigurationEntities(CustId);
+            return rmisGateway.GetMenuConfigurationEntities(CustId, yesNo);
         }
-        public List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId)
+        public List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMProductSellingTypeEnties(CustId);
+            return rmisGateway.GetMProductSellingTypeEnties(CustId, yesNo);
         }
-        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId)
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductSellingInfoEntities(CustId);
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, yesNo);
         }
-        public List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId)
+        public List<HullingProcessEntity> GetAllHullingProcessInfoEntity(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetHullingProcessInfoEntities(CustId);
+            return rmisGateway.GetHullingProcessInfoEntities(CustId, yesNo);
         }
-        public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId)
+        public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntity(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetHullingProcessTransInfoEntities(CustId);
+            return rmisGateway.GetHullingProcessTransInfoEntities(CustId, yesNo);
         }
-        public List<MRolesEntity> GetAllRolesEntity()
+        public List<MRolesEntity> GetAllRolesEntity(YesNo yesNo)
         {
-            return rmisGateway.GetRoleEntities();
+            return rmisGateway.GetRoleEntities(yesNo);
         }
-        public UsersEntity GetUsersEntity(string userName, string custId)
+        public UsersEntity GetUsersEntity(string userName, string custId, YesNo yesNo)
         {
-            return rmisGateway.GetUsersEntity(userName, custId);
+            return rmisGateway.GetUsersEntity(userName, custId, yesNo);
         }
-        public List<RMUserRoleEntity> GetUserRoleEntities(string userId)
+        public List<RMUserRoleEntity> GetUserRoleEntities(string userId, YesNo yesNo)
         {
-            return rmisGateway.GetUserRoles(userId);
+            return rmisGateway.GetUserRoles(userId, yesNo);
         }
-        public List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId)
+        public List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntity(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetHullingProcessExpensesEntities(CustId);
+            return rmisGateway.GetHullingProcessExpensesEntities(CustId, yesNo);
         }
-        public List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId)
+        public List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetAllBuyerSellerRatingEntities(CustId);
+            return rmisGateway.GetAllBuyerSellerRatingEntities(CustId, yesNo);
         }
         public List<BuyerInfoEntity> GetListBuyerInfoEntities()
         {
@@ -905,72 +906,84 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
         }
-        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression)
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression);
+            return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
         }
-        public List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId)
+        public List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMEmployeeDesignationEntities(CustId);
+            return rmisGateway.GetMEmployeeDesignationEntities(CustId, yesNo);
         }
-        public List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId)
+        public List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetMSalaryTypeEntities(CustId);
+            return rmisGateway.GetMSalaryTypeEntities(CustId, yesNo);
         }
-        public List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId)
+        public List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetEmployeeDetailsEntities(CustId);
+            return rmisGateway.GetEmployeeDetailsEntities(CustId, yesNo);
         }
-        public List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId)
+        public List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetEmployeeSalaryEntities(CustId);
+            return rmisGateway.GetEmployeeSalaryEntities(CustId, yesNo);
         }
-        public EmployeeDetailsEntity GetEmployeeDetailsEntity(String CustId,string EmployeeID)
+        public EmployeeDetailsEntity GetEmployeeDetailsEntity(String CustId, string EmployeeID, YesNo yesNo)
         {
-            return rmisGateway.GetEmployeeDetailsEntity(CustId, EmployeeID);
+            return rmisGateway.GetEmployeeDetailsEntity(CustId, EmployeeID, yesNo);
         }
-        public MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID)
+        public MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID, YesNo yesNo)
         {
-            return rmisGateway.GetMEmployeeDesignationEntity(CustID, DesignationID);
+            return rmisGateway.GetMEmployeeDesignationEntity(CustID, DesignationID, yesNo);
         }
-        public MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId)
+        public MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId, YesNo yesNo)
         {
-            return rmisGateway.GetListMSalaryTypeEntity(custId, SalaryTypeId);
+            return rmisGateway.GetListMSalaryTypeEntity(custId, SalaryTypeId, yesNo);
         }
         #endregion
         #region Check Enitity
-        public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType)
+        public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType, YesNo yesNo)
         {
-            return rmisGateway.CheckPaddyTypeExist(CustId, PaddyType);
+            return rmisGateway.CheckPaddyTypeExist(CustId, PaddyType, yesNo);
         }
-        public MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType)
+        public MUnitsTypeEntity CheckUnitTypeExist(string CustId, string UnitType, YesNo yesNo)
         {
-            return rmisGateway.CheckUnitTypeExist(CustId, UnitType);
+            return rmisGateway.CheckUnitTypeExist(CustId, UnitType, yesNo);
         }
-        public MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName)
+        public MGodownDetailsEntity CheckGodownNameExist(string CustId, string GodownName, YesNo yesNo)
         {
-            return rmisGateway.CheckGodownNameExist(CustId, GodownName);
+            return rmisGateway.CheckGodownNameExist(CustId, GodownName, yesNo);
         }
-        public MLotDetailsEntity CheckLotNameExist(string CustId, string LotName)
+        public MLotDetailsEntity CheckLotNameExist(string CustId, string LotName, YesNo yesNo)
         {
-            return rmisGateway.CheckLotNameExist(CustId, LotName);
+            return rmisGateway.CheckLotNameExist(CustId, LotName, yesNo);
         }
-        public MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType)
+        public MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType, YesNo yesNo)
         {
-            return rmisGateway.CheckEmpDesigExist(CustId, DesignationType);
+            return rmisGateway.CheckEmpDesigExist(CustId, DesignationType, yesNo);
         }
-        public MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalaryType)
+        public MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalaryType, YesNo yesNo)
         {
-            return rmisGateway.CheckSalaryTypeExist(CustId, SalaryType);
+            return rmisGateway.CheckSalaryTypeExist(CustId, SalaryType, yesNo);
         }
-        public EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName)
+        public EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName, YesNo yesNo)
         {
-            return rmisGateway.CheckEmployeeExist(CustId, EmployeeName);
+            return rmisGateway.CheckEmployeeExist(CustId, EmployeeName, yesNo);
         }
-        public EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID)
+        public EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID, YesNo yesNo)
         {
-            return rmisGateway.CheckEmployeeSalaryExist(CustId, EmployeeID);
+            return rmisGateway.CheckEmployeeSalaryExist(CustId, EmployeeID, yesNo);
         }
         #endregion
+
+
+        public List<BuyerInfoEntity> GetListBuyerInfoEntities(YesNo yesNo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo)
+        {
+
+            return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
+        }
     }
 }

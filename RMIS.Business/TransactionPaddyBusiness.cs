@@ -141,7 +141,7 @@ namespace RMIS.Business
         public List<SellerInfoEntity> GetPaddySellerInfo()
         {
             List<SellerInfoEntity> listSellerInfoEntity = null;
-            List<SellerInfoEntity> listSellerinfo = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId());
+            List<SellerInfoEntity> listSellerinfo = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
             if (listSellerinfo != null && listSellerinfo.Count > 0)
             {
                 listSellerInfoEntity = new List<SellerInfoEntity>();
@@ -214,7 +214,7 @@ namespace RMIS.Business
         }
         public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities()
         {
-            return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
         public ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string UnitsTypeID)
         {
@@ -243,7 +243,7 @@ namespace RMIS.Business
         }
         public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities()
         {
-            return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
         public ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string UnitsTypeID)
         {
@@ -271,7 +271,7 @@ namespace RMIS.Business
         }
         public List<DustStockInfoEntity> GetAllDustStockInfoEntities()
         {
-            return imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
 
@@ -308,7 +308,7 @@ namespace RMIS.Business
 
         public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities()
         {
-            return imp.GetAllRiceSellingInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllRiceSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -343,7 +343,7 @@ namespace RMIS.Business
         }
         public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities()
         {
-            return imp.GetAllBrokenRiceSellingInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllBrokenRiceSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
         public ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
@@ -376,7 +376,7 @@ namespace RMIS.Business
         }
         public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities()
         {
-            return imp.GetAllDustSellingInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllDustSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
 
@@ -406,7 +406,7 @@ namespace RMIS.Business
 
         public List<CustomerInfoEntity> GetAllCustomerInfoEntities()
         {
-            return imp.GetCustomerInfoEntities();
+            return imp.GetCustomerInfoEntities(YesNo.N);
         }
 
         public bool SaveMenuConfiguration(string custId, string roleId, string menuId)
@@ -435,12 +435,12 @@ namespace RMIS.Business
 
         public List<MenuConfigurationEntity> GetMenuConfigurationEntities()
         {
-            return imp.GetMenuConfigurationEntities(provider.GetCurrentCustomerId());
+            return imp.GetMenuConfigurationEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
         public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId)
         {
-            return imp.GetMenuConfigurationEntities(custId);
+            return imp.GetMenuConfigurationEntities(custId,YesNo.N);
         }
 
 
@@ -482,7 +482,7 @@ namespace RMIS.Business
 
         public List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities()
         {
-            return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
 
@@ -516,7 +516,7 @@ namespace RMIS.Business
 
         public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
         {
-            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId());
+            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
 
@@ -553,13 +553,13 @@ namespace RMIS.Business
 
         public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities()
         {
-            return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId());
+            return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId(),YesNo.N);
         }
 
         public List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<PaddyStockDTO> listPaddyStockDTO = null;
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression);
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression,YesNo.N);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
                 listPaddyStockDTO = new List<PaddyStockDTO>();
@@ -567,29 +567,29 @@ namespace RMIS.Business
                 {
                     PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
                     objPaddyStockDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
-                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID);
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID, YesNo.Null);
                     if (objMGodownDetailsEntity != null)
                     {
                         objPaddyStockDTO.GodownName = objMGodownDetailsEntity.Name;
                     }
-                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID);
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID, YesNo.Null);
                     if (objMLotDetailsEntity != null)
                     {
                         objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
                     }
-                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objPaddyStockInfoEntity.SellerID);
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objPaddyStockInfoEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
                     {
                         objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
                     }
 
-                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID);
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID, YesNo.Null);
                     if (objMPaddyTypeEntity != null)
                     {
                         objPaddyStockDTO.PaddyName = objMPaddyTypeEntity.Name;
                     }
 
-                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID);
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID, YesNo.Null);
                     if (objMUnitsTypeEntity != null)
                     {
                         objPaddyStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
@@ -660,7 +660,7 @@ namespace RMIS.Business
 
         public UsersEntity ValidateUsersEntity(string userName, string custId, string password)
         {
-            UsersEntity userEntity = imp.GetUsersEntity(userName, custId);
+            UsersEntity userEntity = imp.GetUsersEntity(userName, custId, YesNo.N); 
             if (userEntity != null)
             {
                 if (password.Equals(Utilities.Decrypt(userEntity.PassWord, true)))
@@ -678,7 +678,7 @@ namespace RMIS.Business
             UsersEntity objUsersEntity = GetUsersEntity(userName, custId);
             if (objUsersEntity != null)
             {
-                return imp.GetUserRoleEntities(objUsersEntity.UserID);
+                return imp.GetUserRoleEntities(objUsersEntity.UserID, YesNo.N);
 
             }
             return listRMUserRoleEntity;
@@ -686,7 +686,7 @@ namespace RMIS.Business
 
         public UsersEntity GetUsersEntity(string userName, string custId)
         {
-            return imp.GetUsersEntity(userName, custId);
+            return imp.GetUsersEntity(userName, custId, YesNo.N);
         }
 
 
@@ -718,7 +718,7 @@ namespace RMIS.Business
         }
         public List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities()
         {
-            return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId());
+            return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -753,7 +753,7 @@ namespace RMIS.Business
 
         public List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities()
         {
-            return imp.GetAllBuyerSellerRatingEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllBuyerSellerRatingEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
@@ -790,7 +790,7 @@ namespace RMIS.Business
 
         public List<BuyerInfoEntity> GetBuyerInfo()
         {
-            return imp.GetListBuyerInfoEntities();
+            return imp.GetListBuyerInfoEntities(YesNo.N);
         }
         public ResultDTO SaveEmployeeDetails(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
@@ -828,7 +828,7 @@ namespace RMIS.Business
         public List<EmployeeDetailsEntity> GetEmployeeDetails()
         {
             List<EmployeeDetailsEntity> listEmployeeDetailsEntity = null;
-            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId());
+            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
             {
                 listEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
@@ -851,7 +851,7 @@ namespace RMIS.Business
         {
             bool IsEmployeeExist = false;
 
-            EmployeeDetailsEntity EmployeeDetailsEntity = imp.CheckEmployeeExist(provider.GetCurrentCustomerId(), EmployeeName);
+            EmployeeDetailsEntity EmployeeDetailsEntity = imp.CheckEmployeeExist(provider.GetCurrentCustomerId(), EmployeeName, YesNo.N);
             if (EmployeeDetailsEntity != null)
                 IsEmployeeExist = true;
 
@@ -860,7 +860,7 @@ namespace RMIS.Business
         public bool CheckEmployeeSalaryExist(string EmployeeID)
         {
             bool IsEmployeeSalaryExist = false;
-            EmployeeSalaryEntity EmployeeSalaryEntity = imp.CheckEmployeeSalaryExist(provider.GetCurrentCustomerId(), EmployeeID);
+            EmployeeSalaryEntity EmployeeSalaryEntity = imp.CheckEmployeeSalaryExist(provider.GetCurrentCustomerId(), EmployeeID, YesNo.N);
             if (EmployeeSalaryEntity != null)
                 IsEmployeeSalaryExist = true;
             return IsEmployeeSalaryExist;
@@ -895,14 +895,14 @@ namespace RMIS.Business
 
         public List<EmployeeSalaryEntity> GetEmployeeSalary()
         {
-            return imp.GetAllEmployeeSalaryEntities(provider.GetCurrentCustomerId());
+            return imp.GetAllEmployeeSalaryEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
         public string GetEmployeeName(string EmployeeID)
         {
             string EmployeeName = string.Empty;
-            EmployeeDetailsEntity EmployeeDetails = imp.GetEmployeeDetailsEntity(provider.GetCurrentCustomerId(), EmployeeID);
+            EmployeeDetailsEntity EmployeeDetails = imp.GetEmployeeDetailsEntity(provider.GetCurrentCustomerId(), EmployeeID, YesNo.N);
             if (EmployeeDetails != null) 
                 EmployeeName = EmployeeDetails.Name;
 
