@@ -7,7 +7,6 @@ using RMIS.Domain.Constant;
 
 public partial class PaddyStockInfo : BaseUserControl
 {
-    IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,17 +19,20 @@ public partial class PaddyStockInfo : BaseUserControl
             ddlsellernames.DataValueField = "SellerID";
             ddlsellernames.DataBind();
 
+            IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";
             ddlPaddyType.DataValueField = "Id";
             ddlPaddyType.DataBind();
 
-            ddlGodownname.DataSource = impb.GetMGodownTypeEntities();
+            IMasterPaddyBusiness impb1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            ddlGodownname.DataSource = impb1.GetMGodownTypeEntities();
             ddlGodownname.DataTextField = "GodownType";
             ddlGodownname.DataValueField = "Id";
             ddlGodownname.DataBind();
 
-            ddlUnitsType.DataSource = impb.GetMUnitsTypeEntities();
+            IMasterPaddyBusiness impb2 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            ddlUnitsType.DataSource = impb2.GetMUnitsTypeEntities();
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";
             ddlUnitsType.DataBind();
@@ -52,6 +54,8 @@ public partial class PaddyStockInfo : BaseUserControl
 
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
+        IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
         if (ddlGodownname.SelectedIndex > -1)
         {
             ddlLotDetails.Items.Clear();
