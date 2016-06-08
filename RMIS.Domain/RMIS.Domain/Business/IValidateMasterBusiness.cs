@@ -21,6 +21,6 @@ namespace RMIS.Domain.Business
        ResultDTO ValiadteProductSellingType(string ProductSellingType);
        ResultDTO ValidateDesignationType(string DesignationType);
        ResultDTO ValidateSalaryType(string SalaryType);
-        
+       
     }
 }

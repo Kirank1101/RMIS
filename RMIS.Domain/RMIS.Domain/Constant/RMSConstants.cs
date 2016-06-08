@@ -207,9 +207,13 @@ namespace RMIS.Domain.Constant
         public const string ValidateEmployeeDetailsDistrictLength = "Validate158";
         public const string ValidateEmployeeDetailsStateEmpty = "Validate159";
         public const string ValidateEmployeeDetailsStateLength = "Validate160";
-        public const string ValidateEmployeeDetailsContactNoLength = "Validate170";
-        public const string ValidateEmployeeDetailsContactNoEmpty = "Validate171";
-        
+        public const string ValidateEmployeeDetailsContactNoLength = "Validate161";
+        public const string ValidateEmployeeDetailsContactNoEmpty = "Validate162";
+
+        public const string ValidateEmployeeSalaryEmployee = "Validate163";
+        public const string ValidateEmployeeSalarySalaryType = "Validate164";
+        public const string ValidateEmployeeSalaryDesignation = "Validate165";
+        public const string ValidateEmployeeSalarySalary = "Validate166";
     }
 
     public enum SortExpression

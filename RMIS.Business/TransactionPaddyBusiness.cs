@@ -843,7 +843,7 @@ namespace RMIS.Business
 
             }
             return listEmployeeDetailsEntity;
-            
+
         }
 
 
@@ -856,6 +856,46 @@ namespace RMIS.Business
                 IsEmployeeExist = true;
 
             return IsEmployeeExist;
+        }
+        public bool CheckEmployeeSalaryExist(string EmployeeID)
+        {
+            bool IsEmployeeSalaryExist = false;
+            EmployeeSalaryEntity EmployeeSalaryEntity = imp.CheckEmployeeSalaryExist(provider.GetCurrentCustomerId(), EmployeeID);
+            if (EmployeeSalaryEntity != null)
+                IsEmployeeSalaryExist = true;
+            return IsEmployeeSalaryExist;
+        }
+
+        public ResultDTO SaveEmployeeSalary(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary)
+        {
+            EmployeeSalaryEntity objEmployeeSalaryEntity = new EmployeeSalaryEntity();
+            objEmployeeSalaryEntity.ObsInd = YesNo.N;
+            objEmployeeSalaryEntity.CustID = provider.GetCurrentCustomerId();
+            objEmployeeSalaryEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objEmployeeSalaryEntity.EmployeeID = EmployeeID;
+            objEmployeeSalaryEntity.MSalaryTypeID = SalaryTypeID;
+            objEmployeeSalaryEntity.LastModifiedDate = DateTime.Now;
+            objEmployeeSalaryEntity.MEmpDsgID = EmpDesigID;
+            objEmployeeSalaryEntity.Salary = Salary;
+            objEmployeeSalaryEntity.EmpSalaryID = CommonUtil.CreateUniqueID("ES");
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateEmployeeSalaryEntity(objEmployeeSalaryEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<EmployeeSalaryEntity> GetEmployeeSalary()
+        {
+            return imp.GetAllEmployeeSalaryEntities(provider.GetCurrentCustomerId());
         }
     }
 }

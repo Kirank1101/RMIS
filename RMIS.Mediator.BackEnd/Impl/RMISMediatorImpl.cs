@@ -650,6 +650,19 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateEmployeeSalaryEntity(EmployeeSalaryEntity EmployeeSalaryEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<EmployeeSalary>(mapper.GetEmployeeSalary(EmployeeSalaryEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateEmployeeSalaryEntity", ex);
+                Logger.Error("Error in SaveOrUpdateEmployeeSalaryEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID)
@@ -908,6 +921,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetEmployeeDetailsEntities(CustId);
         }
+        public List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId)
+        {
+            return rmisGateway.GetEmployeeSalaryEntities(CustId);
+        }
         #endregion
         #region Check Enitity
         public List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string PaddyType)
@@ -938,6 +955,12 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.CheckEmployeeExist(CustId, EmployeeName);
         }
+        public EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID)
+        {
+            return rmisGateway.CheckEmployeeSalaryExist(CustId, EmployeeID);
+        }
         #endregion
+
+        
     }
 }

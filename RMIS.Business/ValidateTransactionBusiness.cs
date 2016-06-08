@@ -757,6 +757,31 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+
+        public ResultDTO ValidateEmployeeSalary(int EmployeeName, int SalaryType, int Designation, double Salary)
+        {
+            if (EmployeeName <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmployeeSalaryEmployee, provider.GetCurrentCustomerId()) };
+            }
+            else if (SalaryType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmployeeSalarySalaryType, provider.GetCurrentCustomerId()) };
+            }
+            else if (Designation <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmployeeSalaryDesignation, provider.GetCurrentCustomerId()) };
+            }
+            else if (Salary <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmployeeSalarySalary, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+
+
+        }
     }
 }
 

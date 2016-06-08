@@ -1734,8 +1734,35 @@
                 throw;
             }
         }
+        internal List<EmployeeSalaryEntity> GetEmployeeSalaryEntities(string custId)
+        {
+            try
+            {
+                List<EmployeeSalaryEntity> ListEmployeeSalaryEntity = new List<EmployeeSalaryEntity>();
+                IRepository<EmployeeSalary> EmployeeSalaryRepository = new RepositoryImpl<EmployeeSalary>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeSalary))
+                                                                   .Add(Expression.Eq("CustID", custId));
+                List<EmployeeSalary> listEmployeeSalary = EmployeeSalaryRepository.GetAll(detachedCriteria) as List<EmployeeSalary>;
+                if (listEmployeeSalary != null && listEmployeeSalary.Count > 0)
+                {
+                    foreach (EmployeeSalary adMInfo in listEmployeeSalary)
+                    {
+                        ListEmployeeSalaryEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeSalaryEntity(adMInfo));
+                    }
+                }
+                else
+                    ListEmployeeSalaryEntity = null;
+
+                return ListEmployeeSalaryEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalaryEntities", ex);
+                throw;
+            }
+        }
         #endregion
- 
+
         #region Check Data Exist
         internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string paddytype)
         {
@@ -1941,6 +1968,36 @@
                     EmployeeDetailsEntity = null;
 
                 return EmployeeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckEmployeeExist", ex);
+                throw;
+            }
+        }
+        internal EmployeeSalaryEntity CheckEmployeeSalaryExist(string custId, string EmployeeID)
+        {
+            try
+            {
+                EmployeeSalaryEntity EmployeeSalaryEntity = new EmployeeSalaryEntity();
+                IRepository<EmployeeSalary> DesigTypeRepository = new RepositoryImpl<EmployeeSalary>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeSalary))
+                                                                   .Add(Expression.Eq("EmployeeID", EmployeeID))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                    .Add(Expression.Eq("ObsInd", "N"));
+                List<EmployeeSalary> listEmployeeSalary = DesigTypeRepository.GetAll(detachedCriteria) as List<EmployeeSalary>;
+                if (listEmployeeSalary != null && listEmployeeSalary.Count > 0)
+                {
+                    foreach (EmployeeSalary adMInfo in listEmployeeSalary)
+                    {
+                        EmployeeSalaryEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeSalaryEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    EmployeeSalaryEntity = null;
+
+                return EmployeeSalaryEntity;
             }
             catch (Exception ex)
             {

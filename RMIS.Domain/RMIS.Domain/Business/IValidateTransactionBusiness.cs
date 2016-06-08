@@ -23,5 +23,6 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateBuyerSellerRating(int SellerID,Int16 Rating, string Remark);
         ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo);
         ResultDTO ValidateEmployeeDetails(string EmployeeName, string city, string district, string state, string contactNo);
+        ResultDTO ValidateEmployeeSalary(int EmployeeName, int SalaryType, int Designation, double Salary);
     }
 }

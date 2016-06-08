@@ -77,6 +77,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMEmployeeDesignationEntity(MEmployeeDesignationEntity MEmployeeDesignationEntity, bool isCopy);
         void SaveOrUpdateMSalaryTypeEntity(MSalaryTypeEntity MSalaryTypeEntity, bool isCopy);
         void SaveOrUpdateEmployeeDetailsEntity(EmployeeDetailsEntity EmployeeDetailsEntity, bool isCopy);
+        void SaveOrUpdateEmployeeSalaryEntity(EmployeeSalaryEntity EmployeeSalaryEntity, bool isCopy);
         #endregion
         #region Get
         /// <summary>
@@ -142,6 +143,7 @@ namespace RMIS.Domain.Mediator
         List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId);
         List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId);
         List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId);
+        List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId);
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId);
         #endregion
         #region Check
@@ -157,6 +159,7 @@ namespace RMIS.Domain.Mediator
         MEmployeeDesignationEntity CheckEmpDesigExist(string CustId, string DesignationType);
         MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalartyType);
         EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName);
+        EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID);
         #endregion
         #endregion
     }

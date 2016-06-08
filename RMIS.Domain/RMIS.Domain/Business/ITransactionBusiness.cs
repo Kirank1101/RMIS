@@ -47,7 +47,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveEmployeeDetails(string name,
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
-        
+        ResultDTO SaveEmployeeSalary(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -70,7 +70,9 @@ namespace RMIS.Domain.Business
         List<BuyerInfoEntity> GetBuyerInfo();
         List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
         List<EmployeeDetailsEntity> GetEmployeeDetails();
+        List<EmployeeSalaryEntity> GetEmployeeSalary();
 
         bool CheckEmployeeExist(string EmployeeName);
+        bool CheckEmployeeSalaryExist(string EmployeeID);
     }
 }

@@ -57,30 +57,30 @@ public partial class EmployeeSalary : BaseUserControl
     {
         ResultDTO resultDto = new ResultDTO();
         bool IsSalaryAlotedtoEmployee = false;
-        //IsSalaryAlotedtoEmployee = imp.CheckLotNameExist(txtLotDetails.Text.Trim());
-        //if (!IsLotNameExist)
-        //{
-        //    resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
-        //    if (resultDto.IsSuccess)
-        //    {
-        //        resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
-        //        if (resultDto.IsSuccess)
-        //        {
-        //            bindLotDetails();
-        //        }
-        //        SetMessage(resultDto);
-        //    }
-        //    else
-        //    {
-        //        SetMessage(resultDto);
-        //    }
-        //}
-        //else
-        //{
-        //    resultDto.Message = "LotName already Exist.";
-        //    resultDto.IsSuccess = false;
-        //    SetMessage(resultDto);
-        //}
+        IsSalaryAlotedtoEmployee = impt.CheckEmployeeSalaryExist(txtSalary.Text.Trim());
+        if (!IsSalaryAlotedtoEmployee)
+        {
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex,ddlDesignation.SelectedIndex,Convert.ToDouble(txtSalary.Text.Trim()));
+            if (resultDto.IsSuccess)
+            {
+                resultDto = impt.SaveEmployeeSalary(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue,ddlDesignation.SelectedValue,Convert.ToDouble(txtSalary.Text.Trim()));
+                if (resultDto.IsSuccess)
+                {
+                    
+                }
+                SetMessage(resultDto);
+            }
+            else
+            {
+                SetMessage(resultDto);
+            }
+        }
+        else
+        {
+            resultDto.Message = "Salary already aloted.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     
 }
