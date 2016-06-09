@@ -129,6 +129,43 @@ using RMIS.Domain;
                 throw;
             }
         }
+
+
+        internal List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo,int count,string prefixText)
+        {
+            try
+            {
+                List<SellerInfoEntity> ListSellerInfoEntity = new List<SellerInfoEntity>();
+                IRepository<SellerInfo> SellerTypeRepository = new RepositoryImpl<SellerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+                                                                     .Add(Restrictions.Like("Name", prefixText + "%"))
+                                                                     .AddOrder(Order.Asc("Name"))
+                                                                     .SetMaxResults(count);
+                                                                     
+                                                                 
+                List<SellerInfo> listSellerInfo = SellerTypeRepository.GetAll(detachedCriteria) as List<SellerInfo>;
+                if (listSellerInfo != null && listSellerInfo.Count > 0)
+                {
+                    foreach (SellerInfo adMInfo in listSellerInfo)
+                    {
+                        ListSellerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    ListSellerInfoEntity = null;
+
+                return ListSellerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetSellerInfoEntities", ex);
+                throw;
+            }
+        }
+
+
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId,YesNo yesNo)
         {
             try

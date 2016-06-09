@@ -7,17 +7,20 @@ using RMIS.Domain.Constant;
 
 public partial class TransactionPaddyStockInfo : BaseUserControl
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        TextBoxAutoExtender1.ContextKey = CustomerName;
+    }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
             //base.Header = "Paddy Stock Information";
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            ddlsellernames.DataSource = imp.GetPaddySellerInfo();
-            ddlsellernames.DataTextField = "Name";
-            ddlsellernames.DataValueField = "SellerID";
-            ddlsellernames.DataBind();
+         
+            
 
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
@@ -69,12 +72,12 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         double amtpaid = string.IsNullOrEmpty(txtamountpaid.Text.Trim()) ? 0 : Convert.ToDouble(txtamountpaid.Text.Trim());
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, ddlsellernames.SelectedIndex, txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtBankName.Text.Trim(), Convert.ToDouble(amtpaid), txtPaidDate.Text.Trim(), txtHandoverto.Text.Trim(), txtNextpaymentdate.Text.Trim());
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, 1, txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtBankName.Text.Trim(), Convert.ToDouble(amtpaid), txtPaidDate.Text.Trim(), txtHandoverto.Text.Trim(), txtNextpaymentdate.Text.Trim());
 
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SavePaddyStockInfo(ddlsellernames.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToDecimal(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtPrice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim())
+            resultDto = imp.SavePaddyStockInfo(TextBoxAutoExtender1.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToDecimal(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtPrice.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim())
                 , Convert.ToDouble(txtamountpaid.Text.Trim()), Convert.ToDateTime(txtPaidDate.Text.Trim()), txtHandoverto.Text.Trim(),
                 Convert.ToDateTime(txtNextpaymentdate.Text.Trim()), rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtBankName.Text.Trim());
 
@@ -101,8 +104,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
 
     private void ClearAllInputFields()
     {
-        ddlPaddyType.SelectedIndex = 0;
-        ddlsellernames.SelectedIndex = 0;
+        ddlPaddyType.SelectedIndex = 0;      
         ddlGodownname.SelectedIndex = 0;
         ddlLotDetails.SelectedIndex = 0;
         txtVehicalNo.Text = string.Empty;

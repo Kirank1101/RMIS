@@ -157,6 +157,29 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
+
+        public List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText,string context)
+        {
+
+            List<SellerInfoEntity> listSellerInfoEntity = null;
+            List<SellerInfoEntity> listSellerinfo = imp.GetSellerInfoEntities(context, YesNo.N, count, prefixText);
+            if (listSellerinfo != null && listSellerinfo.Count > 0)
+            {
+                listSellerInfoEntity = new List<SellerInfoEntity>();
+                foreach (SellerInfoEntity objSellerinfo in listSellerinfo)
+                {
+
+                    SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
+                    objSellerInfoEntity.SellerID = objSellerinfo.SellerID;
+                    objSellerInfoEntity.Name = objSellerinfo.Name;
+                    listSellerInfoEntity.Add(objSellerInfoEntity);
+                }
+
+            }
+            return listSellerInfoEntity;
+        }
+
+
         public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, decimal Price, DateTime purchaseDate)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();

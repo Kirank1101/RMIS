@@ -985,5 +985,11 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
         }
+
+
+        public List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
+        {
+            return rmisGateway.GetSellerInfoEntities(custId,yesNo,count,prefixText);
+        }
     }
 }

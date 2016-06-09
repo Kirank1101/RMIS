@@ -1,10 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TransactionPaddyStockInfo.ascx.cs"
     Inherits="TransactionPaddyStockInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+ 
 <div class="table-responsive">
     <table>
         <tr>
             <td valign="top" style="padding-right: 70px">
+                
                 <h3>
                     Paddy Stock Info</h3>
                 <table>
@@ -13,9 +17,13 @@
                             <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlsellernames" runat="server" AppendDataBoundItems="true">
-                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                            </asp:DropDownList>
+                        
+                     
+                 
+    <p />
+                <asp:TextBoxAutoExtender ID="TextBoxAutoExtender1" runat="server" ServiceMethod="GetSellerNames"   ></asp:TextBoxAutoExtender>
+
+                            
                         </td>
                     </tr>
                     <tr>

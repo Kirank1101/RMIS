@@ -148,6 +148,7 @@ namespace RMIS.Domain.Mediator
         EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID, YesNo yesNo);
         MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID, YesNo yesNo);
         MSalaryTypeEntity GetListMSalaryTypeEntity(string p, string SalaryTypeId, YesNo yesNo);
+        List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         #endregion
         #region Check
         /// <summary>

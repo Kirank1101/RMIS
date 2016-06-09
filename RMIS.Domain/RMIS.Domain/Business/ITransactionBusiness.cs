@@ -71,8 +71,8 @@ namespace RMIS.Domain.Business
         List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
         List<EmployeeDetailsEntity> GetEmployeeDetails();
         List<EmployeeSalaryEntity> GetEmployeeSalary();
-        string GetEmployeeName(string EmployeeID);
-        
+        List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText,string contextKey);
+        string GetEmployeeName(string EmployeeID);        
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
 

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
     TagPrefix="iucon" %>
@@ -36,8 +37,13 @@
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+   <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx"
+        CombineScripts="false">
+        <Services>
+      <asp:ServiceReference Path="~/AutoComplete.asmx" />
+       <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
+   </Services>
+    </ajaxToolkit:ToolkitScriptManager>
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
