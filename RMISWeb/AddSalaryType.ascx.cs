@@ -20,7 +20,7 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddSalaryType : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
         
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +33,7 @@ public partial class AddSalaryType : BaseUserControl
 
     private void bindSalaryType()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptSalaryType.DataSource = imp.GetMSalaryTypeEntities();
         rptSalaryType.DataBind();
     }
@@ -41,6 +42,7 @@ public partial class AddSalaryType : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         bool IsSalaryTypeExist = false;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         IsSalaryTypeExist = imp.CheckSalaryTypeExist(txtSalaryType.Text.Trim());
         ResultDTO resultDto = new ResultDTO();
         if (!IsSalaryTypeExist)
@@ -48,7 +50,8 @@ public partial class AddSalaryType : BaseUserControl
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSalaryType(txtSalaryType.Text);
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveSalaryType(txtSalaryType.Text.Trim());
+                IMasterPaddyBusiness imp1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+                resultDto = imp1.SaveSalaryType(txtSalaryType.Text.Trim());
                 if (resultDto.IsSuccess)
                 {
                     bindSalaryType();

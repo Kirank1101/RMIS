@@ -56,7 +56,9 @@ public partial class AddLotDetails : BaseUserControl
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
+                IMasterPaddyBusiness imp1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        
+                resultDto = imp1.SaveLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
                 if (resultDto.IsSuccess)
                 {
                     bindLotDetails();

@@ -20,7 +20,7 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddUnitsType : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
             
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,6 +34,7 @@ public partial class AddUnitsType : BaseUserControl
 
     private void bindUnitType()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         rptUnitsType.DataSource = imp.GetMUnitsTypeEntities();
         rptUnitsType.DataBind();
     }
@@ -41,6 +42,7 @@ public partial class AddUnitsType : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateUnitsType(txtUnitsType.Text);
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         bool IsUnitTypeExist = imp.CheckUnitTypeExist(txtUnitsType.Text.Trim());
         if (!IsUnitTypeExist)
         {

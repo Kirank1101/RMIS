@@ -20,7 +20,7 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class AddEmpDesig : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+    
         
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +33,7 @@ public partial class AddEmpDesig : BaseUserControl
 
     private void bindDesigType()
     {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>(); 
         rptDesigType.DataSource = imp.GetMEmpDesigTypeEntities();
         rptDesigType.DataBind();
     }
@@ -41,6 +42,7 @@ public partial class AddEmpDesig : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         bool IsDesigExist = false;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>(); 
         IsDesigExist = imp.CheckEmpDesigExist(txtDesigType.Text.Trim());
         ResultDTO resultDto = new ResultDTO();
         if (!IsDesigExist)
@@ -48,7 +50,8 @@ public partial class AddEmpDesig : BaseUserControl
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateDesignationType(txtDesigType.Text);
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveEmpDesigType(txtDesigType.Text.Trim());
+                IMasterPaddyBusiness imp1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>(); 
+                resultDto = imp1.SaveEmpDesigType(txtDesigType.Text.Trim());
                 if (resultDto.IsSuccess)
                 {
                     bindDesigType();
