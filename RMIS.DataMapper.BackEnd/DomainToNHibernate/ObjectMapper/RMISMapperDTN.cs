@@ -57,6 +57,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MSalaryType GetMSalaryType(MSalaryTypeEntity MSalaryTypeEntity);
         EmployeeDetails GetEmployeeDetails(EmployeeDetailsEntity EmployeeDetailsEntity);
         EmployeeSalary GetEmployeeSalary(EmployeeSalaryEntity EmployeeSalaryEntity);
+        MoneyTransaction GetEmployeeSalaryPayment(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -738,6 +739,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return EmployeeSalary;
+        }
+
+
+        public MoneyTransaction GetEmployeeSalaryPayment(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity)
+        {
+            MoneyTransaction MoneyTransaction = null;
+            try
+            {
+                MoneyTransaction = Mapper.Map<EmployeeSalaryPaymentEntity, MoneyTransaction>(EmployeeSalaryPaymentEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalaryPayment", ex);
+                throw;
+            }
+            return MoneyTransaction;
         }
     }
 }

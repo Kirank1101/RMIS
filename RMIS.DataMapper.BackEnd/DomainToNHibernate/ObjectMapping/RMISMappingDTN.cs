@@ -1018,5 +1018,31 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapEmployeeSalaryPaymentEntityToEmployeeSalaryPayment()
+        {
+            try
+            {
+                Mapper.CreateMap<EmployeeSalaryPaymentEntity, MoneyTransaction>()
+                    .ForMember(dest => dest.ExpTranID, opts => opts.MapFrom(src => src.ExpTranID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.EmployeeID, opts => opts.MapFrom(src => src.EmployeeID))
+                    .ForMember(dest => dest.MEmpDsgID, opts => opts.MapFrom(src => src.MEmpDsgID))
+                    .ForMember(dest => dest.MSalaryTypeID, opts => opts.MapFrom(src => src.MSalaryTypeID))
+                    .ForMember(dest => dest.Salary, opts => opts.MapFrom(src => src.Salary))
+                    .ForMember(dest => dest.GivenTo, opts => opts.MapFrom(src => src.GivenTo))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.AmountSpent, opts => opts.MapFrom(src => src.AmountSpent))
+                    .ForMember(dest => dest.ExtraCharges, opts => opts.MapFrom(src => src.ExtraCharges))
+                    .ForMember(dest => dest.PaymentDate, opts => opts.MapFrom(src => src.PaymentDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapEmployeeSalaryPaymentEntityToEmployeeSalaryPayment", ex);
+                throw;
+            }
+        }
     }
 }

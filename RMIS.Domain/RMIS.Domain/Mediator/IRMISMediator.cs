@@ -78,7 +78,10 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMSalaryTypeEntity(MSalaryTypeEntity MSalaryTypeEntity, bool isCopy);
         void SaveOrUpdateEmployeeDetailsEntity(EmployeeDetailsEntity EmployeeDetailsEntity, bool isCopy);
         void SaveOrUpdateEmployeeSalaryEntity(EmployeeSalaryEntity EmployeeSalaryEntity, bool isCopy);
+        void SaveOrUpdateEmployeeSalaryPaymentEntity(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity, bool isCopy);
+
         #endregion
+
         #region Get
         /// <summary>
         /// Gets all audit module visit.
@@ -148,7 +151,10 @@ namespace RMIS.Domain.Mediator
         EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID, YesNo yesNo);
         MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID, YesNo yesNo);
         MSalaryTypeEntity GetListMSalaryTypeEntity(string p, string SalaryTypeId, YesNo yesNo);
-        List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
+        EmployeeSalaryEntity GetEmployeeSalaryEntity(string p, string EmployeeID, YesNo yesNo);
+        List<EmployeeSalaryPaymentEntity> GetAllEmployeeSalaryPaymentEntities(string CustId, YesNo yesNo);
+        List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo);
+		List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         #endregion
         #region Check
         /// <summary>

@@ -21,14 +21,14 @@ using System.Collections.Generic;
 
 public partial class EmployeeSalary : BaseUserControl
 {
-    IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-    ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
             Header = "Add Employee Salary";
+            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
             List<EmployeeDetailsEntity> listemployeedetails = impt.GetEmployeeDetails();
             ddlEmployeeName.DataSource = listemployeedetails;
@@ -55,7 +55,10 @@ public partial class EmployeeSalary : BaseUserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+
         ResultDTO resultDto = new ResultDTO();
+        ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+
         bool IsSalaryAlotedtoEmployee = false;
         IsSalaryAlotedtoEmployee = impt.CheckEmployeeSalaryExist(txtSalary.Text.Trim());
         if (!IsSalaryAlotedtoEmployee)
@@ -85,6 +88,9 @@ public partial class EmployeeSalary : BaseUserControl
 
     private void BindEmployeeSalaryInfo()
     {
+        ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
         List<EmployeeSalaryEntity> lstemployeesalary = impt.GetEmployeeSalary();
         if (lstemployeesalary != null && lstemployeesalary.Count > 0)
         {

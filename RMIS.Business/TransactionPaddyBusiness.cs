@@ -931,5 +931,70 @@ namespace RMIS.Business
 
             return EmployeeName;
         }
+
+
+        public EmployeeSalaryEntity GetEmployeeSalaryEntity(string EmployeeID)
+        {
+            return imp.GetEmployeeSalaryEntity(provider.GetCurrentCustomerId(), EmployeeID, YesNo.N);
+        }
+
+
+
+        public ResultDTO SaveEmployeeSalaryPayment(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary, double AmountSpent, double ExtraCharges)
+        {
+            EmployeeSalaryPaymentEntity objEmployeeSalaryPaymentEntity = new EmployeeSalaryPaymentEntity();
+
+            objEmployeeSalaryPaymentEntity.ExpTranID = CommonUtil.CreateUniqueID("ET");
+            objEmployeeSalaryPaymentEntity.CustID = provider.GetCurrentCustomerId();
+            objEmployeeSalaryPaymentEntity.EmployeeID = EmployeeID;
+            objEmployeeSalaryPaymentEntity.MSalaryTypeID = SalaryTypeID;
+            objEmployeeSalaryPaymentEntity.MEmpDsgID = EmpDesigID;
+            objEmployeeSalaryPaymentEntity.Salary = Salary;
+            objEmployeeSalaryPaymentEntity.AmountSpent = AmountSpent;
+            objEmployeeSalaryPaymentEntity.ExtraCharges = ExtraCharges;
+            objEmployeeSalaryPaymentEntity.PaymentDate = DateTime.Now;
+            objEmployeeSalaryPaymentEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objEmployeeSalaryPaymentEntity.LastModifiedDate = DateTime.Now;
+            objEmployeeSalaryPaymentEntity.ObsInd = YesNo.N;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateEmployeeSalaryPaymentEntity(objEmployeeSalaryPaymentEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<EmployeeSalaryPaymentEntity> GetEmployeeSalaryPayment()
+        {
+            return imp.GetAllEmployeeSalaryPaymentEntities(provider.GetCurrentCustomerId(), YesNo.N);
+        }
+
+
+        public List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string EmployeeID)
+        {
+
+            List<EmployeeSalaryPaymentEntity> listEmployeeSalaryPaymentEntity = null;
+            List<EmployeeSalaryPaymentEntity> listEmployeeSalaryPayment = imp.GetSalaryPaymentOnEmployee(provider.GetCurrentCustomerId(), EmployeeID, YesNo.N);
+            if (listEmployeeSalaryPayment != null && listEmployeeSalaryPayment.Count > 0)
+            {
+                listEmployeeSalaryPaymentEntity = new List<EmployeeSalaryPaymentEntity>();
+                foreach (EmployeeSalaryPaymentEntity objEmployeeinfo in listEmployeeSalaryPayment)
+                {
+                    EmployeeSalaryPaymentEntity objEmployeeSalaryPaymentEntity = new EmployeeSalaryPaymentEntity();
+                    objEmployeeSalaryPaymentEntity.ExpTranID = objEmployeeinfo.ExpTranID;
+                    objEmployeeSalaryPaymentEntity.PaymentDate = objEmployeeinfo.PaymentDate;
+                    objEmployeeSalaryPaymentEntity.AmountSpent = objEmployeeinfo.AmountSpent;
+                    objEmployeeSalaryPaymentEntity.ExtraCharges = objEmployeeinfo.ExtraCharges;
+                    listEmployeeSalaryPaymentEntity.Add(objEmployeeSalaryPaymentEntity);
+                }
+            }
+            return listEmployeeSalaryPaymentEntity;
+        }
     }
 }

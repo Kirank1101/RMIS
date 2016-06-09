@@ -2,13 +2,10 @@
     Inherits="TransactionPaddyStockInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
- 
 <div class="table-responsive">
     <table>
         <tr>
             <td valign="top" style="padding-right: 70px">
-                
                 <h3>
                     Paddy Stock Info</h3>
                 <table>
@@ -17,13 +14,9 @@
                             <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
                         </td>
                         <td>
-                        
-                     
-                 
-    <p />
-                <asp:TextBoxAutoExtender ID="TextBoxAutoExtender1" runat="server" ServiceMethod="GetSellerNames"   ></asp:TextBoxAutoExtender>
-
-                            
+                            <p />
+                            <asp:TextBoxAutoExtender ID="TextBoxAutoExtender1" runat="server" ServiceMethod="GetSellerNames">
+                            </asp:TextBoxAutoExtender>
                         </td>
                     </tr>
                     <tr>
@@ -73,7 +66,6 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="10" />
-                    
                         </td>
                     </tr>
                     <tr>

@@ -1,13 +1,11 @@
 ﻿namespace RMIS.Mediator.BackEnd.Data
 {
-
     using AllInOne.Common.DataAccess.NHibernate.NHibernateSessionManagement;
     using AllInOne.Common.DataAccess.Utilities;
     using System;
     using NHibernate;
     using log4net;
     using System.Collections.Generic;
-
     using NHibernate.Criterion;
     using RMIS.Entities.BackEnd;
     using RMIS.Repositories.BackEnd;
@@ -1894,7 +1892,95 @@ using RMIS.Domain;
                 throw;
             }
         }
-        
+        internal EmployeeSalaryEntity GetEmployeeSalaryEntity(string custId, string EmployeeID, YesNo yesNo)
+        {
+            try
+            {
+                EmployeeSalaryEntity EmployeeSalaryEntity = new EmployeeSalaryEntity();
+                IRepository<EmployeeSalary> UsersRepository = new RepositoryImpl<EmployeeSalary>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeSalary))
+                                                                   .Add(Expression.Eq("EmployeeID", EmployeeID))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<EmployeeSalary> listEmployeeSalaryEntity = UsersRepository.GetAll(detachedCriteria) as List<EmployeeSalary>;
+                if (listEmployeeSalaryEntity != null && listEmployeeSalaryEntity.Count > 0)
+                {
+                    foreach (EmployeeSalary adMInfo in listEmployeeSalaryEntity)
+                    {
+                        EmployeeSalaryEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeSalaryEntity(adMInfo);
+                    }
+                }
+                else
+                    EmployeeSalaryEntity = null;
+
+                return EmployeeSalaryEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalaryEntity", ex);
+                throw;
+            }
+        }
+        internal List<EmployeeSalaryPaymentEntity> GetEmployeeSalaryPaymentEntities(string custId, YesNo yesNo)
+        {
+            try
+            {
+                List<EmployeeSalaryPaymentEntity> ListEmployeeSalaryPaymentEntity = new List<EmployeeSalaryPaymentEntity>();
+                IRepository<MoneyTransaction> EmployeeSalaryRepository = new RepositoryImpl<MoneyTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MoneyTransaction))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MoneyTransaction> listEmployeeSalaryPayment = EmployeeSalaryRepository.GetAll(detachedCriteria) as List<MoneyTransaction>;
+                if (listEmployeeSalaryPayment != null && listEmployeeSalaryPayment.Count > 0)
+                {
+                    foreach (MoneyTransaction adMInfo in listEmployeeSalaryPayment)
+                    {
+                        ListEmployeeSalaryPaymentEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeSalaryPaymentEntity(adMInfo));
+                    }
+                }
+                else
+                    ListEmployeeSalaryPaymentEntity = null;
+
+                return ListEmployeeSalaryPaymentEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalaryPaymentEntities", ex);
+                throw;
+            }
+        }
+        internal List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string custId, string EmployeeID, YesNo yesNo)
+        {
+            try
+            {
+                List<EmployeeSalaryPaymentEntity> ListEmployeeSalaryPaymentEntity = new List<EmployeeSalaryPaymentEntity>();
+                IRepository<MoneyTransaction> EmployeeSalaryRepository = new RepositoryImpl<MoneyTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MoneyTransaction))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MoneyTransaction> listEmployeeSalaryPayment = EmployeeSalaryRepository.GetAll(detachedCriteria) as List<MoneyTransaction>;
+                if (listEmployeeSalaryPayment != null && listEmployeeSalaryPayment.Count > 0)
+                {
+                    foreach (MoneyTransaction adMInfo in listEmployeeSalaryPayment)
+                    {
+                        ListEmployeeSalaryPaymentEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeSalaryPaymentEntity(adMInfo));
+                    }
+                }
+                else
+                    ListEmployeeSalaryPaymentEntity = null;
+
+                return ListEmployeeSalaryPaymentEntity;
+                //.Add(Expression.Eq("EmployeeID", EmployeeID))
+                //.Add(Expression.Between("PaymentDate",DateTime.Now.AddDays(-(DateTime.Now.Day-1)),  DateTime.Now.AddDays(-(DateTime.Now.Day-1)).AddDays(DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month))))
+                                                                   
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeSalaryPaymentEntities", ex);
+                throw;
+            }
+        }
         #endregion
 
         #region Check Data Exist

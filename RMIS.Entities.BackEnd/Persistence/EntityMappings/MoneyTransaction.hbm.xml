@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="MoneyTransaction" table="[dbo].[MoneyTransaction]" optimistic-lock="none" >
+    <id name="ExpTranID" column="ExpTranID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="CustID" column="CustID" />
+    <property name="EmployeeID" column="EmployeeID" />
+    <property name="MSalaryTypeID" column="MSalaryTypeID" />
+    <property name="MEmpDsgID" column="MEmpDsgID" />
+    <property name="Salary" column="Salary" />
+    <property name="GivenTo" column="GivenTo" />
+    <property name="Description" column="Description" />
+    <property name="AmountSpent" column="AmountSpent" />
+    <property name="ExtraCharges" column="ExtraCharges" />
+    <property name="PaymentDate" column="PaymentDate" />    
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+
+  </class>
+</hibernate-mapping>
+

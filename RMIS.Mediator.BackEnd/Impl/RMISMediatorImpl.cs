@@ -664,6 +664,20 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateEmployeeSalaryPaymentEntity(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MoneyTransaction>(mapper.GetEmployeeSalaryPayment(EmployeeSalaryPaymentEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateEmployeeSalaryPaymentEntity", ex);
+                Logger.Error("Error in SaveOrUpdateEmployeeSalaryPaymentEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
@@ -902,10 +916,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             throw new NotImplementedException();
         }
-        public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
-        {
-            return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
-        }
+        
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
@@ -937,6 +948,19 @@ namespace RMIS.Mediator.BackEnd.Impl
         public MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId, YesNo yesNo)
         {
             return rmisGateway.GetListMSalaryTypeEntity(custId, SalaryTypeId, yesNo);
+        }
+        
+        public EmployeeSalaryEntity GetEmployeeSalaryEntity(string CustID, string EmployeeID, YesNo yesNo)
+        {
+            return rmisGateway.GetEmployeeSalaryEntity(CustID, EmployeeID, yesNo);
+        }
+        public List<EmployeeSalaryPaymentEntity> GetAllEmployeeSalaryPaymentEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetEmployeeSalaryPaymentEntities(CustId, yesNo);
+        }
+        public List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo)
+        {
+            return rmisGateway.GetSalaryPaymentOnEmployee(CustId, EmployeeID, yesNo);
         }
         #endregion
         #region Check Enitity
@@ -982,10 +1006,12 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo)
         {
-
+            return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
+        }                
+        public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
+        {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
         }
-
 
         public List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {

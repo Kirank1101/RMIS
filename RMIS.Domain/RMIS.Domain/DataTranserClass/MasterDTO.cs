@@ -182,6 +182,9 @@ namespace RMIS.Domain.DataTranserClass
         {
             DesignationType = string.Empty;
         }
+        public const string dataColumnText = "DesignationType";
+        public const string dataColumnId = "Id";
+        
         public string DesignationType
         {
             get;
@@ -196,6 +199,8 @@ namespace RMIS.Domain.DataTranserClass
         {
             SalaryType = string.Empty;
         }
+        public const string dataColumnText = "SalaryType";
+        public const string dataColumnId = "Id";
         public string SalaryType
         {
             get;
