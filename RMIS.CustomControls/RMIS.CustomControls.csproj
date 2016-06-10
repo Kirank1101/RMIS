@@ -57,6 +57,20 @@
   <ItemGroup>
     <EmbeddedResource Include="GridViewKeyBoardPagerBehavior.js" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AllInOne.Common.Library\AllInOne.Common.Library\AllInOne.Common.Library.csproj">
+      <Project>{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}</Project>
+      <Name>AllInOne.Common.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RMIS.Binder.BackEnd\RMIS.Binder.BackEnd\RMIS.Binder.BackEnd.csproj">
+      <Project>{C0D852B7-9B69-43DD-AB12-1611E6D68F67}</Project>
+      <Name>RMIS.Binder.BackEnd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RMIS.Domain\RMIS.Domain\RMIS.Domain.csproj">
+      <Project>{45466F53-B987-4CB9-99F7-690232A451C5}</Project>
+      <Name>RMIS.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

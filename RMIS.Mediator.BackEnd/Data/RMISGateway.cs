@@ -14,7 +14,7 @@
 
     using RMIS.Domain.RiceMill;
     using RMIS.Domain.Constant;
-using RMIS.Domain;
+    using RMIS.Domain;
 
 
 
@@ -39,7 +39,7 @@ using RMIS.Domain;
         #endregion Constructors
 
         #region Get Methods
-        internal List<MBagTypeEntity> GetMBagTypeEntities(string custId,YesNo yesNo)
+        internal List<MBagTypeEntity> GetMBagTypeEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -98,7 +98,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId,YesNo yesNo)
+        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -129,7 +129,74 @@ using RMIS.Domain;
         }
 
 
-        internal List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo,int count,string prefixText)
+
+        internal List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText)
+        {
+            try
+            {
+                List<EmployeeDetailsEntity> ListEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
+                IRepository<EmployeeDetails> EmployeeDetailsRepository = new RepositoryImpl<EmployeeDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(EmployeeDetails))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+                                                                      .Add(Restrictions.Like("Name", prefixText + "%"))
+                                                                     .AddOrder(Order.Asc("Name"))
+                                                                     .SetMaxResults(count);
+                List<EmployeeDetails> listEmployeeDetails = EmployeeDetailsRepository.GetAll(detachedCriteria) as List<EmployeeDetails>;
+                if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
+                {
+                    foreach (EmployeeDetails adMInfo in listEmployeeDetails)
+                    {
+                        ListEmployeeDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetEmployeeDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    ListEmployeeDetailsEntity = null;
+
+                return ListEmployeeDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetEmployeeDetailsEntities", ex);
+                throw;
+            }
+        }
+
+
+        internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
+        {
+            try
+            {
+                List<BuyerInfoEntity> ListBuyerInfoEntity = new List<BuyerInfoEntity>();
+                IRepository<BuyerInfo> BuyerTypeRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+                 .Add(Restrictions.Like("Name", prefixText + "%"))
+                                                                     .AddOrder(Order.Asc("Name"))
+                                                                     .SetMaxResults(count);
+                List<BuyerInfo> listBuyerInfo = BuyerTypeRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfo)
+                    {
+                        ListBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    ListBuyerInfoEntity = null;
+
+                return ListBuyerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+                throw;
+            }
+        }
+
+
+        internal List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
             try
             {
@@ -141,8 +208,8 @@ using RMIS.Domain;
                                                                      .Add(Restrictions.Like("Name", prefixText + "%"))
                                                                      .AddOrder(Order.Asc("Name"))
                                                                      .SetMaxResults(count);
-                                                                     
-                                                                 
+
+
                 List<SellerInfo> listSellerInfo = SellerTypeRepository.GetAll(detachedCriteria) as List<SellerInfo>;
                 if (listSellerInfo != null && listSellerInfo.Count > 0)
                 {
@@ -164,7 +231,7 @@ using RMIS.Domain;
         }
 
 
-        internal List<SellerInfoEntity> GetSellerInfoEntities(string custId,YesNo yesNo)
+        internal List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -222,7 +289,92 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression,YesNo yesNo)
+
+
+
+        internal int GetMRiceProductionTypeCount(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+               return  UsersRepository.GetCountUsingFuture(detachedCriteria);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceProductionTypeCount", ex);
+                throw;
+            }
+
+        }
+
+        internal int  GetPaddyStockEntityCount(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo >(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+                                                                       
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntitiesCount", ex);
+                throw;
+            }
+
+        }
+
+
+        internal int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(HullingProcess))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                                                                       
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMPaddyTypeEntitiesCount", ex);
+                throw;
+            }
+
+        }
+
+        internal int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
+        {
+            try
+            {
+
+                IRepository<BrokenRiceStockInfo> UsersRepository = new RepositoryImpl<BrokenRiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+
+               return  UsersRepository.GetCountUsingFuture(detachedCriteria);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBrokenRiceStockInfoCount", ex);
+                throw;
+            }
+
+        }
+
+        internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
             {
@@ -260,7 +412,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression,YesNo yesNo)
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
             {
@@ -304,7 +456,7 @@ using RMIS.Domain;
                 IRepository<MPaddyType> UsersRepository = new RepositoryImpl<MPaddyType>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.In("ObsInd",( yesNo==YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y),Enum.GetName(typeof(YesNo), YesNo.N)}:  new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    );
 
                 List<MPaddyType> listMPaddyType = UsersRepository.GetAll(detachedCriteria) as List<MPaddyType>;
@@ -591,7 +743,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MUserTypeEntity GetMUserTypeEntity(string UserTypeID,YesNo yesNo)
+        internal MUserTypeEntity GetMUserTypeEntity(string UserTypeID, YesNo yesNo)
         {
             try
             {
@@ -620,7 +772,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal UsersEntity GetUsersEntity(string Username, string custId,YesNo yesNo)
+        internal UsersEntity GetUsersEntity(string Username, string custId, YesNo yesNo)
         {
             try
             {
@@ -650,7 +802,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<RMUserRoleEntity> GetUserRoles(string userId,YesNo yesNo)
+        internal List<RMUserRoleEntity> GetUserRoles(string userId, YesNo yesNo)
         {
             try
             {
@@ -679,7 +831,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal UsersEntity GetUsersEntity(string UserID,YesNo yesNo)
+        internal UsersEntity GetUsersEntity(string UserID, YesNo yesNo)
         {
             try
             {
@@ -708,7 +860,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID,YesNo yesNo)
+        internal MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID, YesNo yesNo)
         {
             try
             {
@@ -737,7 +889,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID,YesNo yesNo)
+        internal PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID, YesNo yesNo)
         {
             try
             {
@@ -766,7 +918,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal BagStockInfoEntity GetBagStockInfoEntity(string BagStockID,YesNo yesNo)
+        internal BagStockInfoEntity GetBagStockInfoEntity(string BagStockID, YesNo yesNo)
         {
             try
             {
@@ -795,7 +947,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MLotDetailsEntity GetMLotDetailsEntity(string MLotID,YesNo yesNo)
+        internal MLotDetailsEntity GetMLotDetailsEntity(string MLotID, YesNo yesNo)
         {
             try
             {
@@ -824,7 +976,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID,YesNo yesNo)
+        internal MGodownDetailsEntity GetMGodownDetailsEntity(string MGodownID, YesNo yesNo)
         {
             try
             {
@@ -853,7 +1005,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MGodownDetailsEntity> GetAllMGodownDetailsEntity(string custId,YesNo yesNo)
+        internal List<MGodownDetailsEntity> GetAllMGodownDetailsEntity(string custId, YesNo yesNo)
         {
             try
             {
@@ -882,7 +1034,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID,YesNo yesNo)
+        internal PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string PaddyPaymentID, YesNo yesNo)
         {
             try
             {
@@ -911,7 +1063,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID,YesNo yesNo)
+        internal MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID, YesNo yesNo)
         {
             try
             {
@@ -940,7 +1092,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID,YesNo yesNo)
+        internal CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo)
         {
             try
             {
@@ -969,7 +1121,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID,YesNo yesNo)
+        internal CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID, YesNo yesNo)
         {
             try
             {
@@ -998,7 +1150,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID,YesNo yesNo)
+        internal CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID, YesNo yesNo)
         {
             try
             {
@@ -1027,7 +1179,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID,YesNo yesNo)
+        internal CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID, YesNo yesNo)
         {
             try
             {
@@ -1056,7 +1208,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID,YesNo yesNo)
+        internal CustomerPartPayDetailsEntity GetCustomerPartPayDetailsEntity(string CustPartPayID, YesNo yesNo)
         {
             try
             {
@@ -1085,7 +1237,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID,YesNo yesNo)
+        internal MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
         {
             try
             {
@@ -1114,7 +1266,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID,YesNo yesNo)
+        internal MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string MRiceProdTypeID, YesNo yesNo)
         {
             try
             {
@@ -1143,7 +1295,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string custID,YesNo yesNo)
+        internal List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string custID, YesNo yesNo)
         {
             try
             {
@@ -1172,7 +1324,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID,YesNo yesNo)
+        internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID, YesNo yesNo)
         {
             try
             {
@@ -1201,7 +1353,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string custId,YesNo yesNo)
+        internal List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1230,7 +1382,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId,YesNo yesNo)
+        internal List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1259,7 +1411,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId,YesNo yesNo)
+        internal List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1288,7 +1440,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId,YesNo yesNo)
+        internal List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1317,7 +1469,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId,YesNo yesNo)
+        internal List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1346,7 +1498,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId,YesNo yesNo)
+        internal List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1375,7 +1527,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId,YesNo yesNo)
+        internal List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1458,7 +1610,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId,YesNo yesNo)
+        internal List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1487,7 +1639,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId,YesNo yesNo)
+        internal List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1516,7 +1668,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId,YesNo yesNo)
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1545,7 +1697,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<HullingProcessEntity> GetHullingProcessInfoEntities(string CustId,YesNo yesNo)
+        internal List<HullingProcessEntity> GetHullingProcessInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1574,7 +1726,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<HullingProcessTransactionEntity> GetHullingProcessTransInfoEntities(string CustId,YesNo yesNo)
+        internal List<HullingProcessTransactionEntity> GetHullingProcessTransInfoEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1603,7 +1755,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<HullingProcessExpensesEntity> GetHullingProcessExpensesEntities(string CustId,YesNo yesNo)
+        internal List<HullingProcessExpensesEntity> GetHullingProcessExpensesEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1632,7 +1784,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId,YesNo yesNo)
+        internal List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId, YesNo yesNo)
         {
             try
             {
@@ -1662,7 +1814,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId,YesNo yesNo)
+        internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1690,7 +1842,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string custId,YesNo yesNo)
+        internal List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1718,7 +1870,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<MSalaryTypeEntity> GetMSalaryTypeEntities(string custId,YesNo yesNo)
+        internal List<MSalaryTypeEntity> GetMSalaryTypeEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1746,7 +1898,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId,YesNo yesNo)
+        internal List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1774,7 +1926,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal List<EmployeeSalaryEntity> GetEmployeeSalaryEntities(string custId,YesNo yesNo)
+        internal List<EmployeeSalaryEntity> GetEmployeeSalaryEntities(string custId, YesNo yesNo)
         {
             try
             {
@@ -1802,7 +1954,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID,YesNo yesNo)
+        internal EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId, string EmployeeID, YesNo yesNo)
         {
             try
             {
@@ -1832,7 +1984,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string custId, string DesignationID,YesNo yesNo)
+        internal MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string custId, string DesignationID, YesNo yesNo)
         {
             try
             {
@@ -1862,7 +2014,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId,YesNo yesNo)
+        internal MSalaryTypeEntity GetListMSalaryTypeEntity(string custId, string SalaryTypeId, YesNo yesNo)
         {
             try
             {
@@ -1973,7 +2125,7 @@ using RMIS.Domain;
                 return ListEmployeeSalaryPaymentEntity;
                 //.Add(Expression.Eq("EmployeeID", EmployeeID))
                 //.Add(Expression.Between("PaymentDate",DateTime.Now.AddDays(-(DateTime.Now.Day-1)),  DateTime.Now.AddDays(-(DateTime.Now.Day-1)).AddDays(DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month))))
-                                                                   
+
             }
             catch (Exception ex)
             {
@@ -1984,7 +2136,7 @@ using RMIS.Domain;
         #endregion
 
         #region Check Data Exist
-        internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string paddytype,YesNo yesNo)
+        internal List<MPaddyTypeEntity> CheckPaddyTypeExist(string CustId, string paddytype, YesNo yesNo)
         {
             try
             {
@@ -2015,7 +2167,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MGodownDetailsEntity CheckGodownNameExist(string custId, string GodownName,YesNo yesNo)
+        internal MGodownDetailsEntity CheckGodownNameExist(string custId, string GodownName, YesNo yesNo)
         {
             try
             {
@@ -2045,7 +2197,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MUnitsTypeEntity CheckUnitTypeExist(string custId, string UnitsType,YesNo yesNo)
+        internal MUnitsTypeEntity CheckUnitTypeExist(string custId, string UnitsType, YesNo yesNo)
         {
             try
             {
@@ -2075,7 +2227,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MLotDetailsEntity CheckLotNameExist(string custId, string LotName,YesNo yesNo)
+        internal MLotDetailsEntity CheckLotNameExist(string custId, string LotName, YesNo yesNo)
         {
             try
             {
@@ -2105,7 +2257,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MEmployeeDesignationEntity CheckEmpDesigExist(string custId, string DesignationType,YesNo yesNo)
+        internal MEmployeeDesignationEntity CheckEmpDesigExist(string custId, string DesignationType, YesNo yesNo)
         {
             try
             {
@@ -2135,7 +2287,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal MSalaryTypeEntity CheckSalaryTypeExist(string custId, string SalaryType,YesNo yesNo)
+        internal MSalaryTypeEntity CheckSalaryTypeExist(string custId, string SalaryType, YesNo yesNo)
         {
             try
             {
@@ -2165,7 +2317,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal EmployeeDetailsEntity CheckEmployeeExist(string custId, string EmployeeName,YesNo yesNo)
+        internal EmployeeDetailsEntity CheckEmployeeExist(string custId, string EmployeeName, YesNo yesNo)
         {
             try
             {
@@ -2195,7 +2347,7 @@ using RMIS.Domain;
                 throw;
             }
         }
-        internal EmployeeSalaryEntity CheckEmployeeSalaryExist(string custId, string EmployeeID,YesNo yesNo)
+        internal EmployeeSalaryEntity CheckEmployeeSalaryExist(string custId, string EmployeeID, YesNo yesNo)
         {
             try
             {

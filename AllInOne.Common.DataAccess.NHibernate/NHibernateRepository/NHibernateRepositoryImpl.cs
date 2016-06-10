@@ -281,6 +281,24 @@ namespace AllInOne.Common.DataAccess.NHibernate
                 .UniqueResult<Int32>();
         }
 
+        /// <summary>
+        /// To get the list of items of the given type with Criteria.
+        /// </summary>
+        /// <param name="detachedCriteria">The detached criteria.</param>
+        /// <returns></returns>
+        public Int32 GetSumResults(DetachedCriteria detachedCriteria,string columnName)
+        {
+            ICriteria criteria = RepositoryHelper<T>.GetExecutableCriteria(this.session, detachedCriteria);
+            //return CriteriaTransformer.TransformToRowCount(criteria).UniqueResult<Int32>();
+            //return CriteriaTransformer.TransformToRowCount(criteria).FutureValue<Int32>().Value;
+            object value= criteria
+                .SetProjection(Projections.Sum(columnName))
+                //.FutureValue<Int32>().Value;
+                .UniqueResult();
+
+            return Convert.ToInt32(value);
+        }
+
 
         public IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria, int pageIndex, int pageSize, out int totalCount) 
         {

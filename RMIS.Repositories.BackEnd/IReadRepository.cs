@@ -87,6 +87,8 @@ namespace RMIS.Repositories.BackEnd
         /// <returns>List of objects.</returns>
         Int32 GetCountUsingFuture(DetachedCriteria detachedCriteria);
 
+        Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName);
+
         /// <summary>
         /// Loads the entity.
         /// </summary>

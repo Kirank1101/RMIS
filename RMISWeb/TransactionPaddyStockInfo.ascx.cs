@@ -9,8 +9,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
 {
     protected override void OnInit(EventArgs e)
     {
-        base.OnInit(e);
-        TextBoxAutoExtender1.ContextKey = CustomerName;
+        base.OnInit(e);        
     }
 
 

@@ -209,7 +209,7 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/AddPaddyType.ascx"
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"
                         DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">

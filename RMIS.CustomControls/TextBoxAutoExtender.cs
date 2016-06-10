@@ -5,6 +5,8 @@ using System.Text;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using System.Web.UI;
+using RMIS.Domain.Business;
+using RMIS.Binder.BackEnd;
 
 namespace RMIS.CustomControls
 {
@@ -81,7 +83,8 @@ namespace RMIS.CustomControls
            autoExtender.TargetControlID = txtBox.ID;
            autoExtender.FirstRowSelected = false;
            autoExtender.OnClientItemSelected = "GetCode" + ServiceMethod;
-           autoExtender.ContextKey = ContextKey;
+           ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
+           autoExtender.ContextKey = imp.GetCurrentCustomerId();
            autoExtender.UseContextKey = true;
            this.Controls.Add(autoExtender);
 

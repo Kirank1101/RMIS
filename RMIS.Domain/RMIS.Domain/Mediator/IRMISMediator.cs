@@ -155,6 +155,14 @@ namespace RMIS.Domain.Mediator
         List<EmployeeSalaryPaymentEntity> GetAllEmployeeSalaryPaymentEntities(string CustId, YesNo yesNo);
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo);
 		List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
+        List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText);
+        List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
+        int GetMPaddyTypeEntitiesCount(string CustId, YesNo yesNo);
+        int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo);
+        int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);
+        int GetPaddyStockUsedCount(string CustId, YesNo yesNo);
+
+        
         #endregion
         #region Check
         /// <summary>

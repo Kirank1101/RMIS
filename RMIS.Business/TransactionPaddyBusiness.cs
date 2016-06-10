@@ -815,6 +815,13 @@ namespace RMIS.Business
         {
             return imp.GetListBuyerInfoEntities(YesNo.N);
         }
+
+        public List<BuyerInfoEntity> GetBuyerInfo(int count, string prefixText,string context)
+        {
+            return imp.GetBuyerInfoEntities(context, YesNo.N, count, prefixText);
+        }
+
+
         public ResultDTO SaveEmployeeDetails(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             EmployeeDetailsEntity objEmployeeDetailsEntity = new EmployeeDetailsEntity();
@@ -852,6 +859,27 @@ namespace RMIS.Business
         {
             List<EmployeeDetailsEntity> listEmployeeDetailsEntity = null;
             List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetListEmployeeDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
+            {
+                listEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
+                foreach (EmployeeDetailsEntity objEmployeeinfo in listEmployeeDetails)
+                {
+
+                    EmployeeDetailsEntity objEmployeeDetailsEntity = new EmployeeDetailsEntity();
+                    objEmployeeDetailsEntity.EmployeeID = objEmployeeinfo.EmployeeID;
+                    objEmployeeDetailsEntity.Name = objEmployeeinfo.Name;
+                    listEmployeeDetailsEntity.Add(objEmployeeDetailsEntity);
+                }
+
+            }
+            return listEmployeeDetailsEntity;
+
+        }
+
+        public List<EmployeeDetailsEntity> GetEmployeeDetails(string context,int count,string prefixText)
+        {
+            List<EmployeeDetailsEntity> listEmployeeDetailsEntity = null;
+            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetEmployeeDetailsEntities(context, YesNo.N, count,prefixText);
             if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
             {
                 listEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
@@ -995,6 +1023,26 @@ namespace RMIS.Business
                 }
             }
             return listEmployeeSalaryPaymentEntity;
+        }
+
+
+        public int GetMPaddyTypeEntitiesCount()
+        {
+           int paddyCount=  imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), YesNo.N);
+           int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), YesNo.N);
+           if (paddyCount > paddyUsedCount)
+               paddyCount = paddyCount - paddyUsedCount;
+           return paddyCount;
+        }
+
+        public int GetBrokenRiceStockInfoCount()
+        {
+            return imp.GetBrokenRiceStockInfoCount(provider.GetCurrentCustomerId(), YesNo.N);
+        }
+
+        public int GetMRiceProductionTypeCount()
+        {
+            return imp.GetMRiceProductionTypeCount(provider.GetCurrentCustomerId(), YesNo.N);
         }
     }
 }

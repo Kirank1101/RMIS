@@ -1,17 +1,23 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EmployeeSalary.ascx.cs"
     Inherits="EmployeeSalary" %>
+    <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<style type="text/css">
+    .style1
+    {
+        width: 492px;
+    }
+</style>
 <div class="table-responsive">
     <table>
         <tr>
-            <td>
+            <td class="style1">
                 <table>
                     <tr>
                         <td>
                             <asp:Label runat="server" ID="lblHEmployeeName" Text="<%$Resources:Resource,EmployeeName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlEmployeeName" runat="server">
-                            </asp:DropDownList>
+                             <asp:TextBoxAutoExtender ID="txtExtenEmployeeName" runat="server" ServiceMethod="GetEmployeeNames"></asp:TextBoxAutoExtender>
                         </td>
                     </tr>
                     <tr>
@@ -50,7 +56,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                 <h3>
                     Employee Salary Details</h3>
                 <asp:Repeater ID="rptSalaryDetails" runat="server">

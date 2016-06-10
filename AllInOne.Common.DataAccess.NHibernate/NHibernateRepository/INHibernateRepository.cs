@@ -169,6 +169,14 @@ namespace AllInOne.Common.DataAccess.NHibernate
         /// <param name="detachedCriteria">The detached criteria.</param>
         /// <returns></returns>
         IList GetAllWithPagingMultiCriteria(DetachedCriteria detachedCriteria, int pageIndex, int pageSize, out int totalCount);
+
+
+        /// <summary>
+        /// To get the list of items of the given type with Criteria.
+        /// </summary>
+        /// <param name="detachedCriteria">The detached criteria.</param>
+        /// <returns></returns>
+        Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName);
         #endregion Methods
     }
 }

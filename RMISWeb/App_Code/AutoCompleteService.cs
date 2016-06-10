@@ -36,4 +36,42 @@ public class AutoCompleteService : System.Web.Services.WebService
         
         return names.ToArray();
     }
+
+    [WebMethod]
+    public string[] GetBuyerNames(string prefixText, int count, string contextKey)
+    {
+        List<string> names = new List<string>();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        List<BuyerInfoEntity> listBuyerInfoEntity = imp.GetBuyerInfo(count, prefixText, contextKey);
+        if (listBuyerInfoEntity != null && listBuyerInfoEntity.Count > 0)
+            foreach (BuyerInfoEntity objBuyerInfoEntity in listBuyerInfoEntity)
+            {
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (objBuyerInfoEntity.Name,
+                    objBuyerInfoEntity.BuyerID);
+                names.Add(item);
+            }
+
+
+        return names.ToArray();
+    }
+
+    [WebMethod]
+    public string[] GetEmployeeNames(string prefixText, int count, string contextKey)
+    {
+        List<string> names = new List<string>();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        List<EmployeeDetailsEntity> listEmployeeDetailsEntity = imp.GetEmployeeDetails(contextKey,count, prefixText);
+        if (listEmployeeDetailsEntity != null && listEmployeeDetailsEntity.Count > 0)
+            foreach (EmployeeDetailsEntity objEmployeeDetailsEntity in listEmployeeDetailsEntity)
+            {
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (objEmployeeDetailsEntity.Name,
+                    objEmployeeDetailsEntity.EmployeeID);
+                names.Add(item);
+            }
+
+
+        return names.ToArray();
+    }
 } 

@@ -916,7 +916,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             throw new NotImplementedException();
         }
-        
+
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
@@ -949,7 +949,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetListMSalaryTypeEntity(custId, SalaryTypeId, yesNo);
         }
-        
+
         public EmployeeSalaryEntity GetEmployeeSalaryEntity(string CustID, string EmployeeID, YesNo yesNo)
         {
             return rmisGateway.GetEmployeeSalaryEntity(CustID, EmployeeID, yesNo);
@@ -1007,7 +1007,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo)
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
-        }                
+        }
         public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId)
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
@@ -1015,7 +1015,42 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
-            return rmisGateway.GetSellerInfoEntities(custId,yesNo,count,prefixText);
+            return rmisGateway.GetSellerInfoEntities(custId, yesNo, count, prefixText);
+        }
+
+
+        public List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText)
+        {
+            return rmisGateway.GetEmployeeDetailsEntities(custId, yesNo, count, prefixText);
+        }
+
+        public List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
+        {
+            return rmisGateway.GetBuyerInfoEntities(custId, yesNo, count, prefixText);
+        }
+
+
+        public int GetMPaddyTypeEntitiesCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockEntityCount(CustId, yesNo);
+        }
+
+
+        public int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetBrokenRiceStockInfoCount(CustId, yesNo);
+        }
+
+
+        public int GetMRiceProductionTypeCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetMRiceProductionTypeCount(CustId, yesNo);
+        }
+
+
+        public int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockUsedCount(CustId, yesNo);
         }
     }
 }

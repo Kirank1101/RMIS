@@ -114,14 +114,6 @@ public class BaseUserControl : System.Web.UI.UserControl
         pnlMessage.Visible = false;
     }
 
-    protected  string CustomerName
-    {
-        get
-        {
-            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
-            return  imp.GetCurrentCustomerId();
-        }
-    }
 
     protected void SetMessage(ResultDTO result)
     {

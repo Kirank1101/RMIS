@@ -225,6 +225,17 @@ namespace RMIS.Repositories.BackEnd
             return this.INHibernateRepository.GetCountUsingFuture(detachedCriteria);
         }
 
+
+        /// <summary>
+        /// Method to get the total number of result based on criteria.
+        /// </summary>
+        /// <param name="detachedCriteria">criteria</param>
+        /// <returns>List of objects.</returns>
+        public Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName)
+        {
+            return this.INHibernateRepository.GetSumResults(detachedCriteria, columnName);
+        }
+
         /// <summary>
         /// Loads the entity.
         /// </summary>

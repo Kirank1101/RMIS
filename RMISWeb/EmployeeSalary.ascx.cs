@@ -30,12 +30,7 @@ public partial class EmployeeSalary : BaseUserControl
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
-            List<EmployeeDetailsEntity> listemployeedetails = impt.GetEmployeeDetails();
-            ddlEmployeeName.DataSource = listemployeedetails;
-            ddlEmployeeName.DataTextField = "Name";
-            ddlEmployeeName.DataValueField = "EmployeeID";
-            ddlEmployeeName.DataBind();
-            ddlEmployeeName.Items.Insert(0, "[Select]");
+            
             List<MSalarytypeDTO> listSalarytypedetails = imp.GetMSalaryTypeEntities();
             ddlSalaryType.DataSource = listSalarytypedetails;
             ddlSalaryType.DataTextField = "SalaryType";
@@ -63,10 +58,10 @@ public partial class EmployeeSalary : BaseUserControl
         IsSalaryAlotedtoEmployee = impt.CheckEmployeeSalaryExist(txtSalary.Text.Trim());
         if (!IsSalaryAlotedtoEmployee)
         {
-            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex, ddlDesignation.SelectedIndex, Convert.ToDouble(txtSalary.Text.Trim()));
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(1, ddlSalaryType.SelectedIndex, ddlDesignation.SelectedIndex, Convert.ToDouble(txtSalary.Text.Trim()));
             if (resultDto.IsSuccess)
             {
-                resultDto = impt.SaveEmployeeSalary(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue, ddlDesignation.SelectedValue, Convert.ToDouble(txtSalary.Text.Trim()));
+                resultDto = impt.SaveEmployeeSalary(txtExtenEmployeeName.SelectedValue, ddlSalaryType.SelectedValue, ddlDesignation.SelectedValue, Convert.ToDouble(txtSalary.Text.Trim()));
                 if (resultDto.IsSuccess)
                 {
                     BindEmployeeSalaryInfo();

@@ -73,13 +73,18 @@ namespace RMIS.Domain.Business
         List<EmployeeDetailsEntity> GetEmployeeDetails();
         List<EmployeeSalaryEntity> GetEmployeeSalary();
         List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText,string contextKey);
+        List<BuyerInfoEntity> GetBuyerInfo(int count, string prefixText, string context);
+        List<EmployeeDetailsEntity> GetEmployeeDetails(string context, int count, string prefixText);
         EmployeeSalaryEntity GetEmployeeSalaryEntity(string EmployeeID);
         string GetEmployeeName(string EmployeeID);        
         List<EmployeeSalaryPaymentEntity> GetEmployeeSalaryPayment();
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string EmployeeID);
-
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
+
+        int GetMPaddyTypeEntitiesCount();
+        int GetBrokenRiceStockInfoCount();
+        int GetMRiceProductionTypeCount();
 
         
     }
