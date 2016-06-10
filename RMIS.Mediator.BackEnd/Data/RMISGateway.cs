@@ -2162,6 +2162,36 @@
                 throw;
             }
         }
+        internal List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductPaymentInfoEntity> listProductPaymentInfoEntity = new List<ProductPaymentInfoEntity>();
+                IRepository<ProductPaymentInfo> UsersRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductPaymentInfo> listProductPaymentInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductPaymentInfo>;
+                if (listProductPaymentInfo != null && listProductPaymentInfo.Count > 0)
+                {
+                    foreach (ProductPaymentInfo adMInfo in listProductPaymentInfo)
+                    {
+                        listProductPaymentInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductPaymentInfoEntity = null;
+
+                return listProductPaymentInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductPaymentInfoEntities", ex);
+                throw;
+            }
+        }
+        
         #endregion
 
         #region Check Data Exist

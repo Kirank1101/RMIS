@@ -6,13 +6,16 @@
             <td>
                 <table>
                     <tr>
-                        <td>
+                        <td valign="top">
                             <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlProductTypeID" runat="server" AppendDataBoundItems="true">
-                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:RadioButtonList ID="rbtProductSellingtype" runat="server" RepeatDirection="Vertical"
+                                RepeatLayout="Table">
+                                <asp:ListItem Text="Rice" Value="Rice"></asp:ListItem>
+                                <asp:ListItem Text="BrokenRice" Value="BrokenRice"></asp:ListItem>
+                                <asp:ListItem Text="Dust" Value="Dust"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </td>
                     </tr>
                     <tr>
@@ -75,18 +78,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblQWeight" Text="<%$Resources:Resource,QWeight%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblHPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtQweight" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblQPrice" Text="<%$Resources:Resource,QPrice%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtQprice" />
+                            <asp:TextBox runat="server" ID="txtprice" />
                         </td>
                     </tr>
                     <tr>
@@ -190,11 +185,85 @@
                 <table>
                     <tr>
                         <td>
+                            <asp:Button ID="Button3" runat="server" Text="Add" OnClick="btnAdd_Click" />
                             <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                             <asp:Button ID="Button2" runat="server" Text="Cancel" />
                         </td>
                     </tr>
                 </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>
+                    Product Selling Details</h3>
+                <asp:Repeater ID="rptProductSellingDetails" runat="server">
+                    <HeaderTemplate>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,ProductID%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="lblHSellerName" Text="<%$Resources:Resource,Name%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,ProductType%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="lblHSalaryPaid" Text="<%$Resources:Resource,ProductName%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="lblOT" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,Price%>"></asp:Label>
+                                    </th>
+                                    <th>
+                                        <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tbody>
+                            <tr>
+                            <td>
+
+                            </td>
+                                <td>
+                                    <asp:Label runat="server" ID="lblPartPaymentDate" Text='<%# Eval("ProductID") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="lblPaidSalary" Text='<%# Eval("SellerName") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="LblOTPay" Text='<%# Eval("ProductType") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="Label4" Text='<%# Eval("ProductName") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="Label5" Text='<%# Eval("Brand") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="Label6" Text='<%# Eval("TotalBags") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="Label7" Text='<%# Eval("Price") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="Label8" Text='<%# Eval("TotalPrice") %>' />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
             </td>
         </tr>
     </table>

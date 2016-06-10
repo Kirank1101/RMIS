@@ -43,3 +43,4 @@ C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.d
 C:\Users\kirank\Documents\GitHub\RMIS\Bin\AllInOne.Common.DataAccess.Utilities.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.dll
 C:\Users\kirank\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.pdb
+C:\Users\nagavardhan\Documents\GitHub\RMIS\AllInOne.Common.DataAccess.Utilities\obj\Debug\AllInOne.Common.DataAccess.Utilities.csprojResolveAssemblyReference.cache

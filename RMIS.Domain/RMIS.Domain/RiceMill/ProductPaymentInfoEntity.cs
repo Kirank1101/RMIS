@@ -7,20 +7,12 @@ using RMIS.Domain.Abstract;
 namespace RMIS.Domain.RiceMill
 {
     [Serializable]
-    public class ProductSellingInfoEntity : AbstractAllInOne
+    public class ProductPaymentInfoEntity : AbstractAllInOne
     {
-        public string ProductID { get; set; }
         public string ProductPaymentID { get; set; }
         public string CustID { get; set; }
-        public string SellerID { get; set; }
-        public string MRiceProdTypeID { get; set; }
-        public string MRiceBrandID { get; set; }
-        public string BrokenRiceTypeID { get; set; }
-        public string UnitsTypeID { get; set; }
-        public string SellingProductType { get; set; }
-        public decimal TotalBags { get; set; }
-        public double Price { get; set; }
-        public DateTime SellingDate { get; set; }
+        public double TotalAmount { get; set; }
+        public char Status { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
@@ -32,8 +24,8 @@ namespace RMIS.Domain.RiceMill
                 return false;
             }
 
-            ProductSellingInfoEntity toCompareWith = obj as ProductSellingInfoEntity;
-            return toCompareWith == null ? false : ((this.ProductID == toCompareWith.ProductID));
+            ProductPaymentInfoEntity toCompareWith = obj as ProductPaymentInfoEntity;
+            return toCompareWith == null ? false : ((this.ProductPaymentID == toCompareWith.ProductPaymentID));
         }
 
         /// <summary>Returns a hash code for this instance.</summary>
@@ -41,7 +33,7 @@ namespace RMIS.Domain.RiceMill
         public override int GetHashCode()
         {
             int toReturn = base.GetHashCode();
-            toReturn ^= this.ProductID.GetHashCode();
+            toReturn ^= this.ProductPaymentID.GetHashCode();
             return toReturn;
         }
 

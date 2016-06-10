@@ -8,16 +8,16 @@
       <generator class="assigned"/>
     </id>
     <property name="SellerID" column="SellerID" />
-    <property name="ProductTypeID" column="ProductTypeID" />
+    <property name="ProductPaymentID" column="ProductPaymentID" />
+    <property name="SellingProductType" column="SellingProductType" />
     <property name="MRiceProdTypeID" column="MRiceProdTypeID" />
     <property name="MRiceBrandID" column="MRiceBrandID" />
     <property name="BrokenRiceTypeID" column="BrokenRiceTypeID" />
     <property name="CustID" column="CustID" />
-    <property name="TotalBags" column="TotalBags" />
-    <property name="QWeight" column="QWeight" />
-    <property name="QPrice" column="QPrice" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="SellingDate" column="SellingDate" />
+    <property name="TotalBags" column="TotalBags" />
+    <property name="Price" column="Price" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />
