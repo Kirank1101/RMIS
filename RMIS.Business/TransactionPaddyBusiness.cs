@@ -469,42 +469,28 @@ namespace RMIS.Business
 
 
 
-        public ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, decimal totalBags,  string UnitsTypeID, double Price, DateTime SellingDate)
+        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
-
-            ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
-            productPaymentInfoEntity.ProductPaymentID = CommonUtil.CreateUniqueID("PP");
-            productPaymentInfoEntity.CustID = provider.GetCurrentCustomerId();
-            productPaymentInfoEntity.TotalAmount = Convert.ToDouble(totalBags) * Price;
-            productPaymentInfoEntity.Status = 'P';
-            productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
-            productPaymentInfoEntity.ObsInd = YesNo.N;
 
             ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
             objProductSellingInfoEntity.ObsInd = YesNo.N;
             objProductSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
-            objProductSellingInfoEntity.SellingProductType = SellingProductType;
+            objProductSellingInfoEntity.ProductTypeID = ProductSellingTypeId;
             objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objProductSellingInfoEntity.MRiceBrandID = MRiceBrandId;
             objProductSellingInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
             objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
-            objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PR");
-            objProductSellingInfoEntity.ProductPaymentID = productPaymentInfoEntity.ProductPaymentID;
+            objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PI");
             objProductSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
             objProductSellingInfoEntity.SellingDate = SellingDate;
-            objProductSellingInfoEntity.Price = Price;
+            objProductSellingInfoEntity.QPrice = (short)qPrice;
+            objProductSellingInfoEntity.QWeight = (short)qWeight;
             objProductSellingInfoEntity.SellerID = sellerId;
-            objProductSellingInfoEntity.TotalBags = totalBags;
-            objProductSellingInfoEntity.UnitsTypeID = UnitsTypeID;
-            
-            
+            objProductSellingInfoEntity.TotalBags = (short)totalBags;
             try
             {
                 imp.BeginTransaction();
-                imp.SaveOrUpdateProductPaymentInfoEntity(productPaymentInfoEntity, false);
                 imp.SaveOrUpdateProductSellingInfoEntity(objProductSellingInfoEntity, false);
-                
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -1103,17 +1089,6 @@ namespace RMIS.Business
                 }
             }
             return listOtherExpensesEntity;
-        }
-
-
-        public ResultDTO SaveProductPaymentInfo(double TotalAmount, char Status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfo()
-        {
-            throw new NotImplementedException();
         }
     }
 }

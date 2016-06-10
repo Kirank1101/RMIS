@@ -33,8 +33,9 @@ namespace RMIS.Domain.Business
             int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate);
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
-        ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
-            decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate);
+        ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
+            int totalBags, int qWeight, string UnitsTypeID, int qPrice,
+            DateTime SellingDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
@@ -49,7 +50,6 @@ namespace RMIS.Domain.Business
         ResultDTO SaveEmployeeSalary(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary);
         ResultDTO SaveEmployeeSalaryPayment(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary, double AmountSpent, double ExtraCharges);
         ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);
-        ResultDTO SaveProductPaymentInfo(double TotalAmount,char Status);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -81,7 +81,6 @@ namespace RMIS.Domain.Business
         List<EmployeeSalaryPaymentEntity> GetEmployeeSalaryPayment();
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string EmployeeID);
         List<OtherExpensesEntity> GetAllOtherExpenses();
-        List<ProductPaymentInfoEntity> GetAllProductPaymentInfo();
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
 

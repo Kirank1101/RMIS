@@ -17,7 +17,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateRiceSellingDetails(int seller, int RiceType, int RiceBrand, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
         ResultDTO ValidateBrokenRiceSellingDetails(int seller, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
         ResultDTO ValidateDustSellingDetails(int seller, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate);
-        ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate);
+        ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string weight, string price, string SellingDate);
         ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string ProcessBy, string ProcessDate);
         ResultDTO ValidateHullingProcessTrans(int paddyType, int RiceType, int BrokenRiceType, int PaddyUnitsType, int RiceUnitsType, int BrokenRiceUnitsType, int DustUnitsType, string Paddytotalbags, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string PaddyPrice, string RicePrice, string BrokenRicePrice, string DustPrice);
         ResultDTO ValidateBuyerSellerRating(int SellerID,Int16 Rating, string Remark);

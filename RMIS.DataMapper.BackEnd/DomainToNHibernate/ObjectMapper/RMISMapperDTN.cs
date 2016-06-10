@@ -59,7 +59,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         EmployeeSalary GetEmployeeSalary(EmployeeSalaryEntity EmployeeSalaryEntity);
         MoneyTransaction GetEmployeeSalaryPayment(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity);
         MoneyTransaction GetOtherExpenses(OtherExpensesEntity EmployeeOtherExpensesEntity);
-        ProductPaymentInfo GetProductPaymentInfo(ProductPaymentInfoEntity ProductPaymentInfoEntity);
 
     }
 
@@ -774,22 +773,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return MoneyTransaction;
-        }
-
-
-        public ProductPaymentInfo GetProductPaymentInfo(ProductPaymentInfoEntity ProductPaymentInfoEntity)
-        {
-            ProductPaymentInfo ProductPaymentInfo = null;
-            try
-            {
-                ProductPaymentInfo = Mapper.Map<ProductPaymentInfoEntity, ProductPaymentInfo>(ProductPaymentInfoEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetProductPaymentInfo", ex);
-                throw;
-            }
-            return ProductPaymentInfo;
         }
     }
 }

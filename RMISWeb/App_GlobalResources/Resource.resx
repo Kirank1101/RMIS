@@ -181,7 +181,7 @@
     <value>Street2</value>
   </data>
   <data name="totalbags" xml:space="preserve">
-    <value>Total Bags</value>
+    <value>TotalBags</value>
   </data>
   <data name="Town" xml:space="preserve">
     <value>Town</value>
@@ -338,17 +338,5 @@
   </data>
   <data name="GivenTo" xml:space="preserve">
     <value>Given To</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ProductID" xml:space="preserve">
-    <value>ProductID</value>
-  </data>
-  <data name="ProductName" xml:space="preserve">
-    <value>Product Name</value>
-  </data>
-  <data name="ProductType" xml:space="preserve">
-    <value>Product Type</value>
   </data>
 </root>

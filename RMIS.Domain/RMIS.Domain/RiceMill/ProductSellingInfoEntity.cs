@@ -10,16 +10,16 @@ namespace RMIS.Domain.RiceMill
     public class ProductSellingInfoEntity : AbstractAllInOne
     {
         public string ProductID { get; set; }
-        public string ProductPaymentID { get; set; }
-        public string CustID { get; set; }
         public string SellerID { get; set; }
+        public string ProductTypeID { get; set; }
         public string MRiceProdTypeID { get; set; }
         public string MRiceBrandID { get; set; }
         public string BrokenRiceTypeID { get; set; }
+        public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
-        public string SellingProductType { get; set; }
-        public decimal TotalBags { get; set; }
-        public double Price { get; set; }
+        public Int16 TotalBags { get; set; }
+        public Int16 QWeight { get; set; }
+        public Int16 QPrice { get; set; }
         public DateTime SellingDate { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

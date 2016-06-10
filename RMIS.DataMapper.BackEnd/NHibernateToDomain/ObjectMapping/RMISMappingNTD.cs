@@ -681,15 +681,15 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Mapper.CreateMap<ProductSellingInfo, ProductSellingInfoEntity>()
                     .ForMember(dest => dest.ProductID, opts => opts.MapFrom(src => src.ProductID))
                     .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.ProductPaymentID, opts => opts.MapFrom(src => src.ProductPaymentID))
-                    .ForMember(dest => dest.SellingProductType, opts => opts.MapFrom(src => src.SellingProductType))
+                    .ForMember(dest => dest.ProductTypeID, opts => opts.MapFrom(src => src.ProductTypeID))
                     .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))
                     .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
                     .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
                     .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
-                    .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
+                    .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
+                    .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
                     .ForMember(dest => dest.SellingDate, opts => opts.MapFrom(src => src.SellingDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
@@ -993,25 +993,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapOtherExpensesEntity", ex);
-                throw;
-            }
-        }
-        internal void MapProductPaymentInfoEntity()
-        {
-            try
-            {
-                Mapper.CreateMap<ProductPaymentInfo, ProductPaymentInfoEntity>()
-                    .ForMember(dest => dest.ProductPaymentID, opts => opts.MapFrom(src => src.ProductPaymentID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.TotalAmount, opts => opts.MapFrom(src => src.TotalAmount))
-                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
-                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapProductPaymentInfoEntity", ex);
                 throw;
             }
         }
