@@ -79,7 +79,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateEmployeeDetailsEntity(EmployeeDetailsEntity EmployeeDetailsEntity, bool isCopy);
         void SaveOrUpdateEmployeeSalaryEntity(EmployeeSalaryEntity EmployeeSalaryEntity, bool isCopy);
         void SaveOrUpdateEmployeeSalaryPaymentEntity(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity, bool isCopy);
-
+        void SaveOrUpdateOtherExpensesEntity(OtherExpensesEntity OtherExpensesEntityEntity, bool isCopy);
         #endregion
 
         #region Get
@@ -161,6 +161,7 @@ namespace RMIS.Domain.Mediator
         int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo);
         int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);
         int GetPaddyStockUsedCount(string CustId, YesNo yesNo);
+		List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
 
         
         #endregion

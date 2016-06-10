@@ -780,9 +780,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
                     .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
-                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
                     .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
                     .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
                     .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
@@ -1041,6 +1039,27 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapEmployeeSalaryPaymentEntityToEmployeeSalaryPayment", ex);
+                throw;
+            }
+        }
+        internal void MapOtherExpensesEntityToMoneytransaction()
+        {
+            try
+            {
+                Mapper.CreateMap<OtherExpensesEntity, MoneyTransaction>()
+                    .ForMember(dest => dest.ExpTranID, opts => opts.MapFrom(src => src.ExpTranID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.GivenTo, opts => opts.MapFrom(src => src.GivenTo))
+                    .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.AmountSpent, opts => opts.MapFrom(src => src.AmountSpent))
+                    .ForMember(dest => dest.PaymentDate, opts => opts.MapFrom(src => src.PaymentDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapOtherExpensesEntityToMoneytransaction", ex);
                 throw;
             }
         }

@@ -469,7 +469,7 @@ namespace RMIS.Business
 
 
 
-        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
+        public ResultDTO SaveProductSellingInfo(string ProductSellingTypeId, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
 
             ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
@@ -479,7 +479,6 @@ namespace RMIS.Business
             objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objProductSellingInfoEntity.MRiceBrandID = MRiceBrandId;
             objProductSellingInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
-            objProductSellingInfoEntity.DriverName = DriverName;
             objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
             objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PI");
             objProductSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
@@ -488,7 +487,6 @@ namespace RMIS.Business
             objProductSellingInfoEntity.QWeight = (short)qWeight;
             objProductSellingInfoEntity.SellerID = sellerId;
             objProductSellingInfoEntity.TotalBags = (short)totalBags;
-            objProductSellingInfoEntity.VehicalNo = vehicleNo;
             try
             {
                 imp.BeginTransaction();
@@ -1043,6 +1041,54 @@ namespace RMIS.Business
         public int GetMRiceProductionTypeCount()
         {
             return imp.GetMRiceProductionTypeCount(provider.GetCurrentCustomerId(), YesNo.N);
+        }
+		public ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount)
+        {
+            OtherExpensesEntity objOtherExpensesEntity = new OtherExpensesEntity();
+
+            objOtherExpensesEntity.ExpTranID = CommonUtil.CreateUniqueID("ET");
+            objOtherExpensesEntity.CustID = provider.GetCurrentCustomerId();
+            objOtherExpensesEntity.Description = Description;
+            objOtherExpensesEntity.GivenTo = GivenTo;
+            objOtherExpensesEntity.AmountSpent = PaidAmount;
+            objOtherExpensesEntity.PaymentDate = DateTime.Now;
+            objOtherExpensesEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objOtherExpensesEntity.LastModifiedDate = DateTime.Now;
+            objOtherExpensesEntity.ObsInd = YesNo.N;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateOtherExpensesEntity(objOtherExpensesEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+
+        }
+
+        public List<OtherExpensesEntity> GetAllOtherExpenses()
+        {
+            List<OtherExpensesEntity> listOtherExpensesEntity = null;
+            List<OtherExpensesEntity> listOtherExpenses = imp.GetAllOtherExpensesEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listOtherExpenses != null && listOtherExpenses.Count > 0)
+            {
+                listOtherExpensesEntity = new List<OtherExpensesEntity>();
+                foreach (OtherExpensesEntity objOtherExpenses in listOtherExpenses)
+                {
+                    OtherExpensesEntity objOtherExpensesEntity = new OtherExpensesEntity();
+                    objOtherExpensesEntity.ExpTranID = objOtherExpenses.ExpTranID;
+                    objOtherExpensesEntity.PaymentDate = objOtherExpenses.PaymentDate;
+                    objOtherExpensesEntity.AmountSpent = objOtherExpenses.AmountSpent;
+                    objOtherExpensesEntity.GivenTo = objOtherExpenses.GivenTo;
+                    objOtherExpensesEntity.Description = objOtherExpenses.Description;
+                    listOtherExpensesEntity.Add(objOtherExpensesEntity);
+                }
+            }
+            return listOtherExpensesEntity;
         }
     }
 }

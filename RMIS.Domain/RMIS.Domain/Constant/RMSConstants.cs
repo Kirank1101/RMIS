@@ -221,6 +221,14 @@ namespace RMIS.Domain.Constant
         public const string ValidateEmpSalPaySalary = "Validate170";
         public const string ValidateEmpSalPaySalaryPaid = "Validate171";
         public const string ValidateEmpSalPayOTCharges = "Validate172";
+
+        public const string ValidateOtherExpensesGivenToEmpty = "Validate173";
+        public const string ValidateOtherExpensesGivenToLength = "Validate174";
+        public const string ValidateOtherExpensesDescriptionEmpty = "Validate175";
+        public const string ValidateOtherExpensesDescriptionLength = "Validate176";
+        public const string ValidateOtherExpensesPaidAmount = "Validate177";
+
+        
     }
 
     public enum SortExpression

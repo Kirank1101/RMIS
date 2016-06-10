@@ -7,20 +7,14 @@ using RMIS.Domain.Abstract;
 namespace RMIS.Domain.RiceMill
 {
     [Serializable]
-    public class ProductSellingInfoEntity : AbstractAllInOne
+    public class OtherExpensesEntity : AbstractAllInOne
     {
-        public string ProductID { get; set; }
-        public string SellerID { get; set; }
-        public string ProductTypeID { get; set; }
-        public string MRiceProdTypeID { get; set; }
-        public string MRiceBrandID { get; set; }
-        public string BrokenRiceTypeID { get; set; }
+        public string ExpTranID { get; set; }
         public string CustID { get; set; }
-        public string UnitsTypeID { get; set; }
-        public Int16 TotalBags { get; set; }
-        public Int16 QWeight { get; set; }
-        public Int16 QPrice { get; set; }
-        public DateTime SellingDate { get; set; }
+        public string GivenTo { get; set; }
+        public string Description { get; set; }
+        public double AmountSpent { get; set; }
+        public DateTime PaymentDate { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
@@ -32,8 +26,8 @@ namespace RMIS.Domain.RiceMill
                 return false;
             }
 
-            ProductSellingInfoEntity toCompareWith = obj as ProductSellingInfoEntity;
-            return toCompareWith == null ? false : ((this.ProductID == toCompareWith.ProductID));
+            OtherExpensesEntity toCompareWith = obj as OtherExpensesEntity;
+            return toCompareWith == null ? false : ((this.ExpTranID == toCompareWith.ExpTranID));
         }
 
         /// <summary>Returns a hash code for this instance.</summary>
@@ -41,7 +35,7 @@ namespace RMIS.Domain.RiceMill
         public override int GetHashCode()
         {
             int toReturn = base.GetHashCode();
-            toReturn ^= this.ProductID.GetHashCode();
+            toReturn ^= this.ExpTranID.GetHashCode();
             return toReturn;
         }
 

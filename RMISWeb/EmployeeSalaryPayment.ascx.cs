@@ -28,9 +28,6 @@ public partial class EmployeeSalaryPayment : BaseUserControl
             txtSalary.Text = "0";
             txtSalaryPaid.Text = "0";
             txtOTPay.Text = "0";
-            
-
-            //BindEmployeeSalaryInfo();
         }
     }
 
@@ -77,8 +74,11 @@ public partial class EmployeeSalaryPayment : BaseUserControl
     {
         List<EmployeeSalaryPaymentEntity> lstEmpSalPaymentEnt = new List<EmployeeSalaryPaymentEntity>();
         lstEmpSalPaymentEnt = impt.GetSalaryPaymentOnEmployee(EmployeeID);
+        if (lstEmpSalPaymentEnt != null && lstEmpSalPaymentEnt.Count > 0)
+        {
         rptSalaryDetails.DataSource = lstEmpSalPaymentEnt;
         rptSalaryDetails.DataBind();
+        }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {

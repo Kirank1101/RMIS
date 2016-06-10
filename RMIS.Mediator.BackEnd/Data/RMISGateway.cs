@@ -2133,6 +2133,35 @@
                 throw;
             }
         }
+        internal List<OtherExpensesEntity> GetOtherExpensesEntities(string custId, YesNo yesNo)
+        {
+            try
+            {
+                List<OtherExpensesEntity> ListOtherExpensesEntity = new List<OtherExpensesEntity>();
+                IRepository<MoneyTransaction> MoneyTransactionRepository = new RepositoryImpl<MoneyTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MoneyTransaction))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                   .Add(Expression.Between("PaymentDate", DateTime.Now.AddDays(-(DateTime.Now.Day - 1)), DateTime.Now.AddDays(-(DateTime.Now.Day - 1)).AddDays(DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+
+                List<MoneyTransaction> listMoneyTransaction = MoneyTransactionRepository.GetAll(detachedCriteria) as List<MoneyTransaction>;
+                if (listMoneyTransaction != null && listMoneyTransaction.Count > 0)
+                {
+                    foreach (MoneyTransaction adMInfo in listMoneyTransaction)
+                        ListOtherExpensesEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetOtherExpensesEntity(adMInfo));
+
+                }
+                else
+                    ListOtherExpensesEntity = null;
+
+                return ListOtherExpensesEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetOtherExpensesEntities", ex);
+                throw;
+            }
+        }
         #endregion
 
         #region Check Data Exist

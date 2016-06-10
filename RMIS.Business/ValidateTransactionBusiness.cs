@@ -443,7 +443,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string weight, string price, string SellingDate)
         {
             if (ProductSellingTypeId <= 0)
             {
@@ -468,14 +468,6 @@ namespace RMIS.Business
             else if (UnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(vehicleNo.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (vehicleNo.Trim().Length > 10)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
             }
             else if (string.IsNullOrEmpty(totalbags.Trim()))
             {
@@ -807,6 +799,32 @@ namespace RMIS.Business
             else if (OTCharges <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPayOTCharges, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
+
+
+        public ResultDTO ValidateOtherExpenses(string GivenTo, string Description, double PaidAmount)
+        {
+            if (string.IsNullOrEmpty(GivenTo.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesGivenToEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (GivenTo.Trim().Length > 11)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesGivenToLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Description.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (Description.Trim().Length > 11)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (PaidAmount <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesPaidAmount, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

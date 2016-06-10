@@ -67,22 +67,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtVehicalNo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtDriverName" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
                         </td>
                         <td>

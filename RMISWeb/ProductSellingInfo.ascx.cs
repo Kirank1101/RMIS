@@ -47,11 +47,11 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(ddlProductTypeID.SelectedIndex,ddlsellernames.SelectedIndex, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtVehicalNo.Text, txtTotalBags.Text, txtQweight.Text, txtQprice.Text, txtSellingDate.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(ddlProductTypeID.SelectedIndex,ddlsellernames.SelectedIndex, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtQweight.Text, txtQprice.Text, txtSellingDate.Text);
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductSellingInfo(ddlProductTypeID.SelectedValue,ddlsellernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()));
+            resultDto = imp.SaveProductSellingInfo(ddlProductTypeID.SelectedValue,ddlsellernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToInt16(txtQprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()));
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
@@ -70,7 +70,6 @@ public partial class ProductSellingInfo : BaseUserControl
         ddlRiceBrand.SelectedIndex = 0;
         ddlBrokenRiceType.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;
-        txtVehicalNo.Text = string.Empty;
         txtTotalBags.Text = string.Empty;
         txtQweight.Text = string.Empty;
         txtQprice.Text = string.Empty;

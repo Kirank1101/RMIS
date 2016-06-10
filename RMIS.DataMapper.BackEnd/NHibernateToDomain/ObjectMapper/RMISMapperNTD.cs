@@ -862,6 +862,23 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             }
             return EmployeeSalaryPaymentEntity;
         }
+        public static OtherExpensesEntity GetOtherExpensesEntity(MoneyTransaction MoneyTransaction)
+        {
+            OtherExpensesEntity OtherExpensesEntity = null;
+            try
+            {
+                if (MoneyTransaction != null)
+                {
+                    OtherExpensesEntity = Mapper.Map<MoneyTransaction, OtherExpensesEntity>(MoneyTransaction);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetOtherExpensesEntity", ex);
+                throw;
+            }
+            return OtherExpensesEntity;
+        }
     }
 
 

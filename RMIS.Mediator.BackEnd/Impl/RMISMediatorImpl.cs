@@ -677,6 +677,19 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateOtherExpensesEntity(OtherExpensesEntity OtherExpensesEntityEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MoneyTransaction>(mapper.GetOtherExpenses(OtherExpensesEntityEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateOtherExpensesEntity", ex);
+                Logger.Error("Error in SaveOrUpdateOtherExpensesEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
 
         #endregion
         #region Get Enitity
@@ -961,6 +974,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo)
         {
             return rmisGateway.GetSalaryPaymentOnEmployee(CustId, EmployeeID, yesNo);
+        }
+        public List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetOtherExpensesEntities(CustId, yesNo);
         }
         #endregion
         #region Check Enitity
