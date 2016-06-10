@@ -24,5 +24,6 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo);
         ResultDTO ValidateEmployeeDetails(string EmployeeName, string city, string district, string state, string contactNo);
         ResultDTO ValidateEmployeeSalary(int EmployeeName, int SalaryType, int Designation, double Salary);
+        ResultDTO ValidateEmployeeSalaryPayment(int EmployeeName, int SalaryType, int Designation, double Salary, double SalaryPaid, double OTCharges);
     }
 }

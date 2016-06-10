@@ -25,6 +25,10 @@ public partial class EmployeeSalaryPayment : BaseUserControl
             ddlSalaryType.Items.Insert(0, "[Select]");
 
             ddlDesignation.Items.Insert(0, "[Select]");
+            txtSalary.Text = "0";
+            txtSalaryPaid.Text = "0";
+            txtOTPay.Text = "0";
+            
 
             //BindEmployeeSalaryInfo();
         }
@@ -57,9 +61,15 @@ public partial class EmployeeSalaryPayment : BaseUserControl
             ddlSalaryType.DataBind();
 
             txtSalary.Text = Convert.ToString(EmpSalEnty.Salary);
-
+            txtSalaryPaid.Text = "0";
+            txtOTPay.Text = "0";
             BindEmployeePaymentDetails(ddlEmployeeName.SelectedValue);
-
+        }
+        else {
+            ResultDTO resultDto = new ResultDTO();
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Salary is not configured for this Employee. ";
+            SetMessage(resultDto);
         }
     }
 
@@ -73,30 +83,31 @@ public partial class EmployeeSalaryPayment : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = new ResultDTO();
-        bool IsSalaryAlotedtoEmployee = false;
-        IsSalaryAlotedtoEmployee = impt.CheckEmployeeSalaryExist(txtSalary.Text.Trim());
-        if (!IsSalaryAlotedtoEmployee)
+    
+        resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalaryPayment(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex, ddlDesignation.SelectedIndex, Convert.ToDouble(txtSalary.Text.Trim()), Convert.ToDouble(txtSalaryPaid.Text.Trim()), Convert.ToDouble(txtOTPay.Text.Trim()));
+        if (resultDto.IsSuccess)
         {
-            resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateEmployeeSalary(ddlEmployeeName.SelectedIndex, ddlSalaryType.SelectedIndex, ddlDesignation.SelectedIndex, Convert.ToDouble(txtSalary.Text.Trim()));
+            resultDto = impt.SaveEmployeeSalaryPayment(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue, ddlDesignation.SelectedValue, Convert.ToDouble(txtSalary.Text.Trim()), Convert.ToDouble(txtSalaryPaid.Text.Trim()), Convert.ToDouble(txtOTPay.Text.Trim()));
             if (resultDto.IsSuccess)
             {
-                resultDto = impt.SaveEmployeeSalaryPayment(ddlEmployeeName.SelectedValue, ddlSalaryType.SelectedValue, ddlDesignation.SelectedValue, Convert.ToDouble(txtSalary.Text.Trim()), Convert.ToDouble(txtSalaryPaid.Text.Trim()),Convert.ToDouble(txtOTPay.Text.Trim()));
-                if (resultDto.IsSuccess)
-                {
-
-                }
-                SetMessage(resultDto);
+                ClearData();
             }
-            else
-            {
-                SetMessage(resultDto);
-            }
+            SetMessage(resultDto);
         }
         else
         {
-            resultDto.Message = "Salary already aloted.";
-            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+
+    }
+
+    private void ClearData()
+    {
+        ddlEmployeeName.SelectedIndex = 0;
+        ddlSalaryType.Items.Insert(0, "[Select]");
+        ddlDesignation.Items.Insert(0, "[Select]");
+        txtSalary.Text = "0";
+        txtSalaryPaid.Text = "0";
+        txtOTPay.Text = "0";
     }
 }

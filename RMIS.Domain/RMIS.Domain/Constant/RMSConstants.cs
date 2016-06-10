@@ -214,6 +214,13 @@ namespace RMIS.Domain.Constant
         public const string ValidateEmployeeSalarySalaryType = "Validate164";
         public const string ValidateEmployeeSalaryDesignation = "Validate165";
         public const string ValidateEmployeeSalarySalary = "Validate166";
+
+        public const string ValidateEmpSalPayEmployee = "Validate167";
+        public const string ValidateEmpSalPaySalaryType = "Validate168";
+        public const string ValidateEmpSalPayDesignation = "Validate169";
+        public const string ValidateEmpSalPaySalary = "Validate170";
+        public const string ValidateEmpSalPaySalaryPaid = "Validate171";
+        public const string ValidateEmpSalPayOTCharges = "Validate172";
     }
 
     public enum SortExpression

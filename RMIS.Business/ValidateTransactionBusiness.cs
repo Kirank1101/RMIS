@@ -779,8 +779,36 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmployeeSalarySalary, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
+        }
 
+        public ResultDTO ValidateEmployeeSalaryPayment(int EmployeeName, int SalaryType, int Designation, double Salary, double SalaryPaid, double OTCharges)
+        {
 
+            if (EmployeeName <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPayEmployee, provider.GetCurrentCustomerId()) };
+            }
+            else if (SalaryType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPaySalaryType, provider.GetCurrentCustomerId()) };
+            }
+            else if (Designation <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPayDesignation, provider.GetCurrentCustomerId()) };
+            }
+            else if (Salary <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPaySalary, provider.GetCurrentCustomerId()) };
+            }
+            else if (SalaryPaid <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPaySalaryPaid, provider.GetCurrentCustomerId()) };
+            }
+            else if (OTCharges <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateEmpSalPayOTCharges, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
         }
     }
 }
