@@ -80,8 +80,8 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateEmployeeSalaryEntity(EmployeeSalaryEntity EmployeeSalaryEntity, bool isCopy);
         void SaveOrUpdateEmployeeSalaryPaymentEntity(EmployeeSalaryPaymentEntity EmployeeSalaryPaymentEntity, bool isCopy);
         void SaveOrUpdateOtherExpensesEntity(OtherExpensesEntity OtherExpensesEntityEntity, bool isCopy);
+        void SaveOrUpdateProductPaymentInfoEntity(ProductPaymentInfoEntity ProductPaymentInfoEntity, bool isCopy);
         #endregion
-
         #region Get
         /// <summary>
         /// Gets all audit module visit.
@@ -162,7 +162,7 @@ namespace RMIS.Domain.Mediator
         int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);
         int GetPaddyStockUsedCount(string CustId, YesNo yesNo);
 		List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
-
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
         
         #endregion
         #region Check
@@ -181,10 +181,6 @@ namespace RMIS.Domain.Mediator
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID, YesNo yesNo);
         #endregion
         #endregion
-
-
-
-        
     }
 
 }

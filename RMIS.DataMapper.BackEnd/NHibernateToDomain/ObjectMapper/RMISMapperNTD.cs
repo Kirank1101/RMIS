@@ -879,6 +879,23 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             }
             return OtherExpensesEntity;
         }
+        public static ProductPaymentInfoEntity GetProductPaymentInfoEntity(ProductPaymentInfo ProductPaymentInfo)
+        {
+            ProductPaymentInfoEntity ProductPaymentInfoEntity = null;
+            try
+            {
+                if (ProductPaymentInfo != null)
+                {
+                    ProductPaymentInfoEntity = Mapper.Map<ProductPaymentInfo, ProductPaymentInfoEntity>(ProductPaymentInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetProductPaymentInfoEntity", ex);
+                throw;
+            }
+            return ProductPaymentInfoEntity;
+        }
     }
 
 

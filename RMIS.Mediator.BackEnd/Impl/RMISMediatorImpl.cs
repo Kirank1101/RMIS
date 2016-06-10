@@ -690,6 +690,19 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateProductPaymentInfoEntity(ProductPaymentInfoEntity ProductPaymentInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<ProductPaymentInfo>(mapper.GetProductPaymentInfo(ProductPaymentInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateProductPaymentInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateProductPaymentInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
 
         #endregion
         #region Get Enitity
@@ -1015,12 +1028,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
         #endregion
 
-
         public List<BuyerInfoEntity> GetListBuyerInfoEntities(YesNo yesNo)
         {
             throw new NotImplementedException();
         }
-
         public MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo)
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
@@ -1029,45 +1040,37 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMUnitsTypeEntity(unitTypeId);
         }
-
         public List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
             return rmisGateway.GetSellerInfoEntities(custId, yesNo, count, prefixText);
         }
-
-
         public List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
             return rmisGateway.GetEmployeeDetailsEntities(custId, yesNo, count, prefixText);
         }
-
         public List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
             return rmisGateway.GetBuyerInfoEntities(custId, yesNo, count, prefixText);
         }
-
-
         public int GetMPaddyTypeEntitiesCount(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockEntityCount(CustId, yesNo);
         }
-
-
         public int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetBrokenRiceStockInfoCount(CustId, yesNo);
         }
-
-
         public int GetMRiceProductionTypeCount(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetMRiceProductionTypeCount(CustId, yesNo);
         }
-
-
         public int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockUsedCount(CustId, yesNo);
+        }
+        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductPaymentInfoEntities(CustId, yesNo);
         }
     }
 }
