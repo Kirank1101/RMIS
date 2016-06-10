@@ -166,7 +166,7 @@
     <EmbeddedResource Include="Persistence\EntityMappings\RMUserRole.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Persistence\EntityMappings\MoneyTransaction.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\MoneyTransaction.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\BuyerSellerRating.hbm.xml" />
     <Content Include="Persistence\EntityMappings\BuyerInfo.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\MEmployeeDesignation.hbm.xml">

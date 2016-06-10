@@ -324,4 +324,13 @@
   <data name="SalaryType" xml:space="preserve">
     <value>Salary Type</value>
   </data>
+  <data name="OTPay" xml:space="preserve">
+    <value>OverTime Payment</value>
+  </data>
+  <data name="PaymentDt" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="SalaryPaid" xml:space="preserve">
+    <value>Salary Payment</value>
+  </data>
 </root>
