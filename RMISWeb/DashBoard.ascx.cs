@@ -19,7 +19,9 @@ public partial class DashBoard : BaseUserControl
             //imp.GetPaddyStockDTO(
             lblPaddyStock.Text = Convert.ToString(imp.GetMPaddyTypeEntitiesCount());
             lblRiceStock.Text = Convert.ToString(imp.GetMRiceProductionTypeCount());
-            lblBrokenRiceStock.Text = Convert.ToString(imp.GetBrokenRiceStockInfoCount ());           
+            lblBrokenRiceStock.Text = Convert.ToString(imp.GetBrokenRiceStockInfoCount ());   
+            int count=0;
+            
         }
     }
    
