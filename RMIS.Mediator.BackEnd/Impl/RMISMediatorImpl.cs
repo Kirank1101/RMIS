@@ -704,6 +704,19 @@ namespace RMIS.Mediator.BackEnd.Impl
             }
         }
 
+        public void SaveOrUpdateProductPaymentTransEntity(ProductPaymentTransactionEntity ProductPaymentTranEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<ProductPaymentTransaction>(mapper.GetProductPaymentTransaction(ProductPaymentTranEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateProductPaymentTransEntity", ex);
+                Logger.Error("Error in SaveOrUpdateProductPaymentTransEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
@@ -1071,6 +1084,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetAllProductPaymentInfoEntities(CustId, yesNo);
+        }
+        public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductPaymentTranEntities(CustId, yesNo);
         }
     }
 }

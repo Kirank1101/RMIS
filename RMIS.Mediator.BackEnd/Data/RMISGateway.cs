@@ -2191,6 +2191,35 @@
                 throw;
             }
         }
+        internal List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductPaymentTransactionEntity> listProdPayTranEnt = new List<ProductPaymentTransactionEntity>();
+                IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAll(detachedCriteria) as List<ProductPaymentTransaction>;
+                if (listProdPayTran != null && listProdPayTran.Count > 0)
+                {
+                    foreach (ProductPaymentTransaction adMInfo in listProdPayTran)
+                    {
+                        listProdPayTranEnt.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentTranEntity(adMInfo));
+                    }
+                }
+                else
+                    listProdPayTranEnt = null;
+
+                return listProdPayTranEnt;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllProductPaymentTranEntities", ex);
+                throw;
+            }
+        }
         
         #endregion
 

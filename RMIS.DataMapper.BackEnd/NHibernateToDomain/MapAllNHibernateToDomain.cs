@@ -94,6 +94,7 @@
                 objRMISMappingNTD.MapEmployeeSalaryPaymentEntity();
                 objRMISMappingNTD.MapOtherExpensesEntity();
                 objRMISMappingNTD.MapProductPaymentInfoEntity();
+                objRMISMappingNTD.MapProductPaymentTranEntity();
             }
             catch (Exception ex)
             {

@@ -54,7 +54,7 @@
     <Compile Include="Model\Entities\BrokenRiceSellingInfo.cs" />
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
-    <Compile Include="Model\Entities\Copy %282%29 of ProductSellingInfo.cs" />
+    <Compile Include="Model\Entities\ProductPaymentTransaction.cs" />
     <Compile Include="Model\Entities\ProductPaymentInfo.cs" />
     <Compile Include="Model\Entities\EmployeeSalary.cs" />
     <Compile Include="Model\Entities\EmployeeDetails.cs" />
@@ -180,6 +180,9 @@
     <EmbeddedResource Include="Persistence\EntityMappings\EmployeeDetails.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\EmployeeSalary.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\ProductPaymentInfo.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\EntityMappings\ProductPaymentTransaction.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Persistence\EntityMappings\HullingProcessExpenses.hbm.xml" />

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="ProductPaymentTransaction" table="[dbo].[ProductPaymentTransaction]" optimistic-lock="none" >
+    <id name="ProductPaymentTranID" column="ProductPaymentTranID" >
+      <generator class="assigned"/>
+    </id>
+    <property name="ProductPaymentID" column="ProductPaymentID" />
+    <property name="CustID" column="CustID" />
+    <property name="Paymentmode" column="Paymentmode" />
+    <property name="ChequeNo" column="ChequeNo" />
+    <property name="DDNo" column="DDNo" />
+    <property name="BankName" column="BankName" />
+    <property name="ReceivedAmount" column="ReceivedAmount" />
+    <property name="PaymentDueDate" column="PaymentDueDate" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+    <property name="ObsInd" column="ObsInd" />
+  </class>
+</hibernate-mapping>
+

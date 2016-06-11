@@ -114,7 +114,8 @@ public partial class ProductSellingInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlsellernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToDecimal(txtTotalBags.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToDouble(txtprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()));
+            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlsellernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToDecimal(txtTotalBags.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToDouble(txtprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()),
+                lblOrderNo.Text,rbtPaymnetMode.SelectedValue,txtChequeNo.Text.Trim(),txtDDno.Text.Trim(),txtBankName.Text.Trim(),Convert.ToDouble(txtReceivedAmount.Text.Trim()),Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
             //char status = Convert.ToDouble(txtBalanceAmount.Text.Trim()) == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
             //resultDto = imp.SaveProductPaymentInfo(Convert.ToDouble(lbltotalamount.Text), status);
             //SetMessage(resultDto);

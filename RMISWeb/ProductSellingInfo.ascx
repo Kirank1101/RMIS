@@ -150,7 +150,7 @@
                             <asp:Label runat="server" ID="lblbankname" Text="<%$Resources:Resource,BankName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="BankName" />
+                            <asp:TextBox runat="server" ID="txtBankName" />
                         </td>
                     </tr>
                     <tr>

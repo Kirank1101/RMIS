@@ -34,7 +34,8 @@ namespace RMIS.Domain.Business
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
         ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
-            decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate);
+                                         decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate,string OrderNo,string PaymnetMode,
+                                         string ChequeNo,string DDno,string BankName,double ReceivedAmount,DateTime NextPaymentDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);

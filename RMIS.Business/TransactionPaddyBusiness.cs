@@ -469,7 +469,8 @@ namespace RMIS.Business
 
 
 
-        public ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, decimal totalBags,  string UnitsTypeID, double Price, DateTime SellingDate)
+        public ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymentMode,
+                                         string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate)
         {
 
             ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
@@ -481,6 +482,20 @@ namespace RMIS.Business
             productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
             productPaymentInfoEntity.ObsInd = YesNo.N;
 
+            ProductPaymentTransactionEntity ProdPayTranEnt = new ProductPaymentTransactionEntity();
+            ProdPayTranEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PT");
+            ProdPayTranEnt.ProductPaymentID = productPaymentInfoEntity.ProductPaymentID;
+            ProdPayTranEnt.CustID = provider.GetCurrentCustomerId();
+            ProdPayTranEnt.Paymentmode = PaymentMode;
+            ProdPayTranEnt.ChequeNo = ChequeNo;
+            ProdPayTranEnt.DDNo = DDno;
+            ProdPayTranEnt.BankName = BankName;
+            ProdPayTranEnt.ReceivedAmount = ReceivedAmount;
+            ProdPayTranEnt.PaymentDueDate = NextPaymentDate;
+            ProdPayTranEnt.LastModifiedBy = provider.GetLoggedInUserId();
+            ProdPayTranEnt.LastModifiedDate = DateTime.Now;
+            ProdPayTranEnt.ObsInd = YesNo.N;
+
             ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
             objProductSellingInfoEntity.ObsInd = YesNo.N;
             objProductSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
@@ -489,7 +504,7 @@ namespace RMIS.Business
             objProductSellingInfoEntity.MRiceBrandID = MRiceBrandId;
             objProductSellingInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
             objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
-            objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PR");
+            objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PI");
             objProductSellingInfoEntity.ProductPaymentID = productPaymentInfoEntity.ProductPaymentID;
             objProductSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
             objProductSellingInfoEntity.SellingDate = SellingDate;
@@ -503,8 +518,8 @@ namespace RMIS.Business
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdateProductPaymentInfoEntity(productPaymentInfoEntity, false);
+                imp.SaveOrUpdateProductPaymentTransEntity(ProdPayTranEnt, false);
                 imp.SaveOrUpdateProductSellingInfoEntity(objProductSellingInfoEntity, false);
-                
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
