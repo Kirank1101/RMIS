@@ -158,11 +158,15 @@ namespace RMIS.Domain.Mediator
 		List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
-        int GetMPaddyTypeEntitiesCount(string CustId, string UnitsTypeID, YesNo yesNo);
+        int GetMPaddyTypeEntitiesTotal(string CustId, YesNo yesNo);
         int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo);
         int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);
-        int GetPaddyStockUsedCount(string CustId, string UnitsTypeID, YesNo yesNo);
+        int GetPaddyStockUsedTotal(string CustId, YesNo yesNo);
+        int GetPaddyStockEntityCount(string CustId, YesNo yesNo);
+        int GetPaddyStockUsedCount(string CustId, YesNo yesNo);
 		List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
+        int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID,string PaddyTypeId, YesNo yesNo);
+        int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
         #endregion

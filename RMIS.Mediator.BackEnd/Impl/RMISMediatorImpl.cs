@@ -1065,9 +1065,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBuyerInfoEntities(custId, yesNo, count, prefixText);
         }
-        public int GetMPaddyTypeEntitiesCount(string CustId ,string UnitsTypeID, YesNo yesNo)
+        public int GetMPaddyTypeEntitiesTotal(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockEntityCount(CustId,UnitsTypeID, yesNo);
+            return rmisGateway.GetPaddyStockEntityTotal(CustId, yesNo);
         }
         public int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
         {
@@ -1077,9 +1077,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMRiceProductionTypeCount(CustId, yesNo);
         }
-        public int GetPaddyStockUsedCount(string CustId, string UnitsTypeID, YesNo yesNo)
+        public int GetPaddyStockUsedTotal(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockUsedCount(CustId,UnitsTypeID, yesNo);
+            return rmisGateway.GetPaddyStockUsedTotal(CustId, yesNo);
         }
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo)
         {
@@ -1088,6 +1088,26 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetAllProductPaymentTranEntities(CustId, yesNo);
+        }
+        public int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockEntityTotal(CustId, UnitsTypeID, PaddyTypeId, yesNo);
+        }
+
+        public int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockUsedTotal(CustId, UnitsTypeID, PaddyTypeId, yesNo);
+        }
+
+
+        public int GetPaddyStockEntityCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockEntityCount(CustId, yesNo);
+        }
+
+        public int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockUsedCount(CustId, yesNo);
         }
     }
 }

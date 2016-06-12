@@ -141,7 +141,7 @@ namespace RMIS.Business
         public List<SellerInfoEntity> GetPaddySellerInfo()
         {
             List<SellerInfoEntity> listSellerInfoEntity = null;
-            List<SellerInfoEntity> listSellerinfo = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<SellerInfoEntity> listSellerinfo = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listSellerinfo != null && listSellerinfo.Count > 0)
             {
                 listSellerInfoEntity = new List<SellerInfoEntity>();
@@ -158,7 +158,7 @@ namespace RMIS.Business
             return listSellerInfoEntity;
         }
 
-        public List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText,string context)
+        public List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText, string context)
         {
 
             List<SellerInfoEntity> listSellerInfoEntity = null;
@@ -237,7 +237,7 @@ namespace RMIS.Business
         }
         public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities()
         {
-            return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public ResultDTO SaveBrokenRiceStockInfo(string BrokenRiceTypeId, int totalBags, int QWeight, string UnitsTypeID)
         {
@@ -266,7 +266,7 @@ namespace RMIS.Business
         }
         public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities()
         {
-            return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public ResultDTO SaveDustStockInfo(int totalBags, int QWeight, string UnitsTypeID)
         {
@@ -294,7 +294,7 @@ namespace RMIS.Business
         }
         public List<DustStockInfoEntity> GetAllDustStockInfoEntities()
         {
-            return imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -366,7 +366,7 @@ namespace RMIS.Business
         }
         public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities()
         {
-            return imp.GetAllBrokenRiceSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllBrokenRiceSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public ResultDTO SaveDustSellingInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, int qWeight, string UnitsTypeID, int qPrice, DateTime SellingDate)
         {
@@ -399,7 +399,7 @@ namespace RMIS.Business
         }
         public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities()
         {
-            return imp.GetAllDustSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllDustSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -458,12 +458,12 @@ namespace RMIS.Business
 
         public List<MenuConfigurationEntity> GetMenuConfigurationEntities()
         {
-            return imp.GetMenuConfigurationEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetMenuConfigurationEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
         public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId)
         {
-            return imp.GetMenuConfigurationEntities(custId,YesNo.N);
+            return imp.GetMenuConfigurationEntities(custId, YesNo.N);
         }
 
 
@@ -512,8 +512,8 @@ namespace RMIS.Business
             objProductSellingInfoEntity.SellerID = sellerId;
             objProductSellingInfoEntity.TotalBags = totalBags;
             objProductSellingInfoEntity.UnitsTypeID = UnitsTypeID;
-            
-            
+
+
             try
             {
                 imp.BeginTransaction();
@@ -532,7 +532,7 @@ namespace RMIS.Business
 
         public List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities()
         {
-            return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -566,7 +566,7 @@ namespace RMIS.Business
 
         public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
         {
-            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
 
@@ -603,13 +603,13 @@ namespace RMIS.Business
 
         public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities()
         {
-            return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
         }
 
         public List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<PaddyStockDTO> listPaddyStockDTO = null;
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression,YesNo.N);
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression, YesNo.N);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
                 listPaddyStockDTO = new List<PaddyStockDTO>();
@@ -710,7 +710,7 @@ namespace RMIS.Business
 
         public UsersEntity ValidateUsersEntity(string userName, string custId, string password)
         {
-            UsersEntity userEntity = imp.GetUsersEntity(userName, custId, YesNo.N); 
+            UsersEntity userEntity = imp.GetUsersEntity(userName, custId, YesNo.N);
             if (userEntity != null)
             {
                 if (password.Equals(Utilities.Decrypt(userEntity.PassWord, true)))
@@ -843,7 +843,7 @@ namespace RMIS.Business
             return imp.GetListBuyerInfoEntities(YesNo.N);
         }
 
-        public List<BuyerInfoEntity> GetBuyerInfo(int count, string prefixText,string context)
+        public List<BuyerInfoEntity> GetBuyerInfo(int count, string prefixText, string context)
         {
             return imp.GetBuyerInfoEntities(context, YesNo.N, count, prefixText);
         }
@@ -903,10 +903,10 @@ namespace RMIS.Business
 
         }
 
-        public List<EmployeeDetailsEntity> GetEmployeeDetails(string context,int count,string prefixText)
+        public List<EmployeeDetailsEntity> GetEmployeeDetails(string context, int count, string prefixText)
         {
             List<EmployeeDetailsEntity> listEmployeeDetailsEntity = null;
-            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetEmployeeDetailsEntities(context, YesNo.N, count,prefixText);
+            List<EmployeeDetailsEntity> listEmployeeDetails = imp.GetEmployeeDetailsEntities(context, YesNo.N, count, prefixText);
             if (listEmployeeDetails != null && listEmployeeDetails.Count > 0)
             {
                 listEmployeeDetailsEntity = new List<EmployeeDetailsEntity>();
@@ -981,7 +981,7 @@ namespace RMIS.Business
         {
             string EmployeeName = string.Empty;
             EmployeeDetailsEntity EmployeeDetails = imp.GetEmployeeDetailsEntity(provider.GetCurrentCustomerId(), EmployeeID, YesNo.N);
-            if (EmployeeDetails != null) 
+            if (EmployeeDetails != null)
                 EmployeeName = EmployeeDetails.Name;
 
             return EmployeeName;
@@ -1052,51 +1052,64 @@ namespace RMIS.Business
             return listEmployeeSalaryPaymentEntity;
         }
 
-
-        public int  GetMPaddyTypeEntitiesTotalCount()
+        public List<WidgetDTO> GetTotlaPaddyStock()
         {
-            int paddyCount = 0;
-            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
-            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
-            {
-                
-                // <br /> <b></b> &nbsp;
-                foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
-                {
+            int totalStockSum = GetPaddyStockTotalSum();
+            int totalStockCount = GetPaddyStockTotalCount();
 
-                     paddyCount += imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
-                    int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
-                    if (paddyCount > paddyUsedCount)
-                        paddyCount = paddyCount - paddyUsedCount;
-                   
+            List<WidgetDTO> listTotlaPaddyStock = new List<WidgetDTO>();
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
+            {
+                foreach (MPaddyTypeEntity objMPaddyTypeEntity in listMPaddyTypeEntity)
+                {
+                    List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                    if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+                    {
+                        // <br /> <b></b> &nbsp;
+                        foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                        {
+                            int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
+                            int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
+                            paddySum = paddySum - paddyUsedSum;
+                            if (paddySum > 0)
+                            {
+                                WidgetDTO objTotlaPaddyStock = new WidgetDTO();
+                                objTotlaPaddyStock.Headerone = objMPaddyTypeEntity.Name;
+                                objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
+                                objTotlaPaddyStock.Value = paddySum.ToString();
+                                double percentage = (((double)paddySum / ((double)totalStockSum)));
+                                objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
+                                listTotlaPaddyStock.Add(objTotlaPaddyStock);
+                            }
+                        }
+                    }
                 }
             }
+            return listTotlaPaddyStock.OrderByDescending(A => A.Value).Take(5).ToList();
+        }
+
+        public int GetPaddyStockTotalSum()
+        {
+            int paddySum = 0;
+            paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            if (paddySum > paddyUsedSum)
+                paddySum = paddySum - paddyUsedSum;
+            return paddySum;
+        }
+
+        int GetPaddyStockTotalCount()
+        {
+            int paddyCount = 0;
+            paddyCount = imp.GetPaddyStockEntityCount(provider.GetCurrentCustomerId(), YesNo.N);
+            int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), YesNo.N);
+            if (paddyCount > paddyUsedCount)
+                paddyCount = paddyCount - paddyUsedCount;
             return paddyCount;
         }
 
-        const string breakString = "";
-        public string  GetMPaddyTypeEntitiesCount()
-        {
-            StringBuilder builder = new StringBuilder();             
-            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
-            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
-            {
-                builder.Append("<b>Unit Name&nbsp;" + "Paddy Stock</b> <br />");
-                // <br /> <b></b> &nbsp;
-                foreach(MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
-                {
-                   
 
-                 int paddyCount = imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
-                int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(),objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
-                if (paddyCount > paddyUsedCount)
-                    paddyCount = paddyCount - paddyUsedCount;
-                    if(paddyCount>0)
-                  builder.Append(objMUnitsTypeEntity.UnitsType + "&nbsp;" +paddyCount.ToString()+ "<br />");
-                }
-            }
-            return builder.ToString(); 
-        }
 
         public int GetBrokenRiceStockInfoCount()
         {
@@ -1107,7 +1120,7 @@ namespace RMIS.Business
         {
             return imp.GetMRiceProductionTypeCount(provider.GetCurrentCustomerId(), YesNo.N);
         }
-		public ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount)
+        public ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount)
         {
             OtherExpensesEntity objOtherExpensesEntity = new OtherExpensesEntity();
 

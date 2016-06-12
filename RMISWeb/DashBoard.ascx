@@ -1,42 +1,19 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="DashBoard.ascx.cs" Inherits="DashBoard" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
-<!-- top tiles -->
-<div class="row tile_count">
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Paddy Stock</span>
-        <div  class="count red" >
-            <asp:Literal ID="lblPaddyStock" runat="server"></asp:Literal>
-           
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Rice Stock</span>
-        <div class="count green">
-            <asp:Literal ID="lblRiceStock" runat="server"></asp:Literal></div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Broken Rice Stock</span>
-        <div class="count green">
-            <asp:Literal ID="lblBrokenRiceStock" runat="server"></asp:Literal></div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Bag Stock</span>
-        <div class="count">
-            4,567</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Credit Amount</span>
-        <div class="count">
-            2,315</div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i>Total Amount Due</span>
-        <div class="count">
-            7,325</div>
-    </div>
-</div>
-<!-- /top tiles -->
+<%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
+    TagPrefix="iucon" %>
 
+     <iucon:PartialUpdatePanel runat="server" ID="PartialUpdatePanel1" UserControlPath="~/Widget_TopTiles.ascx"
+                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
 
 <div class="row">
 
@@ -44,109 +21,23 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
-                  <h2>Paddy Stock Details</h2>
+                  <h2>Top 5 Paddy Stock Details</h2>
                 
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                  
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.2</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                          <span class="sr-only">90% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>123k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.3</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>53k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.4</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>23k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.5</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>3k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.6</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>1k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0.1.5.6</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span>1k</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
+                 <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/Widget_PaddyStock.ascx"
+                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
+                        <LoadingTemplate>
+                            <div style="margin-left: 84px; margin-top: 10px;">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
+                            </div>
+                            <div style="text-align: center">
+                                Updating...
+                            </div>
+                        </LoadingTemplate>
+                    </iucon:PartialUpdatePanel>
 
 
                 </div>

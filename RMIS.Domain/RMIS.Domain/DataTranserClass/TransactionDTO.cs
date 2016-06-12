@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RMIS.Domain.DataTranserClass
 {
-    public class PaddyStockDTO 
+    public class PaddyStockDTO
     {
         public PaddyStockDTO()
         {
@@ -16,7 +16,7 @@ namespace RMIS.Domain.DataTranserClass
         public string Id { get; set; }
         public string SellerName { get; set; }
         public string PaddyName { get; set; }
-       
+
         public string GodownName { get; set; }
         public string LotName { get; set; }
         public string UnitName { get; set; }
@@ -25,6 +25,20 @@ namespace RMIS.Domain.DataTranserClass
         public decimal TotalBags { get; set; }
         public decimal Price { get; set; }
         public DateTime PurchaseDate { get; set; }
-        
+
+    }
+
+    public class WidgetDTO
+    {
+        public WidgetDTO()
+        {
+            Headerone = HeaderTwo = Value = Percentage = string.Empty;
+        }
+        public string Headerone { get; set; }
+        public string HeaderTwo { get; set; }
+
+        public string Value { get; set; }
+        public string Percentage { get; set; }
+
     }
 }
