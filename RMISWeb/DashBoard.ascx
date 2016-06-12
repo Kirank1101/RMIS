@@ -4,8 +4,9 @@
 <div class="row tile_count">
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i>Total Paddy Stock</span>
-        <div class="count brown">
+        <div  class="count red" >
             <asp:Literal ID="lblPaddyStock" runat="server"></asp:Literal>
+           
         </div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">

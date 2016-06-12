@@ -301,7 +301,7 @@
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    );
-               return  UsersRepository.GetCountUsingFuture(detachedCriteria);
+                return UsersRepository.GetCountUsingFuture(detachedCriteria);
             }
             catch (Exception ex)
             {
@@ -311,29 +311,30 @@
 
         }
 
-        internal int  GetPaddyStockEntityCount(string CustId, YesNo yesNo)
+        internal int GetPaddyStockEntityCount(string CustId, string UnitsTypeID, YesNo yesNo)
         {
             try
             {
-                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo >(applicationSession);
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria =
                 DetachedCriteria.For(typeof(PaddyStockInfo))
                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
-                                                                       
+
                                                                         ;
                 return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
             }
             catch (Exception ex)
             {
-                Logger.Error("Error encountered at GetMPaddyTypeEntitiesCount", ex);
+                Logger.Error("Error encountered at GetPaddyStockEntityCount", ex);
                 throw;
             }
 
         }
 
 
-        internal int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
+        internal int GetPaddyStockUsedCount(string CustId, string UnitsTypeID, YesNo yesNo)
         {
             try
             {
@@ -341,13 +342,14 @@
                 DetachedCriteria detachedCriteria =
                 DetachedCriteria.For(typeof(HullingProcess))
                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
-                                                                       
+
                 return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
             }
             catch (Exception ex)
             {
-                Logger.Error("Error encountered at GetMPaddyTypeEntitiesCount", ex);
+                Logger.Error("Error encountered at GetPaddyStockUsedCount", ex);
                 throw;
             }
 
@@ -364,7 +366,7 @@
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    );
 
-               return  UsersRepository.GetCountUsingFuture(detachedCriteria);
+                return UsersRepository.GetCountUsingFuture(detachedCriteria);
             }
             catch (Exception ex)
             {
@@ -2220,7 +2222,7 @@
                 throw;
             }
         }
-        
+
         #endregion
 
         #region Check Data Exist

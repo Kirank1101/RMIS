@@ -17,7 +17,7 @@ public partial class DashBoard : BaseUserControl
             Header = "";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             //imp.GetPaddyStockDTO(
-            lblPaddyStock.Text = Convert.ToString(imp.GetMPaddyTypeEntitiesCount());
+            lblPaddyStock.Text = Convert.ToString(imp.GetMPaddyTypeEntitiesTotalCount());
             lblRiceStock.Text = Convert.ToString(imp.GetMRiceProductionTypeCount());
             lblBrokenRiceStock.Text = Convert.ToString(imp.GetBrokenRiceStockInfoCount ());   
             int count=0;

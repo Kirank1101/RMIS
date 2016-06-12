@@ -1065,9 +1065,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBuyerInfoEntities(custId, yesNo, count, prefixText);
         }
-        public int GetMPaddyTypeEntitiesCount(string CustId, YesNo yesNo)
+        public int GetMPaddyTypeEntitiesCount(string CustId ,string UnitsTypeID, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockEntityCount(CustId, yesNo);
+            return rmisGateway.GetPaddyStockEntityCount(CustId,UnitsTypeID, yesNo);
         }
         public int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
         {
@@ -1077,9 +1077,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMRiceProductionTypeCount(CustId, yesNo);
         }
-        public int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
+        public int GetPaddyStockUsedCount(string CustId, string UnitsTypeID, YesNo yesNo)
         {
-            return rmisGateway.GetPaddyStockUsedCount(CustId, yesNo);
+            return rmisGateway.GetPaddyStockUsedCount(CustId,UnitsTypeID, yesNo);
         }
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo)
         {

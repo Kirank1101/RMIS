@@ -1053,13 +1053,49 @@ namespace RMIS.Business
         }
 
 
-        public int GetMPaddyTypeEntitiesCount()
+        public int  GetMPaddyTypeEntitiesTotalCount()
         {
-           int paddyCount=  imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), YesNo.N);
-           int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), YesNo.N);
-           if (paddyCount > paddyUsedCount)
-               paddyCount = paddyCount - paddyUsedCount;
-           return paddyCount;
+            int paddyCount = 0;
+            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+            {
+                
+                // <br /> <b></b> &nbsp;
+                foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                {
+
+                     paddyCount += imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
+                    int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
+                    if (paddyCount > paddyUsedCount)
+                        paddyCount = paddyCount - paddyUsedCount;
+                   
+                }
+            }
+            return paddyCount;
+        }
+
+        const string breakString = "";
+        public string  GetMPaddyTypeEntitiesCount()
+        {
+            StringBuilder builder = new StringBuilder();             
+            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+            {
+                builder.Append("<b>Unit Name&nbsp;" + "Paddy Stock</b> <br />");
+                // <br /> <b></b> &nbsp;
+                foreach(MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                {
+                   
+
+                 int paddyCount = imp.GetMPaddyTypeEntitiesCount(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
+                int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(),objMUnitsTypeEntity.UnitsTypeID, YesNo.N);
+                if (paddyCount > paddyUsedCount)
+                    paddyCount = paddyCount - paddyUsedCount;
+                    if(paddyCount>0)
+                  builder.Append(objMUnitsTypeEntity.UnitsType + "&nbsp;" +paddyCount.ToString()+ "<br />");
+                }
+            }
+            return builder.ToString(); 
         }
 
         public int GetBrokenRiceStockInfoCount()

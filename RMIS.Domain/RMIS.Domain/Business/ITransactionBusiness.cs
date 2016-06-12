@@ -86,7 +86,8 @@ namespace RMIS.Domain.Business
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
 
-        int GetMPaddyTypeEntitiesCount();
+        string  GetMPaddyTypeEntitiesCount();
+        int GetMPaddyTypeEntitiesTotalCount();
         int GetBrokenRiceStockInfoCount();
         int GetMRiceProductionTypeCount();
 
