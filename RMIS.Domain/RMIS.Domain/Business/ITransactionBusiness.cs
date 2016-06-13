@@ -89,5 +89,7 @@ namespace RMIS.Domain.Business
         int GetPaddyStockTotalSum();
         int GetBrokenRiceStockInfoCount();
         int GetMRiceProductionTypeCount();
+        int GetRiceStockTotalSum();
+        int GetBrockenRiceStockTotalSum();
     }
 }

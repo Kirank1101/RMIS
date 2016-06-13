@@ -311,6 +311,143 @@
 
         }
 
+        #region Rice Product Count and calculation
+        internal int GetRiceProductTotal(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(HullingTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Restrictions.IsNotNull("MRiceProdTypeID"))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductTotal", ex);
+                throw;
+            }
+
+        }
+        internal int GetRiceProductUsedTotal(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Restrictions.IsNotNull("MRiceProdTypeID"))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductUsedTotal", ex);
+                throw;
+            }
+
+        }
+        internal int GetBrokenRiceProductTotal(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(HullingTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Restrictions.IsNotNull("BrokenRiceTypeID"))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductTotal", ex);
+                throw;
+            }
+
+        }
+        internal int GetBrokenRiceProductUsedTotal(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Restrictions.IsNotNull("BrokenRiceTypeID"))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductUsedTotal", ex);
+                throw;
+            }
+
+        }
+        internal int GetRiceProductTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
+        {           
+
+                try
+                {
+                    IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                    DetachedCriteria detachedCriteria =
+                    DetachedCriteria.For(typeof(HullingTransaction))
+                                                                          .Add(Expression.Eq("CustID", CustId))
+                                                                             .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
+                                                                              .Add(Expression.Eq("MRiceProdTypeID", RiceProdTypeID))
+                                                                              .Add(Expression.Eq("MRiceBrandID", RiceBrandId))
+                                                                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                            ;
+                    return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("Error encountered at GetRiceProductTotal", ex);
+                    throw;
+                }           
+
+        }
+        internal int GetRiceProductUsedTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                             .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
+                                                                              .Add(Expression.Eq("MRiceProdTypeID", RiceProdTypeID))
+                                                                              .Add(Expression.Eq("MRiceBrandID", RiceBrandId))
+                                                                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                            ;
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductUsedTotal", ex);
+                throw;
+            }
+
+        }
+
+
+        #endregion
 
         internal int GetPaddyStockEntityTotal(string CustId, string UnitsTypeID, string PaddyTypeID, YesNo yesNo)
         {
@@ -334,7 +471,6 @@
             }
 
         }
-
         internal int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeID,YesNo yesNo)
         {
             try
@@ -356,8 +492,6 @@
             }
 
         }
-
-
         internal int GetPaddyStockEntityTotal(string CustId, YesNo yesNo)
         {
             try
@@ -378,8 +512,6 @@
             }
 
         }
-
-
         internal int GetPaddyStockUsedTotal(string CustId, YesNo yesNo)
         {
             try
@@ -399,8 +531,6 @@
             }
 
         }
-
-
         internal int GetPaddyStockEntityCount(string CustId, YesNo yesNo)
         {
             try
@@ -420,7 +550,7 @@
                 throw;
             }
 
-        }
+        }    
 
 
         internal int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
@@ -444,26 +574,8 @@
         }
 
 
-        internal int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
-        {
-            try
-            {
 
-                IRepository<BrokenRiceStockInfo> UsersRepository = new RepositoryImpl<BrokenRiceStockInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-
-                return UsersRepository.GetCountUsingFuture(detachedCriteria);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetBrokenRiceStockInfoCount", ex);
-                throw;
-            }
-
-        }
+       
 
         internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {

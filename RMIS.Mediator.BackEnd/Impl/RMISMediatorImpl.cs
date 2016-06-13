@@ -1071,7 +1071,8 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
         public int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo)
         {
-            return rmisGateway.GetBrokenRiceStockInfoCount(CustId, yesNo);
+            //return rmisGateway.GetBrokenRiceStockInfoCount(CustId, yesNo);
+            return 0;
         }
         public int GetMRiceProductionTypeCount(string CustId, YesNo yesNo)
         {
@@ -1108,6 +1109,38 @@ namespace RMIS.Mediator.BackEnd.Impl
         public int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockUsedCount(CustId, yesNo);
+        }
+
+
+        public int GetRiceProductTotal(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetRiceProductTotal(CustId, yesNo);
+        }
+
+        public int GetRiceProductUsedTotal(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetRiceProductUsedTotal(CustId, yesNo);
+        }
+
+        public int GetBrokenRiceProductTotal(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetBrokenRiceProductTotal(CustId, yesNo);
+        }
+
+        public int GetBrokenRiceProductUsedTotal(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetBrokenRiceProductUsedTotal(CustId, yesNo);
+        }
+
+
+        public int GetRiceProductTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
+        {
+            return rmisGateway.GetRiceProductTotal(CustId,UnitsTypeID,RiceProdTypeID,RiceBrandId, yesNo);
+        }
+
+        public int GetRiceProductUsedTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
+        {
+            return rmisGateway.GetRiceProductUsedTotal(CustId, UnitsTypeID, RiceProdTypeID, RiceBrandId, yesNo);
         }
     }
 }

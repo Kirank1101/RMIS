@@ -1089,6 +1089,50 @@ namespace RMIS.Business
             return listTotlaPaddyStock.OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
+
+        public List<WidgetDTO> GetTotalRiceStock()
+        {
+            int totalStockSum = GetRiceStockTotalSum();  
+            List<WidgetDTO> listTotlaPaddyStock = new List<WidgetDTO>();
+            List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
+            {
+                foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
+                {
+                    List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                    if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
+                    {
+                      foreach (MRiceBrandDetailsEntity objMRiceBrandDetailsEntity in listMRiceBrandDetailsEntity)
+                       {
+
+                        List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                        if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+                        {
+                            // <br /> <b></b> &nbsp;
+                            foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                            {
+                                int riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                                int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                                riceSum = riceSum - riceUsedSum;
+                                //if (paddySum > 0)
+                                //{
+                                WidgetDTO objTotlaPaddyStock = new WidgetDTO();
+                                objTotlaPaddyStock.Headerone = objMRiceProductionTypeEntity.RiceType + " (" + objMRiceBrandDetailsEntity.Name +")";
+                                objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
+                                objTotlaPaddyStock.Value = riceSum.ToString();
+                                double percentage = (((double)riceSum / ((double)totalStockSum)));
+                                objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
+                                listTotlaPaddyStock.Add(objTotlaPaddyStock);
+                                // }
+                            }
+                        }
+                        }
+                    }
+                }
+            }
+            return listTotlaPaddyStock.OrderByDescending(A => A.Value).Take(5).ToList();
+        }
+
         public int GetPaddyStockTotalSum()
         {
             int paddySum = 0;
@@ -1107,6 +1151,26 @@ namespace RMIS.Business
             if (paddyCount > paddyUsedCount)
                 paddyCount = paddyCount - paddyUsedCount;
             return paddyCount;
+        }
+
+        public int GetRiceStockTotalSum()
+        {
+            int riceSum = 0;
+            riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            if (riceSum > riceUsedSum)
+                riceSum = riceSum - riceUsedSum;
+            return riceSum;
+        }
+
+        public int GetBrockenRiceStockTotalSum()
+        {
+            int riceSum = 0;
+            riceSum = imp.GetBrokenRiceProductTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            int riceUsedSum = imp.GetBrokenRiceProductUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            if (riceSum > riceUsedSum)
+                riceSum = riceSum - riceUsedSum;
+            return riceSum;
         }
 
 
