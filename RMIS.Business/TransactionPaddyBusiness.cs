@@ -1072,8 +1072,8 @@ namespace RMIS.Business
                             int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
                             paddySum = paddySum - paddyUsedSum;
-                            if (paddySum > 0)
-                            {
+                            //if (paddySum > 0)
+                            //{
                                 WidgetDTO objTotlaPaddyStock = new WidgetDTO();
                                 objTotlaPaddyStock.Headerone = objMPaddyTypeEntity.Name;
                                 objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
@@ -1081,7 +1081,7 @@ namespace RMIS.Business
                                 double percentage = (((double)paddySum / ((double)totalStockSum)));
                                 objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
                                 listTotlaPaddyStock.Add(objTotlaPaddyStock);
-                            }
+                           // }
                         }
                     }
                 }
