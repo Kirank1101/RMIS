@@ -84,6 +84,8 @@ namespace RMIS.Domain.Business
         List<OtherExpensesEntity> GetAllOtherExpenses();
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfo();
         List<WidgetDTO> GetTotlaPaddyStock();
+        List<WidgetDTO> GetTotalRiceStock();
+        List<WidgetDTO> GetTotalBrokenRiceStock();
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
         int GetPaddyStockTotalSum();

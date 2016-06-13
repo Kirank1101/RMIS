@@ -445,6 +445,53 @@
             }
 
         }
+        internal int GetBrokenRiceProductTotal(string CustId, string UnitsTypeID, string BrokenRiceTypeID, YesNo yesNo)
+        {
+
+            try
+            {
+                IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(HullingTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                         .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
+                                                                          .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))                                                                          
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductTotal", ex);
+                throw;
+            }
+
+        }
+        internal int GetBrokenRiceProductUsedTotal(string CustId, string UnitsTypeID, string BrokenRiceTypeID, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                             .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
+                                                                              .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))                                                                            
+                                                                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                            ;
+
+                ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductUsedTotal", ex);
+                throw;
+            }
+
+        }
 
 
         #endregion

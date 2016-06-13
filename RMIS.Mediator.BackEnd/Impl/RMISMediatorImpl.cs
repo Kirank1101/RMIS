@@ -1135,12 +1135,23 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public int GetRiceProductTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
         {
-            return rmisGateway.GetRiceProductTotal(CustId,UnitsTypeID,RiceProdTypeID,RiceBrandId, yesNo);
+            return rmisGateway.GetRiceProductTotal(CustId, UnitsTypeID, RiceProdTypeID, RiceBrandId, yesNo);
         }
 
         public int GetRiceProductUsedTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
         {
             return rmisGateway.GetRiceProductUsedTotal(CustId, UnitsTypeID, RiceProdTypeID, RiceBrandId, yesNo);
+        }
+
+
+        public int GetBrokenRiceProductTotal(string CustId, string UnitsTypeID, string BrokenRiceTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetBrokenRiceProductTotal(CustId, UnitsTypeID, BrokenRiceTypeID, yesNo);
+        }
+
+        public int GetBrokenRiceProductUsedTotal(string CustId, string UnitsTypeID, string BrokenRiceTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetBrokenRiceProductUsedTotal(CustId, UnitsTypeID, BrokenRiceTypeID, yesNo);
         }
     }
 }
