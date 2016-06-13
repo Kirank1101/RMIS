@@ -27,7 +27,16 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime PurchaseDate { get; set; }
 
     }
+    public class BrokenRiceStockDetailsDTO
+    {
+        public string BrokenRiceTypeID { get; set; }
+        public string UnitsTypeID { get; set; }
+        public string BrokenRiceType { get; set; }
+        public string UnitsType { get; set; }
+        public int TotalBags { get; set; }
+        public double PricePerBag { get; set; }
 
+    }
     public class WidgetDTO
     {
         public WidgetDTO()

@@ -18,7 +18,7 @@ namespace RMIS.Domain.Business
            DateTime purchaseDate, double AmountPaid, DateTime PaidDate, string HandOverTo, DateTime NextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
         ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId,
                      string vehicleNo, string DriverName, int totalBags, decimal Price,
-                     DateTime purchaseDate);
+                     DateTime purchaseDate, string RiceBrandID, string UnitTypeID);
         ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid,
            DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName);
         ResultDTO SaveRiceStockInfo(string MRiceProdTypeID, string MRiceBrandID, int totalBags, int QWeight, string UnitsTypeID);
@@ -36,7 +36,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
                                          decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymnetMode,
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
-        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID);
+        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID, double Price, string MLotID);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string MRiceBrandID, string RiceType, string BrokenRiceType, string UnitsTypeID, int TotalBags, double Price);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);

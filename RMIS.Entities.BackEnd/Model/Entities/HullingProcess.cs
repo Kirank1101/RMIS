@@ -12,8 +12,10 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private string _UnitsTypeID;
         private string _MGodownID;
+        private string _MLotID;
         private Int16 _TotalBags;
         private string _ProcessedBy;
+        private double _Price;
         private DateTime _ProcessDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -44,6 +46,16 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _MGodownID; }
             set { _MGodownID = value; }
+        }
+        public virtual string MLotID
+        {
+            get { return _MLotID; }
+            set { _MLotID = value; }
+        }
+        public virtual double Price
+        {
+            get { return _Price; }
+            set { _Price = value; }
         }
         public virtual Int16 TotalBags
         {

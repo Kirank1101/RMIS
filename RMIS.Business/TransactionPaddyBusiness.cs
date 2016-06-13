@@ -180,7 +180,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, decimal Price, DateTime purchaseDate)
+        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, decimal Price, DateTime purchaseDate, string RiceBrandID, string UnitTypeID)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
             objBagStockInfoEntity.ObsInd = YesNo.N;
@@ -189,6 +189,8 @@ namespace RMIS.Business
             objBagStockInfoEntity.LastModifiedDate = DateTime.Now;
             objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");
             objBagStockInfoEntity.BagTypeID = BagTypeId;
+            objBagStockInfoEntity.MRiceBrandID = RiceBrandID;
+            objBagStockInfoEntity.UnitsTypeID = UnitTypeID;
             objBagStockInfoEntity.PurchaseDate = purchaseDate;
             objBagStockInfoEntity.Price = Price;
             objBagStockInfoEntity.SellerID = sellerId;
@@ -536,7 +538,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID, double Price, string MLotID)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -545,7 +547,9 @@ namespace RMIS.Business
             objHullingProcessEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
             objHullingProcessEntity.MGodownID = MGodownID;
+            objHullingProcessEntity.MLotID = MLotID;
             objHullingProcessEntity.TotalBags = (short)TotalBags;
+            objHullingProcessEntity.Price = Price;
             objHullingProcessEntity.ProcessDate = ProcessDate;
             objHullingProcessEntity.ProcessedBy = ProcessBy;
             objHullingProcessEntity.LastModifiedBy = provider.GetLoggedInUserId();

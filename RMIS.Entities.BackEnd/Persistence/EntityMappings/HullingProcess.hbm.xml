@@ -11,7 +11,9 @@
     <property name="CustID" column="CustID" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="MGodownID" column="MGodownID" />    
+    <property name="MLotID" column="MLotID" />    
     <property name="TotalBags" column="TotalBags" />
+    <property name="Price" column="Price" />
     <property name="ProcessedBy" column="ProcessedBy" />
     <property name="ProcessDate" column="ProcessDate" />
     <property name="Status" column="Status" />  

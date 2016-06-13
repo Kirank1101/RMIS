@@ -1,6 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BagStockInfo.ascx.cs" Inherits="BagStockInfo" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BagStockInfo.ascx.cs"
+    Inherits="BagStockInfo" %>
 <div class="table-responsive">
-<h3>Bag Stock Infor</h3>
+    <h3>
+        Bag Stock Infor</h3>
     <table>
         <tr>
             <td>
@@ -22,19 +24,23 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
+                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtVehicalNo" />
+                <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true" 
+                    Height="16px">
+                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                </asp:DropDownList>
             </td>
         </tr>
-        
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtDriverName" />
+                <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
+                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -59,6 +65,22 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtPruchaseDate" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtVehicalNo" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" ID="txtDriverName" />
             </td>
         </tr>
         <tr>

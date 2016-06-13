@@ -14,6 +14,8 @@ namespace RMIS.Domain.RiceMill
         public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
         public string MGodownID { get; set; }
+        public string MLotID { get; set; }
+        public double Price { get; set; }
         public Int16 TotalBags { get; set; }
         public string ProcessedBy { get; set; }
         public DateTime ProcessDate { get; set; }

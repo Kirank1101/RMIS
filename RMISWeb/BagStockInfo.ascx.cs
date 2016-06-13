@@ -5,10 +5,11 @@ using RMIS.Domain.DataTranserClass;
 
 public partial class BagStockInfo : BaseUserControl
 {
-    IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             
     protected void Page_Load(object sender, EventArgs e)
     {
+        IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
         if (!IsControlPostBack)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
@@ -22,6 +23,17 @@ public partial class BagStockInfo : BaseUserControl
             ddlBagType.DataValueField = "Id";
             ddlBagType.DataBind();
 
+            IMasterPaddyBusiness impb2 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            ddlUnitsType.DataSource = impb2.GetMUnitsTypeEntities();
+            ddlUnitsType.DataTextField = "UnitsType";
+            ddlUnitsType.DataValueField = "Id";
+            ddlUnitsType.DataBind();
+
+            ddlRiceBrand.DataSource = impb.GetRiceBrandEntities();
+            ddlRiceBrand.DataTextField = "RiceBrand";
+            ddlRiceBrand.DataValueField = "Id";
+            ddlRiceBrand.DataBind();
+
             
         }
     }
@@ -32,7 +44,7 @@ public partial class BagStockInfo : BaseUserControl
             && !string.IsNullOrEmpty(txtpricePerBag.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtpricePerBag.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
+            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtpricePerBag.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
             ClearAllInputFields();
 
         }

@@ -190,7 +190,14 @@ namespace AllInOne.Common.Library.Util
             Int32.TryParse(prefixText, out value);
             return value;
         }
-
+        public static double ConvertToDouble(this string prefixText)
+        {
+            if (string.IsNullOrEmpty(prefixText))
+                return 0;
+            double value = 0;
+            double.TryParse(prefixText, out value);
+            return value;
+        }
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>
     (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
