@@ -13,6 +13,7 @@ namespace RMIS.Domain.RiceMill
         public string PaddyTypeID { get; set; }
         public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
+        public string MGodownID { get; set; }
         public Int16 TotalBags { get; set; }
         public string ProcessedBy { get; set; }
         public DateTime ProcessDate { get; set; }

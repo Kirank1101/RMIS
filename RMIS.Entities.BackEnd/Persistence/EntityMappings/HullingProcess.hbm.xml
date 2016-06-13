@@ -10,6 +10,7 @@
     <property name="PaddyTypeID" column="PaddyTypeID" />
     <property name="CustID" column="CustID" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
+    <property name="MGodownID" column="MGodownID" />    
     <property name="TotalBags" column="TotalBags" />
     <property name="ProcessedBy" column="ProcessedBy" />
     <property name="ProcessDate" column="ProcessDate" />

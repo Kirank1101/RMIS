@@ -12,8 +12,7 @@ namespace RMIS.Entities.BackEnd
         private string _ProductTypeID;
         private string _MRiceProdTypeID;
         private string _BrokenRiceTypeID;
-        private char _IsDust;
-        private string _PaddyTypeID;
+        private string _MRiceBrandID;
         private string _CustID;
         private string _UnitsTypeID;
         private Int16 _TotalBags;
@@ -49,20 +48,15 @@ namespace RMIS.Entities.BackEnd
             get { return _BrokenRiceTypeID; }
             set { _BrokenRiceTypeID = value; }
         }
-        public virtual char IsDust
+        public virtual string MRiceBrandID
         {
-            get { return _IsDust; }
-            set { _IsDust = value; }
+            get { return _MRiceBrandID; }
+            set { _MRiceBrandID = value; }
         }
         public virtual double Price
         {
             get { return _Price; }
             set { _Price = value; }
-        }
-        public virtual string PaddyTypeID
-        {
-            get { return _PaddyTypeID; }
-            set { _PaddyTypeID = value; }
         }
         public virtual string CustID
         {

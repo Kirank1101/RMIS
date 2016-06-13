@@ -24,6 +24,17 @@
         </tr>
         <tr>
             <td>
+                <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlGodownName" runat="server" AppendDataBoundItems="true">
+                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
                 <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
             </td>
             <td>
@@ -115,6 +126,11 @@
                     <tr>
                         <td>
                             <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>

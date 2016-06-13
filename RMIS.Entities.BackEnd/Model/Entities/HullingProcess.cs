@@ -11,6 +11,7 @@ namespace RMIS.Entities.BackEnd
         private string _PaddyTypeID; 
         private string _CustID;
         private string _UnitsTypeID;
+        private string _MGodownID;
         private Int16 _TotalBags;
         private string _ProcessedBy;
         private DateTime _ProcessDate;
@@ -38,6 +39,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _UnitsTypeID; }
             set { _UnitsTypeID = value; }
+        }
+        public virtual string MGodownID
+        {
+            get { return _MGodownID; }
+            set { _MGodownID = value; }
         }
         public virtual Int16 TotalBags
         {

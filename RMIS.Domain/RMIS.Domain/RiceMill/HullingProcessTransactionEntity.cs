@@ -14,9 +14,8 @@ namespace RMIS.Domain.RiceMill
         public string ProductTypeID { get; set; }
         public string MRiceProdTypeID { get; set; }
         public string BrokenRiceTypeID { get; set; }
-        public char IsDust { get; set; }
-        public double Price { get; set; }
-        public string PaddyTypeID { get; set; }
+        public string MRiceBrandID { get; set; }
+        public double Price { get; set; }        
         public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
         public Int16 TotalBags { get; set; }        

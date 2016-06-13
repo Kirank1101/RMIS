@@ -536,7 +536,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -544,6 +544,7 @@ namespace RMIS.Business
             objHullingProcessEntity.PaddyTypeID = PaddyTypeID;
             objHullingProcessEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
+            objHullingProcessEntity.MGodownID = MGodownID;
             objHullingProcessEntity.TotalBags = (short)TotalBags;
             objHullingProcessEntity.ProcessDate = ProcessDate;
             objHullingProcessEntity.ProcessedBy = ProcessBy;
@@ -570,17 +571,16 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string PaddyTypeID, string RiceType, string BrokenRiceType, char IsDust, string UnitsTypeID, int TotalBags, double Price)
+        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string MRiceBrandID, string RiceType, string BrokenRiceType, string UnitsTypeID, int TotalBags, double Price)
         {
             HullingProcessTransactionEntity objHullingProcessTransEntity = new HullingProcessTransactionEntity();
             objHullingProcessTransEntity.ObsInd = YesNo.N;
             objHullingProcessTransEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
             objHullingProcessTransEntity.HullingProcessID = HullingProcessID;
             objHullingProcessTransEntity.ProductTypeID = ProductTypeID;
-            objHullingProcessTransEntity.PaddyTypeID = PaddyTypeID;
+            objHullingProcessTransEntity.MRiceBrandID = MRiceBrandID;
             objHullingProcessTransEntity.MRiceProdTypeID = RiceType;
             objHullingProcessTransEntity.BrokenRiceTypeID = BrokenRiceType;
-            objHullingProcessTransEntity.IsDust = IsDust;
             objHullingProcessTransEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessTransEntity.UnitsTypeID = UnitsTypeID;
             objHullingProcessTransEntity.TotalBags = (short)TotalBags;

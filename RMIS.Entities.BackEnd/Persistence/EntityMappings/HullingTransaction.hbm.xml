@@ -8,10 +8,9 @@
       <generator class="assigned"/>
     </id>
     <property name="HullingProcessID" column="HullingProcessID" />
-    <property name="PaddyTypeID" column="PaddyTypeID" />
     <property name="MRiceProdTypeID" column="MRiceProdTypeID" />
     <property name="BrokenRiceTypeID" column="BrokenRiceTypeID" />
-    <property name="IsDust" column="IsDust" />
+    <property name="MRiceBrandID" column="MRiceBrandID" />
     <property name="ProductTypeID" column="ProductTypeID" />
     <property name="CustID" column="CustID" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
