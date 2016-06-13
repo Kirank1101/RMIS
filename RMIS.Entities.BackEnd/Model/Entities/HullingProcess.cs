@@ -13,7 +13,7 @@ namespace RMIS.Entities.BackEnd
         private string _UnitsTypeID;
         private string _MGodownID;
         private string _MLotID;
-        private Int16 _TotalBags;
+        private int _TotalBags;
         private string _ProcessedBy;
         private double _Price;
         private DateTime _ProcessDate;
@@ -57,7 +57,7 @@ namespace RMIS.Entities.BackEnd
             get { return _Price; }
             set { _Price = value; }
         }
-        public virtual Int16 TotalBags
+        public virtual int TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }

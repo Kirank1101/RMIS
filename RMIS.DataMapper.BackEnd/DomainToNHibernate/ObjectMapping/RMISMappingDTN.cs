@@ -834,7 +834,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 Mapper.CreateMap<HullingProcessTransactionEntity, HullingTransaction>()
                     .ForMember(dest => dest.HullingTransID, opts => opts.MapFrom(src => src.HullingTransID))
                     .ForMember(dest => dest.HullingProcessID, opts => opts.MapFrom(src => src.HullingProcessID))
-                    .ForMember(dest => dest.ProductTypeID, opts => opts.MapFrom(src => src.ProductTypeID))
                     .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
                     .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))
                     .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))

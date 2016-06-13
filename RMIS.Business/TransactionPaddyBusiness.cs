@@ -221,7 +221,7 @@ namespace RMIS.Business
             objRiceStockInfoEntity.RiceStockID = CommonUtil.CreateUniqueID("RS");
             objRiceStockInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
             objRiceStockInfoEntity.MRiceBrandID = MRiceBrandID;
-            objRiceStockInfoEntity.QWeight = (short)QWeight;
+            //objRiceStockInfoEntity.QWeight = (short)QWeight;
             objRiceStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objRiceStockInfoEntity.TotalBags = (short)totalBags;
             try
@@ -278,7 +278,6 @@ namespace RMIS.Business
             objDustStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objDustStockInfoEntity.LastModifiedDate = DateTime.Now;
             objDustStockInfoEntity.DustStockID = CommonUtil.CreateUniqueID("DU");
-            objDustStockInfoEntity.QWeight = (short)QWeight;
             objDustStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objDustStockInfoEntity.TotalBags = (short)totalBags;
             try
@@ -538,7 +537,9 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, int TotalBags, string ProcessBy, DateTime ProcessDate, char Status, string MGodownID, double Price, string MLotID)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy,
+                                         string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, string BRTypeID, string BRUnitsTypeID,
+                                         int BRTotalBags, double BRPriceperbag, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, char Status)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -546,19 +547,93 @@ namespace RMIS.Business
             objHullingProcessEntity.PaddyTypeID = PaddyTypeID;
             objHullingProcessEntity.CustID = provider.GetCurrentCustomerId();
             objHullingProcessEntity.UnitsTypeID = UnitsTypeID;
-            objHullingProcessEntity.MGodownID = MGodownID;
-            objHullingProcessEntity.MLotID = MLotID;
-            objHullingProcessEntity.TotalBags = (short)TotalBags;
-            objHullingProcessEntity.Price = Price;
-            objHullingProcessEntity.ProcessDate = ProcessDate;
-            objHullingProcessEntity.ProcessedBy = ProcessBy;
+            objHullingProcessEntity.MGodownID = GodownID;
+            objHullingProcessEntity.MLotID = LotID;
+            objHullingProcessEntity.TotalBags = TotalPaddyBags;
+            objHullingProcessEntity.Price = paddyprice;
+            objHullingProcessEntity.ProcessDate = HullingProcessDate;
+            objHullingProcessEntity.ProcessedBy = HullingProcessBy;
             objHullingProcessEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objHullingProcessEntity.LastModifiedDate = DateTime.Now;
             objHullingProcessEntity.Status = Status;
+
+            
+            HullingProcessTransactionEntity RiceTranEntity = new HullingProcessTransactionEntity();
+            RiceTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+            RiceTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
+            RiceTranEntity.MRiceProdTypeID = RiceTypeID;
+            RiceTranEntity.MRiceBrandID = RiceBrandID;
+            RiceTranEntity.CustID = provider.GetCurrentCustomerId();
+            RiceTranEntity.UnitsTypeID = riceUnittypeID;
+            RiceTranEntity.TotalBags = ricetotalbags;
+            RiceTranEntity.Price = 0;
+            RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            RiceTranEntity.LastModifiedDate = DateTime.Now;
+            RiceTranEntity.ObsInd = YesNo.N;
+
+            HullingProcessTransactionEntity BRTranEntity = new HullingProcessTransactionEntity();
+            BRTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+            BRTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
+            BRTranEntity.BrokenRiceTypeID = BRTypeID;
+            BRTranEntity.CustID = provider.GetCurrentCustomerId();
+            BRTranEntity.UnitsTypeID = BRUnitsTypeID;
+            BRTranEntity.TotalBags = BRTotalBags;
+            BRTranEntity.Price = BRPriceperbag;
+            BRTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            BRTranEntity.LastModifiedDate = DateTime.Now;
+            BRTranEntity.ObsInd = YesNo.N;
+
+            HullingProcessTransactionEntity DustTranEntity = new HullingProcessTransactionEntity();
+            DustTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+            DustTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
+            DustTranEntity.CustID = provider.GetCurrentCustomerId();
+            DustTranEntity.UnitsTypeID = DustUnitsTypeID;
+            DustTranEntity.TotalBags = DustTotalBags;
+            DustTranEntity.Price = DustPriceperbag;
+            DustTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            DustTranEntity.LastModifiedDate = DateTime.Now;
+            DustTranEntity.ObsInd = YesNo.N;
+
+            RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
+            Ricestockinfo.RiceStockID = RiceTranEntity.HullingTransID;
+            Ricestockinfo.MRiceProdTypeID = RiceTranEntity.MRiceProdTypeID;
+            Ricestockinfo.MRiceBrandID = RiceTranEntity.MRiceBrandID;
+            Ricestockinfo.CustID = provider.GetCurrentCustomerId();
+            Ricestockinfo.UnitsTypeID = RiceTranEntity.UnitsTypeID;
+            Ricestockinfo.TotalBags = RiceTranEntity.TotalBags;
+            Ricestockinfo.LastModifiedBy = provider.GetLoggedInUserId();
+            Ricestockinfo.LastModifiedDate = DateTime.Now;
+            Ricestockinfo.ObsInd = YesNo.N;
+
+            BrokenRiceStockInfoEntity BroRiceStock = new BrokenRiceStockInfoEntity();
+            BroRiceStock.BrokenRiceStockID = BRTranEntity.HullingTransID;
+            BroRiceStock.BrokenRiceTypeID = BRTranEntity.BrokenRiceTypeID;
+            BroRiceStock.CustID = provider.GetCurrentCustomerId();
+            BroRiceStock.UnitsTypeID = BRTranEntity.UnitsTypeID;
+            BroRiceStock.TotalBags = BRTranEntity.TotalBags;
+            BroRiceStock.LastModifiedBy = provider.GetLoggedInUserId();
+            BroRiceStock.LastModifiedDate = DateTime.Now;
+            BroRiceStock.ObsInd = YesNo.N;
+
+            DustStockInfoEntity DustStockInfo =new DustStockInfoEntity();
+            DustStockInfo.DustStockID=DustTranEntity.HullingTransID;
+            DustStockInfo.CustID=provider.GetCurrentCustomerId();
+            DustStockInfo.UnitsTypeID=DustTranEntity.UnitsTypeID;
+            DustStockInfo.TotalBags=DustTranEntity.TotalBags;
+            DustStockInfo.LastModifiedBy = provider.GetLoggedInUserId();
+            DustStockInfo.LastModifiedDate = DateTime.Now;
+            DustStockInfo.ObsInd = YesNo.N;
+
             try
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);
+                imp.SaveOrUpdateHullingProcessTransInfoEntity(RiceTranEntity, false);
+                imp.SaveOrUpdateHullingProcessTransInfoEntity(BRTranEntity, false);
+                imp.SaveOrUpdateHullingProcessTransInfoEntity(DustTranEntity, false);
+                imp.SaveOrUpdateRiceStockInfoEntity(Ricestockinfo, false);
+                imp.SaveOrUpdateBrokenRiceStockInfoEntity(BroRiceStock, false);
+                imp.SaveOrUpdateDustStockInfoEntity(DustStockInfo,false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -581,7 +656,7 @@ namespace RMIS.Business
             objHullingProcessTransEntity.ObsInd = YesNo.N;
             objHullingProcessTransEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
             objHullingProcessTransEntity.HullingProcessID = HullingProcessID;
-            objHullingProcessTransEntity.ProductTypeID = ProductTypeID;
+            //objHullingProcessTransEntity.ProductTypeID = ProductTypeID;
             objHullingProcessTransEntity.MRiceBrandID = MRiceBrandID;
             objHullingProcessTransEntity.MRiceProdTypeID = RiceType;
             objHullingProcessTransEntity.BrokenRiceTypeID = BrokenRiceType;

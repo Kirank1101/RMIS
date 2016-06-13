@@ -11,7 +11,6 @@
     <property name="MRiceProdTypeID" column="MRiceProdTypeID" />
     <property name="BrokenRiceTypeID" column="BrokenRiceTypeID" />
     <property name="MRiceBrandID" column="MRiceBrandID" />
-    <property name="ProductTypeID" column="ProductTypeID" />
     <property name="CustID" column="CustID" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="TotalBags" column="TotalBags" />

@@ -9,13 +9,12 @@ namespace RMIS.Entities.BackEnd
     {
         private string _HullingTransID;
         private string _HullingProcessID;
-        private string _ProductTypeID;
         private string _MRiceProdTypeID;
         private string _BrokenRiceTypeID;
         private string _MRiceBrandID;
         private string _CustID;
         private string _UnitsTypeID;
-        private Int16 _TotalBags;
+        private int _TotalBags;
         private double _Price;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -32,11 +31,6 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _HullingProcessID; }
             set { _HullingProcessID = value; }
-        }
-        public virtual string ProductTypeID
-        {
-            get { return _ProductTypeID; }
-            set { _ProductTypeID = value; }
         }
         public virtual string MRiceProdTypeID
         {
@@ -68,7 +62,7 @@ namespace RMIS.Entities.BackEnd
             get { return _UnitsTypeID; }
             set { _UnitsTypeID = value; }
         }
-        public virtual Int16 TotalBags
+        public virtual int TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }

@@ -9,8 +9,7 @@ namespace RMIS.Entities.BackEnd
     {
         private string _DustStockID;
         private string _CustID;
-        private Int16 _TotalBags; 
-        private Int16 _QWeight;
+        private int _TotalBags; 
         private string _UnitsTypeID;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -26,15 +25,10 @@ namespace RMIS.Entities.BackEnd
             get { return _CustID; }
             set { _CustID = value; }
         }
-        public virtual Int16 TotalBags
+        public virtual int TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }
-        }
-        public virtual Int16 QWeight
-        {
-            get { return _QWeight; }
-            set { _QWeight = value; }
         }
         public virtual string UnitsTypeID
         {

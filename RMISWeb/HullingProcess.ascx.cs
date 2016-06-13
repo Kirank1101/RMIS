@@ -7,31 +7,62 @@ using AllInOne.Common.Library.Util;
 
 public partial class HullingProcess : BaseUserControl
 {
-    IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
             base.Header = "Paddy Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-
+            IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+            
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";
             ddlPaddyType.DataValueField = "Id";
             ddlPaddyType.DataBind();
-
-            ddlUnitsType.DataSource = impb.GetMUnitsTypeEntities();
-            ddlUnitsType.DataTextField = "UnitsType";
-            ddlUnitsType.DataValueField = "Id";
-            ddlUnitsType.DataBind();
-
-            IMasterPaddyBusiness impb1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            ddlGodownName.DataSource = impb1.GetMGodownTypeEntities();
+            
+            ddlGodownName.DataSource = impb.GetMGodownTypeEntities();
             ddlGodownName.DataTextField = "GodownType";
             ddlGodownName.DataValueField = "Id";
             ddlGodownName.DataBind();
 
+
+            List<MUnitsTypeDTO> MUnitTypeDto = new List<MUnitsTypeDTO>();
+            MUnitTypeDto = impb.GetMUnitsTypeEntities();
+            
+            ddlUnitsType.DataSource = MUnitTypeDto;
+            ddlUnitsType.DataTextField = "UnitsType";
+            ddlUnitsType.DataValueField = "Id";
+            ddlUnitsType.DataBind();
+
+            ddlRiceType.DataSource = impb.GetRiceProductEntities();
+            ddlRiceType.DataTextField = "RiceType";
+            ddlRiceType.DataValueField = "Id";
+            ddlRiceType.DataBind();
+            ddlRiceBrand.DataSource = impb.GetRiceBrandEntities();
+            ddlRiceBrand.DataTextField = "RiceBrand";
+            ddlRiceBrand.DataValueField = "Id";
+            ddlRiceBrand.DataBind();
+            ddlriceUnittype.DataSource = MUnitTypeDto;
+            ddlriceUnittype.DataTextField = "UnitsType";
+            ddlriceUnittype.DataValueField = "Id";
+            ddlriceUnittype.DataBind();
+
+            ddlBRType.DataSource = impb.GetMBrokenRiceTypeEntities();
+            ddlBRType.DataTextField = "BrokenRiceType";
+            ddlBRType.DataValueField = "Id";
+            ddlBRType.DataBind(); 
+            ddlBRUnitsType.DataSource = MUnitTypeDto;
+            ddlBRUnitsType.DataTextField = "UnitsType";
+            ddlBRUnitsType.DataValueField = "Id";
+            ddlBRUnitsType.DataBind();
+
+            ddlDustUnitsType.DataSource = MUnitTypeDto;
+            ddlDustUnitsType.DataTextField = "UnitsType";
+            ddlDustUnitsType.DataValueField = "Id";
+            ddlDustUnitsType.DataBind();
+
+            
         }
     }
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
@@ -54,7 +85,11 @@ public partial class HullingProcess : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, Convert.ToInt16(txtTotalBags.Text.Trim()), txtHullingProcessBy.Text.Trim(), Convert.ToDateTime(txtHullingProcessDate.Text.Trim()), 'P', ddlGodownName.SelectedValue, Convert.ToDouble(txtpaddyprice.Text.Trim()), ddlLotDetails.SelectedValue);
+            
+            resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue,
+                txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(),
+                ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), ddlBRType.SelectedValue, ddlBRUnitsType.SelectedValue,
+                txtBRTotalBags.Text.ConvertToInt(), txtBRPriceperbag.Text.ConvertToDouble(), ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble(), 'P');
 
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
@@ -94,6 +129,7 @@ public partial class HullingProcess : BaseUserControl
         VststateBrokenRiceStockDetail = lstBrokenRiceStockDetail;
         rptBrokenRiceDetails.DataSource = lstBrokenRiceStockDetail;
         rptBrokenRiceDetails.DataBind();
+        //clear data
         ddlBRType.SelectedIndex = 0;
         ddlBRUnitsType.SelectedIndex = 0;
         txtBRPriceperbag.Text = string.Empty;

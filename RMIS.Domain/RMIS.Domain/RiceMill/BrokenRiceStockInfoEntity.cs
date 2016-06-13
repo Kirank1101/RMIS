@@ -12,7 +12,7 @@ namespace RMIS.Domain.RiceMill
         public string BrokenRiceStockID { get; set; }
         public string BrokenRiceTypeID { get; set; }
         public string CustID { get; set; }
-        public Int16 TotalBags { get; set; }
+        public int TotalBags { get; set; }
         public Int16 QWeight { get; set; }
         public string UnitsTypeID { get; set; }
         #region Methods

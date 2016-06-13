@@ -9,7 +9,6 @@
     </id>
     <property name="CustID" column="CustID" />
     <property name="TotalBags" column="TotalBags" />
-    <property name="QWeight" column="QWeight" />
     <property name="UnitsTypeID" column="UnitsTypeID" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
