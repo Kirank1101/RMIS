@@ -177,6 +177,8 @@ namespace AllInOne.Common.DataAccess.NHibernate
         /// <param name="detachedCriteria">The detached criteria.</param>
         /// <returns></returns>
         Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName);
+
+        double GetSumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName);
         #endregion Methods
     }
 }

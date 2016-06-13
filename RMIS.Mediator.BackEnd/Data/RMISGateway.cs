@@ -496,6 +496,93 @@
 
         #endregion
 
+
+        #region Paddy Amount Due
+        internal double GetPaddyTotalAmount(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "Price");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyTotalAmountDue", ex);
+                throw;
+            }
+
+        }
+        internal double GetPaddyTotalAmountPaid(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "AmountPaid");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyTotalAmountDue", ex);
+                throw;
+            }
+
+        }
+        internal double GetPaddyTotalAmount(string CustId,string SellerId, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("SellerID", SellerId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "Price");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyTotalAmount", ex);
+                throw;
+            }
+
+        }
+        internal double GetPaddyTotalAmountPaid(string CustId,string SellerId,  YesNo yesNo)
+        {
+            try
+            {
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.Eq("SellerID", SellerId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "AmountPaid");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyTotalAmountDue", ex);
+                throw;
+            }
+
+        } 
+        #endregion
+
+
         internal int GetPaddyStockEntityTotal(string CustId, string UnitsTypeID, string PaddyTypeID, YesNo yesNo)
         {
             try

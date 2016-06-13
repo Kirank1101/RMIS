@@ -86,6 +86,7 @@ namespace RMIS.Domain.Business
         List<WidgetDTO> GetTotlaPaddyStock();
         List<WidgetDTO> GetTotalRiceStock();
         List<WidgetDTO> GetTotalBrokenRiceStock();
+        List<WidgetDTO> GetPaddyTotalAmountDueWidget();
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
         int GetPaddyStockTotalSum();
@@ -93,5 +94,6 @@ namespace RMIS.Domain.Business
         int GetMRiceProductionTypeCount();
         int GetRiceStockTotalSum();
         int GetBrockenRiceStockTotalSum();
+        double GetPaddyTotalAmountDue();
     }
 }

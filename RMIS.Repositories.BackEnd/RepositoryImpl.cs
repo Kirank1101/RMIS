@@ -236,6 +236,11 @@ namespace RMIS.Repositories.BackEnd
             return this.INHibernateRepository.GetSumResults(detachedCriteria, columnName);
         }
 
+        public double GetSumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName)
+        {
+            return this.INHibernateRepository.GetSumResultsAsDouble(detachedCriteria, columnName);
+        }
+
         /// <summary>
         /// Loads the entity.
         /// </summary>

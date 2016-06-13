@@ -1153,5 +1153,25 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBrokenRiceProductUsedTotal(CustId, UnitsTypeID, BrokenRiceTypeID, yesNo);
         }
+
+        public double GetPaddyTotalAmount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyTotalAmount(CustId, yesNo);
+        }
+
+        public double GetPaddyTotalAmountPaid(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyTotalAmountPaid(CustId, yesNo);
+        }
+
+        public double GetPaddyTotalAmount(string CustId, string SellerId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyTotalAmount(CustId, SellerId, yesNo);
+        }
+
+        public double GetPaddyTotalAmountPaid(string CustId, string SellerId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyTotalAmountPaid(CustId, SellerId, yesNo);
+        }
     }
 }

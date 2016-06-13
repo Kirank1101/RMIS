@@ -8,20 +8,17 @@ using RMIS.Domain.Constant;
 using System.Collections.Generic;
 
 
-public partial class Widget_TopTiles : BaseUserControl
-{
+public partial class Widget_TotalAmountDue : BaseUserControl
+{          
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
             Header = "";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            //imp.GetPaddyStockDTO(
-            lblPaddyStock.Text = Convert.ToString(imp.GetPaddyStockTotalSum());
-            lblRiceStock.Text = Convert.ToString(imp.GetRiceStockTotalSum());
-            lblBrokenRiceStock.Text = Convert.ToString(imp.GetBrockenRiceStockTotalSum());
-            ltrAmountDue.Text = Convert.ToString(imp.GetPaddyTotalAmountDue());
+            rptWidget.DataSource = imp.GetPaddyTotalAmountDueWidget();
+            rptWidget.DataBind();  
         }
     }
-
+   
 }

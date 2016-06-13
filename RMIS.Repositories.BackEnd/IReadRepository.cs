@@ -89,6 +89,8 @@ namespace RMIS.Repositories.BackEnd
 
         Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName);
 
+        double GetSumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName);
+
         /// <summary>
         /// Loads the entity.
         /// </summary>
