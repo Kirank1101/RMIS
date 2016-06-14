@@ -179,6 +179,9 @@ namespace AllInOne.Common.DataAccess.NHibernate
         Int32 GetSumResults(DetachedCriteria detachedCriteria, string columnName);
 
         double GetSumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName);
+
+        double GetMultiplySumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName1, string columnName2);
+
         #endregion Methods
     }
 }

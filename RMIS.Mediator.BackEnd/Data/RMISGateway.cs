@@ -509,7 +509,7 @@
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
-                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "Price");
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
             }
             catch (Exception ex)
             {
@@ -550,7 +550,7 @@
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
-                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "Price");
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
             }
             catch (Exception ex)
             {

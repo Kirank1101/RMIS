@@ -91,6 +91,8 @@ namespace RMIS.Repositories.BackEnd
 
         double GetSumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName);
 
+        double GetMultiplySumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName1, string columnName2);
+
         /// <summary>
         /// Loads the entity.
         /// </summary>

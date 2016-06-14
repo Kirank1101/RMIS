@@ -299,6 +299,22 @@ namespace AllInOne.Common.DataAccess.NHibernate
             return Convert.ToInt32(value);
         }
 
+         /// <summary>
+        /// To get the list of items of the given type with Criteria.
+        /// </summary>
+        /// <param name="detachedCriteria">The detached criteria.</param>
+        /// <returns></returns>
+        public double GetMultiplySumResultsAsDouble(DetachedCriteria detachedCriteria, string columnName1,string columnName2)
+        {
+            ICriteria criteria = RepositoryHelper<T>.GetExecutableCriteria(this.session, detachedCriteria);
+            //return CriteriaTransformer.TransformToRowCount(criteria).UniqueResult<Int32>();
+            //return CriteriaTransformer.TransformToRowCount(criteria).FutureValue<Int32>().Value;
+            object value = criteria
+                .SetProjection(Projections.SqlProjection(string.Format("sum( {0} * {1} ) as amnt", columnName1, columnName2), new String[] { "amnt" }, new[] { NHibernateUtil.Double }))
+             .UniqueResult();
+            return Convert.ToDouble(value);
+        }
+
         /// <summary>
         /// To get the list of items of the given type with Criteria.
         /// </summary>
