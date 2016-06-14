@@ -211,82 +211,10 @@
                         <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
                         <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
                         <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
-                        <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
-                        <asp:CommandField ShowEditButton="true" />
-                        <asp:CommandField ShowDeleteButton="true" />
+                        <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />                        
+                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
                     </Columns>
                 </asp:PagingGridView>
-                <%--                <asp:GridView ID="rptBrokenRiceDetails" runat="server" AutoGenerateColumns="false"
-                    OnRowDeleting="rptPaddyType_RowDeleting">
-                    <Columns>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="lblBrokenRiceTypeID" Text='<%# Eval("BrokenRiceType") %>' />
-                                <asp:Label runat="server" ID="lblBrokenRiceType" Visible="false" Text='<%# Eval("BrokenRiceTypeID") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                <asp:Label runat="server" ID="lblHSellerName" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="lblUnitsTypeID" Visible="false" Text='<%# Eval("UnitsTypeID") %>' />
-                                <asp:Label runat="server" ID="lblUnitsType" Text='<%# Eval("UnitsType") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="LblTotalBags" Text='<%# Eval("TotalBags") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Label runat="server" ID="LblPriceperBag" Text='<%# Eval("PricePerBag") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>--%>
-                <%--                <asp:Repeater ID="rptBrokenRiceDetails" runat="server">
-                    <HeaderTemplate>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>
-                                    </th>
-                                    <th>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </thead>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tbody>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </table>
-                    </FooterTemplate>
-                </asp:Repeater>--%>
             </td>
         </tr>
     </table>

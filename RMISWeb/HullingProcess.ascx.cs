@@ -175,9 +175,8 @@ public partial class HullingProcess : BaseUserControl
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlRiceType.SelectedIndex, ddlBRType.SelectedIndex, ddlriceUnittype.SelectedIndex, ddlBRUnitsType.SelectedIndex, ddlDustUnitsType.SelectedIndex, txtricetotalbags.Text, txtBRTotalBags.Text, txtDustTotalBags.Text, txtBRPriceperbag.Text, txtDustPriceperbag.Text);
         if (resultDto.IsSuccess)
         {
-
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            List<BrokenRiceStockDetailsDTO> lstBRSD=VststateBrokenRiceStockDetail;
+            List<BrokenRiceStockDetailsDTO> lstBRSD = GetBrokenRiceStockDetails(); 
             resultDto = imp.SaveHullingProcessTransInfo("", ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), lstBRSD, ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble());
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
@@ -187,6 +186,19 @@ public partial class HullingProcess : BaseUserControl
         {
             SetMessage(resultDto);
         }
+    }
+
+    private List<BrokenRiceStockDetailsDTO> GetBrokenRiceStockDetails()
+    {
+        List<BrokenRiceStockDetailsDTO> lstBRSD = new List<BrokenRiceStockDetailsDTO>();
+        lstBRSD = VststateBrokenRiceStockDetail;
+        BrokenRiceStockDetailsDTO BRSD = new BrokenRiceStockDetailsDTO();
+        BRSD.BrokenRiceTypeID = ddlBRType.SelectedValue;
+        BRSD.UnitsTypeID = ddlBRUnitsType.SelectedValue;
+        BRSD.TotalBags = txtBRTotalBags.Text.ConvertToInt();
+        BRSD.PricePerBag = txtBRPriceperbag.Text.ConvertToDouble();
+        lstBRSD.Add(BRSD);
+        return lstBRSD;
     }
     private void ClearAllInputFields()
     {
