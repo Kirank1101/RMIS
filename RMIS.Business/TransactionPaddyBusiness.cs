@@ -537,9 +537,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy,
-                                         string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, string BRTypeID, string BRUnitsTypeID,
-                                         int BRTotalBags, double BRPriceperbag, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, char Status)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, char Status)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -557,83 +555,12 @@ namespace RMIS.Business
             objHullingProcessEntity.LastModifiedDate = DateTime.Now;
             objHullingProcessEntity.Status = Status;
 
+
             
-            HullingProcessTransactionEntity RiceTranEntity = new HullingProcessTransactionEntity();
-            RiceTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
-            RiceTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
-            RiceTranEntity.MRiceProdTypeID = RiceTypeID;
-            RiceTranEntity.MRiceBrandID = RiceBrandID;
-            RiceTranEntity.CustID = provider.GetCurrentCustomerId();
-            RiceTranEntity.UnitsTypeID = riceUnittypeID;
-            RiceTranEntity.TotalBags = ricetotalbags;
-            RiceTranEntity.Price = 0;
-            RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            RiceTranEntity.LastModifiedDate = DateTime.Now;
-            RiceTranEntity.ObsInd = YesNo.N;
-
-            HullingProcessTransactionEntity BRTranEntity = new HullingProcessTransactionEntity();
-            BRTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
-            BRTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
-            BRTranEntity.BrokenRiceTypeID = BRTypeID;
-            BRTranEntity.CustID = provider.GetCurrentCustomerId();
-            BRTranEntity.UnitsTypeID = BRUnitsTypeID;
-            BRTranEntity.TotalBags = BRTotalBags;
-            BRTranEntity.Price = BRPriceperbag;
-            BRTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            BRTranEntity.LastModifiedDate = DateTime.Now;
-            BRTranEntity.ObsInd = YesNo.N;
-
-            HullingProcessTransactionEntity DustTranEntity = new HullingProcessTransactionEntity();
-            DustTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
-            DustTranEntity.HullingProcessID = objHullingProcessEntity.HullingProcessID;
-            DustTranEntity.CustID = provider.GetCurrentCustomerId();
-            DustTranEntity.UnitsTypeID = DustUnitsTypeID;
-            DustTranEntity.TotalBags = DustTotalBags;
-            DustTranEntity.Price = DustPriceperbag;
-            DustTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            DustTranEntity.LastModifiedDate = DateTime.Now;
-            DustTranEntity.ObsInd = YesNo.N;
-
-            RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
-            Ricestockinfo.RiceStockID = RiceTranEntity.HullingTransID;
-            Ricestockinfo.MRiceProdTypeID = RiceTranEntity.MRiceProdTypeID;
-            Ricestockinfo.MRiceBrandID = RiceTranEntity.MRiceBrandID;
-            Ricestockinfo.CustID = provider.GetCurrentCustomerId();
-            Ricestockinfo.UnitsTypeID = RiceTranEntity.UnitsTypeID;
-            Ricestockinfo.TotalBags = RiceTranEntity.TotalBags;
-            Ricestockinfo.LastModifiedBy = provider.GetLoggedInUserId();
-            Ricestockinfo.LastModifiedDate = DateTime.Now;
-            Ricestockinfo.ObsInd = YesNo.N;
-
-            BrokenRiceStockInfoEntity BroRiceStock = new BrokenRiceStockInfoEntity();
-            BroRiceStock.BrokenRiceStockID = BRTranEntity.HullingTransID;
-            BroRiceStock.BrokenRiceTypeID = BRTranEntity.BrokenRiceTypeID;
-            BroRiceStock.CustID = provider.GetCurrentCustomerId();
-            BroRiceStock.UnitsTypeID = BRTranEntity.UnitsTypeID;
-            BroRiceStock.TotalBags = BRTranEntity.TotalBags;
-            BroRiceStock.LastModifiedBy = provider.GetLoggedInUserId();
-            BroRiceStock.LastModifiedDate = DateTime.Now;
-            BroRiceStock.ObsInd = YesNo.N;
-
-            DustStockInfoEntity DustStockInfo =new DustStockInfoEntity();
-            DustStockInfo.DustStockID=DustTranEntity.HullingTransID;
-            DustStockInfo.CustID=provider.GetCurrentCustomerId();
-            DustStockInfo.UnitsTypeID=DustTranEntity.UnitsTypeID;
-            DustStockInfo.TotalBags=DustTranEntity.TotalBags;
-            DustStockInfo.LastModifiedBy = provider.GetLoggedInUserId();
-            DustStockInfo.LastModifiedDate = DateTime.Now;
-            DustStockInfo.ObsInd = YesNo.N;
-
             try
             {
                 imp.BeginTransaction();
-                imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);
-                imp.SaveOrUpdateHullingProcessTransInfoEntity(RiceTranEntity, false);
-                imp.SaveOrUpdateHullingProcessTransInfoEntity(BRTranEntity, false);
-                imp.SaveOrUpdateHullingProcessTransInfoEntity(DustTranEntity, false);
-                imp.SaveOrUpdateRiceStockInfoEntity(Ricestockinfo, false);
-                imp.SaveOrUpdateBrokenRiceStockInfoEntity(BroRiceStock, false);
-                imp.SaveOrUpdateDustStockInfoEntity(DustStockInfo,false);
+                imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);                
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -650,26 +577,93 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string MRiceBrandID, string RiceType, string BrokenRiceType, string UnitsTypeID, int TotalBags, double Price)
+        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags,
+                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag)
         {
-            HullingProcessTransactionEntity objHullingProcessTransEntity = new HullingProcessTransactionEntity();
-            objHullingProcessTransEntity.ObsInd = YesNo.N;
-            objHullingProcessTransEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
-            objHullingProcessTransEntity.HullingProcessID = HullingProcessID;
-            //objHullingProcessTransEntity.ProductTypeID = ProductTypeID;
-            objHullingProcessTransEntity.MRiceBrandID = MRiceBrandID;
-            objHullingProcessTransEntity.MRiceProdTypeID = RiceType;
-            objHullingProcessTransEntity.BrokenRiceTypeID = BrokenRiceType;
-            objHullingProcessTransEntity.CustID = provider.GetCurrentCustomerId();
-            objHullingProcessTransEntity.UnitsTypeID = UnitsTypeID;
-            objHullingProcessTransEntity.TotalBags = (short)TotalBags;
-            objHullingProcessTransEntity.Price = Price;
-            objHullingProcessTransEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objHullingProcessTransEntity.LastModifiedDate = DateTime.Now;
+            
             try
             {
+                #region SaveHullingTransaction
+                List<HullingProcessTransactionEntity> lstHPT = new List<HullingProcessTransactionEntity>();
+                List<BrokenRiceStockInfoEntity> lstBRStock = new List<BrokenRiceStockInfoEntity>();
+                HullingProcessTransactionEntity RiceTranEntity = new HullingProcessTransactionEntity();
+                RiceTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+                RiceTranEntity.HullingProcessID = HullingProcessID;
+                RiceTranEntity.MRiceProdTypeID = RiceTypeID;
+                RiceTranEntity.MRiceBrandID = RiceBrandID;
+                RiceTranEntity.CustID = provider.GetCurrentCustomerId();
+                RiceTranEntity.UnitsTypeID = riceUnittypeID;
+                RiceTranEntity.TotalBags = ricetotalbags;
+                RiceTranEntity.Price = 0;
+                RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                RiceTranEntity.LastModifiedDate = DateTime.Now;
+                RiceTranEntity.ObsInd = YesNo.N;
+                lstHPT.Add(RiceTranEntity);
+                foreach (BrokenRiceStockDetailsDTO BRD in listBrokenRiceDetails)
+                {
+                    HullingProcessTransactionEntity BRTranEntity = new HullingProcessTransactionEntity();
+                    BRTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+                    BRTranEntity.HullingProcessID = HullingProcessID;
+                    BRTranEntity.BrokenRiceTypeID = BRD.BrokenRiceTypeID;
+                    BRTranEntity.CustID = provider.GetCurrentCustomerId();
+                    BRTranEntity.UnitsTypeID = BRD.UnitsTypeID;
+                    BRTranEntity.TotalBags = BRD.TotalBags;
+                    BRTranEntity.Price = BRD.PricePerBag;
+                    BRTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                    BRTranEntity.LastModifiedDate = DateTime.Now;
+                    BRTranEntity.ObsInd = YesNo.N;
+                    lstHPT.Add(BRTranEntity);
+
+                    BrokenRiceStockInfoEntity BroRiceStock = new BrokenRiceStockInfoEntity();
+                    BroRiceStock.BrokenRiceStockID = BRTranEntity.HullingTransID;
+                    BroRiceStock.BrokenRiceTypeID = BroRiceStock.BrokenRiceTypeID;
+                    BroRiceStock.CustID = provider.GetCurrentCustomerId();
+                    BroRiceStock.UnitsTypeID = BroRiceStock.UnitsTypeID;
+                    BroRiceStock.TotalBags = BroRiceStock.TotalBags;
+                    BroRiceStock.LastModifiedBy = provider.GetLoggedInUserId();
+                    BroRiceStock.LastModifiedDate = DateTime.Now;
+                    BroRiceStock.ObsInd = YesNo.N;
+                    lstBRStock.Add(BroRiceStock);
+                }
+                HullingProcessTransactionEntity DustTranEntity = new HullingProcessTransactionEntity();
+                DustTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+                DustTranEntity.HullingProcessID = HullingProcessID;
+                DustTranEntity.CustID = provider.GetCurrentCustomerId();
+                DustTranEntity.UnitsTypeID = DustUnitsTypeID;
+                DustTranEntity.TotalBags = DustTotalBags;
+                DustTranEntity.Price = DustPriceperbag;
+                DustTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                DustTranEntity.LastModifiedDate = DateTime.Now;
+                DustTranEntity.ObsInd = YesNo.N;
+                lstHPT.Add(DustTranEntity);
+                #endregion
+                RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
+                Ricestockinfo.RiceStockID = RiceTranEntity.HullingTransID;
+                Ricestockinfo.MRiceProdTypeID = RiceTranEntity.MRiceProdTypeID;
+                Ricestockinfo.MRiceBrandID = RiceTranEntity.MRiceBrandID;
+                Ricestockinfo.CustID = provider.GetCurrentCustomerId();
+                Ricestockinfo.UnitsTypeID = RiceTranEntity.UnitsTypeID;
+                Ricestockinfo.TotalBags = RiceTranEntity.TotalBags;
+                Ricestockinfo.LastModifiedBy = provider.GetLoggedInUserId();
+                Ricestockinfo.LastModifiedDate = DateTime.Now;
+                Ricestockinfo.ObsInd = YesNo.N;
+
+                DustStockInfoEntity DustStockInfo = new DustStockInfoEntity();
+                DustStockInfo.DustStockID = DustTranEntity.HullingTransID;
+                DustStockInfo.CustID = provider.GetCurrentCustomerId();
+                DustStockInfo.UnitsTypeID = DustTranEntity.UnitsTypeID;
+                DustStockInfo.TotalBags = DustTranEntity.TotalBags;
+                DustStockInfo.LastModifiedBy = provider.GetLoggedInUserId();
+                DustStockInfo.LastModifiedDate = DateTime.Now;
+                DustStockInfo.ObsInd = YesNo.N;
+
                 imp.BeginTransaction();
-                imp.SaveOrUpdateHullingProcessTransInfoEntity(objHullingProcessTransEntity, false);
+                foreach (HullingProcessTransactionEntity item in lstHPT)
+                    imp.SaveOrUpdateHullingProcessTransInfoEntity(item, false);
+                imp.SaveOrUpdateRiceStockInfoEntity(Ricestockinfo, false);
+                foreach (BrokenRiceStockInfoEntity BRitem in lstBRStock)
+                    imp.SaveOrUpdateBrokenRiceStockInfoEntity(BRitem, false);
+                imp.SaveOrUpdateDustStockInfoEntity(DustStockInfo, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -1289,7 +1283,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotalBrokenRiceStock.DistinctBy(A => new {A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotalBrokenRiceStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetTotlaPaddyStock()
@@ -1326,7 +1320,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new {A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
 
@@ -1370,7 +1364,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new {A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetPaddyTotalAmountDueWidget()
@@ -1397,7 +1391,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new {A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
     }
 }

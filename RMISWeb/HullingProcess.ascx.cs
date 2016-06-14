@@ -7,7 +7,7 @@ using AllInOne.Common.Library.Util;
 using System.Web.UI.WebControls;
 
 public partial class HullingProcess : BaseUserControl
-{   
+{
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -87,10 +87,7 @@ public partial class HullingProcess : BaseUserControl
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
             resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue,
-                txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(),
-                ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), ddlBRType.SelectedValue, ddlBRUnitsType.SelectedValue,
-                txtBRTotalBags.Text.ConvertToInt(), txtBRPriceperbag.Text.ConvertToDouble(), ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble(), 'P');
-
+                txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(), 'P');
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
@@ -180,14 +177,8 @@ public partial class HullingProcess : BaseUserControl
         {
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            //Save Rice details
-            resultDto = imp.SaveHullingProcessTransInfo("", "Rice", ddlRiceBrand.SelectedValue, ddlRiceType.SelectedValue, null, ddlriceUnittype.SelectedValue, Convert.ToInt16(txtricetotalbags.Text.Trim()), 0);
-            //Save BrokenRiceDetails
-            resultDto = imp.SaveHullingProcessTransInfo("", "BrokenRice", null, null, ddlBRType.SelectedValue, ddlBRUnitsType.SelectedValue, Convert.ToInt16(txtBRTotalBags.Text.Trim()), Convert.ToDouble(txtBRPriceperbag.Text.Trim()));
-            //Save Dust Details
-            resultDto = imp.SaveHullingProcessTransInfo("", "Dust", null, null, null, ddlDustUnitsType.SelectedValue, Convert.ToInt16(txtDustTotalBags.Text.Trim()), Convert.ToDouble(txtDustPriceperbag.Text.Trim()));
-            //Hulling Process Expenses
-            resultDto = imp.SaveHullingProcessExpensesInfo("", Convert.ToDouble(txtPowerExpenses.Text.Trim()), Convert.ToDouble(txtLabourExpenses.Text.Trim()), Convert.ToDouble(txtOtherExpenses.Text.Trim()));
+            List<BrokenRiceStockDetailsDTO> lstBRSD=VststateBrokenRiceStockDetail;
+            resultDto = imp.SaveHullingProcessTransInfo("", ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), lstBRSD, ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble());
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();

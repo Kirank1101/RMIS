@@ -36,10 +36,9 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
                                          decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymnetMode,
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
-        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy,
-                                         string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, string BRTypeID, string BRUnitsTypeID,
-                                         int BRTotalBags, double BRPriceperbag, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, char Status);
-        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string ProductTypeID, string MRiceBrandID, string RiceType, string BrokenRiceType, string UnitsTypeID, int TotalBags, double Price);
+        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, char Status);
+        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, 
+            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails,string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
@@ -101,5 +100,6 @@ namespace RMIS.Domain.Business
         //ResultDTO SaveHullingProcessInfo(string PaddyType,int UnitsType,string GodownName,string Lotname,int TotalPaddyBags,double paddyprice,DateTime HullingProcessDate,string HullingProcessBy,
         //        string RiceType,string RiceBrand,int riceUnittype,int ricetotalbags,string BRType,int BRUnitsType,
         //        int BRTotalBags, double BRPriceperbag, int DustUnitsType, int DustTotalBags, double DustPriceperbag);
+
     }
 }
