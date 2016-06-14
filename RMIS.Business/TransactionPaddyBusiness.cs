@@ -566,7 +566,7 @@ namespace RMIS.Business
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() {ID=objHullingProcessEntity.HullingProcessID , IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }

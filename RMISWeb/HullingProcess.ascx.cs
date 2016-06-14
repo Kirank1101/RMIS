@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class HullingProcess : BaseUserControl
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -65,20 +66,6 @@ public partial class HullingProcess : BaseUserControl
 
         }
     }
-    protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
-    {
-        IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-
-        if (ddlGodownName.SelectedIndex > -1)
-        {
-            ddlLotDetails.Items.Clear();
-            ddlLotDetails.Items.Insert(0, "[Select]");
-            ddlLotDetails.DataSource = impb.GetLotDetailsEntities(ddlGodownName.SelectedValue);
-            ddlLotDetails.DataTextField = "LotDetails";
-            ddlLotDetails.DataValueField = "Id";
-            ddlLotDetails.DataBind();
-        }
-    }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtHullingProcessBy.Text, txtHullingProcessDate.Text);
@@ -90,42 +77,16 @@ public partial class HullingProcess : BaseUserControl
                 txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(), 'P');
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
+            {
                 ClearAllInputFields();
+                VSHullingProcessID = resultDto.ID;
+            }
         }
         else
         {
             SetMessage(resultDto);
         }
     }
-    string viewstateBrokenRiceStockDetail = "viewstateBrokenRiceStockDetail";
-    public List<BrokenRiceStockDetailsDTO> VststateBrokenRiceStockDetail
-    {
-        get
-        {
-            if (ViewState[viewstateBrokenRiceStockDetail] == null)
-                ViewState[viewstateBrokenRiceStockDetail] = new List<BrokenRiceStockDetailsDTO>();
-            return (List<BrokenRiceStockDetailsDTO>)ViewState[viewstateBrokenRiceStockDetail];
-        }
-        set
-        {
-            ViewState[viewstateBrokenRiceStockDetail] = value;
-        }
-    }
-    string viewstateCount = "GVRowID";
-    public int RowID
-    {
-        get
-        {
-            if (ViewState[viewstateCount] == null)
-                ViewState[viewstateCount] = "0";
-            return Convert.ToInt32(ViewState[viewstateCount]);
-        }
-        set
-        {
-            ViewState[viewstateCount] = value;
-        }
-    }
-
     protected void btnaddBrokenRice_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBrokenRiceStockDetails(ddlBRType.SelectedIndex, ddlBRUnitsType.SelectedIndex, txtBRTotalBags.Text, txtBRPriceperbag.Text);
@@ -154,7 +115,27 @@ public partial class HullingProcess : BaseUserControl
             txtBRTotalBags.Text = string.Empty;
         }
     }
-
+    protected void btnHullingProcess_Click(object sender, EventArgs e)
+    { }
+    protected void btnCalculate_Click(object sender, EventArgs e)
+    { }
+    protected void btnSaveClose_Click(object sender, EventArgs e)
+    {
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlRiceType.SelectedIndex, ddlBRType.SelectedIndex, ddlriceUnittype.SelectedIndex, ddlBRUnitsType.SelectedIndex, ddlDustUnitsType.SelectedIndex, txtricetotalbags.Text, txtBRTotalBags.Text, txtDustTotalBags.Text, txtBRPriceperbag.Text, txtDustPriceperbag.Text);
+        if (resultDto.IsSuccess)
+        {
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            List<BrokenRiceStockDetailsDTO> lstBRSD = GetBrokenRiceStockDetails();
+            resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), lstBRSD, ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble());
+            SetMessage(resultDto);
+            if (resultDto.IsSuccess)
+                ClearAllInputFields();
+        }
+        else
+        {
+            SetMessage(resultDto);
+        }
+    }
     protected void rptBrokenRiceDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         GridViewRow row = (GridViewRow)rptBrokenRiceDetails.Rows[e.RowIndex];
@@ -166,28 +147,20 @@ public partial class HullingProcess : BaseUserControl
         rptBrokenRiceDetails.DataSource = lstBrokenRiceStockDetail;
         rptBrokenRiceDetails.DataBind();
     }
-    protected void btnHullingProcess_Click(object sender, EventArgs e)
-    { }
-    protected void btnCalculate_Click(object sender, EventArgs e)
-    { }
-    protected void btnSaveClose_Click(object sender, EventArgs e)
+    protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlRiceType.SelectedIndex, ddlBRType.SelectedIndex, ddlriceUnittype.SelectedIndex, ddlBRUnitsType.SelectedIndex, ddlDustUnitsType.SelectedIndex, txtricetotalbags.Text, txtBRTotalBags.Text, txtDustTotalBags.Text, txtBRPriceperbag.Text, txtDustPriceperbag.Text);
-        if (resultDto.IsSuccess)
+        IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
+        if (ddlGodownName.SelectedIndex > -1)
         {
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            List<BrokenRiceStockDetailsDTO> lstBRSD = GetBrokenRiceStockDetails(); 
-            resultDto = imp.SaveHullingProcessTransInfo("", ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), lstBRSD, ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble());
-            SetMessage(resultDto);
-            if (resultDto.IsSuccess)
-                ClearAllInputFields();
-        }
-        else
-        {
-            SetMessage(resultDto);
+            ddlLotDetails.Items.Clear();
+            ddlLotDetails.Items.Insert(0, "[Select]");
+            ddlLotDetails.DataSource = impb.GetLotDetailsEntities(ddlGodownName.SelectedValue);
+            ddlLotDetails.DataTextField = "LotDetails";
+            ddlLotDetails.DataValueField = "Id";
+            ddlLotDetails.DataBind();
         }
     }
-
     private List<BrokenRiceStockDetailsDTO> GetBrokenRiceStockDetails()
     {
         List<BrokenRiceStockDetailsDTO> lstBRSD = new List<BrokenRiceStockDetailsDTO>();
@@ -208,5 +181,47 @@ public partial class HullingProcess : BaseUserControl
         txtHullingProcessDate.Text = string.Empty;
         txtHullingProcessBy.Text = string.Empty;
     }
+    #region Viewstate
+    string viewstateBrokenRiceStockDetail = "viewstateBrokenRiceStockDetail";
+    string ViewStateHullingProcessID = "HullingProcessID";
+    string viewstateCount = "GVRowID";
+    public List<BrokenRiceStockDetailsDTO> VststateBrokenRiceStockDetail
+    {
+        get
+        {
+            if (ViewState[viewstateBrokenRiceStockDetail] == null)
+                ViewState[viewstateBrokenRiceStockDetail] = new List<BrokenRiceStockDetailsDTO>();
+            return (List<BrokenRiceStockDetailsDTO>)ViewState[viewstateBrokenRiceStockDetail];
+        }
+        set
+        {
+            ViewState[viewstateBrokenRiceStockDetail] = value;
+        }
+    }
+    public int RowID
+    {
+        get
+        {
+            if (ViewState[viewstateCount] == null)
+                ViewState[viewstateCount] = "0";
+            return Convert.ToInt32(ViewState[viewstateCount]);
+        }
+        set
+        {
+            ViewState[viewstateCount] = value;
+        }
+    }
 
+    public string VSHullingProcessID
+    {
+        get
+        {
+            return Convert.ToString(ViewState[ViewStateHullingProcessID]);
+        }
+        set
+        {
+            ViewState[viewstateCount] = value;
+        }
+    }
+    #endregion
 }

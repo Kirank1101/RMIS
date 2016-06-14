@@ -23,5 +23,6 @@ namespace RMIS.Domain.DataTranserClass
            get;
            set;
        }
+       public string ID { get; set; }
     }
 }
