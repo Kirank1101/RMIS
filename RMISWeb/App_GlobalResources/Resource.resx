@@ -226,7 +226,7 @@
     <value>Is Deleted</value>
   </data>
   <data name="RiceBrandName" xml:space="preserve">
-    <value>Rice Brand Name</value>
+    <value>Rice Brand</value>
   </data>
   <data name="UnitType" xml:space="preserve">
     <value>Unit Type</value>
@@ -350,5 +350,23 @@
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>Product Type</value>
+  </data>
+  <data name="PricePerRiceBag" xml:space="preserve">
+    <value>Price Per Rice Bag</value>
+  </data>
+  <data name="TotalBrokenRicePrice" xml:space="preserve">
+    <value>Total Broken Rice Price</value>
+  </data>
+  <data name="TotalDustPrice" xml:space="preserve">
+    <value>Total Dust Price</value>
+  </data>
+  <data name="TotalExpenses" xml:space="preserve">
+    <value>Total Expenses</value>
+  </data>
+  <data name="TotalPaddyCost" xml:space="preserve">
+    <value>Total Paddy Cost</value>
+  </data>
+  <data name="TotalRicePrice" xml:space="preserve">
+    <value>Total Rice Price</value>
   </data>
 </root>

@@ -52,7 +52,7 @@ namespace RMIS.Domain.DataTranserClass
         public int TotalBags { get; set; }
         public string ProcessedBy { get; set; }
         public DateTime ProcessDate { get; set; }
-        public char Status { get; set; }
+        public string Status { get; set; }
     }
     public class WidgetDTO
     {

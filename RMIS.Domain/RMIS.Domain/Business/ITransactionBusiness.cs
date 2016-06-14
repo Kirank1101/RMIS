@@ -36,9 +36,9 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
                                          decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymnetMode,
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
-        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, char Status);
+        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, 
-            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails,string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag);
+            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails,string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag,double PowerExpenses,double LabourExpenses,double OtherExpenses);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
@@ -64,7 +64,7 @@ namespace RMIS.Domain.Business
         List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities();
         List<MenuConfigurationEntity> GetMenuConfigurationEntities();
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string custId);
-        List<HullingProcessEntity> GetAllHullingProcessInfoEntities();
+        HullingProcessDTO GetAllHullingProcessInfoEntities();
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities();
         UsersEntity ValidateUsersEntity(string userName, string custId, string password);
         UsersEntity GetUsersEntity(string userName, string custId);
@@ -96,6 +96,7 @@ namespace RMIS.Domain.Business
         int GetRiceStockTotalSum();
         int GetBrockenRiceStockTotalSum();
         double GetPaddyTotalAmountDue();
+        long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID);
 
         //ResultDTO SaveHullingProcessInfo(string PaddyType,int UnitsType,string GodownName,string Lotname,int TotalPaddyBags,double paddyprice,DateTime HullingProcessDate,string HullingProcessBy,
         //        string RiceType,string RiceBrand,int riceUnittype,int ricetotalbags,string BRType,int BRUnitsType,

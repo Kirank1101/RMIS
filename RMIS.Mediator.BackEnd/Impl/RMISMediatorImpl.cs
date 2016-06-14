@@ -1173,5 +1173,23 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetPaddyTotalAmountPaid(CustId, SellerId, yesNo);
         }
+
+
+        public List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId,string PaddyTypeID,string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllPaddyStockInfoEntities(CustId, PaddyTypeID,UnitTypeID,GodownID,LotID, yesNo);
+        }
+
+
+        public List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllHullingProcessPaddyStock(CustId, PaddyTypeID, UnitTypeID, GodownID, LotID, yesNo);
+        }
+
+
+        public HullingProcessEntity GetHullingProcessEnitity(string CustId, string HullingProcessID, YesNo yesNo)
+        {
+            return rmisGateway.GetHullingProcessEntity(CustId, HullingProcessID, yesNo);
+        }
     }
 }

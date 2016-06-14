@@ -537,7 +537,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, char Status)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -556,31 +556,48 @@ namespace RMIS.Business
             objHullingProcessEntity.Status = Status;
 
 
-            
+
             try
             {
                 imp.BeginTransaction();
-                imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);                
+                imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return new ResultDTO() {ID=objHullingProcessEntity.HullingProcessID , IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { ID = objHullingProcessEntity.HullingProcessID, IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { ID = objHullingProcessEntity.HullingProcessID, Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-
-        public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
+        public HullingProcessDTO GetAllHullingProcessInfoEntities()
         {
-            return imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            HullingProcessDTO objHullingProcessDTO = null;
+            List<HullingProcessEntity> listHullingProcessExpensesEntity = imp.GetAllHullingProcessInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listHullingProcessExpensesEntity != null && listHullingProcessExpensesEntity.Count > 0)
+            {
+                foreach (HullingProcessEntity objHullingProcessEntity in listHullingProcessExpensesEntity)
+                {
+                    objHullingProcessDTO = new HullingProcessDTO();
+                    objHullingProcessDTO.HullingProcessID = objHullingProcessEntity.HullingProcessID;
+                    objHullingProcessDTO.PaddyTypeID = objHullingProcessEntity.PaddyTypeID;
+                    objHullingProcessDTO.CustID = objHullingProcessEntity.CustID;
+                    objHullingProcessDTO.UnitsTypeID = objHullingProcessEntity.UnitsTypeID;
+                    objHullingProcessDTO.MGodownID = objHullingProcessEntity.MGodownID;
+                    objHullingProcessDTO.MLotID = objHullingProcessEntity.MLotID;
+                    objHullingProcessDTO.Price = objHullingProcessEntity.Price;
+                    objHullingProcessDTO.TotalBags = objHullingProcessEntity.TotalBags;
+                    objHullingProcessDTO.ProcessedBy = objHullingProcessEntity.ProcessedBy;
+                    objHullingProcessDTO.ProcessDate = objHullingProcessEntity.ProcessDate;
+                    objHullingProcessDTO.Status = objHullingProcessEntity.Status;
+                }
+            }
+            return objHullingProcessDTO;
         }
-
-
         public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags,
-                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag)
+                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses)
         {
-            
+
             try
             {
                 #region SaveHullingTransaction
@@ -657,13 +674,31 @@ namespace RMIS.Business
                 DustStockInfo.LastModifiedDate = DateTime.Now;
                 DustStockInfo.ObsInd = YesNo.N;
 
+                HullingProcessExpensesEntity HPEE = new HullingProcessExpensesEntity();
+                HPEE.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
+                HPEE.HullingProcessID = HullingProcessID;
+                HPEE.LabourExpenses = LabourExpenses;
+                HPEE.OtherExpenses = OtherExpenses;
+                HPEE.PowerExpenses = PowerExpenses;
+                HPEE.LastModifiedBy = provider.GetLoggedInUserId();
+                HPEE.LastModifiedDate = DateTime.Now;
+                HPEE.ObsInd = YesNo.N;
+
+                HullingProcessEntity HPE = new HullingProcessEntity();
+                HPE = imp.GetHullingProcessEnitity(provider.GetCurrentCustomerId(), HullingProcessID, YesNo.N);
+                HPE.LastModifiedBy = provider.GetLoggedInUserId();
+                HPE.LastModifiedDate = DateTime.Now;
+                HPE.Status = "A";
                 imp.BeginTransaction();
+
                 foreach (HullingProcessTransactionEntity item in lstHPT)
                     imp.SaveOrUpdateHullingProcessTransInfoEntity(item, false);
                 imp.SaveOrUpdateRiceStockInfoEntity(Ricestockinfo, false);
                 foreach (BrokenRiceStockInfoEntity BRitem in lstBRStock)
                     imp.SaveOrUpdateBrokenRiceStockInfoEntity(BRitem, false);
                 imp.SaveOrUpdateDustStockInfoEntity(DustStockInfo, false);
+                imp.SaveOrUpdateHullingProcessInfoEntity(HPE, true);
+                imp.SaveOrUpdateHullingProcessExpensesInfoEntity(HPEE, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -673,12 +708,10 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-
         public List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities()
         {
             return imp.GetAllHullingProcessTransInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
         }
-
         public List<PaddyStockDTO> GetPaddyStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<PaddyStockDTO> listPaddyStockDTO = null;
@@ -1134,8 +1167,8 @@ namespace RMIS.Business
             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
             if (paddySum > paddyUsedSum)
                 paddySum = paddySum - paddyUsedSum;
-            if (paddySum>0)
-            return paddySum;
+            if (paddySum > 0)
+                return paddySum;
             return 0;
         }
 
@@ -1184,7 +1217,7 @@ namespace RMIS.Business
             if (riceSum > riceUsedSum)
                 riceSum = riceSum - riceUsedSum;
             if (riceSum > 0)
-            return Math.Round(riceSum, 2, MidpointRounding.ToEven);
+                return Math.Round(riceSum, 2, MidpointRounding.ToEven);
             return 0;
         }
 
@@ -1279,7 +1312,7 @@ namespace RMIS.Business
                             int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             if (paddySum > paddyUsedSum)
-                            paddySum = paddySum - paddyUsedSum;
+                                paddySum = paddySum - paddyUsedSum;
                             if (paddySum > 0)
                             {
                                 WidgetDTO objTotlaPaddyStock = new WidgetDTO();
@@ -1317,7 +1350,7 @@ namespace RMIS.Business
                             int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
                             if (paddySum > paddyUsedSum)
-                            paddySum = paddySum - paddyUsedSum;
+                                paddySum = paddySum - paddyUsedSum;
                             if (paddySum > 0)
                             {
                                 WidgetDTO objTotlaPaddyStock = new WidgetDTO();
@@ -1360,7 +1393,7 @@ namespace RMIS.Business
                                     int riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
                                     int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
                                     if (riceSum > riceUsedSum)
-                                    riceSum = riceSum - riceUsedSum;
+                                        riceSum = riceSum - riceUsedSum;
                                     if (riceSum > 0)
                                     {
                                         WidgetDTO objTotlaPaddyStock = new WidgetDTO();
@@ -1393,7 +1426,7 @@ namespace RMIS.Business
                     double riceSum = imp.GetPaddyTotalAmount(provider.GetCurrentCustomerId(), objSellerInfoEntity.SellerID, YesNo.N);
                     double riceUsedSum = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), objSellerInfoEntity.SellerID, YesNo.N);
                     if (riceSum > riceUsedSum)
-                    riceSum = riceSum - riceUsedSum;
+                        riceSum = riceSum - riceUsedSum;
                     if (riceSum > 0)
                     {
                         WidgetDTO objTotlaPaddyStock = new WidgetDTO();
@@ -1406,6 +1439,25 @@ namespace RMIS.Business
                 }
             }
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+        }
+
+
+        public long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID)
+        {
+
+            long paddystockcount = 0;
+            long HullingProcesspaddystock = 0;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetAllPaddyStockInfoEntities(provider.GetCurrentCustomerId(), PaddyTypeID, UnitTypeID, GodownID, LotID, YesNo.N);
+            List<HullingProcessEntity> listHullingprocessenty = imp.GetAllHullingProcessPaddyStock(provider.GetCurrentCustomerId(), PaddyTypeID, UnitTypeID, GodownID, LotID, YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                    paddystockcount += Convert.ToInt32(objPaddyStockInfoEntity.TotalBags);
+
+            if (listHullingprocessenty != null && listHullingprocessenty.Count > 0)
+                foreach (HullingProcessEntity objHullingprocessEntity in listHullingprocessenty)
+                    HullingProcesspaddystock += Convert.ToInt32(objHullingprocessEntity.TotalBags);
+
+            return paddystockcount-HullingProcesspaddystock;
         }
     }
 }

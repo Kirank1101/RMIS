@@ -397,27 +397,27 @@
 
         }
         internal int GetRiceProductTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
-        {           
+        {
 
-                try
-                {
-                    IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
-                    DetachedCriteria detachedCriteria =
-                    DetachedCriteria.For(typeof(HullingTransaction))
-                                                                          .Add(Expression.Eq("CustID", CustId))
-                                                                             .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
-                                                                              .Add(Expression.Eq("MRiceProdTypeID", RiceProdTypeID))
-                                                                              .Add(Expression.Eq("MRiceBrandID", RiceBrandId))
-                                                                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+            try
+            {
+                IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(HullingTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                         .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
+                                                                          .Add(Expression.Eq("MRiceProdTypeID", RiceProdTypeID))
+                                                                          .Add(Expression.Eq("MRiceBrandID", RiceBrandId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
-                                                                            ;
-                    return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("Error encountered at GetRiceProductTotal", ex);
-                    throw;
-                }           
+                                                                        ;
+                return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceProductTotal", ex);
+                throw;
+            }
 
         }
         internal int GetRiceProductUsedTotal(string CustId, string UnitsTypeID, string RiceProdTypeID, string RiceBrandId, YesNo yesNo)
@@ -435,7 +435,7 @@
 
                                                                             ;
 
-                                                                        ;
+                ;
                 return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
             }
             catch (Exception ex)
@@ -455,7 +455,7 @@
                 DetachedCriteria.For(typeof(HullingTransaction))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                          .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
-                                                                          .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))                                                                          
+                                                                          .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
@@ -477,7 +477,7 @@
                 DetachedCriteria.For(typeof(ProductSellingInfo))
                                                                     .Add(Expression.Eq("CustID", CustId))
                                                                              .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
-                                                                              .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))                                                                            
+                                                                              .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))
                                                                             .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                             ;
@@ -538,7 +538,7 @@
             }
 
         }
-        internal double GetPaddyTotalAmount(string CustId,string SellerId, YesNo yesNo)
+        internal double GetPaddyTotalAmount(string CustId, string SellerId, YesNo yesNo)
         {
             try
             {
@@ -559,7 +559,7 @@
             }
 
         }
-        internal double GetPaddyTotalAmountPaid(string CustId,string SellerId,  YesNo yesNo)
+        internal double GetPaddyTotalAmountPaid(string CustId, string SellerId, YesNo yesNo)
         {
             try
             {
@@ -579,7 +579,7 @@
                 throw;
             }
 
-        } 
+        }
         #endregion
 
 
@@ -592,7 +592,7 @@
                 DetachedCriteria.For(typeof(PaddyStockInfo))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                       .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
-                                                                      .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))                                                                      
+                                                                      .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
@@ -605,7 +605,7 @@
             }
 
         }
-        internal int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeID,YesNo yesNo)
+        internal int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeID, YesNo yesNo)
         {
             try
             {
@@ -614,7 +614,7 @@
                 DetachedCriteria.For(typeof(HullingProcess))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                       .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
-                                                                       .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))      
+                                                                       .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
 
                 return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
@@ -633,7 +633,7 @@
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria =
                 DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                      .Add(Expression.Eq("CustID", CustId))                                                                      
+                                                                      .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
@@ -653,7 +653,7 @@
                 IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
                 DetachedCriteria detachedCriteria =
                 DetachedCriteria.For(typeof(HullingProcess))
-                                                                      .Add(Expression.Eq("CustID", CustId))                                                                     
+                                                                      .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
 
                 return UsersRepository.GetSumResults(detachedCriteria, "TotalBags");
@@ -684,7 +684,7 @@
                 throw;
             }
 
-        }    
+        }
 
 
         internal int GetPaddyStockUsedCount(string CustId, YesNo yesNo)
@@ -709,7 +709,7 @@
 
 
 
-       
+
 
         internal List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
@@ -2042,6 +2042,7 @@
                 IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcess))
                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Status", "P"))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    );
                 List<HullingProcess> listHullingProcess = UsersRepository.GetAll(detachedCriteria) as List<HullingProcess>;
@@ -2557,6 +2558,40 @@
                 throw;
             }
         }
+        internal List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
+        {
+            try
+            {
+                List<PaddyStockInfoEntity> listPaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.Eq("MGodownID", GodownID))
+                                                                   .Add(Expression.Eq("MLotID", LotID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<PaddyStockInfo> listPaddyStockInfo = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
+                if (listPaddyStockInfo != null && listPaddyStockInfo.Count > 0)
+                {
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfo)
+                    {
+                        listPaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listPaddyStockInfoEntity = null;
+
+                return listPaddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllPaddyStockInfoEntities", ex);
+                throw;
+            }
+        }
+        
 
         #endregion
 
@@ -2810,5 +2845,71 @@
         }
 
 
+
+        internal List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
+        {
+            try
+            {
+                List<HullingProcessEntity> listHullingProcessEntity = new List<HullingProcessEntity>();
+                IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcess))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.Eq("MGodownID", GodownID))
+                                                                   .Add(Expression.Eq("MLotID", LotID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<HullingProcess> listHullingProcess = UsersRepository.GetAll(detachedCriteria) as List<HullingProcess>;
+                if (listHullingProcess != null && listHullingProcess.Count > 0)
+                {
+                    foreach (HullingProcess adMInfo in listHullingProcess)
+                    {
+                        listHullingProcessEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listHullingProcessEntity = null;
+
+                return listHullingProcessEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllHullingProcessPaddyStock", ex);
+                throw;
+            }
+        }
+
+        internal HullingProcessEntity GetHullingProcessEntity(string CustId, string HullingProcessID, YesNo yesNo)
+        {
+            try
+            {
+                HullingProcessEntity HullingProcessEntity = new HullingProcessEntity();
+                IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcess))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("HullingProcessID", HullingProcessID))
+                                                                   .Add(Expression.Eq("Status", "P"))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<HullingProcess> listHullingProcessEntity = UsersRepository.GetAll(detachedCriteria) as List<HullingProcess>;
+                if (listHullingProcessEntity != null && listHullingProcessEntity.Count > 0)
+                {
+                    foreach (HullingProcess adMInfo in listHullingProcessEntity)
+                    {
+                        HullingProcessEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    HullingProcessEntity = null;
+
+                return HullingProcessEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessEntity", ex);
+                throw;
+            }
+        }
     }
 }

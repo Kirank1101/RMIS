@@ -131,7 +131,7 @@ namespace RMIS.Domain.Mediator
         List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, YesNo yesNo);
         List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId, YesNo yesNo);
         List<MenuInfoEntity> GetAllMenuInfoEntities(YesNo yesNo);
-        List<CustomerInfoEntity> GetCustomerInfoEntities( YesNo yesNo);
+        List<CustomerInfoEntity> GetCustomerInfoEntities(YesNo yesNo);
         List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId, YesNo yesNo);
         List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId, YesNo yesNo);
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, YesNo yesNo);
@@ -149,13 +149,13 @@ namespace RMIS.Domain.Mediator
         List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId, YesNo yesNo);
         List<EmployeeSalaryEntity> GetAllEmployeeSalaryEntities(string CustId, YesNo yesNo);
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo);
-        EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId,string EmployeeID, YesNo yesNo);
+        EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId, string EmployeeID, YesNo yesNo);
         MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID, YesNo yesNo);
         MSalaryTypeEntity GetListMSalaryTypeEntity(string p, string SalaryTypeId, YesNo yesNo);
         EmployeeSalaryEntity GetEmployeeSalaryEntity(string p, string EmployeeID, YesNo yesNo);
         List<EmployeeSalaryPaymentEntity> GetAllEmployeeSalaryPaymentEntities(string CustId, YesNo yesNo);
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo);
-		List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
+        List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         int GetMPaddyTypeEntitiesTotal(string CustId, YesNo yesNo);
@@ -178,11 +178,14 @@ namespace RMIS.Domain.Mediator
         double GetPaddyTotalAmount(string CustId, string SellerId, YesNo yesNo);
         double GetPaddyTotalAmountPaid(string CustId, string SellerId, YesNo yesNo);
 
-		List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
-        int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID,string PaddyTypeId, YesNo yesNo);
+        List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
+        int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
+        List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
+        List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
+        HullingProcessEntity GetHullingProcessEnitity(string CustId, string HullingProcessID, YesNo yesNo);
         #endregion
         #region Check
         /// <summary>
@@ -200,6 +203,10 @@ namespace RMIS.Domain.Mediator
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID, YesNo yesNo);
         #endregion
         #endregion
+
+
+
+        
     }
 
 }

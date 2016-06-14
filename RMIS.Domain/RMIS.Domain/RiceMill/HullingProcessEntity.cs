@@ -19,7 +19,7 @@ namespace RMIS.Domain.RiceMill
         public int TotalBags { get; set; }
         public string ProcessedBy { get; set; }
         public DateTime ProcessDate { get; set; }
-        public char Status { get; set; }
+        public string Status { get; set; }
         
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
