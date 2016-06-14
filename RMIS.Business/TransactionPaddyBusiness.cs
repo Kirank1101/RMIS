@@ -1134,7 +1134,9 @@ namespace RMIS.Business
             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
             if (paddySum > paddyUsedSum)
                 paddySum = paddySum - paddyUsedSum;
+            if (paddySum>0)
             return paddySum;
+            return 0;
         }
 
         int GetPaddyStockTotalCount()
@@ -1144,7 +1146,9 @@ namespace RMIS.Business
             int paddyUsedCount = imp.GetPaddyStockUsedCount(provider.GetCurrentCustomerId(), YesNo.N);
             if (paddyCount > paddyUsedCount)
                 paddyCount = paddyCount - paddyUsedCount;
-            return paddyCount;
+            if (paddyCount > 0)
+                return paddyCount;
+            return 0;
         }
 
         public int GetRiceStockTotalSum()
@@ -1154,7 +1158,9 @@ namespace RMIS.Business
             int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
             if (riceSum > riceUsedSum)
                 riceSum = riceSum - riceUsedSum;
-            return riceSum;
+            if (riceSum > 0)
+                return riceSum;
+            return 0;
         }
 
         public int GetBrockenRiceStockTotalSum()
@@ -1164,7 +1170,9 @@ namespace RMIS.Business
             int riceUsedSum = imp.GetBrokenRiceProductUsedTotal(provider.GetCurrentCustomerId(), YesNo.N);
             if (riceSum > riceUsedSum)
                 riceSum = riceSum - riceUsedSum;
-            return riceSum;
+            if (riceSum > 0)
+                return riceSum;
+            return 0;
         }
 
 
@@ -1175,7 +1183,9 @@ namespace RMIS.Business
             double riceUsedSum = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), YesNo.N);
             if (riceSum > riceUsedSum)
                 riceSum = riceSum - riceUsedSum;
-            return Math.Round(riceSum * 100, 2, MidpointRounding.ToEven);
+            if (riceSum > 0)
+            return Math.Round(riceSum, 2, MidpointRounding.ToEven);
+            return 0;
         }
 
 
@@ -1268,6 +1278,7 @@ namespace RMIS.Business
                         {
                             int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
+                            if (paddySum > paddyUsedSum)
                             paddySum = paddySum - paddyUsedSum;
                             if (paddySum > 0)
                             {
@@ -1305,6 +1316,7 @@ namespace RMIS.Business
                         {
                             int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMPaddyTypeEntity.PaddyTypeID, YesNo.N);
+                            if (paddySum > paddyUsedSum)
                             paddySum = paddySum - paddyUsedSum;
                             if (paddySum > 0)
                             {
@@ -1347,6 +1359,7 @@ namespace RMIS.Business
                                 {
                                     int riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
                                     int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                                    if (riceSum > riceUsedSum)
                                     riceSum = riceSum - riceUsedSum;
                                     if (riceSum > 0)
                                     {
@@ -1379,6 +1392,7 @@ namespace RMIS.Business
 
                     double riceSum = imp.GetPaddyTotalAmount(provider.GetCurrentCustomerId(), objSellerInfoEntity.SellerID, YesNo.N);
                     double riceUsedSum = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), objSellerInfoEntity.SellerID, YesNo.N);
+                    if (riceSum > riceUsedSum)
                     riceSum = riceSum - riceUsedSum;
                     if (riceSum > 0)
                     {
