@@ -39,6 +39,21 @@ namespace RMIS.Domain.DataTranserClass
         public double PricePerBag { get; set; }
 
     }
+    [Serializable]
+    public class HullingProcessDTO
+    {
+        public string HullingProcessID { get; set; }
+        public string PaddyTypeID { get; set; }
+        public string CustID { get; set; }
+        public string UnitsTypeID { get; set; }
+        public string MGodownID { get; set; }
+        public string MLotID { get; set; }
+        public double Price { get; set; }
+        public int TotalBags { get; set; }
+        public string ProcessedBy { get; set; }
+        public DateTime ProcessDate { get; set; }
+        public char Status { get; set; }
+    }
     public class WidgetDTO
     {
         public WidgetDTO()

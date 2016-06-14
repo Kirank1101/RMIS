@@ -17,6 +17,8 @@ public partial class HullingProcess : BaseUserControl
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
 
+            #region Bind DropDown Lists
+            //Hulling Process Paddy Type
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";
             ddlPaddyType.DataValueField = "Id";
@@ -26,42 +28,47 @@ public partial class HullingProcess : BaseUserControl
             ddlGodownName.DataTextField = "GodownType";
             ddlGodownName.DataValueField = "Id";
             ddlGodownName.DataBind();
-
-
             List<MUnitsTypeDTO> MUnitTypeDto = new List<MUnitsTypeDTO>();
             MUnitTypeDto = impb.GetMUnitsTypeEntities();
-
             ddlUnitsType.DataSource = MUnitTypeDto;
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";
             ddlUnitsType.DataBind();
 
+            //Rice Type
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
             ddlRiceType.DataTextField = "RiceType";
             ddlRiceType.DataValueField = "Id";
             ddlRiceType.DataBind();
+
             ddlRiceBrand.DataSource = impb.GetRiceBrandEntities();
             ddlRiceBrand.DataTextField = "RiceBrand";
             ddlRiceBrand.DataValueField = "Id";
             ddlRiceBrand.DataBind();
+
             ddlriceUnittype.DataSource = MUnitTypeDto;
             ddlriceUnittype.DataTextField = "UnitsType";
             ddlriceUnittype.DataValueField = "Id";
             ddlriceUnittype.DataBind();
 
+            //BrokenRice Type
             ddlBRType.DataSource = impb.GetMBrokenRiceTypeEntities();
             ddlBRType.DataTextField = "BrokenRiceType";
             ddlBRType.DataValueField = "Id";
             ddlBRType.DataBind();
+
             ddlBRUnitsType.DataSource = MUnitTypeDto;
             ddlBRUnitsType.DataTextField = "UnitsType";
             ddlBRUnitsType.DataValueField = "Id";
             ddlBRUnitsType.DataBind();
 
+            //Dust
             ddlDustUnitsType.DataSource = MUnitTypeDto;
             ddlDustUnitsType.DataTextField = "UnitsType";
             ddlDustUnitsType.DataValueField = "Id";
             ddlDustUnitsType.DataBind();
+            #endregion
+            //List<HullingProcessDTO> lst
 
 
         }
@@ -165,12 +172,15 @@ public partial class HullingProcess : BaseUserControl
     {
         List<BrokenRiceStockDetailsDTO> lstBRSD = new List<BrokenRiceStockDetailsDTO>();
         lstBRSD = VststateBrokenRiceStockDetail;
-        BrokenRiceStockDetailsDTO BRSD = new BrokenRiceStockDetailsDTO();
-        BRSD.BrokenRiceTypeID = ddlBRType.SelectedValue;
-        BRSD.UnitsTypeID = ddlBRUnitsType.SelectedValue;
-        BRSD.TotalBags = txtBRTotalBags.Text.ConvertToInt();
-        BRSD.PricePerBag = txtBRPriceperbag.Text.ConvertToDouble();
-        lstBRSD.Add(BRSD);
+        if (ddlBRType.SelectedIndex > 0 && ddlBRUnitsType.SelectedIndex > 0 && txtBRPriceperbag.Text.ConvertToDouble() > 0 && txtBRTotalBags.Text.ConvertToInt() > 0)
+        {
+            BrokenRiceStockDetailsDTO BRSD = new BrokenRiceStockDetailsDTO();        
+            BRSD.BrokenRiceTypeID = ddlBRType.SelectedValue;
+            BRSD.UnitsTypeID = ddlBRUnitsType.SelectedValue;
+            BRSD.TotalBags = txtBRTotalBags.Text.ConvertToInt();
+            BRSD.PricePerBag = txtBRPriceperbag.Text.ConvertToDouble();
+            lstBRSD.Add(BRSD);
+        }
         return lstBRSD;
     }
     private void ClearAllInputFields()
@@ -220,7 +230,7 @@ public partial class HullingProcess : BaseUserControl
         }
         set
         {
-            ViewState[viewstateCount] = value;
+            ViewState[ViewStateHullingProcessID] = value;
         }
     }
     #endregion

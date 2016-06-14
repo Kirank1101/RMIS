@@ -568,7 +568,7 @@ namespace RMIS.Business
                 Logger.Error(ex);
                 return new ResultDTO() {ID=objHullingProcessEntity.HullingProcessID , IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+            return new ResultDTO() { ID = objHullingProcessEntity.HullingProcessID, Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
 
         public List<HullingProcessEntity> GetAllHullingProcessInfoEntities()
@@ -616,10 +616,10 @@ namespace RMIS.Business
 
                     BrokenRiceStockInfoEntity BroRiceStock = new BrokenRiceStockInfoEntity();
                     BroRiceStock.BrokenRiceStockID = BRTranEntity.HullingTransID;
-                    BroRiceStock.BrokenRiceTypeID = BroRiceStock.BrokenRiceTypeID;
+                    BroRiceStock.BrokenRiceTypeID = BRD.BrokenRiceTypeID;
                     BroRiceStock.CustID = provider.GetCurrentCustomerId();
-                    BroRiceStock.UnitsTypeID = BroRiceStock.UnitsTypeID;
-                    BroRiceStock.TotalBags = BroRiceStock.TotalBags;
+                    BroRiceStock.UnitsTypeID = BRD.UnitsTypeID;
+                    BroRiceStock.TotalBags = BRD.TotalBags;
                     BroRiceStock.LastModifiedBy = provider.GetLoggedInUserId();
                     BroRiceStock.LastModifiedDate = DateTime.Now;
                     BroRiceStock.ObsInd = YesNo.N;
