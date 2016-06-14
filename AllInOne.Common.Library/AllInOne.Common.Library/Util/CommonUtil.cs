@@ -174,12 +174,13 @@ namespace AllInOne.Common.Library.Util
         }
 
         public static string CreateUniqueID(string prefixText)
-        {
-            string returnValue = string.Empty;
-            Random objRnd = new Random();
-            returnValue = string.Format("{0}{1:yyyyMMddHHmmssffffff}{2}", prefixText, DateTime.Now,
-                                                                        objRnd.Next(10000, 99999));
-            return returnValue;
+        {            
+            StringBuilder builder = new StringBuilder();
+            builder.Append(prefixText);            
+            Guid guid = Guid.NewGuid();
+            byte[] bytes = guid.ToByteArray();          
+            builder.Append( Convert.ToBase64String(bytes));           
+            return builder.ToString();
         }
 
         public static int ConvertToInt(this string prefixText)

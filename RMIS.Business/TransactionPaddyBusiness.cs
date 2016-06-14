@@ -676,6 +676,7 @@ namespace RMIS.Business
 
                 HullingProcessExpensesEntity HPEE = new HullingProcessExpensesEntity();
                 HPEE.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
+                HPEE.CustID = provider.GetCurrentCustomerId();
                 HPEE.HullingProcessID = HullingProcessID;
                 HPEE.LabourExpenses = LabourExpenses;
                 HPEE.OtherExpenses = OtherExpenses;
@@ -1309,8 +1310,8 @@ namespace RMIS.Business
                         // <br /> <b></b> &nbsp;
                         foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
                         {
-                            int paddySum = imp.GetMPaddyTypeEntitiesTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
-                            int paddyUsedSum = imp.GetPaddyStockUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
+                            int paddySum = imp.GetBrokenRiceProductTotal (provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
+                            int paddyUsedSum = imp.GetBrokenRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             if (paddySum > paddyUsedSum)
                                 paddySum = paddySum - paddyUsedSum;
                             if (paddySum > 0)

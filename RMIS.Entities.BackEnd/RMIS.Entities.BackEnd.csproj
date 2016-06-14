@@ -185,7 +185,7 @@
     <EmbeddedResource Include="Persistence\EntityMappings\ProductPaymentTransaction.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Persistence\EntityMappings\HullingProcessExpenses.hbm.xml" />
+    <EmbeddedResource Include="Persistence\EntityMappings\HullingProcessExpenses.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

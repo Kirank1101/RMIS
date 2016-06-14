@@ -73,6 +73,18 @@
         </tr>
     </table>
     <br />
+
+    <asp:PagingGridView ID="pgHullingProcess" Width="80%" runat="server" AllowSorting="true"
+                                DataKeyNames="Id" AutoGenerateColumns="false" OnRowDeleting="rptBrokenRiceDetails_RowDeleting"
+                                class="table table-striped table-bordered">
+                                <Columns>
+                                    <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
+                                    <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
+                                    <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
+                                    <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+                                </Columns>
+                            </asp:PagingGridView>
     <br />
     <table>
         <tr>
