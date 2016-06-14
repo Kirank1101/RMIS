@@ -216,7 +216,7 @@ namespace RMIS.Business
 
             return new ResultDTO();
         }
-        public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string weight)
+        public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string Price)
         {
 
             if (BrokenRiceType <= 0)
@@ -235,11 +235,11 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(weight.Trim()))
+            else if (string.IsNullOrEmpty(Price.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (weight.ConvertToInt() <= 0)
+            else if (Price.ConvertToInt() <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
             }

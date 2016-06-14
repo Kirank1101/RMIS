@@ -29,23 +29,16 @@
             </td>
         </tr>
     </table>
-    
-    <asp:PagingGridView ID="rptPaddyType" Width="80%" runat="server" AllowSorting="true" OnPageIndexChanging="rptPaddyType_PageIndexChanging" DataKeyNames="Id" 
-        OnSorting="rptPaddyType_Sorting" AllowPaging="True"  
-        AutoGenerateColumns="false"  OrderBy=""  OnRowCancelingEdit="rptPaddyType_RowCancelingEdit" OnRowDeleting="rptPaddyType_RowDeleting" OnRowEditing="rptPaddyType_RowEditing" OnRowUpdating="rptPaddyType_RowUpdating">
+    <asp:PagingGridView ID="rptPaddyType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptPaddyType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptPaddyType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptPaddyType_RowCancelingEdit"
+        OnRowDeleting="rptPaddyType_RowDeleting" OnRowEditing="rptPaddyType_RowEditing"
+        OnRowUpdating="rptPaddyType_RowUpdating">
         <Columns>
-
-         <asp:BoundField DataField="PaddyType" SortExpression="PaddyType" HeaderText="<%$Resources:Resource,PaddyType%>" />
-
-        <asp:BoundField DataField="Indicator"  ReadOnly="True" HeaderText="<%$Resources:Resource,IsPaddyDeleted%>" />
-
-       
-
-
-            
-             <asp:CommandField ShowEditButton="true" />
-             <asp:CommandField ShowDeleteButton="true" />
+            <asp:BoundField DataField="PaddyType" SortExpression="PaddyType" HeaderText="<%$Resources:Resource,PaddyType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsPaddyDeleted%>" />
+            <asp:CommandField ShowEditButton="true" />
+            <asp:CommandField ShowDeleteButton="true" />
         </Columns>
-      
     </asp:PagingGridView>
 </div>

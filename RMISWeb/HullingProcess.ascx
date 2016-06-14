@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="HullingProcess.ascx.cs"
     Inherits="HullingProcess" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -161,7 +162,7 @@
                             <asp:TextBox runat="server" ID="txtBRTotalBags" />
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtBRPriceperbag"  />
+                            <asp:TextBox runat="server" ID="txtBRPriceperbag" />
                         </td>
                         <td>
                             <asp:Button ID="btnaddBrokenRice" runat="server" Text="Add" OnClick="btnaddBrokenRice_Click" />
@@ -204,22 +205,66 @@
             <td>
                 <h3>
                     Broken Rice Details</h3>
-                <asp:Repeater ID="rptBrokenRiceDetails" runat="server">
+                <asp:PagingGridView ID="rptBrokenRiceDetails" Width="80%" runat="server" AllowSorting="true"
+                    DataKeyNames="Id" AutoGenerateColumns="false" OnRowDeleting="rptBrokenRiceDetails_RowDeleting">
+                    <Columns>
+                        <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
+                        <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
+                        <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
+                        <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
+                        <asp:CommandField ShowEditButton="true" />
+                        <asp:CommandField ShowDeleteButton="true" />
+                    </Columns>
+                </asp:PagingGridView>
+                <%--                <asp:GridView ID="rptBrokenRiceDetails" runat="server" AutoGenerateColumns="false"
+                    OnRowDeleting="rptPaddyType_RowDeleting">
+                    <Columns>
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Label runat="server" ID="lblBrokenRiceTypeID" Text='<%# Eval("BrokenRiceType") %>' />
+                                <asp:Label runat="server" ID="lblBrokenRiceType" Visible="false" Text='<%# Eval("BrokenRiceTypeID") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:Label runat="server" ID="lblHSellerName" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Label runat="server" ID="lblUnitsTypeID" Visible="false" Text='<%# Eval("UnitsTypeID") %>' />
+                                <asp:Label runat="server" ID="lblUnitsType" Text='<%# Eval("UnitsType") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Label runat="server" ID="LblTotalBags" Text='<%# Eval("TotalBags") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Label runat="server" ID="LblPriceperBag" Text='<%# Eval("PricePerBag") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>--%>
+                <%--                <asp:Repeater ID="rptBrokenRiceDetails" runat="server">
                     <HeaderTemplate>
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>
-                                        <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
                                     </th>
                                     <th>
-                                        <asp:Label runat="server" ID="lblHSellerName" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
                                     </th>
                                     <th>
-                                        <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
                                     </th>
                                 </tr>
                             </thead>
@@ -230,18 +275,10 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lblBrokenRiceTypeID" Text='<%# Eval("BrokenRiceType") %>' />
-                                    <asp:Label runat="server" ID="lblBrokenRiceType" Visible="false" Text='<%# Eval("BrokenRiceTypeID") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lblUnitsTypeID" Text='<%# Eval("UnitsTypeID") %>' />
-                                    <asp:Label runat="server" ID="lblUnitsType" Text='<%# Eval("UnitsType") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="LblTotalBags" Text='<%# Eval("TotalBags") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="LblPriceperBag" Text='<%# Eval("PricePerBag") %>' />
                                 </td>
                             </tr>
                         </tbody>
@@ -249,7 +286,7 @@
                     <FooterTemplate>
                         </table>
                     </FooterTemplate>
-                </asp:Repeater>
+                </asp:Repeater>--%>
             </td>
         </tr>
     </table>

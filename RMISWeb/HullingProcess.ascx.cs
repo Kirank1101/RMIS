@@ -4,10 +4,10 @@ using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Collections.Generic;
 using AllInOne.Common.Library.Util;
+using System.Web.UI.WebControls;
 
 public partial class HullingProcess : BaseUserControl
-{
-    
+{   
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -15,12 +15,12 @@ public partial class HullingProcess : BaseUserControl
             base.Header = "Paddy Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            
+
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";
             ddlPaddyType.DataValueField = "Id";
             ddlPaddyType.DataBind();
-            
+
             ddlGodownName.DataSource = impb.GetMGodownTypeEntities();
             ddlGodownName.DataTextField = "GodownType";
             ddlGodownName.DataValueField = "Id";
@@ -29,7 +29,7 @@ public partial class HullingProcess : BaseUserControl
 
             List<MUnitsTypeDTO> MUnitTypeDto = new List<MUnitsTypeDTO>();
             MUnitTypeDto = impb.GetMUnitsTypeEntities();
-            
+
             ddlUnitsType.DataSource = MUnitTypeDto;
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";
@@ -51,7 +51,7 @@ public partial class HullingProcess : BaseUserControl
             ddlBRType.DataSource = impb.GetMBrokenRiceTypeEntities();
             ddlBRType.DataTextField = "BrokenRiceType";
             ddlBRType.DataValueField = "Id";
-            ddlBRType.DataBind(); 
+            ddlBRType.DataBind();
             ddlBRUnitsType.DataSource = MUnitTypeDto;
             ddlBRUnitsType.DataTextField = "UnitsType";
             ddlBRUnitsType.DataValueField = "Id";
@@ -62,7 +62,7 @@ public partial class HullingProcess : BaseUserControl
             ddlDustUnitsType.DataValueField = "Id";
             ddlDustUnitsType.DataBind();
 
-            
+
         }
     }
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +85,7 @@ public partial class HullingProcess : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            
+
             resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue,
                 txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(),
                 ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), ddlBRType.SelectedValue, ddlBRUnitsType.SelectedValue,
@@ -114,26 +114,60 @@ public partial class HullingProcess : BaseUserControl
             ViewState[viewstateBrokenRiceStockDetail] = value;
         }
     }
+    string viewstateCount = "GVRowID";
+    public int RowID
+    {
+        get
+        {
+            if (ViewState[viewstateCount] == null)
+                ViewState[viewstateCount] = "0";
+            return Convert.ToInt32(ViewState[viewstateCount]);
+        }
+        set
+        {
+            ViewState[viewstateCount] = value;
+        }
+    }
+
     protected void btnaddBrokenRice_Click(object sender, EventArgs e)
     {
-        List<BrokenRiceStockDetailsDTO> lstBrokenRiceStockDetail = VststateBrokenRiceStockDetail;
-        BrokenRiceStockDetailsDTO BrokenRiceStockDetailEntity = new BrokenRiceStockDetailsDTO();
-        BrokenRiceStockDetailEntity.BrokenRiceTypeID = ddlBRType.SelectedValue;
-        BrokenRiceStockDetailEntity.UnitsTypeID = ddlBRUnitsType.SelectedValue;
-        BrokenRiceStockDetailEntity.BrokenRiceType = Convert.ToString(ddlBRType.SelectedItem);
-        BrokenRiceStockDetailEntity.UnitsType = Convert.ToString(ddlBRUnitsType.SelectedItem);
-        BrokenRiceStockDetailEntity.TotalBags = txtBRTotalBags.Text.ConvertToInt();
-        BrokenRiceStockDetailEntity.PricePerBag = txtBRPriceperbag.Text.ConvertToDouble();
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBrokenRiceStockDetails(ddlBRType.SelectedIndex, ddlBRUnitsType.SelectedIndex, txtBRTotalBags.Text, txtBRPriceperbag.Text);
+        if (resultDto.IsSuccess)
+        {
+            List<BrokenRiceStockDetailsDTO> lstBrokenRiceStockDetail = VststateBrokenRiceStockDetail;
+            BrokenRiceStockDetailsDTO BrokenRiceStockDetailEntity = new BrokenRiceStockDetailsDTO();
+            RowID = RowID + 1;
+            BrokenRiceStockDetailEntity.Id = RowID;
 
-        lstBrokenRiceStockDetail.Add(BrokenRiceStockDetailEntity);
+            BrokenRiceStockDetailEntity.BrokenRiceTypeID = ddlBRType.SelectedValue;
+            BrokenRiceStockDetailEntity.BrokenRiceType = Convert.ToString(ddlBRType.SelectedItem);
+            BrokenRiceStockDetailEntity.UnitsTypeID = ddlBRUnitsType.SelectedValue;
+            BrokenRiceStockDetailEntity.UnitsType = Convert.ToString(ddlBRUnitsType.SelectedItem);
+            BrokenRiceStockDetailEntity.TotalBags = txtBRTotalBags.Text.ConvertToInt();
+            BrokenRiceStockDetailEntity.PricePerBag = txtBRPriceperbag.Text.ConvertToDouble();
+
+            lstBrokenRiceStockDetail.Add(BrokenRiceStockDetailEntity);
+            VststateBrokenRiceStockDetail = lstBrokenRiceStockDetail;
+            rptBrokenRiceDetails.DataSource = lstBrokenRiceStockDetail;
+            rptBrokenRiceDetails.DataBind();
+            //clear data
+            ddlBRType.SelectedIndex = 0;
+            ddlBRUnitsType.SelectedIndex = 0;
+            txtBRPriceperbag.Text = string.Empty;
+            txtBRTotalBags.Text = string.Empty;
+        }
+    }
+
+    protected void rptBrokenRiceDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        GridViewRow row = (GridViewRow)rptBrokenRiceDetails.Rows[e.RowIndex];
+        List<BrokenRiceStockDetailsDTO> lstBrokenRiceStockDetail = VststateBrokenRiceStockDetail;
+        int keyvalue = Convert.ToInt32(rptBrokenRiceDetails.DataKeys[e.RowIndex].Value);
+        BrokenRiceStockDetailsDTO brdt = lstBrokenRiceStockDetail.Find(id => id.Id == keyvalue);
+        lstBrokenRiceStockDetail.Remove(brdt);
         VststateBrokenRiceStockDetail = lstBrokenRiceStockDetail;
         rptBrokenRiceDetails.DataSource = lstBrokenRiceStockDetail;
         rptBrokenRiceDetails.DataBind();
-        //clear data
-        ddlBRType.SelectedIndex = 0;
-        ddlBRUnitsType.SelectedIndex = 0;
-        txtBRPriceperbag.Text = string.Empty;
-        txtBRTotalBags.Text = string.Empty;
     }
     protected void btnHullingProcess_Click(object sender, EventArgs e)
     { }

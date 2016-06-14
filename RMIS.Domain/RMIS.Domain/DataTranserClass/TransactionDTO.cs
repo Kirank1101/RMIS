@@ -27,8 +27,10 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime PurchaseDate { get; set; }
 
     }
+    [Serializable]
     public class BrokenRiceStockDetailsDTO
     {
+        public int Id { get; set; }
         public string BrokenRiceTypeID { get; set; }
         public string UnitsTypeID { get; set; }
         public string BrokenRiceType { get; set; }
