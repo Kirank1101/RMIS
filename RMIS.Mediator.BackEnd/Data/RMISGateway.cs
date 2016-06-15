@@ -2977,5 +2977,44 @@
                 throw;
             }
         }
+
+         internal List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+         {
+             try
+             {
+                 List<MGodownDetailsEntity> listMGodownDetailsEntity = new List<MGodownDetailsEntity>();
+                 IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                 DetachedCriteria detachedCriteria = null;
+                 if (expression == SortExpression.Desc)
+                     detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                       ).AddOrder(Order.Asc("Name"));
+                 else
+                     detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                    ).AddOrder(Order.Desc("Name"));
+
+
+                 List<MGodownDetails> listMGodownDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MGodownDetails>;
+                 if (listMGodownDetails != null && listMGodownDetails.Count > 0)
+                 {
+                     foreach (MGodownDetails adMInfo in listMGodownDetails)
+                     {
+                         listMGodownDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
+                     }
+                 }
+                 else
+                     listMGodownDetailsEntity = null;
+
+                 return listMGodownDetailsEntity;
+             }
+             catch (Exception ex)
+             {
+                 Logger.Error("Error encountered at GetMGodownDetailsEntities", ex);
+                 throw;
+             }
+         }
     }
 }

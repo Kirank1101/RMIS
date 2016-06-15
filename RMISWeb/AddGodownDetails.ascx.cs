@@ -17,27 +17,19 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
+using RMIS.Domain.Constant;
 
 public partial class AddGodownDetails : BaseUserControl
-{
-    
-        
+{       
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Godown Information";            
-            bindGodownDetails();
+            Header = "Add Godown Information";
+            bindGodownType();
         }
     }
-
-    private void bindGodownDetails()
-    {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        rptGodownDetails.DataSource = imp.GetMGodownTypeEntities();
-        rptGodownDetails.DataBind();
-    }
-
+    
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         bool IsGodownExist = false;
@@ -53,7 +45,7 @@ public partial class AddGodownDetails : BaseUserControl
                 resultDto = imp1.SaveGodownType(txtGodownName.Text.Trim());
                 if (resultDto.IsSuccess)
                 {
-                    bindGodownDetails();
+                    bindGodownType();
                 }
                 SetMessage(resultDto);
             }
@@ -68,5 +60,78 @@ public partial class AddGodownDetails : BaseUserControl
             resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+    protected void rptGodownType_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptGodownType.PageIndex = gridPageIndex = e.NewPageIndex;
+        bindGodownType();
+    }
+
+    protected void rptGodownType_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
+        bindGodownType();
+    }
+
+    protected void rptGodownType_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        GridViewRow row = (GridViewRow)rptGodownType.Rows[e.RowIndex];
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.DeleteGodownType(rptGodownType.DataKeys[e.RowIndex].Value.ToString());
+        bindGodownType();
+
+    }
+
+    protected void rptGodownType_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        rptGodownType.EditIndex = e.NewEditIndex;
+        rptGodownType.PageIndex = gridPageIndex;
+        bindGodownType();
+
+    }
+
+    protected void rptGodownType_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+
+        GridViewRow row = (GridViewRow)rptGodownType.Rows[e.RowIndex];
+
+        //TextBox txtname=(TextBox)gr.cell[].control[];
+
+        TextBox textName = (TextBox)row.Cells[0].Controls[0];
+
+
+
+        //TextBox textadd = (TextBox)row.FindControl("txtadd");
+
+        //TextBox textc = (TextBox)row.FindControl("txtc");
+
+        rptGodownType.EditIndex = -1;
+
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.UpdateGodownType(rptGodownType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+        rptGodownType.PageIndex = gridPageIndex;
+        bindGodownType();
+
+        //GridView1.DataBind();
+
+    }
+    private void bindGodownType()
+    {
+        int count = 0;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
+        rptGodownType.DataSource = imp.GetMGodownTypeEntities(rptGodownType.PageIndex, rptGodownType.PageSize, out count, expression);
+        rptGodownType.VirtualItemCount = count;
+        rptGodownType.DataBind();
+    }
+    protected void rptGodownType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        rptGodownType.EditIndex = -1;
+        rptGodownType.PageIndex = gridPageIndex;
+        bindGodownType();
     }
 }

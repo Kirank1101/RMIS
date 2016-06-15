@@ -21,8 +21,7 @@ namespace RMIS.Domain.Business
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
-        List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
-        List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
+        List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);        
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
         List<RiceBrandDTO> GetRiceBrandEntities();
@@ -33,7 +32,7 @@ namespace RMIS.Domain.Business
         List<ProductSellingTypeDTO> GetMProductSellingTypeEntities();
         List<MEmpDesigDTO> GetMEmpDesigTypeEntities();
         List<MSalarytypeDTO> GetMSalaryTypeEntities();
-        
+
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
         ResultDTO SavePaddyType(string paddyType);
@@ -41,7 +40,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveGodownType(string godownType);
         ResultDTO SaveRiceBrandType(string riceBrand);
         ResultDTO SaveRiceProductType(string riceProduct);
-        ResultDTO SaveLotDetails(string lotName,string godownId);
+        ResultDTO SaveLotDetails(string lotName, string godownId);
         ResultDTO SaveWeightDetails(string weight);
         List<MenuInfoEntity> GetMenuInfoEnity();
         ResultDTO SaveProductSellingType(string productSellingType);
@@ -50,12 +49,16 @@ namespace RMIS.Domain.Business
         ResultDTO DeletePaddyType(string Id);
         ResultDTO UpdatePaddyType(string Id, string paddyType);
         ResultDTO SaveEmpDesigType(string DesignationType);
-        ResultDTO SaveSalaryType(string SalaryType); 
+        ResultDTO SaveSalaryType(string SalaryType);
         string GetEmployeeDesignation(string DesignationID);
         string GetSalaryType(string SalaryTypeId);
 
         ResultDTO DeleteUnitsType(string Id);
         ResultDTO UpdateUnitsType(string Id, string UnitType);
 
+        List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
+        ResultDTO DeleteGodownType(string ID);
+        ResultDTO UpdateGodownType(string ID, string GodownName);
+        List<GodownTypeDTO> GetMGodownTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
     }
 }

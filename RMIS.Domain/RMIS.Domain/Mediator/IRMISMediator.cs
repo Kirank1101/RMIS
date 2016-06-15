@@ -205,7 +205,9 @@ namespace RMIS.Domain.Mediator
         #endregion
 
 
-        List<MUnitsTypeEntity> GetMUnitsTypeEntities(string p, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
     }
 
 }

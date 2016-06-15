@@ -1197,5 +1197,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMUnitsTypeEntities(CustId, pageindex, pageSize, out count, expression, yesNo);
         }
+
+
+        public List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMGodownDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
     }
 }

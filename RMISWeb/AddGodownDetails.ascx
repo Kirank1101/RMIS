@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddGodownDetails.ascx.cs"
     Inherits="AddGodownDetails" %>
+    <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -28,34 +29,16 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptGodownDetails" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHGodownName" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsGodownDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblGodownName" Text='<%# Eval("GodownType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+        <asp:PagingGridView ID="rptGodownType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptGodownType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptGodownType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptGodownType_RowCancelingEdit"
+        OnRowDeleting="rptGodownType_RowDeleting" OnRowEditing="rptGodownType_RowEditing"
+        OnRowUpdating="rptGodownType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="GodownType" SortExpression="UnitsType" HeaderText="<%$Resources:Resource,GodownName%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsGodownDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
+            <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>
+        </Columns>
+    </asp:PagingGridView>
 </div>
