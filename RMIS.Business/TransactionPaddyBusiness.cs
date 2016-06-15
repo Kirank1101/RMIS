@@ -57,7 +57,10 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate, double AmountPaid, DateTime PaidDate, string HandOverTo, DateTime NextPaymentDate, string PaymentMode, string ChequeuNo, string BankName)
+
+
+
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate)
         {
             #region Save PaddyStock
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
@@ -77,28 +80,11 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
             #endregion
-            #region Save PaddyPayment
-            PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
-            objPaddyPaymentDetailsEntity.ObsInd = YesNo.N;
-            objPaddyPaymentDetailsEntity.CustID = provider.GetCurrentCustomerId();
-            objPaddyPaymentDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objPaddyPaymentDetailsEntity.AmountPaid = AmountPaid;
-            objPaddyPaymentDetailsEntity.HandoverTo = HandOverTo;
-            objPaddyPaymentDetailsEntity.LastModifiedDate = DateTime.Now;
-            objPaddyPaymentDetailsEntity.PaddyPaymentID = CommonUtil.CreateUniqueID("PP");
-            objPaddyPaymentDetailsEntity.PaidDate = PaidDate;
-            objPaddyPaymentDetailsEntity.NextPaymentDate = NextPaymentDate;
-            objPaddyPaymentDetailsEntity.SellerID = sellerId;
-            objPaddyPaymentDetailsEntity.PaddyStockID = objPaddyStockInfoEntity.PaddyStockID;
-            objPaddyPaymentDetailsEntity.PaymentMode = PaymentMode;
-            objPaddyPaymentDetailsEntity.ChequeNo = ChequeuNo;
-            objPaddyPaymentDetailsEntity.BankName = BankName;
-            #endregion
+            
             try
             {
                 imp.BeginTransaction();
-                imp.SaveOrUpdatePaddyStockInfoEntity(objPaddyStockInfoEntity, false);
-                imp.SaveOrUpdatePaddyPaymentDetailsEntity(objPaddyPaymentDetailsEntity, false);
+                imp.SaveOrUpdatePaddyStockInfoEntity(objPaddyStockInfoEntity, false);               
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -1427,6 +1413,23 @@ namespace RMIS.Business
                 }
             }
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+        }
+
+        public double GetPaddyTotalAmountDueBySeller(string sellerId)
+        {
+            if (!string.IsNullOrEmpty(sellerId))
+            {
+
+                double riceSum = imp.GetPaddyTotalAmount(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
+                double riceUsedSum = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
+                if (riceSum > riceUsedSum)
+                    riceSum = riceSum - riceUsedSum;
+                if (riceSum > 0)
+                {
+                    return riceSum;
+                }
+            }
+            return 0;
         }
 
         public List<WidgetDTO> GetPaddyTotalAmountDueWidget()

@@ -13,9 +13,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveSellerInfo(string name,
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
-        ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId,
-           string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price,
-           DateTime purchaseDate, double AmountPaid, DateTime PaidDate, string HandOverTo, DateTime NextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
+        ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, decimal totalBags, decimal Price, DateTime purchaseDate);
         ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId,
                      string vehicleNo, string DriverName, int totalBags, decimal Price,
                      DateTime purchaseDate, string RiceBrandID, string UnitTypeID);
@@ -96,6 +94,7 @@ namespace RMIS.Domain.Business
         int GetRiceStockTotalSum();
         int GetBrockenRiceStockTotalSum();
         double GetPaddyTotalAmountDue();
+        double GetPaddyTotalAmountDueBySeller(string sellerId);
         long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID);
 
         //ResultDTO SaveHullingProcessInfo(string PaddyType,int UnitsType,string GodownName,string Lotname,int TotalPaddyBags,double paddyprice,DateTime HullingProcessDate,string HullingProcessBy,

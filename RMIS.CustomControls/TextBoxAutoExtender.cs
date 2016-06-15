@@ -82,19 +82,19 @@ namespace RMIS.CustomControls
            autoExtender.CompletionSetCount = 20;
            autoExtender.TargetControlID = txtBox.ID;
            autoExtender.FirstRowSelected = false;
-           autoExtender.OnClientItemSelected = "GetCode" + ServiceMethod;
+           autoExtender.OnClientItemSelected = "GetCode" + ServiceMethod + hiddenfield.ID;
            ISessionProvider imp = BinderSingleton.Instance.GetInstance<ISessionProvider>();
            autoExtender.ContextKey = imp.GetCurrentCustomerId();
            autoExtender.UseContextKey = true;
            this.Controls.Add(autoExtender);
 
            StringBuilder buildScript = new StringBuilder();
-           buildScript.AppendFormat("function {0}(source, eventArgs)", "GetCode" + ServiceMethod);
-           buildScript.Append("{");
+           buildScript.AppendFormat("function {0}(source, eventArgs)", "GetCode" + ServiceMethod + hiddenfield.ID);
+           buildScript.Append("{");          
            buildScript.Append("document.getElementById('" + hiddenfield.ClientID  + "').value = eventArgs.get_value();");
            buildScript.Append("}");
-           ScriptManager.RegisterStartupScript(this, this.GetType(), "GetCode" + ServiceMethod, buildScript.ToString(), true);
-           Page.ClientScript.RegisterStartupScript(Page.GetType(), "GetCode" + ServiceMethod, buildScript.ToString(), true);
+           ScriptManager.RegisterStartupScript(this, this.GetType(), "GetCode" + ServiceMethod + hiddenfield.ID, buildScript.ToString(), true);
+           Page.ClientScript.RegisterStartupScript(Page.GetType(), "GetCode" + ServiceMethod + hiddenfield.ID, buildScript.ToString(), true);
 
 
 

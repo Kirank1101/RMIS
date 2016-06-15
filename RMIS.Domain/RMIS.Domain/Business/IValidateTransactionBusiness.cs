@@ -10,7 +10,7 @@ namespace RMIS.Domain.Business
     {
         ResultDTO ValidateSellerDetails( string sellerName, string city, string district, string state, string contactNo);
         ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate
-            ,string paymentmode,string ChequeuNo, string Bankname,double amountpaid, string paiddate,string Handoverto,string nextpaymentdate);
+           );
         ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType,string totalbags, string weight);
         ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string weight);
         ResultDTO ValidateDustStockDetails(int UnitsType, string totalbags, string weight);

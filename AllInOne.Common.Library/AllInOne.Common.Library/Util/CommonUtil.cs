@@ -183,6 +183,18 @@ namespace AllInOne.Common.Library.Util
             return builder.ToString();
         }
 
+        public static DateTime  ConvertToDate(this string prefixText)
+        {
+            if (string.IsNullOrEmpty(prefixText))
+                return DateTime.Now.Date;
+            DateTime dtTemp;
+            if (DateTime.TryParse(prefixText, out dtTemp))
+            {
+                return dtTemp;
+            }
+            return DateTime.Now.Date;
+        }
+
         public static int ConvertToInt(this string prefixText)
         {
             if (string.IsNullOrEmpty(prefixText))
