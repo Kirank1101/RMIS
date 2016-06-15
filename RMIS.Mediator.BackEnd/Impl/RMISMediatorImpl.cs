@@ -951,9 +951,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllBuyerSellerRatingEntities(CustId, yesNo);
         }
-        public List<BuyerInfoEntity> GetListBuyerInfoEntities()
+        public List<BuyerInfoEntity> GetListBuyerInfoEntities(String CustId,YesNo yesNo)
         {
-            throw new NotImplementedException();
+            return rmisGateway.GetListBuyerInfoEntities(CustId, yesNo);
         }
 
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)

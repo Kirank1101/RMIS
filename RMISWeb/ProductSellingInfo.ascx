@@ -20,10 +20,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlsellernames" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlBuyernames" runat="server" AppendDataBoundItems="true">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
@@ -206,7 +206,7 @@
                                         <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,ProductID%>"></asp:Label>
                                     </th>
                                     <th>
-                                        <asp:Label runat="server" ID="lblHSellerName" Text="<%$Resources:Resource,Name%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lblHBuyerName" Text="<%$Resources:Resource,Name%>"></asp:Label>
                                     </th>
                                     <th>
                                         <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,ProductType%>"></asp:Label>
@@ -237,7 +237,7 @@
                                     <asp:Label runat="server" ID="lblPartPaymentDate" Text='<%# Eval("ProductID") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lblPaidSalary" Text='<%# Eval("SellerName") %>' />
+                                    <asp:Label runat="server" ID="lblPaidSalary" Text='<%# Eval("BuyerName") %>' />
                                 </td>
                                 <td>
                                     <asp:Label runat="server" ID="LblOTPay" Text='<%# Eval("ProductType") %>' />

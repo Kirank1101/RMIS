@@ -143,7 +143,7 @@ namespace RMIS.Domain.Mediator
         List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId, YesNo yesNo);
-        List<BuyerInfoEntity> GetListBuyerInfoEntities(YesNo yesNo);
+        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustID,YesNo yesNo);
         List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId, YesNo yesNo);
         List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, YesNo yesNo);
         List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId, YesNo yesNo);

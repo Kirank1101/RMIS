@@ -10,7 +10,7 @@ namespace RMIS.Domain.RiceMill
     public class ProductSellingInfoDisplay : AbstractAllInOne
     {
         public string ProductID { get; set; }
-        public string SellerName { get; set; }
+        public string BuyerName { get; set; }
         public string ProductType { get; set; }
         public string ProductName { get; set; }
         public string Brand { get; set; }

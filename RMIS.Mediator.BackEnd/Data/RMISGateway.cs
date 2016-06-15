@@ -2911,5 +2911,35 @@
                 throw;
             }
         }
+
+        internal List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<BuyerInfoEntity> ListBuyerInfoEntity = new List<BuyerInfoEntity>();
+                IRepository<BuyerInfo> BuyerInfoRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<BuyerInfo> listBuyerInfo = BuyerInfoRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfo)
+                    {
+                        ListBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    ListBuyerInfoEntity = null;
+
+                return ListBuyerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+                throw;
+            }
+        }
     }
 }

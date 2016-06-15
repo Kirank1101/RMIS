@@ -22,10 +22,10 @@ public partial class ProductSellingInfo : BaseUserControl
             //ddlProductTypeID.DataBind();
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            ddlsellernames.DataSource = imp.GetPaddySellerInfo();
-            ddlsellernames.DataTextField = "Name";
-            ddlsellernames.DataValueField = "SellerID";
-            ddlsellernames.DataBind();
+            ddlBuyernames.DataSource = imp.GetBuyerInfo();
+            ddlBuyernames.DataTextField = "Name";
+            ddlBuyernames.DataValueField = "BuyerID";
+            ddlBuyernames.DataBind();
 
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
             ddlRiceType.DataTextField = "RiceType";
@@ -84,7 +84,7 @@ public partial class ProductSellingInfo : BaseUserControl
         ProductSellingInfoEntity prodselinfoent = new ProductSellingInfoEntity();
         prodselinfoent.ProductID = Convert.ToString(count + 1);
         prodselinfoent.SellingProductType = rbtProductSellingtype.SelectedValue;
-        prodselinfoent.SellerID = ddlsellernames.SelectedValue;
+        prodselinfoent.BuyerID = ddlBuyernames.SelectedValue;
         prodselinfoent.MRiceBrandID = ddlRiceBrand.SelectedValue;
         prodselinfoent.MRiceProdTypeID = ddlRiceType.SelectedValue;
         prodselinfoent.UnitsTypeID = ddlUnitsType.SelectedValue;
@@ -96,7 +96,7 @@ public partial class ProductSellingInfo : BaseUserControl
         List<ProductSellingInfoDisplay> lstprodselinfodisplay = VststateProdSelInfoEntDisplay;
         ProductSellingInfoDisplay ProdSelInfoDisplay = new ProductSellingInfoDisplay();
         ProdSelInfoDisplay.ProductID = Convert.ToString(count1 + 1);
-        ProdSelInfoDisplay.SellerName = Convert.ToString(ddlsellernames.SelectedItem);
+        ProdSelInfoDisplay.BuyerName = Convert.ToString(ddlBuyernames.SelectedItem);
         ProdSelInfoDisplay.ProductType = rbtProductSellingtype.SelectedValue;
         ProdSelInfoDisplay.ProductName = ddlRiceType.SelectedIndex > 0 ? Convert.ToString(ddlRiceType.SelectedItem) : string.Empty;
         ProdSelInfoDisplay.Brand = ddlRiceBrand.SelectedIndex > 0 ? Convert.ToString(ddlRiceBrand.SelectedItem) : string.Empty;
@@ -110,11 +110,11 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(rbtProductSellingtype.SelectedIndex, ddlsellernames.SelectedIndex, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtprice.Text, txtSellingDate.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(rbtProductSellingtype.SelectedIndex, ddlBuyernames.SelectedIndex, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtprice.Text, txtSellingDate.Text);
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlsellernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToDecimal(txtTotalBags.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToDouble(txtprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()),
+            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlBuyernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToDecimal(txtTotalBags.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToDouble(txtprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()),
                 lblOrderNo.Text,rbtPaymnetMode.SelectedValue,txtChequeNo.Text.Trim(),txtDDno.Text.Trim(),txtBankName.Text.Trim(),Convert.ToDouble(txtReceivedAmount.Text.Trim()),Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
             //char status = Convert.ToDouble(txtBalanceAmount.Text.Trim()) == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
             //resultDto = imp.SaveProductPaymentInfo(Convert.ToDouble(lbltotalamount.Text), status);
@@ -132,7 +132,7 @@ public partial class ProductSellingInfo : BaseUserControl
     private void ClearAllInputFields()
     {
         ddlRiceType.SelectedIndex = 0;
-        ddlsellernames.SelectedIndex = 0;
+        ddlBuyernames.SelectedIndex = 0;
         ddlRiceBrand.SelectedIndex = 0;
         ddlBrokenRiceType.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;

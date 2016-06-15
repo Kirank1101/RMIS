@@ -776,7 +776,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<ProductSellingInfoEntity, ProductSellingInfo>()
                     .ForMember(dest => dest.ProductID, opts => opts.MapFrom(src => src.ProductID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.BuyerID, opts => opts.MapFrom(src => src.BuyerID))
                     .ForMember(dest => dest.ProductPaymentID, opts => opts.MapFrom(src => src.ProductPaymentID))
                     .ForMember(dest => dest.SellingProductType, opts => opts.MapFrom(src => src.SellingProductType))
                     .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))

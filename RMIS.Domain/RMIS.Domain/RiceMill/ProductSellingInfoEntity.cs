@@ -12,7 +12,7 @@ namespace RMIS.Domain.RiceMill
         public string ProductID { get; set; }
         public string ProductPaymentID { get; set; }
         public string CustID { get; set; }
-        public string SellerID { get; set; }
+        public string BuyerID { get; set; }
         public string MRiceProdTypeID { get; set; }
         public string MRiceBrandID { get; set; }
         public string BrokenRiceTypeID { get; set; }

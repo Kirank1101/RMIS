@@ -470,7 +470,7 @@ namespace RMIS.Business
 
 
 
-        public ResultDTO SaveProductSellingInfo(string SellingProductType, string sellerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymentMode,
+        public ResultDTO SaveProductSellingInfo(string SellingProductType, string BuyerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId, decimal totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymentMode,
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate)
         {
 
@@ -510,7 +510,7 @@ namespace RMIS.Business
             objProductSellingInfoEntity.MRiceProdTypeID = MRiceProdTypeID;
             objProductSellingInfoEntity.SellingDate = SellingDate;
             objProductSellingInfoEntity.Price = Price;
-            objProductSellingInfoEntity.SellerID = sellerId;
+            objProductSellingInfoEntity.BuyerID = BuyerId;
             objProductSellingInfoEntity.TotalBags = totalBags;
             objProductSellingInfoEntity.UnitsTypeID = UnitsTypeID;
 
@@ -947,7 +947,22 @@ namespace RMIS.Business
 
         public List<BuyerInfoEntity> GetBuyerInfo()
         {
-            return imp.GetListBuyerInfoEntities(YesNo.N);
+            List<BuyerInfoEntity> listBuyerInfoEntity = null;
+            List<BuyerInfoEntity> listBuyerinfo = imp.GetListBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listBuyerinfo != null && listBuyerinfo.Count > 0)
+            {
+                listBuyerInfoEntity = new List<BuyerInfoEntity>();
+                foreach (BuyerInfoEntity objBuyerinfo in listBuyerinfo)
+                {
+
+                    BuyerInfoEntity objBuyerInfoEntity = new BuyerInfoEntity();
+                    objBuyerInfoEntity.BuyerID = objBuyerinfo.BuyerID;
+                    objBuyerInfoEntity.Name = objBuyerinfo.Name;
+                    listBuyerInfoEntity.Add(objBuyerInfoEntity);
+                }
+
+            }
+            return listBuyerInfoEntity;
         }
 
         public List<BuyerInfoEntity> GetBuyerInfo(int count, string prefixText, string context)

@@ -8,7 +8,7 @@ namespace RMIS.Entities.BackEnd
     public class ProductSellingInfo
     {
         private string _ProductID;
-        private string _SellerID;
+        private string _BuyerID;
         private string _ProductPaymentID;
         private string _SellingProductType;
         private string _MRiceProdTypeID;
@@ -28,10 +28,10 @@ namespace RMIS.Entities.BackEnd
             get { return _ProductID; }
             set { _ProductID = value; }
         }
-        public virtual string SellerID
+        public virtual string BuyerID
         {
-            get { return _SellerID; }
-            set { _SellerID = value; }
+            get { return _BuyerID; }
+            set { _BuyerID = value; }
         }
         public virtual string ProductPaymentID
         {
