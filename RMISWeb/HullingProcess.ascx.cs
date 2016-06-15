@@ -13,10 +13,8 @@ public partial class HullingProcess : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-
             #region Bind DropDown Lists
             //Hulling Process Paddy Type
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
@@ -71,10 +69,7 @@ public partial class HullingProcess : BaseUserControl
             //List<HullingProcessDTO> lst
             #region Bind Hulling Process Details
             HullingProcessDTO Hullingprocessdto = new HullingProcessDTO();
-
-
             Hullingprocessdto = imp.GetAllHullingProcessInfoEntities();
-
             if (Hullingprocessdto != null)
             {
                 ddlPaddyType.SelectedValue = Hullingprocessdto.PaddyTypeID;
@@ -87,6 +82,11 @@ public partial class HullingProcess : BaseUserControl
                 txtHullingProcessBy.Text = Hullingprocessdto.ProcessedBy;
                 txtHullingProcessDate.Text = Hullingprocessdto.ProcessDate.ToString("dd/MM/yyyy");
                 VSHullingProcessID = Hullingprocessdto.HullingProcessID;
+                btnSave.Enabled = false;
+                ddlPaddyType.Enabled = ddlUnitsType.Enabled = ddlGodownName.Enabled =
+                    ddlLotDetails.Enabled = txtTotalBags.Enabled =
+                    txtTotalBags.Enabled = txtpaddyprice.Enabled =
+                    txtHullingProcessBy.Enabled = txtHullingProcessDate.Enabled = false;                
             }
             #endregion
         }
@@ -108,7 +108,7 @@ public partial class HullingProcess : BaseUserControl
                 SetMessage(resultDto);
                 if (resultDto.IsSuccess)
                 {
-                    ClearAllInputFields();
+                   // ClearAllInputFields();
                     VSHullingProcessID = resultDto.ID;
                 }
             }
@@ -147,10 +147,10 @@ public partial class HullingProcess : BaseUserControl
             rptBrokenRiceDetails.DataSource = lstBrokenRiceStockDetail;
             rptBrokenRiceDetails.DataBind();
             //clear data
-            ddlBRType.SelectedIndex = 0;
-            ddlBRUnitsType.SelectedIndex = 0;
-            txtBRPriceperbag.Text = string.Empty;
-            txtBRTotalBags.Text = string.Empty;
+            //ddlBRType.SelectedIndex = 0;
+            //ddlBRUnitsType.SelectedIndex = 0;
+            //txtBRPriceperbag.Text = string.Empty;
+            //txtBRTotalBags.Text = string.Empty;
         }
     }
 
@@ -207,11 +207,12 @@ public partial class HullingProcess : BaseUserControl
 
     protected void btnSaveClose_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlRiceType.SelectedIndex, ddlBRType.SelectedIndex, ddlriceUnittype.SelectedIndex, ddlBRUnitsType.SelectedIndex, ddlDustUnitsType.SelectedIndex, txtricetotalbags.Text, txtBRTotalBags.Text, txtDustTotalBags.Text, txtBRPriceperbag.Text, txtDustPriceperbag.Text);
+        List<BrokenRiceStockDetailsDTO> lstBRSD = GetBrokenRiceStockDetails();
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(ddlRiceType.SelectedIndex, ddlBRType.SelectedIndex, ddlriceUnittype.SelectedIndex, ddlBRUnitsType.SelectedIndex,lstBRSD, ddlDustUnitsType.SelectedIndex, txtricetotalbags.Text, txtBRTotalBags.Text, txtDustTotalBags.Text, txtBRPriceperbag.Text, txtDustPriceperbag.Text);
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            List<BrokenRiceStockDetailsDTO> lstBRSD = GetBrokenRiceStockDetails();
+           
             resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlriceUnittype.SelectedValue, txtricetotalbags.Text.ConvertToInt(), lstBRSD, ddlDustUnitsType.SelectedValue, txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperbag.Text.ConvertToDouble(), txtPowerExpenses.Text.ConvertToDouble(), txtLabourExpenses.Text.ConvertToDouble(), txtOtherExpenses.Text.ConvertToDouble());
             SetMessage(resultDto);
             if (resultDto.IsSuccess)

@@ -23,3 +23,4 @@ C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Entities.BackEnd.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.pdb
 C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Entities.BackEnd\obj\Debug\RMIS.Entities.BackEnd.csprojResolveAssemblyReference.cache
