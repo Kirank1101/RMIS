@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 public partial class ProductSellingInfo : BaseUserControl
 {
+    private const string Rice = "Rice";
+    private const string BrokenRice = "BrokenRice";
+    private const string Dust = "Dust";
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
     int count = 0;
     int count1 = 0;
@@ -128,7 +131,42 @@ public partial class ProductSellingInfo : BaseUserControl
         }
 
     }
-
+    protected void rbtProductSellingtype_OnSelectChange(object sender, EventArgs e)
+    {
+        lblRiceBrandName.Visible = true;
+        lblRiceType.Visible = true;
+        ddlRiceBrand.Visible = true;
+        ddlRiceType.Visible = true;
+        lblBrokenRiceType.Visible = true;
+        ddlBrokenRiceType.Visible = true;
+        if (rbtProductSellingtype.SelectedValue == Rice)
+        {
+            lblBrokenRiceType.Visible = false;
+            ddlBrokenRiceType.Visible = false;
+            ddlBrokenRiceType.SelectedIndex = 0;
+        }
+        else if (rbtProductSellingtype.SelectedValue == BrokenRice)
+        {
+            lblRiceBrandName.Visible = false;
+            lblRiceType.Visible = false;
+            ddlRiceBrand.Visible = false;
+            ddlRiceType.Visible = false;
+            ddlRiceBrand.SelectedIndex = 0;
+            ddlRiceType.SelectedIndex = 0;
+        }
+        else if (rbtProductSellingtype.SelectedValue == Dust)
+        {
+            lblRiceBrandName.Visible = false;
+            lblRiceType.Visible = false;
+            lblBrokenRiceType.Visible = false;
+            ddlBrokenRiceType.Visible = false;
+            ddlRiceBrand.Visible = false;
+            ddlRiceType.Visible = false;
+            ddlBrokenRiceType.SelectedIndex = 0;
+            ddlRiceBrand.SelectedIndex = 0;
+            ddlRiceType.SelectedIndex = 0;
+        }
+    }
     private void ClearAllInputFields()
     {
         ddlRiceType.SelectedIndex = 0;

@@ -787,5 +787,76 @@ namespace RMIS.Business
                 SalaryType = Msalarytype.Salarytype;
             return SalaryType;
         }
+
+
+        public List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+
+            List<MUnitsTypeDTO> listUnitsTypeDTO = null;
+
+            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression, YesNo.N);
+            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+            {
+                listUnitsTypeDTO = new List<MUnitsTypeDTO>();
+                foreach (MUnitsTypeEntity objUnitsTypeEntity in listMUnitsTypeEntity)
+                {
+                    MUnitsTypeDTO objUnitsTypeDTO = new MUnitsTypeDTO();
+                    objUnitsTypeDTO.UnitsType = objUnitsTypeEntity.UnitsType;
+                    objUnitsTypeDTO.Indicator = GetYesorNo(objUnitsTypeEntity.ObsInd);
+                    objUnitsTypeDTO.Id = objUnitsTypeEntity.UnitsTypeID;
+                    listUnitsTypeDTO.Add(objUnitsTypeDTO);
+                }
+            }
+            return listUnitsTypeDTO;
+        }
+
+        public ResultDTO DeleteUnitsType(string Id)
+        {
+
+
+            MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(Id, YesNo.N);
+            if (objMUnitsTypeEntity is MUnitsTypeEntity)
+            {
+                objMUnitsTypeEntity.ObsInd = YesNo.Y;
+                objMUnitsTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMUnitsTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMUnitsTypeEntity(objMUnitsTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
+        public ResultDTO UpdateUnitsType(string Id, string UnitType)
+        {
+            MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(Id, YesNo.N);
+            if (objMUnitsTypeEntity is MUnitsTypeEntity)
+            {
+                objMUnitsTypeEntity.UnitsType = UnitType;
+                objMUnitsTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMUnitsTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMUnitsTypeEntity(objMUnitsTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
     }
 }

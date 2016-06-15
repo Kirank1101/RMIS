@@ -1191,5 +1191,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetHullingProcessEntity(CustId, HullingProcessID, yesNo);
         }
+
+
+        public List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMUnitsTypeEntities(CustId, pageindex, pageSize, out count, expression, yesNo);
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace RMIS.Domain.Business
         List<MUserTypeEntity> GetMUserTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities();
         List<PaddyTypeDTO> GetMPaddyTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
+        List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
         List<RiceBrandDTO> GetRiceBrandEntities();
@@ -52,5 +53,9 @@ namespace RMIS.Domain.Business
         ResultDTO SaveSalaryType(string SalaryType); 
         string GetEmployeeDesignation(string DesignationID);
         string GetSalaryType(string SalaryTypeId);
+
+        ResultDTO DeleteUnitsType(string Id);
+        ResultDTO UpdateUnitsType(string Id, string UnitType);
+
     }
 }

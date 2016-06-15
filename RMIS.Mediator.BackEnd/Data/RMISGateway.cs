@@ -98,38 +98,6 @@
                 throw;
             }
         }
-        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId, YesNo yesNo)
-        {
-            try
-            {
-                List<MUnitsTypeEntity> ListMUnitsTypeEntity = new List<MUnitsTypeEntity>();
-                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
-                                                                   .Add(Expression.Eq("CustID", custId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
-                if (listMUnitsType != null && listMUnitsType.Count > 0)
-                {
-                    foreach (MUnitsType adMInfo in listMUnitsType)
-                    {
-                        ListMUnitsTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
-                    }
-                }
-                else
-                    ListMUnitsTypeEntity = null;
-
-                return ListMUnitsTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
-                throw;
-            }
-        }
-
-
-
         internal List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
             try
@@ -722,12 +690,12 @@
                     detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                      ).AddOrder(Order.Asc("PaddyTypeID"));
+                                                                      ).AddOrder(Order.Asc("Name"));
                 else
                     detachedCriteria = DetachedCriteria.For(typeof(MPaddyType))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   ).AddOrder(Order.Desc("PaddyTypeID"));
+                                                                   ).AddOrder(Order.Desc("Name"));
 
 
                 List<MPaddyType> listMPaddyType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<MPaddyType>;
@@ -2683,7 +2651,7 @@
             }
             catch (Exception ex)
             {
-                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                Logger.Error("Error encountered at GetUnitTypeExist", ex);
                 throw;
             }
         }
@@ -2938,6 +2906,74 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+                throw;
+            }
+        }
+        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string custId, YesNo yesNo)
+        {
+            try
+            {
+                List<MUnitsTypeEntity> ListMUnitsTypeEntity = new List<MUnitsTypeEntity>();
+                IRepository<MUnitsType> unitsTypeRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MUnitsType> listMUnitsType = unitsTypeRepository.GetAll(detachedCriteria) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        ListMUnitsTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMUnitsTypeEntity = null;
+
+                return ListMUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
+                throw;
+            }
+        }
+
+         internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MUnitsTypeEntity> listMUnitsTypeEntity = new List<MUnitsTypeEntity>();
+                IRepository<MUnitsType> UsersRepository = new RepositoryImpl<MUnitsType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("UnitsType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MUnitsType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("UnitsType"));
+
+
+                List<MUnitsType> listMUnitsType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<MUnitsType>;
+                if (listMUnitsType != null && listMUnitsType.Count > 0)
+                {
+                    foreach (MUnitsType adMInfo in listMUnitsType)
+                    {
+                        listMUnitsTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMUnitsTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMUnitsTypeEntity = null;
+
+                return listMUnitsTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMUnitsTypeEntities", ex);
                 throw;
             }
         }

@@ -3,7 +3,7 @@
 <div class="table-responsive">
     <table>
         <tr>
-            <td>
+            <td valign="top">
                 <table>
                     <tr>
                         <td valign="top">
@@ -11,7 +11,8 @@
                         </td>
                         <td>
                             <asp:RadioButtonList ID="rbtProductSellingtype" runat="server" RepeatDirection="Vertical"
-                                RepeatLayout="Table">
+                                RepeatLayout="Table" OnSelectedIndexChanged="rbtProductSellingtype_OnSelectChange"
+                                AutoPostBack="true">
                                 <asp:ListItem Text="Rice" Value="Rice"></asp:ListItem>
                                 <asp:ListItem Text="BrokenRice" Value="BrokenRice"></asp:ListItem>
                                 <asp:ListItem Text="Dust" Value="Dust"></asp:ListItem>
@@ -223,7 +224,6 @@
                                     <th>
                                         <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
                                     </th>
-                                    
                                 </tr>
                             </thead>
                     </HeaderTemplate>
@@ -231,7 +231,6 @@
                         <tbody>
                             <tr>
                             <td>
-
                             </td>
                                 <td>
                                     <asp:Label runat="server" ID="lblPartPaymentDate" Text='<%# Eval("ProductID") %>' />

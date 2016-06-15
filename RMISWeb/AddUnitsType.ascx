@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddUnitsType.ascx.cs"
     Inherits="AddUnitsType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -28,34 +29,17 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptUnitsType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHUnitsType" Text="<%$Resources:Resource,UnitsType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsUnitsDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblUnitsType" Text='<%# Eval("UnitsType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+    <asp:PagingGridView ID="rptUnitsType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptUnitsType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptUnitsType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptUnitsType_RowCancelingEdit"
+        OnRowDeleting="rptUnitsType_RowDeleting" OnRowEditing="rptUnitsType_RowEditing"
+        OnRowUpdating="rptUnitsType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="UnitsType" SortExpression="UnitsType" HeaderText="<%$Resources:Resource,UnitsType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsUnitsDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
+            <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>
+        </Columns>
+    </asp:PagingGridView>
+
 </div>
