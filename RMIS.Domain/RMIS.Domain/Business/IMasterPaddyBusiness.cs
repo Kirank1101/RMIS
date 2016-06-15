@@ -55,10 +55,18 @@ namespace RMIS.Domain.Business
 
         ResultDTO DeleteUnitsType(string Id);
         ResultDTO UpdateUnitsType(string Id, string UnitType);
-
         List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression);
+
         ResultDTO DeleteGodownType(string ID);
         ResultDTO UpdateGodownType(string ID, string GodownName);
         List<GodownTypeDTO> GetMGodownTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        ResultDTO DeleteLotDetails(string ID);
+        ResultDTO UpdateLotDetails(string ID, string LotName);
+        List<LotDetailsDTO> GetMLotDetailsEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        ResultDTO DeleteBagType(string ID);
+        ResultDTO UpdateBagType(string ID, string BagType);
+        List<MBagTypeDTO> GetMBagTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
     }
 }

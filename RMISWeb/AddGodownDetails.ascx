@@ -35,7 +35,7 @@
         OnRowDeleting="rptGodownType_RowDeleting" OnRowEditing="rptGodownType_RowEditing"
         OnRowUpdating="rptGodownType_RowUpdating">
         <Columns>
-            <asp:BoundField DataField="GodownType" SortExpression="UnitsType" HeaderText="<%$Resources:Resource,GodownName%>" />
+            <asp:BoundField DataField="GodownType" SortExpression="GodownType" HeaderText="<%$Resources:Resource,GodownName%>" />
             <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsGodownDeleted%>" />
             <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
             <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>

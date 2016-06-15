@@ -1203,5 +1203,22 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMGodownDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
         }
+
+
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMLotDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+
+
+        public MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetMBagTypeEntity(BagTypeID, yesNo);
+        }
+
+        public List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMBagTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
     }
 }

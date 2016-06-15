@@ -38,7 +38,7 @@ namespace RMIS.Business
         {
             List<MBagTypeDTO> listMBagTypeDTO = null;
 
-            List<MBagTypeEntity> listMBagTypeEntity = imp.GetMBagTypeEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MBagTypeEntity> listMBagTypeEntity = imp.GetMBagTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMBagTypeEntity != null && listMBagTypeEntity.Count > 0)
             {
                 listMBagTypeDTO = new List<MBagTypeDTO>();
@@ -58,7 +58,7 @@ namespace RMIS.Business
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
 
-            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
             {
                 listPaddyTypeDTO = new List<PaddyTypeDTO>();
@@ -79,7 +79,7 @@ namespace RMIS.Business
         {
             bool IsPaddyTypeExist = false;
 
-            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.CheckPaddyTypeExist(provider.GetCurrentCustomerId(), paddytype,YesNo.N);
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.CheckPaddyTypeExist(provider.GetCurrentCustomerId(), paddytype, YesNo.N);
             if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
                 IsPaddyTypeExist = true;
 
@@ -90,7 +90,7 @@ namespace RMIS.Business
         {
             bool IsUnitTypeExist = false;
 
-            MUnitsTypeEntity UnitTypeEntity = imp.CheckUnitTypeExist(provider.GetCurrentCustomerId(), UnitType,YesNo.N);
+            MUnitsTypeEntity UnitTypeEntity = imp.CheckUnitTypeExist(provider.GetCurrentCustomerId(), UnitType, YesNo.N);
             if (UnitTypeEntity != null)
                 IsUnitTypeExist = true;
 
@@ -101,7 +101,7 @@ namespace RMIS.Business
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
 
-            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression,YesNo.N);
+            List<MPaddyTypeEntity> listMPaddyTypeEntity = imp.GetMPaddyTypeEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression, YesNo.N);
             if (listMPaddyTypeEntity != null && listMPaddyTypeEntity.Count > 0)
             {
                 listPaddyTypeDTO = new List<PaddyTypeDTO>();
@@ -123,7 +123,7 @@ namespace RMIS.Business
 
             List<GodownTypeDTO> listGodownTypeDTO = null;
 
-            List<MGodownDetailsEntity> listGodownDetailsEntiy = imp.GetMGodownDetailsEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MGodownDetailsEntity> listGodownDetailsEntiy = imp.GetMGodownDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listGodownDetailsEntiy != null && listGodownDetailsEntiy.Count > 0)
             {
                 listGodownTypeDTO = new List<GodownTypeDTO>();
@@ -140,13 +140,13 @@ namespace RMIS.Business
         }
         public List<MUserTypeEntity> GetMUserTypeEntities()
         {
-            return imp.GetMUserTypeEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetMUserTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public List<RiceBrandDTO> GetRiceBrandEntities()
         {
             List<RiceBrandDTO> listRiceBrandDTO = null;
 
-            List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
             {
                 listRiceBrandDTO = new List<RiceBrandDTO>();
@@ -165,7 +165,7 @@ namespace RMIS.Business
         {
             List<RiceProductDTO> listRiceProductDTO = null;
 
-            List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
             {
                 listRiceProductDTO = new List<RiceProductDTO>();
@@ -184,7 +184,7 @@ namespace RMIS.Business
         {
             List<LotDetailsDTO> listLotDetailsDTO = null;
 
-            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), GodownId,YesNo.N);
+            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), GodownId, YesNo.N);
             if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
             {
                 listLotDetailsDTO = new List<LotDetailsDTO>();
@@ -203,7 +203,7 @@ namespace RMIS.Business
         {
             List<LotDetailsDTO> listLotDetailsDTO = null;
 
-            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
             {
                 listLotDetailsDTO = new List<LotDetailsDTO>();
@@ -220,13 +220,13 @@ namespace RMIS.Business
         }
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities()
         {
-            return imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            return imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
         public List<WeightDetailsDTO> GetMWeightDetailsEntities()
         {
             List<WeightDetailsDTO> listWeightDetailsDTO = null;
 
-            List<MWeightDetailsEntity> listMWeightDetailsEntity = imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MWeightDetailsEntity> listMWeightDetailsEntity = imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
             {
                 listWeightDetailsDTO = new List<WeightDetailsDTO>();
@@ -245,7 +245,7 @@ namespace RMIS.Business
         {
             List<BrokenRiceTypeDTO> listBrokenRiceTypeDTO = null;
 
-            List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMBrokenRiceTypeEntity != null && listMBrokenRiceTypeEntity.Count > 0)
             {
                 listBrokenRiceTypeDTO = new List<BrokenRiceTypeDTO>();
@@ -265,7 +265,7 @@ namespace RMIS.Business
         {
             List<MUnitsTypeDTO> listMUnitsTypeDTO = null;
 
-            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
             {
                 listMUnitsTypeDTO = new List<MUnitsTypeDTO>();
@@ -284,7 +284,7 @@ namespace RMIS.Business
         {
             List<MEmpDesigDTO> listMEmpDesigDTO = null;
 
-            List<MEmployeeDesignationEntity> listMEmployeeDesignationEntity = imp.GetListMEmployeeDesignationEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MEmployeeDesignationEntity> listMEmployeeDesignationEntity = imp.GetListMEmployeeDesignationEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMEmployeeDesignationEntity != null && listMEmployeeDesignationEntity.Count > 0)
             {
                 listMEmpDesigDTO = new List<MEmpDesigDTO>();
@@ -368,7 +368,7 @@ namespace RMIS.Business
         public ResultDTO DeletePaddyType(string Id)
         {
 
-            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id,YesNo.N);
+            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id, YesNo.N);
             if (objMPaddyTypeEntity is MPaddyTypeEntity)
             {
                 objMPaddyTypeEntity.ObsInd = YesNo.Y;
@@ -392,7 +392,7 @@ namespace RMIS.Business
         public ResultDTO UpdatePaddyType(string Id, string paddyType)
         {
 
-            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id,YesNo.N);
+            MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id, YesNo.N);
             if (objMPaddyTypeEntity is MPaddyTypeEntity)
             {
                 objMPaddyTypeEntity.Name = paddyType;
@@ -581,7 +581,7 @@ namespace RMIS.Business
 
             List<ProductSellingTypeDTO> listProductSellingTypeDTO = null;
 
-            List<MProductSellingTypeEntity> listMProductSellingTypeEntity = imp.GetMProductSellingTypeEnties(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MProductSellingTypeEntity> listMProductSellingTypeEntity = imp.GetMProductSellingTypeEnties(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMProductSellingTypeEntity != null && listMProductSellingTypeEntity.Count > 0)
             {
                 listProductSellingTypeDTO = new List<ProductSellingTypeDTO>();
@@ -659,7 +659,7 @@ namespace RMIS.Business
         {
             bool IsGodownNameExist = false;
 
-            MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName,YesNo.N);
+            MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName, YesNo.N);
             if (MGodownDetailsEntity != null)
                 IsGodownNameExist = true;
 
@@ -671,7 +671,7 @@ namespace RMIS.Business
         {
             bool IsLotNameExist = false;
 
-            MLotDetailsEntity MLotDetailsEntity = imp.CheckLotNameExist(provider.GetCurrentCustomerId(), LotName,YesNo.N);
+            MLotDetailsEntity MLotDetailsEntity = imp.CheckLotNameExist(provider.GetCurrentCustomerId(), LotName, YesNo.N);
             if (MLotDetailsEntity != null)
                 IsLotNameExist = true;
 
@@ -707,7 +707,7 @@ namespace RMIS.Business
         {
             bool IsDesignationExist = false;
 
-            MEmployeeDesignationEntity MEmployeeDesignationEntity = imp.CheckEmpDesigExist(provider.GetCurrentCustomerId(), DesignationType,YesNo.N);
+            MEmployeeDesignationEntity MEmployeeDesignationEntity = imp.CheckEmpDesigExist(provider.GetCurrentCustomerId(), DesignationType, YesNo.N);
             if (MEmployeeDesignationEntity != null)
                 IsDesignationExist = true;
 
@@ -717,7 +717,7 @@ namespace RMIS.Business
         {
             bool IsSalaryTypeExist = false;
 
-            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalaryType,YesNo.N);
+            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalaryType, YesNo.N);
             if (MSalaryTypeEntityEntity != null)
                 IsSalaryTypeExist = true;
 
@@ -728,7 +728,7 @@ namespace RMIS.Business
         {
             List<MSalarytypeDTO> listMSalarytypeDTO = null;
 
-            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId(),YesNo.N);
+            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
             {
                 listMSalarytypeDTO = new List<MSalarytypeDTO>();
@@ -742,7 +742,7 @@ namespace RMIS.Business
                 }
 
             }
-            return listMSalarytypeDTO;            
+            return listMSalarytypeDTO;
         }
 
         public ResultDTO SaveSalaryType(string SalaryType)
@@ -773,7 +773,7 @@ namespace RMIS.Business
         public string GetEmployeeDesignation(string DesignationID)
         {
             string designation = string.Empty;
-            MEmployeeDesignationEntity empdesig = imp.GetMEmployeeDesignationEntity(provider.GetCurrentCustomerId(), DesignationID,YesNo.N); 
+            MEmployeeDesignationEntity empdesig = imp.GetMEmployeeDesignationEntity(provider.GetCurrentCustomerId(), DesignationID, YesNo.N);
             if (empdesig != null)
                 designation = empdesig.DesignationType;
 
@@ -782,7 +782,7 @@ namespace RMIS.Business
         public string GetSalaryType(string SalaryTypeId)
         {
             string SalaryType = string.Empty;
-            MSalaryTypeEntity Msalarytype = imp.GetListMSalaryTypeEntity(provider.GetCurrentCustomerId(), SalaryTypeId,YesNo.N);
+            MSalaryTypeEntity Msalarytype = imp.GetListMSalaryTypeEntity(provider.GetCurrentCustomerId(), SalaryTypeId, YesNo.N);
             if (Msalarytype != null)
                 SalaryType = Msalarytype.Salarytype;
             return SalaryType;
@@ -833,6 +833,52 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO DeleteLotDetails(string ID)
+        {
+            MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(ID, YesNo.N);
+            if (objMLotDetailsEntity is MLotDetailsEntity)
+            {
+                objMLotDetailsEntity.ObsInd = YesNo.Y;
+                objMLotDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMLotDetailsEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMLotDetailsEntity(objMLotDetailsEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO DeleteBagType(string ID)
+        {
+            MBagTypeEntity objMBagTypeEntity = imp.GetMBagTypeEntity(ID, YesNo.N);
+            if (objMBagTypeEntity is MBagTypeEntity)
+            {
+                objMBagTypeEntity.ObsInd = YesNo.Y;
+                objMBagTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMBagTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMBagTypeEntity(objMBagTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
+
         public ResultDTO UpdateUnitsType(string Id, string UnitType)
         {
             MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(Id, YesNo.N);
@@ -879,6 +925,53 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO UpdateLotDetails(string ID, string LotName)
+        {
+            MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(ID, YesNo.N);
+            if (objMLotDetailsEntity is MLotDetailsEntity)
+            {
+                objMLotDetailsEntity.LotName = LotName;
+                objMLotDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMLotDetailsEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMLotDetailsEntity(objMLotDetailsEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO UpdateBagType(string ID, string BagType)
+        {
+            MBagTypeEntity objMBagTypeEntity = imp.GetMBagTypeEntity(ID, YesNo.N);
+            if (objMBagTypeEntity is MBagTypeEntity)
+            {
+                objMBagTypeEntity.BagType = BagType;
+                objMBagTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMBagTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMBagTypeEntity(objMBagTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
         public List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<MUnitsTypeDTO> listUnitsTypeDTO = null;
@@ -909,13 +1002,51 @@ namespace RMIS.Business
                 foreach (MGodownDetailsEntity objGodwonTypeEntity in listMGodownDetailsEntity)
                 {
                     GodownTypeDTO objUnitsTypeDTO = new GodownTypeDTO();
-                    objUnitsTypeDTO.GodownType= objGodwonTypeEntity.Name;
+                    objUnitsTypeDTO.GodownType = objGodwonTypeEntity.Name;
                     objUnitsTypeDTO.Indicator = GetYesorNo(objGodwonTypeEntity.ObsInd);
                     objUnitsTypeDTO.Id = objGodwonTypeEntity.MGodownID;
                     listGodownTypeDTO.Add(objUnitsTypeDTO);
                 }
             }
             return listGodownTypeDTO;
+        }
+        public List<LotDetailsDTO> GetMLotDetailsEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<LotDetailsDTO> listLotDetailsDTO = null;
+
+            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
+            {
+                listLotDetailsDTO = new List<LotDetailsDTO>();
+                foreach (MLotDetailsEntity objLotTypeEntity in listMLotDetailsEntity)
+                {
+                    LotDetailsDTO objLotDetailsDTO = new LotDetailsDTO();
+                    objLotDetailsDTO.LotDetails = objLotTypeEntity.LotName;
+                    objLotDetailsDTO.Indicator = GetYesorNo(objLotTypeEntity.ObsInd);
+                    objLotDetailsDTO.Id = objLotTypeEntity.MLotID;
+                    listLotDetailsDTO.Add(objLotDetailsDTO);
+                }
+            }
+            return listLotDetailsDTO;
+        }
+        public List<MBagTypeDTO> GetMBagTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<MBagTypeDTO> listBagTypeDTO = null;
+
+            List<MBagTypeEntity> listMBagTypeEntity = imp.GetMBagTypeEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMBagTypeEntity != null && listMBagTypeEntity.Count > 0)
+            {
+                listBagTypeDTO = new List<MBagTypeDTO>();
+                foreach (MBagTypeEntity objBagTypeEntity in listMBagTypeEntity)
+                {
+                    MBagTypeDTO objBagTypeDTO = new MBagTypeDTO();
+                    objBagTypeDTO.BagType= objBagTypeEntity.BagType;
+                    objBagTypeDTO.Indicator = GetYesorNo(objBagTypeEntity.ObsInd);
+                    objBagTypeDTO.Id = objBagTypeEntity.BagTypeID;
+                    listBagTypeDTO.Add(objBagTypeDTO);
+                }
+            }
+            return listBagTypeDTO;
         }
     }
 }

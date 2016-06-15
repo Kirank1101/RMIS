@@ -2559,7 +2559,7 @@
                 throw;
             }
         }
-        
+
 
         #endregion
 
@@ -2939,7 +2939,7 @@
             }
         }
 
-         internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
+        internal List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
             {
@@ -2978,43 +2978,151 @@
             }
         }
 
-         internal List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
-         {
-             try
-             {
-                 List<MGodownDetailsEntity> listMGodownDetailsEntity = new List<MGodownDetailsEntity>();
-                 IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
-                 DetachedCriteria detachedCriteria = null;
-                 if (expression == SortExpression.Desc)
-                     detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
-                                                                       .Add(Expression.Eq("CustID", CustId))
-                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                       ).AddOrder(Order.Asc("Name"));
-                 else
-                     detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
-                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                    ).AddOrder(Order.Desc("Name"));
+        internal List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MGodownDetailsEntity> listMGodownDetailsEntity = new List<MGodownDetailsEntity>();
+                IRepository<MGodownDetails> UsersRepository = new RepositoryImpl<MGodownDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("Name"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MGodownDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("Name"));
 
 
-                 List<MGodownDetails> listMGodownDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MGodownDetails>;
-                 if (listMGodownDetails != null && listMGodownDetails.Count > 0)
-                 {
-                     foreach (MGodownDetails adMInfo in listMGodownDetails)
-                     {
-                         listMGodownDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
-                     }
-                 }
-                 else
-                     listMGodownDetailsEntity = null;
+                List<MGodownDetails> listMGodownDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MGodownDetails>;
+                if (listMGodownDetails != null && listMGodownDetails.Count > 0)
+                {
+                    foreach (MGodownDetails adMInfo in listMGodownDetails)
+                    {
+                        listMGodownDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMGodownDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listMGodownDetailsEntity = null;
 
-                 return listMGodownDetailsEntity;
-             }
-             catch (Exception ex)
-             {
-                 Logger.Error("Error encountered at GetMGodownDetailsEntities", ex);
-                 throw;
-             }
-         }
+                return listMGodownDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMGodownDetailsEntities", ex);
+                throw;
+            }
+        }
+
+        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MLotDetailsEntity> listMLotDetailsEntity = new List<MLotDetailsEntity>();
+                IRepository<MLotDetails> UsersRepository = new RepositoryImpl<MLotDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("LotName"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("LotName"));
+
+
+                List<MLotDetails> listMLotDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MLotDetails>;
+                if (listMLotDetails != null && listMLotDetails.Count > 0)
+                {
+                    foreach (MLotDetails adMInfo in listMLotDetails)
+                    {
+                        listMLotDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMLotDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listMLotDetailsEntity = null;
+
+                return listMLotDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMLotDetailsEntities", ex);
+                throw;
+            }
+        }
+
+        internal MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo)
+        {
+            try
+            {
+                MBagTypeEntity MBagTypeEntity = new MBagTypeEntity();
+                IRepository<MBagType> UsersRepository = new RepositoryImpl<MBagType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBagType))
+                                                                   .Add(Expression.Eq("BagTypeID", BagTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MBagType> listMBagTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MBagType>;
+                if (listMBagTypeEntity != null && listMBagTypeEntity.Count > 0)
+                {
+                    foreach (MBagType adMInfo in listMBagTypeEntity)
+                    {
+                        MBagTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBagTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    MBagTypeEntity = null;
+
+                return MBagTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBagTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MBagTypeEntity> listMBagTypeEntity = new List<MBagTypeEntity>();
+                IRepository<MBagType> UsersRepository = new RepositoryImpl<MBagType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MBagType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("BagType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MBagType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("BagType"));
+
+
+                List<MBagType> listMBagType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MBagType>;
+                if (listMBagType != null && listMBagType.Count > 0)
+                {
+                    foreach (MBagType adMInfo in listMBagType)
+                    {
+                        listMBagTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBagTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMBagTypeEntity = null;
+
+                return listMBagTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBagTypeEntities", ex);
+                throw;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddLotDetails.ascx.cs"
     Inherits="AddLotDetails" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -33,34 +34,16 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptLotDetails" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsLotDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblLotDetails" Text='<%# Eval("LotDetails") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+    <asp:PagingGridView ID="rptLotDetails" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptLotDetails_PageIndexChanging" DataKeyNames="Id" OnSorting="rptLotDetails_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptLotDetails_RowCancelingEdit"
+        OnRowDeleting="rptLotDetails_RowDeleting" OnRowEditing="rptLotDetails_RowEditing"
+        OnRowUpdating="rptLotDetails_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="LotDetails" SortExpression="LotDetails" HeaderText="<%$Resources:Resource,LotDetails%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsLotDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit" />
+            <asp:CommandField ShowDeleteButton="true" HeaderText="Delete" />
+        </Columns>
+    </asp:PagingGridView>
 </div>

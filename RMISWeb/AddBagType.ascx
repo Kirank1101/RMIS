@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddBagType.ascx.cs" Inherits="AddBagType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -27,34 +28,18 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptBagType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHBagType" Text="<%$Resources:Resource,BagType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsBagDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblBagType" Text='<%# Eval("BagType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+    
+    
+    <asp:PagingGridView ID="rptBagType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptBagType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptBagType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptBagType_RowCancelingEdit"
+        OnRowDeleting="rptBagType_RowDeleting" OnRowEditing="rptBagType_RowEditing"
+        OnRowUpdating="rptBagType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="BagType" SortExpression="BagType" HeaderText="<%$Resources:Resource,BagType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsBagDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit" />
+            <asp:CommandField ShowDeleteButton="true" HeaderText="Delete" />
+        </Columns>
+    </asp:PagingGridView>
 </div>

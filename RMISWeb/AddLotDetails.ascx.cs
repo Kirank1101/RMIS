@@ -18,11 +18,10 @@ using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Collections.Generic;
+using RMIS.Domain.Constant;
 
 public partial class AddLotDetails : BaseUserControl
 {
-    
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -37,13 +36,6 @@ public partial class AddLotDetails : BaseUserControl
             ddlGodownName.DataBind();
             ddlGodownName.Items.Insert(0, "[Select]");
         }
-    }
-
-    private void bindLotDetails()
-    {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        rptLotDetails.DataSource = imp.GetLotDetailsEntities(ddlGodownName.SelectedValue);
-        rptLotDetails.DataBind();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -79,6 +71,75 @@ public partial class AddLotDetails : BaseUserControl
     }
     protected void ddlGodownName_SelectedIndexChanged(object sender, EventArgs e)
     {
+        bindLotDetails();
+    }
+    protected void rptLotDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptLotDetails.PageIndex = gridPageIndex = e.NewPageIndex;
+        bindLotDetails();
+    }
+    protected void rptLotDetails_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
+        bindLotDetails();
+    }
+    protected void rptLotDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        GridViewRow row = (GridViewRow)rptLotDetails.Rows[e.RowIndex];
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.DeleteLotDetails(rptLotDetails.DataKeys[e.RowIndex].Value.ToString());
+        bindLotDetails();
+
+    }
+    protected void rptLotDetails_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        rptLotDetails.EditIndex = e.NewEditIndex;
+        rptLotDetails.PageIndex = gridPageIndex;
+        bindLotDetails();
+
+    }
+    protected void rptLotDetails_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+
+        GridViewRow row = (GridViewRow)rptLotDetails.Rows[e.RowIndex];
+
+        //TextBox txtname=(TextBox)gr.cell[].control[];
+
+        TextBox textName = (TextBox)row.Cells[0].Controls[0];
+
+
+
+        //TextBox textadd = (TextBox)row.FindControl("txtadd");
+
+        //TextBox textc = (TextBox)row.FindControl("txtc");
+
+        rptLotDetails.EditIndex = -1;
+
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.UpdateLotDetails(rptLotDetails.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+        rptLotDetails.PageIndex = gridPageIndex;
+        bindLotDetails();
+
+        //GridView1.DataBind();
+
+    }
+    private void bindLotDetails()
+    {
+        int count = 0;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
+        rptLotDetails.DataSource = imp.GetMLotDetailsEntities(rptLotDetails.PageIndex, rptLotDetails.PageSize, out count, expression);
+        rptLotDetails.VirtualItemCount = count;
+        rptLotDetails.DataBind();
+    }
+    protected void rptLotDetails_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        rptLotDetails.EditIndex = -1;
+        rptLotDetails.PageIndex = gridPageIndex;
         bindLotDetails();
     }
 }
