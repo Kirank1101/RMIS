@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddBrokenRiceType.ascx.cs"
     Inherits="AddBrokenRiceType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -27,35 +28,17 @@
                 </table>
             </td>
         </tr>
-    </table>
-    <asp:Repeater ID="rptBrokenRiceType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHBrokenRiceType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsBrokenRiceDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblBrokenRiceType" Text='<%# Eval("BrokenRiceType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+    </table>    
+    <asp:PagingGridView ID="rptBrokenRiceType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptBrokenRiceType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptBrokenRiceType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptBrokenRiceType_RowCancelingEdit"
+        OnRowDeleting="rptBrokenRiceType_RowDeleting" OnRowEditing="rptBrokenRiceType_RowEditing"
+        OnRowUpdating="rptBrokenRiceType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="BrokenRiceType" SortExpression="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsBrokenRiceDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit" />
+            <asp:CommandField ShowDeleteButton="true" HeaderText="Delete" />
+        </Columns>
+    </asp:PagingGridView>
 </div>

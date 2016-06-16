@@ -143,7 +143,7 @@ namespace RMIS.Domain.Mediator
         List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId, YesNo yesNo);
-        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustID,YesNo yesNo);
+        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustID, YesNo yesNo);
         List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId, YesNo yesNo);
         List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, YesNo yesNo);
         List<EmployeeDetailsEntity> GetListEmployeeDetailsEntities(string CustId, YesNo yesNo);
@@ -151,8 +151,8 @@ namespace RMIS.Domain.Mediator
         MUnitsTypeEntity GetMUnitsTypeEntity(string unitTypeId, YesNo yesNo);
         EmployeeDetailsEntity GetEmployeeDetailsEntity(string custId, string EmployeeID, YesNo yesNo);
         MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string CustID, string DesignationID, YesNo yesNo);
-        MSalaryTypeEntity GetListMSalaryTypeEntity(string p, string SalaryTypeId, YesNo yesNo);
-        EmployeeSalaryEntity GetEmployeeSalaryEntity(string p, string EmployeeID, YesNo yesNo);
+        MSalaryTypeEntity GetListMSalaryTypeEntity(string CustId, string SalaryTypeId, YesNo yesNo);
+        EmployeeSalaryEntity GetEmployeeSalaryEntity(string CustId, string EmployeeID, YesNo yesNo);
         List<EmployeeSalaryPaymentEntity> GetAllEmployeeSalaryPaymentEntities(string CustId, YesNo yesNo);
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string CustId, string EmployeeID, YesNo yesNo);
         List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
@@ -213,7 +213,23 @@ namespace RMIS.Domain.Mediator
 
         MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo);
 
-        List<MBagTypeEntity> GetMBagTypeEntities(string p, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string BrokenRiceTypeID, YesNo yesNo);
+
+        List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string EmpDesigID, YesNo yesNo);
+
+        List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo);
+
+        List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
     }
 
 }

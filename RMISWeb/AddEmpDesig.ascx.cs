@@ -17,11 +17,10 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
+using RMIS.Domain.Constant;
 
 public partial class AddEmpDesig : BaseUserControl
-{
-    
-        
+{       
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -29,16 +28,7 @@ public partial class AddEmpDesig : BaseUserControl
             Header = "Add Employee Designation";
             bindDesigType();
         }
-    }
-
-    private void bindDesigType()
-    {
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>(); 
-        rptDesigType.DataSource = imp.GetMEmpDesigTypeEntities();
-        rptDesigType.DataBind();
-    }
-
-
+    }    
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         bool IsDesigExist = false;
@@ -68,5 +58,74 @@ public partial class AddEmpDesig : BaseUserControl
             resultDto.Message = "Designation Type already Exist.";
             SetMessage(resultDto);
         }
+    }
+    private void bindDesigType()
+    {
+        int count = 0;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
+        rptDesigType.DataSource = imp.GetMDesigTypeEntities(rptDesigType.PageIndex, rptDesigType.PageSize, out count, expression);
+        rptDesigType.VirtualItemCount = count;
+        rptDesigType.DataBind();
+    }
+    protected void rptDesigType_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptDesigType.PageIndex = gridPageIndex = e.NewPageIndex;
+        bindDesigType();
+    }
+    protected void rptDesigType_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
+        bindDesigType();
+    }
+    protected void rptDesigType_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        GridViewRow row = (GridViewRow)rptDesigType.Rows[e.RowIndex];
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.DeleteDesigType(rptDesigType.DataKeys[e.RowIndex].Value.ToString());
+        bindDesigType();
+
+    }
+    protected void rptDesigType_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        rptDesigType.EditIndex = e.NewEditIndex;
+        rptDesigType.PageIndex = gridPageIndex;
+        bindDesigType();
+
+    }
+    protected void rptDesigType_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+
+        GridViewRow row = (GridViewRow)rptDesigType.Rows[e.RowIndex];
+
+        //TextBox txtname=(TextBox)gr.cell[].control[];
+
+        TextBox textName = (TextBox)row.Cells[0].Controls[0];
+
+
+
+        //TextBox textadd = (TextBox)row.FindControl("txtadd");
+
+        //TextBox textc = (TextBox)row.FindControl("txtc");
+
+        rptDesigType.EditIndex = -1;
+
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        imp.UpdateDesigType(rptDesigType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+        rptDesigType.PageIndex = gridPageIndex;
+        bindDesigType();
+
+        //GridView1.DataBind();
+
+    }
+    protected void rptDesigType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        rptDesigType.EditIndex = -1;
+        rptDesigType.PageIndex = gridPageIndex;
+        bindDesigType();
     }
 }

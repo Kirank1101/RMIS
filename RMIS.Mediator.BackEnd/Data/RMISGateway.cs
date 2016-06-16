@@ -3124,5 +3124,292 @@
                 throw;
             }
         }
+
+        internal List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<MRiceProductionTypeEntity> listMRiceTypeEntity = new List<MRiceProductionTypeEntity>();
+                IRepository<MRiceProductionType> UsersRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("RiceType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("RiceType"));
+
+
+                List<MRiceProductionType> listMRiceType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MRiceProductionType>;
+                if (listMRiceType != null && listMRiceType.Count > 0)
+                {
+                    foreach (MRiceProductionType adMInfo in listMRiceType)
+                    {
+                        listMRiceTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceProductionTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMRiceTypeEntity = null;
+
+                return listMRiceTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceProductionTypeEntities", ex);
+                throw;
+            }
+        }
+
+        internal List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = new List<MBrokenRiceTypeEntity>();
+                IRepository<MBrokenRiceType> UsersRepository = new RepositoryImpl<MBrokenRiceType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("BrokenRiceName"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("BrokenRiceName"));
+
+
+                List<MBrokenRiceType> listMBrokenRiceType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MBrokenRiceType>;
+                if (listMBrokenRiceType != null && listMBrokenRiceType.Count > 0)
+                {
+                    foreach (MBrokenRiceType adMInfo in listMBrokenRiceType)
+                    {
+                        listMBrokenRiceTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBrokenRiceTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMBrokenRiceTypeEntity = null;
+
+                return listMBrokenRiceTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBrokenRiceTypeEntities", ex);
+                throw;
+            }
+        }
+
+        internal MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string BrokenRiceTypeID, YesNo yesNo)
+        {
+
+            try
+            {
+                MBrokenRiceTypeEntity mBrokenRiceTypeEntity = new MBrokenRiceTypeEntity();
+                IRepository<MBrokenRiceType> UsersRepository = new RepositoryImpl<MBrokenRiceType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
+                                                                   .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MBrokenRiceType> listMBrokenRiceTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MBrokenRiceType>;
+                if (listMBrokenRiceTypeEntity != null && listMBrokenRiceTypeEntity.Count > 0)
+                {
+                    foreach (MBrokenRiceType adMInfo in listMBrokenRiceTypeEntity)
+                    {
+                        mBrokenRiceTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBrokenRiceTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    mBrokenRiceTypeEntity = null;
+
+                return mBrokenRiceTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBrokenRiceTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MRiceBrandDetailsEntity> listMRiceBrandEntity = new List<MRiceBrandDetailsEntity>();
+                IRepository<MRiceBrandDetails> UsersRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("Name"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("Name"));
+
+
+                List<MRiceBrandDetails> listMRiceBrand = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MRiceBrandDetails>;
+                if (listMRiceBrand != null && listMRiceBrand.Count > 0)
+                {
+                    foreach (MRiceBrandDetails adMInfo in listMRiceBrand)
+                    {
+                        listMRiceBrandEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listMRiceBrandEntity = null;
+
+                return listMRiceBrandEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceBrandDetailsEntities", ex);
+                throw;
+            }
+        }
+
+        internal MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string EmpDesigID, YesNo yesNo)
+        {
+            try
+            {
+                MEmployeeDesignationEntity mEmpDesigEntity = new MEmployeeDesignationEntity();
+                IRepository<MEmployeeDesignation> UsersRepository = new RepositoryImpl<MEmployeeDesignation>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                   .Add(Expression.Eq("MEmpDsgID", EmpDesigID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MEmployeeDesignation> listMEmployeeDesignationEntity = UsersRepository.GetAll(detachedCriteria) as List<MEmployeeDesignation>;
+                if (listMEmployeeDesignationEntity != null && listMEmployeeDesignationEntity.Count > 0)
+                {
+                    foreach (MEmployeeDesignation adMInfo in listMEmployeeDesignationEntity)
+                    {
+                        mEmpDesigEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMEmployeeDesignationEntity(adMInfo);
+                    }
+                }
+                else
+                    mEmpDesigEntity = null;
+
+                return mEmpDesigEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMEmployeeDesignationEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MEmployeeDesignationEntity> listMEmpDesigEntity = new List<MEmployeeDesignationEntity>();
+                IRepository<MEmployeeDesignation> UsersRepository = new RepositoryImpl<MEmployeeDesignation>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("DesignationType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MEmployeeDesignation))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("DesignationType"));
+
+
+                List<MEmployeeDesignation> listMEmpDesigBrand = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MEmployeeDesignation>;
+                if (listMEmpDesigBrand != null && listMEmpDesigBrand.Count > 0)
+                {
+                    foreach (MEmployeeDesignation adMInfo in listMEmpDesigBrand)
+                    {
+                        listMEmpDesigEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMEmployeeDesignationEntity(adMInfo));
+                    }
+                }
+                else
+                    listMEmpDesigEntity = null;
+
+                return listMEmpDesigEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMEmployeeDesignationEntities", ex);
+                throw;
+            }
+        }
+
+        internal MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo)
+        {
+            try
+            {
+                MSalaryTypeEntity mSalaryTypeEntity = new MSalaryTypeEntity();
+                IRepository<MSalaryType> UsersRepository = new RepositoryImpl<MSalaryType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                   .Add(Expression.Eq("MSalaryTypeID", SalaryTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MSalaryType> listMSalaryTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MSalaryType>;
+                if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
+                {
+                    foreach (MSalaryType adMInfo in listMSalaryTypeEntity)
+                    {
+                        mSalaryTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMSalaryTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    mSalaryTypeEntity = null;
+
+                return mSalaryTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMSalaryTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MSalaryTypeEntity> listMSalaryTpyeEntity = new List<MSalaryTypeEntity>();
+                IRepository<MSalaryType> UsersRepository = new RepositoryImpl<MSalaryType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("Salarytype"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MSalaryType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("Salarytype"));
+
+
+                List<MSalaryType> listMSalaryType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MSalaryType>;
+                if (listMSalaryType != null && listMSalaryType.Count > 0)
+                {
+                    foreach (MSalaryType adMInfo in listMSalaryType)
+                    {
+                        listMSalaryTpyeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMSalaryTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMSalaryTpyeEntity = null;
+
+                return listMSalaryTpyeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMSalaryTypeEntities", ex);
+                throw;
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace RMIS.Domain.Business
         List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities();
         List<GodownTypeDTO> GetMGodownTypeEntities();
         List<RiceBrandDTO> GetRiceBrandEntities();
-        List<RiceProductDTO> GetRiceProductEntities();
+        List<RiceTypeDTO> GetRiceProductEntities();
         List<LotDetailsDTO> GetLotDetailsEntities(string godownId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<WeightDetailsDTO> GetMWeightDetailsEntities();
@@ -68,5 +68,28 @@ namespace RMIS.Domain.Business
         ResultDTO DeleteBagType(string ID);
         ResultDTO UpdateBagType(string ID, string BagType);
         List<MBagTypeDTO> GetMBagTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        ResultDTO DeleteRiceType(string ID);
+        ResultDTO UpdateRiceType(string ID, string RiceType);
+        List<RiceTypeDTO> GetMRiceTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        ResultDTO DeleteBrokenRiceType(string ID);
+        ResultDTO UpdateBrokenRiceType(string ID, string BrokenRiceType);
+        List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+
+        ResultDTO DeleteRiceBrandType(string ID);
+        ResultDTO UpdateRiceBrandType(string ID, string RiceBrandType);
+        List<RiceBrandDTO> GetMRiceBrandTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+
+
+        ResultDTO DeleteDesigType(string ID);
+        ResultDTO UpdateDesigType(string ID, string DesigType);
+        List<MEmpDesigDTO> GetMDesigTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        ResultDTO DeleteSalaryType(string ID);
+        ResultDTO UpdateSalaryType(string ID, string SalaryType);
+        List<MSalarytypeDTO> GetMSalaryTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
     }
 }

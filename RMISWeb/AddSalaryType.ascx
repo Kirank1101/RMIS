@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddSalaryType.ascx.cs" Inherits="AddSalaryType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -27,34 +28,17 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptSalaryType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHSalaryType" Text="<%$Resources:Resource,SalaryType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsSalaryTypeDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblSalaryType" Text='<%# Eval("SalaryType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+
+    <asp:PagingGridView ID="rptSalaryType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptSalaryType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptSalaryType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptSalaryType_RowCancelingEdit"
+        OnRowDeleting="rptSalaryType_RowDeleting" OnRowEditing="rptSalaryType_RowEditing"
+        OnRowUpdating="rptSalaryType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="SalaryType" SortExpression="SalaryType" HeaderText="<%$Resources:Resource,SalaryType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsSalaryDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
+            <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>
+        </Columns>
+    </asp:PagingGridView>
 </div>

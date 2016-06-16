@@ -8,9 +8,7 @@ using RMIS.Domain.Constant;
 
 
 public partial class AddUnitsType : BaseUserControl
-{
-    
-            
+{           
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -47,12 +45,20 @@ public partial class AddUnitsType : BaseUserControl
             SetMessage(resultDto);
         }
     }
+    private void bindUnitsType()
+    {
+        int count = 0;
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+
+        rptUnitsType.DataSource = imp.GetMUnitsTypeEntities(rptUnitsType.PageIndex, rptUnitsType.PageSize, out count, expression);
+        rptUnitsType.VirtualItemCount = count;
+        rptUnitsType.DataBind();
+    }
     protected void rptUnitsType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         rptUnitsType.PageIndex = gridPageIndex = e.NewPageIndex;
         bindUnitsType();
     }
-
     protected void rptUnitsType_Sorting(object sender, GridViewSortEventArgs e)
     {
         if (expression == SortExpression.Asc)
@@ -61,7 +67,6 @@ public partial class AddUnitsType : BaseUserControl
             expression = SortExpression.Asc;
         bindUnitsType();
     }
-
     protected void rptUnitsType_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         GridViewRow row = (GridViewRow)rptUnitsType.Rows[e.RowIndex];
@@ -70,7 +75,6 @@ public partial class AddUnitsType : BaseUserControl
         bindUnitsType();
 
     }
-
     protected void rptUnitsType_RowEditing(object sender, GridViewEditEventArgs e)
     {
         rptUnitsType.EditIndex = e.NewEditIndex;
@@ -78,7 +82,6 @@ public partial class AddUnitsType : BaseUserControl
         bindUnitsType();
 
     }
-
     protected void rptUnitsType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
 
@@ -104,15 +107,6 @@ public partial class AddUnitsType : BaseUserControl
 
         //GridView1.DataBind();
 
-    }
-    private void bindUnitsType()
-    {
-        int count = 0;
-        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-
-        rptUnitsType.DataSource = imp.GetMUnitsTypeEntities(rptUnitsType.PageIndex, rptUnitsType.PageSize, out count, expression);
-        rptUnitsType.VirtualItemCount = count;
-        rptUnitsType.DataBind();
     }
     protected void rptUnitsType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {

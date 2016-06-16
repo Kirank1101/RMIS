@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddEmpDesig.ascx.cs" Inherits="AddEmpDesig" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -27,34 +28,17 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptDesigType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHDesigType" Text="<%$Resources:Resource,DesigType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsDesigDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblDesigType" Text='<%# Eval("DesignationType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+
+    <asp:PagingGridView ID="rptDesigType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptDesigType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptDesigType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptDesigType_RowCancelingEdit"
+        OnRowDeleting="rptDesigType_RowDeleting" OnRowEditing="rptDesigType_RowEditing"
+        OnRowUpdating="rptDesigType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="DesignationType" SortExpression="DesignationType" HeaderText="<%$Resources:Resource,DesigType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsDesigDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
+            <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>
+        </Columns>
+    </asp:PagingGridView>
 </div>

@@ -13,7 +13,6 @@ using log4net;
 
 namespace RMIS.Business
 {
-
     public class MasterPaddyBusiness : IMasterPaddyBusiness
     {
         IRMISMediator imp;
@@ -161,17 +160,17 @@ namespace RMIS.Business
             }
             return listRiceBrandDTO;
         }
-        public List<RiceProductDTO> GetRiceProductEntities()
+        public List<RiceTypeDTO> GetRiceProductEntities()
         {
-            List<RiceProductDTO> listRiceProductDTO = null;
+            List<RiceTypeDTO> listRiceProductDTO = null;
 
             List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
             {
-                listRiceProductDTO = new List<RiceProductDTO>();
+                listRiceProductDTO = new List<RiceTypeDTO>();
                 foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
                 {
-                    RiceProductDTO objRiceProductDTO = new RiceProductDTO();
+                    RiceTypeDTO objRiceProductDTO = new RiceTypeDTO();
                     objRiceProductDTO.RiceType = objMRiceProductionTypeEntity.RiceType;
                     objRiceProductDTO.Indicator = GetYesorNo(objMRiceProductionTypeEntity.ObsInd);
                     objRiceProductDTO.Id = objMRiceProductionTypeEntity.MRiceProdTypeID;
@@ -877,7 +876,116 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-
+        public ResultDTO DeleteRiceType(string ID)
+        {
+            MRiceProductionTypeEntity objMRiceTypeEntity = imp.GetMRiceProductionTypeEntity(ID, YesNo.N);
+            if (objMRiceTypeEntity is MRiceProductionTypeEntity)
+            {
+                objMRiceTypeEntity.ObsInd = YesNo.Y;
+                objMRiceTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMRiceTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMRiceProductionTypeEntity(objMRiceTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO DeleteBrokenRiceType(string ID)
+        {
+            MBrokenRiceTypeEntity objMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntity(ID, YesNo.N);
+            if (objMBrokenRiceTypeEntity is MBrokenRiceTypeEntity)
+            {
+                objMBrokenRiceTypeEntity.ObsInd = YesNo.Y;
+                objMBrokenRiceTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMBrokenRiceTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMBrokenRiceTypeEntity(objMBrokenRiceTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO DeleteRiceBrandType(string ID)
+        {
+            MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(ID, YesNo.N);
+            if (objMRiceBrandEntity is MRiceBrandDetailsEntity)
+            {
+                objMRiceBrandEntity.ObsInd = YesNo.Y;
+                objMRiceBrandEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMRiceBrandEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMRiceBrandDetailsEntity(objMRiceBrandEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO DeleteDesigType(string ID)
+        {
+            MEmployeeDesignationEntity objMEmpDesigEntity = imp.GetMEmployeeDesignationEntity(ID, YesNo.N);
+            if (objMEmpDesigEntity is MEmployeeDesignationEntity)
+            {
+                objMEmpDesigEntity.ObsInd = YesNo.Y;
+                objMEmpDesigEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMEmpDesigEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMEmployeeDesignationEntity(objMEmpDesigEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO DeleteSalaryType(string ID)
+        {
+            MSalaryTypeEntity objMSalaryTypeEntity = imp.GetMSalaryTypeEntity(ID, YesNo.N);
+            if (objMSalaryTypeEntity is MSalaryTypeEntity)
+            {
+                objMSalaryTypeEntity.ObsInd = YesNo.Y;
+                objMSalaryTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMSalaryTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMSalaryTypeEntity(objMSalaryTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
 
         public ResultDTO UpdateUnitsType(string Id, string UnitType)
         {
@@ -971,6 +1079,121 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO UpdateRiceType(string ID, string RiceType)
+        {
+            MRiceProductionTypeEntity objMRiceTypeEntity = imp.GetMRiceProductionTypeEntity(ID, YesNo.N);
+            if (objMRiceTypeEntity is MRiceProductionTypeEntity)
+            {
+                objMRiceTypeEntity.RiceType= RiceType;
+                objMRiceTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMRiceTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMRiceProductionTypeEntity(objMRiceTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO UpdateBrokenRiceType(string ID, string BrokenRiceType)
+        {
+            MBrokenRiceTypeEntity objMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntity(ID, YesNo.N);
+            if (objMBrokenRiceTypeEntity is MBrokenRiceTypeEntity)
+            {
+                objMBrokenRiceTypeEntity.BrokenRiceName = BrokenRiceType;
+                objMBrokenRiceTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMBrokenRiceTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMBrokenRiceTypeEntity(objMBrokenRiceTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO UpdateRiceBrandType(string ID, string RiceBrandType)
+        {
+            MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(ID, YesNo.N);
+            if (objMRiceBrandEntity is MRiceBrandDetailsEntity)
+            {
+                objMRiceBrandEntity.Name = RiceBrandType;
+                objMRiceBrandEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMRiceBrandEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMRiceBrandDetailsEntity(objMRiceBrandEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO UpdateDesigType(string ID, string DesigType)
+        {
+            MEmployeeDesignationEntity objMEmpDesigEntity = imp.GetMEmployeeDesignationEntity(ID, YesNo.N);
+            if (objMEmpDesigEntity is MEmployeeDesignationEntity)
+            {
+                objMEmpDesigEntity.DesignationType = DesigType;
+                objMEmpDesigEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMEmpDesigEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMEmployeeDesignationEntity(objMEmpDesigEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        public ResultDTO UpdateSalaryType(string ID, string SalaryType)
+        {
+            MSalaryTypeEntity objMSalaryTypeEntity = imp.GetMSalaryTypeEntity(ID, YesNo.N);
+            if (objMSalaryTypeEntity is MSalaryTypeEntity)
+            {
+                objMSalaryTypeEntity.Salarytype = SalaryType;
+                objMSalaryTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMSalaryTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMSalaryTypeEntity(objMSalaryTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
 
         public List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)
         {
@@ -1047,6 +1270,101 @@ namespace RMIS.Business
                 }
             }
             return listBagTypeDTO;
+        }
+        public List<RiceTypeDTO> GetMRiceTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<RiceTypeDTO> listRiceTypeDTO = null;
+
+            List<MRiceProductionTypeEntity> listMRiceTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMRiceTypeEntity != null && listMRiceTypeEntity.Count > 0)
+            {
+                listRiceTypeDTO = new List<RiceTypeDTO>();
+                foreach (MRiceProductionTypeEntity objRiceTypeEntity in listMRiceTypeEntity)
+                {
+                    RiceTypeDTO objRiceTypeDTO = new RiceTypeDTO();
+                    objRiceTypeDTO.RiceType = objRiceTypeEntity.RiceType;
+                    objRiceTypeDTO.Indicator = GetYesorNo(objRiceTypeEntity.ObsInd);
+                    objRiceTypeDTO.Id = objRiceTypeEntity.MRiceProdTypeID;
+                    listRiceTypeDTO.Add(objRiceTypeDTO);
+                }
+            }
+            return listRiceTypeDTO;
+        }
+        public List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<BrokenRiceTypeDTO> listBrokenRiceTypeDTO = null;
+
+            List<MBrokenRiceTypeEntity> listMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMBrokenRiceTypeEntity != null && listMBrokenRiceTypeEntity.Count > 0)
+            {
+                listBrokenRiceTypeDTO = new List<BrokenRiceTypeDTO>();
+                foreach (MBrokenRiceTypeEntity objBrokenRiceTypeEntity in listMBrokenRiceTypeEntity)
+                {
+                    BrokenRiceTypeDTO objBrokenRiceTypeDTO = new BrokenRiceTypeDTO();
+                    objBrokenRiceTypeDTO.BrokenRiceType = objBrokenRiceTypeEntity.BrokenRiceName;
+                    objBrokenRiceTypeDTO.Indicator = GetYesorNo(objBrokenRiceTypeEntity.ObsInd);
+                    objBrokenRiceTypeDTO.Id = objBrokenRiceTypeEntity.BrokenRiceTypeID;
+                    listBrokenRiceTypeDTO.Add(objBrokenRiceTypeDTO);
+                }
+            }
+            return listBrokenRiceTypeDTO;
+        }
+        public List<RiceBrandDTO> GetMRiceBrandTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<RiceBrandDTO> listRiceBrandDTO = null;
+
+            List<MRiceBrandDetailsEntity> listMRiceBrandEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMRiceBrandEntity != null && listMRiceBrandEntity.Count > 0)
+            {
+                listRiceBrandDTO = new List<RiceBrandDTO>();
+                foreach (MRiceBrandDetailsEntity objRiceBrandEntity in listMRiceBrandEntity)
+                {
+                    RiceBrandDTO objRiceBrandDTO = new RiceBrandDTO();
+                    objRiceBrandDTO.RiceBrand = objRiceBrandEntity.Name;
+                    objRiceBrandDTO.Indicator = GetYesorNo(objRiceBrandEntity.ObsInd);
+                    objRiceBrandDTO.Id = objRiceBrandEntity.MRiceBrandID;
+                    listRiceBrandDTO.Add(objRiceBrandDTO);
+                }
+            }
+            return listRiceBrandDTO;
+        }
+        public List<MEmpDesigDTO> GetMDesigTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<MEmpDesigDTO> listEmpDesigDTO = null;
+
+            List<MEmployeeDesignationEntity> listMEmpDesigEntity = imp.GetMEmployeeDesignationEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMEmpDesigEntity != null && listMEmpDesigEntity.Count > 0)
+            {
+                listEmpDesigDTO = new List<MEmpDesigDTO>();
+                foreach (MEmployeeDesignationEntity objEmpDesigEntity in listMEmpDesigEntity)
+                {
+                    MEmpDesigDTO objEmpDesigDTO = new MEmpDesigDTO();
+                    objEmpDesigDTO.DesignationType = objEmpDesigEntity.DesignationType;
+                    objEmpDesigDTO.Indicator = GetYesorNo(objEmpDesigEntity.ObsInd);
+                    objEmpDesigDTO.Id = objEmpDesigEntity.MEmpDsgID;
+                    listEmpDesigDTO.Add(objEmpDesigDTO);
+                }
+            }
+            return listEmpDesigDTO;
+        }
+        public List<MSalarytypeDTO> GetMSalaryTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<MSalarytypeDTO> listSalaryTypeDTO = null;
+
+            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
+            {
+                listSalaryTypeDTO = new List<MSalarytypeDTO>();
+                foreach (MSalaryTypeEntity objSalTypeEntity in listMSalaryTypeEntity)
+                {
+                    MSalarytypeDTO objMSalarytypeDTO = new MSalarytypeDTO();
+                    objMSalarytypeDTO.SalaryType = objSalTypeEntity.Salarytype;
+                    objMSalarytypeDTO.Indicator = GetYesorNo(objSalTypeEntity.ObsInd);
+                    objMSalarytypeDTO.Id = objSalTypeEntity.MSalaryTypeID;
+                    listSalaryTypeDTO.Add(objMSalarytypeDTO);
+                }
+            }
+            return listSalaryTypeDTO;
         }
     }
 }

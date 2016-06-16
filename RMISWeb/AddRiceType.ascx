@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddRiceType.ascx.cs" Inherits="AddRiceType" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -27,34 +28,17 @@
             </td>
         </tr>
     </table>
-    <asp:Repeater ID="rptRiceType" runat="server">
-        <HeaderTemplate>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <asp:Label runat="server" ID="lblHRiceType" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
-                        </th>
-                        <th>
-                            <asp:Label runat="server" ID="lblHObsInd" Text="<%$Resources:Resource,IsRiceDeleted%>"></asp:Label>
-                        </th>
-                    </tr>
-                </thead>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tbody>
-                <tr>
-                    <td>
-                        <asp:Label runat="server" ID="lblRiceType" Text='<%# Eval("RiceType") %>' />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblObsInd" Text='<%# Eval("Indicator") %>' />
-                    </td>
-                </tr>
-            </tbody>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+    
+    <asp:PagingGridView ID="rptRiceType" Width="80%" runat="server" AllowSorting="true"
+        OnPageIndexChanging="rptRiceType_PageIndexChanging" DataKeyNames="Id" OnSorting="rptRiceType_Sorting"
+        AllowPaging="True" AutoGenerateColumns="false" OrderBy="" OnRowCancelingEdit="rptRiceType_RowCancelingEdit"
+        OnRowDeleting="rptRiceType_RowDeleting" OnRowEditing="rptRiceType_RowEditing"
+        OnRowUpdating="rptRiceType_RowUpdating">
+        <Columns>
+            <asp:BoundField DataField="RiceType" SortExpression="RiceType" HeaderText="<%$Resources:Resource,RiceType%>" />
+            <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsRiceDeleted%>" />
+            <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
+            <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>
+        </Columns>
+    </asp:PagingGridView>
 </div>

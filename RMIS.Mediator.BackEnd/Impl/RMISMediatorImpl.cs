@@ -807,7 +807,6 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
         public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string MRiceBrandID, YesNo yesNo)
         {
-
             return rmisGateway.GetMRiceBrandDetailsEntity(MRiceBrandID, yesNo);
         }
         public List<MUserTypeEntity> GetMUserTypeEntities(string CustId, YesNo yesNo)
@@ -1215,10 +1214,47 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMBagTypeEntity(BagTypeID, yesNo);
         }
-
         public List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             return rmisGateway.GetMBagTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+        public List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMRiceProductionTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+        public MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string BrokenRiceTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetMBrokenRiceTypeEntity(BrokenRiceTypeID, yesNo);
+        }
+        public List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMBrokenRiceTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+        public List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMRiceBrandDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+
+
+        public MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string EmpDesigID, YesNo yesNo)
+        {
+            return rmisGateway.GetMEmployeeDesignationEntity(EmpDesigID, yesNo);
+        }
+
+        public List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMEmployeeDesignationEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+
+
+        public MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetMSalaryTypeEntity(SalaryTypeID, yesNo);
+        }
+
+        public List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetListMSalaryTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
         }
     }
 }

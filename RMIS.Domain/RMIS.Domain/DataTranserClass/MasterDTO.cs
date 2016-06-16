@@ -127,9 +127,9 @@ namespace RMIS.Domain.DataTranserClass
         }
     }
 
-    public class RiceProductDTO : MasterPaddyDTO
+    public class RiceTypeDTO : MasterPaddyDTO
     {
-        public RiceProductDTO()
+        public RiceTypeDTO()
             : base()
         {
             RiceType = string.Empty;

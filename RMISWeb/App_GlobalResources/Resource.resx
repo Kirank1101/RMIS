@@ -315,7 +315,7 @@
   <data name="IsDesigDeleted" xml:space="preserve">
     <value>IsDeleted</value>
   </data>
-  <data name="IsSalaryTypeDeleted" xml:space="preserve">
+  <data name="IsSalaryDeleted" xml:space="preserve">
     <value>IsDeleted</value>
   </data>
   <data name="Salary" xml:space="preserve">
