@@ -182,7 +182,7 @@ namespace RMIS.Business
             //}
             return new ResultDTO();
         }
-        public ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType, string totalbags, string weight)
+        public ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType, string totalbags)
         {
 
             if (RiceType <= 0)
@@ -205,18 +205,11 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(weight.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (weight.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
+            
 
             return new ResultDTO();
         }
-        public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags, string Price)
+        public ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags)
         {
 
             if (BrokenRiceType <= 0)
@@ -235,19 +228,11 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(Price.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (Price.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
-
+            
             return new ResultDTO();
         }
 
-        public ResultDTO ValidateDustStockDetails(int UnitsType, string totalbags, string weight)
+        public ResultDTO ValidateDustStockDetails(int UnitsType, string totalbags)
         {
 
             if (UnitsType <= 0)
@@ -262,186 +247,11 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(weight.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustStockDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (weight.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustStockDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
+            
 
             return new ResultDTO();
         }
-        public ResultDTO ValidateRiceSellingDetails(int seller, int RiceType, int RiceBrand, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
-        {
-            if (seller <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsSeller, provider.GetCurrentCustomerId()) };
-            }
-            else if (RiceType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsRiceType, provider.GetCurrentCustomerId()) };
-            }
-            else if (RiceBrand <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsRiceBrand, provider.GetCurrentCustomerId()) };
-            }
-            else if (UnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(vehicleNo.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (vehicleNo.Trim().Length > 10)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(totalbags.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (totalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(weight.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (weight.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(price.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsPriceEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (price.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsPriceValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(SellingDate.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsSelingDateEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (!SellingDate.IsDate())
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRiceSellingDetailsSellingDateValidate, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO();
-        }
-        public ResultDTO ValidateBrokenRiceSellingDetails(int seller, int BrokenRiceType, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
-        {
-            if (seller <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsSeller, provider.GetCurrentCustomerId()) };
-            }
-            else if (BrokenRiceType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
-            }
-            else if (UnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(vehicleNo.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (vehicleNo.Trim().Length > 10)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(totalbags.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (totalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(weight.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (weight.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(price.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsPriceEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (price.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsPriceValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(SellingDate.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsSelingDateEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (!SellingDate.IsDate())
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceSellingDetailsSellingDateValidate, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO();
-        }
-        public ResultDTO ValidateDustSellingDetails(int seller, int UnitsType, string vehicleNo, string totalbags, string weight, string price, string SellingDate)
-        {
-            if (seller <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsSeller, provider.GetCurrentCustomerId()) };
-            }
-            else if (UnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(vehicleNo.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (vehicleNo.Trim().Length > 10)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(totalbags.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (totalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(weight.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsWeightEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (weight.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsWeightValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(price.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsPriceEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (price.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsPriceValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(SellingDate.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsSelingDateEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (!SellingDate.IsDate())
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustSellingDetailsSellingDateValidate, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO();
-        }
-
+        
 
         public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
         {

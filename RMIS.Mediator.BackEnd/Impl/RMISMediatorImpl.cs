@@ -91,20 +91,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
 
-        public void SaveOrUpdateMProductSellingTypeEntity(MProductSellingTypeEntity mProductSellingTypeEntity, bool isCopy)
-        {
-
-            try
-            {
-                genericGateway.SaveOrUpdateEntity<MProductSellingType>(mapper.GetMProductSellingType(mProductSellingTypeEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateMProductSellingTypeEntity", ex);
-                Logger.Error("Error in SaveOrUpdateMProductSellingTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
+        
         public void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy)
         {
             try
@@ -280,20 +267,6 @@ namespace RMIS.Mediator.BackEnd.Impl
             {
                 Logger.Error("Error at SaveOrUpdatePaddyPaymentDetailsEntity", ex);
                 Logger.Error("Error in SaveOrUpdatePaddyPaymentDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
-        public void SaveOrUpdateMWeightDetailsEntity(MWeightDetailsEntity mWeightDetailsEntity, bool isCopy)
-        {
-            try
-            {
-
-                genericGateway.SaveOrUpdateEntity<MWeightDetails>(mapper.GetMWeightDetails(mWeightDetailsEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateMWeightDetailsEntity", ex);
-                Logger.Error("Error in SaveOrUpdateMWeightDetailsEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
                 throw;
             }
         }
@@ -506,47 +479,6 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
-        public void SaveOrUpdateRiceSellingInfoEntity(RiceSellingInfoEntity riceSellingInfoEntity, bool isCopy)
-        {
-            try
-            {
-
-                genericGateway.SaveOrUpdateEntity<RiceSellingInfo>(mapper.GetRiceSellingInfo(riceSellingInfoEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateRiceSellingInfoEntity", ex);
-                Logger.Error("Error in SaveOrUpdateRiceSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
-        public void SaveOrUpdateBrokenRiceSellingInfoEntity(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity, bool isCopy)
-        {
-            try
-            {
-
-                genericGateway.SaveOrUpdateEntity<BrokenRiceSellingInfo>(mapper.GetBrokenRiceSellingInfo(brokenRiceSellingInfoEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateBrokenRiceSellingInfoEntity", ex);
-                Logger.Error("Error in SaveOrUpdateBrokenRiceSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
-        public void SaveOrUpdateDustSellingInfoEntity(DustSellingInfoEntity dustSellingInfoEntity, bool isCopy)
-        {
-            try
-            {
-                genericGateway.SaveOrUpdateEntity<DustSellingInfo>(mapper.GetDustSellingInfo(dustSellingInfoEntity), isCopy);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at SaveOrUpdateDustSellingInfoEntity", ex);
-                Logger.Error("Error in SaveOrUpdateDustSellingInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
-                throw;
-            }
-        }
         public void SaveOrUpdateRoleEntity(MRolesEntity mRoleEntity, bool isCopy)
         {
             try
@@ -739,11 +671,6 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID, yesNo);
         }
-        public MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID, YesNo yesNo)
-        {
-
-            return rmisGateway.GetMWeightDetailsEntity(MWeightID, yesNo);
-        }
         public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo)
         {
 
@@ -833,10 +760,6 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllMGodownDetailsEntity(CustId, yesNo);
         }
-        public List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId, YesNo yesNo)
-        {
-            return rmisGateway.GetMWeightDetailsEntities(CustId, yesNo);
-        }
         public List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetMRiceProductionTypeEntities(CustId, yesNo);
@@ -890,18 +813,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllDustStockInfoEntities(CustId, yesNo);
         }
-        public List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            return rmisGateway.GetAllRiceSellingInfoEntities(CustId, yesNo);
-        }
-        public List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            return rmisGateway.GetAllBrokenRiceSellingInfoEntities(CustId, yesNo);
-        }
-        public List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            return rmisGateway.GetAllDustSellingInfoEntities(CustId, yesNo);
-        }
+        
         public List<MenuInfoEntity> GetAllMenuInfoEntities(YesNo yesNo)
         {
             return rmisGateway.GetMenuInfoEntities(yesNo);
@@ -913,10 +825,6 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<MenuConfigurationEntity> GetMenuConfigurationEntities(string CustId, YesNo yesNo)
         {
             return rmisGateway.GetMenuConfigurationEntities(CustId, yesNo);
-        }
-        public List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId, YesNo yesNo)
-        {
-            return rmisGateway.GetMProductSellingTypeEnties(CustId, yesNo);
         }
         public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, YesNo yesNo)
         {

@@ -11,7 +11,7 @@ namespace RMIS.Domain.DataTranserClass
         {
             Id = SellerName = PaddyName = LotName = GodownName = UnitName =
                 VehicalNo = DriverName = string.Empty;
-            TotalBags = Price = 0.0M;
+            TotalBags = Price = 0.0;
         }
         public string Id { get; set; }
         public string SellerName { get; set; }
@@ -22,8 +22,8 @@ namespace RMIS.Domain.DataTranserClass
         public string UnitName { get; set; }
         public string VehicalNo { get; set; }
         public string DriverName { get; set; }
-        public decimal TotalBags { get; set; }
-        public decimal Price { get; set; }
+        public double TotalBags { get; set; }
+        public double Price { get; set; }
         public DateTime PurchaseDate { get; set; }
 
     }

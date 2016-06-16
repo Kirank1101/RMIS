@@ -16,7 +16,7 @@ namespace RMIS.Entities.BackEnd
         private string _BrokenRiceTypeID;
         private string _CustID;
         private string _UnitsTypeID;
-        private decimal _TotalBags; 
+        private int _TotalBags; 
         private double _Price;
         private DateTime _SellingDate;
         private string _LastModifiedBy;
@@ -63,7 +63,7 @@ namespace RMIS.Entities.BackEnd
             get { return _CustID; }
             set { _CustID = value; }
         }
-        public virtual decimal TotalBags
+        public virtual int TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }

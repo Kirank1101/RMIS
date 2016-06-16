@@ -2,7 +2,7 @@
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
-
+using AllInOne.Common.Library.Util;
 public partial class BagStockInfo : BaseUserControl
 {
             
@@ -44,7 +44,7 @@ public partial class BagStockInfo : BaseUserControl
             && !string.IsNullOrEmpty(txtpricePerBag.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToDecimal(txtpricePerBag.Text.Trim()), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
+            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtpricePerBag.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
             ClearAllInputFields();
 
         }

@@ -29,7 +29,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MLotDetails GetMLotDetails(MLotDetailsEntity mLotDetailsEntity);
         MGodownDetails GetMGodownDetails(MGodownDetailsEntity mGodownDetailsEntity);
         PaddyPaymentDetails GetPaddyPaymentDetails(PaddyPaymentDetailsEntity paddyPaymentDetailsEntity);
-        MWeightDetails GetMWeightDetails(MWeightDetailsEntity mWeightDetailsEntity);
         CustomerAddressInfo GetCustomerAddressInfo(CustomerAddressInfoEntity customerAddressInfoEntity);
         CustomerActivation GetCustomerActivation(CustomerActivationEntity customerActivationEntity);
         CustTrailUsage GetCustTrailUsage(CustTrailUsageEntity custTrailUsageEntity);
@@ -38,13 +37,9 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MDrierTypeDetails GetMDrierTypeDetails(MDrierTypeDetailsEntity mDrierTypeDetailsEntity);
         MRiceProductionType GetMRiceProductionType(MRiceProductionTypeEntity mRiceProductionTypeEntity);
         MRiceBrandDetails GetMRiceBrandDetails(MRiceBrandDetailsEntity mRiceBrandDetailsEntity);
-        BrokenRiceStockInfo GetBrokenRiceStockInfo(BrokenRiceStockInfoEntity brokenRiceStockInfoEntity);
-        RiceSellingInfo GetRiceSellingInfo(RiceSellingInfoEntity riceSellingInfoEntity);
-        BrokenRiceSellingInfo GetBrokenRiceSellingInfo(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity);
-        DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity);
+        BrokenRiceStockInfo GetBrokenRiceStockInfo(BrokenRiceStockInfoEntity brokenRiceStockInfoEntity);        
         MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity);
         MenuConfiguration GetMenuConfig(MenuConfigurationEntity menuConfigEntity);
-        MProductSellingType GetMProductSellingType(MProductSellingTypeEntity mProductSellingTypeEntity);
         ProductSellingInfo GetProductSellingInfo(ProductSellingInfoEntity productSellingInfoEntity);
         HullingProcess GetHullingProcessInfo(HullingProcessEntity hullingProcessEntity);
         HullingTransaction GetHullingProcessTransaction(HullingProcessTransactionEntity hullingProcessTransactionEntity);
@@ -244,20 +239,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         }
 
 
-        public MWeightDetails GetMWeightDetails(MWeightDetailsEntity mWeightDetailsEntity)
-        {
-            MWeightDetails mWeightDetails = null;
-            try
-            {
-                mWeightDetails = Mapper.Map<MWeightDetailsEntity, MWeightDetails>(mWeightDetailsEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMWeightDetails", ex);
-                throw;
-            }
-            return mWeightDetails;
-        }
         public CustomerAddressInfo GetCustomerAddressInfo(CustomerAddressInfoEntity customerAddressInfoEntity)
         {
             CustomerAddressInfo customerAddressInfo = null;
@@ -457,49 +438,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
             }
             return dustStockInfo;
         }
-        public RiceSellingInfo GetRiceSellingInfo(RiceSellingInfoEntity riceSellingInfoEntity)
-        {
-            RiceSellingInfo RiceSellingInfo = null;
-            try
-            {
-                RiceSellingInfo = Mapper.Map<RiceSellingInfoEntity, RiceSellingInfo>(riceSellingInfoEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetRiceSellingInfo", ex);
-                throw;
-            }
-            return RiceSellingInfo;
-        }
-        public BrokenRiceSellingInfo GetBrokenRiceSellingInfo(BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity)
-        {
-            BrokenRiceSellingInfo brokenRiceSellingInfo = null;
-            try
-            {
-                brokenRiceSellingInfo = Mapper.Map<BrokenRiceSellingInfoEntity, BrokenRiceSellingInfo>(brokenRiceSellingInfoEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetBrokenRiceSellingInfo", ex);
-                throw;
-            }
-            return brokenRiceSellingInfo;
-        }
-        public DustSellingInfo GetDustSellingInfo(DustSellingInfoEntity dustSellingInfoEntity)
-        {
-            DustSellingInfo DustSellingInfo = null;
-            try
-            {
-                DustSellingInfo = Mapper.Map<DustSellingInfoEntity, DustSellingInfo>(dustSellingInfoEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetDustSellingInfo", ex);
-                throw;
-            }
-            return DustSellingInfo;
-        }
-
+        
         public MenuInfo GetMenuInfo(MenuInfoEntity menuInfoEntity)
         {
             MenuInfo menuInfo = null;
@@ -541,22 +480,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         }
 
 
-        public MProductSellingType GetMProductSellingType(MProductSellingTypeEntity mProductSellingTypeEntity)
-        {
-
-            MProductSellingType mProductSellingType = null;
-            try
-            {
-                mProductSellingType = Mapper.Map<MProductSellingTypeEntity, MProductSellingType>(mProductSellingTypeEntity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMProductSellingType", ex);
-                throw;
-            }
-            return mProductSellingType;
-        }
-
+        
 
         public ProductSellingInfo GetProductSellingInfo(ProductSellingInfoEntity productSellingInfoEntity)
         {

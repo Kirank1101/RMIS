@@ -15,8 +15,8 @@ namespace RMIS.Entities.BackEnd
         private string _MRiceBrandID;
         private string _UnitsTypeID; 
         private string _DriverName; 
-        private Int16 _TotalBags;
-        private decimal _Price;
+        private int _TotalBags;
+        private double _Price;
         private DateTime _PurchaseDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -62,12 +62,12 @@ namespace RMIS.Entities.BackEnd
             get { return _VehicalNo; }
             set { _VehicalNo = value; }
         }
-        public virtual Int16 TotalBags
+        public virtual int TotalBags
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }
         }
-        public virtual decimal Price
+        public virtual double Price
         {
             get { return _Price; }
             set { _Price = value; }

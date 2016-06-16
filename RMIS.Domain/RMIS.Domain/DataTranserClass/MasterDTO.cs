@@ -39,20 +39,6 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
-    public class ProductSellingTypeDTO : MasterPaddyDTO
-    {
-        public ProductSellingTypeDTO()
-            : base()
-        {
-            ProductSellingType = string.Empty;
-        }
-        public string ProductSellingType
-        {
-            get;
-            set;
-        }
-
-    }
     public class BrokenRiceTypeDTO : MasterPaddyDTO
     {
         public BrokenRiceTypeDTO()
@@ -161,20 +147,6 @@ namespace RMIS.Domain.DataTranserClass
         }
     }
 
-    public class WeightDetailsDTO : MasterPaddyDTO
-    {
-        public WeightDetailsDTO()
-            : base()
-        {
-            WeightDetails = 0;
-        }
-        public int WeightDetails
-        {
-            get;
-            set;
-        }
-
-    }
     public class MEmpDesigDTO : MasterPaddyDTO
     {
         public MEmpDesigDTO()

@@ -22,14 +22,6 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblQWeight" Text="<%$Resources:Resource,QWeight%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="txtQweight" />
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
             </td>

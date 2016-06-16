@@ -81,7 +81,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMLotDetailsEntityToMLotDetails();
                 objRMISMappingDTN.MapMGodownDetailsEntityToMGodownDetails();
                 objRMISMappingDTN.MapPaddyPaymentDetailsEntityToPaddyPaymentDetails();
-                objRMISMappingDTN.MapMWeightDetailsEntityToMWeightDetails();
                 objRMISMappingDTN.MapCustomerAddressInfoEntityToCustomerAddressInfo();
                 objRMISMappingDTN.MapCustomerActivationEntityToCustomerActivation();
                 objRMISMappingDTN.MapCustTrailUsageEntityToCustTrailUsage();
@@ -97,12 +96,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapRiceStockInfoEntityToRiceStockInfo();
                 objRMISMappingDTN.MapBrokenRiceStockInfoEntityToBrokenRiceStockInfo();
                 objRMISMappingDTN.MapDustStockInfoEntityToDustStockInfo();
-                objRMISMappingDTN.MapRiceSellingInfoEntityToRiceSellingInfo();
-                objRMISMappingDTN.MapBrokenRiceSellingInfoEntityToBrokenRiceSellingInfo();
-                objRMISMappingDTN.MapDustSellingInfoEntityToDustSellingInfo();
                 objRMISMappingDTN.MapMenuInfoEntityToMenuInfo();
                 objRMISMappingDTN.MapMenuConfigEntiryToMenuConfig();
-                objRMISMappingDTN.MapMProductSellingTypeEntityToMProductSellingType();
                 objRMISMappingDTN.MapProductSellingInfoEntityToProductSellingInfo();
                 objRMISMappingDTN.MapHullingProcessInfoEntityToHullingProcessInfo();
                 objRMISMappingDTN.MapHullingProcessTranInfoEntityToHullingProcessTranInfo();

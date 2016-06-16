@@ -18,7 +18,7 @@ namespace RMIS.Domain.RiceMill
         public string BrokenRiceTypeID { get; set; }
         public string UnitsTypeID { get; set; }
         public string SellingProductType { get; set; }
-        public decimal TotalBags { get; set; }
+        public int TotalBags { get; set; }
         public double Price { get; set; }
         public DateTime SellingDate { get; set; }
         #region Methods

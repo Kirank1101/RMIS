@@ -932,35 +932,6 @@
                 throw;
             }
         }
-        internal List<MWeightDetailsEntity> GetMWeightDetailsEntities(string CustId, YesNo yesNo)
-        {
-            try
-            {
-                List<MWeightDetailsEntity> listMWeightDetailsEntity = new List<MWeightDetailsEntity>();
-                IRepository<MWeightDetails> UsersRepository = new RepositoryImpl<MWeightDetails>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MWeightDetails))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<MWeightDetails> listMWeightDetails = UsersRepository.GetAll(detachedCriteria) as List<MWeightDetails>;
-                if (listMWeightDetails != null && listMWeightDetails.Count > 0)
-                {
-                    foreach (MWeightDetails adMInfo in listMWeightDetails)
-                    {
-                        listMWeightDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMWeightDetailsEntity(adMInfo));
-                    }
-                }
-                else
-                    listMWeightDetailsEntity = null;
-
-                return listMWeightDetailsEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMWeightDetailsEntities", ex);
-                throw;
-            }
-        }
         internal SellerInfoEntity GetSellerInfoEntity(string SellerID, YesNo yesNo)
         {
             try
@@ -1368,35 +1339,6 @@
                 throw;
             }
         }
-        internal MWeightDetailsEntity GetMWeightDetailsEntity(string MWeightID, YesNo yesNo)
-        {
-            try
-            {
-                MWeightDetailsEntity mWeightDetailsEntity = new MWeightDetailsEntity();
-                IRepository<MWeightDetails> UsersRepository = new RepositoryImpl<MWeightDetails>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MWeightDetails))
-                                                                   .Add(Expression.Eq("PaddyPaymentID", MWeightID))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<MWeightDetails> listMWeightDetailsEntity = UsersRepository.GetAll(detachedCriteria) as List<MWeightDetails>;
-                if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
-                {
-                    foreach (MWeightDetails adMInfo in listMWeightDetailsEntity)
-                    {
-                        mWeightDetailsEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMWeightDetailsEntity(adMInfo);
-                    }
-                }
-                else
-                    mWeightDetailsEntity = null;
-
-                return mWeightDetailsEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMWeightDetailsEntity", ex);
-                throw;
-            }
-        }
         internal CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo)
         {
             try
@@ -1774,93 +1716,6 @@
                 throw;
             }
         }
-        internal List<RiceSellingInfoEntity> GetAllRiceSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            try
-            {
-                List<RiceSellingInfoEntity> listRiceSellingInfoEntity = new List<RiceSellingInfoEntity>();
-                IRepository<RiceSellingInfo> UsersRepository = new RepositoryImpl<RiceSellingInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<RiceSellingInfo> listRiceSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceSellingInfo>;
-                if (listRiceSellingInfo != null && listRiceSellingInfo.Count > 0)
-                {
-                    foreach (RiceSellingInfo adMInfo in listRiceSellingInfo)
-                    {
-                        listRiceSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRiceSellingInfoEntity(adMInfo));
-                    }
-                }
-                else
-                    listRiceSellingInfoEntity = null;
-
-                return listRiceSellingInfoEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetRiceSellingInfoEntities", ex);
-                throw;
-            }
-        }
-        internal List<BrokenRiceSellingInfoEntity> GetAllBrokenRiceSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            try
-            {
-                List<BrokenRiceSellingInfoEntity> listBrokenRiceSellingInfoEntity = new List<BrokenRiceSellingInfoEntity>();
-                IRepository<BrokenRiceSellingInfo> UsersRepository = new RepositoryImpl<BrokenRiceSellingInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<BrokenRiceSellingInfo> listBrokenRiceSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<BrokenRiceSellingInfo>;
-                if (listBrokenRiceSellingInfo != null && listBrokenRiceSellingInfo.Count > 0)
-                {
-                    foreach (BrokenRiceSellingInfo adMInfo in listBrokenRiceSellingInfo)
-                    {
-                        listBrokenRiceSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBrokenRiceSellingInfoEntity(adMInfo));
-                    }
-                }
-                else
-                    listBrokenRiceSellingInfoEntity = null;
-
-                return listBrokenRiceSellingInfoEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetBrokenRiceSellingInfoEntities", ex);
-                throw;
-            }
-        }
-        internal List<DustSellingInfoEntity> GetAllDustSellingInfoEntities(string CustId, YesNo yesNo)
-        {
-            try
-            {
-                List<DustSellingInfoEntity> listDustSellingInfoEntity = new List<DustSellingInfoEntity>();
-                IRepository<DustSellingInfo> UsersRepository = new RepositoryImpl<DustSellingInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(DustSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<DustSellingInfo> listDustSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<DustSellingInfo>;
-                if (listDustSellingInfo != null && listDustSellingInfo.Count > 0)
-                {
-                    foreach (DustSellingInfo adMInfo in listDustSellingInfo)
-                    {
-                        listDustSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetDustSellingInfoEntity(adMInfo));
-                    }
-                }
-                else
-                    listDustSellingInfoEntity = null;
-
-                return listDustSellingInfoEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetDustSellingInfoEntities", ex);
-                throw;
-            }
-        }
         internal List<MenuInfoEntity> GetMenuInfoEntities(YesNo yesNo)
         {
             try
@@ -1944,35 +1799,7 @@
                 throw;
             }
         }
-        internal List<MProductSellingTypeEntity> GetMProductSellingTypeEnties(string CustId, YesNo yesNo)
-        {
-            try
-            {
-                List<MProductSellingTypeEntity> listMProductSellingTypeEntity = new List<MProductSellingTypeEntity>();
-                IRepository<MProductSellingType> UsersRepository = new RepositoryImpl<MProductSellingType>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MProductSellingType))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
-                List<MProductSellingType> listMProductSellingType = UsersRepository.GetAll(detachedCriteria) as List<MProductSellingType>;
-                if (listMProductSellingType != null && listMProductSellingType.Count > 0)
-                {
-                    foreach (MProductSellingType adMInfo in listMProductSellingType)
-                    {
-                        listMProductSellingTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMProductSellingTypeEntity(adMInfo));
-                    }
-                }
-                else
-                    listMProductSellingTypeEntity = null;
-
-                return listMProductSellingTypeEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetMProductSellingTypeEnties", ex);
-                throw;
-            }
-        }
+        
         internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, YesNo yesNo)
         {
             try

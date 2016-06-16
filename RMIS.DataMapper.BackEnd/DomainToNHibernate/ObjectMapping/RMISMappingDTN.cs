@@ -324,25 +324,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
-        internal void MapMWeightDetailsEntityToMWeightDetails()
-        {
-            try
-            {
-                Mapper.CreateMap<MWeightDetailsEntity, MWeightDetails>()
-                    .ForMember(dest => dest.MWeightID, opts => opts.MapFrom(src => src.MWeightID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.Weight, opts => opts.MapFrom(src => src.Weight))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapMWeightDetailsEntityToMWeightDetails", ex);
-                throw;
-            }
-        }
         internal void MapCustomerAddressInfoEntityToCustomerAddressInfo()
         {
             try
@@ -599,90 +580,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
-        internal void MapRiceSellingInfoEntityToRiceSellingInfo()
-        {
-            try
-            {
-                Mapper.CreateMap<RiceSellingInfoEntity, RiceSellingInfo>()
-                    .ForMember(dest => dest.RiceSellingID, opts => opts.MapFrom(src => src.RiceSellingID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.MRiceProdTypeID, opts => opts.MapFrom(src => src.MRiceProdTypeID))
-                    .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
-                    .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
-                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
-                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
-                    .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
-                    .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
-                    .ForMember(dest => dest.SellingDate, opts => opts.MapFrom(src => src.SellingDate))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapRiceSellingInfoEntityToRiceSellingInfo", ex);
-                throw;
-            }
-        }
-        internal void MapBrokenRiceSellingInfoEntityToBrokenRiceSellingInfo()
-        {
-            try
-            {
-                Mapper.CreateMap<BrokenRiceSellingInfoEntity, BrokenRiceSellingInfo>()
-                    .ForMember(dest => dest.BrokenRiceSellingID, opts => opts.MapFrom(src => src.BrokenRiceSellingID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.BrokenRiceTypeID, opts => opts.MapFrom(src => src.BrokenRiceTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
-                    .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
-                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
-                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
-                    .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
-                    .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
-                    .ForMember(dest => dest.SellingDate, opts => opts.MapFrom(src => src.SellingDate))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapBrokenRiceSellingInfoEntityToBrokenRiceSellingInfo", ex);
-                throw;
-            }
-        }
-        internal void MapDustSellingInfoEntityToDustSellingInfo()
-        {
-            try
-            {
-                Mapper.CreateMap<DustSellingInfoEntity, DustSellingInfo>()
-                    .ForMember(dest => dest.DustSellingID, opts => opts.MapFrom(src => src.DustSellingID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.DriverName, opts => opts.MapFrom(src => src.DriverName))
-                    .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
-                    .ForMember(dest => dest.VehicalNo, opts => opts.MapFrom(src => src.VehicalNo))
-                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
-                    .ForMember(dest => dest.QWeight, opts => opts.MapFrom(src => src.QWeight))
-                    .ForMember(dest => dest.QPrice, opts => opts.MapFrom(src => src.QPrice))
-                    .ForMember(dest => dest.SellingDate, opts => opts.MapFrom(src => src.SellingDate))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapDustSellingInfoEntityToDustSellingInfo", ex);
-                throw;
-            }
-        }
+        
 
         internal void MapMenuInfoEntityToMenuInfo()
         {
@@ -747,26 +645,6 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapMenuInfoEntityToMenuInfo", ex);
-                throw;
-            }
-        }
-        internal void MapMProductSellingTypeEntityToMProductSellingType()
-        {
-            try
-            {
-                Mapper.CreateMap<MProductSellingTypeEntity, MProductSellingType>()
-                    .ForMember(dest => dest.ProductTypeID, opts => opts.MapFrom(src => src.ProductTypeID))
-                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
-                    .ForMember(dest => dest.ProductType, opts => opts.MapFrom(src => src.ProductType))
-                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
-                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
-                    ;
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at MapMProductSellingTypeEntityToMProductSellingType", ex);
                 throw;
             }
         }

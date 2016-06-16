@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="Model\Entities\BagStockInfo.cs" />
     <Compile Include="Model\Entities\BrokenRiceStockInfo.cs" />
-    <Compile Include="Model\Entities\BrokenRiceSellingInfo.cs" />
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
     <Compile Include="Model\Entities\ProductPaymentTransaction.cs" />
@@ -67,11 +66,8 @@
     <Compile Include="Model\Entities\HullingTransaction.cs" />
     <Compile Include="Model\Entities\HullingProcess.cs" />
     <Compile Include="Model\Entities\ProductSellingInfo.cs" />
-    <Compile Include="Model\Entities\MProductSellingType.cs" />
     <Compile Include="Model\Entities\MenuConfiguration.cs" />
     <Compile Include="Model\Entities\MenuInfo.cs" />
-    <Compile Include="Model\Entities\DustSellingInfo.cs" />
-    <Compile Include="Model\Entities\RiceSellingInfo.cs" />
     <Compile Include="Model\Entities\DustStockInfo.cs" />
     <Compile Include="Model\Entities\RiceStockInfo.cs" />
     <Compile Include="Model\Entities\MBrokenRiceType.cs" />
@@ -85,7 +81,6 @@
     <Compile Include="Model\Entities\CustTrailUsage.cs" />
     <Compile Include="Model\Entities\CustomerActivation.cs" />
     <Compile Include="Model\Entities\CustomerAddressInfo.cs" />
-    <Compile Include="Model\Entities\MWeightDetails.cs" />
     <Compile Include="Model\Entities\PaddyPaymentDetails.cs" />
     <Compile Include="Model\Entities\MGodownDetails.cs" />
     <Compile Include="Model\Entities\MLotDetails.cs" />
@@ -112,11 +107,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\EntityMappings\BrokenRiceStockInfo.hbm.xml" />
-    <EmbeddedResource Include="Persistence\EntityMappings\BrokenRiceSellingInfo.hbm.xml" />
-    <EmbeddedResource Include="Persistence\EntityMappings\DustSellingInfo.hbm.xml" />
-    <EmbeddedResource Include="Persistence\EntityMappings\RiceSellingInfo.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Persistence\EntityMappings\DustStockInfo.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\RiceStockInfo.hbm.xml">
       <SubType>Designer</SubType>
@@ -130,7 +120,6 @@
     <EmbeddedResource Include="Persistence\EntityMappings\CustTrailUsage.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\CustomerActivation.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\CustomerAddressInfo.hbm.xml" />
-    <EmbeddedResource Include="Persistence\EntityMappings\MWeightDetails.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\PaddyPaymentDetails.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\MGodownDetails.hbm.xml" />
     <EmbeddedResource Include="Persistence\EntityMappings\MLotDetails.hbm.xml" />
@@ -146,9 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\MenuConfiguration.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Persistence\EntityMappings\MProductSellingType.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\ProductSellingInfo.hbm.xml">

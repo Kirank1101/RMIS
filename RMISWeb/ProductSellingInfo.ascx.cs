@@ -4,7 +4,7 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Collections.Generic;
-
+using AllInOne.Common.Library.Util;
 public partial class ProductSellingInfo : BaseUserControl
 {
     private const string Rice = "Rice";
@@ -18,11 +18,6 @@ public partial class ProductSellingInfo : BaseUserControl
         if (!IsControlPostBack)
         {
             base.Header = "Product Stock Information";
-
-            //ddlProductTypeID.DataSource = impb.GetMProductSellingTypeEntities();
-            //ddlProductTypeID.DataTextField = "ProductSellingType";
-            //ddlProductTypeID.DataValueField = "SellerID";
-            //ddlProductTypeID.DataBind();
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlBuyernames.DataSource = imp.GetBuyerInfo();
@@ -91,8 +86,8 @@ public partial class ProductSellingInfo : BaseUserControl
         prodselinfoent.MRiceBrandID = ddlRiceBrand.SelectedValue;
         prodselinfoent.MRiceProdTypeID = ddlRiceType.SelectedValue;
         prodselinfoent.UnitsTypeID = ddlUnitsType.SelectedValue;
-        prodselinfoent.TotalBags = Convert.ToDecimal(txtTotalBags.Text.Trim());
-        prodselinfoent.Price = Convert.ToDouble(txtprice.Text.Trim());
+        prodselinfoent.TotalBags = txtTotalBags.Text.ConvertToInt();
+        prodselinfoent.Price = txtprice.Text.ConvertToDouble();
         lstprodselinfoent.Add(prodselinfoent);
         VstProdSelInfoEnt = lstprodselinfoent;
 
@@ -103,9 +98,9 @@ public partial class ProductSellingInfo : BaseUserControl
         ProdSelInfoDisplay.ProductType = rbtProductSellingtype.SelectedValue;
         ProdSelInfoDisplay.ProductName = ddlRiceType.SelectedIndex > 0 ? Convert.ToString(ddlRiceType.SelectedItem) : string.Empty;
         ProdSelInfoDisplay.Brand = ddlRiceBrand.SelectedIndex > 0 ? Convert.ToString(ddlRiceBrand.SelectedItem) : string.Empty;
-        ProdSelInfoDisplay.TotalBags = Convert.ToDecimal(txtTotalBags.Text.Trim());
-        ProdSelInfoDisplay.Price = Convert.ToDouble(txtprice.Text.Trim());
-        ProdSelInfoDisplay.TotalPrice = Convert.ToDouble(prodselinfoent.TotalBags) * prodselinfoent.Price;
+        ProdSelInfoDisplay.TotalBags = txtTotalBags.Text.ConvertToInt();
+        ProdSelInfoDisplay.Price = txtprice.Text.ConvertToDouble();
+        ProdSelInfoDisplay.TotalPrice = prodselinfoent.TotalBags * prodselinfoent.Price;
         lstprodselinfodisplay.Add(ProdSelInfoDisplay);
         VststateProdSelInfoEntDisplay = lstprodselinfodisplay;
         rptProductSellingDetails.DataSource = lstprodselinfodisplay;
@@ -117,10 +112,10 @@ public partial class ProductSellingInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlBuyernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, Convert.ToDecimal(txtTotalBags.Text.Trim()), ddlUnitsType.SelectedValue, Convert.ToDouble(txtprice.Text.Trim()), Convert.ToDateTime(txtSellingDate.Text.Trim()),
-                lblOrderNo.Text,rbtPaymnetMode.SelectedValue,txtChequeNo.Text.Trim(),txtDDno.Text.Trim(),txtBankName.Text.Trim(),Convert.ToDouble(txtReceivedAmount.Text.Trim()),Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
-            //char status = Convert.ToDouble(txtBalanceAmount.Text.Trim()) == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
-            //resultDto = imp.SaveProductPaymentInfo(Convert.ToDouble(lbltotalamount.Text), status);
+            resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, ddlBuyernames.SelectedValue, ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlBrokenRiceType.SelectedValue, txtTotalBags.Text.ConvertToInt(), ddlUnitsType.SelectedValue, txtprice.Text.ConvertToDouble(), Convert.ToDateTime(txtSellingDate.Text.Trim()),
+                lblOrderNo.Text,rbtPaymnetMode.SelectedValue,txtChequeNo.Text.Trim(),txtDDno.Text.Trim(),txtBankName.Text.Trim(),txtReceivedAmount.Text.ConvertToDouble(),Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
+            //char status = txtBalanceAmount.Text == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
+            //resultDto = imp.SaveProductPaymentInfo(lbltotalamount, status);
             //SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
@@ -133,39 +128,39 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void rbtProductSellingtype_OnSelectChange(object sender, EventArgs e)
     {
-        lblRiceBrandName.Visible = true;
-        lblRiceType.Visible = true;
-        ddlRiceBrand.Visible = true;
-        ddlRiceType.Visible = true;
-        lblBrokenRiceType.Visible = true;
-        ddlBrokenRiceType.Visible = true;
-        if (rbtProductSellingtype.SelectedValue == Rice)
-        {
-            lblBrokenRiceType.Visible = false;
-            ddlBrokenRiceType.Visible = false;
-            ddlBrokenRiceType.SelectedIndex = 0;
-        }
-        else if (rbtProductSellingtype.SelectedValue == BrokenRice)
-        {
-            lblRiceBrandName.Visible = false;
-            lblRiceType.Visible = false;
-            ddlRiceBrand.Visible = false;
-            ddlRiceType.Visible = false;
-            ddlRiceBrand.SelectedIndex = 0;
-            ddlRiceType.SelectedIndex = 0;
-        }
-        else if (rbtProductSellingtype.SelectedValue == Dust)
-        {
-            lblRiceBrandName.Visible = false;
-            lblRiceType.Visible = false;
-            lblBrokenRiceType.Visible = false;
-            ddlBrokenRiceType.Visible = false;
-            ddlRiceBrand.Visible = false;
-            ddlRiceType.Visible = false;
-            ddlBrokenRiceType.SelectedIndex = 0;
-            ddlRiceBrand.SelectedIndex = 0;
-            ddlRiceType.SelectedIndex = 0;
-        }
+        //lblRiceBrandName.Visible = true;
+        //lblRiceType.Visible = true;
+        //ddlRiceBrand.Visible = true;
+        //ddlRiceType.Visible = true;
+        //lblBrokenRiceType.Visible = true;
+        //ddlBrokenRiceType.Visible = true;
+        //if (rbtProductSellingtype.SelectedValue == Rice)
+        //{
+        //    lblBrokenRiceType.Visible = false;
+        //    ddlBrokenRiceType.Visible = false;
+        //    ddlBrokenRiceType.SelectedIndex = 0;
+        //}
+        //else if (rbtProductSellingtype.SelectedValue == BrokenRice)
+        //{
+        //    lblRiceBrandName.Visible = false;
+        //    lblRiceType.Visible = false;
+        //    ddlRiceBrand.Visible = false;
+        //    ddlRiceType.Visible = false;
+        //    ddlRiceBrand.SelectedIndex = 0;
+        //    ddlRiceType.SelectedIndex = 0;
+        //}
+        //else if (rbtProductSellingtype.SelectedValue == Dust)
+        //{
+        //    lblRiceBrandName.Visible = false;
+        //    lblRiceType.Visible = false;
+        //    lblBrokenRiceType.Visible = false;
+        //    ddlBrokenRiceType.Visible = false;
+        //    ddlRiceBrand.Visible = false;
+        //    ddlRiceType.Visible = false;
+        //    ddlBrokenRiceType.SelectedIndex = 0;
+        //    ddlRiceBrand.SelectedIndex = 0;
+        //    ddlRiceType.SelectedIndex = 0;
+        //}
     }
     private void ClearAllInputFields()
     {

@@ -255,25 +255,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return paddyPaymentDetailsEntity;
         }
-        public static MWeightDetailsEntity GetMWeightDetailsEntity(MWeightDetails mWeightDetails)
-        {
-            MWeightDetailsEntity mWeightDetailsEntity = null;
-
-            try
-            {
-                if (mWeightDetails != null)
-                {
-                    mWeightDetailsEntity = Mapper.Map<MWeightDetails, MWeightDetailsEntity>(mWeightDetails);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetMWeightDetailsEntity", ex);
-                throw;
-            }
-
-            return mWeightDetailsEntity;
-        }
         public static CustomerAddressInfoEntity GetCustomerAddressInfoEntity(CustomerAddressInfo customerAddressInfo)
         {
             CustomerAddressInfoEntity customerAddressInfoEntity = null;
@@ -502,63 +483,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return dustStockInfoEntity;
         }
-        public static RiceSellingInfoEntity GetRiceSellingInfoEntity(RiceSellingInfo riceSellingInfo)
-        {
-            RiceSellingInfoEntity RiceSellingInfoEntity = null;
-
-            try
-            {
-                if (riceSellingInfo != null)
-                {
-                    RiceSellingInfoEntity = Mapper.Map<RiceSellingInfo, RiceSellingInfoEntity>(riceSellingInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetRiceSellingInfoEntity", ex);
-                throw;
-            }
-
-            return RiceSellingInfoEntity;
-        }
-        public static BrokenRiceSellingInfoEntity GetBrokenRiceSellingInfoEntity(BrokenRiceSellingInfo brokenRiceSellingInfo)
-        {
-            BrokenRiceSellingInfoEntity brokenRiceSellingInfoEntity = null;
-
-            try
-            {
-                if (brokenRiceSellingInfo != null)
-                {
-                    brokenRiceSellingInfoEntity = Mapper.Map<BrokenRiceSellingInfo, BrokenRiceSellingInfoEntity>(brokenRiceSellingInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetBrokenRiceSellingInfoEntity", ex);
-                throw;
-            }
-
-            return brokenRiceSellingInfoEntity;
-        }
-        public static DustSellingInfoEntity GetDustSellingInfoEntity(DustSellingInfo dustSellingInfo)
-        {
-            DustSellingInfoEntity DustSellingInfoEntity = null;
-
-            try
-            {
-                if (dustSellingInfo != null)
-                {
-                    DustSellingInfoEntity = Mapper.Map<DustSellingInfo, DustSellingInfoEntity>(dustSellingInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetDustSellingInfoEntity", ex);
-                throw;
-            }
-
-            return DustSellingInfoEntity;
-        }
 
 
         public static MenuInfoEntity GetMenuInfoEntity(MenuInfo menuInfo)
@@ -600,25 +524,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return menuInfoEntity;
         }
-        public static MProductSellingTypeEntity GetMProductSellingTypeEntity(MProductSellingType mProductSellingType)
-        {
-            MProductSellingTypeEntity mProductSellingTypeEntity = null;
-
-            try
-            {
-                if (mProductSellingType != null)
-                {
-                    mProductSellingTypeEntity = Mapper.Map<MProductSellingType, MProductSellingTypeEntity>(mProductSellingType);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error at GetMProductSellingTypeEntity", ex);
-                throw;
-            }
-
-            return mProductSellingTypeEntity;
-        }
+        
         public static ProductSellingInfoEntity GetProductSellingInfoEntity(ProductSellingInfo productSellingInfo)
         {
             ProductSellingInfoEntity ProductSellingInfoEntity = null;

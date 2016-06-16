@@ -6,9 +6,9 @@ using RMIS.Domain.DataTranserClass;
 
 namespace RMIS.Domain.Business
 {
-   public  interface IValidateMasterBusiness
+    public interface IValidateMasterBusiness
     {
-       ResultDTO ValidateGodownDetails(string GodownName);
+        ResultDTO ValidateGodownDetails(string GodownName);
         ResultDTO ValidateBagType(string BagType);
         ResultDTO ValidateBrokenRiceType(string BrkenRiceType);
         ResultDTO ValidateUnitsType(string UnitsType);
@@ -17,10 +17,8 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateRiceBrandType(string riceBrand);
         ResultDTO ValidateRiceProductType(string riceProduct);
         ResultDTO ValidateLotDetails(string lotName, string godownId);
-        ResultDTO ValidateWeightDetails(string weight);
-       ResultDTO ValiadteProductSellingType(string ProductSellingType);
-       ResultDTO ValidateDesignationType(string DesignationType);
-       ResultDTO ValidateSalaryType(string SalaryType);
-       
+        ResultDTO ValidateDesignationType(string DesignationType);
+        ResultDTO ValidateSalaryType(string SalaryType);
+
     }
 }

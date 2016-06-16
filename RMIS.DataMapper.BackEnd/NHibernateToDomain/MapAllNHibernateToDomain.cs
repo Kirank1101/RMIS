@@ -57,7 +57,6 @@
                 objRMISMappingNTD.MapPaddyStockInfoEntity();
                 objRMISMappingNTD.MapMLotDetailsEntity();
                 objRMISMappingNTD.MapMGodownDetailsEntity();
-                objRMISMappingNTD.MapMWeightDetailsEntity();
                 objRMISMappingNTD.MapCustomerAddressInfoEntity();
                 objRMISMappingNTD.MapCustomerActivationEntity();
                 objRMISMappingNTD.MapCustTrailUsageEntity();
@@ -73,12 +72,8 @@
                 objRMISMappingNTD.MapRiceStockInfoEntity();
                 objRMISMappingNTD.MapBrokenRiceStockInfoEntity();
                 objRMISMappingNTD.MapDustStockInfoEntity();
-                objRMISMappingNTD.MapRiceSellingInfoEntity();
-                objRMISMappingNTD.MapBrokenRiceSellingInfoEntity();
-                objRMISMappingNTD.MapDustSellingInfoEntity();
                 objRMISMappingNTD.MapMenuInfoToMenuInfoEntity();
                 objRMISMappingNTD.MapMenuConfigurationToMenuConfigurationEntity();
-                objRMISMappingNTD.MapMProductSellingTypeEntity();
                 objRMISMappingNTD.MapProductSellingInfoEntity();
                 objRMISMappingNTD.MapHullingProcessInfoEntity();
                 objRMISMappingNTD.MapHullingProcessTransInfoEntity();

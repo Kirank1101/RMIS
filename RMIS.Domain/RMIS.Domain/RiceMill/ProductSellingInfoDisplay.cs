@@ -15,7 +15,7 @@ namespace RMIS.Domain.RiceMill
         public string ProductName { get; set; }
         public string Brand { get; set; }
         public string UnitsType { get; set; }
-        public decimal TotalBags { get; set; }
+        public int TotalBags { get; set; }
         public double Price { get; set; }
         public double TotalPrice { get; set; }
 

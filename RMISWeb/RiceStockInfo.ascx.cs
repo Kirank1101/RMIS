@@ -2,7 +2,7 @@
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
-
+using AllInOne.Common.Library.Util;
 public partial class RiceStockInfo : BaseUserControl
 {
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
@@ -31,11 +31,11 @@ public partial class RiceStockInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateRiceStockDetails(ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtQweight.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateRiceStockDetails(ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text);
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveRiceStockInfo(ddlRiceType.SelectedValue,ddlRiceBrand.SelectedValue, Convert.ToInt16(txtTotalBags.Text.Trim()), Convert.ToInt16(txtQweight.Text.Trim()), ddlUnitsType.SelectedValue);
+            resultDto = imp.SaveRiceStockInfo(ddlRiceType.SelectedValue,ddlRiceBrand.SelectedValue, txtTotalBags.Text.ConvertToInt(), ddlUnitsType.SelectedValue);
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFields();
@@ -53,7 +53,7 @@ public partial class RiceStockInfo : BaseUserControl
         ddlRiceBrand.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;
         txtTotalBags.Text = string.Empty;
-        txtQweight.Text = string.Empty;
+ 
     }
 
 }

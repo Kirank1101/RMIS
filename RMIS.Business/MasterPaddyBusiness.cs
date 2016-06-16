@@ -221,25 +221,6 @@ namespace RMIS.Business
         {
             return imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
-        public List<WeightDetailsDTO> GetMWeightDetailsEntities()
-        {
-            List<WeightDetailsDTO> listWeightDetailsDTO = null;
-
-            List<MWeightDetailsEntity> listMWeightDetailsEntity = imp.GetMWeightDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            if (listMWeightDetailsEntity != null && listMWeightDetailsEntity.Count > 0)
-            {
-                listWeightDetailsDTO = new List<WeightDetailsDTO>();
-                foreach (MWeightDetailsEntity objMLotDetailsEntity in listMWeightDetailsEntity)
-                {
-                    WeightDetailsDTO objWeightDetailsDTO = new WeightDetailsDTO();
-                    objWeightDetailsDTO.WeightDetails = objMLotDetailsEntity.Weight;
-                    objWeightDetailsDTO.Indicator = GetYesorNo(objMLotDetailsEntity.ObsInd);
-                    objWeightDetailsDTO.Id = objMLotDetailsEntity.MWeightID;
-                    listWeightDetailsDTO.Add(objWeightDetailsDTO);
-                }
-            }
-            return listWeightDetailsDTO;
-        }
         public List<BrokenRiceTypeDTO> GetMBrokenRiceTypeEntities()
         {
             List<BrokenRiceTypeDTO> listBrokenRiceTypeDTO = null;
@@ -504,28 +485,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success06, provider.GetCurrentCustomerId()) };
         }
-        public ResultDTO SaveWeightDetails(string weight)
-        {
-            MWeightDetailsEntity objMWeightDetailsEntity = new MWeightDetailsEntity();
-            objMWeightDetailsEntity.ObsInd = YesNo.N;
-            objMWeightDetailsEntity.CustID = provider.GetCurrentCustomerId();
-            objMWeightDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objMWeightDetailsEntity.Weight = (short)weight.ConvertToInt();
-            objMWeightDetailsEntity.MWeightID = CommonUtil.CreateUniqueID("WE");
-            objMWeightDetailsEntity.LastModifiedDate = DateTime.Now;
-            try
-            {
-                imp.BeginTransaction();
-                imp.SaveOrUpdateMWeightDetailsEntity(objMWeightDetailsEntity, false);
-                imp.CommitAndCloseSession();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error06, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success06, provider.GetCurrentCustomerId()) };
-        }
         public ResultDTO SaveUnitsType(string UnitsType)
         {
             MUnitsTypeEntity objMUnitsTypeEntity = new MUnitsTypeEntity();
@@ -575,52 +534,7 @@ namespace RMIS.Business
 
 
 
-        public List<ProductSellingTypeDTO> GetMProductSellingTypeEntities()
-        {
-
-            List<ProductSellingTypeDTO> listProductSellingTypeDTO = null;
-
-            List<MProductSellingTypeEntity> listMProductSellingTypeEntity = imp.GetMProductSellingTypeEnties(provider.GetCurrentCustomerId(), YesNo.N);
-            if (listMProductSellingTypeEntity != null && listMProductSellingTypeEntity.Count > 0)
-            {
-                listProductSellingTypeDTO = new List<ProductSellingTypeDTO>();
-                foreach (MProductSellingTypeEntity objProductSellingTypeEntity in listMProductSellingTypeEntity)
-                {
-                    ProductSellingTypeDTO objProductSellingTypeDTO = new ProductSellingTypeDTO();
-                    objProductSellingTypeDTO.ProductSellingType = objProductSellingTypeEntity.ProductType;
-                    objProductSellingTypeDTO.Indicator = GetYesorNo(objProductSellingTypeEntity.ObsInd);
-                    objProductSellingTypeDTO.Id = objProductSellingTypeEntity.ProductTypeID;
-                    listProductSellingTypeDTO.Add(objProductSellingTypeDTO);
-                }
-
-            }
-            return listProductSellingTypeDTO;
-        }
-
-        public ResultDTO SaveProductSellingType(string productSellingType)
-        {
-
-            MProductSellingTypeEntity objMProductSellingTypeEntity = new MProductSellingTypeEntity();
-            objMProductSellingTypeEntity.ObsInd = YesNo.N;
-            objMProductSellingTypeEntity.CustID = provider.GetCurrentCustomerId();
-            objMProductSellingTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objMProductSellingTypeEntity.ProductType = productSellingType;
-            objMProductSellingTypeEntity.ProductTypeID = CommonUtil.CreateUniqueID("PRT");
-            objMProductSellingTypeEntity.LastModifiedDate = DateTime.Now;
-            try
-            {
-                imp.BeginTransaction();
-                imp.SaveOrUpdateMProductSellingTypeEntity(objMProductSellingTypeEntity, false);
-                imp.CommitAndCloseSession();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error02, provider.GetCurrentCustomerId()) };
-            }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
-        }
-
+        
 
         public ResultDTO SaveRoleEntity(string roleName)
         {

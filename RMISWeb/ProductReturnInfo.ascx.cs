@@ -13,10 +13,10 @@ public partial class ProductReturnInfo : BaseUserControl
         {
             base.Header = "Paddy Stock Information";
 
-            ddlProductTypeID.DataSource = impb.GetMProductSellingTypeEntities();
-            ddlProductTypeID.DataTextField = "ProductSellingType";
-            ddlProductTypeID.DataValueField = "SellerID";
-            ddlProductTypeID.DataBind();
+            //ddlProductTypeID.DataSource = impb.GetMProductSellingTypeEntities();
+            //ddlProductTypeID.DataTextField = "ProductSellingType";
+            //ddlProductTypeID.DataValueField = "SellerID";
+            //ddlProductTypeID.DataBind();
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlsellernames.DataSource = imp.GetPaddySellerInfo();

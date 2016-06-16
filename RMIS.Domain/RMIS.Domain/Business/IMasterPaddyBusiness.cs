@@ -28,8 +28,6 @@ namespace RMIS.Domain.Business
         List<RiceTypeDTO> GetRiceProductEntities();
         List<LotDetailsDTO> GetLotDetailsEntities(string godownId);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
-        List<WeightDetailsDTO> GetMWeightDetailsEntities();
-        List<ProductSellingTypeDTO> GetMProductSellingTypeEntities();
         List<MEmpDesigDTO> GetMEmpDesigTypeEntities();
         List<MSalarytypeDTO> GetMSalaryTypeEntities();
 
@@ -41,9 +39,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveRiceBrandType(string riceBrand);
         ResultDTO SaveRiceProductType(string riceProduct);
         ResultDTO SaveLotDetails(string lotName, string godownId);
-        ResultDTO SaveWeightDetails(string weight);
         List<MenuInfoEntity> GetMenuInfoEnity();
-        ResultDTO SaveProductSellingType(string productSellingType);
         List<MRolesEntity> GetAllRolesEntities();
         ResultDTO SaveRoleEntity(string roleName);
         ResultDTO DeletePaddyType(string Id);
