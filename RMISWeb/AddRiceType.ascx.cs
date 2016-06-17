@@ -18,11 +18,8 @@ public partial class AddRiceType : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        bool IsRiceTypeExist = false;
         ResultDTO resultDto = new ResultDTO();
-        
-        IsRiceTypeExist = imp.CheckRiceTypeExist(txtRiceType.Text.Trim());
-        if (!IsRiceTypeExist)
+        if (!IsRiceTypeExist(txtRiceType.Text.Trim()))
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceProductType(txtRiceType.Text);
             if (resultDto.IsSuccess)
@@ -35,9 +32,7 @@ public partial class AddRiceType : BaseUserControl
                 SetMessage(resultDto);
             }
             else
-            {
                 SetMessage(resultDto);
-            }
         }
         else
         {
@@ -45,6 +40,12 @@ public partial class AddRiceType : BaseUserControl
             resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsRiceTypeExist(string Ricetype)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckRiceTypeExist(Ricetype);
     }
     protected void rptRiceType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -80,29 +81,27 @@ public partial class AddRiceType : BaseUserControl
 
     protected void rptRiceType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptRiceType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptRiceType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateRiceType(rptRiceType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptRiceType.PageIndex = gridPageIndex;
-        bindRiceType();
-
-        //GridView1.DataBind();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsRiceTypeExist(textName.Text.Trim()))
+        {
+            resultDto= imp.UpdateRiceType(rptRiceType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptRiceType.PageIndex = gridPageIndex;
+                bindRiceType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "RiceType already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     private void bindRiceType()
     {

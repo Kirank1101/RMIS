@@ -910,6 +910,7 @@ namespace RMIS.Business
 
         public ResultDTO UpdateUnitsType(string Id, string UnitType)
         {
+            ResultDTO ResultDTO = new ResultDTO();
             MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(Id, YesNo.N);
             if (objMUnitsTypeEntity is MUnitsTypeEntity)
             {
@@ -918,18 +919,20 @@ namespace RMIS.Business
                 objMUnitsTypeEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMUnitsTypeEntity(objMUnitsTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateGodownType(string ID, string GodownName)
         {
@@ -1013,6 +1016,7 @@ namespace RMIS.Business
         }
         public ResultDTO UpdateRiceType(string ID, string RiceType)
         {
+            ResultDTO ResultDTO = new ResultDTO();
             MRiceProductionTypeEntity objMRiceTypeEntity = imp.GetMRiceProductionTypeEntity(ID, YesNo.N);
             if (objMRiceTypeEntity is MRiceProductionTypeEntity)
             {
@@ -1021,18 +1025,20 @@ namespace RMIS.Business
                 objMRiceTypeEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMRiceProductionTypeEntity(objMRiceTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateBrokenRiceType(string ID, string BrokenRiceType)
         {
@@ -1063,6 +1069,7 @@ namespace RMIS.Business
         }
         public ResultDTO UpdateRiceBrandType(string ID, string RiceBrandType)
         {
+            ResultDTO ResultDTO = new ResultDTO();
             MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(ID, YesNo.N);
             if (objMRiceBrandEntity is MRiceBrandDetailsEntity)
             {
@@ -1071,18 +1078,20 @@ namespace RMIS.Business
                 objMRiceBrandEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMRiceBrandDetailsEntity(objMRiceBrandEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateDesigType(string ID, string DesigType)
         {
@@ -1113,6 +1122,7 @@ namespace RMIS.Business
         }
         public ResultDTO UpdateSalaryType(string ID, string SalaryType)
         {
+            ResultDTO ResultDTO = new ResultDTO();
             MSalaryTypeEntity objMSalaryTypeEntity = imp.GetMSalaryTypeEntity(ID, YesNo.N);
             if (objMSalaryTypeEntity is MSalaryTypeEntity)
             {
@@ -1121,18 +1131,20 @@ namespace RMIS.Business
                 objMSalaryTypeEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMSalaryTypeEntity(objMSalaryTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
 
         public List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)

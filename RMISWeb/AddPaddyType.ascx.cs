@@ -66,7 +66,7 @@ public partial class AddPaddyType : BaseUserControl
         rptPaddyType.EditIndex = -1;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         ResultDTO resultDto = new ResultDTO();
-        if (IsPaddyTypeExist(textName.Text.Trim()))
+        if (!IsPaddyTypeExist(textName.Text.Trim()))
         {
             resultDto= imp.UpdatePaddyType(rptPaddyType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
             if (resultDto.IsSuccess)

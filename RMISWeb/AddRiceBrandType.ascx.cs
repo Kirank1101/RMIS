@@ -93,15 +93,20 @@ public partial class AddRiceBrandType : BaseUserControl
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
         rptRiceBrandType.EditIndex = -1;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        if (!CheckRiceBrandExist(textName.Text))
+        ResultDTO resultDto = new ResultDTO();
+            
+        if (!CheckRiceBrandExist(textName.Text.Trim()))
         {
-            imp.UpdateRiceBrandType(rptRiceBrandType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-            rptRiceBrandType.PageIndex = gridPageIndex;
-            bindRiceBrandType();
+            resultDto =imp.UpdateRiceBrandType(rptRiceBrandType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptRiceBrandType.PageIndex = gridPageIndex;
+                bindRiceBrandType();
+            }
+            SetMessage(resultDto);
         }
         else
         {
-            ResultDTO resultDto = new ResultDTO();
             resultDto.Message = "RiceBrand already Exist.";
             resultDto.IsSuccess = false;
             SetMessage(resultDto);

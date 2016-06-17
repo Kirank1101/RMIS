@@ -1,26 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using RMIS.Mediator.BackEnd;
-using RMIS.Domain.RiceMill;
-using RMIS.Domain;
 using RMIS.Binder.BackEnd;
-using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
 
 public partial class AddSalaryType : BaseUserControl
-{       
+{
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -31,11 +17,9 @@ public partial class AddSalaryType : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        bool IsSalaryTypeExist = false;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        IsSalaryTypeExist = imp.CheckSalaryTypeExist(txtSalaryType.Text.Trim());
         ResultDTO resultDto = new ResultDTO();
-        if (!IsSalaryTypeExist)
+        if (!IsSalaryTypeExist(txtSalaryType.Text.Trim()))
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateSalaryType(txtSalaryType.Text);
             if (resultDto.IsSuccess)
@@ -49,15 +33,20 @@ public partial class AddSalaryType : BaseUserControl
                 SetMessage(resultDto);
             }
             else
-            {
                 SetMessage(resultDto);
-            }
         }
-        else {
+        else
+        {
             resultDto.IsSuccess = false;
             resultDto.Message = "Salary Type already Exist.";
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsSalaryTypeExist(string SalaryType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckSalaryTypeExist(SalaryType);
     }
     private void bindSalaryType()
     {
@@ -98,29 +87,27 @@ public partial class AddSalaryType : BaseUserControl
     }
     protected void rptSalaryType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptSalaryType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptSalaryType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateSalaryType(rptSalaryType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptSalaryType.PageIndex = gridPageIndex;
-        bindSalaryType();
-
-        //GridView1.DataBind();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsSalaryTypeExist(textName.Text.Trim()))
+        {
+            resultDto = imp.UpdateSalaryType(rptSalaryType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptSalaryType.PageIndex = gridPageIndex;
+                bindSalaryType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Salary Type already Exist.";
+            SetMessage(resultDto);
+        }
     }
     protected void rptSalaryType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {

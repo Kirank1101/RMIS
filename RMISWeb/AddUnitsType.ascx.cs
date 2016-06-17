@@ -22,8 +22,7 @@ public partial class AddUnitsType : BaseUserControl
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateUnitsType(txtUnitsType.Text);
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        bool IsUnitTypeExist = imp.CheckUnitTypeExist(txtUnitsType.Text.Trim());
-        if (!IsUnitTypeExist)
+        if (!IsUnitTypeExist(txtUnitsType.Text.Trim()))
         {
             if (resultDto.IsSuccess)
             {
@@ -44,6 +43,12 @@ public partial class AddUnitsType : BaseUserControl
             resultDto.Message = "Already UnitType exist.";
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsUnitTypeExist(string UnitType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckUnitTypeExist(UnitType);
     }
     private void bindUnitsType()
     {
@@ -84,28 +89,27 @@ public partial class AddUnitsType : BaseUserControl
     }
     protected void rptUnitsType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptUnitsType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptUnitsType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateUnitsType(rptUnitsType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptUnitsType.PageIndex = gridPageIndex;
-        bindUnitsType();
-
-        //GridView1.DataBind();
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsUnitTypeExist(textName.Text.Trim()))
+        {
+            resultDto=imp.UpdateUnitsType(rptUnitsType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptUnitsType.PageIndex = gridPageIndex;
+                bindUnitsType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Already UnitType exist.";
+            SetMessage(resultDto);
+        }
 
     }
     protected void rptUnitsType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
