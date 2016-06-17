@@ -1413,6 +1413,7 @@ namespace RMIS.Business
                     objBagStockDTO.Price = objBagStockInfoEntity.Price;
                     objBagStockDTO.PurchaseDate = objBagStockInfoEntity.PurchaseDate;
                     objBagStockDTO.TotalBags = objBagStockInfoEntity.TotalBags;
+                    objBagStockDTO.TotalAmount = objBagStockInfoEntity.TotalBags * objBagStockInfoEntity.Price;
                     listBagStockDTO.Add(objBagStockDTO);
                 }
             }

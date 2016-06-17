@@ -101,9 +101,10 @@
                     <Columns>
                         <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
                         <asp:BoundField DataField="TypeBrand" HeaderText="Type/Brand" />
-                        <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
+                        <asp:BoundField DataField="UnitName" HeaderText="Unit Name(KG)" />
                         <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
                         <asp:BoundField DataField="Price" HeaderText="Price Per Bag" />
+                        <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
                         <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
                         <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
                         <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />

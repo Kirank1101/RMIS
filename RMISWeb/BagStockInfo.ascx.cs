@@ -38,7 +38,7 @@ public partial class BagStockInfo : BaseUserControl
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ResultDTO resultDto = new ResultDTO();
-            resultDto =imp.SaveBagStockInfo(txtsellerName.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtpricePerBag.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
+            resultDto =imp.SaveBagStockInfo(txtsellerName.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtpricePerBag.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()),string.IsNullOrEmpty(ddlRiceBrand.SelectedValue)?null:ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
             if (resultDto.IsSuccess)
             {
                 BindBagStockDetails();

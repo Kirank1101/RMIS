@@ -43,6 +43,7 @@ namespace RMIS.Domain.DataTranserClass
         public string DriverName { get; set; }
         public int TotalBags { get; set; }
         public double Price { get; set; }
+        public double TotalAmount { get; set; }
         public DateTime PurchaseDate { get; set; }
 
     }
