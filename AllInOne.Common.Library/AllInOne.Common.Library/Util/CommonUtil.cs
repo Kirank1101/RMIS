@@ -173,22 +173,40 @@ namespace AllInOne.Common.Library.Util
             }
         }
 
-        public static string CreateUniqueID(string prefixText)
-        {            
-            //StringBuilder builder = new StringBuilder();
-            //builder.Append(prefixText);            
-            //Guid guid = Guid.NewGuid();
-            //byte[] bytes = guid.ToByteArray();          
-            //builder.Append( Convert.ToBase64String(bytes));           
-            //return builder.ToString();
-            
-            string key = string.Empty;
-            key = System.Guid.NewGuid().ToString();
-            string[] keys = key.Split('-');
-            string newkey = string.Empty;
-            foreach (string ke in keys)
-                newkey += ke;
-            return prefixText + DateTime.Now.ToString("yyyyMMddHHmmssfffffff").Substring(0,14) + newkey.Substring(0,25);
+        private static System.Object syncObject = new System.Object();
+        public static string CreateUniqueID(string param)
+        {
+            lock (syncObject)
+            {
+                try
+                {
+
+                    string guid = Convert.ToString(Guid.NewGuid());
+                    if (!string.IsNullOrEmpty(guid))
+                    {
+                        guid = guid.Replace("-", string.Empty);
+                        while (guid.Length > 14)
+                            guid = guid.Remove(new Random().Next(0, guid.Length), 1);
+                        guid = DateTime.Now.ToString("yyyyMMdd") + guid;
+                        return string.Concat(param, guid);
+                    }
+                    else
+                    {
+                        DateTime dtNow = new DateTime();
+                        Random rnd = new Random();
+                        dtNow = System.DateTime.Now;
+                        return string.Concat(param, dtNow.ToString("yyyyMMddHHmmssffff"), rnd.Next(10000, 99999).ToString());
+                    }
+                }
+                catch (Exception e)
+                {
+                    e.Data.Clear();
+                    DateTime dtNow = new DateTime();
+                    Random rnd = new Random();
+                    dtNow = System.DateTime.Now;
+                    return string.Concat(param, dtNow.ToString("yyyyMMddHHmmssffff"), rnd.Next(10000, 99999).ToString());
+                }
+            }
 
         }
 
