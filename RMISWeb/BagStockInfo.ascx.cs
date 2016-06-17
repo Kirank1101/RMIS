@@ -3,28 +3,21 @@ using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using AllInOne.Common.Library.Util;
+using System.Web.UI.WebControls;
 public partial class BagStockInfo : BaseUserControl
 {
             
     protected void Page_Load(object sender, EventArgs e)
     {
         IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-
         if (!IsControlPostBack)
-        {
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            ddlsellernames.DataSource = imp.GetPaddySellerInfo();
-            ddlsellernames.DataTextField = "Name";
-            ddlsellernames.DataValueField = "SellerID";
-            ddlsellernames.DataBind();
-
+        {   
             ddlBagType.DataSource = impb.GetMBagTypeEntities();
             ddlBagType.DataTextField = "BagType";
             ddlBagType.DataValueField = "Id";
             ddlBagType.DataBind();
 
-            IMasterPaddyBusiness impb2 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            ddlUnitsType.DataSource = impb2.GetMUnitsTypeEntities();
+            ddlUnitsType.DataSource = impb.GetMUnitsTypeEntities();
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";
             ddlUnitsType.DataBind();
@@ -34,26 +27,46 @@ public partial class BagStockInfo : BaseUserControl
             ddlRiceBrand.DataValueField = "Id";
             ddlRiceBrand.DataBind();
 
-            
+            BindBagStockDetails();
         }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtDriverName.Text.Trim()) && ddlBagType.SelectedIndex > 0 && ddlsellernames.SelectedIndex > 0 
+        if (!string.IsNullOrEmpty(txtDriverName.Text.Trim()) && ddlBagType.SelectedIndex > 0 && !string.IsNullOrEmpty(txtsellerName.SelectedValue) 
             && !string.IsNullOrEmpty(txtVehicalNo.Text.Trim()) && !string.IsNullOrEmpty(txtTotalBags.Text.Trim()) 
             && !string.IsNullOrEmpty(txtpricePerBag.Text.Trim()) && !string.IsNullOrEmpty(txtPruchaseDate.Text.Trim()))
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            imp.SaveBagStockInfo(ddlsellernames.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtpricePerBag.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
-            ClearAllInputFields();
+            ResultDTO resultDto = new ResultDTO();
+            resultDto =imp.SaveBagStockInfo(txtsellerName.SelectedValue, ddlBagType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtpricePerBag.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue);
+            if (resultDto.IsSuccess)
+            {
+                BindBagStockDetails();
+                ClearAllInputFields();
+            }
+            SetMessage(resultDto);
+            
 
         }
     }
 
+    private void BindBagStockDetails()
+    {
+        int count = 0;
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        rptBagStockInfo.DataSource = imp.GetBagStockDTO(rptBagStockInfo.PageIndex, rptBagStockInfo.PageSize, out count, expression);
+        rptBagStockInfo.VirtualItemCount = count;
+        rptBagStockInfo.DataBind();
+    }
+
+    protected void rptBagStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptBagStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
+        BindBagStockDetails();
+    }
     private void ClearAllInputFields()
     {
         ddlBagType.SelectedIndex = 0;
-        ddlsellernames.SelectedIndex = 0;
         txtVehicalNo.Text = string.Empty;
         txtDriverName.Text = string.Empty;
         txtTotalBags.Text = string.Empty;

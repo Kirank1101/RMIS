@@ -1180,5 +1180,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMRiceBrandDetailsEntity(CustId, RiceBrand, yesNo);
         }
+
+
+        public List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
+        }
     }
 }

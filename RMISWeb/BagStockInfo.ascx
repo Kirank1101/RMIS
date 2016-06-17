@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BagStockInfo.ascx.cs"
     Inherits="BagStockInfo" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
     <h3>
         Bag Stock Infor</h3>
@@ -9,8 +11,8 @@
                 <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlsellernames" runat="server">
-                </asp:DropDownList>
+                <asp:TextBoxAutoExtender ID="txtsellerName" runat="server" ServiceMethod="GetSellerNames">
+                </asp:TextBoxAutoExtender>
             </td>
         </tr>
         <tr>
@@ -18,7 +20,8 @@
                 <asp:Label runat="server" ID="lblBagType" Text="<%$Resources:Resource,BagType%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlBagType" runat="server">
+                <asp:DropDownList ID="ddlBagType" runat="server" AppendDataBoundItems="true">
+                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
         </tr>
@@ -27,8 +30,7 @@
                 <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true" 
-                    Height="16px">
+                <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -50,7 +52,7 @@
             <td>
                 <asp:TextBox runat="server" ID="txtTotalBags" />
             </td>
-        </tr>        
+        </tr>
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblPricePerBag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
@@ -87,6 +89,26 @@
             <td>
                 <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Cancel" />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <asp:PagingGridView ID="rptBagStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptBagStockInfo_PageIndexChanging"
+                    AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
+                    CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
+                    <Columns>
+                        <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
+                        <asp:BoundField DataField="TypeBrand" HeaderText="Type/Brand" />
+                        <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
+                        <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
+                        <asp:BoundField DataField="Price" HeaderText="Price Per Bag" />
+                        <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
+                        <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
+                        <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />
+                    </Columns>
+                </asp:PagingGridView>
             </td>
         </tr>
     </table>

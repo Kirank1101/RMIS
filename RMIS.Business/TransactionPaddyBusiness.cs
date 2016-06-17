@@ -80,11 +80,11 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
             #endregion
-            
+
             try
             {
                 imp.BeginTransaction();
-                imp.SaveOrUpdatePaddyStockInfoEntity(objPaddyStockInfoEntity, false);               
+                imp.SaveOrUpdatePaddyStockInfoEntity(objPaddyStockInfoEntity, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -237,7 +237,7 @@ namespace RMIS.Business
             objBrokenRiceStockInfoEntity.BrokenRiceTypeID = BrokenRiceTypeId;
             objBrokenRiceStockInfoEntity.UnitsTypeID = UnitsTypeID;
             objBrokenRiceStockInfoEntity.TotalBags = totalBags;
-            
+
             try
             {
                 imp.BeginTransaction();
@@ -1203,7 +1203,7 @@ namespace RMIS.Business
                         // <br /> <b></b> &nbsp;
                         foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
                         {
-                            int paddySum = imp.GetBrokenRiceProductTotal (provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
+                            int paddySum = imp.GetBrokenRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             int paddyUsedSum = imp.GetBrokenRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMBrokenRiceTypeEntity.BrokenRiceTypeID, YesNo.N);
                             if (paddySum > paddyUsedSum)
                                 paddySum = paddySum - paddyUsedSum;
@@ -1368,7 +1368,56 @@ namespace RMIS.Business
                 foreach (HullingProcessEntity objHullingprocessEntity in listHullingprocessenty)
                     HullingProcesspaddystock += objHullingprocessEntity.TotalBags;
 
-            return paddystockcount-HullingProcesspaddystock;
+            return paddystockcount - HullingProcesspaddystock;
+        }
+
+
+        public List<BagStockDTO> GetBagStockDTO(int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+
+            List<BagStockDTO> listBagStockDTO = null;
+            List<BagStockInfoEntity> listBagStockInfoEntity = imp.GetBagStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression, YesNo.N);
+            if (listBagStockInfoEntity != null && listBagStockInfoEntity.Count > 0)
+            {
+                listBagStockDTO = new List<BagStockDTO>();
+                foreach (BagStockInfoEntity objBagStockInfoEntity in listBagStockInfoEntity)
+                {
+                    BagStockDTO objBagStockDTO = new BagStockDTO();
+                    objBagStockDTO.Id = objBagStockInfoEntity.BagStockID;
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objBagStockInfoEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objBagStockDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    MBagTypeEntity objMbagtypeEntity = imp.GetMBagTypeEntity(objBagStockInfoEntity.BagTypeID, YesNo.Null);
+                    if (objMbagtypeEntity != null)
+                    {
+                        objBagStockDTO.TypeBrand = objMbagtypeEntity.BagType;
+                        if (objBagStockInfoEntity.MRiceBrandID != null)
+                        {
+                            MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(objBagStockInfoEntity.MRiceBrandID, YesNo.Null);
+                            if (objMRiceBrandEntity != null)
+                            {
+                                objBagStockDTO.TypeBrand += "/" + objMRiceBrandEntity.Name;
+                            }
+                        }
+                    }
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objBagStockInfoEntity.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                    {
+                        objBagStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+                    }
+
+                    objBagStockDTO.VehicalNo = objBagStockInfoEntity.VehicalNo;
+                    objBagStockDTO.DriverName = objBagStockInfoEntity.DriverName;
+                    objBagStockDTO.Price = objBagStockInfoEntity.Price;
+                    objBagStockDTO.PurchaseDate = objBagStockInfoEntity.PurchaseDate;
+                    objBagStockDTO.TotalBags = objBagStockInfoEntity.TotalBags;
+                    listBagStockDTO.Add(objBagStockDTO);
+                }
+            }
+
+            return listBagStockDTO;
         }
     }
 }

@@ -27,6 +27,25 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime PurchaseDate { get; set; }
 
     }
+    public class BagStockDTO
+    {
+        public BagStockDTO()
+        {
+            Id = SellerName = TypeBrand = UnitName = VehicalNo = DriverName = string.Empty;
+            TotalBags =0; Price = 0.0;
+        }
+        public string Id { get; set; }
+        public string SellerName { get; set; }
+        public string TypeBrand { get; set; }
+
+        public string UnitName { get; set; }
+        public string VehicalNo { get; set; }
+        public string DriverName { get; set; }
+        public int TotalBags { get; set; }
+        public double Price { get; set; }
+        public DateTime PurchaseDate { get; set; }
+
+    }
     [Serializable]
     public class BrokenRiceStockDetailsDTO
     {

@@ -253,27 +253,37 @@ namespace RMIS.Business
         }
         
 
-        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, int seller, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,string ProductSellingType, int buyer, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
         {
-            if (ProductSellingTypeId <= 0)
+            if (ProductSellingTypeId < 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsProductSellingTypeId, provider.GetCurrentCustomerId()) };
             }
-            else if (seller <= 0)
+            else if (ProductSellingTypeId >= 0)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsSeller, provider.GetCurrentCustomerId()) };
+                if (ProductSellingType == "Rice")
+                {
+                    if (RiceType <= 0)
+                    {
+                        return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceType, provider.GetCurrentCustomerId()) };
+                    }
+                    if (RiceBrand <= 0)
+                    {
+                        return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceBrand, provider.GetCurrentCustomerId()) };
+                    }
+                }
+
+                else if (ProductSellingType == "BrokenRice")
+                {
+                    if (BrokenRiceType <= 0)
+                    {
+                        return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
+                    }
+                }
             }
-            else if (RiceType <= 0)
+            else if (buyer <= 0)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceType, provider.GetCurrentCustomerId()) };
-            }
-            else if (RiceBrand <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsRiceBrand, provider.GetCurrentCustomerId()) };
-            }
-            else if (BrokenRiceType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsbuyer, provider.GetCurrentCustomerId()) };
             }
             else if (UnitsType <= 0)
             {

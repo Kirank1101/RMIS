@@ -175,12 +175,21 @@ namespace AllInOne.Common.Library.Util
 
         public static string CreateUniqueID(string prefixText)
         {            
-            StringBuilder builder = new StringBuilder();
-            builder.Append(prefixText);            
-            Guid guid = Guid.NewGuid();
-            byte[] bytes = guid.ToByteArray();          
-            builder.Append( Convert.ToBase64String(bytes));           
-            return builder.ToString();
+            //StringBuilder builder = new StringBuilder();
+            //builder.Append(prefixText);            
+            //Guid guid = Guid.NewGuid();
+            //byte[] bytes = guid.ToByteArray();          
+            //builder.Append( Convert.ToBase64String(bytes));           
+            //return builder.ToString();
+            
+            string key = string.Empty;
+            key = System.Guid.NewGuid().ToString();
+            string[] keys = key.Split('-');
+            string newkey = string.Empty;
+            foreach (string ke in keys)
+                newkey += ke;
+            return prefixText + DateTime.Now.ToString("yyyyMMddHHmmssfffffff").Substring(0,14) + newkey.Substring(0,25);
+
         }
 
         public static DateTime  ConvertToDate(this string prefixText)

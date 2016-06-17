@@ -91,5 +91,7 @@ namespace RMIS.Domain.Business
         //        string RiceType,string RiceBrand,int riceUnittype,int ricetotalbags,string BRType,int BRUnitsType,
         //        int BRTotalBags, double BRPriceperbag, int DustUnitsType, int DustTotalBags, double DustPriceperbag);
 
+
+        List<BagStockDTO> GetBagStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
     }
 }
