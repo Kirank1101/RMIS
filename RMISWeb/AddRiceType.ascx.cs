@@ -17,19 +17,32 @@ public partial class AddRiceType : BaseUserControl
     }    
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceProductType(txtRiceType.Text);
-        if (resultDto.IsSuccess)
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        bool IsRiceTypeExist = false;
+        ResultDTO resultDto = new ResultDTO();
+        
+        IsRiceTypeExist = imp.CheckRiceTypeExist(txtRiceType.Text.Trim());
+        if (!IsRiceTypeExist)
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveRiceProductType(txtRiceType.Text.Trim());
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceProductType(txtRiceType.Text);
             if (resultDto.IsSuccess)
             {
-                bindRiceType();
+                resultDto = imp.SaveRiceProductType(txtRiceType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindRiceType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
         else
         {
+            resultDto.Message = "RiceType already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
     }

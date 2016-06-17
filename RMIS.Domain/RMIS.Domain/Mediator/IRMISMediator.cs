@@ -219,6 +219,14 @@ namespace RMIS.Domain.Mediator
         MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo);
 
         List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        MBagTypeEntity GetMBagTypeEntity(string CustId, string BagType, YesNo yesNo);
+
+        MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string CustId, string RiceType, YesNo yesNo);
+
+        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string CustId, string BrokenRiceType, YesNo yesNo);
+
+        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo);
     }
 
 }

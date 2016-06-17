@@ -1164,5 +1164,21 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetListMSalaryTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
         }
+        public MBagTypeEntity GetMBagTypeEntity(string CustId, string BagType, YesNo yesNo)
+        {
+            return rmisGateway.GetMBagTypeEntity(CustId, BagType, yesNo);
+        }
+        public MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string CustId, string RiceType, YesNo yesNo)
+        {
+            return rmisGateway.GetMRiceProductionTypeEntity(CustId, RiceType, yesNo);
+        }
+        public MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string CustId, string BrokenRiceType, YesNo yesNo)
+        {
+            return rmisGateway.GetMBrokenRiceTypeEntity(CustId, BrokenRiceType, yesNo);
+        }
+        public MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo)
+        {
+            return rmisGateway.GetMRiceBrandDetailsEntity(CustId, RiceBrand, yesNo);
+        }
     }
 }

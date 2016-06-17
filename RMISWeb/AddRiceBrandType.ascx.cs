@@ -17,21 +17,38 @@ public partial class AddRiceBrandType : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceBrandType(txtRiceBrandType.Text);
-        if (resultDto.IsSuccess)
+        
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        ResultDTO resultDto = new ResultDTO();
+        if (!CheckRiceBrandExist(txtRiceBrandType.Text.Trim()))
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveRiceBrandType(txtRiceBrandType.Text.Trim());
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateRiceBrandType(txtRiceBrandType.Text);
             if (resultDto.IsSuccess)
             {
-                bindRiceBrandType();
+                resultDto = imp.SaveRiceBrandType(txtRiceBrandType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindRiceBrandType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
         else
         {
+            resultDto.Message = "RiceBrand already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool CheckRiceBrandExist(string RiceBrandName)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckRiceBrandExist(RiceBrandName);
     }
     private void bindRiceBrandType()
     {
@@ -72,29 +89,23 @@ public partial class AddRiceBrandType : BaseUserControl
     }
     protected void rptRiceBrandType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptRiceBrandType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptRiceBrandType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateRiceBrandType(rptRiceBrandType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptRiceBrandType.PageIndex = gridPageIndex;
-        bindRiceBrandType();
-
-        //GridView1.DataBind();
-
+        if (!CheckRiceBrandExist(textName.Text))
+        {
+            imp.UpdateRiceBrandType(rptRiceBrandType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            rptRiceBrandType.PageIndex = gridPageIndex;
+            bindRiceBrandType();
+        }
+        else
+        {
+            ResultDTO resultDto = new ResultDTO();
+            resultDto.Message = "RiceBrand already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     protected void rptRiceBrandType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {

@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using RMIS.Mediator.BackEnd;
-using RMIS.Domain.RiceMill;
-using RMIS.Domain;
 using RMIS.Binder.BackEnd;
-using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
@@ -31,21 +17,35 @@ public partial class AddBrokenRiceType : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBrokenRiceType(txtBrokenRiceType.Text);
-        if (resultDto.IsSuccess)
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsBrokenRiceTypeExist(txtBrokenRiceType.Text.Trim()))
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveBrokenRiceType(txtBrokenRiceType.Text.Trim());
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBrokenRiceType(txtBrokenRiceType.Text);
             if (resultDto.IsSuccess)
             {
-                bindBrokenRiceType();
+                resultDto = imp.SaveBrokenRiceType(txtBrokenRiceType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindBrokenRiceType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+                SetMessage(resultDto);
         }
         else
         {
+            resultDto.Message = "BrokenRiceType already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsBrokenRiceTypeExist(string BrokenRiceType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();        
+        return imp.CheckBrokenRiceTypeExist(BrokenRiceType); 
     }
     private void bindBrokenRiceType()
     {
@@ -86,27 +86,30 @@ public partial class AddBrokenRiceType : BaseUserControl
     }
     protected void rptBrokenRiceType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptBrokenRiceType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptBrokenRiceType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateBrokenRiceType(rptBrokenRiceType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptBrokenRiceType.PageIndex = gridPageIndex;
-        bindBrokenRiceType();
+        ResultDTO resultDto = new ResultDTO();
 
+        if (!IsBrokenRiceTypeExist(textName.Text.Trim()))
+        {
+            resultDto = imp.UpdateBrokenRiceType(rptBrokenRiceType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptBrokenRiceType.PageIndex = gridPageIndex;
+                bindBrokenRiceType();
+                SetMessage(resultDto);
+            }
+            else
+                SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "BrokenRiceType already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
         //GridView1.DataBind();
 
     }

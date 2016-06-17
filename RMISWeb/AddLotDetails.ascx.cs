@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using RMIS.Mediator.BackEnd;
-using RMIS.Domain.RiceMill;
-using RMIS.Domain;
 using RMIS.Binder.BackEnd;
-using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Collections.Generic;
@@ -40,10 +26,8 @@ public partial class AddLotDetails : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = new ResultDTO();
-        bool IsLotNameExist = false;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        IsLotNameExist = imp.CheckLotNameExist(txtLotDetails.Text.Trim());
-        if (!IsLotNameExist)
+        if (!IsLotNameExist(txtLotDetails.Text.Trim()))
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateLotDetails(txtLotDetails.Text, ddlGodownName.SelectedValue);
             if (resultDto.IsSuccess)
@@ -58,9 +42,7 @@ public partial class AddLotDetails : BaseUserControl
                 SetMessage(resultDto);
             }
             else
-            {
                 SetMessage(resultDto);
-            }
         }
         else
         {
@@ -68,6 +50,12 @@ public partial class AddLotDetails : BaseUserControl
             resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsLotNameExist(string LotName)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckLotNameExist(LotName);
     }
     protected void ddlGodownName_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -103,29 +91,27 @@ public partial class AddLotDetails : BaseUserControl
     }
     protected void rptLotDetails_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptLotDetails.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptLotDetails.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateLotDetails(rptLotDetails.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptLotDetails.PageIndex = gridPageIndex;
-        bindLotDetails();
-
-        //GridView1.DataBind();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsLotNameExist(textName.Text.Trim()))
+        {
+            resultDto = imp.UpdateLotDetails(rptLotDetails.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptLotDetails.PageIndex = gridPageIndex;
+                bindLotDetails();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "LotName already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     private void bindLotDetails()
     {

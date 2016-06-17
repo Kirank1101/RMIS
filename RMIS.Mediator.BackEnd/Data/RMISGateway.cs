@@ -3238,5 +3238,129 @@
                 throw;
             }
         }
+
+        internal MBagTypeEntity GetMBagTypeEntity(string CustId, string BagType, YesNo yesNo)
+        {
+
+            try
+            {
+                MBagTypeEntity MBagTypeEntity = new MBagTypeEntity();
+                IRepository<MBagType> unitsTypeRepository = new RepositoryImpl<MBagType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBagType))
+                                                                   .Add(Expression.Eq("BagType", BagType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MBagType> listMBagType = unitsTypeRepository.GetAll(detachedCriteria) as List<MBagType>;
+                if (listMBagType != null && listMBagType.Count > 0)
+                {
+                    foreach (MBagType adMInfo in listMBagType)
+                    {
+                        MBagTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBagTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MBagTypeEntity = null;
+
+                return MBagTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBagTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string CustId, string RiceType, YesNo yesNo)
+        {
+            try
+            {
+                MRiceProductionTypeEntity MRiceProductionTypeEntity = new MRiceProductionTypeEntity();
+                IRepository<MRiceProductionType> RiceTypeRepository = new RepositoryImpl<MRiceProductionType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceProductionType))
+                                                                   .Add(Expression.Eq("RiceType", RiceType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MRiceProductionType> listMRiceProductionType = RiceTypeRepository.GetAll(detachedCriteria) as List<MRiceProductionType>;
+                if (listMRiceProductionType != null && listMRiceProductionType.Count > 0)
+                {
+                    foreach (MRiceProductionType adMInfo in listMRiceProductionType)
+                    {
+                        MRiceProductionTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceProductionTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MRiceProductionTypeEntity = null;
+
+                return MRiceProductionTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceProductionTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string CustId, string BrokenRiceType, YesNo yesNo)
+        {
+            try
+            {
+                MBrokenRiceTypeEntity MBrokenRiceTypeEntity = new MBrokenRiceTypeEntity();
+                IRepository<MBrokenRiceType> BrokenRiceTypeRepository = new RepositoryImpl<MBrokenRiceType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MBrokenRiceType))
+                                                                   .Add(Expression.Eq("BrokenRiceName", BrokenRiceType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MBrokenRiceType> listMBrokenRiceType = BrokenRiceTypeRepository.GetAll(detachedCriteria) as List<MBrokenRiceType>;
+                if (listMBrokenRiceType != null && listMBrokenRiceType.Count > 0)
+                {
+                    foreach (MBrokenRiceType adMInfo in listMBrokenRiceType)
+                    {
+                        MBrokenRiceTypeEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMBrokenRiceTypeEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MBrokenRiceTypeEntity = null;
+
+                return MBrokenRiceTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMBrokenRiceTypeEntity", ex);
+                throw;
+            }
+        }
+        internal MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo)
+        {
+            try
+            {
+                MRiceBrandDetailsEntity MRiceBrandDetailsEntity = new MRiceBrandDetailsEntity();
+                IRepository<MRiceBrandDetails> RiceBrandDetailsRepository = new RepositoryImpl<MRiceBrandDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MRiceBrandDetails))
+                                                                   .Add(Expression.Eq("Name", RiceBrand))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<MRiceBrandDetails> listMRiceBrandDetails = RiceBrandDetailsRepository.GetAll(detachedCriteria) as List<MRiceBrandDetails>;
+                if (listMRiceBrandDetails != null && listMRiceBrandDetails.Count > 0)
+                {
+                    foreach (MRiceBrandDetails adMInfo in listMRiceBrandDetails)
+                    {
+                        MRiceBrandDetailsEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMRiceBrandDetailsEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    MRiceBrandDetailsEntity = null;
+
+                return MRiceBrandDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMRiceBrandDetailsEntity", ex);
+                throw;
+            }
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace RMIS.Domain.Business
         bool CheckLotNameExist(string LotName);
         bool CheckEmpDesigExist(string DesignationType);
         bool CheckSalaryTypeExist(string SalaryType);
+        bool CheckBagTypeExist(string BagType);
+        bool CheckRiceTypeExist(string RiceType);
+        bool CheckBrokenRiceTypeExist(string BrokenRiceType);
+        bool CheckRiceBrandExist(string RiceBrand);
 
         List<MBagTypeDTO> GetMBagTypeEntities();
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
@@ -87,5 +91,8 @@ namespace RMIS.Domain.Business
         ResultDTO DeleteSalaryType(string ID);
         ResultDTO UpdateSalaryType(string ID, string SalaryType);
         List<MSalarytypeDTO> GetMSalaryTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+
+        
     }
 }

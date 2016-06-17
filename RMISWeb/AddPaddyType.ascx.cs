@@ -9,7 +9,7 @@ using RMIS.Domain.Constant;
 
 public partial class AddPaddyType : BaseUserControl
 {
-        
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
@@ -22,7 +22,7 @@ public partial class AddPaddyType : BaseUserControl
     {
         int count = 0;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-    
+
         rptPaddyType.DataSource = imp.GetMPaddyTypeEntities(rptPaddyType.PageIndex, rptPaddyType.PageSize, out count, expression);
         rptPaddyType.VirtualItemCount = count;
         rptPaddyType.DataBind();
@@ -61,27 +61,27 @@ public partial class AddPaddyType : BaseUserControl
 
     protected void rptPaddyType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptPaddyType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptPaddyType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdatePaddyType(rptPaddyType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptPaddyType.PageIndex = gridPageIndex;
-        bindPaddyType();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (IsPaddyTypeExist(textName.Text.Trim()))
+        {
+            resultDto= imp.UpdatePaddyType(rptPaddyType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptPaddyType.PageIndex = gridPageIndex;
+                bindPaddyType();
+            }
+            SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "Paddy Type already exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
         //GridView1.DataBind();
 
     }
@@ -96,11 +96,8 @@ public partial class AddPaddyType : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-    
-        bool IsPaddyTypeExist = imp.CheckPaddyTypeExist(txtPaddyType.Text.Trim());
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValiadtePaddyType(txtPaddyType.Text);
-            
-        if (!IsPaddyTypeExist)
+        if (!IsPaddyTypeExist(txtPaddyType.Text.Trim()))
         {
             if (resultDto.IsSuccess)
             {
@@ -112,14 +109,19 @@ public partial class AddPaddyType : BaseUserControl
                 SetMessage(resultDto);
             }
             else
-            {
                 SetMessage(resultDto);
-            }
         }
-        else {
+        else
+        {
             resultDto.Message = "Paddy Type already exist.";
             resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsPaddyTypeExist(string PaddyType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckPaddyTypeExist(PaddyType);
     }
 }

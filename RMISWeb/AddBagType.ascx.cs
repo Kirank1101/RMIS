@@ -31,21 +31,37 @@ public partial class AddBagType : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBagType(txtBagType.Text);
-        if (resultDto.IsSuccess)
+        ResultDTO resultDto = new ResultDTO();
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        if (!IsBagTypeExist(txtBagType.Text.Trim()))
         {
-            IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-            resultDto = imp.SaveBagType(txtBagType.Text.Trim());
+            resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateBagType(txtBagType.Text);
             if (resultDto.IsSuccess)
             {
-                bindBagType();
+                resultDto = imp.SaveBagType(txtBagType.Text.Trim());
+                if (resultDto.IsSuccess)
+                {
+                    bindBagType();
+                }
+                SetMessage(resultDto);
             }
-            SetMessage(resultDto);
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
         else
         {
+            resultDto.Message = "BagType already Exist.";
+            resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsBagTypeExist(string BagType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckBagTypeExist(BagType);
     }
     protected void rptBagType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -77,29 +93,29 @@ public partial class AddBagType : BaseUserControl
     }
     protected void rptBagType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptBagType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptBagType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateBagType(rptBagType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptBagType.PageIndex = gridPageIndex;
-        bindBagType();
-
-        //GridView1.DataBind();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsBagTypeExist(textName.Text.Trim()))
+        {
+            resultDto = imp.UpdateBagType(rptBagType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptBagType.PageIndex = gridPageIndex;
+                bindBagType();
+                SetMessage(resultDto);
+            }
+            else
+                SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "BagType already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     private void bindBagType()
     {

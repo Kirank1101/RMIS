@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using RMIS.Mediator.BackEnd;
-using RMIS.Domain.RiceMill;
-using RMIS.Domain;
 using RMIS.Binder.BackEnd;
-using RMIS.Domain.Mediator;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
@@ -30,12 +16,10 @@ public partial class AddEmpDesig : BaseUserControl
         }
     }    
     protected void btnSubmit_Click(object sender, EventArgs e)
-    {
-        bool IsDesigExist = false;
+    {   
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>(); 
-        IsDesigExist = imp.CheckEmpDesigExist(txtDesigType.Text.Trim());
         ResultDTO resultDto = new ResultDTO();
-        if (!IsDesigExist)
+        if (!IsDesigExist(txtDesigType.Text.Trim()))
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateDesignationType(txtDesigType.Text);
             if (resultDto.IsSuccess)
@@ -58,6 +42,12 @@ public partial class AddEmpDesig : BaseUserControl
             resultDto.Message = "Designation Type already Exist.";
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsDesigExist(string DesigType)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckEmpDesigExist(DesigType);
     }
     private void bindDesigType()
     {
@@ -98,27 +88,28 @@ public partial class AddEmpDesig : BaseUserControl
     }
     protected void rptDesigType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptDesigType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptDesigType.EditIndex = -1;
-
+        ResultDTO resultDto = new ResultDTO();
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateDesigType(rptDesigType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptDesigType.PageIndex = gridPageIndex;
-        bindDesigType();
-
+        if (!IsDesigExist(textName.Text.Trim()))
+        {
+            resultDto=imp.UpdateDesigType(rptDesigType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptDesigType.PageIndex = gridPageIndex;
+                bindDesigType();
+                SetMessage(resultDto);
+            }
+            else
+                SetMessage(resultDto);
+        }
+        else {
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Designation Type already Exist.";
+            SetMessage(resultDto);
+        }
         //GridView1.DataBind();
 
     }

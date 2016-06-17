@@ -13,12 +13,17 @@ using log4net;
 
 namespace RMIS.Business
 {
+
     public class MasterPaddyBusiness : IMasterPaddyBusiness
     {
+
         IRMISMediator imp;
         ISessionProvider provider;
         IUserMessage msgInstance;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(MasterPaddyBusiness));
+        public const string UpdatedSuccess = "Updated Sucessfully..";
+        public const string UpdatedUnSuccess = "Updated UnSucessfully..";
+
         public MasterPaddyBusiness(IRMISMediator imp, ISessionProvider provider, IUserMessage msgInstance)
         {
             this.provider = provider;
@@ -371,7 +376,7 @@ namespace RMIS.Business
 
         public ResultDTO UpdatePaddyType(string Id, string paddyType)
         {
-
+            ResultDTO ResultDTO = new ResultDTO();
             MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(Id, YesNo.N);
             if (objMPaddyTypeEntity is MPaddyTypeEntity)
             {
@@ -380,18 +385,20 @@ namespace RMIS.Business
                 objMPaddyTypeEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
 
 
@@ -534,7 +541,7 @@ namespace RMIS.Business
 
 
 
-        
+
 
         public ResultDTO SaveRoleEntity(string roleName)
         {
@@ -926,6 +933,7 @@ namespace RMIS.Business
         }
         public ResultDTO UpdateGodownType(string ID, string GodownName)
         {
+            ResultDTO ResultDTO = new ResultDTO();
             MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(ID, YesNo.N);
             if (objMGodownDetailsEntity is MGodownDetailsEntity)
             {
@@ -938,17 +946,21 @@ namespace RMIS.Business
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMGodownDetailsEntity(objMGodownDetailsEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateLotDetails(string ID, string LotName)
         {
+            ResultDTO ResultDTO = new ResultDTO(); 
             MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(ID, YesNo.N);
             if (objMLotDetailsEntity is MLotDetailsEntity)
             {
@@ -957,22 +969,25 @@ namespace RMIS.Business
                 objMLotDetailsEntity.LastModifiedDate = DateTime.Now;
                 try
                 {
-
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMLotDetailsEntity(objMLotDetailsEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateBagType(string ID, string BagType)
         {
             MBagTypeEntity objMBagTypeEntity = imp.GetMBagTypeEntity(ID, YesNo.N);
+            ResultDTO ResultDTO = new ResultDTO();
             if (objMBagTypeEntity is MBagTypeEntity)
             {
                 objMBagTypeEntity.BagType = BagType;
@@ -984,21 +999,24 @@ namespace RMIS.Business
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMBagTypeEntity(objMBagTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateRiceType(string ID, string RiceType)
         {
             MRiceProductionTypeEntity objMRiceTypeEntity = imp.GetMRiceProductionTypeEntity(ID, YesNo.N);
             if (objMRiceTypeEntity is MRiceProductionTypeEntity)
             {
-                objMRiceTypeEntity.RiceType= RiceType;
+                objMRiceTypeEntity.RiceType = RiceType;
                 objMRiceTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
                 objMRiceTypeEntity.LastModifiedDate = DateTime.Now;
                 try
@@ -1019,6 +1037,7 @@ namespace RMIS.Business
         public ResultDTO UpdateBrokenRiceType(string ID, string BrokenRiceType)
         {
             MBrokenRiceTypeEntity objMBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntity(ID, YesNo.N);
+            ResultDTO ResultDTO = new ResultDTO();
             if (objMBrokenRiceTypeEntity is MBrokenRiceTypeEntity)
             {
                 objMBrokenRiceTypeEntity.BrokenRiceName = BrokenRiceType;
@@ -1030,14 +1049,17 @@ namespace RMIS.Business
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMBrokenRiceTypeEntity(objMBrokenRiceTypeEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateRiceBrandType(string ID, string RiceBrandType)
         {
@@ -1065,6 +1087,7 @@ namespace RMIS.Business
         public ResultDTO UpdateDesigType(string ID, string DesigType)
         {
             MEmployeeDesignationEntity objMEmpDesigEntity = imp.GetMEmployeeDesignationEntity(ID, YesNo.N);
+            ResultDTO ResultDTO = new ResultDTO();
             if (objMEmpDesigEntity is MEmployeeDesignationEntity)
             {
                 objMEmpDesigEntity.DesignationType = DesigType;
@@ -1076,14 +1099,17 @@ namespace RMIS.Business
                     imp.BeginTransaction();
                     imp.SaveOrUpdateMEmployeeDesignationEntity(objMEmpDesigEntity, true);
                     imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = UpdatedUnSuccess;
                 }
             }
-            return new ResultDTO();
+            return ResultDTO;
         }
         public ResultDTO UpdateSalaryType(string ID, string SalaryType)
         {
@@ -1177,7 +1203,7 @@ namespace RMIS.Business
                 foreach (MBagTypeEntity objBagTypeEntity in listMBagTypeEntity)
                 {
                     MBagTypeDTO objBagTypeDTO = new MBagTypeDTO();
-                    objBagTypeDTO.BagType= objBagTypeEntity.BagType;
+                    objBagTypeDTO.BagType = objBagTypeEntity.BagType;
                     objBagTypeDTO.Indicator = GetYesorNo(objBagTypeEntity.ObsInd);
                     objBagTypeDTO.Id = objBagTypeEntity.BagTypeID;
                     listBagTypeDTO.Add(objBagTypeDTO);
@@ -1279,6 +1305,49 @@ namespace RMIS.Business
                 }
             }
             return listSalaryTypeDTO;
+        }
+
+
+        public bool CheckBagTypeExist(string BagType)
+        {
+
+            bool IsBagTypeExist = false;
+
+            MBagTypeEntity MBagTypeEntity = imp.GetMBagTypeEntity(provider.GetCurrentCustomerId(), BagType, YesNo.N);
+            if (MBagTypeEntity != null)
+                IsBagTypeExist = true;
+
+            return IsBagTypeExist;
+        }
+        public bool CheckRiceTypeExist(string RiceType)
+        {
+            bool IsRiceTypeExist = false;
+
+            MRiceProductionTypeEntity MRiceTypeEntity = imp.GetMRiceProductionTypeEntity(provider.GetCurrentCustomerId(), RiceType, YesNo.N);
+            if (MRiceTypeEntity != null)
+                IsRiceTypeExist = true;
+
+            return IsRiceTypeExist;
+        }
+        public bool CheckBrokenRiceTypeExist(string BrokenRiceType)
+        {
+            bool IsBrokenRiceTypeExist = false;
+
+            MBrokenRiceTypeEntity MBrokenRiceTypeEntity = imp.GetMBrokenRiceTypeEntity(provider.GetCurrentCustomerId(), BrokenRiceType, YesNo.N);
+            if (MBrokenRiceTypeEntity != null)
+                IsBrokenRiceTypeExist = true;
+
+            return IsBrokenRiceTypeExist;
+        }
+        public bool CheckRiceBrandExist(string RiceBrand)
+        {
+            bool IsRiceBrankExist = false;
+
+            MRiceBrandDetailsEntity MRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(provider.GetCurrentCustomerId(), RiceBrand, YesNo.N);
+            if (MRiceBrandEntity != null)
+                IsRiceBrankExist = true;
+
+            return IsRiceBrankExist;
         }
     }
 }

@@ -31,12 +31,10 @@ public partial class AddGodownDetails : BaseUserControl
     }
     
     protected void btnSubmit_Click(object sender, EventArgs e)
-    {
-        bool IsGodownExist = false;
+    {   
         ResultDTO resultDto = new ResultDTO();
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        IsGodownExist = imp.CheckGodownNameExist(txtGodownName.Text.Trim());
-        if (!IsGodownExist)
+        if (!IsGodownExist(txtGodownName.Text.Trim()))
         {
             resultDto = BinderSingleton.Instance.GetInstance<IValidateMasterBusiness>().ValidateGodownDetails(txtGodownName.Text);
             if (resultDto.IsSuccess)
@@ -60,6 +58,12 @@ public partial class AddGodownDetails : BaseUserControl
             resultDto.IsSuccess = false;
             SetMessage(resultDto);
         }
+    }
+
+    private bool IsGodownExist(string GodownName)
+    {
+        IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        return imp.CheckGodownNameExist(GodownName);
     }
     protected void rptGodownType_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -95,29 +99,29 @@ public partial class AddGodownDetails : BaseUserControl
 
     protected void rptGodownType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-
-
         GridViewRow row = (GridViewRow)rptGodownType.Rows[e.RowIndex];
-
-        //TextBox txtname=(TextBox)gr.cell[].control[];
-
         TextBox textName = (TextBox)row.Cells[0].Controls[0];
-
-
-
-        //TextBox textadd = (TextBox)row.FindControl("txtadd");
-
-        //TextBox textc = (TextBox)row.FindControl("txtc");
-
         rptGodownType.EditIndex = -1;
-
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-        imp.UpdateGodownType(rptGodownType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
-        rptGodownType.PageIndex = gridPageIndex;
-        bindGodownType();
-
-        //GridView1.DataBind();
-
+        ResultDTO resultDto = new ResultDTO();
+        if (!IsGodownExist(textName.Text.Trim()))
+        {
+            resultDto=imp.UpdateGodownType(rptGodownType.DataKeys[e.RowIndex].Value.ToString(), textName.Text);
+            if (resultDto.IsSuccess)
+            {
+                rptGodownType.PageIndex = gridPageIndex;
+                bindGodownType();
+                SetMessage(resultDto);
+            }
+            else
+                SetMessage(resultDto);
+        }
+        else
+        {
+            resultDto.Message = "GodownName already Exist.";
+            resultDto.IsSuccess = false;
+            SetMessage(resultDto);
+        }
     }
     private void bindGodownType()
     {
