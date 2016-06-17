@@ -10,8 +10,7 @@ namespace RMIS.Domain.RiceMill
     public class BagStockInfoEntity : AbstractAllInOne
     {
         public string BagStockID { get; set; }
-        public string SellerID { get; set; }
-        public string BagTypeID { get; set; }
+        public string SellerID { get; set; }      
         public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
         public string MRiceBrandID { get; set; }

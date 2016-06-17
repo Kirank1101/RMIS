@@ -234,8 +234,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             {
                 Mapper.CreateMap<BagStockInfoEntity, BagStockInfo>()
                     .ForMember(dest => dest.BagStockID, opts => opts.MapFrom(src => src.BagStockID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
-                    .ForMember(dest => dest.BagTypeID, opts => opts.MapFrom(src => src.BagTypeID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))                   
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
                     .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
@@ -970,6 +969,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 Mapper.CreateMap<ProductPaymentTransactionEntity, ProductPaymentTransaction>()
                     .ForMember(dest => dest.ProductPaymentTranID, opts => opts.MapFrom(src => src.ProductPaymentTranID))
                     .ForMember(dest => dest.ProductPaymentID, opts => opts.MapFrom(src => src.ProductPaymentID))
+                     .ForMember(dest => dest.BuyerID , opts => opts.MapFrom(src => src.BuyerID ))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.Paymentmode, opts => opts.MapFrom(src => src.Paymentmode))
                     .ForMember(dest => dest.ChequeNo, opts => opts.MapFrom(src => src.ChequeNo))

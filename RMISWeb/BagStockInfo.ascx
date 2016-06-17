@@ -15,16 +15,7 @@
                 </asp:TextBoxAutoExtender>
             </td>
         </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lblBagType" Text="<%$Resources:Resource,BagType%>"></asp:Label>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlBagType" runat="server" AppendDataBoundItems="true">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-        </tr>
+        
         <tr>
             <td>
                 <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>

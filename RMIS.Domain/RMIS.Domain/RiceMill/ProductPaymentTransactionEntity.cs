@@ -10,6 +10,7 @@ namespace RMIS.Domain.RiceMill
     public class ProductPaymentTransactionEntity : AbstractAllInOne
     {
         public string ProductPaymentTranID { get; set; }
+        public string BuyerID { get; set; }
         public string ProductPaymentID { get; set; }
         public string CustID { get; set; }
         public string Paymentmode { get; set; }

@@ -1186,5 +1186,26 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBagStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
         }
+
+
+        public int GetBagStockTotal(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockTotal(CustId, yesNo);
+        }
+
+        public int GetBagStockTotalUsed(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockTotalUsed(CustId, yesNo);
+        }
+
+        public int GetBagStockTotal(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockTotal(CustId,UnitsTypeID,RiceBrandId, yesNo);
+        }
+
+        public int GetBagStockTotalUsed(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockTotalUsed(CustId, UnitsTypeID, RiceBrandId, yesNo);
+        }
     }
 }

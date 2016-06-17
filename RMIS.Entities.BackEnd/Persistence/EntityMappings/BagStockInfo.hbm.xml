@@ -7,8 +7,7 @@
     <id name="BagStockID" column="BagStockID" >
       <generator class="assigned"/>
     </id>
-    <property name="SellerID" column="SellerID" />
-    <property name="BagTypeID" column="BagTypeID" />
+    <property name="SellerID" column="SellerID" />   
     <property name="CustID" column="CustID" />
     <property name="MRiceBrandID" column="MRiceBrandID" />
     <property name="UnitsTypeID" column="UnitsTypeID" />

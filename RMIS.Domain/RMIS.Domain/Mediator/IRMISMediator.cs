@@ -153,7 +153,10 @@ namespace RMIS.Domain.Mediator
         int GetPaddyStockUsedTotal(string CustId, YesNo yesNo);
         int GetPaddyStockEntityCount(string CustId, YesNo yesNo);
         int GetPaddyStockUsedCount(string CustId, YesNo yesNo);
-
+        int GetBagStockTotal(string CustId, YesNo yesNo);
+        int GetBagStockTotalUsed(string CustId, YesNo yesNo);
+        int GetBagStockTotal(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo);
+        int GetBagStockTotalUsed(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo);
         int GetRiceProductTotal(string CustId, YesNo yesNo);
         int GetRiceProductUsedTotal(string CustId, YesNo yesNo);
         int GetBrokenRiceProductTotal(string CustId, YesNo yesNo);

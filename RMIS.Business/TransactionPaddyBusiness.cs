@@ -166,15 +166,14 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveBagStockInfo(string sellerId, string BagTypeId, string vehicleNo, string DriverName, int totalBags, double Price, DateTime purchaseDate, string RiceBrandID, string UnitTypeID)
+        public ResultDTO SaveBagStockInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, double Price, DateTime purchaseDate, string RiceBrandID, string UnitTypeID)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
             objBagStockInfoEntity.ObsInd = YesNo.N;
             objBagStockInfoEntity.CustID = provider.GetCurrentCustomerId();
             objBagStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objBagStockInfoEntity.LastModifiedDate = DateTime.Now;
-            objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");
-            objBagStockInfoEntity.BagTypeID = BagTypeId;
+            objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");           
             objBagStockInfoEntity.MRiceBrandID = RiceBrandID;
             objBagStockInfoEntity.UnitsTypeID = UnitTypeID;
             objBagStockInfoEntity.PurchaseDate = purchaseDate;
@@ -368,6 +367,7 @@ namespace RMIS.Business
             ProdPayTranEnt.Paymentmode = PaymentMode;
             ProdPayTranEnt.ChequeNo = ChequeNo;
             ProdPayTranEnt.DDNo = DDno;
+            ProdPayTranEnt.BuyerID = BuyerId;
             ProdPayTranEnt.BankName = BankName;
             ProdPayTranEnt.ReceivedAmount = ReceivedAmount;
             ProdPayTranEnt.PaymentDueDate = NextPaymentDate;
@@ -1090,6 +1090,19 @@ namespace RMIS.Business
             return 0;
         }
 
+        public int GetBagStockTotalSum()
+        {
+            int bagSum = 0;
+            bagSum = imp.GetBagStockTotal(provider.GetCurrentCustomerId(), YesNo.N);
+            int bagUsedSum = imp.GetBagStockTotalUsed(provider.GetCurrentCustomerId(), YesNo.N);
+            if (bagSum > bagUsedSum)
+                bagSum = bagSum - bagUsedSum;
+            if (bagSum > 0)
+                return bagSum;
+            return 0;
+        }
+
+
         public int GetBrockenRiceStockTotalSum()
         {
             int riceSum = 0;
@@ -1307,6 +1320,51 @@ namespace RMIS.Business
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
+        public List<WidgetDTO> GetTotalBagStock()
+        {
+            int totalStockSum = GetBagStockTotalSum();
+            List<WidgetDTO> listTotlaBagStock = new List<WidgetDTO>();
+            List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
+            {
+                foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
+                {
+                    List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                    if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
+                    {
+                        foreach (MRiceBrandDetailsEntity objMRiceBrandDetailsEntity in listMRiceBrandDetailsEntity)
+                        {
+
+                            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+                            {
+                                // <br /> <b></b> &nbsp;
+                                foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                                {
+                                    int riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                                    int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                                    if (riceSum > riceUsedSum)
+                                        riceSum = riceSum - riceUsedSum;
+                                    if (riceSum > 0)
+                                    {
+                                        WidgetDTO objTotlaPaddyStock = new WidgetDTO();
+                                        objTotlaPaddyStock.Headerone = objMRiceProductionTypeEntity.RiceType + " (" + objMRiceBrandDetailsEntity.Name + ")";
+                                        objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
+                                        objTotlaPaddyStock.Value = riceSum.ToString();
+                                        double percentage = (((double)riceSum / ((double)totalStockSum)));
+                                        objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
+                                        listTotlaBagStock.Add(objTotlaPaddyStock);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return listTotlaBagStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+        }
+
+
         public double GetPaddyTotalAmountDueBySeller(string sellerId)
         {
             if (!string.IsNullOrEmpty(sellerId))
@@ -1389,19 +1447,19 @@ namespace RMIS.Business
                     {
                         objBagStockDTO.SellerName = objSellerInfoEntity.Name;
                     }
-                    MBagTypeEntity objMbagtypeEntity = imp.GetMBagTypeEntity(objBagStockInfoEntity.BagTypeID, YesNo.Null);
-                    if (objMbagtypeEntity != null)
+                    //MBagTypeEntity objMbagtypeEntity = imp.GetMBagTypeEntity(objBagStockInfoEntity.BagTypeID, YesNo.Null);
+                    //if (objMbagtypeEntity != null)
+                    //{
+                    //    objBagStockDTO.TypeBrand = objMbagtypeEntity.BagType;
+                    //    if (objBagStockInfoEntity.MRiceBrandID != null)
+                    //    {
+                    MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(objBagStockInfoEntity.MRiceBrandID, YesNo.Null);
+                    if (objMRiceBrandEntity != null)
                     {
-                        objBagStockDTO.TypeBrand = objMbagtypeEntity.BagType;
-                        if (objBagStockInfoEntity.MRiceBrandID != null)
-                        {
-                            MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(objBagStockInfoEntity.MRiceBrandID, YesNo.Null);
-                            if (objMRiceBrandEntity != null)
-                            {
-                                objBagStockDTO.TypeBrand += "/" + objMRiceBrandEntity.Name;
-                            }
-                        }
+                        objBagStockDTO.TypeBrand += objMRiceBrandEntity.Name;
                     }
+                    //    }
+                    //}
                     MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objBagStockInfoEntity.UnitsTypeID, YesNo.Null);
                     if (objMUnitsTypeEntity != null)
                     {

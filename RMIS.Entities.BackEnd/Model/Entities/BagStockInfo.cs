@@ -32,11 +32,7 @@ namespace RMIS.Entities.BackEnd
             get { return _SellerID; }
             set { _SellerID = value; }
         }
-        public virtual string BagTypeID
-        {
-            get { return _BagTypeID; }
-            set { _BagTypeID = value; }
-        }
+        
         public virtual string CustID
         {
             get { return _CustID; }

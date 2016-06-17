@@ -7,6 +7,7 @@
     <id name="ProductPaymentTranID" column="ProductPaymentTranID" >
       <generator class="assigned"/>
     </id>
+    <property name="BuyerID" column="BuyerID" />
     <property name="ProductPaymentID" column="ProductPaymentID" />
     <property name="CustID" column="CustID" />
     <property name="Paymentmode" column="Paymentmode" />
