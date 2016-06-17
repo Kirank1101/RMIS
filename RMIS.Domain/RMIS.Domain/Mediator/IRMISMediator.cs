@@ -170,6 +170,11 @@ namespace RMIS.Domain.Mediator
         double GetPaddyTotalAmount(string CustId, string SellerId, YesNo yesNo);
         double GetPaddyTotalAmountPaid(string CustId, string SellerId, YesNo yesNo);
 
+        double GetProductTotalAmount(string CustId, YesNo yesNo);
+        double GetProductTotalAmountPaid(string CustId, YesNo yesNo);
+        double GetProductTotalAmount(string CustId, string BuyerID, YesNo yesNo);
+        double GetProductTotalAmountPaid(string CustId, string BuyerID, YesNo yesNo);
+
         List<OtherExpensesEntity> GetAllOtherExpensesEntities(string CustId, YesNo yesNo);
         int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
@@ -177,6 +182,7 @@ namespace RMIS.Domain.Mediator
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
         List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
         List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
+        List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo);
         HullingProcessEntity GetHullingProcessEnitity(string CustId, string HullingProcessID, YesNo yesNo);
         #endregion
         #region Check

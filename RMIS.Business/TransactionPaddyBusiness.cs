@@ -173,7 +173,7 @@ namespace RMIS.Business
             objBagStockInfoEntity.CustID = provider.GetCurrentCustomerId();
             objBagStockInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objBagStockInfoEntity.LastModifiedDate = DateTime.Now;
-            objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");           
+            objBagStockInfoEntity.BagStockID = CommonUtil.CreateUniqueID("BS");
             objBagStockInfoEntity.MRiceBrandID = RiceBrandID;
             objBagStockInfoEntity.UnitsTypeID = UnitTypeID;
             objBagStockInfoEntity.PurchaseDate = purchaseDate;
@@ -1128,6 +1128,18 @@ namespace RMIS.Business
             return 0;
         }
 
+        public double GetProductTotalAmountDue()
+        {
+            double productSum = 0;
+            productSum = imp.GetProductTotalAmount(provider.GetCurrentCustomerId(), YesNo.N);
+            double productUsedSum = imp.GetProductTotalAmountPaid(provider.GetCurrentCustomerId(), YesNo.N);
+            if (productSum > productUsedSum)
+                productSum = productSum - productUsedSum;
+            if (productSum > 0)
+                return Math.Round(productSum, 2, MidpointRounding.ToEven);
+            return 0;
+        }
+
 
 
         public int GetBrokenRiceStockInfoCount()
@@ -1200,7 +1212,7 @@ namespace RMIS.Business
         }
 
 
-        public List<WidgetDTO> GetTotalBrokenRiceStock()
+        public List<WidgetDTO> GetTotalBrokenRiceStockWidget()
         {
             int totalStockSum = GetBrockenRiceStockTotalSum();
 
@@ -1237,7 +1249,7 @@ namespace RMIS.Business
             return listTotalBrokenRiceStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
-        public List<WidgetDTO> GetTotlaPaddyStock()
+        public List<WidgetDTO> GetTotalPaddyStockWidget()
         {
             int totalStockSum = GetPaddyStockTotalSum();
             int totalStockCount = GetPaddyStockTotalCount();
@@ -1275,8 +1287,7 @@ namespace RMIS.Business
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
-
-        public List<WidgetDTO> GetTotalRiceStock()
+        public List<WidgetDTO> GetTotalRiceStockWidget()
         {
             int totalStockSum = GetRiceStockTotalSum();
             List<WidgetDTO> listTotlaPaddyStock = new List<WidgetDTO>();
@@ -1320,50 +1331,44 @@ namespace RMIS.Business
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
-        public List<WidgetDTO> GetTotalBagStock()
+        public List<WidgetDTO> GetTotalBagStockWidget()
         {
             int totalStockSum = GetBagStockTotalSum();
             List<WidgetDTO> listTotlaBagStock = new List<WidgetDTO>();
-            List<MRiceProductionTypeEntity> listMRiceProductionTypeEntity = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            if (listMRiceProductionTypeEntity != null && listMRiceProductionTypeEntity.Count > 0)
-            {
-                foreach (MRiceProductionTypeEntity objMRiceProductionTypeEntity in listMRiceProductionTypeEntity)
-                {
-                    List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
-                    if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
-                    {
-                        foreach (MRiceBrandDetailsEntity objMRiceBrandDetailsEntity in listMRiceBrandDetailsEntity)
-                        {
 
-                            List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
-                            if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+            List<MRiceBrandDetailsEntity> listMRiceBrandDetailsEntity = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMRiceBrandDetailsEntity != null && listMRiceBrandDetailsEntity.Count > 0)
+            {
+                foreach (MRiceBrandDetailsEntity objMRiceBrandDetailsEntity in listMRiceBrandDetailsEntity)
+                {
+
+                    List<MUnitsTypeEntity> listMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                    if (listMUnitsTypeEntity != null && listMUnitsTypeEntity.Count > 0)
+                    {
+                        // <br /> <b></b> &nbsp;
+                        foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
+                        {
+                            int bagSum = imp.GetBagStockTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                            int bagUsedSum = imp.GetBagStockTotalUsed(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
+                            if (bagSum > bagUsedSum)
+                                bagSum = bagSum - bagUsedSum;
+                            if (bagSum > 0)
                             {
-                                // <br /> <b></b> &nbsp;
-                                foreach (MUnitsTypeEntity objMUnitsTypeEntity in listMUnitsTypeEntity)
-                                {
-                                    int riceSum = imp.GetRiceProductTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
-                                    int riceUsedSum = imp.GetRiceProductUsedTotal(provider.GetCurrentCustomerId(), objMUnitsTypeEntity.UnitsTypeID, objMRiceProductionTypeEntity.MRiceProdTypeID, objMRiceBrandDetailsEntity.MRiceBrandID, YesNo.N);
-                                    if (riceSum > riceUsedSum)
-                                        riceSum = riceSum - riceUsedSum;
-                                    if (riceSum > 0)
-                                    {
-                                        WidgetDTO objTotlaPaddyStock = new WidgetDTO();
-                                        objTotlaPaddyStock.Headerone = objMRiceProductionTypeEntity.RiceType + " (" + objMRiceBrandDetailsEntity.Name + ")";
-                                        objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
-                                        objTotlaPaddyStock.Value = riceSum.ToString();
-                                        double percentage = (((double)riceSum / ((double)totalStockSum)));
-                                        objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
-                                        listTotlaBagStock.Add(objTotlaPaddyStock);
-                                    }
-                                }
+                                WidgetDTO objTotlaPaddyStock = new WidgetDTO();
+                                objTotlaPaddyStock.Headerone = objMRiceBrandDetailsEntity.Name;
+                                objTotlaPaddyStock.HeaderTwo = objMUnitsTypeEntity.UnitsType;
+                                objTotlaPaddyStock.Value = bagSum.ToString();
+                                double percentage = (((double)bagSum / ((double)totalStockSum)));
+                                objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
+                                listTotlaBagStock.Add(objTotlaPaddyStock);
                             }
                         }
                     }
+
                 }
             }
             return listTotlaBagStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
-
 
         public double GetPaddyTotalAmountDueBySeller(string sellerId)
         {
@@ -1410,6 +1415,33 @@ namespace RMIS.Business
             return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
+        public List<WidgetDTO> GetProductTotalAmountDueWidget()
+        {
+            double totalStockSum = GetProductTotalAmountDue();
+            List<WidgetDTO> listTotlaPaddyStock = new List<WidgetDTO>();
+            List<BuyerInfoEntity> listBuyerInfoEntity = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listBuyerInfoEntity != null && listBuyerInfoEntity.Count > 0)
+            {
+                foreach (BuyerInfoEntity objBuyerInfoEntity in listBuyerInfoEntity)
+                {
+
+                    double riceSum = imp.GetProductTotalAmount(provider.GetCurrentCustomerId(), objBuyerInfoEntity.BuyerID , YesNo.N);
+                    double riceUsedSum = imp.GetProductTotalAmountPaid(provider.GetCurrentCustomerId(), objBuyerInfoEntity.BuyerID, YesNo.N);
+                    if (riceSum > riceUsedSum)
+                        riceSum = riceSum - riceUsedSum;
+                    if (riceSum > 0)
+                    {
+                        WidgetDTO objTotlaPaddyStock = new WidgetDTO();
+                        objTotlaPaddyStock.Headerone = objBuyerInfoEntity.Name;
+                        objTotlaPaddyStock.Value = riceSum.ToString();
+                        double percentage = (((double)riceSum / ((double)totalStockSum)));
+                        objTotlaPaddyStock.Percentage = Math.Round(percentage * 100, 2, MidpointRounding.ToEven).ToString() + "%";
+                        listTotlaPaddyStock.Add(objTotlaPaddyStock);
+                    }
+                }
+            }
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+        }
 
         public long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID)
         {

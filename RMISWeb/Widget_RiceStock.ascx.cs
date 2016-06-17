@@ -16,7 +16,7 @@ public partial class Widget_RiceStock : BaseUserControl
         {
             Header = "";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            rptWidget.DataSource = imp.GetTotalRiceStock();
+            rptWidget.DataSource = imp.GetTotalRiceStockWidget();
             rptWidget.DataBind();  
         }
     }

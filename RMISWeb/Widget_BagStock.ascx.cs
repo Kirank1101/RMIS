@@ -8,7 +8,7 @@ using RMIS.Domain.Constant;
 using System.Collections.Generic;
 
 
-public partial class Widget_PaddyStock : BaseUserControl
+public partial class Widget_BagStock : BaseUserControl
 {          
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,7 +16,7 @@ public partial class Widget_PaddyStock : BaseUserControl
         {
             Header = "";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            rptWidget.DataSource = imp.GetTotalPaddyStockWidget();
+            rptWidget.DataSource = imp.GetTotalBagStockWidget();
             rptWidget.DataBind();  
         }
     }

@@ -72,10 +72,12 @@ namespace RMIS.Domain.Business
         List<EmployeeSalaryPaymentEntity> GetSalaryPaymentOnEmployee(string EmployeeID);
         List<OtherExpensesEntity> GetAllOtherExpenses();
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfo();
-        List<WidgetDTO> GetTotlaPaddyStock();
-        List<WidgetDTO> GetTotalRiceStock();
-        List<WidgetDTO> GetTotalBrokenRiceStock();
+        List<WidgetDTO> GetTotalPaddyStockWidget();
+        List<WidgetDTO> GetTotalRiceStockWidget();
+        List<WidgetDTO> GetTotalBrokenRiceStockWidget();
         List<WidgetDTO> GetPaddyTotalAmountDueWidget();
+        List<WidgetDTO> GetProductTotalAmountDueWidget();
+        List<WidgetDTO> GetTotalBagStockWidget();
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
         int GetPaddyStockTotalSum();
@@ -83,7 +85,9 @@ namespace RMIS.Domain.Business
         int GetMRiceProductionTypeCount();
         int GetRiceStockTotalSum();
         int GetBrockenRiceStockTotalSum();
+        int GetBagStockTotalSum();
         double GetPaddyTotalAmountDue();
+        double GetProductTotalAmountDue();
         double GetPaddyTotalAmountDueBySeller(string sellerId);
         long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID);
 

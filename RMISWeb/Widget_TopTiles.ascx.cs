@@ -21,6 +21,8 @@ public partial class Widget_TopTiles : BaseUserControl
             lblRiceStock.Text = Convert.ToString(imp.GetRiceStockTotalSum());
             lblBrokenRiceStock.Text = Convert.ToString(imp.GetBrockenRiceStockTotalSum());
             ltrAmountDue.Text = Convert.ToString(imp.GetPaddyTotalAmountDue());
+            ltrTotalBagStock.Text = Convert.ToString(imp.GetBagStockTotalSum());
+            ltrTotalCreditAmt.Text = Convert.ToString(imp.GetProductTotalAmountDue());
         }
     }
 

@@ -163,6 +163,36 @@
             }
         }
 
+        internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo)
+        {
+            try
+            {
+                List<BuyerInfoEntity> ListBuyerInfoEntity = new List<BuyerInfoEntity>();
+                IRepository<BuyerInfo> BuyerTypeRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("CustID", custId))
+                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                
+                List<BuyerInfo> listBuyerInfo = BuyerTypeRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfo)
+                    {
+                        ListBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    ListBuyerInfoEntity = null;
+
+                return ListBuyerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+                throw;
+            }
+        }
+
 
         internal List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText)
         {
@@ -656,7 +686,7 @@
             {
                 IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(HullingTransaction))
+                DetachedCriteria.For(typeof(ProductSellingInfo))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
@@ -674,9 +704,9 @@
         {
             try
             {
-                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                DetachedCriteria.For(typeof(ProductPaymentTransaction))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
@@ -694,9 +724,9 @@
         {
             try
             {
-                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(PaddyStockInfo))
+                DetachedCriteria.For(typeof(ProductSellingInfo))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                       .Add(Expression.Eq("BuyerID", BuyerID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
@@ -715,9 +745,9 @@
         {
             try
             {
-                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                DetachedCriteria.For(typeof(ProductPaymentTransaction))
                                                                       .Add(Expression.Eq("CustID", CustId))
                                                                         .Add(Expression.Eq("BuyerID", BuyerID))
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
@@ -2130,34 +2160,34 @@
                 throw;
             }
         }
-        internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo)
-        {
-            try
-            {
-                List<BuyerInfoEntity> ListBuyerInfoEntity = new List<BuyerInfoEntity>();
-                IRepository<BuyerInfo> BuyerTypeRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
-                                                                   .Add(Expression.Eq("CustID", custId))
-                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
-                List<BuyerInfo> listBuyerInfo = BuyerTypeRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
-                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
-                {
-                    foreach (BuyerInfo adMInfo in listBuyerInfo)
-                    {
-                        ListBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
-                    }
-                }
-                else
-                    ListBuyerInfoEntity = null;
+        //internal List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo)
+        //{
+        //    try
+        //    {
+        //        List<BuyerInfoEntity> ListBuyerInfoEntity = new List<BuyerInfoEntity>();
+        //        IRepository<BuyerInfo> BuyerTypeRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+        //        DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+        //                                                           .Add(Expression.Eq("CustID", custId))
+        //         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+        //        List<BuyerInfo> listBuyerInfo = BuyerTypeRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+        //        if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+        //        {
+        //            foreach (BuyerInfo adMInfo in listBuyerInfo)
+        //            {
+        //                ListBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+        //            }
+        //        }
+        //        else
+        //            ListBuyerInfoEntity = null;
 
-                return ListBuyerInfoEntity;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
-                throw;
-            }
-        }
+        //        return ListBuyerInfoEntity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+        //        throw;
+        //    }
+        //}
         internal List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string custId, YesNo yesNo)
         {
             try

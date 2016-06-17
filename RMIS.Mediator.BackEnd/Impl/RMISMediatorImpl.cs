@@ -91,7 +91,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         /// <param name="auditEntity">The audit entity.</param>
         /// <param name="isCopy">if set to <c>true</c> [is copy].</param>
 
-        
+
         public void SaveOrUpdateProductSellingInfoEntity(ProductSellingInfoEntity productSellingInfoEntity, bool isCopy)
         {
             try
@@ -813,7 +813,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllDustStockInfoEntities(CustId, yesNo);
         }
-        
+
         public List<MenuInfoEntity> GetAllMenuInfoEntities(YesNo yesNo)
         {
             return rmisGateway.GetMenuInfoEntities(yesNo);
@@ -858,7 +858,7 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllBuyerSellerRatingEntities(CustId, yesNo);
         }
-        public List<BuyerInfoEntity> GetListBuyerInfoEntities(String CustId,YesNo yesNo)
+        public List<BuyerInfoEntity> GetListBuyerInfoEntities(String CustId, YesNo yesNo)
         {
             return rmisGateway.GetListBuyerInfoEntities(CustId, yesNo);
         }
@@ -1082,9 +1082,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId,string PaddyTypeID,string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
+        public List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo)
         {
-            return rmisGateway.GetAllPaddyStockInfoEntities(CustId, PaddyTypeID,UnitTypeID,GodownID,LotID, yesNo);
+            return rmisGateway.GetAllPaddyStockInfoEntities(CustId, PaddyTypeID, UnitTypeID, GodownID, LotID, yesNo);
         }
 
 
@@ -1200,12 +1200,38 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public int GetBagStockTotal(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo)
         {
-            return rmisGateway.GetBagStockTotal(CustId,UnitsTypeID,RiceBrandId, yesNo);
+            return rmisGateway.GetBagStockTotal(CustId, UnitsTypeID, RiceBrandId, yesNo);
         }
 
         public int GetBagStockTotalUsed(string CustId, string UnitsTypeID, string RiceBrandId, YesNo yesNo)
         {
             return rmisGateway.GetBagStockTotalUsed(CustId, UnitsTypeID, RiceBrandId, yesNo);
+        }
+
+
+        public double GetProductTotalAmount(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetProductTotalAmount(CustId, yesNo);
+        }
+
+        public double GetProductTotalAmountPaid(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetProductTotalAmountPaid(CustId, yesNo);
+        }
+
+        public double GetProductTotalAmount(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetProductTotalAmount(CustId, BuyerID, yesNo);
+        }
+
+        public double GetProductTotalAmountPaid(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetProductTotalAmountPaid(CustId, BuyerID, yesNo);
+        }
+
+        public List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo)
+        {
+            return rmisGateway.GetBuyerInfoEntities(custId, yesNo);
         }
     }
 }
