@@ -216,6 +216,8 @@
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtPruchaseDate" />
+                                         <asp:TextBoxDatenTimeExtender ID="TextBoxDatenTimeExtender1" runat="server" >
+                                        </asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                             </table>
