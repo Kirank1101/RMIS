@@ -16,62 +16,68 @@ namespace RMIS.CustomControls
         protected TextBox txtBoxDate;
         protected TextBox txtBoxTime;
         protected CalendarExtender calenderExtender;
-        protected ImageButton img;
+        protected Image img;
         protected MaskedEditExtender mskDate;
         protected MaskedEditExtender mskTime;
 
-        protected override void CreateChildControls()
+        protected override void OnInit(EventArgs e)
         {
-            base.CreateChildControls();
+            base.OnInit(e);
+
             txtBoxDate = new TextBox();
             txtBoxDate.ID = "txtBoxDate" + this.ID;
             this.Controls.Add(txtBoxDate);
 
-            img = new ImageButton();
-            img.ID = "img" + this.ID;
-            img.Height = Unit.Pixel(19);
-            img.Width = Unit.Pixel(19);
-            img.ImageUrl = "~/images/Calendar.png";
-            this.Controls.Add(img);
+            txtBoxDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            //img = new Image();
+            //img.ID = "img" + this.ID;
+            //img.Height = Unit.Pixel(19);
+            //img.Width = Unit.Pixel(19);
+            //img.ImageUrl = "~/images/Calendar.png";
+            //this.Controls.Add(img);
 
             txtBoxTime = new TextBox();
             txtBoxTime.ID = "txtBoxTime" + this.ID;
+            //img.Height = Unit.Pixel(19);
+            txtBoxTime.Width = Unit.Pixel(80);
             this.Controls.Add(txtBoxTime);
+            txtBoxTime.Text = DateTime.Now.TimeOfDay.ToString();
 
-            calenderExtender = new CalendarExtender();
-            calenderExtender.ID = "calenderExtender" + this.ID;
-            calenderExtender.PopupButtonID = img.ID;
-            calenderExtender.Format = "mm/dd/yyyy";
-            calenderExtender.TargetControlID = txtBoxDate.ID;
-            this.Controls.Add(calenderExtender);
 
+           
             mskDate = new MaskedEditExtender();
             mskDate.ID = "mskDate" + this.ID;
             mskDate.Mask = "99/99/9999";
-            mskDate.MessageValidatorTip = true;
-            mskDate.OnFocusCssClass = "MaskedEditFocus";
-            mskDate.OnInvalidCssClass = "MaskedEditError";
-            mskDate.MaskType = MaskedEditType.Date;
-            mskDate.ErrorTooltipEnabled = true;
+            //mskDate.ClearMaskOnLostFocus = false;
+            //mskDate.MessageValidatorTip = true;
+            //mskDate.OnFocusCssClass = "MaskedEditFocus";
+            //mskDate.OnInvalidCssClass = "MaskedEditError";
+            // mskDate.MaskType = MaskedEditType.Date;
+            //mskDate.ErrorTooltipEnabled = true;
             mskDate.InputDirection = MaskedEditInputDirection.RightToLeft;
-            mskDate.AcceptNegative = MaskedEditShowSymbol.None;
+            //mskDate.AcceptNegative = MaskedEditShowSymbol.None;
             mskDate.TargetControlID = txtBoxDate.ID;
             this.Controls.Add(mskDate);
 
             mskTime = new MaskedEditExtender();
             mskTime.ID = "mskTime" + this.ID;
             mskTime.Mask = "99:99:99";
-            mskTime.MessageValidatorTip = true;
-            mskTime.OnFocusCssClass = "MaskedEditFocus";
-            mskTime.OnInvalidCssClass = "MaskedEditError";
-            mskTime.MaskType = MaskedEditType.Time;
+            //mskTime.MessageValidatorTip = true;
+            //mskTime.OnFocusCssClass = "MaskedEditFocus";
+            //mskTime.OnInvalidCssClass = "MaskedEditError";
+            // mskTime.MaskType = MaskedEditType.Time;
             mskTime.InputDirection = MaskedEditInputDirection.RightToLeft;
             mskTime.AcceptNegative = MaskedEditShowSymbol.None;
             mskTime.TargetControlID = txtBoxTime.ID;
-            mskTime.ErrorTooltipEnabled = true;
+            //mskTime.ErrorTooltipEnabled = true;
             mskTime.AcceptAMPM = true;
+
+            mskTime.ClearMaskOnLostFocus = false;
             this.Controls.Add(mskTime);
 
+
+           
             //       <ajaxToolkit:MaskedEditExtender
             //TargetControlID="TextBox2" 
             //Mask="9,999,999.99"
@@ -83,6 +89,22 @@ namespace RMIS.CustomControls
             //AcceptNegative="Left" 
             //DisplayMoney="Left"
             //ErrorTooltipEnabled="True"/>
+        }
+
+        protected override void CreateChildControls()
+        {
+            base.CreateChildControls();
+
+            calenderExtender = new CalendarExtender();
+            calenderExtender.CssClass = "ajax__calendar";
+            calenderExtender.ID = "calenderExtender1" + this.ID;
+            // calenderExtender.PopupButtonID = img.ID;
+            calenderExtender.Enabled = true;
+            calenderExtender.Format = "dd/MM/yyyy";
+            calenderExtender.TargetControlID = txtBoxDate.ID;
+            this.Controls.Add(calenderExtender);
+
+           
 
 
 

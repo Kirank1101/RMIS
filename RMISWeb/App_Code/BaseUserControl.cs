@@ -7,6 +7,8 @@ using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
 using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
+using System.Text;
+using System.Web.UI;
 
 /// <summary>
 /// Summary description for BaseUserControl
@@ -112,6 +114,10 @@ public class BaseUserControl : System.Web.UI.UserControl
     {
         base.OnLoad(e);
         pnlMessage.Visible = false;
+        StringBuilder buildScript = new StringBuilder();
+        buildScript.Append("window.onerror = function() {};");        
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorHandler", buildScript.ToString(), true);
+        Page.ClientScript.RegisterStartupScript(Page.GetType(), "ErrorHandler", buildScript.ToString(), true);
     }
 
 

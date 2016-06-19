@@ -568,3 +568,12 @@ iucon.web.Controls.PartialUpdatePanel.prototype = {
 iucon.web.Controls.PartialUpdatePanel.registerClass('iucon.web.Controls.PartialUpdatePanel', Sys.UI.Control);
 
 if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
+
+Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+function EndRequestHandler(sender, args) {
+    if (args.get_error() != undefined) {
+        alert(args.get_error());
+    }
+}
+
+window.onerror = function () { };
