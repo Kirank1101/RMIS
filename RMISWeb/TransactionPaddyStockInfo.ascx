@@ -107,8 +107,8 @@
                                         <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtPruchaseDate" />
-                                         <asp:TextBoxDatenTimeExtender ID="TextBoxDatenTimeExtender1" runat="server" >
+                                       
+                                         <asp:TextBoxDatenTimeExtender ID="txtPruchaseDate" runat="server" >
                                         </asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
@@ -215,7 +215,10 @@
                                         <asp:Label runat="server" ID="lblPaidDate" Text="<%$Resources:Resource,PaidDate%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtPaidDate" />
+                                        
+                                        
+                                         <asp:TextBoxDatenTimeExtender ID="txtPaidDate" runat="server" >
+                                        </asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                                 <tr>
@@ -239,7 +242,9 @@
                                         <asp:Label runat="server" ID="lblNextpaymentdate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtNextpaymentdate" />
+                                       
+                                        <asp:TextBoxDatenTimeExtender ID="txtNextpaymentdate" runat="server" >
+                                        </asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                             </table>

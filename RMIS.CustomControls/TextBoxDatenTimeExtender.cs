@@ -7,6 +7,7 @@ using AjaxControlToolkit;
 using System.Web.UI;
 using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
+using AllInOne.Common.Library.Util ;
 
 namespace RMIS.CustomControls
 {
@@ -19,6 +20,31 @@ namespace RMIS.CustomControls
         protected Image img;
         protected MaskedEditExtender mskDate;
         protected MaskedEditExtender mskTime;
+
+
+        public string  Text
+        {
+            get
+            {
+               DateTime dtValue= txtBoxDate.Text.ConvertToDate();
+                TimeSpan tSValue;
+                if (TimeSpan.TryParse(txtBoxTime.Text, out tSValue))
+                {
+                    dtValue = dtValue.Add(tSValue);
+                }
+
+                return dtValue.ToString();
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    txtBoxDate.Text = txtBoxTime.Text = string.Empty;
+                }                
+            }
+
+        }
+
 
         protected override void OnInit(EventArgs e)
         {
@@ -58,6 +84,7 @@ namespace RMIS.CustomControls
             mskDate.InputDirection = MaskedEditInputDirection.RightToLeft;
             //mskDate.AcceptNegative = MaskedEditShowSymbol.None;
             mskDate.TargetControlID = txtBoxDate.ID;
+            mskDate.ClearMaskOnLostFocus = false;
             this.Controls.Add(mskDate);
 
             mskTime = new MaskedEditExtender();

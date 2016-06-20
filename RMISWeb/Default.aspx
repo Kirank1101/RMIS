@@ -25,10 +25,7 @@
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
-    <link href="css/custom.css" rel="stylesheet">
-
-
-   
+    <link href="css/custom.css" rel="stylesheet">  
  
 
 
@@ -41,81 +38,29 @@
 
         }    
 
-
-
     </script>
 
-     <script type="text/javascript" src="src/assets/scripts/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery-ui.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery.uniform.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery.blockui.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/back-to-top.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/json2.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/sicc-lib.js?v=1.0.1"></script>
-    <script type="text/javascript" src="src/assets/scripts/custom.js?v=1.0.0"></script>
+   
 
      
 
-     <script  type="text/javascript"  src="vendors/select2/docs/vendor/js/jquery.min.js"></script>
-      <script  type="text/javascript"  src="vendors/select2/docs/vendor/js/bootstrap.min.js"></script>
-       <script  type="text/javascript"  src="vendors/fastclick/lib/fastclick.js"></script>
-        <script  type="text/javascript"  src="vendors/nprogress/nprogress.js"></script>
-         <script  type="text/javascript"  src="src/assets/js/bootstrap-datepicker.js"></script>
 
    
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" >
+    <<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx"
+        >
 
-    <Scripts>
-
-<asp:ScriptReference Name="MicrosoftAjax.js" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Common.Common.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.ExtenderBase.BaseScripts.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Tabs.Tabs.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.DynamicPopulate.DynamicPopulateBehavior.js"
-
-Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Common.DateTime.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Compat.Timer.Timer.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Animation.Animations.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Animation.AnimationBehavior.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.PopupExtender.PopupBehavior.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Common.Threading.js" Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Calendar.CalendarBehavior.js" Assembly="AjaxControlToolkit" />
-
- <asp:ScriptReference Name="AjaxControlToolkit.Compat.DragDrop.DragDropScripts.js"
-
-Assembly="AjaxControlToolkit" />
-
-<asp:ScriptReference Name="AjaxControlToolkit.Slider.SliderBehavior.js" Assembly="AjaxControlToolkit" />
-
-
-
-</Scripts>
-
-
-
- <Services>
+        <Services>
     <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
+     <asp:ServiceReference Path="~/AutoComplete.asmx" />
    </Services>
+    </ajaxToolkit:ToolkitScriptManager>
 
-</asp:ScriptManager>
+
+
+ 
 
 
 
@@ -311,6 +256,18 @@ Assembly="AjaxControlToolkit" />
         </div>
     </div>
 
+
+    <script type="text/javascript" src="src/assets/scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/back-to-top.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/json2.js"></script>
+    <script type="text/javascript" src="src/assets/scripts/sicc-lib.js?v=1.0.1"></script>
+    <script type="text/javascript" src="src/assets/scripts/custom.js?v=1.0.0"></script>
     
     <!-- bootstrap-progressbar -->
     <script  type="text/javascript"  src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
