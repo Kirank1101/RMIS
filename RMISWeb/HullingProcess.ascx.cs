@@ -13,6 +13,7 @@ public partial class HullingProcess : BaseUserControl
     {
         if (!IsControlPostBack)
         {
+            Header = "Hulling Process";
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             #region Bind DropDown Lists

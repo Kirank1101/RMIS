@@ -17,7 +17,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            base.Header = "";
 
             IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();

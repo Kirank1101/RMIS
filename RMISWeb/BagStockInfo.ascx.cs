@@ -11,8 +11,8 @@ public partial class BagStockInfo : BaseUserControl
     {
         IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
         if (!IsControlPostBack)
-        {             
-
+        {
+            Header = "Add Bag Stock";
             ddlUnitsType.DataSource = impb.GetMUnitsTypeEntities();
             ddlUnitsType.DataTextField = "UnitsType";
             ddlUnitsType.DataValueField = "Id";

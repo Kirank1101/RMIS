@@ -3,8 +3,7 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
-    <h3>
-        Add Bag Stock</h3>
+    
     <table>
         <tr>
             <td>

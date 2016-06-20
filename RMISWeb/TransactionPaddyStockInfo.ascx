@@ -10,7 +10,7 @@
         CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
         <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
             <HeaderTemplate>
-                Paddy Information
+                Paddy Stock
             </HeaderTemplate>
             <ContentTemplate>
                 <table>
@@ -144,7 +144,7 @@
         </ajaxToolkit:TabPanel>
         <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
             <HeaderTemplate>
-                Payment Information
+                Paddy Payment 
             </HeaderTemplate>
             <ContentTemplate>
                 <table>

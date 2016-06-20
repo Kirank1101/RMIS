@@ -11,7 +11,7 @@ public partial class DustStockInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            base.Header = "Dust Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             
             ddlUnitsType.DataSource = impb.GetMUnitsTypeEntities();
