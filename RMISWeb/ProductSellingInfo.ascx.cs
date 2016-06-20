@@ -145,6 +145,10 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         return lstprodselinfoDTO;
     }
+    protected void btnclear_click(object sender, EventArgs e)
+    {
+        ClearAllInputFields();
+    }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(rbtProductSellingtype.SelectedIndex, rbtProductSellingtype.SelectedValue, txtBuyerName.SelectedValue, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtprice.Text, txtSellingDate.Text);

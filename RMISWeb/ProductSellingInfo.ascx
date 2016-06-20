@@ -100,9 +100,9 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:Button ID="Button3" runat="server" Text="Add" OnClick="btnAdd_Click" />
-                                        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancel" />
+                                        <asp:Button ID="btnadd" runat="server" Text="Add" OnClick="btnAdd_Click" />
+                                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                                        <asp:Button ID="btnclear" runat="server" Text="Clear" OnClick="btnclear_click"/>
                                     </td>
                                 </tr>
                             </table>
