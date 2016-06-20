@@ -11,7 +11,7 @@ public partial class AddBrokenRiceType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Rice Type Information";
+            Header = "Add Broken Rice Type";
             bindBrokenRiceType();
         }
     }

@@ -14,11 +14,20 @@ public partial class ProductSellingInfo : BaseUserControl
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
     int count = 0;
     int count1 = 0;
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+    }
+    protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+    {
+
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Product Selling Information";
+            
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 

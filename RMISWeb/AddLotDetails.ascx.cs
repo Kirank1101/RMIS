@@ -12,7 +12,7 @@ public partial class AddLotDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Lot Information";
+            Header = "Add Lot Details";
             bindLotDetails();
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             List<GodownTypeDTO> listGodownTypeDTO = imp.GetMGodownTypeEntities();

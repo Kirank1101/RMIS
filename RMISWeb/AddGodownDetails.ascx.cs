@@ -25,7 +25,7 @@ public partial class AddGodownDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Godown Information";
+            Header = "Add Godown Details";
             bindGodownType();
         }
     }

@@ -1,10 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProductSellingInfo.ascx.cs"
     Inherits="ProductSellingInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
-    <table>
-        <tr>
-            <td valign="top">
+    <asp:CustomTabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
+        CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
+            <HeaderTemplate>
+                Product Selling Information
+            </HeaderTemplate>
+            <ContentTemplate>
+            <h3>
+                                Product Selling Information</h3>
                 <table>
                     <tr>
                         <td valign="top">
@@ -102,18 +109,46 @@
                                     <td>
                                         <asp:Button ID="btnadd" runat="server" Text="Add" OnClick="btnAdd_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="btnclear" runat="server" Text="Clear" OnClick="btnclear_click"/>
+                                        <asp:Button ID="btnclear" runat="server" Text="Clear" OnClick="btnclear_click" />
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                 </table>
-            </td>
-            <td>
-                <h3>
-                    Payment Details</h3>
                 <table>
+                    <tr>
+                        <td>
+                            <h3>
+                                Product Selling Details</h3>
+                            <asp:PagingGridView ID="rptProductSellingDetails" Width="80%" runat="server" AllowSorting="true"
+                                DataKeyNames="ProductID" AutoGenerateColumns="false" OnRowDeleting="rptProductSellingDetails_RowDeleting"
+                                class="table table-striped table-bordered">
+                                <Columns>
+                                    <asp:BoundField DataField="ProductID" HeaderText="<%$Resources:Resource,ItemNo%>" />
+                                    <asp:BoundField DataField="BuyerName" HeaderText="<%$Resources:Resource,Name%>" />
+                                    <asp:BoundField DataField="ProductName" HeaderText="<%$Resources:Resource,ProductName%>" />
+                                    <asp:BoundField DataField="ProductType" HeaderText="<%$Resources:Resource,ProductType%>" />
+                                    <asp:BoundField DataField="Brand" HeaderText="<%$Resources:Resource,BrandName%>" />
+                                    <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,totalbags%>" />
+                                    <asp:BoundField DataField="Price" HeaderText="<%$Resources:Resource,Price%>" />
+                                    <asp:BoundField DataField="TotalPrice" HeaderText="<%$Resources:Resource,TotalAmount%>" />
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+                                </Columns>
+                            </asp:PagingGridView>
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </ajaxToolkit:TabPanel>
+        <ajaxToolkit:TabPanel runat="server" ID="TabPanel2">
+            <HeaderTemplate>
+                Product Payment Details
+            </HeaderTemplate>
+            <ContentTemplate>
+            <h3>
+                                Product Payment Information</h3>
+            <table>
                     <tr>
                         <td>
                             <asp:Label runat="server" ID="lblrOrderNo" Text="<%$Resources:Resource,OrderNo%>"></asp:Label>
@@ -194,30 +229,8 @@
                         </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td>
-                <h3>
-                    Product Selling Details</h3>
-                <asp:PagingGridView ID="rptProductSellingDetails" Width="80%" runat="server" AllowSorting="true"
-                    DataKeyNames="ProductID" AutoGenerateColumns="false" OnRowDeleting="rptProductSellingDetails_RowDeleting"
-                    class="table table-striped table-bordered">
-                    <Columns>
-                        <asp:BoundField DataField="ProductID" HeaderText="<%$Resources:Resource,ItemNo%>" />
-                        <asp:BoundField DataField="BuyerName" HeaderText="<%$Resources:Resource,Name%>" />
-                        <asp:BoundField DataField="ProductName" HeaderText="<%$Resources:Resource,ProductName%>" />
-                        <asp:BoundField DataField="ProductType" HeaderText="<%$Resources:Resource,ProductType%>" />
-                        <asp:BoundField DataField="Brand" HeaderText="<%$Resources:Resource,BrandName%>" />
-                        <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,totalbags%>" />
-                        <asp:BoundField DataField="Price" HeaderText="<%$Resources:Resource,Price%>" />
-                        <asp:BoundField DataField="TotalPrice" HeaderText="<%$Resources:Resource,TotalAmount%>" />
-                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
-                    </Columns>
-                </asp:PagingGridView>
-            </td>
-        </tr>
-    </table>
+            </ContentTemplate>
+        </ajaxToolkit:TabPanel>
+    </asp:CustomTabContainer>
+    
 </div>

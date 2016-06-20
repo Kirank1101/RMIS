@@ -25,7 +25,7 @@ public partial class AddBagType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Bag Type Information";
+            Header = "Add Bag Type";
             bindBagType();
         }
     }

@@ -9,7 +9,7 @@
                     <tr>
                         <td>
                             <h4>
-                                Rice Brand Type</h4>
+                                Add Brand Type</h4>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtRiceBrandType" />

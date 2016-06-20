@@ -13,7 +13,7 @@ public partial class AddUnitsType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Unit type Information";
+            Header = "Add Unit type";
             bindUnitsType();
         }
     }

@@ -14,7 +14,7 @@ public partial class AddPaddyType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Paddy Information";
+            Header = "Add Paddy Type";
             bindPaddyType();
         }
     }

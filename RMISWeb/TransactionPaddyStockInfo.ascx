@@ -16,6 +16,8 @@
                 <table>
                     <tr>
                         <td valign="top" style="padding-right: 70px">
+                        <h3>
+                                Add Paddy Stock</h3>
                             <table>
                                 <tr>
                                     <td>
@@ -149,7 +151,7 @@
                     <tr>
                         <td valign="top">
                             <h3>
-                                Paddy Payment Info</h3>
+                                Paddy Payment</h3>
                             <table>
                                 <tr>
                                     <td>

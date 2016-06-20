@@ -11,7 +11,7 @@ public partial class AddRiceBrandType : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "Add Rice Type Information";
+            Header = "Add Brand";
             bindRiceBrandType();
         }
     }
