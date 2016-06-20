@@ -1185,11 +1185,11 @@ namespace RMIS.Business
             }
             return listGodownTypeDTO;
         }
-        public List<LotDetailsDTO> GetMLotDetailsEntities(string MGodownID, int PageIndex, int PageSize, out int count, SortExpression expression)
+        public List<LotDetailsDTO> GetMLotDetailsEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
         {
             List<LotDetailsDTO> listLotDetailsDTO = null;
 
-            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(MGodownID,provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            List<MLotDetailsEntity> listMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
             if (listMLotDetailsEntity != null && listMLotDetailsEntity.Count > 0)
             {
                 listLotDetailsDTO = new List<LotDetailsDTO>();

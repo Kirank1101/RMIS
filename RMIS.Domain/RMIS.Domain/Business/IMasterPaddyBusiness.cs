@@ -63,7 +63,7 @@ namespace RMIS.Domain.Business
 
         ResultDTO DeleteLotDetails(string ID);
         ResultDTO UpdateLotDetails(string ID, string LotName);
-        List<LotDetailsDTO> GetMLotDetailsEntities(string MGodownID, int PageIndex, int PageSize, out int count, SortExpression expression);
+        List<LotDetailsDTO> GetMLotDetailsEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
 
         ResultDTO DeleteBagType(string ID);
         ResultDTO UpdateBagType(string ID, string BagType);

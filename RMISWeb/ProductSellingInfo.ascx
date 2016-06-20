@@ -10,8 +10,8 @@
                 Product Selling Information
             </HeaderTemplate>
             <ContentTemplate>
-                <h3>
-                    Product Selling Information</h3>
+            <h3>
+                                Product Selling Information</h3>
                 <table>
                     <tr>
                         <td valign="top">
@@ -146,21 +146,17 @@
                 Product Payment Details
             </HeaderTemplate>
             <ContentTemplate>
-                <h3>
-                    Product Payment Information</h3>
-                <table>
+            <h3>
+                                Product Payment Information</h3>
+            <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblrOrderNo" Text="<%$Resources:Resource,OrderNo%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBoxAutoExtender ID="txtBuyerNamePayment" runat="server" ServiceMethod="GetBuyerNames">
-                            </asp:TextBoxAutoExtender>
-                            <asp:Button ID="btnBuyerDetails" runat="server" Text="Get Payment Details" OnClick="btnBuyerDetails_Click"
-                                            ValidationGroup="OnSave" />
+                            <asp:Label runat="server" ID="lblOrderNo"></asp:Label>
                         </td>
                     </tr>
-                    
                     <tr>
                         <td>
                             <asp:Label runat="server" ID="lbltotalamount" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
@@ -236,4 +232,5 @@
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
     </asp:CustomTabContainer>
+    
 </div>

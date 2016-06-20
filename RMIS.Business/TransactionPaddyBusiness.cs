@@ -1689,16 +1689,5 @@ namespace RMIS.Business
             }
             return resultDTO;
         }
-
-
-        public List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID)
-        {
-            List<ProductBuyerPaymentDTO> lstprobuyerpayment = new List<ProductBuyerPaymentDTO>();
-            List<ProductSellingInfoEntity> lstprodsellinginfo = new List<ProductSellingInfoEntity>();
-            List<ProductPaymentInfoEntity> lstprodpaymnetinfo = new List<ProductPaymentInfoEntity>();
-            //lstprodsellinginfo = imp.GetAllBuyerproductSellingInfoEntities(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
-            //return lstprodsellinginfo.DistinctBy(A => new { A.BuyerID, A.ProductPaymentID }).OrderByDescending(A => A.Value).Take(5).ToList();
-            return lstprobuyerpayment;
-        }
     }
 }
