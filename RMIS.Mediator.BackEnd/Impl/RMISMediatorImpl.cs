@@ -1112,9 +1112,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string MGodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
-            return rmisGateway.GetMLotDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+            return rmisGateway.GetMLotDetailsEntities(CustId, MGodownID,PageIndex, PageSize, out count, expression, yesNo);
         }
 
 
@@ -1266,6 +1266,12 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
         {
            return rmisGateway.GetAllProductSellingInfoEntities(CustId, UnitTypeID, yesNo);
+        }
+
+
+        public List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllBuyerproductSellingInfoEntities(CustId, BuyerID, yesNo);
         }
     }
 }

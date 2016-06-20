@@ -22,13 +22,12 @@ public partial class ProductSellingInfo : BaseUserControl
     {
 
     }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsControlPostBack)
         {
-            
 
+            base.Header = "";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
@@ -66,8 +65,6 @@ public partial class ProductSellingInfo : BaseUserControl
             ViewState[viewstateProdSelInfoEnt] = value;
         }
     }
-
-
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
@@ -77,17 +74,16 @@ public partial class ProductSellingInfo : BaseUserControl
             rptProductSellingDetails.DataBind();
         }
     }
-
     private List<ProductSellingInfoDTO> AddProductSellingInfoDetails()
     {
         ResultDTO resultDTO = new ResultDTO();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductSellingInfoDTO> lstprodselinfoDTO = VstProdSelInfoEnt;
-
+        #region Check Rice Stock Information
         switch (rbtProductSellingtype.SelectedValue)
         {
             case Rice:
-                    resultDTO = imp.CheckRiceStockAvailability(ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
+                resultDTO = imp.CheckRiceStockAvailability(ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
                 break;
             case BrokenRice:
                 resultDTO = imp.CheckBrokenriceStockAvailability(ddlBrokenRiceType.SelectedValue, ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
@@ -98,8 +94,6 @@ public partial class ProductSellingInfo : BaseUserControl
             default:
                 break;
         }
-        #region Check Rice Stock Information
-
         #endregion
         if (resultDTO.IsSuccess)
         {
@@ -173,8 +167,8 @@ public partial class ProductSellingInfo : BaseUserControl
             //    txtprice.Text.ConvertToDouble(), Convert.ToDateTime(txtSellingDate.Text.Trim()), lblOrderNo.Text, rbtPaymnetMode.SelectedValue,
             //    txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(),
             //    Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
-            List<ProductSellingInfoDTO> lstprodselinfoDTO= new List<ProductSellingInfoDTO>();
-            lstprodselinfoDTO= AddProductSellingInfoDetails();
+            List<ProductSellingInfoDTO> lstprodselinfoDTO = new List<ProductSellingInfoDTO>();
+            lstprodselinfoDTO = AddProductSellingInfoDetails();
             if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
             {
                 resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO);
@@ -188,7 +182,8 @@ public partial class ProductSellingInfo : BaseUserControl
                     SetMessage(resultDto);
                 }
             }
-            else {
+            else
+            {
                 resultDto.Message += "Saved Unsuccessfully..";
             }
         }
@@ -197,6 +192,13 @@ public partial class ProductSellingInfo : BaseUserControl
             SetMessage(resultDto);
         }
 
+    }
+    protected void btnBuyerDetails_Click(object sender, EventArgs e)
+    {
+        ResultDTO resultDTO = new ResultDTO();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
+        lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

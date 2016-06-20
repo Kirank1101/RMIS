@@ -48,6 +48,14 @@ namespace RMIS.Domain.DataTranserClass
 
     }
     [Serializable]
+    public class ProductBuyerPaymentDTO {
+        public int SlNo { get; set; }
+        public string ProductPaymentID { get; set; }
+        public string BuyerName { get; set; }
+        public double TotalAmountDue { get; set; }
+        public DateTime SellingDate { get; set; }
+    }
+    [Serializable]
     public class ProductSellingInfoDTO
     {
         public int   ProductID { get; set; }

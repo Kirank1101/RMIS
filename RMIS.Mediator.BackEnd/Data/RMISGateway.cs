@@ -3057,7 +3057,7 @@
             }
         }
 
-        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string MGodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
             {
@@ -3067,12 +3067,14 @@
                 if (expression == SortExpression.Desc)
                     detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                       .Add(Expression.Eq("CustID", CustId))
-                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      .Add(Expression.Eq("MGodownID", MGodownID))  
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                       ).AddOrder(Order.Asc("LotName"));
                 else
                     detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   .Add(Expression.Eq("MGodownID", MGodownID))  
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    ).AddOrder(Order.Desc("LotName"));
 
 
@@ -3805,6 +3807,38 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetProductSellingInfoEntities for dust", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("BuyerID", BuyerID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllBuyerproductSellingInfoEntities", ex);
                 throw;
             }
         }
