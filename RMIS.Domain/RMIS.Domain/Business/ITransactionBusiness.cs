@@ -102,5 +102,7 @@ namespace RMIS.Domain.Business
         ResultDTO CheckBrokenriceStockAvailability(string BrokenRiceTypeID, string UnitTypeID, int TotalBags);
 
         ResultDTO CheckDustStockAvailability(string UnitTypeID, int TotalBags);
+
+        List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID);
     }
 }
