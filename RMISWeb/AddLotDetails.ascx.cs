@@ -118,7 +118,7 @@ public partial class AddLotDetails : BaseUserControl
         int count = 0;
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
 
-        rptLotDetails.DataSource = imp.GetMLotDetailsEntities(rptLotDetails.PageIndex, rptLotDetails.PageSize, out count, expression);
+        rptLotDetails.DataSource = imp.GetMLotDetailsEntities(ddlGodownName.SelectedValue, rptLotDetails.PageIndex, rptLotDetails.PageSize, out count, expression);
         rptLotDetails.VirtualItemCount = count;
         rptLotDetails.DataBind();
     }

@@ -207,7 +207,7 @@ namespace RMIS.Domain.Mediator
 
         List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
 
-        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
 
         MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo);
 

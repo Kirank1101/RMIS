@@ -1112,9 +1112,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
-            return rmisGateway.GetMLotDetailsEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+            return rmisGateway.GetMLotDetailsEntities(CustId, GodownID,PageIndex, PageSize, out count, expression, yesNo);
         }
 
 

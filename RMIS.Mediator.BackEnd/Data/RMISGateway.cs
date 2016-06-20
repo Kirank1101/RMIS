@@ -3057,7 +3057,7 @@
             }
         }
 
-        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        internal List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
             {
@@ -3067,11 +3067,13 @@
                 if (expression == SortExpression.Desc)
                     detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                       .Add(Expression.Eq("CustID", CustId))
-                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                        .Add(Expression.Eq("MGodownID", GodownID))
+                                                                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                       ).AddOrder(Order.Asc("LotName"));
                 else
                     detachedCriteria = DetachedCriteria.For(typeof(MLotDetails))
                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("MGodownID", GodownID))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    ).AddOrder(Order.Desc("LotName"));
 
