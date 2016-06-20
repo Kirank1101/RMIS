@@ -178,6 +178,12 @@ namespace RMIS.Domain.Constant
         public const string ValidateOtherExpensesDescriptionLength = "Validate176";
         public const string ValidateOtherExpensesPaidAmount = "Validate177";
 
+
+
+        public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
+        public const string NoStock = "No Stock";
+        public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";
+        public const string InsufficiantDustStock = "InSufficiant Dust Stock";
         
     }
 

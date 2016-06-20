@@ -62,54 +62,87 @@ public partial class ProductSellingInfo : BaseUserControl
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
-        rptProductSellingDetails.DataSource = lstprodselinfoDTO;
-        rptProductSellingDetails.DataBind();
+        if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
+        {
+            rptProductSellingDetails.DataSource = lstprodselinfoDTO;
+            rptProductSellingDetails.DataBind();
+        }
     }
 
     private List<ProductSellingInfoDTO> AddProductSellingInfoDetails()
     {
+        ResultDTO resultDTO = new ResultDTO();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductSellingInfoDTO> lstprodselinfoDTO = VstProdSelInfoEnt;
-        ProductSellingInfoDTO prodselinfoDTO = new ProductSellingInfoDTO();
-        prodselinfoDTO.ProductID = lstprodselinfoDTO.Count + 1;
-        prodselinfoDTO.SellingProductType = rbtProductSellingtype.SelectedValue;
-        prodselinfoDTO.BuyerID = txtBuyerName.SelectedValue;
-        prodselinfoDTO.UnitsTypeID = ddlUnitsType.SelectedValue;
-        prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
-        prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
-        prodselinfoDTO.BuyerName = txtBuyerName.SelectedValue;
-        prodselinfoDTO.ProductName = rbtProductSellingtype.SelectedValue;
-        if (rbtProductSellingtype.SelectedValue == Rice)
-        {
-            prodselinfoDTO.MRiceBrandID = ddlRiceBrand.SelectedValue;
-            prodselinfoDTO.MRiceProdTypeID = ddlRiceType.SelectedValue;
-            prodselinfoDTO.BrokenRiceTypeID = null;
 
-            prodselinfoDTO.ProductType = ddlRiceType.SelectedIndex > 0 ? Convert.ToString(ddlRiceType.SelectedItem) : string.Empty;
-            prodselinfoDTO.Brand = ddlRiceBrand.SelectedIndex > 0 ? Convert.ToString(ddlRiceBrand.SelectedItem) : string.Empty;
-        }
-        else if (rbtProductSellingtype.SelectedValue == BrokenRice)
+        switch (rbtProductSellingtype.SelectedValue)
         {
-            prodselinfoDTO.MRiceBrandID = null;
-            prodselinfoDTO.MRiceProdTypeID = null;
-            prodselinfoDTO.BrokenRiceTypeID = ddlBrokenRiceType.SelectedValue;
-            prodselinfoDTO.ProductType = ddlBrokenRiceType.SelectedIndex > 0 ? Convert.ToString(ddlBrokenRiceType.SelectedItem) : string.Empty;
-            prodselinfoDTO.Brand = string.Empty;
+            case Rice:
+                    resultDTO = imp.CheckRiceStockAvailability(ddlRiceType.SelectedValue, ddlRiceBrand.SelectedValue, ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
+                break;
+            case BrokenRice:
+                resultDTO = imp.CheckBrokenriceStockAvailability(ddlBrokenRiceType.SelectedValue, ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
+                break;
+            case Dust:
+                resultDTO = imp.CheckDustStockAvailability(ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
+                break;
+            default:
+                break;
         }
-        else if (rbtProductSellingtype.SelectedValue == Dust)
+        #region Check Rice Stock Information
+
+        #endregion
+        if (resultDTO.IsSuccess)
         {
-            prodselinfoDTO.MRiceBrandID = null;
-            prodselinfoDTO.MRiceProdTypeID = null;
-            prodselinfoDTO.BrokenRiceTypeID = null;
-            prodselinfoDTO.ProductType = string.Empty;
-            prodselinfoDTO.Brand = string.Empty;
+            #region ADD Stock
+            ProductSellingInfoDTO prodselinfoDTO = new ProductSellingInfoDTO();
+            prodselinfoDTO.ProductID = lstprodselinfoDTO.Count + 1;
+            prodselinfoDTO.SellingProductType = rbtProductSellingtype.SelectedValue;
+            prodselinfoDTO.BuyerID = txtBuyerName.SelectedValue;
+            prodselinfoDTO.UnitsTypeID = ddlUnitsType.SelectedValue;
+            prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
+            prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
+            prodselinfoDTO.BuyerName = txtBuyerName.SelectedValue;
+            prodselinfoDTO.ProductName = rbtProductSellingtype.SelectedValue;
+            if (rbtProductSellingtype.SelectedValue == Rice)
+            {
+                prodselinfoDTO.MRiceBrandID = ddlRiceBrand.SelectedValue;
+                prodselinfoDTO.MRiceProdTypeID = ddlRiceType.SelectedValue;
+                prodselinfoDTO.BrokenRiceTypeID = null;
+
+                prodselinfoDTO.ProductType = ddlRiceType.SelectedIndex > 0 ? Convert.ToString(ddlRiceType.SelectedItem) : string.Empty;
+                prodselinfoDTO.Brand = ddlRiceBrand.SelectedIndex > 0 ? Convert.ToString(ddlRiceBrand.SelectedItem) : string.Empty;
+            }
+            else if (rbtProductSellingtype.SelectedValue == BrokenRice)
+            {
+                prodselinfoDTO.MRiceBrandID = null;
+                prodselinfoDTO.MRiceProdTypeID = null;
+                prodselinfoDTO.BrokenRiceTypeID = ddlBrokenRiceType.SelectedValue;
+                prodselinfoDTO.ProductType = ddlBrokenRiceType.SelectedIndex > 0 ? Convert.ToString(ddlBrokenRiceType.SelectedItem) : string.Empty;
+                prodselinfoDTO.Brand = string.Empty;
+            }
+            else if (rbtProductSellingtype.SelectedValue == Dust)
+            {
+                prodselinfoDTO.MRiceBrandID = null;
+                prodselinfoDTO.MRiceProdTypeID = null;
+                prodselinfoDTO.BrokenRiceTypeID = null;
+                prodselinfoDTO.ProductType = string.Empty;
+                prodselinfoDTO.Brand = string.Empty;
+            }
+            prodselinfoDTO.ProductSellingDate = txtSellingDate.Text.ConvertToDate();
+            prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
+            prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
+            prodselinfoDTO.TotalPrice = prodselinfoDTO.TotalBags * prodselinfoDTO.Price;
+            lstprodselinfoDTO.Add(prodselinfoDTO);
+            VstProdSelInfoEnt = lstprodselinfoDTO;
+            ClearAllInputFields();
+
+            #endregion
         }
-        prodselinfoDTO.ProductSellingDate = txtSellingDate.Text.ConvertToDate();
-        prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
-        prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
-        prodselinfoDTO.TotalPrice = prodselinfoDTO.TotalBags * prodselinfoDTO.Price;
-        lstprodselinfoDTO.Add(prodselinfoDTO);
-        VstProdSelInfoEnt = lstprodselinfoDTO;
-        ClearAllInputFields();
+        else
+        {
+            SetMessage(resultDTO);
+        }
         return lstprodselinfoDTO;
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -127,15 +160,23 @@ public partial class ProductSellingInfo : BaseUserControl
             //    txtprice.Text.ConvertToDouble(), Convert.ToDateTime(txtSellingDate.Text.Trim()), lblOrderNo.Text, rbtPaymnetMode.SelectedValue,
             //    txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(),
             //    Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
-            resultDto = imp.SaveProductSellingInfo(AddProductSellingInfoDetails());
-            //char status = txtBalanceAmount.Text == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
-            //resultDto = imp.SaveProductPaymentInfo(lbltotalamount, status);
-            //SetMessage(resultDto);
-            if (resultDto.IsSuccess)
+            List<ProductSellingInfoDTO> lstprodselinfoDTO= new List<ProductSellingInfoDTO>();
+            lstprodselinfoDTO= AddProductSellingInfoDetails();
+            if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
             {
-                ClearAllInputFields();
-                VstProdSelInfoEnt = null;                
-                SetMessage(resultDto);
+                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO);
+                //char status = txtBalanceAmount.Text == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
+                //resultDto = imp.SaveProductPaymentInfo(lbltotalamount, status);
+                //SetMessage(resultDto);
+                if (resultDto.IsSuccess)
+                {
+                    ClearAllInputFields();
+                    VstProdSelInfoEnt = null;
+                    SetMessage(resultDto);
+                }
+            }
+            else {
+                resultDto.Message += "Saved Unsuccessfully..";
             }
         }
         else
@@ -194,7 +235,7 @@ public partial class ProductSellingInfo : BaseUserControl
     private void ClearAllInputFields()
     {
         rbtProductSellingtype.SelectedIndex = -1;
-        ddlRiceType.SelectedIndex = 0;        
+        ddlRiceType.SelectedIndex = 0;
         ddlRiceBrand.SelectedIndex = 0;
         ddlBrokenRiceType.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;

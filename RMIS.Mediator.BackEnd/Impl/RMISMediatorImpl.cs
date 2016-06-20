@@ -1233,5 +1233,39 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBuyerInfoEntities(custId, yesNo);
         }
+
+
+        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllRiceStockInfoEntities(CustId, RiceTypeID, RiceBrandID, UnitTypeID, yesNo);
+        }
+
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, RiceTypeID, RiceBrandID, UnitTypeID, yesNo);
+        }
+
+
+        public List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllBrokenRiceStockInfoEntities(CustId, BrokenRiceTypeID, UnitTypeID, yesNo);
+        }
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, BrokenRiceTypeID, UnitTypeID, yesNo);
+        }
+
+
+        public List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllDustStockInfoEntities(CustId, UnitTypeID, yesNo);
+        }
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
+        {
+           return rmisGateway.GetAllProductSellingInfoEntities(CustId, UnitTypeID, yesNo);
+        }
     }
 }

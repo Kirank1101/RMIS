@@ -3613,5 +3613,200 @@
                 throw;
             }
         }
+
+        internal List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<RiceStockInfoEntity> listRiceStockInfoEntity = new List<RiceStockInfoEntity>();
+                IRepository<RiceStockInfo> UsersRepository = new RepositoryImpl<RiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", RiceTypeID))
+                                                                   .Add(Expression.Eq("MRiceBrandID", RiceBrandID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<RiceStockInfo> listRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceStockInfo>;
+                if (listRiceStockInfo != null && listRiceStockInfo.Count > 0)
+                {
+                    foreach (RiceStockInfo adMInfo in listRiceStockInfo)
+                    {
+                        listRiceStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRiceStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listRiceStockInfoEntity = null;
+
+                return listRiceStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllRiceStockInfoEntities for Rice Stock", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", RiceTypeID))
+                                                                   .Add(Expression.Eq("MRiceBrandID", RiceBrandID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoEntities", ex);
+                throw;
+            }
+        }
+
+        internal List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<BrokenRiceStockInfoEntity> listBrokenRiceStockInfoEntity = new List<BrokenRiceStockInfoEntity>();
+                IRepository<BrokenRiceStockInfo> UsersRepository = new RepositoryImpl<BrokenRiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BrokenRiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<BrokenRiceStockInfo> listBrokenRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<BrokenRiceStockInfo>;
+                if (listBrokenRiceStockInfo != null && listBrokenRiceStockInfo.Count > 0)
+                {
+                    foreach (BrokenRiceStockInfo adMInfo in listBrokenRiceStockInfo)
+                    {
+                        listBrokenRiceStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBrokenRiceStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listBrokenRiceStockInfoEntity = null;
+
+                return listBrokenRiceStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllBrokenRiceStockInfoEntities for BrokenRiceStock info", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("BrokenRiceTypeID", BrokenRiceTypeID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoEntities for BrokenRice ", ex);
+                throw;
+            }
+        }
+
+        internal List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<DustStockInfoEntity> listDustStockInfoEntity = new List<DustStockInfoEntity>();
+                IRepository<DustStockInfo> UsersRepository = new RepositoryImpl<DustStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(DustStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<DustStockInfo> listDustStockInfo = UsersRepository.GetAll(detachedCriteria) as List<DustStockInfo>;
+                if (listDustStockInfo != null && listDustStockInfo.Count > 0)
+                {
+                    foreach (DustStockInfo adMInfo in listDustStockInfo)
+                    {
+                        listDustStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetDustStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listDustStockInfoEntity = null;
+
+                return listDustStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllDustStockInfoEntities for DustStock info", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", null))
+                                                                   .Add(Expression.Eq("MRiceBrandID", null))
+                                                                   .Add(Expression.Eq("BrokenRiceTypeID", null))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoEntities for dust", ex);
+                throw;
+            }
+        }
     }
 }

@@ -238,6 +238,17 @@ namespace RMIS.Domain.Mediator
         MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo);
 
         List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceType, string RiceBrand, string UnitType, YesNo yesNo);
+        //Get Total Rice bags sold from ProductSellingInfo
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo);
+        List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
+        //Get Total Broken Rice bags sold from ProductSellingInfo
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
+
+        List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
     }
 
 }

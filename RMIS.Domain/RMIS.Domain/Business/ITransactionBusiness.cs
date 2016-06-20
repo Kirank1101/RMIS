@@ -29,8 +29,8 @@ namespace RMIS.Domain.Business
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
         ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
-        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, 
-            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails,string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag,double PowerExpenses,double LabourExpenses,double OtherExpenses);
+        ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags,
+            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
@@ -98,6 +98,9 @@ namespace RMIS.Domain.Business
 
 
         List<BagStockDTO> GetBagStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
-        
+        ResultDTO CheckRiceStockAvailability(string RiceTypeID, string RiceBrandID, string UnitTypeID, int TotalBags);
+        ResultDTO CheckBrokenriceStockAvailability(string BrokenRiceTypeID, string UnitTypeID, int TotalBags);
+
+        ResultDTO CheckDustStockAvailability(string UnitTypeID, int TotalBags);
     }
 }

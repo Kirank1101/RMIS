@@ -1568,5 +1568,126 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
+
+
+        public ResultDTO CheckRiceStockAvailability(string RiceTypeID, string RiceBrandID, string UnitTypeID, int TotalBags)
+        {
+            ResultDTO resultDTO = new ResultDTO();
+            try
+            {
+                List<RiceStockInfoEntity> lstricestockinfo = new List<RiceStockInfoEntity>();
+                List<ProductSellingInfoEntity> lstprodsellinginfo = new List<ProductSellingInfoEntity>();
+                lstricestockinfo = imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId(), RiceTypeID, RiceBrandID, UnitTypeID, YesNo.N);
+                lstprodsellinginfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), RiceTypeID, RiceBrandID, UnitTypeID, YesNo.N);
+
+                if (lstricestockinfo != null && lstricestockinfo.Count > 0)
+                {
+                    int TotalProdRiceSell = 0;
+                    int totalricestock = 0;
+                    totalricestock = lstricestockinfo.Sum(x => x.TotalBags);
+                    if (lstprodsellinginfo != null && lstprodsellinginfo.Count > 0)
+                        TotalProdRiceSell = lstprodsellinginfo.Sum(y => y.TotalBags);
+
+                    if (TotalBags > (totalricestock - TotalProdRiceSell))
+                    {
+                        resultDTO.Message = RMSConstants.InsufficiantRiceStock;
+                        resultDTO.IsSuccess = false;
+                    }
+                }
+                else
+                {
+                    resultDTO.Message = RMSConstants.NoStock;
+                    resultDTO.IsSuccess = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return resultDTO;
+        }
+
+
+
+        public ResultDTO CheckBrokenriceStockAvailability(string BrokenRiceTypeID, string UnitTypeID, int TotalBags)
+        {
+            ResultDTO resultDTO = new ResultDTO();
+            try
+            {
+                List<BrokenRiceStockInfoEntity> lstBrokenricestockinfo = new List<BrokenRiceStockInfoEntity>();
+                List<ProductSellingInfoEntity> lstprodsellinginfo = new List<ProductSellingInfoEntity>();
+                lstBrokenricestockinfo = imp.GetAllBrokenRiceStockInfoEntities(provider.GetCurrentCustomerId(), BrokenRiceTypeID, UnitTypeID, YesNo.N);
+                lstprodsellinginfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), BrokenRiceTypeID, UnitTypeID, YesNo.N);
+
+                if (lstBrokenricestockinfo != null && lstBrokenricestockinfo.Count > 0)
+                {
+                    int TotalProdBrokenRiceSell = 0;
+                    int totalBrokenricestock = 0;
+                    totalBrokenricestock = lstBrokenricestockinfo.Sum(x => x.TotalBags);
+                    if (lstprodsellinginfo != null && lstprodsellinginfo.Count > 0)
+                        TotalProdBrokenRiceSell = lstprodsellinginfo.Sum(y => y.TotalBags);
+
+                    if (TotalBags > (totalBrokenricestock - TotalProdBrokenRiceSell))
+                    {
+                        resultDTO.Message = RMSConstants.InsufficiantBrokenRiceStock;
+                        resultDTO.IsSuccess = false;
+                    }
+                }
+                else
+                {
+                    resultDTO.Message = RMSConstants.NoStock;
+                    resultDTO.IsSuccess = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return resultDTO;
+        }
+
+
+        public ResultDTO CheckDustStockAvailability(string UnitTypeID, int TotalBags)
+        {
+            ResultDTO resultDTO = new ResultDTO();
+            try
+            {
+                List<DustStockInfoEntity> lstDustStockInfoEntity = new List<DustStockInfoEntity>();
+                List<ProductSellingInfoEntity> lstprodsellinginfo = new List<ProductSellingInfoEntity>();
+                lstDustStockInfoEntity = imp.GetAllDustStockInfoEntities(provider.GetCurrentCustomerId(), UnitTypeID, YesNo.N);
+                lstprodsellinginfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), UnitTypeID, YesNo.N);
+
+                if (lstDustStockInfoEntity != null && lstDustStockInfoEntity.Count > 0)
+                {
+                    int TotalProdBrokenRiceSell = 0;
+                    int totalBrokenricestock = 0;
+                    totalBrokenricestock = lstDustStockInfoEntity.Sum(x => x.TotalBags);
+                    if (lstprodsellinginfo != null && lstprodsellinginfo.Count > 0)
+                        TotalProdBrokenRiceSell = lstprodsellinginfo.Sum(y => y.TotalBags);
+
+                    if (TotalBags > (totalBrokenricestock - TotalProdBrokenRiceSell))
+                    {
+                        resultDTO.Message = RMSConstants.InsufficiantBrokenRiceStock;
+                        resultDTO.IsSuccess = false;
+                    }
+                }
+                else
+                {
+                    resultDTO.Message = RMSConstants.NoStock;
+                    resultDTO.IsSuccess = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return resultDTO;
+        }
     }
 }
