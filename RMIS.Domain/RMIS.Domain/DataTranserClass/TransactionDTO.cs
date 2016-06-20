@@ -48,6 +48,26 @@ namespace RMIS.Domain.DataTranserClass
 
     }
     [Serializable]
+    public class ProductSellingInfoDTO
+    {
+        public int   ProductID { get; set; }
+        public string SellingProductType { get; set; }
+        public string BuyerID { get; set; }
+        public string MRiceProdTypeID { get; set; }
+        public string MRiceBrandID { get; set; }
+        public string BrokenRiceTypeID { get; set; }
+        public string UnitsTypeID { get; set; }        
+        public string BuyerName { get; set; }
+        public string ProductType { get; set; }
+        public string ProductName { get; set; }
+        public string Brand { get; set; }
+        public string UnitsType { get; set; }
+        public int TotalBags { get; set; }
+        public double Price { get; set; }
+        public double TotalPrice { get; set; }
+        public DateTime ProductSellingDate { get; set; }
+    }
+    [Serializable]
     public class BrokenRiceStockDetailsDTO
     {
         public int Id { get; set; }

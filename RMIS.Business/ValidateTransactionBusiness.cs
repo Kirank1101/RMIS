@@ -253,7 +253,7 @@ namespace RMIS.Business
         }
         
 
-        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,string ProductSellingType, int buyer, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,string ProductSellingType, string BuyerName, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
         {
             if (ProductSellingTypeId < 0)
             {
@@ -281,7 +281,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            else if (buyer <= 0)
+            else if (string.IsNullOrEmpty(BuyerName))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDetailsbuyer, provider.GetCurrentCustomerId()) };
             }

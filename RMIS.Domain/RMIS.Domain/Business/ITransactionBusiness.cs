@@ -27,6 +27,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(string SellingProductType, string BuyerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
                                          int totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymnetMode,
                                          string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
+        ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags, 
             List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails,string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag,double PowerExpenses,double LabourExpenses,double OtherExpenses);
@@ -97,5 +98,6 @@ namespace RMIS.Domain.Business
 
 
         List<BagStockDTO> GetBagStockDTO(int pageindex, int pageSize, out int count, SortExpression expression);
+        
     }
 }

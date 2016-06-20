@@ -369,4 +369,10 @@
   <data name="TotalRicePrice" xml:space="preserve">
     <value>Total Rice Price</value>
   </data>
+  <data name="BrandName" xml:space="preserve">
+    <value>Brand Name</value>
+  </data>
+  <data name="ItemNo" xml:space="preserve">
+    <value>Item No</value>
+  </data>
 </root>

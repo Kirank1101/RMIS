@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProductSellingInfo.ascx.cs"
     Inherits="ProductSellingInfo" %>
+<%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <div class="table-responsive">
     <table>
         <tr>
@@ -24,9 +25,8 @@
                             <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlBuyernames" runat="server" AppendDataBoundItems="true">
-                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBoxAutoExtender ID="txtBuyerName" runat="server" ServiceMethod="GetBuyerNames">
+                            </asp:TextBoxAutoExtender>
                         </td>
                     </tr>
                     <tr>
@@ -91,6 +91,21 @@
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtSellingDate" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <br />
+                            <br />
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Button ID="Button3" runat="server" Text="Add" OnClick="btnAdd_Click" />
+                                        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                                        <asp:Button ID="Button2" runat="server" Text="Cancel" />
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
@@ -181,88 +196,27 @@
                 </table>
             </td>
         </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Button ID="Button3" runat="server" Text="Add" OnClick="btnAdd_Click" />
-                            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                            <asp:Button ID="Button2" runat="server" Text="Cancel" />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+    </table>
+    <table>
         <tr>
             <td>
                 <h3>
                     Product Selling Details</h3>
-                <asp:Repeater ID="rptProductSellingDetails" runat="server">
-                    <HeaderTemplate>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <asp:Label runat="server" ID="lblHProductID" Text="<%$Resources:Resource,ProductID%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="lblHBuyerName" Text="<%$Resources:Resource,Name%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="lbldRicetype" Text="<%$Resources:Resource,ProductType%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="lblHSalaryPaid" Text="<%$Resources:Resource,ProductName%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="lblOT" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,Price%>"></asp:Label>
-                                    </th>
-                                    <th>
-                                        <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
-                                    </th>
-                                </tr>
-                            </thead>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tbody>
-                            <tr>
-                            <td>
-                            </td>
-                                <td>
-                                    <asp:Label runat="server" ID="lblPartPaymentDate" Text='<%# Eval("ProductID") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="lblPaidSalary" Text='<%# Eval("BuyerName") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="LblOTPay" Text='<%# Eval("ProductType") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="Label4" Text='<%# Eval("ProductName") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="Label5" Text='<%# Eval("Brand") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="Label6" Text='<%# Eval("TotalBags") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="Label7" Text='<%# Eval("Price") %>' />
-                                </td>
-                                <td>
-                                    <asp:Label runat="server" ID="Label8" Text='<%# Eval("TotalPrice") %>' />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </table>
-                    </FooterTemplate>
-                </asp:Repeater>
+                <asp:PagingGridView ID="rptProductSellingDetails" Width="80%" runat="server" AllowSorting="true"
+                    DataKeyNames="ProductID" AutoGenerateColumns="false" OnRowDeleting="rptProductSellingDetails_RowDeleting"
+                    class="table table-striped table-bordered">
+                    <Columns>
+                        <asp:BoundField DataField="ProductID" HeaderText="<%$Resources:Resource,ItemNo%>" />
+                        <asp:BoundField DataField="BuyerName" HeaderText="<%$Resources:Resource,Name%>" />
+                        <asp:BoundField DataField="ProductName" HeaderText="<%$Resources:Resource,ProductName%>" />
+                        <asp:BoundField DataField="ProductType" HeaderText="<%$Resources:Resource,ProductType%>" />
+                        <asp:BoundField DataField="Brand" HeaderText="<%$Resources:Resource,BrandName%>" />
+                        <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,totalbags%>" />
+                        <asp:BoundField DataField="Price" HeaderText="<%$Resources:Resource,Price%>" />
+                        <asp:BoundField DataField="TotalPrice" HeaderText="<%$Resources:Resource,TotalAmount%>" />
+                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+                    </Columns>
+                </asp:PagingGridView>
             </td>
         </tr>
     </table>

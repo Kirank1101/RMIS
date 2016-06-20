@@ -1425,7 +1425,7 @@ namespace RMIS.Business
                 foreach (BuyerInfoEntity objBuyerInfoEntity in listBuyerInfoEntity)
                 {
 
-                    double riceSum = imp.GetProductTotalAmount(provider.GetCurrentCustomerId(), objBuyerInfoEntity.BuyerID , YesNo.N);
+                    double riceSum = imp.GetProductTotalAmount(provider.GetCurrentCustomerId(), objBuyerInfoEntity.BuyerID, YesNo.N);
                     double riceUsedSum = imp.GetProductTotalAmountPaid(provider.GetCurrentCustomerId(), objBuyerInfoEntity.BuyerID, YesNo.N);
                     if (riceSum > riceUsedSum)
                         riceSum = riceSum - riceUsedSum;
@@ -1509,6 +1509,64 @@ namespace RMIS.Business
             }
 
             return listBagStockDTO;
+        }
+
+
+        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO)
+        {
+            ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
+            List<ProductSellingInfoDTO> lstProdSellingDTO = lstProductSellingInfoDTO;
+
+            productPaymentInfoEntity.ProductPaymentID = CommonUtil.CreateUniqueID("PP");
+            productPaymentInfoEntity.CustID = provider.GetCurrentCustomerId();
+            foreach (ProductSellingInfoDTO PSID in lstProdSellingDTO)
+                productPaymentInfoEntity.TotalAmount += PSID.TotalBags * PSID.Price;
+
+            productPaymentInfoEntity.Status = 'P';
+            productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
+            productPaymentInfoEntity.ObsInd = YesNo.N;
+
+
+            List<ProductSellingInfoEntity> lstPSIE = new List<ProductSellingInfoEntity>();
+            foreach (ProductSellingInfoDTO ProSIDTO in lstProdSellingDTO)
+            {
+                ProductSellingInfoEntity objProductSellingInfoEntity = new ProductSellingInfoEntity();
+                objProductSellingInfoEntity.ProductID = CommonUtil.CreateUniqueID("PI");
+                objProductSellingInfoEntity.ProductPaymentID = productPaymentInfoEntity.ProductPaymentID;
+                objProductSellingInfoEntity.CustID = provider.GetCurrentCustomerId();
+                objProductSellingInfoEntity.MRiceProdTypeID = ProSIDTO.MRiceProdTypeID;
+                objProductSellingInfoEntity.MRiceBrandID = ProSIDTO.MRiceBrandID;
+                objProductSellingInfoEntity.BrokenRiceTypeID = ProSIDTO.BrokenRiceTypeID;
+                objProductSellingInfoEntity.UnitsTypeID = ProSIDTO.UnitsTypeID;
+                objProductSellingInfoEntity.SellingDate = ProSIDTO.ProductSellingDate;
+                objProductSellingInfoEntity.Price = ProSIDTO.Price;
+                objProductSellingInfoEntity.BuyerID = ProSIDTO.BuyerID;
+                objProductSellingInfoEntity.TotalBags = ProSIDTO.TotalBags;
+                objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
+                objProductSellingInfoEntity.ObsInd = YesNo.N;
+                lstPSIE.Add(objProductSellingInfoEntity);
+            }
+
+
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateProductPaymentInfoEntity(productPaymentInfoEntity, false);
+                foreach (ProductSellingInfoEntity ProdSelInfoEnt in lstPSIE)
+                    imp.SaveOrUpdateProductSellingInfoEntity(ProdSelInfoEnt, false);
+
+                imp.CommitAndCloseSession();
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
     }
 }
