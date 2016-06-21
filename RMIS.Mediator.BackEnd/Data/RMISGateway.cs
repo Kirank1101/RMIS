@@ -3909,5 +3909,37 @@
             }
             return BuyerInfoEntity;
         }
+
+        internal ProductPaymentInfoEntity GetProductPaymentInfoEntity(string CustId, string ProductPaymentID, YesNo yesNo)
+        {
+
+            try
+            {
+                ProductPaymentInfoEntity ProductPaymentInfoEntity = new ProductPaymentInfoEntity();
+                IRepository<ProductPaymentInfo> ProductPaymentInfoRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("ProductPaymentID", ProductPaymentID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<ProductPaymentInfo> listProductPaymentInfo = ProductPaymentInfoRepository.GetAll(detachedCriteria) as List<ProductPaymentInfo>;
+                if (listProductPaymentInfo != null && listProductPaymentInfo.Count > 0)
+                {
+                    foreach (ProductPaymentInfo adMInfo in listProductPaymentInfo)
+                    {
+                        ProductPaymentInfoEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentInfoEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    ProductPaymentInfoEntity = null;
+
+                return ProductPaymentInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductPaymentInfoEntity", ex);
+                throw;
+            }
+        }
     }
 }

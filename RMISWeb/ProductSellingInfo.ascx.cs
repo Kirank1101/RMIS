@@ -63,27 +63,6 @@ public partial class ProductSellingInfo : BaseUserControl
             ViewState[viewstateProdSelInfoEnt] = value;
         }
     }
-
-    protected void btnBuyerDetails_Click(object sender, EventArgs e)
-    {
-        ResultDTO resultDTO = new ResultDTO();
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
-        lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
-        rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
-        rptBuyerPaymentDue.DataBind();
-
-    }
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
-        if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
-        {
-            rptProductSellingDetails.DataSource = lstprodselinfoDTO;
-            rptProductSellingDetails.DataBind();
-        }
-    }
-
     private List<ProductSellingInfoDTO> AddProductSellingInfoDetails()
     {
         ResultDTO resultDTO = new ResultDTO();
@@ -160,6 +139,25 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         return lstprodselinfoDTO;
     }
+    protected void btnBuyerDetails_Click(object sender, EventArgs e)
+    {
+        ResultDTO resultDTO = new ResultDTO();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
+        lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
+        rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
+        rptBuyerPaymentDue.DataBind();
+
+    }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
+        if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
+        {
+            rptProductSellingDetails.DataSource = lstprodselinfoDTO;
+            rptProductSellingDetails.DataBind();
+        }
+    }
     protected void btnclear_click(object sender, EventArgs e)
     {
         ClearAllInputFields();
@@ -205,7 +203,37 @@ public partial class ProductSellingInfo : BaseUserControl
         }
 
     }
+    protected void btnSavePayment_Click(object sender, EventArgs e)
+    {
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble());
+        if (resultDto.IsSuccess)
+        {
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, txtBuyerNamePayment.SelectedValue, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), lblTotalProductCost.Text.ConvertToDouble());
+            if (resultDto.IsSuccess)
+            {
+                ClearAllPaymentInputFields();
+                SetMessage(resultDto);
+            }
+        }
+    }
 
+    private void ClearAllPaymentInputFields()
+    {
+        rptBuyerPaymentDue.SelectedIndex = -1;
+        txtChequeNo.Text = string.Empty;
+        txtDDno.Text = string.Empty;
+        txtBankName.Text = string.Empty;
+        lblTotalProductCost.Text = string.Empty;
+        txtBalanceAmount.Text = string.Empty;
+        txtNextPaymentDate.Text = string.Empty;
+        txtReceivedAmount.Text = string.Empty;
+    }
+    protected void btnCancel_click(object sender, EventArgs e)
+    {
+        ClearAllPaymentInputFields();
+    }
+    
     protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "PayAmount")
@@ -217,7 +245,8 @@ public partial class ProductSellingInfo : BaseUserControl
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
 
             //Fetch value of Name.
-            txtBalanceAmount.Text = row.Cells[3].Text;
+            lblTotalProductCost.Text = row.Cells[3].Text;
+            hfProdPaymentID.Value = row.Cells[1].Text;
         }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)

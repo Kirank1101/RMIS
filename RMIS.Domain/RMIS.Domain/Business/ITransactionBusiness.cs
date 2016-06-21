@@ -104,5 +104,7 @@ namespace RMIS.Domain.Business
         ResultDTO CheckDustStockAvailability(string UnitTypeID, int TotalBags);
 
         List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID);
+
+        ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue);
     }
 }

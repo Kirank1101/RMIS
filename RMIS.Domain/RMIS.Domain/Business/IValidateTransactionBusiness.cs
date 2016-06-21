@@ -24,5 +24,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateEmployeeSalaryPayment(int EmployeeName, int SalaryType, int Designation, double Salary, double SalaryPaid, double OTCharges);
 
         ResultDTO ValidateOtherExpenses(string p, string p_2, double p_3);
+
+        ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount);
     }
 }

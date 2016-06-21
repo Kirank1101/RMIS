@@ -607,6 +607,28 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount)
+        {
+            if (PaymentMode<0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesGivenToEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Buyername))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (Buyername.Length > 40)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionLength, provider.GetCurrentCustomerId()) };
+            }            
+            else if (ReceivedAmount <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesPaidAmount, provider.GetCurrentCustomerId()) };
+            }            
+            return new ResultDTO();
+        }
     }
 }
 

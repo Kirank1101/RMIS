@@ -612,7 +612,7 @@ namespace RMIS.Business
                     {
                         objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
                     }
-                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(),objPaddyStockInfoEntity.SellerID, YesNo.Null);
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyStockInfoEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
                     {
                         objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
@@ -1697,17 +1697,60 @@ namespace RMIS.Business
             List<ProductBuyerPaymentDTO> lstprobuyerpayment = new List<ProductBuyerPaymentDTO>();
             List<ProductPaymentInfoEntity> lstprodpaymnetinfo = new List<ProductPaymentInfoEntity>();
 
-            lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(),BuyerID, YesNo.N);
-            foreach (ProductPaymentInfoEntity PPIE in lstprodpaymnetinfo)
-            {
-                ProductBuyerPaymentDTO PBPDTO = new ProductBuyerPaymentDTO();
-                PBPDTO.ProductPaymentID = PPIE.ProductPaymentID;
-                BuyerInfoEntity BuyerInfoEnt=imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(),PPIE.BuyerID,YesNo.N);
-                PBPDTO.BuyerName = BuyerInfoEnt.Name;
-                PBPDTO.TotalAmountDue = PPIE.TotalAmount;
-                lstprobuyerpayment.Add(PBPDTO);
-            }
+            lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
+            if (lstprodpaymnetinfo != null && lstprodpaymnetinfo.Count > 0)
+                foreach (ProductPaymentInfoEntity PPIE in lstprodpaymnetinfo)
+                {
+                    ProductBuyerPaymentDTO PBPDTO = new ProductBuyerPaymentDTO();
+                    PBPDTO.ProductPaymentID = PPIE.ProductPaymentID;
+                    BuyerInfoEntity BuyerInfoEnt = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), PPIE.BuyerID, YesNo.N);
+                    PBPDTO.BuyerName = BuyerInfoEnt.Name;
+                    PBPDTO.TotalAmountDue = PPIE.TotalAmount;
+                    lstprobuyerpayment.Add(PBPDTO);
+                }
             return lstprobuyerpayment;
+        }
+
+
+        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue)
+        {
+            ProductPaymentTransactionEntity ProPayTraEnt = new ProductPaymentTransactionEntity();
+            ProPayTraEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PP");
+            ProPayTraEnt.ProductPaymentID = ProductPaymentID;
+            ProPayTraEnt.BuyerID = BuyerID;
+            ProPayTraEnt.CustID = provider.GetCurrentCustomerId();
+            ProPayTraEnt.Paymentmode = PaymentMode;
+            ProPayTraEnt.ChequeNo = ChequeueNo;
+            ProPayTraEnt.DDNo = DDNo;
+            ProPayTraEnt.BankName = BankName;
+            ProPayTraEnt.ReceivedAmount = ReceivedAmount;
+            ProPayTraEnt.PaymentDueDate = NextPaymentDueDate;
+            ProPayTraEnt.LastModifiedBy = provider.GetLoggedInUserId();
+            ProPayTraEnt.LastModifiedDate = DateTime.Now;
+            ProPayTraEnt.ObsInd = YesNo.N;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateProductPaymentTransEntity(ProPayTraEnt, false);
+                if (ProPayTraEnt.ReceivedAmount >= TotalAmountDue)
+                {
+                    ProductPaymentInfoEntity propayinfoent = new ProductPaymentInfoEntity();
+                    propayinfoent = imp.GetProductPaymentInfoEntity(provider.GetCurrentCustomerId(), ProductPaymentID, YesNo.N);
+                    propayinfoent.Status = "A";
+                    propayinfoent.LastModifiedBy = provider.GetLoggedInUserId();
+                    propayinfoent.LastModifiedDate = DateTime.Now;
+                    propayinfoent.ObsInd = YesNo.N;
+                    imp.SaveOrUpdateProductPaymentInfoEntity(propayinfoent, true);
+                }
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
     }
 }
