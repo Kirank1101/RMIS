@@ -206,7 +206,7 @@
                                         <asp:Label runat="server" ID="lbltotalamountDue" Text="<%$Resources:Resource,TotalAmountDue%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblTotalProductCost"></asp:Label>
+                                        <asp:TextBox runat="server" ID="txtTotalProductCost" ReadOnly="true" ForeColor="Red" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -243,13 +243,12 @@
                         </td>
                         <td valign="top" align="left" style="width: 55%">
                             <h3>
-                                Product Selling Details</h3>
+                                Pending Payment Details</h3>
                             <asp:PagingGridView ID="rptBuyerPaymentDue" Width="80%" runat="server" AllowSorting="true"
                                 AutoGenerateColumns="false" OnRowCommand="rptBuyerPaymentDue_RowCommand" class="table table-striped table-bordered">
                                 <Columns>
                                     <asp:BoundField DataField="SlNo" ItemStyle-Width="80px" HeaderText="<%$Resources:Resource,SlNo%>" />
                                     <asp:BoundField DataField="ProductPaymentID" HeaderText="<%$Resources:Resource,PaymentID%>" />
-                                       
                                     <asp:BoundField DataField="BuyerName" ItemStyle-Width="300px" HeaderText="<%$Resources:Resource,BuyerName%>" />
                                     <asp:BoundField DataField="TotalAmountDue" ItemStyle-Width="200px" HeaderText="<%$Resources:Resource,TotalAmountDue%>" />
                                     <asp:ButtonField ButtonType="Button" CommandName="PayAmount" Text="Pay" />

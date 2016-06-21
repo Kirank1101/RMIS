@@ -256,6 +256,10 @@ namespace RMIS.Domain.Mediator
         BuyerInfoEntity GetBuyerInfoEntity(string CustId, string BuyerID, YesNo yesNo);
 
         ProductPaymentInfoEntity GetProductPaymentInfoEntity(string CustId, string ProductPaymentID, YesNo yesNo);
+
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string ProductPaymentID, YesNo yesNo);
+
+        
     }
 
 }

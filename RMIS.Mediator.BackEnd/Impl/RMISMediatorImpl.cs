@@ -1291,5 +1291,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetProductPaymentInfoEntity(CustId, ProductPaymentID, yesNo);
         }
+
+
+        public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string ProductPaymentID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductPaymentTranEntities(CustId, ProductPaymentID, yesNo);
+        }
     }
 }

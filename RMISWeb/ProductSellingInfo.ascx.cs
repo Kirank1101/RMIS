@@ -25,7 +25,7 @@ public partial class ProductSellingInfo : BaseUserControl
         if (!IsControlPostBack)
         {
             base.Header = "Product Selling and Payment Information";
-            
+
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
@@ -209,7 +209,7 @@ public partial class ProductSellingInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, txtBuyerNamePayment.SelectedValue, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), lblTotalProductCost.Text.ConvertToDouble());
+            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, txtBuyerNamePayment.SelectedValue, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();
@@ -224,7 +224,7 @@ public partial class ProductSellingInfo : BaseUserControl
         txtChequeNo.Text = string.Empty;
         txtDDno.Text = string.Empty;
         txtBankName.Text = string.Empty;
-        lblTotalProductCost.Text = string.Empty;
+        txtTotalProductCost.Text = string.Empty;
         txtBalanceAmount.Text = string.Empty;
         txtNextPaymentDate.Text = string.Empty;
         txtReceivedAmount.Text = string.Empty;
@@ -233,19 +233,14 @@ public partial class ProductSellingInfo : BaseUserControl
     {
         ClearAllPaymentInputFields();
     }
-    
+
     protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "PayAmount")
         {
             int rowindex = Convert.ToInt32(e.CommandArgument);
-            //Determine the RowIndex of the Row whose Button was clicked.
-            
-            //Reference the GridView Row.
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
-
-            //Fetch value of Name.
-            lblTotalProductCost.Text = row.Cells[3].Text;
+            txtTotalProductCost.Text = row.Cells[3].Text;
             hfProdPaymentID.Value = row.Cells[1].Text;
         }
     }

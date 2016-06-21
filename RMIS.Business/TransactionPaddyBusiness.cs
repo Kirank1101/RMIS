@@ -1696,16 +1696,24 @@ namespace RMIS.Business
         {
             List<ProductBuyerPaymentDTO> lstprobuyerpayment = new List<ProductBuyerPaymentDTO>();
             List<ProductPaymentInfoEntity> lstprodpaymnetinfo = new List<ProductPaymentInfoEntity>();
+            List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
 
             lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
+
             if (lstprodpaymnetinfo != null && lstprodpaymnetinfo.Count > 0)
                 foreach (ProductPaymentInfoEntity PPIE in lstprodpaymnetinfo)
                 {
                     ProductBuyerPaymentDTO PBPDTO = new ProductBuyerPaymentDTO();
+                    PBPDTO.SlNo = lstprobuyerpayment.Count + 1;
                     PBPDTO.ProductPaymentID = PPIE.ProductPaymentID;
+                    double paidamout = 0;
+                    lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), PPIE.ProductPaymentID, YesNo.N);
+                    if (lstpropaytranent != null && lstpropaytranent.Count > 0)
+                        paidamout = lstpropaytranent.Sum(x => x.ReceivedAmount);
+
                     BuyerInfoEntity BuyerInfoEnt = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), PPIE.BuyerID, YesNo.N);
                     PBPDTO.BuyerName = BuyerInfoEnt.Name;
-                    PBPDTO.TotalAmountDue = PPIE.TotalAmount;
+                    PBPDTO.TotalAmountDue = PPIE.TotalAmount - paidamout;
                     lstprobuyerpayment.Add(PBPDTO);
                 }
             return lstprobuyerpayment;
