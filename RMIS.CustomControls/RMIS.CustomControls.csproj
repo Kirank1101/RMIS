@@ -39,6 +39,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TextBoxDecimalExtender.cs" />
+    <Compile Include="TextBoxIntegerExtender.cs" />
     <Compile Include="TextBoxDatenTimeExtender.cs" />
     <Compile Include="CustomTabContainer.cs" />
     <Compile Include="GridViewKeyBoardPagerExtender.cs" />

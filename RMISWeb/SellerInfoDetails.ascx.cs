@@ -9,7 +9,7 @@ public partial class SellerInfoDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Add Seller";
+            Header = "Add Seller";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
             
         }

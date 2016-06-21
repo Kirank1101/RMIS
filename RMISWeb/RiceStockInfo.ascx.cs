@@ -11,7 +11,7 @@ public partial class RiceStockInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            Header = "Paddy Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
             ddlRiceType.DataTextField = "RiceType";

@@ -24,7 +24,7 @@ public partial class ProductSellingInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Product Selling and Payment Information";
+            Header = "Product Selling and Payment Information";
 
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 

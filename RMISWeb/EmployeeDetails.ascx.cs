@@ -11,7 +11,7 @@ public partial class EmployeeDetails : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Add Employee";
+            Header = "Add Employee";
             IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
 
         }

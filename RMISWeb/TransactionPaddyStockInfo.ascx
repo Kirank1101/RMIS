@@ -87,16 +87,20 @@
                                     <td>
                                         <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
                                     </td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txtTotalBags" MaxLength="3" />
+                                    <td>                                       
+                                         <asp:TextBoxIntegerExtender  ID="txtTotalBags" runat="server" MaxLength="3" >
+                                        </asp:TextBoxIntegerExtender>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
                                     </td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txtPrice" MaxLength="6" />
+                                    <td>                                        
+
+                                          <asp:TextBoxDecimalExtender   ID="txtPrice" runat="server" Mask="99,999.99" >
+                                        </asp:TextBoxDecimalExtender>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -194,7 +198,9 @@
                                         <asp:Label runat="server" ID="lbltotalpaddyamount" Text="<%$Resources:Resource,TotalAmountDue%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtTotalAmountDue" ReadOnly="true" ForeColor="Red" />
+                                       
+                                        <asp:TextBoxDecimalExtender  ID="txtTotalAmountDue" ReadOnly="true" ForeColor="Red" runat="server" >
+                                        </asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                                 <tr>
@@ -202,7 +208,10 @@
                                         <asp:Label runat="server" ID="lblamount" Text="<%$Resources:Resource,AmountPaid%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtamountpaid" MaxLength="10" />
+                                       
+                                         <asp:TextBoxDecimalExtender  ID="txtamountpaid"  runat="server" >
+                                        </asp:TextBoxDecimalExtender>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -210,7 +219,10 @@
                                         <asp:Label runat="server" ID="lblBalanceAmount" Text="<%$Resources:Resource,BalanceAmount%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtbalanceamount" ReadOnly="true" />
+                                        
+
+                                        <asp:TextBoxDecimalExtender  ID="txtbalanceamount"  runat="server" ReadOnly="true" >
+                                        </asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                                 <tr>

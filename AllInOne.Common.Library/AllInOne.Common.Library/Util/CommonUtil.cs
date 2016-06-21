@@ -236,8 +236,9 @@ namespace AllInOne.Common.Library.Util
                 return 0;
             double value = 0;
             double.TryParse(prefixText, out value);
-            return value;
+            return Math.Round(value, 2, MidpointRounding.ToEven);
         }
+
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>
     (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {

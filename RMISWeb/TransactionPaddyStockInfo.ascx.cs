@@ -17,7 +17,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
 
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock and Payment Information";
+            Header = "Paddy Stock and Payment Information";
 
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";

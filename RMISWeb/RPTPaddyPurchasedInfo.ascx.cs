@@ -11,7 +11,7 @@ public partial class RPTPaddyPurchasedInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            Header = "Paddy Stock Information";
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             ddlsellernames.DataSource = imp.GetPaddySellerInfo();
             ddlsellernames.DataTextField = "Name";

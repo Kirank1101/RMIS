@@ -11,7 +11,7 @@ public partial class RPTPaymentInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            base.Header = "Paddy Stock Information";
+            Header = "Paddy Stock Information";
             
 
 
