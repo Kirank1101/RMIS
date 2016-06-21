@@ -161,14 +161,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <asp:Label runat="server" ID="lbltotalpaddyamount" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txttotalpaddyamount" ReadOnly="true" />
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td valign="top">
                                         <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
                                     </td>
@@ -177,7 +169,6 @@
                                             <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
                                             <asp:ListItem Text="Cheque" Value="Cheque"></asp:ListItem>
                                             <asp:ListItem Text="Fund Transfer" Value="Transfer"></asp:ListItem>
-                                            <asp:ListItem Text="Credit" Value="Credit"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                 </tr>
@@ -199,18 +190,18 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="lblamount" Text="<%$Resources:Resource,AmountPaid%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lbltotalpaddyamount" Text="<%$Resources:Resource,TotalAmountDue%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtamountpaid" MaxLength="10" />
+                                        <asp:TextBox runat="server" ID="txtTotalAmountDue" ReadOnly="true" ForeColor="Red" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="lblPaidDate" Text="<%$Resources:Resource,PaidDate%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lblamount" Text="<%$Resources:Resource,AmountPaid%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBoxDatenTimeExtender ID="txtPaidDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                                        <asp:TextBox runat="server" ID="txtamountpaid" MaxLength="10" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -231,6 +222,14 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        <asp:Label runat="server" ID="lblPaidDate" Text="<%$Resources:Resource,PaidDate%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBoxDatenTimeExtender ID="txtPaidDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <asp:Label runat="server" ID="lblNextpaymentdate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
                                     </td>
                                     <td>
@@ -244,8 +243,8 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Button ID="Button3" runat="server" Text="Pay" OnClick="btnPay_Click" ValidationGroup="OnSave" />
-                            <asp:Button ID="Button4" runat="server" Text="Cancel" />
+                            <asp:Button ID="btnPay" runat="server" Text="Pay" OnClick="btnPay_Click" ValidationGroup="OnSave" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" />
                         </td>
                     </tr>
                 </table>
