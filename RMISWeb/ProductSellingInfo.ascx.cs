@@ -147,6 +147,8 @@ public partial class ProductSellingInfo : BaseUserControl
         lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
         rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
         rptBuyerPaymentDue.DataBind();
+        TabContainer1.ActiveTabIndex = 1;
+
 
     }
     protected void btnAdd_Click(object sender, EventArgs e)

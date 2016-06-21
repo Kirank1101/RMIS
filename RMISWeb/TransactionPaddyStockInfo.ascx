@@ -165,7 +165,8 @@
                                         <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Vertical">
+                                        <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Horizontal"
+                                            CellPadding="3">
                                             <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
                                             <asp:ListItem Text="Cheque" Value="Cheque"></asp:ListItem>
                                             <asp:ListItem Text="Fund Transfer" Value="Transfer"></asp:ListItem>

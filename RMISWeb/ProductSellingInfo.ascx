@@ -18,8 +18,8 @@
                             <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:RadioButtonList ID="rbtProductSellingtype" runat="server" RepeatDirection="Vertical"
-                                RepeatLayout="Table" OnSelectedIndexChanged="rbtProductSellingtype_OnSelectChange"
+                            <asp:RadioButtonList ID="rbtProductSellingtype" runat="server" RepeatDirection="Horizontal"
+                                CellPadding="3" RepeatLayout="Table" OnSelectedIndexChanged="rbtProductSellingtype_OnSelectChange"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="Rice" Value="Rice"></asp:ListItem>
                                 <asp:ListItem Text="BrokenRice" Value="BrokenRice"></asp:ListItem>
