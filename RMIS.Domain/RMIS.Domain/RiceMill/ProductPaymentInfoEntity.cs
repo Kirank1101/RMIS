@@ -11,8 +11,9 @@ namespace RMIS.Domain.RiceMill
     {
         public string ProductPaymentID { get; set; }
         public string CustID { get; set; }
+        public string BuyerID { get; set; }
         public double TotalAmount { get; set; }
-        public char Status { get; set; }
+        public string Status { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>

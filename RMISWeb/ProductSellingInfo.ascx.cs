@@ -1,5 +1,4 @@
 ﻿using System;
-using RMIS.Domain.RiceMill;
 using RMIS.Binder.BackEnd;
 using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
@@ -12,8 +11,6 @@ public partial class ProductSellingInfo : BaseUserControl
     private const string BrokenRice = "BrokenRice";
     private const string Dust = "Dust";
     IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
-    int count = 0;
-    int count1 = 0;
     protected override void OnInit(EventArgs e)
     {
         base.OnInit(e);
@@ -27,8 +24,8 @@ public partial class ProductSellingInfo : BaseUserControl
     {
         if (!IsControlPostBack)
         {
-            Header = "";
-
+            base.Header = "Product Selling and Payment Information";
+            
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
             ddlRiceType.DataSource = impb.GetRiceProductEntities();
@@ -73,6 +70,9 @@ public partial class ProductSellingInfo : BaseUserControl
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
         lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
+        rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
+        rptBuyerPaymentDue.DataBind();
+
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
@@ -204,6 +204,21 @@ public partial class ProductSellingInfo : BaseUserControl
             SetMessage(resultDto);
         }
 
+    }
+
+    protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "PayAmount")
+        {
+            int rowindex = Convert.ToInt32(e.CommandArgument);
+            //Determine the RowIndex of the Row whose Button was clicked.
+            
+            //Reference the GridView Row.
+            GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
+
+            //Fetch value of Name.
+            txtBalanceAmount.Text = row.Cells[3].Text;
+        }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

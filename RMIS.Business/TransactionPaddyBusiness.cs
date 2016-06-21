@@ -355,7 +355,7 @@ namespace RMIS.Business
             productPaymentInfoEntity.ProductPaymentID = CommonUtil.CreateUniqueID("PP");
             productPaymentInfoEntity.CustID = provider.GetCurrentCustomerId();
             productPaymentInfoEntity.TotalAmount = totalBags * Price;
-            productPaymentInfoEntity.Status = 'P';
+            productPaymentInfoEntity.Status = "P";
             productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
             productPaymentInfoEntity.ObsInd = YesNo.N;
@@ -612,7 +612,7 @@ namespace RMIS.Business
                     {
                         objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
                     }
-                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objPaddyStockInfoEntity.SellerID, YesNo.Null);
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(),objPaddyStockInfoEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
                     {
                         objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
@@ -1474,7 +1474,7 @@ namespace RMIS.Business
                 {
                     BagStockDTO objBagStockDTO = new BagStockDTO();
                     objBagStockDTO.Id = objBagStockInfoEntity.BagStockID;
-                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(objBagStockInfoEntity.SellerID, YesNo.Null);
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objBagStockInfoEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
                     {
                         objBagStockDTO.SellerName = objSellerInfoEntity.Name;
@@ -1522,7 +1522,8 @@ namespace RMIS.Business
             foreach (ProductSellingInfoDTO PSID in lstProdSellingDTO)
                 productPaymentInfoEntity.TotalAmount += PSID.TotalBags * PSID.Price;
 
-            productPaymentInfoEntity.Status = 'P';
+            productPaymentInfoEntity.BuyerID = lstProdSellingDTO[1].BuyerID;
+            productPaymentInfoEntity.Status = "P";
             productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
             productPaymentInfoEntity.ObsInd = YesNo.N;
@@ -1694,10 +1695,18 @@ namespace RMIS.Business
         public List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID)
         {
             List<ProductBuyerPaymentDTO> lstprobuyerpayment = new List<ProductBuyerPaymentDTO>();
-            List<ProductSellingInfoEntity> lstprodsellinginfo = new List<ProductSellingInfoEntity>();
             List<ProductPaymentInfoEntity> lstprodpaymnetinfo = new List<ProductPaymentInfoEntity>();
-            //lstprodsellinginfo = imp.GetAllBuyerproductSellingInfoEntities(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
-            //return lstprodsellinginfo.DistinctBy(A => new { A.BuyerID, A.ProductPaymentID }).OrderByDescending(A => A.Value).Take(5).ToList();
+
+            lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(),BuyerID, YesNo.N);
+            foreach (ProductPaymentInfoEntity PPIE in lstprodpaymnetinfo)
+            {
+                ProductBuyerPaymentDTO PBPDTO = new ProductBuyerPaymentDTO();
+                PBPDTO.ProductPaymentID = PPIE.ProductPaymentID;
+                BuyerInfoEntity BuyerInfoEnt=imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(),PPIE.BuyerID,YesNo.N);
+                PBPDTO.BuyerName = BuyerInfoEnt.Name;
+                PBPDTO.TotalAmountDue = PPIE.TotalAmount;
+                lstprobuyerpayment.Add(PBPDTO);
+            }
             return lstprobuyerpayment;
         }
     }

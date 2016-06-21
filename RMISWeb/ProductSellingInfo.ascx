@@ -11,7 +11,7 @@
             </HeaderTemplate>
             <ContentTemplate>
                 <h3>
-                    Product Selling Information</h3>
+                    Selling</h3>
                 <table>
                     <tr>
                         <td valign="top">
@@ -146,89 +146,109 @@
                 Product Payment Details
             </HeaderTemplate>
             <ContentTemplate>
-                <h3>
-                    Product Payment Information</h3>
                 <table>
                     <tr>
-                        <td>
-                            <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
+                        <td valign="top" style="width: 45%">
+                            <h3>
+                                Payment</h3>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBoxAutoExtender ID="txtBuyerNamePayment" runat="server" ServiceMethod="GetBuyerNames">
+                                        </asp:TextBoxAutoExtender>
+                                        <asp:Button ID="btnBuyerDetails" runat="server" Text="Search" OnClick="btnBuyerDetails_Click"
+                                            ValidationGroup="OnSave" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lbltotalamount" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblTotalProductCost"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Vertical"
+                                            RepeatLayout="Table">
+                                            <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
+                                            <asp:ListItem Text="Cheque" Value="Cheque"></asp:ListItem>
+                                            <asp:ListItem Text="Demand Draft" Value="DD"></asp:ListItem>
+                                            <asp:ListItem Text="Fund Transfer" Value="Transfer"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblchequeno" Text="<%$Resources:Resource,ChequeNo%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtChequeNo" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblddno" Text="<%$Resources:Resource,DDNo%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtDDno" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblbankname" Text="<%$Resources:Resource,BankName%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtBankName" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblreceivedamount" Text="<%$Resources:Resource,ReceivedAmount%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtReceivedAmount" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblBalanceAmount" Text="<%$Resources:Resource,BalanceAmount%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtBalanceAmount" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtNextPaymentDate" />
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
-                        <td>
-                            <asp:TextBoxAutoExtender ID="txtBuyerNamePayment" runat="server" ServiceMethod="GetBuyerNames">
-                            </asp:TextBoxAutoExtender>
-                            <asp:Button ID="btnBuyerDetails" runat="server" Text="Get Buyer Details" OnClick="btnBuyerDetails_Click"
-                                ValidationGroup="OnSave" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lbltotalamount" Text="<%$Resources:Resource,TotalAmount%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Label runat="server" ID="lblTotalProductCost"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top">
-                            <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Vertical"
-                                RepeatLayout="Table">
-                                <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
-                                <asp:ListItem Text="Cheque" Value="Cheque"></asp:ListItem>
-                                <asp:ListItem Text="Demand Draft" Value="DD"></asp:ListItem>
-                                <asp:ListItem Text="Fund Transfer" Value="Transfer"></asp:ListItem>
-                                <asp:ListItem Text="Credit" Value="Credit"></asp:ListItem>
-                            </asp:RadioButtonList>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblchequeno" Text="<%$Resources:Resource,ChequeNo%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtChequeNo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblddno" Text="<%$Resources:Resource,DDNo%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtDDno" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblbankname" Text="<%$Resources:Resource,BankName%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtBankName" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblreceivedamount" Text="<%$Resources:Resource,ReceivedAmount%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtReceivedAmount" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="lblBalanceAmount" Text="<%$Resources:Resource,BalanceAmount%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtBalanceAmount" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="txtNextPaymentDate" />
+                        <td valign="top" align="left" style="width: 55%">
+                            <h3>
+                                Product Selling Details</h3>
+                            <asp:PagingGridView ID="rptBuyerPaymentDue" Width="80%" runat="server" AllowSorting="true"
+                                AutoGenerateColumns="false" OnRowCommand="rptBuyerPaymentDue_RowCommand" class="table table-striped table-bordered">
+                                <Columns>
+                                    <asp:BoundField DataField="SlNo" ItemStyle-Width="80px" HeaderText="<%$Resources:Resource,SlNo%>" />
+                                    <asp:BoundField DataField="ProductPaymentID" HeaderText="<%$Resources:Resource,PaymentID%>"
+                                        Visible="false" />
+                                    <asp:BoundField DataField="BuyerName" ItemStyle-Width="300px" HeaderText="<%$Resources:Resource,BuyerName%>" />
+                                    <asp:BoundField DataField="TotalAmountDue" ItemStyle-Width="200px" HeaderText="<%$Resources:Resource,TotalAmountDue%>" />
+                                    <asp:ButtonField ButtonType="Button" CommandName="PayAmount" Text="Pay" />
+                                </Columns>
+                            </asp:PagingGridView>
                         </td>
                     </tr>
                 </table>

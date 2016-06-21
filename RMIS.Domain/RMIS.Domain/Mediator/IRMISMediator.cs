@@ -84,7 +84,7 @@ namespace RMIS.Domain.Mediator
         /// </summary>
         /// <returns></returns>
 
-        SellerInfoEntity GetSellerInfoEntity(string SellerID, YesNo yesNo);
+        SellerInfoEntity GetSellerInfoEntity(string CustId,string SellerID, YesNo yesNo);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID, YesNo yesNo);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID, YesNo yesNo);
         UsersEntity GetUsersEntity(string UserID, YesNo yesNo);
@@ -179,6 +179,7 @@ namespace RMIS.Domain.Mediator
         int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string BuyerID, YesNo yesNo);
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
         List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
         List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
@@ -249,6 +250,10 @@ namespace RMIS.Domain.Mediator
         List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
 
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo);
+
+        BuyerInfoEntity GetBuyerInfoEntity(string CustId, string BuyerID, YesNo yesNo);
     }
 
 }

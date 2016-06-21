@@ -892,6 +892,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 Mapper.CreateMap<ProductPaymentInfo, ProductPaymentInfoEntity>()
                     .ForMember(dest => dest.ProductPaymentID, opts => opts.MapFrom(src => src.ProductPaymentID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.BuyerID, opts => opts.MapFrom(src => src.BuyerID))
                     .ForMember(dest => dest.TotalAmount, opts => opts.MapFrom(src => src.TotalAmount))
                     .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))

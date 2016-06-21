@@ -9,8 +9,9 @@ namespace RMIS.Entities.BackEnd
     {
         private string _ProductPaymentID;
         private string _CustID;
+        private string _BuyerID;
         private double _TotalAmount; 
-        private char _Status;
+        private string _Status;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -25,12 +26,17 @@ namespace RMIS.Entities.BackEnd
             get { return _CustID; }
             set { _CustID = value; }
         }
+        public virtual string BuyerID
+        {
+            get { return _BuyerID; }
+            set { _BuyerID = value; }
+        }
         public virtual double TotalAmount
         {
             get { return _TotalAmount; }
             set { _TotalAmount = value; }
         }
-        public virtual char Status
+        public virtual string Status
         {
             get { return _Status; }
             set { _Status = value; }

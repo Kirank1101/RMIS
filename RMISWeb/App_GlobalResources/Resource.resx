@@ -375,4 +375,13 @@
   <data name="ItemNo" xml:space="preserve">
     <value>Item No</value>
   </data>
+  <data name="PaymentID" xml:space="preserve">
+    <value>Payment ID</value>
+  </data>
+  <data name="SlNo" xml:space="preserve">
+    <value>Sl No</value>
+  </data>
+  <data name="TotalAmountDue" xml:space="preserve">
+    <value>Total Amount Due</value>
+  </data>
 </root>

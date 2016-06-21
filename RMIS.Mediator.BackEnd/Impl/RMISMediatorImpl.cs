@@ -696,10 +696,10 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.GetCustomerPartPayDetailsEntity(CustPartPayID, yesNo);
         }
-        public SellerInfoEntity GetSellerInfoEntity(string SellerID, YesNo yesNo)
+        public SellerInfoEntity GetSellerInfoEntity(string CustId, string SellerID, YesNo yesNo)
         {
 
-            return rmisGateway.GetSellerInfoEntity(SellerID, yesNo);
+            return rmisGateway.GetSellerInfoEntity(CustId, SellerID, yesNo);
         }
         public CustomerInfoEntity GetCustomerInfoEntity(string CustID, YesNo yesNo)
         {
@@ -1112,9 +1112,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        public List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
-            return rmisGateway.GetMLotDetailsEntities(CustId, GodownID,PageIndex, PageSize, out count, expression, yesNo);
+            return rmisGateway.GetMLotDetailsEntities(CustId, GodownID, PageIndex, PageSize, out count, expression, yesNo);
         }
 
 
@@ -1265,7 +1265,25 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo)
         {
-           return rmisGateway.GetAllProductSellingInfoEntities(CustId, UnitTypeID, yesNo);
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, UnitTypeID, yesNo);
+        }
+
+
+        public List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllBuyerproductSellingInfoEntities(CustId, BuyerID, yesNo);
+        }
+
+
+        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductPaymentInfoEntities(CustId, BuyerID, yesNo);
+        }
+
+
+        public BuyerInfoEntity GetBuyerInfoEntity(string CustId, string BuyerID, YesNo yesNo)
+        {
+            return rmisGateway.GetBuyerInfoEntity(CustId, BuyerID, yesNo);
         }
     }
 }

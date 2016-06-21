@@ -2,9 +2,6 @@
     Inherits="TransactionPaddyStockInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-
-
 <div class="table-responsive">
     <asp:CustomTabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
         CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
@@ -16,7 +13,7 @@
                 <table>
                     <tr>
                         <td valign="top" style="padding-right: 70px">
-                        <h3>
+                            <h3>
                                 Add Paddy Stock</h3>
                             <table>
                                 <tr>
@@ -107,9 +104,7 @@
                                         <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>
                                     </td>
                                     <td>
-                                       
-                                         <asp:TextBoxDatenTimeExtender ID="txtPruchaseDate" runat="server" >
-                                        </asp:TextBoxDatenTimeExtender>
+                                        <asp:TextBoxDatenTimeExtender ID="txtPruchaseDate" runat="server"></asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                             </table>
@@ -144,7 +139,7 @@
         </ajaxToolkit:TabPanel>
         <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
             <HeaderTemplate>
-                Paddy Payment 
+                Paddy Payment
             </HeaderTemplate>
             <ContentTemplate>
                 <table>
@@ -215,10 +210,7 @@
                                         <asp:Label runat="server" ID="lblPaidDate" Text="<%$Resources:Resource,PaidDate%>"></asp:Label>
                                     </td>
                                     <td>
-                                        
-                                        
-                                         <asp:TextBoxDatenTimeExtender ID="txtPaidDate" runat="server" >
-                                        </asp:TextBoxDatenTimeExtender>
+                                        <asp:TextBoxDatenTimeExtender ID="txtPaidDate" runat="server"></asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                                 <tr>
@@ -242,9 +234,7 @@
                                         <asp:Label runat="server" ID="lblNextpaymentdate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
                                     </td>
                                     <td>
-                                       
-                                        <asp:TextBoxDatenTimeExtender ID="txtNextpaymentdate" runat="server" >
-                                        </asp:TextBoxDatenTimeExtender>
+                                        <asp:TextBoxDatenTimeExtender ID="txtNextpaymentdate" runat="server"></asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
                             </table>
