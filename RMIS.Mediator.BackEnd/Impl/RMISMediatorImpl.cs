@@ -1297,5 +1297,27 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllProductPaymentTranEntities(CustId, ProductPaymentID, yesNo);
         }
+
+
+        public List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetListSellerInfoEntities(CustId, PageIndex, PageSize, out  count, expression, yesNo);
+        }
+
+        public SellerInfoEntity CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo)
+        {
+            return rmisGateway.CheckSellerNameExist(CustId, SellerName, yesNo);
+        }
+
+
+        public BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo)
+        {
+            return rmisGateway.CheckBuyerNameExist(CustId, BuyerName, yesNo);
+        }
+
+        public List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetListBuyerInfoEntities(CustId, PageIndex, PageSize, out  count, expression, yesNo);
+        }
     }
 }

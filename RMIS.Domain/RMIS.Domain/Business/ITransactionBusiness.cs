@@ -106,5 +106,14 @@ namespace RMIS.Domain.Business
         List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID);
 
         ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue);
+
+        List<SellerInfoDTO> GetAllSellerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+        ResultDTO DeleteSellerInfo(string ID);
+        ResultDTO UpdateSellerInfo(string ID, string SellerName,string Town,string Contactno, string mobileno);
+        bool CheckSellerNameExist(string SellerName);
+        List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+        ResultDTO DeleteBuyerInfo(string ID);
+        ResultDTO UpdateBuyerInfo(string ID, string BuyerName, string Town, string Contactno, string mobileno);
+        bool CheckBuyerNameExist(string BuyerName);
     }
 }

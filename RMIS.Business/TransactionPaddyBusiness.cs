@@ -28,22 +28,23 @@ namespace RMIS.Business
         public Domain.DataTranserClass.ResultDTO SaveSellerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             SellerInfoEntity objSellerInfoEntity = new SellerInfoEntity();
-            objSellerInfoEntity.ObsInd = YesNo.N;
+            objSellerInfoEntity.SellerID = CommonUtil.CreateUniqueID("SE");
             objSellerInfoEntity.CustID = provider.GetCurrentCustomerId();
-            objSellerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objSellerInfoEntity.City = city;
-            objSellerInfoEntity.ContactNo = contactNo;
-            objSellerInfoEntity.LastModifiedDate = DateTime.Now;
-            objSellerInfoEntity.District = district;
-            objSellerInfoEntity.MobileNo = mobileNo;
             objSellerInfoEntity.Name = name;
-            objSellerInfoEntity.PhoneNo = phoneNo;
-            objSellerInfoEntity.PinCode = pincode;
-            objSellerInfoEntity.State = state;
             objSellerInfoEntity.Street = street;
             objSellerInfoEntity.Street1 = street1;
-            objSellerInfoEntity.SellerID = CommonUtil.CreateUniqueID("SE");
-
+            objSellerInfoEntity.Town = town;
+            objSellerInfoEntity.City = city;
+            objSellerInfoEntity.District = district;
+            objSellerInfoEntity.State = state;
+            objSellerInfoEntity.PinCode = pincode;
+            objSellerInfoEntity.ContactNo = contactNo;
+            objSellerInfoEntity.MobileNo = mobileNo;
+            objSellerInfoEntity.PhoneNo = phoneNo;
+            objSellerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objSellerInfoEntity.LastModifiedDate = DateTime.Now;
+            objSellerInfoEntity.ObsInd = YesNo.N;
+            
             try
             {
                 imp.BeginTransaction();
@@ -793,22 +794,23 @@ namespace RMIS.Business
         public ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
         {
             BuyerInfoEntity objBuyerInfoEntity = new BuyerInfoEntity();
-            objBuyerInfoEntity.ObsInd = YesNo.N;
+            objBuyerInfoEntity.BuyerID = CommonUtil.CreateUniqueID("BI");
             objBuyerInfoEntity.CustID = provider.GetCurrentCustomerId();
-            objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            objBuyerInfoEntity.City = city;
-            objBuyerInfoEntity.ContactNo = contactNo;
-            objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
-            objBuyerInfoEntity.District = district;
-            objBuyerInfoEntity.MobileNo = mobileNo;
             objBuyerInfoEntity.Name = name;
-            objBuyerInfoEntity.PhoneNo = phoneNo;
-            objBuyerInfoEntity.PinCode = pincode;
-            objBuyerInfoEntity.State = state;
             objBuyerInfoEntity.Street = street;
             objBuyerInfoEntity.Street1 = street1;
-            objBuyerInfoEntity.BuyerID = CommonUtil.CreateUniqueID("BI");
-
+            objBuyerInfoEntity.Town = town;
+            objBuyerInfoEntity.City = city;
+            objBuyerInfoEntity.District = district;
+            objBuyerInfoEntity.State = state;
+            objBuyerInfoEntity.ContactNo = contactNo;
+            objBuyerInfoEntity.MobileNo = mobileNo;
+            objBuyerInfoEntity.PhoneNo = phoneNo;
+            objBuyerInfoEntity.PinCode = pincode;
+            objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
+            objBuyerInfoEntity.ObsInd = YesNo.N;
+            
             try
             {
                 imp.BeginTransaction();
@@ -1246,7 +1248,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotalBrokenRiceStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotalBrokenRiceStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetTotalPaddyStockWidget()
@@ -1284,7 +1286,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetTotalRiceStockWidget()
@@ -1328,7 +1330,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetTotalBagStockWidget()
@@ -1367,7 +1369,7 @@ namespace RMIS.Business
 
                 }
             }
-            return listTotlaBagStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaBagStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public double GetPaddyTotalAmountDueBySeller(string sellerId)
@@ -1412,7 +1414,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public List<WidgetDTO> GetProductTotalAmountDueWidget()
@@ -1440,7 +1442,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone }).OrderByDescending(A => A.Value).Take(5).ToList();
+            return listTotlaPaddyStock.DistinctBy(A => new { A.Value, A.Headerone, A.HeaderTwo }).OrderByDescending(A => A.Value).Take(5).ToList();
         }
 
         public long CheckHullingProcessPaddyCount(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID)
@@ -1759,6 +1761,182 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+
+        public List<SellerInfoDTO> GetAllSellerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<SellerInfoDTO> listSellerInfoDTO = null;
+
+            List<SellerInfoEntity> listSellerInfoEntity = imp.GetListSellerInfoEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listSellerInfoEntity != null && listSellerInfoEntity.Count > 0)
+            {
+                listSellerInfoDTO = new List<SellerInfoDTO>();
+                foreach (SellerInfoEntity objSellerInfoEntity in listSellerInfoEntity)
+                {
+                    SellerInfoDTO objSellerInfoDTO = new SellerInfoDTO();
+                    objSellerInfoDTO.ID = objSellerInfoEntity.SellerID;
+                    objSellerInfoDTO.SellerName = objSellerInfoEntity.Name;
+                    objSellerInfoDTO.Town = objSellerInfoEntity.Town;
+                    objSellerInfoDTO.ContactNo = objSellerInfoEntity.ContactNo;
+                    objSellerInfoDTO.MobileNo = objSellerInfoEntity.MobileNo;
+                    listSellerInfoDTO.Add(objSellerInfoDTO);
+                }
+            }
+            return listSellerInfoDTO;
+        }
+        public ResultDTO DeleteSellerInfo(string ID)
+        {
+
+            ResultDTO ResultDTO = new ResultDTO();
+            SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), ID, YesNo.N);
+            if (objSellerInfoEntity is SellerInfoEntity)
+            {
+                objSellerInfoEntity.ObsInd = YesNo.Y;
+                objSellerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objSellerInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateSellerInfoEntity(objSellerInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.DeletedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.DeletedUnSuccess;
+                }
+            }
+            return ResultDTO;
+        }
+        public ResultDTO UpdateSellerInfo(string ID, string SellerName, string Town, string Contactno, string mobileno)
+        {
+            ResultDTO ResultDTO = new ResultDTO();
+            SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), ID, YesNo.N);
+            if (objSellerInfoEntity is SellerInfoEntity)
+            {
+                objSellerInfoEntity.Name = SellerName;
+                objSellerInfoEntity.Town = Town;
+                objSellerInfoEntity.ContactNo = Contactno;
+                objSellerInfoEntity.MobileNo = mobileno;
+                objSellerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objSellerInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateSellerInfoEntity(objSellerInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
+                }
+            }
+            return ResultDTO;
+        }
+        public bool CheckSellerNameExist(string SellerName)
+        {
+
+            bool IsSellerNameExist = false;
+
+            SellerInfoEntity SellerInfoEntity = imp.CheckSellerNameExist(provider.GetCurrentCustomerId(), SellerName, YesNo.N);
+            if (SellerInfoEntity != null)
+                IsSellerNameExist = true;
+
+            return IsSellerNameExist;
+        }
+        public List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<BuyerInfoDTO> listBuyerInfoDTO = null;
+
+            List<BuyerInfoEntity> listBuyerInfoEntity = imp.GetListBuyerInfoEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listBuyerInfoEntity != null && listBuyerInfoEntity.Count > 0)
+            {
+                listBuyerInfoDTO = new List<BuyerInfoDTO>();
+                foreach (BuyerInfoEntity objBuyerInfoEntity in listBuyerInfoEntity)
+                {
+                    BuyerInfoDTO objBuyerInfoDTO = new BuyerInfoDTO();
+                    objBuyerInfoDTO.ID = objBuyerInfoEntity.BuyerID;
+                    objBuyerInfoDTO.BuyerName = objBuyerInfoEntity.Name;
+                    objBuyerInfoDTO.Town = objBuyerInfoEntity.Town;
+                    objBuyerInfoDTO.ContactNo = objBuyerInfoEntity.ContactNo;
+                    objBuyerInfoDTO.MobileNo = objBuyerInfoEntity.MobileNo;
+                    listBuyerInfoDTO.Add(objBuyerInfoDTO);
+                }
+            }
+            return listBuyerInfoDTO;
+        }
+        public ResultDTO DeleteBuyerInfo(string ID)
+        {
+            ResultDTO ResultDTO = new ResultDTO();
+            BuyerInfoEntity objBuyerInfoEntity = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), ID, YesNo.N);
+            if (objBuyerInfoEntity is BuyerInfoEntity)
+            {
+                objBuyerInfoEntity.ObsInd = YesNo.Y;
+                objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateBuyerInfoEntity(objBuyerInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.DeletedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.DeletedUnSuccess;
+                }
+            }
+            return ResultDTO;
+        }
+        public ResultDTO UpdateBuyerInfo(string ID, string BuyerName, string Town, string Contactno, string mobileno)
+        {
+            ResultDTO ResultDTO = new ResultDTO();
+            BuyerInfoEntity objBuyerInfoEntity = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), ID, YesNo.N);
+            if (objBuyerInfoEntity is BuyerInfoEntity)
+            {
+                objBuyerInfoEntity.Name = BuyerName;
+                objBuyerInfoEntity.Town = Town;
+                objBuyerInfoEntity.ContactNo = Contactno;
+                objBuyerInfoEntity.MobileNo = mobileno;
+                objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateBuyerInfoEntity(objBuyerInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
+                }
+            }
+            return ResultDTO;
+        }
+        public bool CheckBuyerNameExist(string BuyerName)
+        {
+            bool IsBuyerNameExist = false;
+
+            BuyerInfoEntity BuyerInfoEntity = imp.CheckBuyerNameExist(provider.GetCurrentCustomerId(), BuyerName, YesNo.N);
+            if (BuyerInfoEntity != null)
+                IsBuyerNameExist = true;
+
+            return IsBuyerNameExist;
         }
     }
 }

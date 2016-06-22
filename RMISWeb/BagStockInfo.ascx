@@ -7,7 +7,7 @@
     <table>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBoxAutoExtender ID="txtsellerName" runat="server" ServiceMethod="GetSellerNames">
@@ -17,7 +17,7 @@
         
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
+                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">
@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
+                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtTotalBags" />
@@ -45,7 +45,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblPricePerBag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                <asp:Label runat="server" ID="lblPricePerBag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtpricePerBag" />
@@ -53,7 +53,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>
+                <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtPruchaseDate" />
@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
+                <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtVehicalNo" />
@@ -69,7 +69,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
+                <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtDriverName" />

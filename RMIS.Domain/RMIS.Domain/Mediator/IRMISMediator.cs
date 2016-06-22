@@ -259,7 +259,15 @@ namespace RMIS.Domain.Mediator
 
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string ProductPaymentID, YesNo yesNo);
 
-        
+
+
+        List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        SellerInfoEntity CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo);
+
+        BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo);
+
+        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
     }
 
 }

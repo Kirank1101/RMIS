@@ -21,9 +21,7 @@ namespace RMIS.Business
         ISessionProvider provider;
         IUserMessage msgInstance;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(MasterPaddyBusiness));
-        public const string UpdatedSuccess = "Updated Sucessfully..";
-        public const string UpdatedUnSuccess = "Updated UnSucessfully..";
-
+        
         public MasterPaddyBusiness(IRMISMediator imp, ISessionProvider provider, IUserMessage msgInstance)
         {
             this.provider = provider;
@@ -389,13 +387,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMPaddyTypeEntity(objMPaddyTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -923,13 +921,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMUnitsTypeEntity(objMUnitsTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -950,13 +948,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMGodownDetailsEntity(objMGodownDetailsEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -976,13 +974,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMLotDetailsEntity(objMLotDetailsEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -1003,12 +1001,12 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMBagTypeEntity(objMBagTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                     Logger.Error(ex);
                 }
             }
@@ -1029,13 +1027,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMRiceProductionTypeEntity(objMRiceTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -1056,13 +1054,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMBrokenRiceTypeEntity(objMBrokenRiceTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -1082,13 +1080,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMRiceBrandDetailsEntity(objMRiceBrandEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -1109,13 +1107,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMEmployeeDesignationEntity(objMEmpDesigEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;
@@ -1135,13 +1133,13 @@ namespace RMIS.Business
                     imp.SaveOrUpdateMSalaryTypeEntity(objMSalaryTypeEntity, true);
                     imp.CommitAndCloseSession();
                     ResultDTO.IsSuccess = true;
-                    ResultDTO.Message = UpdatedSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
                     ResultDTO.IsSuccess = false;
-                    ResultDTO.Message = UpdatedUnSuccess;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
                 }
             }
             return ResultDTO;

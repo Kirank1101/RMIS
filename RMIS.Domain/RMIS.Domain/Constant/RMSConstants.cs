@@ -184,6 +184,10 @@ namespace RMIS.Domain.Constant
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";
         public const string InsufficiantDustStock = "InSufficiant Dust Stock";
+        public const string UpdatedSuccess = "Updated Sucessfully..";
+        public const string UpdatedUnSuccess = "Updated UnSucessfully..";
+        public const string DeletedSuccess = "Deleted Sucessfully..";
+        public const string DeletedUnSuccess = "Deleted UnSucessfully..";
         
     }
 

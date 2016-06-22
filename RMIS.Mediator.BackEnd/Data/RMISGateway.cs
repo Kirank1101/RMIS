@@ -3973,5 +3973,143 @@
                 throw;
             }
         }
+
+        internal List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<SellerInfoEntity> listSellerInfoEntity = new List<SellerInfoEntity>();
+                IRepository<SellerInfo> UsersRepository = new RepositoryImpl<SellerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("Name"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("Name"));
+
+
+                List<SellerInfo> listSellerInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<SellerInfo>;
+                if (listSellerInfo != null && listSellerInfo.Count > 0)
+                {
+                    foreach (SellerInfo adMInfo in listSellerInfo)
+                    {
+                        listSellerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listSellerInfoEntity = null;
+
+                return listSellerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetSellerInfoEntities", ex);
+                throw;
+            }
+        }
+
+        internal SellerInfoEntity CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo)
+        {
+            try
+            {
+                SellerInfoEntity SellerInfoEntity = new SellerInfoEntity();
+                IRepository<SellerInfo> SellerInfoRepository = new RepositoryImpl<SellerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
+                                                                   .Add(Expression.Eq("Name", SellerName))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<SellerInfo> listSellerInfo = SellerInfoRepository.GetAll(detachedCriteria) as List<SellerInfo>;
+                if (listSellerInfo != null && listSellerInfo.Count > 0)
+                {
+                    foreach (SellerInfo adMInfo in listSellerInfo)
+                    {
+                        SellerInfoEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerInfoEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    SellerInfoEntity = null;
+
+                return SellerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckSellerNameExist", ex);
+                throw;
+            }
+        }
+        internal BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo)
+        {
+            try
+            {
+                BuyerInfoEntity BuyerInfoEntity = new BuyerInfoEntity();
+                IRepository<BuyerInfo> BuyerInfoRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("Name", BuyerName))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<BuyerInfo> listBuyerInfo = BuyerInfoRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfo)
+                    {
+                        BuyerInfoEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    BuyerInfoEntity = null;
+
+                return BuyerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckBuyerNameExist", ex);
+                throw;
+            }
+        }
+        internal List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<BuyerInfoEntity> listBuyerInfoEntity = new List<BuyerInfoEntity>();
+                IRepository<BuyerInfo> UsersRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("Name"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("Name"));
+
+
+                List<BuyerInfo> listBuyerInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<BuyerInfo>;
+                if (listBuyerInfo != null && listBuyerInfo.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfo)
+                    {
+                        listBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listBuyerInfoEntity = null;
+
+                return listBuyerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerInfoEntities", ex);
+                throw;
+            }
+        }
     }
 }

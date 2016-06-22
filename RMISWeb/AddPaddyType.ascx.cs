@@ -32,7 +32,6 @@ public partial class AddPaddyType : BaseUserControl
         rptPaddyType.PageIndex = gridPageIndex = e.NewPageIndex;
         bindPaddyType();
     }
-
     protected void rptPaddyType_Sorting(object sender, GridViewSortEventArgs e)
     {
         if (expression == SortExpression.Asc)
@@ -41,7 +40,6 @@ public partial class AddPaddyType : BaseUserControl
             expression = SortExpression.Asc;
         bindPaddyType();
     }
-
     protected void rptPaddyType_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         GridViewRow row = (GridViewRow)rptPaddyType.Rows[e.RowIndex];
@@ -50,7 +48,6 @@ public partial class AddPaddyType : BaseUserControl
         bindPaddyType();
 
     }
-
     protected void rptPaddyType_RowEditing(object sender, GridViewEditEventArgs e)
     {
         rptPaddyType.EditIndex = e.NewEditIndex;
@@ -58,7 +55,6 @@ public partial class AddPaddyType : BaseUserControl
         bindPaddyType();
 
     }
-
     protected void rptPaddyType_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         GridViewRow row = (GridViewRow)rptPaddyType.Rows[e.RowIndex];
@@ -85,14 +81,12 @@ public partial class AddPaddyType : BaseUserControl
         //GridView1.DataBind();
 
     }
-
     protected void rptPaddyType_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         rptPaddyType.EditIndex = -1;
         rptPaddyType.PageIndex = gridPageIndex;
         bindPaddyType();
     }
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         IMasterPaddyBusiness imp = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
