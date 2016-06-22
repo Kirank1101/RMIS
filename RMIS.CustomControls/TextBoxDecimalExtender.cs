@@ -14,11 +14,11 @@ namespace RMIS.CustomControls
     public class TextBoxDecimalExtender : CompositeControl
     {
 
-       
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            
+
         }
 
         protected TextBox txtBox;
@@ -28,17 +28,18 @@ namespace RMIS.CustomControls
         {
             get
             {
-                return txtBox.Text.ConvertToDouble().ToString();                
+                EnsureChildControls();
+                return txtBox.Text.ConvertToDouble().ToString();
             }
             set
             {
+                EnsureChildControls();
                 if (!string.IsNullOrEmpty(value))
-                {                  
-
+                {
                     txtBox.Text = value.ConvertToDouble().ToString("0.00"); ;
                 }
                 else
-                    txtBox.Text = value;                
+                    txtBox.Text = value;
             }
         }
 
@@ -74,7 +75,7 @@ namespace RMIS.CustomControls
             }
         }
 
-        public   System.Drawing.Color ForeColor
+        public System.Drawing.Color ForeColor
         {
             get
             {
@@ -88,14 +89,12 @@ namespace RMIS.CustomControls
             }
         }
 
-
-
-
         protected override void CreateChildControls()
         {
             base.CreateChildControls();
             txtBox = new TextBox();
-            txtBox.ID = "txtBox" + this.ID;            
+            txtBox.ID = "txtBox" + this.ID;
+            txtBox.Height = Unit.Pixel(20);
             this.Controls.Add(txtBox);
             txtBox.Text = "0.00";
             fltTextBox = new MaskedEditExtender();

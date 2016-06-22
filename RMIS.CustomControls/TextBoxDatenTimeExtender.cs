@@ -52,6 +52,7 @@ namespace RMIS.CustomControls
 
             txtBoxDate = new TextBox();
             txtBoxDate.ID = "txtBoxDate" + this.ID;
+            txtBoxDate.Height = Unit.Pixel(20);
             this.Controls.Add(txtBoxDate);
 
             txtBoxDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -64,6 +65,7 @@ namespace RMIS.CustomControls
             //this.Controls.Add(img);
 
             txtBoxTime = new TextBox();
+            txtBoxTime.Height = Unit.Pixel(20);
             txtBoxTime.ID = "txtBoxTime" + this.ID;
             //img.Height = Unit.Pixel(19);
             txtBoxTime.Width = Unit.Pixel(80);

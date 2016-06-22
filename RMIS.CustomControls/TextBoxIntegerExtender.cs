@@ -22,10 +22,12 @@ namespace RMIS.CustomControls
         {
             get
             {
+                EnsureChildControls();
                 return txtBox.Text.ConvertToInt().ToString();
             }
             set
             {
+                EnsureChildControls();
                 txtBox.Text = value;
             }
         }
@@ -56,6 +58,7 @@ namespace RMIS.CustomControls
             txtBox = new TextBox();
             txtBox.ID = "txtBox" + this.ID;
             txtBox.MaxLength = MaxLength;
+            txtBox.Height = Unit.Pixel(20);
             this.Controls.Add(txtBox);
             txtBox.Text = "0";
             fltTextBox = new FilteredTextBoxExtender();

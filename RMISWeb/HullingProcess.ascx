@@ -50,27 +50,28 @@
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtTotalBags" />
+                <asp:TextBoxIntegerExtender ID="txtTotalBags" runat="server"></asp:TextBoxIntegerExtender>
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,Price%>"></asp:Label><span
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtpaddyprice" />
+                <asp:TextBoxDecimalExtender ID="txtpaddyprice" runat="server" Mask="99,999.99"></asp:TextBoxDecimalExtender>
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label><span
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtHullingProcessDate" />
+                <asp:TextBoxDatenTimeExtender ID="txtHullingProcessDate" runat="server"></asp:TextBoxDatenTimeExtender>
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lblProcessBy" Text="<%$Resources:Resource,HullingProcessBy%>"></asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" ID="txtHullingProcessBy" />
+                <asp:TextBoxAutoExtender ID="txtHullingProcessBy" runat="server" ServiceMethod="GetEmployeeNames">
+                </asp:TextBoxAutoExtender>
             </td>
         </tr>
         <tr>
@@ -120,7 +121,7 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtricetotalbags" />
+                            <asp:TextBoxIntegerExtender ID="txtricetotalbags" runat="server"></asp:TextBoxIntegerExtender>
                         </td>
                         <td>
                             <asp:Button ID="btnAddRice" runat="server" Text="Add" OnClick="btnAddRice_Click" />
@@ -162,10 +163,10 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtBRTotalBags" />
+                            <asp:TextBoxIntegerExtender ID="txtBRTotalBags" runat="server"></asp:TextBoxIntegerExtender>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtBRPriceperbag" />
+                            <asp:TextBoxDecimalExtender ID="txtBRPriceperbag" runat="server"></asp:TextBoxDecimalExtender>
                         </td>
                         <td>
                             <asp:Button ID="btnaddBrokenRice" runat="server" Text="Add" OnClick="btnaddBrokenRice_Click" />
@@ -246,10 +247,11 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtDustTotalBags" />
+                                       
+                                        <asp:TextBoxIntegerExtender ID="txtDustTotalBags" runat="server"></asp:TextBoxIntegerExtender>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtDustPriceperbag" />
+                                        <asp:TextBoxDecimalExtender ID="txtDustPriceperbag" runat="server"></asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                             </table>
@@ -269,7 +271,7 @@
                                         <asp:Label runat="server" ID="lblPowerExpenses" Text="<%$Resources:Resource,PowerExpenses%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtPowerExpenses" />
+                                        <asp:TextBoxDecimalExtender ID="txtPowerExpenses" runat="server"></asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                                 <tr>
@@ -277,7 +279,7 @@
                                         <asp:Label runat="server" ID="lblLabourExpenses" Text="<%$Resources:Resource,LabourExpenses%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtLabourExpenses" />
+                                        <asp:TextBoxDecimalExtender ID="txtLabourExpenses" runat="server"></asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                                 <tr>
@@ -285,7 +287,7 @@
                                         <asp:Label runat="server" ID="lblOtherExpenses" Text="<%$Resources:Resource,OtherExpenses%>"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtOtherExpenses" />
+                                        <asp:TextBoxDecimalExtender ID="txtOtherExpenses" runat="server"></asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                             </table>
