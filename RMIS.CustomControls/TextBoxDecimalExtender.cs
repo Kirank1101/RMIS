@@ -33,13 +33,9 @@ namespace RMIS.CustomControls
             set
             {
                 if (!string.IsNullOrEmpty(value))
-                {
-                    string s = value.ConvertToDouble().ToString("0.00");
-                    if (s.EndsWith("00"))
-                    {
-                        s = value.ConvertToDouble().ToString("0");
-                    }
-                    txtBox.Text = value;
+                {                  
+
+                    txtBox.Text = value.ConvertToDouble().ToString("0.00"); ;
                 }
                 else
                     txtBox.Text = value;                
@@ -53,7 +49,7 @@ namespace RMIS.CustomControls
             {
                 if (ViewState[viewStateServerMask] == null)
                 {
-                    ViewState[viewStateServerMask] = "99,99,999.99";
+                    ViewState[viewStateServerMask] = "99,99,99,999.99";
                 }
 
                 return (string)ViewState[viewStateServerMask];
