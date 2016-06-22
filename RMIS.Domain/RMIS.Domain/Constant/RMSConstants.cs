@@ -180,6 +180,12 @@ namespace RMIS.Domain.Constant
 
 
 
+
+        public const string ValidateHullingProcessDetailsRiceBrand = "Validate178";
+        public const string ValidateHullingProcessDetailsBrokenRiceType = "Validate179";
+        public const string ValidateHullingProcessTransactionRiceDetails = "Validate180";
+        public const string ValidateHullingProcessTransactionBrokenRiceDetails = "Validate180";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

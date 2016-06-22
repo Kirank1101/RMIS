@@ -205,7 +205,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidateRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            
+
 
             return new ResultDTO();
         }
@@ -228,7 +228,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBrokenRiceStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            
+
             return new ResultDTO();
         }
 
@@ -247,13 +247,13 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateDustStockDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            
+
 
             return new ResultDTO();
         }
-        
 
-        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,string ProductSellingType, string BuyerName, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
+
+        public ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId, string ProductSellingType, string BuyerName, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate)
         {
             if (ProductSellingTypeId < 0)
             {
@@ -349,57 +349,80 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-        public ResultDTO ValidateHullingProcessTrans(int RiceType, int BrokenRiceType, int RiceUnitsType, int BrokenRiceUnitsType,List<BrokenRiceStockDetailsDTO> listBrokenRiceStockDetailsDTO, int DustUnitsType, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string BrokenRicePrice, string DustPrice)
+        public ResultDTO ValidateHullingProcessTrans(int Ricestockadded, int BrokenRiceStockadded, int RiceType, int BrokenRiceType, int RiceUnitsType, int BrokenRiceUnitsType, int DustUnitsType, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string BrokenRicePrice, string DustPrice, int RiceBrand)
         {
-            if (RiceType <= 0)
+            if (Ricestockadded <= 0)
+            {
+                if (RiceType <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
+                }
+                else if (RiceUnitsType <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
+                }
+                else if (RiceBrand <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsRiceBrand, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(Ricetotalbags.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (Ricetotalbags.ConvertToInt() <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+                }
+
+            }
+            else if (RiceType <= 0 || RiceUnitsType <= 0 || RiceBrand <= 0 || Ricetotalbags.ConvertToInt() <= 0)
+            {
+                if (RiceType > 0 || RiceUnitsType > 0 || RiceBrand > 0 || Ricetotalbags.ConvertToInt() > 0)
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessTransactionRiceDetails, provider.GetCurrentCustomerId()) };
+            }
+            if (BrokenRiceStockadded <= 0)
+            {
+                if (BrokenRiceType <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsBrokenRiceType, provider.GetCurrentCustomerId()) };
+                }
+                else if (BrokenRiceUnitsType <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(BrokenRicetotalbags.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (BrokenRicetotalbags.ConvertToInt() <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+                }
+                else if (string.IsNullOrEmpty(BrokenRicePrice.Trim()))
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+                }
+                else if (BrokenRicePrice.ConvertToDouble() <= 0)
+                {
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
+                }
+            }
+            else if (BrokenRiceType <= 0 || BrokenRiceUnitsType <= 0 || BrokenRicePrice.ConvertToDouble() <= 0 || BrokenRicetotalbags.ConvertToInt() <= 0)
+            {
+                if (BrokenRiceType > 0 || BrokenRiceUnitsType > 0 || BrokenRicePrice.ConvertToDouble() > 0 || BrokenRicetotalbags.ConvertToInt() > 0)
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessTransactionBrokenRiceDetails, provider.GetCurrentCustomerId()) };
+            }
+
+
+            if (DustUnitsType <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (listBrokenRiceStockDetailsDTO.Count == 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (RiceUnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (BrokenRiceUnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (DustUnitsType <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsUnitsType, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(Ricetotalbags.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (Ricetotalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(BrokenRicetotalbags.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (BrokenRicetotalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
             else if (string.IsNullOrEmpty(Dusttotalbags.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
             }
             else if (Dusttotalbags.ConvertToInt() <= 0)
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
-            }
-            else if (string.IsNullOrEmpty(BrokenRicePrice.Trim()))
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (BrokenRicePrice.ConvertToInt() <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
@@ -611,7 +634,7 @@ namespace RMIS.Business
 
         public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount)
         {
-            if (PaymentMode<0)
+            if (PaymentMode < 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesGivenToEmpty, provider.GetCurrentCustomerId()) };
             }
@@ -622,11 +645,11 @@ namespace RMIS.Business
             else if (Buyername.Length > 40)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionLength, provider.GetCurrentCustomerId()) };
-            }            
+            }
             else if (ReceivedAmount <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesPaidAmount, provider.GetCurrentCustomerId()) };
-            }            
+            }
             return new ResultDTO();
         }
     }
