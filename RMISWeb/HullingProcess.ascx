@@ -8,6 +8,7 @@
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                <span style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true">
@@ -15,7 +16,8 @@
                 </asp:DropDownList>
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
@@ -23,7 +25,8 @@
                 </asp:DropDownList>
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
+                <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,GodownName%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlGodownName" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged"
@@ -32,7 +35,8 @@
                 </asp:DropDownList>
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label>
+                <asp:Label runat="server" ID="lblLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true">
@@ -42,19 +46,22 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
+                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtTotalBags" />
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,Price%>"></asp:Label>
+                <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,Price%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtpaddyprice" />
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label>
+                <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label><span
+                    style="color: Red">*</span>
             </td>
             <td>
                 <asp:TextBox runat="server" ID="txtHullingProcessDate" />
@@ -72,19 +79,6 @@
             </td>
         </tr>
     </table>
-    <br />
-    <asp:PagingGridView ID="pgHullingProcess" Width="80%" runat="server" AllowSorting="true"
-        DataKeyNames="Id" AutoGenerateColumns="false" OnRowDeleting="rptBrokenRiceDetails_RowDeleting"
-        class="table table-striped table-bordered">
-        <Columns>
-            <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
-            <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
-            <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
-            <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
-            <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
-        </Columns>
-    </asp:PagingGridView>
-    <br />
     <table>
         <tr>
             <td valign="top">
@@ -93,16 +87,20 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblricetype" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblricetype" Text="<%$Resources:Resource,RiceType%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label>
+                            <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BrandName%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblriceunittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblricetotalbag" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblricetotalbag" Text="<%$Resources:Resource,totalbags%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -124,6 +122,9 @@
                         <td>
                             <asp:TextBox runat="server" ID="txtricetotalbags" />
                         </td>
+                        <td>
+                            <asp:Button ID="btnAddRice" runat="server" Text="Add" OnClick="btnAddRice_Click" />
+                        </td>
                     </tr>
                 </table>
             </td>
@@ -133,16 +134,20 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblBRType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBRType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblBRUnittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBRUnittype" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblBRTotalBags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBRTotalBags" Text="<%$Resources:Resource,totalbags%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblBRPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBRPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -171,23 +176,67 @@
         </tr>
         <tr>
             <td valign="top">
+                <h4>
+                    Rice Details</h4>
                 <table>
                     <tr>
                         <td>
-                            <br />
-                            <br />
-                            <h4>
-                                Hulling Process Dust Details</h4>
+                            <asp:PagingGridView ID="rptRiceDetails" runat="server" AllowSorting="true" DataKeyNames="Id"
+                                AutoGenerateColumns="false" OnRowDeleting="rptRiceDetails_RowDeleting" class="table table-striped table-bordered">
+                                <Columns>
+                                    <asp:BoundField DataField="RiceType" HeaderText="<%$Resources:Resource,RiceType%>" />
+                                    <asp:BoundField DataField="BrandName" HeaderText="<%$Resources:Resource,BrandName%>" />
+                                    <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
+                                    <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+                                </Columns>
+                            </asp:PagingGridView>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top" style="padding-left: 20px">
+                <h4>
+                    Broken Rice Details</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:PagingGridView ID="rptBrokenRiceDetails" runat="server" AllowSorting="true"
+                                DataKeyNames="Id" AutoGenerateColumns="false" OnRowDeleting="rptBrokenRiceDetails_RowDeleting"
+                                class="table table-striped table-bordered">
+                                <Columns>
+                                    <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
+                                    <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
+                                    <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
+                                    <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
+                                </Columns>
+                            </asp:PagingGridView>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <h4>
+                    Hulling Process Dust Details</h4>
+                <table>
+                    <tr>
+                        <td valign="top">
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="lbldustUnitType" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lbldustUnitType" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbldusttotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lbldusttotalbags" Text="<%$Resources:Resource,totalbags%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -206,10 +255,14 @@
                             </table>
                         </td>
                     </tr>
+                </table>
+            </td>
+            <td valign="top" style="padding-left: 20px">
+                <h4>
+                    Hulling Process Expenses Details</h4>
+                <table>
                     <tr>
-                        <td>
-                            <h4>
-                                Hulling Process Expenses Details</h4>
+                        <td valign="top">
                             <table>
                                 <tr>
                                     <td>
@@ -240,29 +293,6 @@
                     </tr>
                 </table>
             </td>
-            <td valign="top" style="padding-left: 20px">
-                <table>
-                    <tr>
-                        <td>
-                            <br />
-                            <br />
-                            <h4>
-                                Broken Rice Details</h4>
-                            <asp:PagingGridView ID="rptBrokenRiceDetails" Width="80%" runat="server" AllowSorting="true"
-                                DataKeyNames="Id" AutoGenerateColumns="false" OnRowDeleting="rptBrokenRiceDetails_RowDeleting"
-                                class="table table-striped table-bordered">
-                                <Columns>
-                                    <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
-                                    <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
-                                    <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
-                                    <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
-                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
-                                </Columns>
-                            </asp:PagingGridView>
-                        </td>
-                    </tr>
-                </table>
-            </td>
         </tr>
     </table>
     <table>
@@ -273,7 +303,7 @@
             </td>
         </tr>
     </table>
-    <table>
+    <table width="70%">
         <tr>
             <td valign="top">
                 <table>
@@ -315,21 +345,25 @@
                     </tr>
                 </table>
             </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <asp:Label runat="server" ID="lblhTotalRicePrice" Text="<%$Resources:Resource,TotalRicePrice%>"></asp:Label>
-            </td>
-            <td align="right">
-                <asp:Label ID="lbltotriceprice" runat="server" Style="font-weight: 700"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <asp:Label runat="server" ID="lblhPricePerRiceBag" Text="<%$Resources:Resource,PricePerRiceBag%>"></asp:Label>
-            </td>
-            <td align="right">
-                <asp:Label ID="lblpriceperricebag" runat="server" Style="font-weight: 700"></asp:Label>
+            <td>
+                <table>
+                    <tr>
+                        <td align="right">
+                            <asp:Label runat="server" ID="lblhTotalRicePrice" Text="<%$Resources:Resource,TotalRicePrice%>"></asp:Label>
+                        </td>
+                        <td align="right">
+                            <asp:Label ID="lbltotriceprice" runat="server" Style="font-weight: 700"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <asp:Label runat="server" ID="lblhPricePerRiceBag" Text="<%$Resources:Resource,PricePerRiceBag%>"></asp:Label>
+                        </td>
+                        <td align="right">
+                            <asp:Label ID="lblpriceperricebag" runat="server" Style="font-weight: 700"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>

@@ -17,7 +17,7 @@
         
         <tr>
             <td>
-                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,RiceBrandName%>"></asp:Label><span style="color: Red">*</span>
+                <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BrandName%>"></asp:Label><span style="color: Red">*</span>
             </td>
             <td>
                 <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">

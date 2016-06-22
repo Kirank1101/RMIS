@@ -35,7 +35,7 @@
         OnRowDeleting="rptRiceBrandType_RowDeleting" OnRowEditing="rptRiceBrandType_RowEditing"
         OnRowUpdating="rptRiceBrandType_RowUpdating">
         <Columns>
-            <asp:BoundField DataField="RiceBrand" SortExpression="RiceBrand" HeaderText="<%$Resources:Resource,RiceBrandType%>" />
+            <asp:BoundField DataField="RiceBrand" SortExpression="RiceBrand" HeaderText="<%$Resources:Resource,BrandName%>" />
             <asp:BoundField DataField="Indicator" ReadOnly="True" HeaderText="<%$Resources:Resource,IsRiceBrandDeleted%>" />
             <asp:CommandField ShowEditButton="true" HeaderText="Edit"  />
             <asp:CommandField ShowDeleteButton="true"  HeaderText="Delete"/>

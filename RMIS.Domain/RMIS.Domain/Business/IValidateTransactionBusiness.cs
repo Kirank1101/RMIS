@@ -13,6 +13,7 @@ namespace RMIS.Domain.Business
            );
         ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType,string totalbags);
         ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags);
+        
         ResultDTO ValidateDustStockDetails(int UnitsType, string totalbags);
         ResultDTO ValidateProductSellingDetails(int ProductSellingTypeId,string ProductSellingType, string ByerName, int RiceType, int RiceBrand, int BrokenRiceType, int UnitsType, string totalbags, string price, string SellingDate);
         ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string ProcessBy, string ProcessDate);

@@ -225,9 +225,6 @@
   <data name="IsBrokenRiceDeleted" xml:space="preserve">
     <value>Is Deleted</value>
   </data>
-  <data name="RiceBrandName" xml:space="preserve">
-    <value>Rice Brand</value>
-  </data>
   <data name="UnitType" xml:space="preserve">
     <value>Unit Type</value>
   </data>
@@ -296,9 +293,6 @@
   </data>
   <data name="IsRiceBrandDeleted" xml:space="preserve">
     <value>Is Deleted</value>
-  </data>
-  <data name="RiceBrandType" xml:space="preserve">
-    <value>Rice Brand Type</value>
   </data>
   <data name="BuyerName" xml:space="preserve">
     <value>Buyer Name</value>

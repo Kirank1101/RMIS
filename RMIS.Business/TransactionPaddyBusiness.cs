@@ -44,7 +44,7 @@ namespace RMIS.Business
             objSellerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objSellerInfoEntity.LastModifiedDate = DateTime.Now;
             objSellerInfoEntity.ObsInd = YesNo.N;
-            
+
             try
             {
                 imp.BeginTransaction();
@@ -473,32 +473,51 @@ namespace RMIS.Business
             }
             return objHullingProcessDTO;
         }
-        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, string RiceTypeID, string RiceBrandID, string riceUnittypeID, int ricetotalbags,
+        public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
                          List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses)
         {
-
             try
             {
-                #region SaveHullingTransaction
+
                 List<HullingProcessTransactionEntity> lstHPT = new List<HullingProcessTransactionEntity>();
                 List<BrokenRiceStockInfoEntity> lstBRStock = new List<BrokenRiceStockInfoEntity>();
-                HullingProcessTransactionEntity RiceTranEntity = new HullingProcessTransactionEntity();
-                RiceTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
-                RiceTranEntity.HullingProcessID = HullingProcessID;
-                RiceTranEntity.MRiceProdTypeID = RiceTypeID;
-                RiceTranEntity.MRiceBrandID = RiceBrandID;
-                RiceTranEntity.CustID = provider.GetCurrentCustomerId();
-                RiceTranEntity.UnitsTypeID = riceUnittypeID;
-                RiceTranEntity.TotalBags = ricetotalbags;
-                RiceTranEntity.Price = 0;
-                RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
-                RiceTranEntity.LastModifiedDate = DateTime.Now;
-                RiceTranEntity.ObsInd = YesNo.N;
-                lstHPT.Add(RiceTranEntity);
+                List<RiceStockInfoEntity> lstRiceStock = new List<RiceStockInfoEntity>();
+                #region Save HullingTransaction && StockDetails for Rice
+                foreach (RiceStockDetailsDTO RSDTO in listRiceDetails)
+                {
+                    HullingProcessTransactionEntity RiceTranEntity = new HullingProcessTransactionEntity();
+
+                    RiceTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HTR");
+                    RiceTranEntity.HullingProcessID = HullingProcessID;
+                    RiceTranEntity.MRiceProdTypeID = RSDTO.MRiceProdTypeID;
+                    RiceTranEntity.MRiceBrandID = RSDTO.MRiceBrandID;
+                    RiceTranEntity.CustID = provider.GetCurrentCustomerId();
+                    RiceTranEntity.UnitsTypeID = RSDTO.UnitsTypeID;
+                    RiceTranEntity.TotalBags = RSDTO.TotalBags;
+                    RiceTranEntity.Price = 0;
+                    RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                    RiceTranEntity.LastModifiedDate = DateTime.Now;
+                    RiceTranEntity.ObsInd = YesNo.N;
+                    lstHPT.Add(RiceTranEntity);
+
+                    RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
+                    Ricestockinfo.RiceStockID = RiceTranEntity.HullingTransID;
+                    Ricestockinfo.MRiceProdTypeID = RiceTranEntity.MRiceProdTypeID;
+                    Ricestockinfo.MRiceBrandID = RiceTranEntity.MRiceBrandID;
+                    Ricestockinfo.CustID = provider.GetCurrentCustomerId();
+                    Ricestockinfo.UnitsTypeID = RiceTranEntity.UnitsTypeID;
+                    Ricestockinfo.TotalBags = RiceTranEntity.TotalBags;
+                    Ricestockinfo.LastModifiedBy = provider.GetLoggedInUserId();
+                    Ricestockinfo.LastModifiedDate = DateTime.Now;
+                    Ricestockinfo.ObsInd = YesNo.N;
+                    lstRiceStock.Add(Ricestockinfo);
+                }
+                #endregion
+                #region Save HullingTransaction  && StockDetails for BrokenRice
                 foreach (BrokenRiceStockDetailsDTO BRD in listBrokenRiceDetails)
                 {
                     HullingProcessTransactionEntity BRTranEntity = new HullingProcessTransactionEntity();
-                    BRTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+                    BRTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HTBR");
                     BRTranEntity.HullingProcessID = HullingProcessID;
                     BRTranEntity.BrokenRiceTypeID = BRD.BrokenRiceTypeID;
                     BRTranEntity.CustID = provider.GetCurrentCustomerId();
@@ -521,8 +540,11 @@ namespace RMIS.Business
                     BroRiceStock.ObsInd = YesNo.N;
                     lstBRStock.Add(BroRiceStock);
                 }
+
+                #endregion
+                #region Save HullingTransaction  && StockDetails for Dust
                 HullingProcessTransactionEntity DustTranEntity = new HullingProcessTransactionEntity();
-                DustTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HT");
+                DustTranEntity.HullingTransID = CommonUtil.CreateUniqueID("HTD");
                 DustTranEntity.HullingProcessID = HullingProcessID;
                 DustTranEntity.CustID = provider.GetCurrentCustomerId();
                 DustTranEntity.UnitsTypeID = DustUnitsTypeID;
@@ -532,17 +554,7 @@ namespace RMIS.Business
                 DustTranEntity.LastModifiedDate = DateTime.Now;
                 DustTranEntity.ObsInd = YesNo.N;
                 lstHPT.Add(DustTranEntity);
-                #endregion
-                RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
-                Ricestockinfo.RiceStockID = RiceTranEntity.HullingTransID;
-                Ricestockinfo.MRiceProdTypeID = RiceTranEntity.MRiceProdTypeID;
-                Ricestockinfo.MRiceBrandID = RiceTranEntity.MRiceBrandID;
-                Ricestockinfo.CustID = provider.GetCurrentCustomerId();
-                Ricestockinfo.UnitsTypeID = RiceTranEntity.UnitsTypeID;
-                Ricestockinfo.TotalBags = RiceTranEntity.TotalBags;
-                Ricestockinfo.LastModifiedBy = provider.GetLoggedInUserId();
-                Ricestockinfo.LastModifiedDate = DateTime.Now;
-                Ricestockinfo.ObsInd = YesNo.N;
+
 
                 DustStockInfoEntity DustStockInfo = new DustStockInfoEntity();
                 DustStockInfo.DustStockID = DustTranEntity.HullingTransID;
@@ -552,7 +564,8 @@ namespace RMIS.Business
                 DustStockInfo.LastModifiedBy = provider.GetLoggedInUserId();
                 DustStockInfo.LastModifiedDate = DateTime.Now;
                 DustStockInfo.ObsInd = YesNo.N;
-
+                #endregion
+                #region Save Hulling Process Expencess
                 HullingProcessExpensesEntity HPEE = new HullingProcessExpensesEntity();
                 HPEE.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
                 HPEE.CustID = provider.GetCurrentCustomerId();
@@ -563,7 +576,7 @@ namespace RMIS.Business
                 HPEE.LastModifiedBy = provider.GetLoggedInUserId();
                 HPEE.LastModifiedDate = DateTime.Now;
                 HPEE.ObsInd = YesNo.N;
-
+                #endregion
                 HullingProcessEntity HPE = new HullingProcessEntity();
                 HPE = imp.GetHullingProcessEnitity(provider.GetCurrentCustomerId(), HullingProcessID, YesNo.N);
                 HPE.LastModifiedBy = provider.GetLoggedInUserId();
@@ -571,13 +584,21 @@ namespace RMIS.Business
                 HPE.Status = "A";
                 imp.BeginTransaction();
 
+                //Save Rice, BrokenRice, Dust Details in Hulling Process Transaction
+                #region Save HullingProcessTransaction
                 foreach (HullingProcessTransactionEntity item in lstHPT)
                     imp.SaveOrUpdateHullingProcessTransInfoEntity(item, false);
-                imp.SaveOrUpdateRiceStockInfoEntity(Ricestockinfo, false);
+                #endregion
+                #region Save Rice BrokenRice Dust Stock
+                foreach (RiceStockInfoEntity Riceitem in lstRiceStock)
+                    imp.SaveOrUpdateRiceStockInfoEntity(Riceitem, false);
                 foreach (BrokenRiceStockInfoEntity BRitem in lstBRStock)
                     imp.SaveOrUpdateBrokenRiceStockInfoEntity(BRitem, false);
                 imp.SaveOrUpdateDustStockInfoEntity(DustStockInfo, false);
+                #endregion
+                //Update the Status for Hulling Process
                 imp.SaveOrUpdateHullingProcessInfoEntity(HPE, true);
+                //Save HullingProcess Expencess
                 imp.SaveOrUpdateHullingProcessExpensesInfoEntity(HPEE, false);
                 imp.CommitAndCloseSession();
             }
@@ -810,7 +831,7 @@ namespace RMIS.Business
             objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
             objBuyerInfoEntity.ObsInd = YesNo.N;
-            
+
             try
             {
                 imp.BeginTransaction();
