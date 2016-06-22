@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RMIS.Domain.DataTranserClass
 {
+
     public class PaddyStockDTO
     {
         public PaddyStockDTO()
@@ -32,7 +33,7 @@ namespace RMIS.Domain.DataTranserClass
         public BagStockDTO()
         {
             Id = SellerName = TypeBrand = UnitName = VehicalNo = DriverName = string.Empty;
-            TotalBags =0; Price = 0.0;
+            TotalBags = 0; Price = 0.0;
         }
         public string Id { get; set; }
         public string SellerName { get; set; }
@@ -55,7 +56,7 @@ namespace RMIS.Domain.DataTranserClass
         public string SellerName { get; set; }
         public string Town { get; set; }
         public string ContactNo { get; set; }
-        public string MobileNo { get; set; }        
+        public string MobileNo { get; set; }
     }
     [Serializable]
     public class BuyerInfoDTO
@@ -64,7 +65,7 @@ namespace RMIS.Domain.DataTranserClass
         public string BuyerName { get; set; }
         public string Town { get; set; }
         public string ContactNo { get; set; }
-        public string MobileNo { get; set; }        
+        public string MobileNo { get; set; }
     }
     [Serializable]
     public class ProductBuyerPaymentDTO
@@ -78,13 +79,13 @@ namespace RMIS.Domain.DataTranserClass
     [Serializable]
     public class ProductSellingInfoDTO
     {
-        public int   ProductID { get; set; }
+        public int ProductID { get; set; }
         public string SellingProductType { get; set; }
         public string BuyerID { get; set; }
         public string MRiceProdTypeID { get; set; }
         public string MRiceBrandID { get; set; }
         public string BrokenRiceTypeID { get; set; }
-        public string UnitsTypeID { get; set; }        
+        public string UnitsTypeID { get; set; }
         public string BuyerName { get; set; }
         public string ProductType { get; set; }
         public string ProductName { get; set; }
@@ -94,6 +95,22 @@ namespace RMIS.Domain.DataTranserClass
         public double Price { get; set; }
         public double TotalPrice { get; set; }
         public DateTime ProductSellingDate { get; set; }
+    }
+
+
+    [Serializable]
+    public class RiceStockDetailsDTO
+    {
+        public int Id { get; set; }
+        public string MRiceProdTypeID { get; set; }
+        public string MRiceBrandID { get; set; }
+        public string UnitsTypeID { get; set; }
+        public string RiceType { get; set; }
+        public string BrandName { get; set; }
+        public string UnitsType { get; set; }
+        public int TotalBags { get; set; }
+        public double PricePerBag { get; set; }
+
     }
     [Serializable]
     public class BrokenRiceStockDetailsDTO
