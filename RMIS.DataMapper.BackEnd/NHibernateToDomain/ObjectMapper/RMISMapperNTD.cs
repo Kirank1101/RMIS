@@ -819,6 +819,26 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
             }
             return ProdPayTranEnt;
         }
+        public static BagPaymentInfoEntity GetBagPaymentDetailsEntity(BagPaymentInfo bagPaymentDetails)
+        {
+            BagPaymentInfoEntity BagPaymentDetailsEntity = null;
+
+            try
+            {
+                if (bagPaymentDetails != null)
+                {
+                    BagPaymentDetailsEntity = Mapper.Map<BagPaymentInfo, BagPaymentInfoEntity>(bagPaymentDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetBagPaymentDetailsEntity", ex);
+                throw;
+            }
+
+            return BagPaymentDetailsEntity;
+        }
+        
     }
 
 

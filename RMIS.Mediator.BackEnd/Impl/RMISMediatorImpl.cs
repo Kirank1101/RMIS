@@ -1325,5 +1325,37 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.CheckISValidSeller(CustId, SellerID, SellerName, yesNo);
         }
+
+
+        public double GetBagTotalAmount(string CustId, string SellerID, YesNo yesNo)
+        {
+            return rmisGateway.GetBagTotalAmount(CustId, SellerID, yesNo);
+        }
+
+        public double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo)
+        {
+            return rmisGateway.GetBagTotalAmountPaid(CustId, SellerID, yesNo);
+        }
+
+
+        public void SaveOrUpdateBagPaymentEntity(BagPaymentInfoEntity bagPaymentDetailsEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<BagPaymentInfo>(mapper.GetBagPaymentDetails(bagPaymentDetailsEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBagPaymentEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBagPaymentEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntity(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetAllBagPaymentDetailsEntity(CustId, yesNo);
+        }
     }
 }

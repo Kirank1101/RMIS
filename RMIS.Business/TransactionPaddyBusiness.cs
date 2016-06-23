@@ -1974,5 +1974,60 @@ namespace RMIS.Business
 
             return resultDto;
         }
+
+
+        public double GetBagTotalAmountDueBySeller(string SellerID)
+        {
+            if (!string.IsNullOrEmpty(SellerID))
+            {
+
+                double TotAmountOnBagPurchase = imp.GetBagTotalAmount(provider.GetCurrentCustomerId(), SellerID, YesNo.N);
+                double TotAmountPaid = imp.GetBagTotalAmountPaid(provider.GetCurrentCustomerId(), SellerID, YesNo.N);
+                if (TotAmountOnBagPurchase > TotAmountPaid)
+                    TotAmountOnBagPurchase = TotAmountOnBagPurchase - TotAmountPaid;
+                if (TotAmountOnBagPurchase > 0)
+                {
+                    return TotAmountOnBagPurchase;
+                }
+            }
+            return 0;            
+        }
+
+
+        public ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName)
+        {
+
+            BagPaymentInfoEntity objBagPaymentDetailsEntity = new BagPaymentInfoEntity();
+            objBagPaymentDetailsEntity.ObsInd = YesNo.N;
+            objBagPaymentDetailsEntity.CustID = provider.GetCurrentCustomerId();
+            objBagPaymentDetailsEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objBagPaymentDetailsEntity.AmountPaid = amountPaid;
+            objBagPaymentDetailsEntity.HandoverTo = handOverTo;
+            objBagPaymentDetailsEntity.LastModifiedDate = DateTime.Now;
+            objBagPaymentDetailsEntity.BagPaymentID = CommonUtil.CreateUniqueID("BP");
+            objBagPaymentDetailsEntity.PaidDate = paidDate;
+            objBagPaymentDetailsEntity.NextPaymentDate = nextPaymentDate;
+            objBagPaymentDetailsEntity.SellerID = sellerId;
+            objBagPaymentDetailsEntity.PaymentMode = PaymentMode;
+            objBagPaymentDetailsEntity.ChequeNo = ChequeuNo;
+            objBagPaymentDetailsEntity.BankName = BankName;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBagPaymentEntity(objBagPaymentDetailsEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error09, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success09, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntities()
+        {
+            return imp.GetAllBagPaymentDetailsEntity(provider.GetCurrentCustomerId(), YesNo.N);
+        }
     }
 }

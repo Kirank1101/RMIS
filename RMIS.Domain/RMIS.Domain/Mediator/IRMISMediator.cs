@@ -77,6 +77,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateOtherExpensesEntity(OtherExpensesEntity OtherExpensesEntityEntity, bool isCopy);
         void SaveOrUpdateProductPaymentInfoEntity(ProductPaymentInfoEntity ProductPaymentInfoEntity, bool isCopy);
         void SaveOrUpdateProductPaymentTransEntity(ProductPaymentTransactionEntity ProductPaymentTranEntity, bool isCopy);
+        void SaveOrUpdateBagPaymentEntity(BagPaymentInfoEntity bagPaymentDetailsEntity, bool isCopy);
         #endregion
         #region Get
         /// <summary>
@@ -84,7 +85,7 @@ namespace RMIS.Domain.Mediator
         /// </summary>
         /// <returns></returns>
 
-        SellerInfoEntity GetSellerInfoEntity(string CustId,string SellerID, YesNo yesNo);
+        SellerInfoEntity GetSellerInfoEntity(string CustId, string SellerID, YesNo yesNo);
         CustomerInfoEntity GetCustomerInfoEntity(string CustID, YesNo yesNo);
         MUserTypeEntity GetMUserTypeEntity(string UserTypeID, YesNo yesNo);
         UsersEntity GetUsersEntity(string UserID, YesNo yesNo);
@@ -179,7 +180,7 @@ namespace RMIS.Domain.Mediator
         int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
-        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string BuyerID, YesNo yesNo);
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string BuyerID, YesNo yesNo);
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
         List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
         List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
@@ -208,7 +209,7 @@ namespace RMIS.Domain.Mediator
 
         List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
 
-        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId,string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
 
         MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo);
 
@@ -270,6 +271,10 @@ namespace RMIS.Domain.Mediator
         List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
 
         SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo);
+        List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntity(string CustId, YesNo yesNo);        
+        double GetBagTotalAmount(string CustId, string SellerID, YesNo yesNo);
+
+        double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo);
     }
 
 }

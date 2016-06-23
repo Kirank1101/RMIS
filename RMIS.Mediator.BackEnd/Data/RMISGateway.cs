@@ -4144,5 +4144,75 @@
                 throw;
             }
         }
+
+        internal double GetBagTotalAmount(string CustId, string SellerID, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =DetachedCriteria.For(typeof(BagStockInfo))
+                                                   .Add(Expression.Eq("CustID", CustId))
+                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagTotalAmount", ex);
+                throw;
+            }
+        }
+
+        internal double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<BagPaymentInfo> UsersRepository = new RepositoryImpl<BagPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria =DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                   .Add(Expression.Eq("CustID", CustId))
+                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+
+                                                                        ;
+                return UsersRepository.GetSumResultsAsDouble(detachedCriteria, "AmountPaid");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagTotalAmountDue", ex);
+                throw;
+            }
+        }
+
+        internal List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntity(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<BagPaymentInfoEntity> listBagPaymentDetailsEntity = new List<BagPaymentInfoEntity>();
+                IRepository<BagPaymentInfo> UsersRepository = new RepositoryImpl<BagPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                                    .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<BagPaymentInfo> listBagPaymentDetails = UsersRepository.GetAll(detachedCriteria) as List<BagPaymentInfo>;
+                if (listBagPaymentDetails != null && listBagPaymentDetails.Count > 0)
+                {
+                    foreach (BagPaymentInfo objBagPaymentDetails in listBagPaymentDetails)
+                    {
+                        listBagPaymentDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagPaymentDetailsEntity(objBagPaymentDetails));
+                    }
+                }
+                else
+                    listBagPaymentDetailsEntity = null;
+
+                return listBagPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
     }
 }

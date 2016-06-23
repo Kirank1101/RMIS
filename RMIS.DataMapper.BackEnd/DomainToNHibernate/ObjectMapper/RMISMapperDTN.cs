@@ -56,6 +56,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MoneyTransaction GetOtherExpenses(OtherExpensesEntity EmployeeOtherExpensesEntity);
         ProductPaymentInfo GetProductPaymentInfo(ProductPaymentInfoEntity ProductPaymentInfoEntity);
         ProductPaymentTransaction GetProductPaymentTransaction(ProductPaymentTransactionEntity ProdPayTranEnt);
+        BagPaymentInfo GetBagPaymentDetails(BagPaymentInfoEntity bagPaymentDetailsEntity);
+        
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -730,6 +732,23 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return ProdPayTran;
+        }
+
+
+        public BagPaymentInfo GetBagPaymentDetails(BagPaymentInfoEntity bagPaymentDetailsEntity)
+        {
+
+            BagPaymentInfo BagPaymentDetails = null;
+            try
+            {
+                BagPaymentDetails = Mapper.Map<BagPaymentInfoEntity, BagPaymentInfo>(bagPaymentDetailsEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagPaymentDetails", ex);
+                throw;
+            }
+            return BagPaymentDetails;
         }
     }
 }

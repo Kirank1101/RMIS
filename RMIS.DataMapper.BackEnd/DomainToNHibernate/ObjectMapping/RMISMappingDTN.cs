@@ -988,5 +988,32 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+        internal void MapBagPaymentDetailsEntityToBagPaymentDetails()
+        {
+            try
+            {
+                Mapper.CreateMap<BagPaymentInfoEntity, BagPaymentInfo>()
+                    .ForMember(dest => dest.BagPaymentID, opts => opts.MapFrom(src => src.BagPaymentID))
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.AmountPaid, opts => opts.MapFrom(src => src.AmountPaid))
+                    .ForMember(dest => dest.PaidDate, opts => opts.MapFrom(src => src.PaidDate))
+                    .ForMember(dest => dest.HandoverTo, opts => opts.MapFrom(src => src.HandoverTo))
+                    .ForMember(dest => dest.NextPaymentDate, opts => opts.MapFrom(src => src.NextPaymentDate))
+                    .ForMember(dest => dest.PaymentMode, opts => opts.MapFrom(src => src.PaymentMode))
+                    .ForMember(dest => dest.ChequeNo, opts => opts.MapFrom(src => src.ChequeNo))
+                    .ForMember(dest => dest.BankName, opts => opts.MapFrom(src => src.BankName))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBagPaymentDetailsEntityToBagPaymentDetails", ex);
+                throw;
+            }
+        }
+        
     }
 }

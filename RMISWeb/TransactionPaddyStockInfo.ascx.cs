@@ -14,11 +14,10 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         IMasterPaddyBusiness impb = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
+        Header = "Paddy Stock and Payment Information";
 
         if (!IsControlPostBack)
-        {
-            Header = "Paddy Stock and Payment Information";
-
+        {            
             ddlPaddyType.DataSource = impb.GetMPaddyTypeEntities();
             ddlPaddyType.DataTextField = "PaddyType";
             ddlPaddyType.DataValueField = "Id";
