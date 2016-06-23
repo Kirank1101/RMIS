@@ -3,7 +3,7 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
-    <asp:CustomTabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
+    <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
         CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
         <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
             <HeaderTemplate>
@@ -302,5 +302,5 @@
                 </table>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
-    </asp:CustomTabContainer>
+    </ajaxToolkit:TabContainer>
 </div>

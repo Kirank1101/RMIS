@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProductSellingInfo.ascx.cs"
     Inherits="ProductSellingInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<div class="table-responsive">
-    <asp:CustomTabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="CC1" %>
+
+    <CC1:TabContainer ID="TabSellingInfo" runat="server" ActiveTabIndex="0" ScrollBars="Auto" Visible="true"
         CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
+        <CC1:TabPanel runat="server" ID="TabPanel1">
             <HeaderTemplate>
                 Product Selling Information
             </HeaderTemplate>
@@ -149,8 +149,8 @@
                     </tr>
                 </table>
             </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanel2">
+        </CC1:TabPanel>
+        <CC1:TabPanel runat="server" ID="TabPanel2">
             <HeaderTemplate>
                 Product Payment Details
             </HeaderTemplate>
@@ -272,6 +272,6 @@
                     <asp:HiddenField ID="hfProdPaymentID" runat="server" />
                 </table>
             </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-    </asp:CustomTabContainer>
-</div>
+        </CC1:TabPanel>
+    </CC1:TabContainer>
+

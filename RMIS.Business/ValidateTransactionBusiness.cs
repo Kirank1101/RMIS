@@ -105,7 +105,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsPriceEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (price.ConvertToInt() <= 0)
+            else if (price.ConvertToDouble() <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsPriceValidate, provider.GetCurrentCustomerId()) };
             }

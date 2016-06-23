@@ -49,7 +49,7 @@
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx"
+    <<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" LoadScriptsBeforeUI="true"  EnablePartialRendering="true" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx"
         >
 
         <Services>
@@ -230,7 +230,7 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"   DisplayLoadingAfter="1000" InitialRenderBehaviour="Clientside" 
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"  DisplayLoadingAfter="500" InitialRenderBehaviour="Serverside"
                        EncryptUserControlPath="false">
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
@@ -248,7 +248,7 @@
             <footer>
           <div class="pull-right">
               
-            Powered by OrmerSolutions India Pvt Ltd<a href="http://www.ormersolutions.com">Colorlib</a>
+            Powered by OrmerSolutions India Pvt Ltd<a href="http://www.ormersolutions.com">Ormer Solutions</a>
           </div>
           <div class="clearfix"></div>
         </footer>

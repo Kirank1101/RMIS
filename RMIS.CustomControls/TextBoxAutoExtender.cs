@@ -36,7 +36,9 @@ namespace RMIS.CustomControls
             get
             {
                 EnsureChildControls();
-                return hiddenfield.Value;
+                if (hiddenfieldText.Value == txtBox.Text)
+                    return hiddenfield.Value;
+                return null;
             }
         }
 
@@ -45,12 +47,12 @@ namespace RMIS.CustomControls
             get
             {
                 EnsureChildControls();
-                return hiddenfield.Value;
+                return txtBox.Text;
             }
             set
             {
                 EnsureChildControls();
-                hiddenfield.Value = value;
+                txtBox.Text = value;
             }
 
         }
@@ -77,6 +79,7 @@ namespace RMIS.CustomControls
         protected TextBox txtBox;
         protected AutoCompleteExtender autoExtender;
         protected HiddenField hiddenfield;
+        protected HiddenField hiddenfieldText;
         protected override void CreateChildControls()
         {
             base.CreateChildControls();
@@ -88,6 +91,10 @@ namespace RMIS.CustomControls
             hiddenfield = new HiddenField();
             hiddenfield.ID = "hiddenfield" + this.ID;
             this.Controls.Add(hiddenfield);
+
+            hiddenfieldText = new HiddenField();
+            hiddenfieldText.ID = "hiddenfieldText" + this.ID;
+            this.Controls.Add(hiddenfieldText);
 
             autoExtender = new AutoCompleteExtender();
             autoExtender.ID = "autoExtender" + this.ID;
@@ -104,11 +111,11 @@ namespace RMIS.CustomControls
             autoExtender.ContextKey = imp.GetCurrentCustomerId();
             autoExtender.UseContextKey = true;
             this.Controls.Add(autoExtender);
-
             StringBuilder buildScript = new StringBuilder();
             buildScript.AppendFormat("function {0}(source, eventArgs)", "GetCode" + ServiceMethod + hiddenfield.ID);
             buildScript.Append("{");
             buildScript.Append("document.getElementById('" + hiddenfield.ClientID + "').value = eventArgs.get_value();");
+            buildScript.Append("document.getElementById('" + hiddenfieldText.ClientID + "').value = document.getElementById('" + txtBox.ClientID + "').value;");
             buildScript.Append("}");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "GetCode" + ServiceMethod + hiddenfield.ID, buildScript.ToString(), true);
             Page.ClientScript.RegisterStartupScript(Page.GetType(), "GetCode" + ServiceMethod + hiddenfield.ID, buildScript.ToString(), true);

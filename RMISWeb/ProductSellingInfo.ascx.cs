@@ -147,7 +147,7 @@ public partial class ProductSellingInfo : BaseUserControl
         lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
         rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
         rptBuyerPaymentDue.DataBind();
-        TabContainer1.ActiveTabIndex = 1;
+        TabSellingInfo.ActiveTabIndex = 1;
 
 
     }
@@ -219,7 +219,7 @@ public partial class ProductSellingInfo : BaseUserControl
                 SetMessage(resultDto);
             }
         }
-        TabContainer1.ActiveTabIndex = 1;
+        TabSellingInfo.ActiveTabIndex = 1;
     }
 
     private void ClearAllPaymentInputFields()
@@ -238,7 +238,7 @@ public partial class ProductSellingInfo : BaseUserControl
     protected void btnCancel_click(object sender, EventArgs e)
     {
         ClearAllPaymentInputFields();
-        TabContainer1.ActiveTabIndex = 1;
+        TabSellingInfo.ActiveTabIndex = 1;
     }
 
     protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -249,7 +249,7 @@ public partial class ProductSellingInfo : BaseUserControl
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
             txtTotalProductCost.Text = row.Cells[2].Text;
             hfProdPaymentID.Value = rptBuyerPaymentDue.DataKeys[rowindex].Value.ToString();
-            TabContainer1.ActiveTabIndex = 1;
+            TabSellingInfo.ActiveTabIndex = 1;
         }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)

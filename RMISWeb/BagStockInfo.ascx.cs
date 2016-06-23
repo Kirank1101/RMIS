@@ -98,7 +98,7 @@ public partial class BagStockInfo : BaseUserControl
         //if (isvalidSeller.IsSuccess)
         //{
         txtTotalAmountDue.Text = Convert.ToString(impt.GetBagTotalAmountDueBySeller(txtpaymentSellerName.SelectedValue));
-        TabContainer1.ActiveTabIndex = 1;
+        TabBagStockInfo.ActiveTabIndex = 1;
         //}
         //else {
         //    SetMessage(isvalidSeller);
@@ -111,7 +111,7 @@ public partial class BagStockInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ClearAllBagPaymentFields();
-            TabContainer1.ActiveTabIndex = 1;
+            TabBagStockInfo.ActiveTabIndex = 1;
         }
         SetMessage(resultDto);
     }
