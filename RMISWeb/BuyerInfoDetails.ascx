@@ -111,7 +111,7 @@
                 </table>
             </td>
             <td valign="top" align="left" style="padding-left: 15px">
-                <h3> Information</h3>
+                <h3> Buyer Information</h3>
                 <table>
                     <tr>
                         <td>                            

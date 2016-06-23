@@ -35,7 +35,17 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
             ddlUnitsType.DataBind();
 
             bindPaddyStockInfo();
+            BindPaddyStockOverView();
         }
+    }
+
+    private void BindPaddyStockOverView()
+    {
+        int count = 0;
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        gvPaddyStockOverview.DataSource = imp.GetPaddyStockOverViewDTO(gvPaddyStockOverview.PageIndex, gvPaddyStockOverview.PageSize, out count, expression);
+        gvPaddyStockOverview.VirtualItemCount = count;
+        gvPaddyStockOverview.DataBind();
     }
 
     protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
@@ -157,6 +167,22 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         bindPaddyStockInfo();
         TabContainer1.ActiveTabIndex = 2;
     }
+
+    protected void gvPaddyStockOverview_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
+        bindPaddyStockInfo();
+    }
+
+    protected void gvPaddyStockOverview_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
+        BindPaddyStockOverView();
+    }
+
 
     private void ClearAllPaddyStockFields()
     {

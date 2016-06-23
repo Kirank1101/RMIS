@@ -71,7 +71,7 @@ public class BaseUserControl : System.Web.UI.UserControl
         get
         {
             if (ViewState[viewStateSortExpression] == null)
-                ViewState[viewStateSortExpression] = SortExpression.Asc; ;
+                ViewState[viewStateSortExpression] = SortExpression.Asc;
             return (SortExpression)ViewState[viewStateSortExpression];
         }
         set

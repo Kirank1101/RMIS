@@ -28,6 +28,20 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime PurchaseDate { get; set; }
 
     }
+    public class PaddyStockOverViewDTO
+    {
+        public PaddyStockOverViewDTO()
+        {
+            PaddyName = LotName = GodownName = UnitName = string.Empty;
+            TotalBags = 0.0;
+        }
+        public string PaddyName { get; set; }
+        public string GodownName { get; set; }
+        public string LotName { get; set; }
+        public string UnitName { get; set; }
+        public double TotalBags { get; set; }
+
+    }
     public class BagStockDTO
     {
         public BagStockDTO()

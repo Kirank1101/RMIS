@@ -1964,8 +1964,8 @@ namespace RMIS.Business
         public ResultDTO CheckISValidSeller(string SellerID, string SellerName)
         {
             ResultDTO resultDto = new ResultDTO();
-            
-            SellerInfoEntity SellerInfoEntity = imp.CheckISValidSeller(provider.GetCurrentCustomerId(),SellerID, SellerName, YesNo.N);
+
+            SellerInfoEntity SellerInfoEntity = imp.CheckISValidSeller(provider.GetCurrentCustomerId(), SellerID, SellerName, YesNo.N);
             if (SellerInfoEntity == null)
             {
                 resultDto.IsSuccess = false;
@@ -1990,7 +1990,7 @@ namespace RMIS.Business
                     return TotAmountOnBagPurchase;
                 }
             }
-            return 0;            
+            return 0;
         }
 
 
@@ -2028,6 +2028,71 @@ namespace RMIS.Business
         public List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntities()
         {
             return imp.GetAllBagPaymentDetailsEntity(provider.GetCurrentCustomerId(), YesNo.N);
+        }
+
+
+        public List<PaddyStockOverViewDTO> GetPaddyStockOverViewDTO(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+
+            List<PaddyStockOverViewDTO> listPaddyStockOverViewDTO = null;
+            List<PaddyStockOverViewDTO> lstPaddyStockOverViewDTO = null;
+            
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                listPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                {
+                    PaddyStockOverViewDTO objPaddyStockOverViewDTO = new PaddyStockOverViewDTO();
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID, YesNo.Null);
+                    if (objMPaddyTypeEntity != null)
+                        objPaddyStockOverViewDTO.PaddyName = objMPaddyTypeEntity.Name;
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID, YesNo.Null);
+                    if (objMGodownDetailsEntity != null)
+                        objPaddyStockOverViewDTO.GodownName = objMGodownDetailsEntity.Name;
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID, YesNo.Null);
+                    if (objMLotDetailsEntity != null)
+                        objPaddyStockOverViewDTO.LotName = objMLotDetailsEntity.LotName;
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                        objPaddyStockOverViewDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+
+                    objPaddyStockOverViewDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    listPaddyStockOverViewDTO.Add(objPaddyStockOverViewDTO);
+                }
+                if (listPaddyStockOverViewDTO != null && listPaddyStockOverViewDTO.Count > 0)
+                {
+                    var result1 = listPaddyStockOverViewDTO.
+                            GroupBy(ac => new
+                            {
+                                ac.PaddyName,
+                                ac.GodownName,
+                                ac.LotName,
+                                ac.UnitName
+                            })
+                        .Select(ac => new PaddyStockOverViewDTO
+                            {
+                                PaddyName = ac.Key.PaddyName,
+                                GodownName = ac.Key.GodownName,
+                                LotName = ac.Key.LotName,
+                                UnitName = ac.Key.UnitName,
+                                TotalBags = ac.Sum(acs => acs.TotalBags)
+                            });
+                    lstPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
+                    foreach (var res in result1)
+                    {
+                        PaddyStockOverViewDTO PSO = new PaddyStockOverViewDTO();
+                        PSO.PaddyName = res.PaddyName;
+                        PSO.GodownName = res.GodownName;
+                        PSO.LotName = res.LotName;
+                        PSO.UnitName = res.UnitName;
+                        PSO.TotalBags = res.TotalBags;
+                        lstPaddyStockOverViewDTO.Add(PSO);
+                    }                    
+                }
+            }
+            return lstPaddyStockOverViewDTO;
         }
     }
 }

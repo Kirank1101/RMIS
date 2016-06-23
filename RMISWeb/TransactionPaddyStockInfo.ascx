@@ -117,15 +117,33 @@
                                         <asp:TextBoxDatenTimeExtender ID="txtPruchaseDate" runat="server"></asp:TextBoxDatenTimeExtender>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="OnSave" />
+                                        <asp:Button ID="Button2" runat="server" Text="Cancel" />
+                                    </td>
+                                </tr>
                             </table>
                         </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
                         <td>
-                            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="OnSave" />
-                            <asp:Button ID="Button2" runat="server" Text="Cancel" />
+                            <table>
+                                <tr>
+                                    <asp:PagingGridView ID="gvPaddyStockOverview" runat="server" OnPageIndexChanging="gvPaddyStockOverview_PageIndexChanging"
+                                         AllowPaging="True" AutoGenerateColumns="false" AllowSorting="true"
+                                        OnSorting="gvPaddyStockOverview_Sorting" CssClass="table table-hover table-striped"
+                                        AlternatingRowStyle-Font-Bold="true">
+                                        <Columns>
+                                            <asp:BoundField DataField="PaddyName" SortExpression="PaddyName" HeaderText="Paddy Name" />
+                                            <asp:BoundField DataField="GodownName" SortExpression="GodownName" HeaderText="Godown Name" />
+                                            <asp:BoundField DataField="LotName" SortExpression="LotName" HeaderText="Lot Name" />
+                                            <asp:BoundField DataField="UnitName" SortExpression="UnitName" HeaderText="Unit Name" />
+                                            <asp:BoundField DataField="TotalBags" SortExpression="TotalBags" HeaderText="Total Bags" />                                            
+                                        </Columns>
+                                    </asp:PagingGridView>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
@@ -158,6 +176,7 @@
                                 <tr>
                                     <td valign="top">
                                         <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
+                                        <span style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Horizontal"
@@ -266,16 +285,16 @@
                                 OnSorting="rptPaddyStockInfo_Sorting" CssClass="table table-hover table-striped"
                                 AlternatingRowStyle-Font-Bold="true">
                                 <Columns>
-                                    <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
-                                    <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />
-                                    <asp:BoundField DataField="GodownName" HeaderText="Godown Name" />
-                                    <asp:BoundField DataField="LotName" HeaderText="Lot Name" />
-                                    <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
-                                    <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
-                                    <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />
-                                    <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
-                                    <asp:BoundField DataField="Price" HeaderText="Price" />
-                                    <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
+                                    <asp:BoundField DataField="SellerName" SortExpression="SellerName" HeaderText="Seller Name" />
+                                    <asp:BoundField DataField="PaddyName" SortExpression="PaddyName" HeaderText="Paddy Name" />
+                                    <asp:BoundField DataField="GodownName" SortExpression="GodownName" HeaderText="Godown Name" />
+                                    <asp:BoundField DataField="LotName" SortExpression="LotName" HeaderText="Lot Name" />
+                                    <asp:BoundField DataField="UnitName" SortExpression="UnitName" HeaderText="Unit Name" />
+                                    <asp:BoundField DataField="VehicalNo" SortExpression="VehicalNo" HeaderText="Vehical Number" />
+                                    <asp:BoundField DataField="DriverName" SortExpression="DriverName" HeaderText="Driver Name" />
+                                    <asp:BoundField DataField="TotalBags" SortExpression="TotalBags" HeaderText="Total Bags" />
+                                    <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price" />
+                                    <asp:BoundField DataField="PurchaseDate" SortExpression="PurchaseDate" HeaderText="Purchase Date" />
                                 </Columns>
                             </asp:PagingGridView>
                         </td>
