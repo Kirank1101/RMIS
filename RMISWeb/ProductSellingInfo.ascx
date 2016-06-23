@@ -16,6 +16,7 @@
                     <tr>
                         <td valign="top">
                             <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
+                            <span style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:RadioButtonList ID="rbtProductSellingtype" runat="server" RepeatDirection="Horizontal"
@@ -29,7 +30,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBoxAutoExtender ID="txtBuyerName" runat="server" ServiceMethod="GetBuyerNames">
@@ -38,7 +40,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblRiceType" Text="<%$Resources:Resource,RiceType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblRiceType" Text="<%$Resources:Resource,RiceType%>"></asp:Label><span
+                                runat="server" id="spRiceType" style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true">
@@ -48,7 +51,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblRiceBrandName" Text="<%$Resources:Resource,BrandName%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblRiceBrandName" Text="<%$Resources:Resource,BrandName%>"></asp:Label><span
+                                runat="server" id="spBrandName" style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlRiceBrand" runat="server" AutoPostBack="true" AppendDataBoundItems="true">
@@ -58,7 +62,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblBrokenRiceType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblBrokenRiceType" Text="<%$Resources:Resource,BrokenRiceType%>"></asp:Label><span
+                                runat="server" id="spBrokenRiceType" style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlBrokenRiceType" runat="server" AppendDataBoundItems="true">
@@ -68,7 +73,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
@@ -78,7 +84,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label>
+                            <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtTotalBags" />
@@ -86,7 +93,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblHPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblHPrice" Text="<%$Resources:Resource,Price%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtprice" />
@@ -94,7 +102,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblSellingDate" Text="<%$Resources:Resource,SellingDate%>"></asp:Label>
+                            <asp:Label runat="server" ID="lblSellingDate" Text="<%$Resources:Resource,SellingDate%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtSellingDate" />
@@ -155,6 +164,7 @@
                                 <tr>
                                     <td>
                                         <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
+                                        <span style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBoxAutoExtender ID="txtBuyerNamePayment" runat="server" ServiceMethod="GetBuyerNames">
@@ -165,7 +175,8 @@
                                 </tr>
                                 <tr>
                                     <td valign="top">
-                                        <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lblpaymentmode" Text="<%$Resources:Resource,PaymentMode%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:RadioButtonList ID="rbtPaymnetMode" runat="server" RepeatDirection="Vertical"
@@ -211,7 +222,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="lblreceivedamount" Text="<%$Resources:Resource,ReceivedAmount%>"></asp:Label>
+                                        <asp:Label runat="server" ID="lblreceivedamount" Text="<%$Resources:Resource,ReceivedAmount%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtReceivedAmount" />
@@ -227,7 +239,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
+                                        <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label><span
+                                            style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtNextPaymentDate" />
@@ -236,7 +249,7 @@
                                 <tr>
                                     <td>
                                         <asp:Button ID="btnSavePayment" runat="server" Text="Save" OnClick="btnSavePayment_Click" />
-                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_click" />
+                                        <asp:Button ID="btnCancel" runat="server" Text="clear" OnClick="btnCancel_click" />
                                     </td>
                                 </tr>
                             </table>
@@ -245,10 +258,10 @@
                             <h3>
                                 Pending Payment Details</h3>
                             <asp:PagingGridView ID="rptBuyerPaymentDue" Width="80%" runat="server" AllowSorting="true"
-                                AutoGenerateColumns="false" OnRowCommand="rptBuyerPaymentDue_RowCommand" class="table table-striped table-bordered">
+                                DataKeyNames="ProductPaymentID" AutoGenerateColumns="false" OnRowCommand="rptBuyerPaymentDue_RowCommand"
+                                class="table table-striped table-bordered">
                                 <Columns>
                                     <asp:BoundField DataField="SlNo" ItemStyle-Width="80px" HeaderText="<%$Resources:Resource,SlNo%>" />
-                                    <asp:BoundField DataField="ProductPaymentID" HeaderText="<%$Resources:Resource,PaymentID%>" />
                                     <asp:BoundField DataField="BuyerName" ItemStyle-Width="300px" HeaderText="<%$Resources:Resource,BuyerName%>" />
                                     <asp:BoundField DataField="TotalAmountDue" ItemStyle-Width="200px" HeaderText="<%$Resources:Resource,TotalAmountDue%>" />
                                     <asp:ButtonField ButtonType="Button" CommandName="PayAmount" Text="Pay" />

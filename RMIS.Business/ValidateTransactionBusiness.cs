@@ -632,23 +632,27 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount)
+        public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount,double TotalAmountDue)
         {
             if (PaymentMode < 0)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesGivenToEmpty, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductPaymentPayMode, provider.GetCurrentCustomerId()) };
             }
             else if (string.IsNullOrEmpty(Buyername))
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionEmpty, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductPaymentBuyerName, provider.GetCurrentCustomerId()) };
             }
             else if (Buyername.Length > 40)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesDescriptionLength, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductPaymentBuyerNameLength, provider.GetCurrentCustomerId()) };
             }
             else if (ReceivedAmount <= 0)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateOtherExpensesPaidAmount, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductPaymentReceivedAmount, provider.GetCurrentCustomerId()) };
+            }
+            else if (TotalAmountDue <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductPaymentAmountDue, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

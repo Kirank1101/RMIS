@@ -256,13 +256,15 @@
                 Paddy Stock Details
             </HeaderTemplate>
             <ContentTemplate>
-            <h3>Paddy Stock Details</h3>
+                <h3>
+                    Paddy Stock Details</h3>
                 <table>
                     <tr>
                         <td>
-                            <asp:PagingGridView ID="rptPaddyStockInfo"  runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
-                                AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
-                                CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
+                            <asp:PagingGridView ID="rptPaddyStockInfo" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
+                                DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false" AllowSorting="true"
+                                OnSorting="rptPaddyStockInfo_Sorting" CssClass="table table-hover table-striped"
+                                AlternatingRowStyle-Font-Bold="true">
                                 <Columns>
                                     <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
                                     <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />

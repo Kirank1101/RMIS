@@ -186,6 +186,12 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessTransactionRiceDetails = "Validate180";
         public const string ValidateHullingProcessTransactionBrokenRiceDetails = "Validate180";
 
+        public const string ValidateProductPaymentPayMode = "Validate181";
+        public const string ValidateProductPaymentBuyerName = "Validate182";
+        public const string ValidateProductPaymentBuyerNameLength = "Validate183";
+        public const string ValidateProductPaymentReceivedAmount = "Validate184";
+        public const string ValidateProductPaymentAmountDue = "Validate185";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

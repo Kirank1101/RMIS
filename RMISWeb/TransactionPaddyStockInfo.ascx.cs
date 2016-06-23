@@ -4,6 +4,7 @@ using RMIS.Domain.Business;
 using RMIS.Domain.DataTranserClass;
 using System.Web.UI.WebControls;
 using AllInOne.Common.Library.Util;
+using RMIS.Domain.Constant;
 
 public partial class TransactionPaddyStockInfo : BaseUserControl
 {
@@ -144,9 +145,18 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     {
         rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
         bindPaddyStockInfo();
+        TabContainer1.ActiveTabIndex = 2;
     }
 
-
+    protected void rptPaddyStockInfo_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (expression == SortExpression.Asc)
+            expression = SortExpression.Desc;
+        else if (expression == SortExpression.Desc)
+            expression = SortExpression.Asc;
+        bindPaddyStockInfo();
+        TabContainer1.ActiveTabIndex = 2;
+    }
 
     private void ClearAllPaddyStockFields()
     {

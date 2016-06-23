@@ -140,7 +140,7 @@ public partial class ProductSellingInfo : BaseUserControl
         return lstprodselinfoDTO;
     }
     protected void btnBuyerDetails_Click(object sender, EventArgs e)
-    {
+    {        
         ResultDTO resultDTO = new ResultDTO();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
@@ -207,7 +207,7 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSavePayment_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble());
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble(),txtTotalProductCost.Text.ConvertToDouble());
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
@@ -215,9 +215,11 @@ public partial class ProductSellingInfo : BaseUserControl
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();
+
                 SetMessage(resultDto);
             }
         }
+        TabContainer1.ActiveTabIndex = 1;
     }
 
     private void ClearAllPaymentInputFields()
@@ -230,10 +232,13 @@ public partial class ProductSellingInfo : BaseUserControl
         txtBalanceAmount.Text = string.Empty;
         txtNextPaymentDate.Text = string.Empty;
         txtReceivedAmount.Text = string.Empty;
+        rptBuyerPaymentDue.DataSource = null;
+        rptBuyerPaymentDue.DataBind();
     }
     protected void btnCancel_click(object sender, EventArgs e)
     {
         ClearAllPaymentInputFields();
+        TabContainer1.ActiveTabIndex = 1;
     }
 
     protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -242,8 +247,9 @@ public partial class ProductSellingInfo : BaseUserControl
         {
             int rowindex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
-            txtTotalProductCost.Text = row.Cells[3].Text;
-            hfProdPaymentID.Value = row.Cells[1].Text;
+            txtTotalProductCost.Text = row.Cells[2].Text;
+            hfProdPaymentID.Value = rptBuyerPaymentDue.DataKeys[rowindex].Value.ToString();
+            TabContainer1.ActiveTabIndex = 1;
         }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -265,16 +271,22 @@ public partial class ProductSellingInfo : BaseUserControl
         ddlRiceType.Visible = true;
         lblBrokenRiceType.Visible = true;
         ddlBrokenRiceType.Visible = true;
+        spBrandName.Visible = true;
+        spRiceType.Visible = true;
+        spBrokenRiceType.Visible = true;
         if (rbtProductSellingtype.SelectedValue == Rice)
         {
             lblBrokenRiceType.Visible = false;
             ddlBrokenRiceType.Visible = false;
+            spBrokenRiceType.Visible = false;
             ddlBrokenRiceType.SelectedIndex = 0;
         }
         else if (rbtProductSellingtype.SelectedValue == BrokenRice)
         {
             lblRiceBrandName.Visible = false;
             lblRiceType.Visible = false;
+            spRiceType.Visible = false;
+            spBrandName.Visible = false;
             ddlRiceBrand.Visible = false;
             ddlRiceType.Visible = false;
             ddlRiceBrand.SelectedIndex = 0;
@@ -288,6 +300,9 @@ public partial class ProductSellingInfo : BaseUserControl
             ddlBrokenRiceType.Visible = false;
             ddlRiceBrand.Visible = false;
             ddlRiceType.Visible = false;
+            spBrandName.Visible = false;
+            spRiceType.Visible = false;
+            spBrokenRiceType.Visible = false;
             ddlBrokenRiceType.SelectedIndex = 0;
             ddlRiceBrand.SelectedIndex = 0;
             ddlRiceType.SelectedIndex = 0;

@@ -1545,7 +1545,7 @@ namespace RMIS.Business
             foreach (ProductSellingInfoDTO PSID in lstProdSellingDTO)
                 productPaymentInfoEntity.TotalAmount += PSID.TotalBags * PSID.Price;
 
-            productPaymentInfoEntity.BuyerID = lstProdSellingDTO[1].BuyerID;
+            productPaymentInfoEntity.BuyerID = lstProdSellingDTO[0].BuyerID;
             productPaymentInfoEntity.Status = "P";
             productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
