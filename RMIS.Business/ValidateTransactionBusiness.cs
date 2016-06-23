@@ -66,7 +66,7 @@ namespace RMIS.Business
             return new ResultDTO();
         }
 
-        public ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate
+        public ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, string SellerName, string vehicleNo, string totalbags, string price, string purchaseDate
             )
         {
             if (godown <= 0)
@@ -81,7 +81,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsUnitstype, provider.GetCurrentCustomerId()) };
             }
-            else if (seller <= 0)
+            else if (string.IsNullOrEmpty(SellerName))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsSeller, provider.GetCurrentCustomerId()) };
             }

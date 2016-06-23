@@ -268,6 +268,8 @@ namespace RMIS.Domain.Mediator
         BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo);
 
         List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+
+        SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo);
     }
 
 }

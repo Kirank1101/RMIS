@@ -1319,5 +1319,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetListBuyerInfoEntities(CustId, PageIndex, PageSize, out  count, expression, yesNo);
         }
+
+
+        public SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo)
+        {
+            return rmisGateway.CheckISValidSeller(CustId, SellerID, SellerName, yesNo);
+        }
     }
 }

@@ -1959,5 +1959,20 @@ namespace RMIS.Business
 
             return IsBuyerNameExist;
         }
+
+
+        public ResultDTO CheckISValidSeller(string SellerID, string SellerName)
+        {
+            ResultDTO resultDto = new ResultDTO();
+            
+            SellerInfoEntity SellerInfoEntity = imp.CheckISValidSeller(provider.GetCurrentCustomerId(),SellerID, SellerName, YesNo.N);
+            if (SellerInfoEntity == null)
+            {
+                resultDto.IsSuccess = false;
+                resultDto.Message = "Invalid Seller Name.";
+            }
+
+            return resultDto;
+        }
     }
 }

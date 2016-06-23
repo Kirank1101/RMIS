@@ -4111,5 +4111,38 @@
                 throw;
             }
         }
+
+        internal SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo)
+        {
+
+            try
+            {
+                SellerInfoEntity SellerInfoEntity = new SellerInfoEntity();
+                IRepository<SellerInfo> SellerInfoRepository = new RepositoryImpl<SellerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(SellerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Name", SellerName))
+                                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                List<SellerInfo> listSellerInfo = SellerInfoRepository.GetAll(detachedCriteria) as List<SellerInfo>;
+                if (listSellerInfo != null && listSellerInfo.Count > 0)
+                {
+                    foreach (SellerInfo adMInfo in listSellerInfo)
+                    {
+                        SellerInfoEntity = (RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetSellerInfoEntity(adMInfo));
+                        break;
+                    }
+                }
+                else
+                    SellerInfoEntity = null;
+
+                return SellerInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at CheckISValidSeller", ex);
+                throw;
+            }
+        }
     }
 }

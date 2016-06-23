@@ -129,22 +129,6 @@
                         </td>
                     </tr>
                 </table>
-                <asp:PagingGridView ID="rptPaddyStockInfo" Width="80%" runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
-                    AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
-                    CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
-                    <Columns>
-                        <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
-                        <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />
-                        <asp:BoundField DataField="GodownName" HeaderText="Godown Name" />
-                        <asp:BoundField DataField="LotName" HeaderText="Lot Name" />
-                        <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
-                        <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
-                        <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />
-                        <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
-                        <asp:BoundField DataField="Price" HeaderText="Price" />
-                        <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
-                    </Columns>
-                </asp:PagingGridView>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
         <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
@@ -262,6 +246,36 @@
                         <td>
                             <asp:Button ID="btnPay" runat="server" Text="Pay" OnClick="btnPay_Click" ValidationGroup="OnSave" />
                             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" />
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </ajaxToolkit:TabPanel>
+        <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
+            <HeaderTemplate>
+                Paddy Stock Details
+            </HeaderTemplate>
+            <ContentTemplate>
+            <h3>Paddy Stock Details</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:PagingGridView ID="rptPaddyStockInfo"  runat="server" OnPageIndexChanging="rptPaddyStockInfo_PageIndexChanging"
+                                AlternatingRowStyle-BorderColor="Red" DataKeyNames="Id" AllowPaging="True" AutoGenerateColumns="false"
+                                CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
+                                <Columns>
+                                    <asp:BoundField DataField="SellerName" HeaderText="Seller Name" />
+                                    <asp:BoundField DataField="PaddyName" HeaderText="Paddy Name" />
+                                    <asp:BoundField DataField="GodownName" HeaderText="Godown Name" />
+                                    <asp:BoundField DataField="LotName" HeaderText="Lot Name" />
+                                    <asp:BoundField DataField="UnitName" HeaderText="Unit Name" />
+                                    <asp:BoundField DataField="VehicalNo" HeaderText="Vehical Number" />
+                                    <asp:BoundField DataField="DriverName" HeaderText="Driver Name" />
+                                    <asp:BoundField DataField="TotalBags" HeaderText="Total Bags" />
+                                    <asp:BoundField DataField="Price" HeaderText="Price" />
+                                    <asp:BoundField DataField="PurchaseDate" HeaderText="Purchase Date" />
+                                </Columns>
+                            </asp:PagingGridView>
                         </td>
                     </tr>
                 </table>

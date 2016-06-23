@@ -72,9 +72,15 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     protected void btnSellerDetails_Click(object sender, EventArgs e)
     {
         ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        txtTotalAmountDue.Text = Convert.ToString(impt.GetPaddyTotalAmountDueBySeller(TextBoxAutoExtender2.SelectedValue));
-        TabContainer1.ActiveTabIndex = 1;
-
+        //ResultDTO isvalidSeller = impt.CheckISValidSeller(TextBoxAutoExtender2.SelectedValue,TextBoxAutoExtender2.Text.Trim());
+        //if (isvalidSeller.IsSuccess)
+        //{
+            txtTotalAmountDue.Text = Convert.ToString(impt.GetPaddyTotalAmountDueBySeller(TextBoxAutoExtender2.SelectedValue));
+            TabContainer1.ActiveTabIndex = 1;
+        //}
+        //else {
+        //    SetMessage(isvalidSeller);
+        //}
     }
     protected void btnClear_Click(object sender, EventArgs e)
     {
@@ -109,25 +115,31 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         double amtpaid = string.IsNullOrEmpty(txtamountpaid.Text.Trim()) ? 0 : txtamountpaid.Text.ConvertToDouble();
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, 1, txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockDetails(ddlGodownname.SelectedIndex, ddlLotDetails.SelectedIndex, ddlUnitsType.SelectedIndex, ddlPaddyType.SelectedIndex, TextBoxAutoExtender1.Text.Trim(), txtVehicalNo.Text, txtTotalBags.Text, txtPrice.Text, txtPruchaseDate.Text);
+        ITransactionBusiness imps = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
-        if (resultDto.IsSuccess)
-        {
-            ITransactionBusiness imps = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imps.SavePaddyStockInfo(TextBoxAutoExtender1.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtPrice.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
-
-            SetMessage(resultDto);
+        
+        //ResultDTO isvalidSeller = imps.CheckISValidSeller(TextBoxAutoExtender1.SelectedValue,TextBoxAutoExtender1.Text.Trim());
+        //if (isvalidSeller.IsSuccess)
+        //{
             if (resultDto.IsSuccess)
             {
-                ClearAllPaddyStockFields();
-                bindPaddyStockInfo();
-            }
-        }
-        else
-        {
-            SetMessage(resultDto);
-        }
+                resultDto = imps.SavePaddyStockInfo(TextBoxAutoExtender1.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtPrice.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()));
 
+                SetMessage(resultDto);
+                if (resultDto.IsSuccess)
+                {
+                    ClearAllPaddyStockFields();
+                    bindPaddyStockInfo();
+                }
+            }
+            else
+            {
+                SetMessage(resultDto);
+            }
+        //}
+        //else
+        //    SetMessage(resultDto);
     }
     protected void rptPaddyStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {

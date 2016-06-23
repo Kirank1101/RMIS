@@ -115,5 +115,7 @@ namespace RMIS.Domain.Business
         ResultDTO DeleteBuyerInfo(string ID);
         ResultDTO UpdateBuyerInfo(string ID, string BuyerName, string Town, string Contactno, string mobileno);
         bool CheckBuyerNameExist(string BuyerName);
+
+        ResultDTO CheckISValidSeller(string SellerID, string SellerNae);
     }
 }

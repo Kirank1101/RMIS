@@ -9,7 +9,7 @@ namespace RMIS.Domain.Business
     public interface IValidateTransactionBusiness
     {
         ResultDTO ValidateSellerDetails( string sellerName, string city, string district, string state, string contactNo);
-        ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, int seller, string vehicleNo, string totalbags, string price, string purchaseDate
+        ResultDTO ValidatePaddyStockDetails(int godown, int lot, int Unitstype, int paddy, string SellerName, string vehicleNo, string totalbags, string price, string purchaseDate
            );
         ResultDTO ValidateRiceStockDetails(int RiceType, int RiceBrand, int UnitsType,string totalbags);
         ResultDTO ValidateBrokenRiceStockDetails(int BrokenRiceType, int UnitsType, string totalbags);
