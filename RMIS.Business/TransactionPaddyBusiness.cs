@@ -2036,7 +2036,7 @@ namespace RMIS.Business
 
             List<PaddyStockOverViewDTO> listPaddyStockOverViewDTO = null;
             List<PaddyStockOverViewDTO> lstPaddyStockOverViewDTO = null;
-            
+
             List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
 
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
@@ -2096,7 +2096,7 @@ namespace RMIS.Business
                     {
                         foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
                         {
-                            if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName==PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
+                            if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName == PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
                                 PSOV.TotalBags -= PSOHP.TotalBags;
                         }
                     }
@@ -2136,7 +2136,7 @@ namespace RMIS.Business
                 }
                 if (lstObjPaddySpentOnHullingProcessDTO != null && lstObjPaddySpentOnHullingProcessDTO.Count > 0)
                 {
-                    
+
                     var result1 = lstObjPaddySpentOnHullingProcessDTO.
                             GroupBy(ac => new
                             {
@@ -2220,6 +2220,87 @@ namespace RMIS.Business
             }
 
             return listPaddyStockDTO;
+        }
+        public List<PaddyPaymentDTO> GetPaddyPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<PaddyPaymentDTO> listPaddyPaymentDTO = null;
+            List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = imp.GetPaddyPaymentDetailsEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+            {
+                listPaddyPaymentDTO = new List<PaddyPaymentDTO>();
+                foreach (PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity in listPaddyPaymentDetailsEntity)
+                {
+                    PaddyPaymentDTO objPaddyPaymentDTO = new PaddyPaymentDTO();
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyPaymentDetailsEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objPaddyPaymentDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    objPaddyPaymentDTO.AmountPaid = objPaddyPaymentDetailsEntity.AmountPaid;
+                    objPaddyPaymentDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
+                    objPaddyPaymentDTO.NextPayDate = objPaddyPaymentDetailsEntity.NextPaymentDate;
+                    objPaddyPaymentDTO.PaymentMode = objPaddyPaymentDetailsEntity.PaymentMode;
+                    listPaddyPaymentDTO.Add(objPaddyPaymentDTO);
+                }
+            }
+
+            return listPaddyPaymentDTO;
+        }
+        public List<PaddyPaymentDTO> GetPaddyPaymentDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<PaddyPaymentDTO> listPaddyPaymentDTO = null;
+            List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = imp.GetPaddyPaymentDetailsEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+            {
+                listPaddyPaymentDTO = new List<PaddyPaymentDTO>();
+                foreach (PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity in listPaddyPaymentDetailsEntity)
+                {
+                    PaddyPaymentDTO objPaddyPaymentDTO = new PaddyPaymentDTO();
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyPaymentDetailsEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objPaddyPaymentDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    objPaddyPaymentDTO.AmountPaid = objPaddyPaymentDetailsEntity.AmountPaid;
+                    objPaddyPaymentDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
+                    objPaddyPaymentDTO.NextPayDate = objPaddyPaymentDetailsEntity.NextPaymentDate;
+                    objPaddyPaymentDTO.PaymentMode = objPaddyPaymentDetailsEntity.PaymentMode;
+                    listPaddyPaymentDTO.Add(objPaddyPaymentDTO);
+                }
+            }
+
+            return listPaddyPaymentDTO;
+        }
+
+
+        public List<PaddyPaymentDueDTO> GetPaddyPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<PaddyPaymentDueDTO> listPaddyPaymentDueDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                var result1 = listPaddyStockInfoEntity.
+                                GroupBy(ac => new { ac.SellerID })
+                                .Select(ac => new PaddyPaymentDueDTO { TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
+
+                List<SellerInfoEntity> lstSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), YesNo.Null);
+
+                listPaddyPaymentDueDTO = new List<PaddyPaymentDueDTO>();
+                foreach (var item in result1)
+                {
+                    PaddyPaymentDueDTO PPDDTO = new PaddyPaymentDueDTO();
+                    PPDDTO.SellerID = item.SellerID;
+                    SellerInfoEntity sellerinf = lstSellerInfoEntity.Where(r => r.SellerID == item.SellerID).SingleOrDefault();
+                    PPDDTO.SellerName = sellerinf.Name;
+                    PPDDTO.TotalAmount = item.TotalAmount;
+                    List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = imp.GetPaddyPaymentDetailsEntity(provider.GetCurrentCustomerId(), PPDDTO.SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+                    if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+                        PPDDTO.TotalAmountPaid = listPaddyPaymentDetailsEntity.Sum(f => f.AmountPaid);
+                    PPDDTO.TotalAmountDue = PPDDTO.TotalAmount - PPDDTO.TotalAmountPaid;
+                    listPaddyPaymentDueDTO.Add(PPDDTO);
+                }
+            }
+            return listPaddyPaymentDueDTO;
         }
     }
 }

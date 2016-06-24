@@ -5,7 +5,33 @@ using System.Text;
 
 namespace RMIS.Domain.DataTranserClass
 {
-
+    public class PaddyPaymentDueDTO
+    {
+        public PaddyPaymentDueDTO()
+        {
+            SellerID=SellerName  = string.Empty;
+            TotalAmount = TotalAmountDue = TotalAmountPaid = 0.0;
+        }
+        public string SellerID { get; set; }
+        public string SellerName { get; set; }
+        public double TotalAmount { get; set; }
+        public double TotalAmountPaid { get; set; }
+        public double TotalAmountDue { get; set; }
+    }
+    public class PaddyPaymentDTO
+    {
+        public PaddyPaymentDTO()
+        {
+            SellerName =PaymentMode=  string.Empty;
+            AmountPaid = 0.0;
+        }
+        
+        public string SellerName { get; set; }
+        public double AmountPaid { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string PaymentMode { get; set; }
+        public DateTime NextPayDate { get; set; }
+    }
     public class PaddyStockDTO
     {
         public PaddyStockDTO()

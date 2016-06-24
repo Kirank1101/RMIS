@@ -279,6 +279,12 @@ namespace RMIS.Domain.Mediator
         List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo);
 
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<SellerInfoEntity> GetSellerInfoEntity(string CustId, YesNo yesNo);
     }
 
 }

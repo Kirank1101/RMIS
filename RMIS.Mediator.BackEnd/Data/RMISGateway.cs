@@ -4281,5 +4281,81 @@
                 throw;
             }
         }
+
+        internal List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = new List<PaddyPaymentDetailsEntity>();
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PaidDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PaidDate"));
+                List<PaddyPaymentDetails> listPaddyPaymentDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyPaymentDetails>;
+                if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+                {
+                    foreach (PaddyPaymentDetails adMInfo in listPaddyPaymentDetails)
+                    {
+                        listPaddyPaymentDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyPaymentDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listPaddyPaymentDetailsEntity = null;
+
+                return listPaddyPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = new List<PaddyPaymentDetailsEntity>();
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("SellerID", SellerID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PaidDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PaidDate"));
+                List<PaddyPaymentDetails> listPaddyPaymentDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyPaymentDetails>;
+                if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+                {
+                    foreach (PaddyPaymentDetails adMInfo in listPaddyPaymentDetails)
+                    {
+                        listPaddyPaymentDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyPaymentDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listPaddyPaymentDetailsEntity = null;
+
+                return listPaddyPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyPaymentDetailsEntity by sellerid", ex);
+                throw;
+            }
+        }
     }
 }
