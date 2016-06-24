@@ -4214,5 +4214,33 @@
                 throw;
             }
         }
+
+        internal List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<HullingProcessEntity> listHullingProcessEntity = new List<HullingProcessEntity>();
+                IRepository<HullingProcess> UsersRepository = new RepositoryImpl<HullingProcess>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcess))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<HullingProcess> listHullingProcess = UsersRepository.GetAll(detachedCriteria) as List<HullingProcess>;
+                if (listHullingProcess != null && listHullingProcess.Count > 0)
+                {
+                    foreach (HullingProcess adMInfo in listHullingProcess)
+                        listHullingProcessEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessInfoEntity(adMInfo));
+                }
+                else
+                    listHullingProcessEntity = null;
+
+                return listHullingProcessEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllHullingProcessPaddySpent", ex);
+                throw;
+            }
+        }
     }
 }

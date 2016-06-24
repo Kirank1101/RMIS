@@ -1357,5 +1357,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetAllBagPaymentDetailsEntity(CustId, yesNo);
         }
+
+
+        public List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetAllHullingProcessPaddySpent(CustId, yesNo);
+        }
     }
 }

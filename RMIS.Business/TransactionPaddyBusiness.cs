@@ -2089,10 +2089,84 @@ namespace RMIS.Business
                         PSO.UnitName = res.UnitName;
                         PSO.TotalBags = res.TotalBags;
                         lstPaddyStockOverViewDTO.Add(PSO);
-                    }                    
+                    }
+
+                    List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
+                    foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
+                    {
+                        foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
+                        {
+                            if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName==PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
+                                PSOV.TotalBags -= PSOHP.TotalBags;
+                        }
+                    }
+
                 }
             }
+            count = lstPaddyStockOverViewDTO.Count;
             return lstPaddyStockOverViewDTO;
+        }
+        public List<PaddySpentOnHullingProcessDTO> GetTotalPaddySpentOnHullingProcess()
+        {
+            PaddySpentOnHullingProcessDTO objPaddySpentOnHullingProcessDTO = null;
+            List<PaddySpentOnHullingProcessDTO> lstObjPaddySpentOnHullingProcessDTO = null;
+            List<PaddySpentOnHullingProcessDTO> lstnewObjPaddySpentOnHullingProcessDTO = null;
+            List<HullingProcessEntity> listHullingProcessExpensesEntity = imp.GetAllHullingProcessPaddySpent(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listHullingProcessExpensesEntity != null && listHullingProcessExpensesEntity.Count > 0)
+            {
+                lstObjPaddySpentOnHullingProcessDTO = new List<PaddySpentOnHullingProcessDTO>();
+                foreach (HullingProcessEntity objHullingProcessEntity in listHullingProcessExpensesEntity)
+                {
+                    objPaddySpentOnHullingProcessDTO = new PaddySpentOnHullingProcessDTO();
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objHullingProcessEntity.PaddyTypeID, YesNo.Null);
+                    if (objMPaddyTypeEntity != null)
+                        objPaddySpentOnHullingProcessDTO.PaddyName = objMPaddyTypeEntity.Name;
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objHullingProcessEntity.MGodownID, YesNo.Null);
+                    if (objMGodownDetailsEntity != null)
+                        objPaddySpentOnHullingProcessDTO.GodownName = objMGodownDetailsEntity.Name;
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objHullingProcessEntity.MLotID, YesNo.Null);
+                    if (objMLotDetailsEntity != null)
+                        objPaddySpentOnHullingProcessDTO.LotName = objMLotDetailsEntity.LotName;
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objHullingProcessEntity.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                        objPaddySpentOnHullingProcessDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+
+                    objPaddySpentOnHullingProcessDTO.TotalBags = objHullingProcessEntity.TotalBags;
+                    lstObjPaddySpentOnHullingProcessDTO.Add(objPaddySpentOnHullingProcessDTO);
+                }
+                if (lstObjPaddySpentOnHullingProcessDTO != null && lstObjPaddySpentOnHullingProcessDTO.Count > 0)
+                {
+                    
+                    var result1 = lstObjPaddySpentOnHullingProcessDTO.
+                            GroupBy(ac => new
+                            {
+                                ac.PaddyName,
+                                ac.GodownName,
+                                ac.LotName,
+                                ac.UnitName
+                            })
+                        .Select(ac => new PaddySpentOnHullingProcessDTO
+                        {
+                            PaddyName = ac.Key.PaddyName,
+                            GodownName = ac.Key.GodownName,
+                            LotName = ac.Key.LotName,
+                            UnitName = ac.Key.UnitName,
+                            TotalBags = ac.Sum(acs => acs.TotalBags)
+                        });
+                    lstnewObjPaddySpentOnHullingProcessDTO = new List<PaddySpentOnHullingProcessDTO>();
+                    foreach (var res in result1)
+                    {
+                        PaddySpentOnHullingProcessDTO PSO = new PaddySpentOnHullingProcessDTO();
+                        PSO.PaddyName = res.PaddyName;
+                        PSO.GodownName = res.GodownName;
+                        PSO.LotName = res.LotName;
+                        PSO.UnitName = res.UnitName;
+                        PSO.TotalBags = res.TotalBags;
+                        lstnewObjPaddySpentOnHullingProcessDTO.Add(PSO);
+                    }
+                }
+            }
+            return lstnewObjPaddySpentOnHullingProcessDTO;
         }
     }
 }

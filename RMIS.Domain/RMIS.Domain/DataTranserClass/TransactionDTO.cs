@@ -153,6 +153,20 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime ProcessDate { get; set; }
         public string Status { get; set; }
     }
+    public class PaddySpentOnHullingProcessDTO
+    {
+        public PaddySpentOnHullingProcessDTO()
+        {
+            PaddyName = LotName = GodownName = UnitName = string.Empty;
+            TotalBags = 0.0;
+        }
+        public string PaddyName { get; set; }
+        public string GodownName { get; set; }
+        public string LotName { get; set; }
+        public string UnitName { get; set; }
+        public double TotalBags { get; set; }
+
+    }
     public class WidgetDTO
     {
         public WidgetDTO()
