@@ -123,5 +123,7 @@ namespace RMIS.Domain.Business
         double GetBagTotalAmountDueBySeller(string SellerID);
 
         List<PaddyStockOverViewDTO> GetPaddyStockOverViewDTO(int PageIndex, int PageSize, out int count, SortExpression expression);
+
+        List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }

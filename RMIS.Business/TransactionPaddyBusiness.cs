@@ -2168,5 +2168,58 @@ namespace RMIS.Business
             }
             return lstnewObjPaddySpentOnHullingProcessDTO;
         }
+
+
+        public List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+
+            List<PaddyStockDTO> listPaddyStockDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                listPaddyStockDTO = new List<PaddyStockDTO>();
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                {
+                    PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
+                    objPaddyStockDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID, YesNo.Null);
+                    if (objMGodownDetailsEntity != null)
+                    {
+                        objPaddyStockDTO.GodownName = objMGodownDetailsEntity.Name;
+                    }
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID, YesNo.Null);
+                    if (objMLotDetailsEntity != null)
+                    {
+                        objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
+                    }
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyStockInfoEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID, YesNo.Null);
+                    if (objMPaddyTypeEntity != null)
+                    {
+                        objPaddyStockDTO.PaddyName = objMPaddyTypeEntity.Name;
+                    }
+
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                    {
+                        objPaddyStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+                    }
+
+                    objPaddyStockDTO.DriverName = objPaddyStockInfoEntity.DriverName;
+                    objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
+                    objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
+                    objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
+                    listPaddyStockDTO.Add(objPaddyStockDTO);
+                }
+            }
+
+            return listPaddyStockDTO;
+        }
     }
 }

@@ -27,29 +27,47 @@ public partial class RPT_PaddyStockReport : BaseUserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        base.Header = "Paddy Stock Purchase Details";
         if (!IsControlPostBack)
         {
-            ReportViewer1.ProcessingMode = ProcessingMode.Local;
 
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            int count;
-            List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockDTO(0, 1000, out count, SortExpression.Desc);
-
-            if (listPaddyStockDTO != null && listPaddyStockDTO.Count > 0)
-            {
-                ReportDataSource datasource = new ReportDataSource("PaddyStock", CollectionHelper.ConvertTo<PaddyStockDTO>(listPaddyStockDTO));
-
-                ReportViewer1.AsyncRendering = false;
-
-                ReportViewer1.LocalReport.DataSources.Clear();
-
-                ReportViewer1.LocalReport.DataSources.Add(datasource);
-
-                ReportViewer1.LocalReport.Refresh();
-               
-
-            }
+            List<PaddyStockDTO> listPaddyStockDTO = GetAllPaddyStock();
+            BindReport(listPaddyStockDTO);
         }
     }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        int count;
+        List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockPurchaseDTO(txtsellername.SelectedValue, 0, 1000, out count, SortExpression.Desc);
+        BindReport(listPaddyStockDTO);
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        txtsellername.Text = string.Empty;
+        List<PaddyStockDTO> lstpaddystockDTO = GetAllPaddyStock();
+        BindReport(lstpaddystockDTO);
+    }
+    private List<PaddyStockDTO> GetAllPaddyStock()
+    {
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        int count;
+        List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockDTO(0, 1000, out count, SortExpression.Desc);
+        return listPaddyStockDTO;
+    }
+    private void BindReport(List<PaddyStockDTO> listPaddyStockDTO)
+    {
+        ReportViewer1.ProcessingMode = ProcessingMode.Local;
+        if (listPaddyStockDTO != null && listPaddyStockDTO.Count > 0)
+        {
+            ReportDataSource datasource = new ReportDataSource("PaddyStock", CollectionHelper.ConvertTo<PaddyStockDTO>(listPaddyStockDTO));
 
+            ReportViewer1.AsyncRendering = false;
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.Refresh();
+
+
+        }
+    }
 }

@@ -277,6 +277,8 @@ namespace RMIS.Domain.Mediator
         double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo);
 
         List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo);
+
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }
