@@ -65,6 +65,7 @@ public partial class RPT_PaddyStockReport : BaseUserControl
             ReportViewer1.AsyncRendering = false;
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+
             ReportViewer1.LocalReport.Refresh();
 
 
