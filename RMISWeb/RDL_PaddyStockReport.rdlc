@@ -741,6 +741,20 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>PaddyStock</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!SellerName.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!GodownName.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!LotName.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!UnitName.Value</Value>
+          </SortExpression>
+        </SortExpressions>
         <Top>0.71333in</Top>
         <Height>0.5in</Height>
         <Width>10in</Width>

@@ -5,7 +5,7 @@
 <div class="table-responsive">
     <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
         CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
+        <ajaxToolkit:TabPanel runat="server" ID="TabPanelPaddyStock1">
             <HeaderTemplate>
                 Paddy Stock
             </HeaderTemplate>
@@ -129,15 +129,14 @@
                             <table>
                                 <tr>
                                     <asp:PagingGridView ID="gvPaddyStockOverview" runat="server" OnPageIndexChanging="gvPaddyStockOverview_PageIndexChanging"
-                                         AllowPaging="True" AutoGenerateColumns="false" AllowSorting="true"
-                                        OnSorting="gvPaddyStockOverview_Sorting" CssClass="table table-hover table-striped"
-                                        AlternatingRowStyle-Font-Bold="true">
+                                        AllowPaging="True" AutoGenerateColumns="false" AllowSorting="true" OnSorting="gvPaddyStockOverview_Sorting"
+                                        CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
                                         <Columns>
                                             <asp:BoundField DataField="PaddyName" SortExpression="PaddyName" HeaderText="Paddy Name" />
                                             <asp:BoundField DataField="GodownName" SortExpression="GodownName" HeaderText="Godown Name" />
                                             <asp:BoundField DataField="LotName" SortExpression="LotName" HeaderText="Lot Name" />
                                             <asp:BoundField DataField="UnitName" SortExpression="UnitName" HeaderText="Unit Name" />
-                                            <asp:BoundField DataField="TotalBags" SortExpression="TotalBags" HeaderText="Total Bags" />                                            
+                                            <asp:BoundField DataField="TotalBags" SortExpression="TotalBags" HeaderText="Total Bags" />
                                         </Columns>
                                     </asp:PagingGridView>
                                     <td>
@@ -149,7 +148,7 @@
                 </table>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
+        <ajaxToolkit:TabPanel ID="TabPanelPaddyStock2" runat="server">
             <HeaderTemplate>
                 Paddy Payment
             </HeaderTemplate>
@@ -270,7 +269,7 @@
                 </table>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
+        <ajaxToolkit:TabPanel ID="TabPanelPaddyStock3" runat="server">
             <HeaderTemplate>
                 Paddy Stock Details
             </HeaderTemplate>

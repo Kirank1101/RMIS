@@ -3,9 +3,9 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
-    <ajaxToolkit:TabContainer ID="TabBagStockInfo" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
-        CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanel1">
+    <ajaxToolkit:TabContainer ID="TabBagStockInfo" runat="server" ActiveTabIndex="0"
+        ScrollBars="Auto" CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <ajaxToolkit:TabPanel runat="server" ID="TabPanelBagStock1">
             <HeaderTemplate>
                 Bag Stock
             </HeaderTemplate>
@@ -99,7 +99,7 @@
                 </table>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
-                <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
+        <ajaxToolkit:TabPanel ID="TabPanelBagStock2" runat="server">
             <HeaderTemplate>
                 Bag Payment
             </HeaderTemplate>
@@ -219,7 +219,7 @@
                 </table>
             </ContentTemplate>
         </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanel2">
+        <ajaxToolkit:TabPanel runat="server" ID="TabPanelBagStock3">
             <HeaderTemplate>
                 Bag Stock Details
             </HeaderTemplate>
