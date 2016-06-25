@@ -10,13 +10,13 @@
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
                     Height="550px" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana"
                     WaitMessageFont-Size="14pt" Width="100%">
-                    <LocalReport ReportPath="RDL_PaddyPaymentReport.rdlc">
+                    <LocalReport ReportPath="RDL_PaadyPaymentDueReport.rdlc">
                         <DataSources>
                             <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="PaddyPaymentDue" />
                         </DataSources>
                     </LocalReport>
                 </rsweb:ReportViewer>
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="PaddyStockDataSetTableAdapters.">
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="PaddyPaymentDueDataSetTableAdapters.">
                 </asp:ObjectDataSource>
             </td>
         </tr>

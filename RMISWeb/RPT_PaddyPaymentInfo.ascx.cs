@@ -44,7 +44,8 @@ public partial class RPT_PaddyPaymentInfo : BaseUserControl
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
         if (listPaddyPaymentDTO != null && listPaddyPaymentDTO.Count > 0)
         {
-            ReportDataSource datasource = new ReportDataSource("PaddyPayment", CollectionHelper.ConvertTo<PaddyPaymentDTO>(listPaddyPaymentDTO));
+            ReportDataSource datasource = null;
+            datasource= new ReportDataSource("PaddyPayment", CollectionHelper.ConvertTo<PaddyPaymentDTO>(listPaddyPaymentDTO));
 
             ReportViewer1.AsyncRendering = false;
             ReportViewer1.LocalReport.DataSources.Clear();

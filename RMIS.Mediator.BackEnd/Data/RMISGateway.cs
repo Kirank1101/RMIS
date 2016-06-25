@@ -4339,7 +4339,7 @@
                                                                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    ).AddOrder(Order.Desc("PaidDate"));
                 List<PaddyPaymentDetails> listPaddyPaymentDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyPaymentDetails>;
-                if (listPaddyPaymentDetailsEntity != null && listPaddyPaymentDetailsEntity.Count > 0)
+                if (listPaddyPaymentDetails != null && listPaddyPaymentDetails.Count > 0)
                 {
                     foreach (PaddyPaymentDetails adMInfo in listPaddyPaymentDetails)
                     {

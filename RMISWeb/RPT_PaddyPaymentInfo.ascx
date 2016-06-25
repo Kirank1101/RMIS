@@ -36,7 +36,7 @@
                     </DataSources>
                 </LocalReport>
             </rsweb:ReportViewer>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="PaddyStockDataSetTableAdapters.">
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="PaddyPaymentDataSetTableAdapters.">
             </asp:ObjectDataSource>
         </td>
     </tr>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PaddyPaymentDueDataSet" targetNamespace="http://tempuri.org/PaddyPaymentDueDataSet.xsd" xmlns:mstns="http://tempuri.org/PaddyPaymentDueDataSet.xsd" xmlns="http://tempuri.org/PaddyPaymentDueDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PaddyPaymentDueDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PaddyPaymentDueDataSet" msprop:Generator_UserDSName="PaddyPaymentDueDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PaddyPaymentDue" msprop:Generator_TableClassName="PaddyPaymentDueDataTable" msprop:Generator_TableVarName="tablePaddyPaymentDue" msprop:Generator_TablePropName="PaddyPaymentDue" msprop:Generator_RowDeletingName="PaddyPaymentDueRowDeleting" msprop:Generator_RowChangingName="PaddyPaymentDueRowChanging" msprop:Generator_RowEvHandlerName="PaddyPaymentDueRowChangeEventHandler" msprop:Generator_RowDeletedName="PaddyPaymentDueRowDeleted" msprop:Generator_UserTableName="PaddyPaymentDue" msprop:Generator_RowChangedName="PaddyPaymentDueRowChanged" msprop:Generator_RowEvArgName="PaddyPaymentDueRowChangeEvent" msprop:Generator_RowClassName="PaddyPaymentDueRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SellerName" msprop:Generator_ColumnVarNameInTable="columnSellerName" msprop:Generator_ColumnPropNameInRow="SellerName" msprop:Generator_ColumnPropNameInTable="SellerNameColumn" msprop:Generator_UserColumnName="SellerName" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_UserColumnName="TotalAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmountPaid" msprop:Generator_ColumnVarNameInTable="columnTotalAmountPaid" msprop:Generator_ColumnPropNameInRow="TotalAmountPaid" msprop:Generator_ColumnPropNameInTable="TotalAmountPaidColumn" msprop:Generator_UserColumnName="TotalAmountPaid" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmountDue" msprop:Generator_ColumnVarNameInTable="columnTotalAmountDue" msprop:Generator_ColumnPropNameInRow="TotalAmountDue" msprop:Generator_ColumnPropNameInTable="TotalAmountDueColumn" msprop:Generator_UserColumnName="TotalAmountDue" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

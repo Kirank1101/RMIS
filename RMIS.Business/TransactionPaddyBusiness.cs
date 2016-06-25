@@ -2281,7 +2281,7 @@ namespace RMIS.Business
             {
                 var result1 = listPaddyStockInfoEntity.
                                 GroupBy(ac => new { ac.SellerID })
-                                .Select(ac => new PaddyPaymentDueDTO { TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
+                                .Select(ac => new PaddyPaymentDueDTO { SellerID = ac.Key.SellerID,TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
 
                 List<SellerInfoEntity> lstSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), YesNo.Null);
 

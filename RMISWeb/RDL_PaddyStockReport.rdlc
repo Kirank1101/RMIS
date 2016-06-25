@@ -680,7 +680,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -883,7 +882,7 @@
         </SortExpressions>
         <Top>0.1925in</Top>
         <Left>0.19792in</Left>
-        <Height>0.57292in</Height>
+        <Height>0.57291in</Height>
         <Width>10.22917in</Width>
         <Style>
           <Border>
