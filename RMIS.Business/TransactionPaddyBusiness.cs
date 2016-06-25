@@ -2302,5 +2302,55 @@ namespace RMIS.Business
             }
             return listPaddyPaymentDueDTO;
         }
+
+
+        public List<BagStockDTO> GetBagStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+
+            List<BagStockDTO> listBagStockDTO = null;
+            List<BagStockInfoEntity> listBagStockInfoEntity = imp.GetBagStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listBagStockInfoEntity != null && listBagStockInfoEntity.Count > 0)
+            {
+                listBagStockDTO = new List<BagStockDTO>();
+                foreach (BagStockInfoEntity objBagStockInfoEntity in listBagStockInfoEntity)
+                {
+                    BagStockDTO objBagStockDTO = new BagStockDTO();
+                    objBagStockDTO.Id = objBagStockInfoEntity.BagStockID;
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objBagStockInfoEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objBagStockDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    //MBagTypeEntity objMbagtypeEntity = imp.GetMBagTypeEntity(objBagStockInfoEntity.BagTypeID, YesNo.Null);
+                    //if (objMbagtypeEntity != null)
+                    //{
+                    //    objBagStockDTO.TypeBrand = objMbagtypeEntity.BagType;
+                    //    if (objBagStockInfoEntity.MRiceBrandID != null)
+                    //    {
+                    MRiceBrandDetailsEntity objMRiceBrandEntity = imp.GetMRiceBrandDetailsEntity(objBagStockInfoEntity.MRiceBrandID, YesNo.Null);
+                    if (objMRiceBrandEntity != null)
+                    {
+                        objBagStockDTO.TypeBrand += objMRiceBrandEntity.Name;
+                    }
+                    //    }
+                    //}
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objBagStockInfoEntity.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                    {
+                        objBagStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+                    }
+
+                    objBagStockDTO.VehicalNo = objBagStockInfoEntity.VehicalNo;
+                    objBagStockDTO.DriverName = objBagStockInfoEntity.DriverName;
+                    objBagStockDTO.Price = objBagStockInfoEntity.Price;
+                    objBagStockDTO.PurchaseDate = objBagStockInfoEntity.PurchaseDate;
+                    objBagStockDTO.TotalBags = objBagStockInfoEntity.TotalBags;
+                    objBagStockDTO.TotalAmount = objBagStockInfoEntity.TotalBags * objBagStockInfoEntity.Price;
+                    listBagStockDTO.Add(objBagStockDTO);
+                }
+            }
+
+            return listBagStockDTO;            
+        }
     }
 }

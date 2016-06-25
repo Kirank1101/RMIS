@@ -4357,5 +4357,44 @@
                 throw;
             }
         }
+
+        internal List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<BagStockInfoEntity> listBagStockInfoEntity = new List<BagStockInfoEntity>();
+                IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("SellerID", SellerID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("BagStockID"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("BagStockID"));
+                List<BagStockInfo> listBagStockInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<BagStockInfo>;
+                if (listBagStockInfo != null && listBagStockInfo.Count > 0)
+                {
+                    foreach (BagStockInfo adMInfo in listBagStockInfo)
+                    {
+                        listBagStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listBagStockInfoEntity = null;
+
+                return listBagStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagStockInfoEntity by sellerid", ex);
+                throw;
+            }
+        }
     }
 }

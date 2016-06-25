@@ -1387,5 +1387,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetSellerInfoEntities(CustId, yesNo);
         }
+
+
+        public List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetBagStockInfoEntity(CustId, SellerID, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
     }
 }
