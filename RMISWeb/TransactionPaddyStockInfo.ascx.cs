@@ -76,7 +76,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
             ddlLotDetails.DataValueField = "Id";
             ddlLotDetails.DataBind();
         }
-        TabContainer1.ActiveTabIndex = 0;
+        TabContainer1.ActiveViewIndex = 0;
     }
 
     protected void btnSellerDetails_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         //if (isvalidSeller.IsSuccess)
         //{
             txtTotalAmountDue.Text = Convert.ToString(impt.GetPaddyTotalAmountDueBySeller(TextBoxAutoExtender2.SelectedValue));
-            TabContainer1.ActiveTabIndex = 1;
+            TabContainer1.ActiveViewIndex = 1;
         //}
         //else {
         //    SetMessage(isvalidSeller);
@@ -117,10 +117,30 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ClearAllPaddyPaymentFields();
-            TabContainer1.ActiveTabIndex = 1;
+            TabContainer1.ActiveViewIndex  = 1;
         }
         SetMessage(resultDto);
     }
+
+    protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+    {
+        TabContainer1.ActiveViewIndex = Int32.Parse(e.Item.Value);
+        int i = 0;
+        //Make the selected menu item reflect the correct imageurl
+        for (i = 0; i <= MenuPaddyStock.Items.Count - 1; i++)
+        {
+            if (i == Int32.Parse(e.Item.Value))
+            {
+                MenuPaddyStock.Items[i].Selected = true;            
+
+            }
+            else
+            {
+                MenuPaddyStock.Items[i].Selected = false;
+            }
+        }
+    }
+
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -155,7 +175,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     {
         rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
         bindPaddyStockInfo();
-        TabContainer1.ActiveTabIndex = 2;
+        TabContainer1.ActiveViewIndex = 2;
     }
 
     protected void rptPaddyStockInfo_Sorting(object sender, GridViewSortEventArgs e)
@@ -165,7 +185,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         else if (expression == SortExpression.Desc)
             expression = SortExpression.Asc;
         bindPaddyStockInfo();
-        TabContainer1.ActiveTabIndex = 2;
+        TabContainer1.ActiveViewIndex = 2;
     }
 
     protected void gvPaddyStockOverview_PageIndexChanging(object sender, GridViewPageEventArgs e)

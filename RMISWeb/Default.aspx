@@ -49,9 +49,7 @@
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" LoadScriptsBeforeUI="true"  EnablePartialRendering="true" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx"
-        >
-
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"  CombineScripts="true" >
         <Services>
     <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
      <asp:ServiceReference Path="~/AutoComplete.asmx" />
@@ -60,8 +58,7 @@
 
 
 
- 
-
+    
 
 
    
@@ -70,7 +67,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="Default.aspx" class="site_title"><i class="fa fa-paw"></i><span>RMIS!</span></a>
+                        <a href="#"  onclick="changeControlSample('DashBoard.ascx');" class="site_title"><i class="fa fa-paw"></i><span>RMIS!</span></a>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -230,8 +227,8 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"  DisplayLoadingAfter="500" InitialRenderBehaviour="Serverside"
-                       EncryptUserControlPath="false">
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"  DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" 
+                       EncryptUserControlPath="false" >
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
                                 <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />

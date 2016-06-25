@@ -147,10 +147,28 @@ public partial class ProductSellingInfo : BaseUserControl
         lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
         rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
         rptBuyerPaymentDue.DataBind();
-        TabSellingInfo.ActiveTabIndex = 1;
-
-
+        TabSellingInfo.ActiveViewIndex = 1;
     }
+
+    protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+    {
+        TabSellingInfo.ActiveViewIndex = Int32.Parse(e.Item.Value);
+        int i = 0;
+        //Make the selected menu item reflect the correct imageurl
+        for (i = 0; i <= MenuProductSelling.Items.Count - 1; i++)
+        {
+            if (i == Int32.Parse(e.Item.Value))
+            {
+                MenuProductSelling.Items[i].Selected = true;
+
+            }
+            else
+            {
+                MenuProductSelling.Items[i].Selected = false;
+            }
+        }
+    }
+
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
@@ -219,7 +237,7 @@ public partial class ProductSellingInfo : BaseUserControl
                 SetMessage(resultDto);
             }
         }
-        TabSellingInfo.ActiveTabIndex = 1;
+        TabSellingInfo.ActiveViewIndex = 1;
     }
 
     private void ClearAllPaymentInputFields()
@@ -238,7 +256,7 @@ public partial class ProductSellingInfo : BaseUserControl
     protected void btnCancel_click(object sender, EventArgs e)
     {
         ClearAllPaymentInputFields();
-        TabSellingInfo.ActiveTabIndex = 1;
+        TabSellingInfo.ActiveViewIndex = 1;
     }
 
     protected void rptBuyerPaymentDue_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -249,7 +267,7 @@ public partial class ProductSellingInfo : BaseUserControl
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
             txtTotalProductCost.Text = row.Cells[2].Text;
             hfProdPaymentID.Value = rptBuyerPaymentDue.DataKeys[rowindex].Value.ToString();
-            TabSellingInfo.ActiveTabIndex = 1;
+            TabSellingInfo.ActiveViewIndex = 1;
         }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)

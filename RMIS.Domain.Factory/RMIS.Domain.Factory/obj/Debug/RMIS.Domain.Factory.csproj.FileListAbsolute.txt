@@ -25,6 +25,6 @@ C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Facto
 C:\Users\Nagavardhan\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Factory\obj\Debug\RMIS.Domain.Factory.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.Factory.dll
 C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.Factory.pdb
-C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Factory\obj\Debug\RMIS.Domain.Factory.csprojResolveAssemblyReference.cache
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Factory\obj\Debug\RMIS.Domain.Factory.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Factory\obj\Debug\RMIS.Domain.Factory.pdb
+C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain.Factory\RMIS.Domain.Factory\obj\Debug\RMIS.Domain.Factory.csprojResolveAssemblyReference.cache

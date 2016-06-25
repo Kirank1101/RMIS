@@ -3,13 +3,41 @@
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
-    <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
-        CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
-        <ajaxToolkit:TabPanel runat="server" ID="TabPanelPaddyStock1">
-            <HeaderTemplate>
-                Paddy Stock
-            </HeaderTemplate>
-            <ContentTemplate>
+
+<asp:Menu
+        ID="MenuPaddyStock"
+        
+        runat="server"
+        Orientation="Horizontal"
+       
+        OnMenuItemClick="Menu1_MenuItemClick">
+       
+    <Items>
+        <asp:MenuItem   
+                      Text="Paddy Stock " Value="0"></asp:MenuItem>
+        <asp:MenuItem 
+                      Text="Paddy Payment " Value="1"></asp:MenuItem>
+        <asp:MenuItem 
+                      Text="Paddy Stock Details " Value="2"></asp:MenuItem>
+    </Items>
+    <LevelMenuItemStyles>
+
+        <asp:MenuItemStyle CssClass="main_menuTab" />
+
+        <asp:MenuItemStyle CssClass="level_menuTab" />
+
+    </LevelMenuItemStyles>
+</asp:Menu>
+
+ <asp:MultiView 
+    ID="TabContainer1"
+    runat="server"
+    ActiveViewIndex="0"  >
+   <asp:View ID="Tab1" runat="server"  >
+    
+            
+                
+            
                 <table>
                     <tr>
                         <td valign="top" style="padding-right: 70px">
@@ -146,13 +174,11 @@
                         </td>
                     </tr>
                 </table>
-            </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel ID="TabPanelPaddyStock2" runat="server">
-            <HeaderTemplate>
-                Paddy Payment
-            </HeaderTemplate>
-            <ContentTemplate>
+             </asp:View>
+    <asp:View ID="Tab2" runat="server">
+           
+               
+          
                 <table>
                     <tr>
                         <td valign="top">
@@ -267,13 +293,11 @@
                         </td>
                     </tr>
                 </table>
-            </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel ID="TabPanelPaddyStock3" runat="server">
-            <HeaderTemplate>
-                Paddy Stock Details
-            </HeaderTemplate>
-            <ContentTemplate>
+           </asp:View>
+    <asp:View ID="Tab3" runat="server">
+           
+                
+            
                 <h3>
                     Paddy Stock Details</h3>
                 <table>
@@ -299,7 +323,6 @@
                         </td>
                     </tr>
                 </table>
-            </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-    </ajaxToolkit:TabContainer>
+            </asp:View>
+</asp:MultiView>
 </div>

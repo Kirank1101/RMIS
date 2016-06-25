@@ -2,13 +2,39 @@
     Inherits="ProductSellingInfo" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="CC1" %>
-<CC1:TabContainer ID="TabSellingInfo" runat="server" ActiveTabIndex="0" ScrollBars="Auto"
-    Visible="true" CssClass="MyTabStyle" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
-    <CC1:TabPanel runat="server" ID="TabPanelProductSelling1">
-        <HeaderTemplate>
-            Product Selling Information
-        </HeaderTemplate>
-        <ContentTemplate>
+
+<asp:Menu
+        ID="MenuProductSelling"
+        
+        runat="server"
+        Orientation="Horizontal"
+       
+        OnMenuItemClick="Menu1_MenuItemClick">
+       
+    <Items>
+        <asp:MenuItem   
+                      Text="Product Selling Information " Value="0"></asp:MenuItem>
+        <asp:MenuItem 
+                      Text=" Product Payment Details" Value="1"></asp:MenuItem>
+       
+    </Items>
+    <LevelMenuItemStyles>
+
+        <asp:MenuItemStyle CssClass="main_menuTab" />
+
+        <asp:MenuItemStyle CssClass="level_menuTab" />
+
+    </LevelMenuItemStyles>
+</asp:Menu>
+
+ <asp:MultiView 
+    ID="TabSellingInfo"
+    runat="server"
+    ActiveViewIndex="0" >
+
+<asp:View ID="Tab1" runat="server"  >
+            
+       
             <h3>
                 Selling</h3>
             <table>
@@ -147,13 +173,10 @@
                     </td>
                 </tr>
             </table>
-        </ContentTemplate>
-    </CC1:TabPanel>
-    <CC1:TabPanel runat="server" ID="TabPanelProductSelling12">
-        <HeaderTemplate>
-            Product Payment Details
-        </HeaderTemplate>
-        <ContentTemplate>
+         </asp:View>
+    <asp:View ID="Tab2" runat="server">
+           
+       
             <table>
                 <tr>
                     <td valign="top" style="width: 45%">
@@ -270,6 +293,5 @@
                 </tr>
                 <asp:HiddenField ID="hfProdPaymentID" runat="server" />
             </table>
-        </ContentTemplate>
-    </CC1:TabPanel>
-</CC1:TabContainer>
+          </asp:View>
+</asp:MultiView>

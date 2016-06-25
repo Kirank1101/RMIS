@@ -15,6 +15,26 @@ public partial class BagStockInfo : BaseUserControl
 
     }
 
+    protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+    {
+        TabBagStockInfo.ActiveViewIndex = Int32.Parse(e.Item.Value);
+        int i = 0;
+        //Make the selected menu item reflect the correct imageurl
+        for (i = 0; i <= MenuBagStock.Items.Count - 1; i++)
+        {
+            if (i == Int32.Parse(e.Item.Value))
+            {
+                MenuBagStock.Items[i].Selected = true;
+
+            }
+            else
+            {
+                MenuBagStock.Items[i].Selected = false;
+            }
+        }
+    }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Header = "Add Bag Stock";
@@ -98,7 +118,7 @@ public partial class BagStockInfo : BaseUserControl
         //if (isvalidSeller.IsSuccess)
         //{
         txtTotalAmountDue.Text = Convert.ToString(impt.GetBagTotalAmountDueBySeller(txtpaymentSellerName.SelectedValue));
-        TabBagStockInfo.ActiveTabIndex = 1;
+        TabBagStockInfo.ActiveViewIndex = 1;
         //}
         //else {
         //    SetMessage(isvalidSeller);
@@ -111,7 +131,7 @@ public partial class BagStockInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ClearAllBagPaymentFields();
-            TabBagStockInfo.ActiveTabIndex = 1;
+            TabBagStockInfo.ActiveViewIndex = 1;
         }
         SetMessage(resultDto);
     }

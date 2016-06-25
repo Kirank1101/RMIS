@@ -4998,3 +4998,53 @@ ul.notifications {
         color: #000;
         border-color: #333;
     }
+    
+    .main_menuTab
+
+    {
+
+        width: 100px;
+
+        background-color: #8AE0F2;
+
+        color: #000;
+
+        text-align: center;
+
+        height: 60px;
+
+        line-height: 60px;
+
+        margin-right: 5px;
+
+    }
+
+    .level_menuTab
+
+    {
+
+        width: 110px;
+
+        background-color: #000;
+
+        color: #fff;
+
+        text-align: center;
+
+        height: 60px;
+
+        line-height: 60px;
+
+        margin-top: 5px;
+
+    }
+
+    .selected
+
+    {
+
+        background-color: #852B91;
+
+        color: #fff;
+
+    }
