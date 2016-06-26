@@ -97,7 +97,8 @@ namespace RMIS.CustomControls
             txtBox.Height = Unit.Pixel(20);
             this.Controls.Add(txtBox);
             txtBox.Text = "0.00";
-            fltTextBox = new MaskedEditExtender();
+            fltTextBox = new MaskedEditExtender();            
+            fltTextBox.ClearMaskOnLostFocus = true;    
             fltTextBox.ID = "fltTextBox" + this.ID;
             fltTextBox.MaskType = MaskedEditType.Number;
             fltTextBox.Mask = Mask;

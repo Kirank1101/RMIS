@@ -2092,6 +2092,7 @@ namespace RMIS.Business
                     }
 
                     List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
+                    if(lstPSOHPDTO!=null)
                     foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
                     {
                         foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
