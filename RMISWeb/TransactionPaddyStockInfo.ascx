@@ -133,7 +133,7 @@
                                         <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBoxDecimalExtender ID="txtPrice" runat="server" Mask="99,999.99"></asp:TextBoxDecimalExtender>
+                                        <asp:TextBoxDecimalExtender ID="txtPrice" runat="server" Mask="999.99"></asp:TextBoxDecimalExtender>
                                     </td>
                                 </tr>
                                 <tr>

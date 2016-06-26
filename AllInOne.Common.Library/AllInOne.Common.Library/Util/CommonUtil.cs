@@ -226,6 +226,7 @@ namespace AllInOne.Common.Library.Util
         {
             if (string.IsNullOrEmpty(prefixText))
                 return 0;
+            prefixText = prefixText.Replace("_", "").Replace(",", "");
             int value = 0;
             Int32.TryParse(prefixText, out value);
             return value;
@@ -234,6 +235,7 @@ namespace AllInOne.Common.Library.Util
         {
             if (string.IsNullOrEmpty(prefixText))
                 return 0;
+            prefixText=prefixText.Replace("_", "").Replace(",","");
             double value = 0;
             double.TryParse(prefixText, out value);
             return Math.Round(value, 2, MidpointRounding.ToEven);

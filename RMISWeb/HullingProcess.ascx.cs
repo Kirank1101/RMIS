@@ -175,20 +175,20 @@ public partial class HullingProcess : BaseUserControl
     {
         List<BrokenRiceStockDetailsDTO> lstBRSD = VststateBrokenRiceStockDetail;
         List<RiceStockDetailsDTO> lstRSD = ViewStateRiceStockDetail;
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(
-            lstRSD.Count,lstBRSD.Count, 
-            ddlRiceType.SelectedIndex, 
-            ddlBRType.SelectedIndex, 
-            ddlriceUnittype.SelectedIndex, 
-            ddlBRUnitsType.SelectedIndex, 
-            ddlDustUnitsType.SelectedIndex, 
-            txtricetotalbags.Text, 
-            txtBRTotalBags.Text, 
-            txtDustTotalBags.Text, 
-            txtBRPriceperbag.Text, 
-            txtDustPriceperbag.Text,ddlRiceBrand.SelectedIndex);
-        if (resultDto.IsSuccess)
-        {
+        ResultDTO resultDto =null;// BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcessTrans(
+        //    lstRSD.Count,lstBRSD.Count, 
+        //    ddlRiceType.SelectedIndex, 
+        //    ddlBRType.SelectedIndex, 
+        //    ddlriceUnittype.SelectedIndex, 
+        //    ddlBRUnitsType.SelectedIndex, 
+        //    ddlDustUnitsType.SelectedIndex, 
+        //    txtricetotalbags.Text, 
+        //    txtBRTotalBags.Text, 
+        //    txtDustTotalBags.Text, 
+        //    txtBRPriceperbag.Text, 
+        //    txtDustPriceperbag.Text,ddlRiceBrand.SelectedIndex);
+        //if (resultDto.IsSuccess)
+        //{
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             lstBRSD = GetBrokenRiceStockDetails();
             lstRSD = GetRiceStockDetails();
@@ -196,11 +196,11 @@ public partial class HullingProcess : BaseUserControl
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFieldsOnSaveAndClose();
-        }
-        else
-        {
-            SetMessage(resultDto);
-        }
+        //}
+        //else
+        //{
+        //    SetMessage(resultDto);
+        //}
     }
     protected void rptBrokenRiceDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

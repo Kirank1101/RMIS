@@ -49,7 +49,7 @@
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"  CombineScripts="true" >
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"  CombineScripts="false" >
         <Services>
     <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
      <asp:ServiceReference Path="~/AutoComplete.asmx" />
