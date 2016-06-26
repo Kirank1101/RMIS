@@ -2103,6 +2103,7 @@ namespace RMIS.Business
 
                 }
             }
+            if(lstPaddyStockOverViewDTO!=null)
             count = lstPaddyStockOverViewDTO.Count;
             return lstPaddyStockOverViewDTO;
         }
