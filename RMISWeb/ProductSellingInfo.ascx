@@ -113,7 +113,8 @@
                             style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtTotalBags" />
+                        
+                         <asp:TextBoxIntegerExtender ID="txtTotalBags" runat="server" MaxLength="3"></asp:TextBoxIntegerExtender>
                     </td>
                 </tr>
                 <tr>
@@ -122,7 +123,9 @@
                             style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtprice" />
+                     
+                        <asp:TextBoxDecimalExtender ID="txtprice"  ForeColor="Red"
+                                        runat="server"></asp:TextBoxDecimalExtender>
                     </td>
                 </tr>
                 <tr>
@@ -131,7 +134,8 @@
                             style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtSellingDate" />
+                        
+                         <asp:TextBoxDatenTimeExtender ID="txtSellingDate" runat="server"></asp:TextBoxDatenTimeExtender>
                     </td>
                 </tr>
                 <tr>
@@ -239,7 +243,8 @@
                                     <asp:Label runat="server" ID="lbltotalamountDue" Text="<%$Resources:Resource,TotalAmountDue%>"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtTotalProductCost" ReadOnly="true" ForeColor="Red" />
+                                   
+                                     <asp:TextBoxDecimalExtender ID="txtTotalProductCost" runat="server" ReadOnly="true" ForeColor="Red" />
                                 </td>
                             </tr>
                             <tr>
@@ -248,7 +253,8 @@
                                         style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtReceivedAmount" />
+                                    
+                                      <asp:TextBoxDecimalExtender ID="txtReceivedAmount" runat="server"  />
                                 </td>
                             </tr>
                             <tr>
@@ -256,7 +262,8 @@
                                     <asp:Label runat="server" ID="lblBalanceAmount" Text="<%$Resources:Resource,BalanceAmount%>"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtBalanceAmount" />
+                                    
+                                      <asp:TextBoxDecimalExtender ID="txtBalanceAmount" runat="server" />
                                 </td>
                             </tr>
                             <tr>
@@ -265,7 +272,8 @@
                                         style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtNextPaymentDate" />
+                                    
+                                     <asp:TextBoxDatenTimeExtender ID="txtNextPaymentDate" runat="server"></asp:TextBoxDatenTimeExtender>
                                 </td>
                             </tr>
                             <tr>
