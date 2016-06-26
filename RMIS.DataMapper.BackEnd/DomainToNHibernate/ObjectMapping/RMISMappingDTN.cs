@@ -1014,6 +1014,28 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                 throw;
             }
         }
+
+        internal void MapMessageInfoEntityToMessageInfo()
+        {
+            try
+            {
+                Mapper.CreateMap<MessageInfoEntity, MessageInfo>()
+                    .ForMember(dest => dest.MessageTypeID, opts => opts.MapFrom(src => src.MessageTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.MessageCode, opts => opts.MapFrom(src => src.MessageCode))
+                    .ForMember(dest => dest.Message, opts => opts.MapFrom(src => src.Message))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    ;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMBagTypeEntityToMBagType", ex);
+                throw;
+            }
+        }
         
     }
 }

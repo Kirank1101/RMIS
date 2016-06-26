@@ -45,6 +45,28 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return mBagTypeEntity;
         }
+
+
+
+        public static MessageInfoEntity GetMessageInfoEntity(MessageInfo messageInfo)
+        {
+            MessageInfoEntity messageInfoEntity = null;
+
+            try
+            {
+                if (messageInfo != null)
+                {
+                    messageInfoEntity = Mapper.Map<MessageInfo, MessageInfoEntity>(messageInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMessageInfoEntity", ex);
+                throw;
+            }
+            return messageInfoEntity;
+        }
+
         public static MUnitsTypeEntity GetMUnitsTypeEntity(MUnitsType mUnitsType)
         {
             MUnitsTypeEntity mUnitsTypeEntity = null;

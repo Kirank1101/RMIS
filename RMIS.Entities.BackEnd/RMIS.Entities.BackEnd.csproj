@@ -54,6 +54,7 @@
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
     <Compile Include="Model\Entities\BagPaymentInfo.cs" />
+    <Compile Include="Model\Entities\MessageInfo.cs" />
     <Compile Include="Model\Entities\ProductPaymentTransaction.cs" />
     <Compile Include="Model\Entities\ProductPaymentInfo.cs" />
     <Compile Include="Model\Entities\EmployeeSalary.cs" />
@@ -176,6 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\BagPaymentInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\MessageInfo.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

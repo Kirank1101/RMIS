@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="RMIS.Entities.BackEnd"
+                   namespace="RMIS.Entities.BackEnd">
+
+  <class name="MessageInfo" table="[dbo].[MessageInfo]" optimistic-lock="none" >
+    <id name="MessageTypeID" column="MessageTypeID" >
+      <generator class="assigned"/>
+    </id>   
+    <property name="CustID" column="CustID" />
+    <property name="MessageCode" column="MessageCode" />
+    <property name="Message" column="Message" />   
+    <property name="ObsInd" column="ObsInd" />
+    <property name="LastModifiedBy" column="LastModifiedBy" />
+    <property name="LastModifiedDate" column="LastModifiedDate" />
+  </class>
+</hibernate-mapping>
+

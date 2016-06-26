@@ -2092,20 +2092,20 @@ namespace RMIS.Business
                     }
 
                     List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
-                    if(lstPSOHPDTO!=null)
-                    foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
-                    {
-                        foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
+                    if (lstPSOHPDTO != null)
+                        foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
                         {
-                            if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName == PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
-                                PSOV.TotalBags -= PSOHP.TotalBags;
+                            foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
+                            {
+                                if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName == PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
+                                    PSOV.TotalBags -= PSOHP.TotalBags;
+                            }
                         }
-                    }
 
                 }
             }
-            if(lstPaddyStockOverViewDTO!=null)
-            count = lstPaddyStockOverViewDTO.Count;
+            if (lstPaddyStockOverViewDTO != null)
+                count = lstPaddyStockOverViewDTO.Count;
             return lstPaddyStockOverViewDTO;
         }
         public List<PaddySpentOnHullingProcessDTO> GetTotalPaddySpentOnHullingProcess()
@@ -2283,7 +2283,7 @@ namespace RMIS.Business
             {
                 var result1 = listPaddyStockInfoEntity.
                                 GroupBy(ac => new { ac.SellerID })
-                                .Select(ac => new PaddyPaymentDueDTO { SellerID = ac.Key.SellerID,TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
+                                .Select(ac => new PaddyPaymentDueDTO { SellerID = ac.Key.SellerID, TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
 
                 List<SellerInfoEntity> lstSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), YesNo.Null);
 
@@ -2351,8 +2351,8 @@ namespace RMIS.Business
                     listBagStockDTO.Add(objBagStockDTO);
                 }
             }
-
-            return listBagStockDTO;            
+            return listBagStockDTO;
         }
+
     }
 }

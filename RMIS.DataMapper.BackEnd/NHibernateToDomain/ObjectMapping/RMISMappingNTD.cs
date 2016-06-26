@@ -42,6 +42,27 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             }
         }
 
+
+        internal void MapMessageInfoEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MessageInfo, MessageInfoEntity>()
+                    .ForMember(dest => dest.MessageTypeID, opts => opts.MapFrom(src => src.MessageTypeID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.MessageCode, opts => opts.MapFrom(src => src.MessageCode))
+                    .ForMember(dest => dest.Message, opts => opts.MapFrom(src => src.Message))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMessageInfoEntity", ex);
+                throw;
+            }
+        }
+
         internal void MapMUnitsTypeEntity()
         {
             try
