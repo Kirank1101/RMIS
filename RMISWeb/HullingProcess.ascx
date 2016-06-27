@@ -11,7 +11,8 @@
                 <span style="color: Red">*</span>
             </td>
             <td>
-                <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlPaddyType_SelectedIndexChanged"
+                    AutoPostBack="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -20,7 +21,8 @@
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlUnitsType_SelectedIndexChanged"
+                    AutoPostBack="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -39,7 +41,8 @@
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true">
+                <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlLotDetails_SelectedIndexChanged"
+                    AutoPostBack="true">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -72,6 +75,14 @@
             <td>
                 <asp:TextBoxAutoExtender ID="txtHullingProcessBy" runat="server" ServiceMethod="GetEmployeeNames">
                 </asp:TextBoxAutoExtender>
+            </td>
+        </tr>
+        <tr>
+            <td id="PaddyStockDisplay" colspan="8">
+                <h4>
+                    <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
+                    <asp:Label runat="server" ID="lblpaddyStock" ></asp:Label>
+                </h4>
             </td>
         </tr>
         <tr>
@@ -247,7 +258,6 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                       
                                         <asp:TextBoxIntegerExtender ID="txtDustTotalBags" runat="server"></asp:TextBoxIntegerExtender>
                                     </td>
                                     <td>

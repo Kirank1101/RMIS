@@ -378,4 +378,7 @@
   <data name="TotalAmountDue" xml:space="preserve">
     <value>Total Amount Due</value>
   </data>
+  <data name="PaddyStockforHulling" xml:space="preserve">
+    <value>Paddy Stock for Hulling Process:</value>
+  </data>
 </root>

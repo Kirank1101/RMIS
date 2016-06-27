@@ -2033,66 +2033,53 @@ namespace RMIS.Business
 
         public List<PaddyStockOverViewDTO> GetPaddyStockOverViewDTO(int PageIndex, int PageSize, out int count, SortExpression expression)
         {
-
-            List<PaddyStockOverViewDTO> listPaddyStockOverViewDTO = null;
             List<PaddyStockOverViewDTO> lstPaddyStockOverViewDTO = null;
-
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
-
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
-                listPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
-                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                var result1 = listPaddyStockInfoEntity.
+                                GroupBy(ac => new
+                                {
+                                    ac.PaddyTypeID,
+                                    ac.MGodownID,
+                                    ac.MLotID,
+                                    ac.UnitsTypeID
+                                })
+                            .Select(ac => new PaddyStockInfoEntity
+                            {
+                                PaddyTypeID = ac.Key.PaddyTypeID,
+                                MGodownID = ac.Key.MGodownID,
+                                MLotID = ac.Key.MLotID,
+                                UnitsTypeID = ac.Key.UnitsTypeID,
+                                TotalBags = ac.Sum(acs => acs.TotalBags)
+                            });
+                lstPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
+                foreach (var res in result1)
                 {
                     PaddyStockOverViewDTO objPaddyStockOverViewDTO = new PaddyStockOverViewDTO();
-                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID, YesNo.Null);
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(res.PaddyTypeID, YesNo.Null);
                     if (objMPaddyTypeEntity != null)
                         objPaddyStockOverViewDTO.PaddyName = objMPaddyTypeEntity.Name;
-                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID, YesNo.Null);
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(res.MGodownID, YesNo.Null);
                     if (objMGodownDetailsEntity != null)
                         objPaddyStockOverViewDTO.GodownName = objMGodownDetailsEntity.Name;
-                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID, YesNo.Null);
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(res.MLotID, YesNo.Null);
                     if (objMLotDetailsEntity != null)
                         objPaddyStockOverViewDTO.LotName = objMLotDetailsEntity.LotName;
-                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID, YesNo.Null);
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(res.UnitsTypeID, YesNo.Null);
                     if (objMUnitsTypeEntity != null)
                         objPaddyStockOverViewDTO.UnitName = objMUnitsTypeEntity.UnitsType;
 
-                    objPaddyStockOverViewDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
-                    listPaddyStockOverViewDTO.Add(objPaddyStockOverViewDTO);
+                    objPaddyStockOverViewDTO.TotalBags = res.TotalBags;
+                    lstPaddyStockOverViewDTO.Add(objPaddyStockOverViewDTO);
                 }
-                if (listPaddyStockOverViewDTO != null && listPaddyStockOverViewDTO.Count > 0)
-                {
-                    var result1 = listPaddyStockOverViewDTO.
-                            GroupBy(ac => new
-                            {
-                                ac.PaddyName,
-                                ac.GodownName,
-                                ac.LotName,
-                                ac.UnitName
-                            })
-                        .Select(ac => new PaddyStockOverViewDTO
-                            {
-                                PaddyName = ac.Key.PaddyName,
-                                GodownName = ac.Key.GodownName,
-                                LotName = ac.Key.LotName,
-                                UnitName = ac.Key.UnitName,
-                                TotalBags = ac.Sum(acs => acs.TotalBags)
-                            });
-                    lstPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
-                    foreach (var res in result1)
-                    {
-                        PaddyStockOverViewDTO PSO = new PaddyStockOverViewDTO();
-                        PSO.PaddyName = res.PaddyName;
-                        PSO.GodownName = res.GodownName;
-                        PSO.LotName = res.LotName;
-                        PSO.UnitName = res.UnitName;
-                        PSO.TotalBags = res.TotalBags;
-                        lstPaddyStockOverViewDTO.Add(PSO);
-                    }
 
+
+                if (lstPaddyStockOverViewDTO != null && lstPaddyStockOverViewDTO.Count > 0)
+                {
                     List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
                     if (lstPSOHPDTO != null)
+                    {
                         foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
                         {
                             foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
@@ -2101,74 +2088,59 @@ namespace RMIS.Business
                                     PSOV.TotalBags -= PSOHP.TotalBags;
                             }
                         }
-
+                    }
                 }
             }
-            if (lstPaddyStockOverViewDTO != null)
-                count = lstPaddyStockOverViewDTO.Count;
+            count = lstPaddyStockOverViewDTO.Count != null ? lstPaddyStockOverViewDTO.Count : 0;
             return lstPaddyStockOverViewDTO;
         }
         public List<PaddySpentOnHullingProcessDTO> GetTotalPaddySpentOnHullingProcess()
         {
-            PaddySpentOnHullingProcessDTO objPaddySpentOnHullingProcessDTO = null;
             List<PaddySpentOnHullingProcessDTO> lstObjPaddySpentOnHullingProcessDTO = null;
-            List<PaddySpentOnHullingProcessDTO> lstnewObjPaddySpentOnHullingProcessDTO = null;
             List<HullingProcessEntity> listHullingProcessExpensesEntity = imp.GetAllHullingProcessPaddySpent(provider.GetCurrentCustomerId(), YesNo.N);
             if (listHullingProcessExpensesEntity != null && listHullingProcessExpensesEntity.Count > 0)
             {
+
+                var result1 = listHullingProcessExpensesEntity.
+                        GroupBy(ac => new
+                        {
+                            ac.PaddyTypeID,
+                            ac.MGodownID,
+                            ac.MLotID,
+                            ac.UnitsTypeID
+                        })
+                    .Select(ac => new HullingProcessEntity
+                    {
+                        PaddyTypeID = ac.Key.PaddyTypeID,
+                        MGodownID = ac.Key.MGodownID,
+                        MLotID = ac.Key.MLotID,
+                        UnitsTypeID = ac.Key.UnitsTypeID,
+                        TotalBags = ac.Sum(acs => acs.TotalBags)
+                    });
                 lstObjPaddySpentOnHullingProcessDTO = new List<PaddySpentOnHullingProcessDTO>();
-                foreach (HullingProcessEntity objHullingProcessEntity in listHullingProcessExpensesEntity)
+                foreach (var res in result1)
                 {
-                    objPaddySpentOnHullingProcessDTO = new PaddySpentOnHullingProcessDTO();
-                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objHullingProcessEntity.PaddyTypeID, YesNo.Null);
+                    PaddySpentOnHullingProcessDTO objPaddySpentOnHullingProcessDTO = new PaddySpentOnHullingProcessDTO();
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(res.PaddyTypeID, YesNo.Null);
                     if (objMPaddyTypeEntity != null)
                         objPaddySpentOnHullingProcessDTO.PaddyName = objMPaddyTypeEntity.Name;
-                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objHullingProcessEntity.MGodownID, YesNo.Null);
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(res.MGodownID, YesNo.Null);
                     if (objMGodownDetailsEntity != null)
                         objPaddySpentOnHullingProcessDTO.GodownName = objMGodownDetailsEntity.Name;
-                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objHullingProcessEntity.MLotID, YesNo.Null);
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(res.MLotID, YesNo.Null);
                     if (objMLotDetailsEntity != null)
                         objPaddySpentOnHullingProcessDTO.LotName = objMLotDetailsEntity.LotName;
-                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objHullingProcessEntity.UnitsTypeID, YesNo.Null);
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(res.UnitsTypeID, YesNo.Null);
                     if (objMUnitsTypeEntity != null)
                         objPaddySpentOnHullingProcessDTO.UnitName = objMUnitsTypeEntity.UnitsType;
 
-                    objPaddySpentOnHullingProcessDTO.TotalBags = objHullingProcessEntity.TotalBags;
+                    objPaddySpentOnHullingProcessDTO.TotalBags = res.TotalBags;
                     lstObjPaddySpentOnHullingProcessDTO.Add(objPaddySpentOnHullingProcessDTO);
                 }
-                if (lstObjPaddySpentOnHullingProcessDTO != null && lstObjPaddySpentOnHullingProcessDTO.Count > 0)
-                {
 
-                    var result1 = lstObjPaddySpentOnHullingProcessDTO.
-                            GroupBy(ac => new
-                            {
-                                ac.PaddyName,
-                                ac.GodownName,
-                                ac.LotName,
-                                ac.UnitName
-                            })
-                        .Select(ac => new PaddySpentOnHullingProcessDTO
-                        {
-                            PaddyName = ac.Key.PaddyName,
-                            GodownName = ac.Key.GodownName,
-                            LotName = ac.Key.LotName,
-                            UnitName = ac.Key.UnitName,
-                            TotalBags = ac.Sum(acs => acs.TotalBags)
-                        });
-                    lstnewObjPaddySpentOnHullingProcessDTO = new List<PaddySpentOnHullingProcessDTO>();
-                    foreach (var res in result1)
-                    {
-                        PaddySpentOnHullingProcessDTO PSO = new PaddySpentOnHullingProcessDTO();
-                        PSO.PaddyName = res.PaddyName;
-                        PSO.GodownName = res.GodownName;
-                        PSO.LotName = res.LotName;
-                        PSO.UnitName = res.UnitName;
-                        PSO.TotalBags = res.TotalBags;
-                        lstnewObjPaddySpentOnHullingProcessDTO.Add(PSO);
-                    }
-                }
+
             }
-            return lstnewObjPaddySpentOnHullingProcessDTO;
+            return lstObjPaddySpentOnHullingProcessDTO;
         }
 
 
@@ -2353,6 +2325,93 @@ namespace RMIS.Business
             }
             return listBagStockDTO;
         }
+
+
+        public int GetPaddyStockOnPaddyType(string PaddyTypeID, string UnitTypeName, string GodownName, string LotName)
+        {
+            int PaddyStockCount = 0;
+            List<PaddyStockOverViewDTO> lstPaddyStockOverViewDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), PaddyTypeID, YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                var result1 = listPaddyStockInfoEntity.
+                                GroupBy(ac => new
+                                {
+                                    ac.PaddyTypeID,
+                                    ac.MGodownID,
+                                    ac.MLotID,
+                                    ac.UnitsTypeID
+                                })
+                            .Select(ac => new PaddyStockInfoEntity
+                            {
+                                PaddyTypeID = ac.Key.PaddyTypeID,
+                                MGodownID = ac.Key.MGodownID,
+                                MLotID = ac.Key.MLotID,
+                                UnitsTypeID = ac.Key.UnitsTypeID,
+                                TotalBags = ac.Sum(acs => acs.TotalBags)
+                            });
+                lstPaddyStockOverViewDTO = new List<PaddyStockOverViewDTO>();
+                foreach (var res in result1)
+                {
+                    PaddyStockOverViewDTO objPaddyStockOverViewDTO = new PaddyStockOverViewDTO();
+                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(res.PaddyTypeID, YesNo.Null);
+                    if (objMPaddyTypeEntity != null)
+                        objPaddyStockOverViewDTO.PaddyName = objMPaddyTypeEntity.Name;
+                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(res.MGodownID, YesNo.Null);
+                    if (objMGodownDetailsEntity != null)
+                        objPaddyStockOverViewDTO.GodownName = objMGodownDetailsEntity.Name;
+                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(res.MLotID, YesNo.Null);
+                    if (objMLotDetailsEntity != null)
+                        objPaddyStockOverViewDTO.LotName = objMLotDetailsEntity.LotName;
+                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(res.UnitsTypeID, YesNo.Null);
+                    if (objMUnitsTypeEntity != null)
+                        objPaddyStockOverViewDTO.UnitName = objMUnitsTypeEntity.UnitsType;
+
+                    objPaddyStockOverViewDTO.TotalBags = res.TotalBags;
+                    lstPaddyStockOverViewDTO.Add(objPaddyStockOverViewDTO);
+                }
+
+
+                if (lstPaddyStockOverViewDTO != null && lstPaddyStockOverViewDTO.Count > 0)
+                {
+                    List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
+                    lstPSOHPDTO = lstPSOHPDTO.Where(ps => ps.PaddyName == lstPaddyStockOverViewDTO[0].PaddyName).ToList();
+                    if (lstPSOHPDTO != null)
+                    {
+                        foreach (PaddySpentOnHullingProcessDTO PSOHP in lstPSOHPDTO)
+                        {
+                            foreach (PaddyStockOverViewDTO PSOV in lstPaddyStockOverViewDTO)
+                            {
+                                if (PSOHP.PaddyName == PSOV.PaddyName && PSOHP.GodownName == PSOV.GodownName && PSOHP.LotName == PSOV.LotName && PSOHP.UnitName == PSOV.UnitName)
+                                    PSOV.TotalBags -= PSOHP.TotalBags;
+                            }
+                        }
+                    }
+
+                    PaddyStockCount = lstPaddyStockOverViewDTO.Sum(a => a.TotalBags);
+                    if (!string.IsNullOrEmpty(UnitTypeName))
+                    {
+                        lstPaddyStockOverViewDTO = lstPaddyStockOverViewDTO.Where(b => b.UnitName == UnitTypeName).ToList();
+                        PaddyStockCount = lstPaddyStockOverViewDTO.Sum(s => s.TotalBags);
+                    }
+                    if (!string.IsNullOrEmpty(GodownName))
+                    {
+                        lstPaddyStockOverViewDTO = lstPaddyStockOverViewDTO.Where(b => b.GodownName == GodownName).ToList();
+                        PaddyStockCount = lstPaddyStockOverViewDTO.Sum(s => s.TotalBags);
+                    }
+                    if (!string.IsNullOrEmpty(LotName))
+                    {
+                        lstPaddyStockOverViewDTO = lstPaddyStockOverViewDTO.Where(b => b.LotName == LotName).ToList();
+                        PaddyStockCount = lstPaddyStockOverViewDTO.Sum(s => s.TotalBags);
+                    }
+
+
+                }
+            }
+            return PaddyStockCount;
+        }
+
+
 
     }
 }

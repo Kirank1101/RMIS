@@ -59,13 +59,13 @@ namespace RMIS.Domain.DataTranserClass
         public PaddyStockOverViewDTO()
         {
             PaddyName = LotName = GodownName = UnitName = string.Empty;
-            TotalBags = 0.0;
+            TotalBags = 0;
         }
         public string PaddyName { get; set; }
         public string GodownName { get; set; }
         public string LotName { get; set; }
         public string UnitName { get; set; }
-        public double TotalBags { get; set; }
+        public int TotalBags { get; set; }
 
     }
     public class BagStockDTO
@@ -184,13 +184,13 @@ namespace RMIS.Domain.DataTranserClass
         public PaddySpentOnHullingProcessDTO()
         {
             PaddyName = LotName = GodownName = UnitName = string.Empty;
-            TotalBags = 0.0;
+            TotalBags = 0;
         }
         public string PaddyName { get; set; }
         public string GodownName { get; set; }
         public string LotName { get; set; }
         public string UnitName { get; set; }
-        public double TotalBags { get; set; }
+        public int TotalBags { get; set; }
 
     }
     public class WidgetDTO

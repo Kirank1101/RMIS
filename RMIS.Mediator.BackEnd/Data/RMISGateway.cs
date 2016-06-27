@@ -4397,6 +4397,38 @@
             }
         }
 
-        
+
+
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, YesNo yesNo)
+        {
+
+            try
+            {
+                List<PaddyStockInfoEntity> listPaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<PaddyStockInfo> listPaddyStockInfo = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
+                if (listPaddyStockInfo != null && listPaddyStockInfo.Count > 0)
+                {
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfo)
+                    {
+                        listPaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listPaddyStockInfoEntity = null;
+
+                return listPaddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyStockInfoEntities on paddytype", ex);
+                throw;
+            }
+        }
     }
 }
