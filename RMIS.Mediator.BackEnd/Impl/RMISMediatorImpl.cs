@@ -1399,5 +1399,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetPaddyStockInfoEntities(CustId, PaddyTypeID, yesNo);
         }
+
+
+        public List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllRiceStockInfoEntities(CustId, RiceTypeID, yesNo);
+        }
     }
 }

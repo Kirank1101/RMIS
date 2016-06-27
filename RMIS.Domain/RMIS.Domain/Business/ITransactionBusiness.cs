@@ -135,5 +135,11 @@ namespace RMIS.Domain.Business
         List<BagStockDTO> GetBagStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         int GetPaddyStockOnPaddyType(string PaddyTypeID, string UnitTypeName, string GodownName, string LotName);
+
+        int GetRiceStockOnRiceType(string RiceTypeID, string Brand, string UnitType);
+
+        int GetBrokenRiceStockOnBrokenRiceType(string BrokenRiceTypeID, string UnitType);
+
+        int GetDustStock(string UnitType);
     }
 }

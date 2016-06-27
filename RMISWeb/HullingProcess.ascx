@@ -78,7 +78,7 @@
             </td>
         </tr>
         <tr>
-            <td id="PaddyStockDisplay" colspan="8">
+            <td  colspan="8">
                 <h4>
                     <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
                     <asp:Label runat="server" ID="lblpaddyStock" ></asp:Label>

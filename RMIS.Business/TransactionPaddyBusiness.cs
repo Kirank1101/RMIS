@@ -2387,7 +2387,6 @@ namespace RMIS.Business
                             }
                         }
                     }
-
                     PaddyStockCount = lstPaddyStockOverViewDTO.Sum(a => a.TotalBags);
                     if (!string.IsNullOrEmpty(UnitTypeName))
                     {
@@ -2404,14 +2403,105 @@ namespace RMIS.Business
                         lstPaddyStockOverViewDTO = lstPaddyStockOverViewDTO.Where(b => b.LotName == LotName).ToList();
                         PaddyStockCount = lstPaddyStockOverViewDTO.Sum(s => s.TotalBags);
                     }
-
-
                 }
             }
             return PaddyStockCount;
         }
+        public int GetRiceStockOnRiceType(string RiceTypeID, string Brand, string UnitType)
+        {
+            int RiceStock = 0;
+            List<RiceStockDetailsDTO> lstRiceStockDetailsDTO = null;
+            List<RiceStockInfoEntity> lstRiceStockInfoEntity = new List<RiceStockInfoEntity>();
+            lstRiceStockInfoEntity = imp.GetAllRiceStockInfoEntities(provider.GetCurrentCustomerId(), RiceTypeID, YesNo.N);
+            if (lstRiceStockInfoEntity != null && lstRiceStockInfoEntity.Count > 0)
+            {
+                var result1 = lstRiceStockInfoEntity.
+                              GroupBy(ac => new
+                              {
+                                  ac.MRiceProdTypeID,
+                                  ac.MRiceBrandID,
+                                  ac.UnitsTypeID
+                              })
+                              .Select(ac => new RiceStockInfoEntity
+                              {
+                                  MRiceProdTypeID = ac.Key.MRiceProdTypeID,
+                                  MRiceBrandID = ac.Key.MRiceBrandID,
+                                  UnitsTypeID = ac.Key.UnitsTypeID,
+                                  TotalBags = ac.Sum(acs => acs.TotalBags)
+                              });
+                lstRiceStockDetailsDTO = new List<RiceStockDetailsDTO>();
+                foreach (var item in result1)
+                {
+                    RiceStockDetailsDTO objRiceStockDetailsDTO = new RiceStockDetailsDTO();
+                    objRiceStockDetailsDTO.MRiceProdTypeID = item.MRiceProdTypeID;
+                    objRiceStockDetailsDTO.MRiceBrandID = item.MRiceBrandID;
+                    objRiceStockDetailsDTO.UnitsTypeID = item.UnitsTypeID;
+                    objRiceStockDetailsDTO.TotalBags = item.TotalBags;
+                    lstRiceStockDetailsDTO.Add(objRiceStockDetailsDTO);
+                }
 
+                if (lstRiceStockDetailsDTO != null && lstRiceStockDetailsDTO.Count > 0)
+                {
+                    List<ProductSellingInfoDTO> lstProductSellingInfoDTO = GetTotalRiceSellingInfo();
 
+                    lstProductSellingInfoDTO = lstProductSellingInfoDTO.Where(ps => ps.MRiceProdTypeID == lstRiceStockDetailsDTO[0].MRiceProdTypeID).ToList();
+                    if (lstProductSellingInfoDTO != null)
+                    {
+                        foreach (ProductSellingInfoDTO PSDTO in lstProductSellingInfoDTO)
+                        {
+                            foreach (RiceStockDetailsDTO RSDTO in lstRiceStockDetailsDTO)
+                            {
+                                if (PSDTO.MRiceProdTypeID == RSDTO.MRiceProdTypeID && PSDTO.MRiceBrandID == RSDTO.MRiceBrandID && PSDTO.UnitsTypeID == RSDTO.UnitsTypeID )
+                                    RSDTO.TotalBags -= PSDTO.TotalBags;
+                            }
+                        }
+                    }
 
+                    RiceStock = lstRiceStockDetailsDTO.Sum(a => a.TotalBags);
+                    if (!string.IsNullOrEmpty(Brand))
+                    {
+                        lstRiceStockDetailsDTO = lstRiceStockDetailsDTO.Where(b => b.MRiceBrandID == Brand).ToList();
+                        RiceStock = lstRiceStockDetailsDTO.Sum(s => s.TotalBags);
+                    } 
+                    if (!string.IsNullOrEmpty(UnitType))
+                    {
+                        lstRiceStockDetailsDTO = lstRiceStockDetailsDTO.Where(b => b.UnitsTypeID == UnitType).ToList();
+                        RiceStock = lstRiceStockDetailsDTO.Sum(s => s.TotalBags);
+                    }
+                    
+                }
+            }
+            return RiceStock;
+        }
+
+        private List<ProductSellingInfoDTO> GetTotalRiceSellingInfo()
+        {
+            List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
+            List<ProductSellingInfoEntity> lstProductSellingInfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+            {
+                ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
+                PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
+                PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
+                PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
+                PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
+                PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
+                LPSIDTO.Add(PSIDTO);
+
+            }
+
+            return LPSIDTO;
+        }
+        public int GetBrokenRiceStockOnBrokenRiceType(string BrokenRiceTypeID, string UnitType)
+        {
+            int BrokenRiceStock = 0;
+
+            return BrokenRiceStock;
+        }
+        public int GetDustStock(string UnitType)
+        {
+            int DustStock = 0;
+            return DustStock;
+        }
     }
 }

@@ -140,7 +140,7 @@ public partial class ProductSellingInfo : BaseUserControl
         return lstprodselinfoDTO;
     }
     protected void btnBuyerDetails_Click(object sender, EventArgs e)
-    {        
+    {
         ResultDTO resultDTO = new ResultDTO();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
@@ -225,7 +225,7 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSavePayment_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble(),txtTotalProductCost.Text.ConvertToDouble());
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble(), txtTotalProductCost.Text.ConvertToDouble());
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
@@ -239,7 +239,60 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         TabSellingInfo.ActiveViewIndex = 1;
     }
+    protected void ddlRiceType_OnSelectedIndexChanged(object sender, EventArgs e) {
+        GetStockCount();
+    }
+    protected void ddlRiceBrand_OnSelectedIndexChanged(object sender, EventArgs e) { GetStockCount(); }
+    protected void ddlBrokenRiceType_OnSelectedIndexChanged(object sender, EventArgs e) { GetStockCount(); }
+    protected void ddlUnitsType_OnSelectedIndexChanged(object sender, EventArgs e) { GetStockCount(); }
+    private void GetStockCount()
+    {
+        int StockCount = 0;
+        if (rbtProductSellingtype.SelectedValue == Rice)
+        {
 
+            if (ddlRiceType.SelectedIndex > 0 && ddlBrokenRiceType.SelectedIndex == 0)
+            {
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                StockCount = imp.GetRiceStockOnRiceType(ddlRiceType.SelectedValue, ddlRiceBrand.SelectedIndex > 0 ? ddlRiceBrand.SelectedValue : null, ddlUnitsType.SelectedIndex > 0 ? ddlUnitsType.SelectedValue : null);
+            }
+            lblProductStockInfo.Visible = true;
+            lblProductStockInfo.Text = "Total Rice Stock Available for the selection : ";
+        }
+        else if (rbtProductSellingtype.SelectedValue == BrokenRice)
+        {
+            if (ddlBrokenRiceType.SelectedIndex > 0 && ddlRiceType.SelectedIndex == 0)
+            {
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                StockCount = imp.GetBrokenRiceStockOnBrokenRiceType(ddlBrokenRiceType.SelectedValue, ddlUnitsType.SelectedIndex > 0 ? ddlUnitsType.SelectedValue : null);
+            }
+            lblProductStockInfo.Visible = true;
+            lblProductStockInfo.Text = "Total Broken Rice Stock Available for the selection : ";
+        }
+        if (rbtProductSellingtype.SelectedValue == Dust)
+        {
+            if (ddlBrokenRiceType.SelectedIndex == 0 && ddlRiceType.SelectedIndex == 0)
+            {
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                StockCount = imp.GetDustStock(ddlUnitsType.SelectedIndex > 0 ? ddlUnitsType.SelectedValue : null);
+            }
+            lblProductStockInfo.Visible = true;
+            lblProductStockInfo.Text = "Total Dust Stock Available for the selection : ";
+        }
+        if (StockCount > 0)
+        {
+            
+            lblProductStock.Text = StockCount.ToString();
+            lblProductStock.ForeColor = System.Drawing.Color.Green;
+        }
+        else
+        {
+            
+            lblProductStock.Text = "No Stock for the sellection";
+            lblProductStock.ForeColor = System.Drawing.Color.Red;
+        }
+
+    }
     private void ClearAllPaymentInputFields()
     {
         rptBuyerPaymentDue.SelectedIndex = -1;
@@ -283,6 +336,8 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void rbtProductSellingtype_OnSelectChange(object sender, EventArgs e)
     {
+        lblProductStockInfo.Text = string.Empty;
+        lblProductStock.Text = string.Empty;
         lblRiceBrandName.Visible = true;
         lblRiceType.Visible = true;
         ddlRiceBrand.Visible = true;
@@ -292,12 +347,19 @@ public partial class ProductSellingInfo : BaseUserControl
         spBrandName.Visible = true;
         spRiceType.Visible = true;
         spBrokenRiceType.Visible = true;
+        txtTotalBags.Text = "0";
+        txtprice.Text = "0";
+        ddlUnitsType.SelectedIndex = 0;
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+
         if (rbtProductSellingtype.SelectedValue == Rice)
         {
             lblBrokenRiceType.Visible = false;
             ddlBrokenRiceType.Visible = false;
             spBrokenRiceType.Visible = false;
             ddlBrokenRiceType.SelectedIndex = 0;
+            
+
         }
         else if (rbtProductSellingtype.SelectedValue == BrokenRice)
         {

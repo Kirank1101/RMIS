@@ -4430,5 +4430,37 @@
                 throw;
             }
         }
+
+        internal List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, YesNo yesNo)
+        {
+
+            try
+            {
+                List<RiceStockInfoEntity> listRiceStockInfoEntity = new List<RiceStockInfoEntity>();
+                IRepository<RiceStockInfo> UsersRepository = new RepositoryImpl<RiceStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(RiceStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("MRiceProdTypeID", RiceTypeID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<RiceStockInfo> listRiceStockInfo = UsersRepository.GetAll(detachedCriteria) as List<RiceStockInfo>;
+                if (listRiceStockInfo != null && listRiceStockInfo.Count > 0)
+                {
+                    foreach (RiceStockInfo adMInfo in listRiceStockInfo)
+                    {
+                        listRiceStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetRiceStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listRiceStockInfoEntity = null;
+
+                return listRiceStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRiceStockInfoEntities on RiceTypeID", ex);
+                throw;
+            }
+        }
     }
 }
