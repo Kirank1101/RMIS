@@ -2091,7 +2091,7 @@ namespace RMIS.Business
                     }
                 }
             }
-            count = lstPaddyStockOverViewDTO.Count != null ? lstPaddyStockOverViewDTO.Count : 0;
+            count = lstPaddyStockOverViewDTO != null ? lstPaddyStockOverViewDTO.Count : 0;
             return lstPaddyStockOverViewDTO;
         }
         public List<PaddySpentOnHullingProcessDTO> GetTotalPaddySpentOnHullingProcess()

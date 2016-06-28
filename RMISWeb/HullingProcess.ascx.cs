@@ -104,7 +104,7 @@ public partial class HullingProcess : BaseUserControl
         long totalpaddycount = imp.CheckHullingProcessPaddyCount(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue);
         if (resultDto.IsSuccess)
         {
-            if (totalpaddycount > txtTotalBags.Text.ConvertToInt())
+            if (totalpaddycount >= txtTotalBags.Text.ConvertToInt())
             {
                 resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue,
                    txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(), "P");

@@ -245,7 +245,7 @@
             <footer>
           <div class="pull-right">
               
-            Powered by OrmerSolutions India Pvt Ltd<a href="http://www.ormersolutions.com">Ormer Solutions</a>
+            Powered by Ormer Solutions India Pvt Ltd<a href="http://www.ormersolutions.com">( Ormer Solutions )</a>
           </div>
           <div class="clearfix"></div>
         </footer>

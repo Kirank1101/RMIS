@@ -14,6 +14,8 @@ namespace RMIS.CustomControls
             this.AllowSorting = true;
             this.PagerSettings.Mode = PagerButtons.NumericFirstLast;
             this.PageSize = 15;
+            this.CssClass = "table table-striped jambo_table bulk_action";
+            this.HeaderStyle.CssClass="headings";
         }
 
         #region Custom properties

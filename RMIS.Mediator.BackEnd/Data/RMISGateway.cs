@@ -658,7 +658,7 @@
             {
                 IRepository<HullingTransaction> UsersRepository = new RepositoryImpl<HullingTransaction>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(ProductSellingInfo))
+                DetachedCriteria.For(typeof(HullingTransaction))
                                                                     .Add(Expression.Eq("CustID", CustId))
                                                                              .Add(Expression.Eq("UnitsTypeID", UnitsTypeID))
                                                                               .Add(Expression.Eq("MRiceBrandID", RiceBrandId))
