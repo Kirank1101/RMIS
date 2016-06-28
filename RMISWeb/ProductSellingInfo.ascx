@@ -18,6 +18,16 @@
             Selling</h3>
         <table>
             <tr>
+                <td>
+                    <h4>
+                        <asp:Label runat="server" ID="lblProductStockInfo"></asp:Label>
+                        <asp:Label runat="server" ID="lblProductStock"></asp:Label>
+                    </h4>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
                 <td valign="top">
                     <asp:Label runat="server" ID="lblprductsellingtype" Text="<%$Resources:Resource,ProductSellingType%>"></asp:Label>
                     <span style="color: Red">*</span>
@@ -115,14 +125,6 @@
                 </td>
                 <td>
                     <asp:TextBoxDatenTimeExtender ID="txtSellingDate" runat="server"></asp:TextBoxDatenTimeExtender>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <h4>
-                        <asp:Label runat="server" ID="lblProductStockInfo"></asp:Label>
-                        <asp:Label runat="server" ID="lblProductStock"></asp:Label>
-                    </h4>
                 </td>
             </tr>
             <tr>

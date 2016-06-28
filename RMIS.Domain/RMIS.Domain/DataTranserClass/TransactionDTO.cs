@@ -136,7 +136,14 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalPrice { get; set; }
         public DateTime ProductSellingDate { get; set; }
     }
-
+    public class DustStockDetailsDTO 
+    {
+        public string DustStockID { get; set; }
+        public string CustID { get; set; }
+        public int TotalBags { get; set; }
+        public string UnitsTypeID { get; set; }
+        
+    }
 
     [Serializable]
     public class RiceStockDetailsDTO
