@@ -758,6 +758,11 @@ article.media {
 h2 {
   font-size: 18px;
   font-weight: 400;
+  background: #F5F7FA;
+  border: 0;
+  padding: 7px 0;
+  display: flex;
+  
 }
 #left, #right {
   display: table;

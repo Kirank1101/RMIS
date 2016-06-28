@@ -4,7 +4,7 @@
 <div class="table-responsive">
     <table>
         <tr>
-            <td>
+            <td valign="top" >
                 <h3>
                     Add Seller</h3>
                 <table>
@@ -110,7 +110,7 @@
                     </tr>
                 </table>
             </td>
-            <td align="left" valign="top" style="padding-left: 15px">
+            <td align="left" valign="top" style="padding-left: 15px" valign="top">
                 <table>
                     <tr>
                         <td>
