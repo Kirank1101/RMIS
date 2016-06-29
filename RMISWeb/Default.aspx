@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
     TagPrefix="iucon" %>
 <%@ Register Src="MenuItems.ascx" TagName="MenuItems" TagPrefix="uc1" %>
@@ -11,7 +11,6 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
     <link href="src/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -25,10 +24,7 @@
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
-    <link href="css/custom.css" rel="stylesheet">  
- 
-
-
+    <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
     <script type="text/javascript">
         function changeControlSample(path) {
@@ -39,35 +35,23 @@
         }    
 
     </script>
-
-   
-
-     
-
-
-   
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
-    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"  CombineScripts="false" >
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"
+        CombineScripts="false">
         <Services>
-    <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
-     <asp:ServiceReference Path="~/AutoComplete.asmx" />
-   </Services>
+            <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
+            <asp:ServiceReference Path="~/AutoComplete.asmx" />
+        </Services>
     </ajaxToolkit:ToolkitScriptManager>
-
-
-
-    
-
-
-   
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#"  onclick="changeControlSample('DashBoard.ascx');" class="site_title"><i class="fa fa-paw"></i><span>RMIS!</span></a>
+                        <a href="#" onclick="changeControlSample('DashBoard.ascx');" class="site_title"><i
+                            class="fa fa-paw"></i><span>RMIS!</span></a>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -126,31 +110,13 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
+                    <img src="images/img.jpg" alt="" />John Doe
+                    
                   </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:;">Help</a>
-                    </li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                    </li>
-                  </ul>
+
                 </li>
 
                 <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
@@ -164,7 +130,7 @@
                         <span class="message">
                                           Film festivals used to be do-or-die moments for movie makers. They were where...
                                       </span>
-                      </a>
+                                </a>
                     </li>
                     <li>
                       <a>
@@ -227,8 +193,8 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"  DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" 
-                       EncryptUserControlPath="false" >
+                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"
+                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
                                 <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
@@ -252,8 +218,6 @@
             <!-- /footer content -->
         </div>
     </div>
-
-
     <script type="text/javascript" src="src/assets/scripts/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="src/assets/scripts/jquery-ui.js"></script>
     <script type="text/javascript" src="src/assets/scripts/jquery-migrate-1.2.1.min.js"></script>
@@ -265,35 +229,30 @@
     <script type="text/javascript" src="src/assets/scripts/json2.js"></script>
     <script type="text/javascript" src="src/assets/scripts/sicc-lib.js?v=1.0.1"></script>
     <script type="text/javascript" src="src/assets/scripts/custom.js?v=1.0.0"></script>
-    
     <!-- bootstrap-progressbar -->
-    <script  type="text/javascript"  src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
-    <script  type="text/javascript" src="vendors/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
-    <script  type="text/javascript" src="vendors/skycons/skycons.js"></script>
+    <script type="text/javascript" src="vendors/skycons/skycons.js"></script>
     <!-- Flot -->
-    <script  type="text/javascript" src="vendors/Flot/jquery.flot.js"></script>
-    <script  type="text/javascript" src="vendors/Flot/jquery.flot.pie.js"></script>
-    <script  type="text/javascript" ="vendors/Flot/jquery.flot.time.js"></script>
-    <script  type="text/javascript" src="vendors/Flot/jquery.flot.stack.js"></script>
-    <script  type="text/javascript" src="vendors/Flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="vendors/Flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="vendors/Flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="vendors/Flot/jquery.flot.time.js"></script>
+    <script type="text/javascript" src="vendors/Flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
-    <script  type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script  type="text/javascript" src="js/flot/date.js"></script>
-    <script  type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script  type="text/javascript" src="js/flot/curvedLines.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="js/flot/date.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
     <!-- jVectorMap -->
-    <script  type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
     <!-- bootstrap-daterangepicker -->
-    <script  type="text/javascript" src="js/moment/moment.min.js"></script>
+    <script type="text/javascript" src="js/moment/moment.min.js"></script>
     <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script type="text/javascript" src="js/custom.js"></script>
-  
-    
-
-
     </form>
 </body>
 </html>
