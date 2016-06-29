@@ -50,6 +50,7 @@
             try
             {
                 objRMISMappingNTD.MapSellerInfoEntity();
+                objRMISMappingNTD.MapPaddyPaymentDetailsEntity();
                 objRMISMappingNTD.MapCustomerInfoEntity();
                 objRMISMappingNTD.MapMUserTypeEntity();
                 objRMISMappingNTD.MapUsersEntity();
