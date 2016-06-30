@@ -290,7 +290,11 @@ namespace RMIS.Domain.Mediator
 
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, YesNo yesNo);
 
-        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string p, string RiceTypeID, YesNo yesNo);
+        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, YesNo yesNo);
+
+        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

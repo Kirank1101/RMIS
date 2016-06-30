@@ -16,8 +16,6 @@
     using RMIS.Domain.Constant;
     using RMIS.Domain;
 
-
-
     internal class RMISGateway
     {
         #region Fields
@@ -4459,6 +4457,83 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetRiceStockInfoEntities on RiceTypeID", ex);
+                throw;
+            }
+        }
+
+        internal List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<BagPaymentInfoEntity> listBagPaymentDetailsEntity = new List<BagPaymentInfoEntity>();
+                IRepository<BagPaymentInfo> UsersRepository = new RepositoryImpl<BagPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PaidDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PaidDate"));
+                List<BagPaymentInfo> listBagPaymentDetails = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<BagPaymentInfo>;
+                if (listBagPaymentDetails != null && listBagPaymentDetails.Count > 0)
+                {
+                    foreach (BagPaymentInfo adMInfo in listBagPaymentDetails)
+                    {
+                        listBagPaymentDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagPaymentDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listBagPaymentDetailsEntity = null;
+
+                return listBagPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<BagPaymentInfoEntity> listBagPaymentInfoEntity = new List<BagPaymentInfoEntity>();
+                IRepository<BagPaymentInfo> UsersRepository = new RepositoryImpl<BagPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                      .Add(Expression.Eq("SellerID", SellerID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PaidDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("SellerID", SellerID))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PaidDate"));
+                List<BagPaymentInfo> listBagPaymentInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<BagPaymentInfo>;
+                if (listBagPaymentInfo != null && listBagPaymentInfo.Count > 0)
+                {
+                    foreach (BagPaymentInfo adMInfo in listBagPaymentInfo)
+                    {
+                        listBagPaymentInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBagPaymentDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listBagPaymentInfoEntity = null;
+
+                return listBagPaymentInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBagPaymentInfoEntity by sellerid", ex);
                 throw;
             }
         }

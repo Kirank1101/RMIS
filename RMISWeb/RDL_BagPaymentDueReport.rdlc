@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
   <DataSources>
-    <DataSource Name="PaddypaymentDataSet">
+    <DataSource Name="BagPaymentDueDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>cd90e40e-80b8-4109-93d5-cfa711e72d13</rd:DataSourceID>
+      <rd:DataSourceID>e40b1571-0b5d-45fb-9ec3-e36b85bc90b7</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="PaddyPayment">
+    <DataSet Name="BagPaymentDue">
       <Fields>
         <Field Name="SellerName">
           <DataField>SellerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="AmountPaid">
-          <DataField>AmountPaid</DataField>
+        <Field Name="TotalAmount">
+          <DataField>TotalAmount</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PaidDate">
-          <DataField>PaidDate</DataField>
+        <Field Name="TotalAmountPaid">
+          <DataField>TotalAmountPaid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PaymentMode">
-          <DataField>PaymentMode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NextPayDate">
-          <DataField>NextPayDate</DataField>
+        <Field Name="TotalAmountDue">
+          <DataField>TotalAmountDue</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <Query>
-        <DataSourceName>PaddypaymentDataSet</DataSourceName>
+        <DataSourceName>BagPaymentDueDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <rd:DataSetInfo>
-        <rd:DataSetName>PaddypaymentDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\nagavardhan\documents\visual studio 2010\Projects\WebApplication2\WebApplication2\PaddypaymentDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>PaddyPayment</rd:TableName>
+        <rd:DataSetName>BagPaymentDueDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\nagavardhan\documents\visual studio 2010\Projects\WebApplication2\WebApplication2\BagPaymentDueDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>BagPaymentDue</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -53,24 +49,21 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.29167in</Width>
+              <Width>1.04167in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.0625in</Width>
+              <Width>1.09375in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.17708in</Width>
+              <Width>1.42708in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19792in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.52083in</Width>
+              <Width>1.42708in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.30208in</Height>
+              <Height>0.25in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -94,51 +87,17 @@
                       <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox21">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Paid amount</Value>
-                              <Style>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox21</rd:DefaultName>
-                      <Style>
-                        <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <TopBorder>
-                          <Color>Black</Color>
+                          <Style>Solid</Style>
                         </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                        </BottomBorder>
+                        <LeftBorder>
+                          <Style>Solid</Style>
+                        </LeftBorder>
                         <RightBorder>
-                          <Color>Black</Color>
+                          <Style>Solid</Style>
                         </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -157,16 +116,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Paid Date</Value>
+                              <Value>Total Amount</Value>
                               <Style>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -175,15 +132,6 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                        </BottomBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                        </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -201,7 +149,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Payment Mode</Value>
+                              <Value>Total Amount Paid</Value>
                               <Style>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -217,18 +165,6 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Style>None</Style>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                        </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -239,14 +175,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox9">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Next Payment Date</Value>
+                              <Value>Total Amount Due</Value>
                               <Style>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -256,24 +192,12 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Style>None</Style>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                        </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -285,7 +209,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.27083in</Height>
+              <Height>0.25in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -300,18 +224,26 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>SellerName</rd:DefaultName>
                       <Style>
                         <Border>
+                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
+                        <TopBorder>
+                          <Style>Solid</Style>
+                        </TopBorder>
+                        <LeftBorder>
+                          <Style>Solid</Style>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Style>Solid</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -320,14 +252,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="AmountPaid">
+                    <Textbox Name="TotalAmount">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!AmountPaid.Value</Value>
+                              <Value>=Fields!TotalAmount.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -336,11 +268,15 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>AmountPaid</rd:DefaultName>
+                      <rd:DefaultName>TotalAmount</rd:DefaultName>
                       <Style>
                         <Border>
+                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <LeftBorder>
+                          <Style>Solid</Style>
+                        </LeftBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>15pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -351,29 +287,33 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="PaidDate">
+                    <Textbox Name="TotalAmountPaid">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDate(Fields!PaidDate.Value).ToString("dd - MMM - yyyy")</Value>
+                              <Value>=Fields!TotalAmountPaid.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>PaidDate</rd:DefaultName>
+                      <rd:DefaultName>TotalAmountPaid</rd:DefaultName>
                       <Style>
                         <Border>
+                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>5pt</PaddingRight>
+                        <LeftBorder>
+                          <Style>Solid</Style>
+                        </LeftBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>15pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -382,64 +322,38 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="PaymentMode">
+                    <Textbox Name="TotalAmountDue">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!PaymentMode.Value</Value>
+                              <Value>=Fields!TotalAmountDue.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>PaymentMode</rd:DefaultName>
+                      <rd:DefaultName>TotalAmountDue</rd:DefaultName>
                       <Style>
                         <Border>
+                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
+                        <LeftBorder>
+                          <Style>Solid</Style>
+                        </LeftBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>15pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="NextPayDate">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=CDate(Fields!NextPayDate.Value).ToString("dd - MMM - yyyy")</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>NextPayDate</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -448,7 +362,6 @@
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -465,19 +378,14 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>PaddyPayment</DataSetName>
-        <SortExpressions>
-          <SortExpression>
-            <Value>=Fields!SellerName.Value</Value>
-          </SortExpression>
-        </SortExpressions>
+        <DataSetName>BagPaymentDue</DataSetName>
         <Top>0.3175in</Top>
         <Left>0.19792in</Left>
-        <Height>0.57291in</Height>
-        <Width>6.25in</Width>
+        <Height>0.5in</Height>
+        <Width>4.98958in</Width>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
           </Border>
         </Style>
       </Tablix>
@@ -485,7 +393,7 @@
     <Height>3.31667in</Height>
     <Style />
   </Body>
-  <Width>11.07292in</Width>
+  <Width>11.55917in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -493,6 +401,6 @@
     <BottomMargin>1in</BottomMargin>
     <Style />
   </Page>
-  <rd:ReportID>97a6cbe3-6983-411d-9b97-2cbdc3b8e891</rd:ReportID>
+  <rd:ReportID>79a19711-452f-4f38-8c1f-e9e8edc44daf</rd:ReportID>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
 </Report>

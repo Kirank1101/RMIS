@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BagPaymentDueDataSet" targetNamespace="http://tempuri.org/BagPaymentDueDataSet.xsd" xmlns:mstns="http://tempuri.org/BagPaymentDueDataSet.xsd" xmlns="http://tempuri.org/BagPaymentDueDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BagPaymentDueDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BagPaymentDueDataSet" msprop:Generator_DataSetName="BagPaymentDueDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BagPaymentDue" msprop:Generator_TableClassName="BagPaymentDueDataTable" msprop:Generator_TableVarName="tableBagPaymentDue" msprop:Generator_TablePropName="BagPaymentDue" msprop:Generator_RowDeletingName="BagPaymentDueRowDeleting" msprop:Generator_RowChangingName="BagPaymentDueRowChanging" msprop:Generator_RowEvHandlerName="BagPaymentDueRowChangeEventHandler" msprop:Generator_RowDeletedName="BagPaymentDueRowDeleted" msprop:Generator_UserTableName="BagPaymentDue" msprop:Generator_RowChangedName="BagPaymentDueRowChanged" msprop:Generator_RowEvArgName="BagPaymentDueRowChangeEvent" msprop:Generator_RowClassName="BagPaymentDueRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SellerName" msprop:Generator_ColumnVarNameInTable="columnSellerName" msprop:Generator_ColumnPropNameInRow="SellerName" msprop:Generator_ColumnPropNameInTable="SellerNameColumn" msprop:Generator_UserColumnName="SellerName" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_UserColumnName="TotalAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmountPaid" msprop:Generator_ColumnVarNameInTable="columnTotalAmountPaid" msprop:Generator_ColumnPropNameInRow="TotalAmountPaid" msprop:Generator_ColumnPropNameInTable="TotalAmountPaidColumn" msprop:Generator_UserColumnName="TotalAmountPaid" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmountDue" msprop:Generator_ColumnVarNameInTable="columnTotalAmountDue" msprop:Generator_ColumnPropNameInRow="TotalAmountDue" msprop:Generator_ColumnPropNameInTable="TotalAmountDueColumn" msprop:Generator_UserColumnName="TotalAmountDue" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

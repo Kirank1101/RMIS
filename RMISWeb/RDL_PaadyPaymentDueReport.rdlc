@@ -395,10 +395,10 @@
             <Value>=Fields!SellerName.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>0.21355in</Top>
-        <Left>0.26041in</Left>
+        <Top>0.3175in</Top>
+        <Left>0.19792in</Left>
         <Height>0.56249in</Height>
-        <Width>4.9375in</Width>
+        <Width>4.93751in</Width>
         <Style>
           <Border>
             <Style>None</Style>

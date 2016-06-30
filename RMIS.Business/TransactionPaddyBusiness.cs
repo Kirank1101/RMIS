@@ -2245,8 +2245,6 @@ namespace RMIS.Business
 
             return listPaddyPaymentDTO;
         }
-
-
         public List<PaddyPaymentDueDTO> GetPaddyPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<PaddyPaymentDueDTO> listPaddyPaymentDueDTO = null;
@@ -2276,8 +2274,6 @@ namespace RMIS.Business
             }
             return listPaddyPaymentDueDTO;
         }
-
-
         public List<BagStockDTO> GetBagStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
 
@@ -2325,8 +2321,6 @@ namespace RMIS.Business
             }
             return listBagStockDTO;
         }
-
-
         public int GetPaddyStockOnPaddyType(string PaddyTypeID, string UnitTypeName, string GodownName, string LotName)
         {
             int PaddyStockCount = 0;
@@ -2473,7 +2467,6 @@ namespace RMIS.Business
             }
             return RiceStock;
         }
-
         public int GetBrokenRiceStockOnBrokenRiceType(string BrokenRiceTypeID, string UnitType)
         {
             int BrokenRiceStock = 0;
@@ -2531,8 +2524,6 @@ namespace RMIS.Business
             }
             return BrokenRiceStock;
         }
-
-        
         public int GetDustStock(string UnitType)
         {
             int DustStock = 0;
@@ -2587,7 +2578,6 @@ namespace RMIS.Business
             }
             return DustStock;
         }
-
         private List<ProductSellingInfoDTO> GetTotalDustSellingInfo(string p)
         {
             List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
@@ -2640,6 +2630,85 @@ namespace RMIS.Business
                 LPSIDTO.Add(PSIDTO);
             }
             return LPSIDTO;
+        }
+        public List<BagPaymentDTO> GetBagPaymentDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<BagPaymentDTO> listBagPaymentDTO = null;
+            List<BagPaymentInfoEntity> listBagPaymentDetailsEntity = imp.GetBagPaymentDetailsEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listBagPaymentDetailsEntity != null && listBagPaymentDetailsEntity.Count > 0)
+            {
+                listBagPaymentDTO = new List<BagPaymentDTO>();
+                foreach (BagPaymentInfoEntity objBagPaymentDetailsEntity in listBagPaymentDetailsEntity)
+                {
+                    BagPaymentDTO objBagPaymentDTO = new BagPaymentDTO();
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objBagPaymentDetailsEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objBagPaymentDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    objBagPaymentDTO.AmountPaid = objBagPaymentDetailsEntity.AmountPaid;
+                    objBagPaymentDTO.PaidDate = objBagPaymentDetailsEntity.PaidDate;
+                    objBagPaymentDTO.NextPayDate = objBagPaymentDetailsEntity.NextPaymentDate;
+                    objBagPaymentDTO.PaymentMode = objBagPaymentDetailsEntity.PaymentMode;
+                    listBagPaymentDTO.Add(objBagPaymentDTO);
+                }
+            }
+
+            return listBagPaymentDTO;
+        }
+        public List<BagPaymentDTO> GetBagPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<BagPaymentDTO> listBagPaymentDTO = null;
+            List<BagPaymentInfoEntity> listBagPaymentDetailsEntity = imp.GetBagPaymentDetailsEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listBagPaymentDetailsEntity != null && listBagPaymentDetailsEntity.Count > 0)
+            {
+                listBagPaymentDTO = new List<BagPaymentDTO>();
+                foreach (BagPaymentInfoEntity objBagPaymentDetailsEntity in listBagPaymentDetailsEntity)
+                {
+                    BagPaymentDTO objBagPaymentDTO = new BagPaymentDTO();
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objBagPaymentDetailsEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objBagPaymentDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    objBagPaymentDTO.AmountPaid = objBagPaymentDetailsEntity.AmountPaid;
+                    objBagPaymentDTO.PaidDate = objBagPaymentDetailsEntity.PaidDate;
+                    objBagPaymentDTO.NextPayDate = objBagPaymentDetailsEntity.NextPaymentDate;
+                    objBagPaymentDTO.PaymentMode = objBagPaymentDetailsEntity.PaymentMode;
+                    listBagPaymentDTO.Add(objBagPaymentDTO);
+                }
+            }
+
+            return listBagPaymentDTO;
+        }
+        public List<BagPaymentDueDTO> GetBagPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<BagPaymentDueDTO> listBagPaymentDueDTO = null;
+            List<BagStockInfoEntity> listBagStockInfoEntity = imp.GetBagStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listBagStockInfoEntity != null && listBagStockInfoEntity.Count > 0)
+            {
+                var result1 = listBagStockInfoEntity.
+                                GroupBy(ac => new { ac.SellerID })
+                                .Select(ac => new BagPaymentDueDTO { SellerID = ac.Key.SellerID, TotalAmount = ac.Sum(acs => (acs.TotalBags * acs.Price)) });
+
+                List<SellerInfoEntity> lstSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), YesNo.Null);
+
+                listBagPaymentDueDTO = new List<BagPaymentDueDTO>();
+                foreach (var item in result1)
+                {
+                    BagPaymentDueDTO PPDDTO = new BagPaymentDueDTO();
+                    PPDDTO.SellerID = item.SellerID;
+                    SellerInfoEntity sellerinf = lstSellerInfoEntity.Where(r => r.SellerID == item.SellerID).SingleOrDefault();
+                    PPDDTO.SellerName = sellerinf.Name;
+                    PPDDTO.TotalAmount = item.TotalAmount;
+                    List<BagPaymentInfoEntity> listBagPaymentDetailsEntity = imp.GetBagPaymentDetailsEntity(provider.GetCurrentCustomerId(), PPDDTO.SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+                    if (listBagPaymentDetailsEntity != null && listBagPaymentDetailsEntity.Count > 0)
+                        PPDDTO.TotalAmountPaid = listBagPaymentDetailsEntity.Sum(f => f.AmountPaid);
+                    PPDDTO.TotalAmountDue = PPDDTO.TotalAmount - PPDDTO.TotalAmountPaid;
+                    listBagPaymentDueDTO.Add(PPDDTO);
+                }
+            }
+            return listBagPaymentDueDTO;            
         }
     }
 }

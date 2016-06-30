@@ -141,5 +141,11 @@ namespace RMIS.Domain.Business
         int GetBrokenRiceStockOnBrokenRiceType(string BrokenRiceTypeID, string UnitType);
 
         int GetDustStock(string UnitType);
+
+        List<BagPaymentDTO> GetBagPaymentDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<BagPaymentDTO> GetBagPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<BagPaymentDueDTO> GetBagPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }

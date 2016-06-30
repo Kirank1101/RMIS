@@ -88,7 +88,33 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime PurchaseDate { get; set; }
 
     }
+    public class BagPaymentDTO
+    {
+        public BagPaymentDTO()
+        {
+            SellerName = PaymentMode = string.Empty;
+            AmountPaid = 0.0;
+        }
 
+        public string SellerName { get; set; }
+        public double AmountPaid { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string PaymentMode { get; set; }
+        public DateTime NextPayDate { get; set; }
+    }
+    public class BagPaymentDueDTO
+    {
+        public BagPaymentDueDTO()
+        {
+            SellerID = SellerName = string.Empty;
+            TotalAmount = TotalAmountDue = TotalAmountPaid = 0.0;
+        }
+        public string SellerID { get; set; }
+        public string SellerName { get; set; }
+        public double TotalAmount { get; set; }
+        public double TotalAmountPaid { get; set; }
+        public double TotalAmountDue { get; set; }
+    }
     [Serializable]
     public class SellerInfoDTO
     {
