@@ -13,16 +13,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
-    <link href="src/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
     <!-- bootstrap-progressbar -->
-    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+    <link href="css/bootstrap-progressbar-3.3.4.min.css"
         rel="stylesheet">
-    <!-- jVectorMap -->
-    <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+  
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
@@ -194,7 +192,7 @@
             <div class="right_col" role="main">
                 <div>
                     <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"
-                        DisplayLoadingAfter="500" InitialRenderBehaviour="Clientside" EncryptUserControlPath="false">
+                      DisplayLoadingAfter="500" InitialRenderBehaviour="Serverside" EncryptUserControlPath="false"  >
                         <LoadingTemplate>
                             <div style="margin-left: 84px; margin-top: 10px;">
                                 <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
@@ -218,41 +216,19 @@
             <!-- /footer content -->
         </div>
     </div>
-    <script type="text/javascript" src="src/assets/scripts/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery-ui.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery.uniform.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/jquery.blockui.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/back-to-top.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/json2.js"></script>
-    <script type="text/javascript" src="src/assets/scripts/sicc-lib.js?v=1.0.1"></script>
-    <script type="text/javascript" src="src/assets/scripts/custom.js?v=1.0.0"></script>
-    <!-- bootstrap-progressbar -->
-    <script type="text/javascript" src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script type="text/javascript" src="vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script type="text/javascript" src="vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script type="text/javascript" src="vendors/Flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="vendors/Flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="vendors/Flot/jquery.flot.time.js"></script>
-    <script type="text/javascript" src="vendors/Flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="js/flot/date.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-    <!-- jVectorMap -->
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script type="text/javascript" src="js/moment/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="js/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/back-to-top.js"></script>
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/sicc-lib.js?v=1.0.1"></script>
+    <script type="text/javascript" src="js/custom.js?v=1.0.0"></script>
+
+    <script type="text/javascript" src="js/customOld.js"></script>
     </form>
 </body>
 </html>
