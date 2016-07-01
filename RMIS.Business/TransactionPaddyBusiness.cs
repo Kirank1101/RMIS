@@ -2710,8 +2710,6 @@ namespace RMIS.Business
             }
             return listBagPaymentDueDTO;
         }
-
-
         public List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
@@ -2719,7 +2717,6 @@ namespace RMIS.Business
             listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
             return listProductSellingInfoDTO;
         }
-
         private List<ProductSellingInfoDTO> GetProductSellingDetails(List<ProductSellingInfoEntity> listProductSellingInfoEntity)
         {
             List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
@@ -2762,13 +2759,45 @@ namespace RMIS.Business
             }
             return listProductSellingInfoDTO;
         }
-
         public List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
             List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
             listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
             return listProductSellingInfoDTO;
+        }
+        public List<ProductPaymentDTO> GetProductPaymentDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
+            lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(),BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            return GetProductPaymentDetails(lstpropaytranent);
+
+        }
+        public List<ProductPaymentDTO> GetProductPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();            
+            lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            return GetProductPaymentDetails(lstpropaytranent);
+
+        }
+
+        private List<ProductPaymentDTO> GetProductPaymentDetails(List<ProductPaymentTransactionEntity> lstpropaytranent)
+        {
+            List<ProductPaymentDTO> lstProductPaymentDTO = new List<ProductPaymentDTO>();
+            List<BuyerInfoEntity> lstbuyerinfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            
+            if (lstpropaytranent != null && lstpropaytranent.Count > 0)
+                foreach (ProductPaymentTransactionEntity PPIE in lstpropaytranent)
+                {
+                    ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
+                    productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
+                    productPaymentDTO.AmountPaid = PPIE.ReceivedAmount;
+                    productPaymentDTO.PaidDate = PPIE.LastModifiedDate;
+                    productPaymentDTO.PaymentMode = PPIE.Paymentmode;
+                    productPaymentDTO.NextPayDate = PPIE.PaymentDueDate;
+                    lstProductPaymentDTO.Add(productPaymentDTO);
+                }
+            return lstProductPaymentDTO;
         }
     }
 }

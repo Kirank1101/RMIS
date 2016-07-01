@@ -162,6 +162,21 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalPrice { get; set; }
         public DateTime ProductSellingDate { get; set; }
     }
+    public class ProductPaymentDTO
+    {
+        public ProductPaymentDTO()
+        {
+            BuyerName = PaymentMode = string.Empty;
+            AmountPaid = 0.0;
+        }
+
+        public string BuyerName { get; set; }
+        public double AmountPaid { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string PaymentMode { get; set; }
+        public DateTime NextPayDate { get; set; }
+    }
+    
     public class DustStockDetailsDTO 
     {
         public string DustStockID { get; set; }

@@ -4548,7 +4548,7 @@
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
+                                                                   ).AddOrder(Order.Desc("SellingDate"));  
                 List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductSellingInfo>;
                 if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
                 {
@@ -4580,7 +4580,7 @@
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                    .Add(Expression.Eq("BuyerID", BuyerId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
+                                                                   ).AddOrder(Order.Desc("SellingDate"));  
                 List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductSellingInfo>;
                 if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
                 {
@@ -4597,6 +4597,68 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetProductSellingInfoEntities for report by buyerid", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ProductPaymentTransactionEntity> listProdPayTranEnt = new List<ProductPaymentTransactionEntity>();
+                IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                    ).AddOrder(Order.Desc("LastModifiedDate"));  
+                List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentTransaction>;
+                if (listProdPayTran != null && listProdPayTran.Count > 0)
+                {
+                    foreach (ProductPaymentTransaction adMInfo in listProdPayTran)
+                    {
+                        listProdPayTranEnt.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentTranEntity(adMInfo));
+                    }
+                }
+                else
+                    listProdPayTranEnt = null;
+
+                return listProdPayTranEnt;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllProductPaymentTranEntities for reports", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductPaymentTransactionEntity> listProdPayTranEnt = new List<ProductPaymentTransactionEntity>();
+                IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("BuyerID", BuyerId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                    ).AddOrder(Order.Desc("LastModifiedDate"));                                                                  
+                List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentTransaction>;
+                if (listProdPayTran != null && listProdPayTran.Count > 0)
+                {
+                    foreach (ProductPaymentTransaction adMInfo in listProdPayTran)
+                    {
+                        listProdPayTranEnt.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentTranEntity(adMInfo));
+                    }
+                }
+                else
+                    listProdPayTranEnt = null;
+
+                return listProdPayTranEnt;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllProductPaymentTranEntities for reports by buyerID", ex);
                 throw;
             }
         }

@@ -299,6 +299,10 @@ namespace RMIS.Domain.Mediator
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
 
         List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

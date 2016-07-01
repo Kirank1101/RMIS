@@ -44,7 +44,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveEmployeeSalaryPayment(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary, double AmountSpent, double ExtraCharges);
         ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);
         ResultDTO SaveProductPaymentInfo(double TotalAmount, char Status);
-        ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid,DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
+        ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -111,7 +111,7 @@ namespace RMIS.Domain.Business
 
         List<SellerInfoDTO> GetAllSellerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteSellerInfo(string ID);
-        ResultDTO UpdateSellerInfo(string ID, string SellerName,string Town,string Contactno, string mobileno);
+        ResultDTO UpdateSellerInfo(string ID, string SellerName, string Town, string Contactno, string mobileno);
         bool CheckSellerNameExist(string SellerName);
         List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteBuyerInfo(string ID);
@@ -151,5 +151,9 @@ namespace RMIS.Domain.Business
         List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductPaymentDTO> GetProductPaymentDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductPaymentDTO> GetProductPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }
