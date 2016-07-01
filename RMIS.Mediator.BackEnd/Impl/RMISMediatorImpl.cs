@@ -1417,5 +1417,17 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBagPaymentDetailsEntity(CustId, SellerID, pageindex, pageSize, out count, sortExpression, yesNo);
         }
+
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
+
+
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId,BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
     }
 }

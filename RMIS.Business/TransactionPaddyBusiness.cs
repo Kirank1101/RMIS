@@ -2438,14 +2438,14 @@ namespace RMIS.Business
                 {
                     List<ProductSellingInfoDTO> lstProductSellingInfoDTO = GetTotalRiceSellingInfo(RiceTypeID);
 
-                    
+
                     if (lstProductSellingInfoDTO != null)
                     {
                         foreach (ProductSellingInfoDTO PSDTO in lstProductSellingInfoDTO)
                         {
                             foreach (RiceStockDetailsDTO RSDTO in lstRiceStockDetailsDTO)
                             {
-                                if (PSDTO.MRiceProdTypeID == RSDTO.MRiceProdTypeID && PSDTO.MRiceBrandID == RSDTO.MRiceBrandID && PSDTO.UnitsTypeID == RSDTO.UnitsTypeID )
+                                if (PSDTO.MRiceProdTypeID == RSDTO.MRiceProdTypeID && PSDTO.MRiceBrandID == RSDTO.MRiceBrandID && PSDTO.UnitsTypeID == RSDTO.UnitsTypeID)
                                     RSDTO.TotalBags -= PSDTO.TotalBags;
                             }
                         }
@@ -2456,13 +2456,13 @@ namespace RMIS.Business
                     {
                         lstRiceStockDetailsDTO = lstRiceStockDetailsDTO.Where(b => b.MRiceBrandID == Brand).ToList();
                         RiceStock = lstRiceStockDetailsDTO.Sum(s => s.TotalBags);
-                    } 
+                    }
                     if (!string.IsNullOrEmpty(UnitType))
                     {
                         lstRiceStockDetailsDTO = lstRiceStockDetailsDTO.Where(b => b.UnitsTypeID == UnitType).ToList();
                         RiceStock = lstRiceStockDetailsDTO.Sum(s => s.TotalBags);
                     }
-                    
+
                 }
             }
             return RiceStock;
@@ -2507,7 +2507,7 @@ namespace RMIS.Business
                         {
                             foreach (BrokenRiceStockDetailsDTO RSDTO in lstBrokenRiceStockDetailsDTO)
                             {
-                                if (PSDTO.BrokenRiceTypeID == RSDTO.BrokenRiceTypeID&& PSDTO.UnitsTypeID == RSDTO.UnitsTypeID)
+                                if (PSDTO.BrokenRiceTypeID == RSDTO.BrokenRiceTypeID && PSDTO.UnitsTypeID == RSDTO.UnitsTypeID)
                                     RSDTO.TotalBags -= PSDTO.TotalBags;
                             }
                         }
@@ -2582,7 +2582,7 @@ namespace RMIS.Business
         {
             List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
             List<ProductSellingInfoEntity> lstProductSellingInfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID==null && ps.MRiceBrandID==null && ps.BrokenRiceTypeID == null).ToList();
+            lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID == null && ps.MRiceBrandID == null && ps.BrokenRiceTypeID == null).ToList();
 
             foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
             {
@@ -2708,7 +2708,67 @@ namespace RMIS.Business
                     listBagPaymentDueDTO.Add(PPDDTO);
                 }
             }
-            return listBagPaymentDueDTO;            
+            return listBagPaymentDueDTO;
+        }
+
+
+        public List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
+            List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
+            return listProductSellingInfoDTO;
+        }
+
+        private List<ProductSellingInfoDTO> GetProductSellingDetails(List<ProductSellingInfoEntity> listProductSellingInfoEntity)
+        {
+            List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
+            List<BuyerInfoEntity> lstbuyerInfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            List<MRiceProductionTypeEntity> lstRiceType = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            List<MRiceBrandDetailsEntity> lstbrand = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            List<MBrokenRiceTypeEntity> lstbrokenricetype = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
+            List<MUnitsTypeEntity> lstUnitType = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listProductSellingInfoEntity != null && listProductSellingInfoEntity.Count > 0)
+            {
+
+                listProductSellingInfoDTO = new List<ProductSellingInfoDTO>();
+                foreach (ProductSellingInfoEntity item in listProductSellingInfoEntity)
+                {
+                    ProductSellingInfoDTO ProdSelling = new ProductSellingInfoDTO();
+                    ProdSelling.BuyerName = lstbuyerInfo.Where(buy => buy.BuyerID == item.BuyerID).Select(buy => buy.Name).SingleOrDefault();
+                    ProdSelling.ProductName = item.MRiceProdTypeID != null ? "Rice" : (item.BrokenRiceTypeID != null ? "Broken Rice" : "Dust");
+                    if (item.MRiceProdTypeID != null)
+                    {
+                        ProdSelling.ProductType = lstRiceType.Where(rt => rt.MRiceProdTypeID == item.MRiceProdTypeID).Select(rt => rt.RiceType).SingleOrDefault();
+                        ProdSelling.Brand = lstbrand.Where(br => br.MRiceBrandID == item.MRiceBrandID).Select(br => br.Name).SingleOrDefault();
+                    }
+                    else if (item.BrokenRiceTypeID != null)
+                    {
+                        ProdSelling.ProductType = lstbrokenricetype.Where(brk => brk.BrokenRiceTypeID == item.BrokenRiceTypeID).Select(brt => brt.BrokenRiceName).SingleOrDefault();
+                        ProdSelling.Brand = string.Empty;
+                    }
+                    else
+                    {
+                        ProdSelling.ProductType = string.Empty;
+                        ProdSelling.Brand = string.Empty;
+                    }
+                    ProdSelling.UnitsType = lstUnitType.Where(unt => unt.UnitsTypeID == item.UnitsTypeID).Select(unt => unt.UnitsType).SingleOrDefault();
+                    ProdSelling.TotalBags = item.TotalBags;
+                    ProdSelling.Price = item.Price;
+                    ProdSelling.TotalPrice = item.TotalBags * item.Price;
+                    ProdSelling.ProductSellingDate = item.SellingDate;
+                    listProductSellingInfoDTO.Add(ProdSelling);
+                }
+            }
+            return listProductSellingInfoDTO;
+        }
+
+        public List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
+            List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
+            return listProductSellingInfoDTO;
         }
     }
 }

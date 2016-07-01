@@ -295,6 +295,10 @@ namespace RMIS.Domain.Mediator
         List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
 
         List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

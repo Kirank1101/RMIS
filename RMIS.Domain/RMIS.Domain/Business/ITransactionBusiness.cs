@@ -147,5 +147,9 @@ namespace RMIS.Domain.Business
         List<BagPaymentDTO> GetBagPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         List<BagPaymentDueDTO> GetBagPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }
