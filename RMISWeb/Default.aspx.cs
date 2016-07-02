@@ -20,10 +20,7 @@ public partial class MasterDataSettings : ApplicationBasePage
     {
         base.OnInit(e);
         AddMenuItems();
-
-       
     }
-
 
     [WebMethod]
     public static string Result(string controlName)
@@ -112,7 +109,7 @@ public partial class MasterDataSettings : ApplicationBasePage
 
 
 
-   protected  void lnkInfo_Click(object sender, EventArgs e)
+    protected void lnkInfo_Click(object sender, EventArgs e)
     {
         LinkButton btnLinkButton = sender as LinkButton;
         LastLoadedControl = btnLinkButton.CommandArgument;
@@ -123,7 +120,7 @@ public partial class MasterDataSettings : ApplicationBasePage
     {
         base.OnLoad(e);
         LoadUserControl();
-        
+
     }
 
     public override void LoadUserControl()
