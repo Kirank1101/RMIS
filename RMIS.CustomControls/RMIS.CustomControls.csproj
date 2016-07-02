@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuItems.cs" />
     <Compile Include="TextBoxDecimalExtender.cs" />
     <Compile Include="TextBoxIntegerExtender.cs" />
     <Compile Include="TextBoxDatenTimeExtender.cs" />

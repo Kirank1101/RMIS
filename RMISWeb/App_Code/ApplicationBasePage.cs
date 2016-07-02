@@ -35,6 +35,52 @@ public class ApplicationBasePage : BasePage
     }
 
 
+    const string viewStateParam = "viewStateParam";
+    public string Param
+    {
+        get
+        {
+            if (ViewState[viewStateParam] == null)
+                ViewState[viewStateParam] = string.Empty;
+            return ViewState[viewStateParam] as string;
+        }
+        set
+        {
+            ViewState[viewStateParam] = value;
+        }
+    }
+
+
+    public virtual void LoadUserControl()
+    {
+        return;
+    }
+
+    public virtual void LoadUserControl(string param)
+    {
+        return;
+    }
+
+    public const string usercontrolExtension = ".ascx";
+    public const string BASE_PATH = "";
+    public string LastLoadedControl
+    {
+        get
+        {
+            if (ViewState["LastLoaded"] == null)
+            {
+                ViewState["LastLoaded"] = BASE_PATH + "DashBoard.ascx";
+            }
+            return ViewState["LastLoaded"] as string;
+        }
+        set
+        {
+            ViewState["LastLoaded"] = value;
+        }
+    }
+
+
+
 
     #region Logger Instance
     private static readonly ILog Logger = LogManager.GetLogger(typeof(ApplicationBasePage));
