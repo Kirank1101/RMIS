@@ -1,12 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings"
+    Async="true" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="iucon.web.Controls.PartialUpdatePanel" Namespace="iucon.web.Controls"
-    TagPrefix="iucon" %>
-<%@ Register Src="MenuItems.ascx" TagName="MenuItems" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head id="head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -16,23 +14,11 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  
     <!-- bootstrap-progressbar -->
-    <link href="css/bootstrap-progressbar-3.3.4.min.css"
-        rel="stylesheet">
-  
+    <link href="css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
-    <script type="text/javascript">
-        function changeControlSample(path) {
-
-            $find('<%= pnlMain.ClientID %>').set_UserControlPath(path);
-            $find('<%= pnlMain.ClientID %>').refresh();
-
-        }    
-
-    </script>
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
@@ -48,8 +34,10 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" onclick="changeControlSample('DashBoard.ascx');" class="site_title"><i
-                            class="fa fa-paw"></i><span>RMIS!</span></a>
+                        <asp:LinkButton ID="lnkBtnsite_title"  CommandArgument="DashBoard.ascx"  CssClass="site_title" runat="server" 
+                            onclick="lnkInfo_Click">
+                        <i
+                            class="fa fa-paw"></i><span>RMIS!</span></asp:LinkButton>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -81,7 +69,7 @@
                         <div class="menu_section">
                             <h3>
                                 All</h3>
-                            <uc1:MenuItems ID="MenuItems1" runat="server" />
+                            <asp:PlaceHolder ID="phMenuItems" runat="server"></asp:PlaceHolder>
                         </div>
                     </div>
                     <!-- /sidebar menu -->
@@ -191,31 +179,39 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <div>
-                    <iucon:PartialUpdatePanel runat="server" ID="pnlMain" UserControlPath="~/DashBoard.ascx"
-                      DisplayLoadingAfter="500" InitialRenderBehaviour="Serverside" EncryptUserControlPath="false"  >
-                        <LoadingTemplate>
-                            <div style="margin-left: 84px; margin-top: 10px;">
-                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/loading.gif" />
-                            </div>
+                    <br />
+                    <asp:UpdateProgress ID="UpdateProgress" runat="server">
+                        <ProgressTemplate>
                             <div style="text-align: center">
                                 Updating...
                             </div>
-                        </LoadingTemplate>
-                    </iucon:PartialUpdatePanel>
+                            <img alt="Updating..." src="images/loading.gif" />
+                           
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+                    <ajaxToolkit:ModalPopupExtender ID="modalPopup" runat="server" TargetControlID="UpdateProgress"
+                        PopupControlID="UpdateProgress" BackgroundCssClass="modalPopup" />
+                    <asp:UpdatePanel ID="upMain" runat="server">
+                        <ContentTemplate>
+                            <asp:PlaceHolder ID="plHolderMain" runat="server"></asp:PlaceHolder>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
-            <!-- /page content -->
-            <!-- footer content -->
-            <footer>
+        </div>
+        <!-- /page content -->
+        <!-- footer content -->
+        <footer>
           <div class="pull-right">
               
             Powered by Ormer Solutions India Pvt Ltd<a href="http://www.ormersolutions.com">( Ormer Solutions )</a>
           </div>
           <div class="clearfix"></div>
         </footer>
-            <!-- /footer content -->
-        </div>
+        <!-- /footer content -->
     </div>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
@@ -227,8 +223,59 @@
     <script type="text/javascript" src="js/json2.js"></script>
     <script type="text/javascript" src="js/sicc-lib.js?v=1.0.1"></script>
     <script type="text/javascript" src="js/custom.js?v=1.0.0"></script>
-
     <script type="text/javascript" src="js/customOld.js"></script>
+    <script type="text/javascript">
+        function pageLoad() {
+            Sys.WebForms.PageRequestManager.getInstance().
+                   add_endRequest(onEndRequest);
+        }
+
+        function onEndRequest(sender, args) {
+
+            args.set_errorHandled(true);
+        }
+
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        //Raised before processing of an asynchronous postback starts and the postback request is sent to the server.
+        prm.add_beginRequest(BeginRequestHandler);
+        // Raised after an asynchronous postback is finished and control has been returned to the browser.
+        prm.add_endRequest(EndRequestHandler);
+        function BeginRequestHandler(sender, args) {
+            //Shows the modal popup - the update progress
+            var popup = $find('<%= modalPopup.ClientID %>');
+            if (popup != null) {
+                popup.show();
+            }
+        }
+
+        function EndRequestHandler(sender, args) {
+            //Hide the modal popup - the update progress
+            var popup = $find('<%= modalPopup.ClientID %>');
+            if (popup != null) {
+                popup.hide();
+            }
+        }
+
+
+        function printInvoice(div1) {
+            var printFriendly = document.getElementById(div1)
+            if (printFriendly.innerHTML != "") {
+                var printWin = window.open("about:blank", "Voucher", "menubar=no;status=no;toolbar=no;");
+                printWin.document.write(printFriendly.innerHTML);
+                printWin.document.close();
+                setInterval(printWin.window.print(), 1000);
+                //printWin.window.print();        
+            }
+            else {
+                alertbox('Print Invoice Error', 'Please Select Invoice No and Click on View');
+                //customErroralert('Print Invoice Error','Please Select Invoice No and Click on View');
+                //alert('Please Select Invoice No and Click on View')
+            }
+        }
+
+
+
+    </script>
     </form>
 </body>
 </html>
