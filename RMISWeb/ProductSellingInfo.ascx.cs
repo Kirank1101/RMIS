@@ -144,12 +144,17 @@ public partial class ProductSellingInfo : BaseUserControl
         ResultDTO resultDTO = new ResultDTO();
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         List<ProductBuyerPaymentDTO> lstProductBuyerPayment = new List<ProductBuyerPaymentDTO>();
-        lstProductBuyerPayment = imp.GetProductPaymentDue(txtBuyerNamePayment.SelectedValue);
+        lstProductBuyerPayment = imp.GetProductPaymentDue(txtMediatorNamePayment.SelectedValue, txtBuyerNamePayment.SelectedValue);
         rptBuyerPaymentDue.DataSource = lstProductBuyerPayment;
         rptBuyerPaymentDue.DataBind();
         TabSellingInfo.ActiveViewIndex = 1;
     }
-
+    protected void btnReset_Click(object sender, EventArgs e)
+    {
+        txtBuyerNamePayment.Enabled = true;
+        txtMediatorNamePayment.Enabled = true;
+        ClearAllPaymentInputFields();
+    }
     protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
     {
         TabSellingInfo.ActiveViewIndex = Int32.Parse(e.Item.Value);
@@ -229,7 +234,10 @@ public partial class ProductSellingInfo : BaseUserControl
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, txtBuyerNamePayment.SelectedValue, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
+
+            string MediatorID = !string.IsNullOrEmpty(txtMediatorNamePayment.Text.Trim()) ? imp.GetMediatorInfo(txtMediatorNamePayment.Text.Trim()) : string.Empty;
+            string BuyerID = !string.IsNullOrEmpty(txtBuyerNamePayment.Text.Trim()) ? imp.GetBuyerInfo(txtBuyerNamePayment.Text.Trim()) : string.Empty;
+            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();
@@ -239,7 +247,8 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         TabSellingInfo.ActiveViewIndex = 1;
     }
-    protected void ddlRiceType_OnSelectedIndexChanged(object sender, EventArgs e) {
+    protected void ddlRiceType_OnSelectedIndexChanged(object sender, EventArgs e)
+    {
         GetStockCount();
     }
     protected void ddlRiceBrand_OnSelectedIndexChanged(object sender, EventArgs e) { GetStockCount(); }
@@ -281,13 +290,13 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         if (StockCount > 0)
         {
-            
+
             lblProductStock.Text = StockCount.ToString();
             lblProductStock.ForeColor = System.Drawing.Color.Green;
         }
         else
         {
-            
+
             lblProductStock.Text = "No Stock for the sellection";
             lblProductStock.ForeColor = System.Drawing.Color.Red;
         }
@@ -295,6 +304,8 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     private void ClearAllPaymentInputFields()
     {
+        txtBuyerNamePayment.Text = string.Empty;
+        txtMediatorNamePayment.Text = string.Empty;
         rptBuyerPaymentDue.SelectedIndex = -1;
         txtChequeNo.Text = string.Empty;
         txtDDno.Text = string.Empty;
@@ -318,9 +329,13 @@ public partial class ProductSellingInfo : BaseUserControl
         {
             int rowindex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = rptBuyerPaymentDue.Rows[rowindex];
-            txtTotalProductCost.Text = row.Cells[2].Text;
+            txtTotalProductCost.Text = row.Cells[3].Text;
+            txtBuyerNamePayment.Text = row.Cells[2].Text;
+            txtMediatorNamePayment.Text = row.Cells[1].Text;
             hfProdPaymentID.Value = rptBuyerPaymentDue.DataKeys[rowindex].Value.ToString();
             TabSellingInfo.ActiveViewIndex = 1;
+            txtBuyerNamePayment.Enabled = false;
+            txtMediatorNamePayment.Enabled = false;
         }
     }
     protected void rptProductSellingDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -358,7 +373,7 @@ public partial class ProductSellingInfo : BaseUserControl
             ddlBrokenRiceType.Visible = false;
             spBrokenRiceType.Visible = false;
             ddlBrokenRiceType.SelectedIndex = 0;
-            
+
 
         }
         else if (rbtProductSellingtype.SelectedValue == BrokenRice)

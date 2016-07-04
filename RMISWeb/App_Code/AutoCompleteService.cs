@@ -36,6 +36,24 @@ public class AutoCompleteService : System.Web.Services.WebService
         
         return names.ToArray();
     }
+    [WebMethod]
+    public string[] GetMediatorNames(string prefixText, int count, string contextKey)
+    {
+        List<string> names = new List<string>();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        List<MediatorInfoEntity> listMediatorInfoEntity = imp.GetMediatorInfo(count, prefixText, contextKey);
+        if (listMediatorInfoEntity != null && listMediatorInfoEntity.Count > 0)
+            foreach (MediatorInfoEntity objMediatorInfoEntity in listMediatorInfoEntity)
+            {
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (objMediatorInfoEntity.Name,
+                    objMediatorInfoEntity.MediatorID);
+                names.Add(item);
+            }
+
+
+        return names.ToArray();
+    }
 
     [WebMethod]
     public string[] GetBuyerNames(string prefixText, int count, string contextKey)

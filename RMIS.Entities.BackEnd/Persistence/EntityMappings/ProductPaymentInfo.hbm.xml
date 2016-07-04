@@ -9,6 +9,7 @@
     </id>
     <property name="CustID" column="CustID" />
     <property name="BuyerID" column="BuyerID" />
+    <property name="MediatorID" column="MediatorID" />
     <property name="TotalAmount" column="TotalAmount" />
     <property name="Status" column="Status" />
     <property name="ObsInd" column="ObsInd" />

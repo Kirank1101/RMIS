@@ -8,6 +8,7 @@
       <generator class="assigned"/>
     </id>
     <property name="BuyerID" column="BuyerID" />
+    <property name="MediatorID" column="MediatorID" />
     <property name="ProductPaymentID" column="ProductPaymentID" />
     <property name="SellingProductType" column="SellingProductType" />
     <property name="MRiceProdTypeID" column="MRiceProdTypeID" />

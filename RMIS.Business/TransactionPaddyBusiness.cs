@@ -58,9 +58,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-
-
-
         public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, int totalBags, double Price, DateTime purchaseDate)
         {
             #region Save PaddyStock
@@ -144,10 +141,8 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
-
         public List<SellerInfoEntity> GetPaddySellerInfo(int count, string prefixText, string context)
         {
-
             List<SellerInfoEntity> listSellerInfoEntity = null;
             List<SellerInfoEntity> listSellerinfo = imp.GetSellerInfoEntities(context, YesNo.N, count, prefixText);
             if (listSellerinfo != null && listSellerinfo.Count > 0)
@@ -165,8 +160,6 @@ namespace RMIS.Business
             }
             return listSellerInfoEntity;
         }
-
-
         public ResultDTO SaveBagStockInfo(string sellerId, string vehicleNo, string DriverName, int totalBags, double Price, DateTime purchaseDate, string RiceBrandID, string UnitTypeID)
         {
             BagStockInfoEntity objBagStockInfoEntity = new BagStockInfoEntity();
@@ -1220,10 +1213,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         }
 
 
-        public ResultDTO SaveProductPaymentInfo(double TotalAmount, char Status)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfo()
         {
@@ -1541,6 +1531,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             foreach (ProductSellingInfoDTO PSID in lstProdSellingDTO)
                 productPaymentInfoEntity.TotalAmount += PSID.TotalBags * PSID.Price;
 
+            productPaymentInfoEntity.MediatorID = lstProdSellingDTO[0].MediatorID; 
             productPaymentInfoEntity.BuyerID = lstProdSellingDTO[0].BuyerID;
             productPaymentInfoEntity.Status = "P";
             productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
@@ -1562,6 +1553,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                 objProductSellingInfoEntity.SellingDate = ProSIDTO.ProductSellingDate;
                 objProductSellingInfoEntity.Price = ProSIDTO.Price;
                 objProductSellingInfoEntity.BuyerID = ProSIDTO.BuyerID;
+                objProductSellingInfoEntity.MediatorID = ProSIDTO.MediatorID;
                 objProductSellingInfoEntity.TotalBags = ProSIDTO.TotalBags;
                 objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
                 objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
@@ -1711,15 +1703,17 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         }
 
 
-        public List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID)
+        public List<ProductBuyerPaymentDTO> GetProductPaymentDue(string MediatorID,string BuyerID)
         {
             List<ProductBuyerPaymentDTO> lstprobuyerpayment = new List<ProductBuyerPaymentDTO>();
             List<ProductPaymentInfoEntity> lstprodpaymnetinfo = new List<ProductPaymentInfoEntity>();
             List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
 
-            lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
+            lstprodpaymnetinfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(),MediatorID, BuyerID, YesNo.N);
 
-            if (lstprodpaymnetinfo != null && lstprodpaymnetinfo.Count > 0)
+            if (lstprodpaymnetinfo != null && lstprodpaymnetinfo.Count > 0){
+                List<BuyerInfoEntity> lstBuyerInfoEnt = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                List<MediatorInfoEntity> lstMediatorInfoEntity=imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(),YesNo.N);    
                 foreach (ProductPaymentInfoEntity PPIE in lstprodpaymnetinfo)
                 {
                     ProductBuyerPaymentDTO PBPDTO = new ProductBuyerPaymentDTO();
@@ -1730,20 +1724,22 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                     if (lstpropaytranent != null && lstpropaytranent.Count > 0)
                         paidamout = lstpropaytranent.Sum(x => x.ReceivedAmount);
 
-                    BuyerInfoEntity BuyerInfoEnt = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), PPIE.BuyerID, YesNo.N);
-                    PBPDTO.BuyerName = BuyerInfoEnt.Name;
+                    PBPDTO.BuyerName = lstBuyerInfoEnt.Where(bu => bu.BuyerID == PPIE.BuyerID).Select(bu => bu.Name).SingleOrDefault();
+                    PBPDTO.MediatorName = lstMediatorInfoEntity.Where(me => me.MediatorID == PPIE.MediatorID).Select(me => me.Name).SingleOrDefault();
                     PBPDTO.TotalAmountDue = PPIE.TotalAmount - paidamout;
                     lstprobuyerpayment.Add(PBPDTO);
                 }
+            }
             return lstprobuyerpayment;
         }
 
 
-        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue)
+        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue)
         {
             ProductPaymentTransactionEntity ProPayTraEnt = new ProductPaymentTransactionEntity();
             ProPayTraEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PP");
             ProPayTraEnt.ProductPaymentID = ProductPaymentID;
+            ProPayTraEnt.MediatorID = MediatorID;
             ProPayTraEnt.BuyerID = BuyerID;
             ProPayTraEnt.CustID = provider.GetCurrentCustomerId();
             ProPayTraEnt.Paymentmode = PaymentMode;
@@ -2969,6 +2965,46 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                 }
             }
             return ResultDTO;            
+        }
+        public List<MediatorInfoEntity> GetMediatorInfo(int count, string prefixText, string contextKey)
+        {
+            List<MediatorInfoEntity> listMediatorInfoEntity = null;
+            List<MediatorInfoEntity> listMediatorinfo = imp.GetMediatorInfoEntities(contextKey, YesNo.N, count, prefixText);
+            if (listMediatorinfo != null && listMediatorinfo.Count > 0)
+            {
+                listMediatorInfoEntity = new List<MediatorInfoEntity>();
+                foreach (MediatorInfoEntity objMediatorinfo in listMediatorinfo)
+                {
+
+                    MediatorInfoEntity objMediatorInfoEntity = new MediatorInfoEntity();
+                    objMediatorInfoEntity.MediatorID = objMediatorinfo.MediatorID;
+                    objMediatorInfoEntity.Name = objMediatorinfo.Name;
+                    listMediatorInfoEntity.Add(objMediatorInfoEntity);
+                }
+
+            }
+            return listMediatorInfoEntity;
+        }
+
+
+        public string GetMediatorInfo(string MediatorName)
+        {
+            string MediatorNameID = string.Empty;
+            MediatorInfoEntity Mediatorinfo = imp.GetMediatorInfoEntityByName(provider.GetCurrentCustomerId(), MediatorName, YesNo.N);
+            if (Mediatorinfo != null)
+                MediatorNameID = Mediatorinfo.MediatorID;
+
+            return MediatorNameID;            
+        }
+
+        public string GetBuyerInfo(string BuyerName)
+        {
+            string BuyerNameID = string.Empty;
+            BuyerInfoEntity Buyerinfo = imp.GetBuyerInfoEntityByName(provider.GetCurrentCustomerId(), BuyerName, YesNo.N);
+            if (Buyerinfo != null)
+                BuyerNameID = Buyerinfo.BuyerID;
+
+            return BuyerNameID;            
         }
     }
 }

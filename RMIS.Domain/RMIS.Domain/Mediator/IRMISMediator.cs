@@ -181,7 +181,7 @@ namespace RMIS.Domain.Mediator
         int GetMPaddyTypeEntitiesTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         int GetPaddyStockUsedTotal(string CustId, string UnitsTypeID, string PaddyTypeId, YesNo yesNo);
         List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, YesNo yesNo);
-        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string BuyerID, YesNo yesNo);
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string MediatorID, string BuyerID, YesNo yesNo);
         List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, YesNo yesNo);
         List<PaddyStockInfoEntity> GetAllPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
         List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
@@ -261,6 +261,14 @@ namespace RMIS.Domain.Mediator
         #endregion
         #endregion
 
+
+        List<MediatorInfoEntity> GetMediatorInfoEntities(string CustId, YesNo yesNo, int count, string prefixText);
+
+
+
+        MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo);
+
+        BuyerInfoEntity GetBuyerInfoEntityByName(string CustId, string BuyerName, YesNo yesNo);
     }
 
 }

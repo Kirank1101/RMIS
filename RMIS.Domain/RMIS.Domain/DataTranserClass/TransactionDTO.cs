@@ -139,6 +139,7 @@ namespace RMIS.Domain.DataTranserClass
         public int SlNo { get; set; }
         public string ProductPaymentID { get; set; }
         public string BuyerName { get; set; }
+        public string MediatorName { get; set; }
         public double TotalAmountDue { get; set; }
         public DateTime SellingDate { get; set; }
     }
@@ -148,11 +149,13 @@ namespace RMIS.Domain.DataTranserClass
         public int ProductID { get; set; }
         public string SellingProductType { get; set; }
         public string BuyerID { get; set; }
+        public string MediatorID { get; set; }
         public string MRiceProdTypeID { get; set; }
         public string MRiceBrandID { get; set; }
         public string BrokenRiceTypeID { get; set; }
         public string UnitsTypeID { get; set; }
         public string BuyerName { get; set; }
+        public string MediatorName { get; set; }
         public string ProductType { get; set; }
         public string ProductName { get; set; }
         public string Brand { get; set; }

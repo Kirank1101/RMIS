@@ -1275,9 +1275,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string MediatorID, string BuyerID, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductPaymentInfoEntities(CustId, BuyerID, yesNo);
+            return rmisGateway.GetAllProductPaymentInfoEntities(CustId,MediatorID, BuyerID, yesNo);
         }
 
 
@@ -1478,6 +1478,23 @@ namespace RMIS.Mediator.BackEnd.Impl
         public MediatorInfoEntity GetMediatorInfoEntity(string CustId, string ID, YesNo yesNo)
         {
             return rmisGateway.GetMediatorInfoEntity(CustId, ID, yesNo);
+        }
+
+
+        public List<MediatorInfoEntity> GetMediatorInfoEntities(string CustId, YesNo yesNo, int count, string prefixText)
+        {
+            return rmisGateway.GetMediatorInfoEntities(CustId, yesNo, count, prefixText);
+        }
+
+
+        public MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo)
+        {
+            return rmisGateway.GetMediatorInfoEntityByName(CustId, MediatorName, yesNo);
+        }
+
+        public BuyerInfoEntity GetBuyerInfoEntityByName(string CustId, string BuyerName, YesNo yesNo)
+        {
+            return rmisGateway.GetBuyerInfoEntityByName(CustId, BuyerName, yesNo);
         }
     }
 }

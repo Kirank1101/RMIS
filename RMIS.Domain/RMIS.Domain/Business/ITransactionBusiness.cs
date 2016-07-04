@@ -24,9 +24,6 @@ namespace RMIS.Domain.Business
         ResultDTO SaveDustStockInfo(int totalBags, string UnitsTypeID);
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
-        ResultDTO SaveProductSellingInfo(string SellingProductType, string BuyerId, string MRiceProdTypeID, string MRiceBrandId, string BrokenRiceTypeId,
-                                         int totalBags, string UnitsTypeID, double Price, DateTime SellingDate, string OrderNo, string PaymnetMode,
-                                         string ChequeNo, string DDno, string BankName, double ReceivedAmount, DateTime NextPaymentDate);
         ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
@@ -42,8 +39,7 @@ namespace RMIS.Domain.Business
            string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SaveEmployeeSalary(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary);
         ResultDTO SaveEmployeeSalaryPayment(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary, double AmountSpent, double ExtraCharges);
-        ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);
-        ResultDTO SaveProductPaymentInfo(double TotalAmount, char Status);
+        ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);        
         ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
         ResultDTO SaveMediatorInfo(string name, string street, string street1, string town, string city, string district, string state,
                    string pincode, string contactNo, string mobileNo, string phoneNo);
@@ -110,9 +106,9 @@ namespace RMIS.Domain.Business
 
         ResultDTO CheckDustStockAvailability(string UnitTypeID, int TotalBags);
 
-        List<ProductBuyerPaymentDTO> GetProductPaymentDue(string BuyerID);
+        List<ProductBuyerPaymentDTO> GetProductPaymentDue(string MediatorID, string BuyerID);
 
-        ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue);
+        ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue);
 
         List<SellerInfoDTO> GetAllSellerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteSellerInfo(string ID);
@@ -162,5 +158,11 @@ namespace RMIS.Domain.Business
         List<ProductPaymentDTO> GetProductPaymentDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         List<ProductPaymentDTO> GetProductPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<MediatorInfoEntity> GetMediatorInfo(int count, string prefixText, string contextKey);
+
+        string GetMediatorInfo(string MediatorName);
+
+        string GetBuyerInfo(string BuyerName);
     }
 }

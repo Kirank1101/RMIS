@@ -3843,18 +3843,40 @@
             }
         }
 
-        internal List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string BuyerID, YesNo yesNo)
+        internal List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string MediatorID, string BuyerID, YesNo yesNo)
         {
             try
             {
                 List<ProductPaymentInfoEntity> listProductPaymentInfoEntity = new List<ProductPaymentInfoEntity>();
                 IRepository<ProductPaymentInfo> UsersRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("Status", "P"))
-                                                                   .Add(Expression.Eq("BuyerID", BuyerID))
-                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   );
+                DetachedCriteria detachedCriteria=null;
+                if (!string.IsNullOrEmpty(MediatorID) && string.IsNullOrEmpty(BuyerID))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.Eq("Status", "P"))
+                                                                       .Add(Expression.Eq("MediatorID", MediatorID))
+                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                       );
+                }
+                else if (string.IsNullOrEmpty(MediatorID) && !string.IsNullOrEmpty(BuyerID))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.Eq("Status", "P"))
+                                                                       .Add(Expression.Eq("BuyerID", BuyerID))
+                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                       );
+                }
+                else {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                                                                       .Add(Expression.Eq("CustID", CustId))
+                                                                       .Add(Expression.Eq("Status", "P"))
+                                                                       .Add(Expression.Eq("MediatorID", MediatorID))
+                                                                       .Add(Expression.Eq("BuyerID", BuyerID))
+                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                       );
+                }
                 List<ProductPaymentInfo> listProductPaymentInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductPaymentInfo>;
                 if (listProductPaymentInfo != null && listProductPaymentInfo.Count > 0)
                 {
@@ -4785,6 +4807,96 @@
                 throw;
             }
             return MediatorInfoEntity;
+        }
+
+        internal List<MediatorInfoEntity> GetMediatorInfoEntities(string CustId, YesNo yesNo, int count, string prefixText)
+        {
+            try
+            {
+                List<MediatorInfoEntity> ListMediatorInfoEntity = new List<MediatorInfoEntity>();
+                IRepository<MediatorInfo> MediatorTypeRepository = new RepositoryImpl<MediatorInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MediatorInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
+                                                                     .Add(Restrictions.Like("Name", prefixText + "%"))
+                                                                     .AddOrder(Order.Asc("Name"))
+                                                                     .SetMaxResults(count);
+
+
+                List<MediatorInfo> listMediatorInfo = MediatorTypeRepository.GetAll(detachedCriteria) as List<MediatorInfo>;
+                if (listMediatorInfo != null && listMediatorInfo.Count > 0)
+                {
+                    foreach (MediatorInfo adMInfo in listMediatorInfo)
+                    {
+                        ListMediatorInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMediatorInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMediatorInfoEntity = null;
+
+                return ListMediatorInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMediatorInfoEntities", ex);
+                throw;
+            }           
+        }
+
+        internal MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo)
+        {
+            MediatorInfoEntity MediatorInfoEntity = new MediatorInfoEntity();
+            try
+            {
+                IRepository<MediatorInfo> MediatorInfoRepository = new RepositoryImpl<MediatorInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MediatorInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Name", MediatorName))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MediatorInfo> listMediatorInfoEntity = MediatorInfoRepository.GetAll(detachedCriteria) as List<MediatorInfo>;
+                if (listMediatorInfoEntity != null && listMediatorInfoEntity.Count > 0)
+                {
+                    foreach (MediatorInfo adMInfo in listMediatorInfoEntity)
+                        MediatorInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMediatorInfoEntity(adMInfo);
+                }
+                else
+                    MediatorInfoEntity = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMediatorInfoEntityByName", ex);
+                throw;
+            }
+            return MediatorInfoEntity;
+        }
+
+        internal BuyerInfoEntity GetBuyerInfoEntityByName(string CustId, string BuyerName, YesNo yesNo)
+        {
+            BuyerInfoEntity BuyerInfoEntity = new BuyerInfoEntity();
+            try
+            {
+                IRepository<BuyerInfo> BuyerInfoRepository = new RepositoryImpl<BuyerInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BuyerInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("Name", BuyerName))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<BuyerInfo> listBuyerInfoEntity = BuyerInfoRepository.GetAll(detachedCriteria) as List<BuyerInfo>;
+                if (listBuyerInfoEntity != null && listBuyerInfoEntity.Count > 0)
+                {
+                    foreach (BuyerInfo adMInfo in listBuyerInfoEntity)
+                        BuyerInfoEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo);
+                }
+                else
+                    BuyerInfoEntity = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBuyerInfoEntityByName", ex);
+                throw;
+            }
+            return BuyerInfoEntity;
         }
     }
 }

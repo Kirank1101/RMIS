@@ -10,6 +10,7 @@ namespace RMIS.Entities.BackEnd
         private string _ProductPaymentID;
         private string _CustID;
         private string _BuyerID;
+        private string _MediatorID;
         private double _TotalAmount; 
         private string _Status;
         private string _LastModifiedBy;
@@ -30,6 +31,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _BuyerID; }
             set { _BuyerID = value; }
+        }
+        public virtual string MediatorID
+        {
+            get { return _MediatorID; }
+            set { _MediatorID = value; }
         }
         public virtual double TotalAmount
         {

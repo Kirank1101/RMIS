@@ -44,6 +44,15 @@
             </tr>
             <tr>
                 <td>
+                    <asp:Label runat="server" ID="lblMediatorName" Text="<%$Resources:Resource,MediatorName%>"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBoxAutoExtender ID="txtMediatorName" runat="server" ServiceMethod="GetMediatorNames">
+                    </asp:TextBoxAutoExtender>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label><span
                         style="color: Red">*</span>
                 </td>
@@ -176,13 +185,35 @@
                     <table>
                         <tr>
                             <td>
+                                <asp:Label runat="server" ID="lblProPaymentMediator" Text="<%$Resources:Resource,MediatorName%>"></asp:Label>
+                                <span style="color: Red">*</span>
+                            </td>
+                            <td>
+                                <asp:TextBoxAutoExtender ID="txtMediatorNamePayment" runat="server" ServiceMethod="GetMediatorNames">
+                                </asp:TextBoxAutoExtender>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
+                                And / OR
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <asp:Label runat="server" ID="Label2" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>
                                 <span style="color: Red">*</span>
                             </td>
                             <td>
                                 <asp:TextBoxAutoExtender ID="txtBuyerNamePayment" runat="server" ServiceMethod="GetBuyerNames">
                                 </asp:TextBoxAutoExtender>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
                                 <asp:Button ID="btnBuyerDetails" runat="server" Text="Search" OnClick="btnBuyerDetails_Click"
+                                    ValidationGroup="OnSave" />
+                                    
+                                <asp:Button ID="btnReset" runat="server" Text="Search" OnClick="btnReset_Click"
                                     ValidationGroup="OnSave" />
                             </td>
                         </tr>
@@ -276,6 +307,7 @@
                         class="table table-striped table-bordered">
                         <Columns>
                             <asp:BoundField DataField="SlNo" ItemStyle-Width="80px" HeaderText="<%$Resources:Resource,SlNo%>" />
+                            <asp:BoundField DataField="MediatorName" ItemStyle-Width="300px" HeaderText="<%$Resources:Resource,MediatorName%>" />
                             <asp:BoundField DataField="BuyerName" ItemStyle-Width="300px" HeaderText="<%$Resources:Resource,BuyerName%>" />
                             <asp:BoundField DataField="TotalAmountDue" ItemStyle-Width="200px" HeaderText="<%$Resources:Resource,TotalAmountDue%>" />
                             <asp:ButtonField ButtonType="Button" CommandName="PayAmount" Text="Pay" />

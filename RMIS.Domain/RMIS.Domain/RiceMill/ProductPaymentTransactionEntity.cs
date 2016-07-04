@@ -11,6 +11,7 @@ namespace RMIS.Domain.RiceMill
     {
         public string ProductPaymentTranID { get; set; }
         public string BuyerID { get; set; }
+        public string MediatorID { get; set; }
         public string ProductPaymentID { get; set; }
         public string CustID { get; set; }
         public string Paymentmode { get; set; }
