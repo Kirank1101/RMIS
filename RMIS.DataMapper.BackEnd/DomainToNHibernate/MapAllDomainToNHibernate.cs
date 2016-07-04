@@ -116,6 +116,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapProductPaymentTranEntityToProductPaymentTran();
                 objRMISMappingDTN.MapBagPaymentDetailsEntityToBagPaymentDetails();
                 objRMISMappingDTN.MapMessageInfoEntityToMessageInfo();
+                objRMISMappingDTN.MapMediatorInfoEntityToMediatorInfo();
             }
             catch (Exception exp)
             {

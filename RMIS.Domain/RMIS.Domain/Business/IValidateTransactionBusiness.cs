@@ -27,5 +27,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateOtherExpenses(string p, string p_2, double p_3);
 
         ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount,double TotalDueAmount);
+
+        ResultDTO ValidateMediatorDetails(string MediatorName, string city, string district, string state, string contactNo);
     }
 }

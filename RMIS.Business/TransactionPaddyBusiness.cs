@@ -777,11 +777,7 @@ namespace RMIS.Business
         {
             return imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId(), YesNo.N);
         }
-
-
-
-
-        public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Remarks)
+public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Remarks)
         {
             BuyerSellerRatingEntity objBuyerSellerRatingEntity = new BuyerSellerRatingEntity();
             objBuyerSellerRatingEntity.ObsInd = YesNo.N;
@@ -1862,15 +1858,25 @@ namespace RMIS.Business
             }
             return ResultDTO;
         }
-        public bool CheckSellerNameExist(string SellerName)
+        public bool CheckSellerNameExist(string SellerID, string SellerName)
         {
 
             bool IsSellerNameExist = false;
 
-            SellerInfoEntity SellerInfoEntity = imp.CheckSellerNameExist(provider.GetCurrentCustomerId(), SellerName, YesNo.N);
-            if (SellerInfoEntity != null)
-                IsSellerNameExist = true;
-
+            List<SellerInfoEntity> lstSellerInfoEntity = imp.CheckSellerNameExist(provider.GetCurrentCustomerId(), SellerName, YesNo.N);
+            if (lstSellerInfoEntity != null)
+            {
+                foreach (SellerInfoEntity item in lstSellerInfoEntity)
+                {
+                    if (!string.IsNullOrEmpty(SellerID))
+                    {
+                        if (item.SellerID != SellerID)
+                            IsSellerNameExist = true;
+                    }
+                    else
+                        IsSellerNameExist = true;
+                }
+            }
             return IsSellerNameExist;
         }
         public List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
@@ -1949,14 +1955,21 @@ namespace RMIS.Business
             }
             return ResultDTO;
         }
-        public bool CheckBuyerNameExist(string BuyerName)
+        public bool CheckBuyerNameExist(string BuyerID,string BuyerName)
         {
             bool IsBuyerNameExist = false;
 
-            BuyerInfoEntity BuyerInfoEntity = imp.CheckBuyerNameExist(provider.GetCurrentCustomerId(), BuyerName, YesNo.N);
-            if (BuyerInfoEntity != null)
-                IsBuyerNameExist = true;
-
+            List<BuyerInfoEntity> lstBuyerInfoEntity = imp.CheckBuyerNameExist(provider.GetCurrentCustomerId(), BuyerName, YesNo.N);
+            foreach (BuyerInfoEntity item in lstBuyerInfoEntity)
+            {
+                if (!string.IsNullOrEmpty(BuyerID))
+                {
+                    if (item.BuyerID != BuyerID)
+                        IsBuyerNameExist = true;
+                }
+                else
+                    IsBuyerNameExist = true;
+            }
             return IsBuyerNameExist;
         }
 
@@ -2798,6 +2811,164 @@ namespace RMIS.Business
                     lstProductPaymentDTO.Add(productPaymentDTO);
                 }
             return lstProductPaymentDTO;
+        }
+
+
+        public ResultDTO SaveMediatorInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        {
+            MediatorInfoEntity objMediatorInfoEntity = new MediatorInfoEntity();
+            objMediatorInfoEntity.MediatorID = CommonUtil.CreateUniqueID("BI");
+            objMediatorInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objMediatorInfoEntity.Name = name;
+            objMediatorInfoEntity.Street = street;
+            objMediatorInfoEntity.Street1 = street1;
+            objMediatorInfoEntity.Town = town;
+            objMediatorInfoEntity.City = city;
+            objMediatorInfoEntity.District = district;
+            objMediatorInfoEntity.State = state;
+            objMediatorInfoEntity.ContactNo = contactNo;
+            objMediatorInfoEntity.MobileNo = mobileNo;
+            objMediatorInfoEntity.PhoneNo = phoneNo;
+            objMediatorInfoEntity.PinCode = pincode;
+            objMediatorInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMediatorInfoEntity.LastModifiedDate = DateTime.Now;
+            objMediatorInfoEntity.ObsInd = YesNo.N;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMediatorInfoEntity(objMediatorInfoEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
+
+        public List<MediatorInfoEntity> GetMediatorInfo()
+        {
+            List<MediatorInfoEntity> listMediatorInfoEntity = null;
+            List<MediatorInfoEntity> listMediatorinfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMediatorinfo != null && listMediatorinfo.Count > 0)
+            {
+                listMediatorInfoEntity = new List<MediatorInfoEntity>();
+                foreach (MediatorInfoEntity objMediatorinfo in listMediatorinfo)
+                {
+
+                    MediatorInfoEntity objMediatorInfoEntity = new MediatorInfoEntity();
+                    objMediatorInfoEntity.MediatorID = objMediatorinfo.MediatorID;
+                    objMediatorInfoEntity.Name = objMediatorinfo.Name;
+                    listMediatorInfoEntity.Add(objMediatorInfoEntity);
+                }
+
+            }
+            return listMediatorInfoEntity;
+        }
+        public bool CheckMediatorNameExist(string MediatorID,string MediatorName)
+        {
+            bool IsMediatorNameExist = false;
+
+            List<MediatorInfoEntity> lstMediatorInfoEntity = imp.GetListBrokerEntities(provider.GetCurrentCustomerId(), MediatorName, YesNo.N);
+            if (lstMediatorInfoEntity != null)
+                foreach (MediatorInfoEntity item in lstMediatorInfoEntity)
+                {
+                    if (!string.IsNullOrEmpty(MediatorID))
+                    {
+                        if (item.MediatorID != MediatorID)
+                            IsMediatorNameExist = true;
+                    }
+                    else
+                        IsMediatorNameExist = true;
+                }
+
+            return IsMediatorNameExist;
+        }
+
+
+        public List<MediatorInfoDTO> GetAllMediatorInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<MediatorInfoDTO> listMediatorInfoDTO = null;
+
+            List<MediatorInfoEntity> listMediatorInfoEntity = imp.GetListMediatorInfoEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMediatorInfoEntity != null && listMediatorInfoEntity.Count > 0)
+            {
+                listMediatorInfoDTO = new List<MediatorInfoDTO>();
+                foreach (MediatorInfoEntity objMediatorInfoEntity in listMediatorInfoEntity)
+                {
+                    MediatorInfoDTO objMediatorInfoDTO = new MediatorInfoDTO();
+                    objMediatorInfoDTO.ID = objMediatorInfoEntity.MediatorID;
+                    objMediatorInfoDTO.MediatorName = objMediatorInfoEntity.Name;
+                    objMediatorInfoDTO.Town = objMediatorInfoEntity.Town;
+                    objMediatorInfoDTO.ContactNo = objMediatorInfoEntity.ContactNo;
+                    objMediatorInfoDTO.MobileNo = objMediatorInfoEntity.MobileNo;
+                    listMediatorInfoDTO.Add(objMediatorInfoDTO);
+                }
+            }
+            return listMediatorInfoDTO;
+        }
+
+
+        public ResultDTO DeleteMediatorInfo(string MediatorID)
+        {
+
+            ResultDTO ResultDTO = new ResultDTO();
+            MediatorInfoEntity objMediatorInfoEntity = imp.GetMediatorInfoEntity(provider.GetCurrentCustomerId(), MediatorID, YesNo.N);
+            if (objMediatorInfoEntity is MediatorInfoEntity)
+            {
+                objMediatorInfoEntity.ObsInd = YesNo.Y;
+                objMediatorInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMediatorInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMediatorInfoEntity(objMediatorInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.DeletedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.DeletedUnSuccess;
+                }
+            }
+            return ResultDTO;
+        }
+
+
+        public ResultDTO UpdateMediatorInfo(string MediatorID, string MediatorName, string Town, string Contactno, string mobileno)
+        {
+
+            ResultDTO ResultDTO = new ResultDTO();
+            MediatorInfoEntity objMediatorInfoEntity = imp.GetMediatorInfoEntity(provider.GetCurrentCustomerId(), MediatorID, YesNo.N);
+            if (objMediatorInfoEntity is MediatorInfoEntity)
+            {
+                objMediatorInfoEntity.Name = MediatorName;
+                objMediatorInfoEntity.Town = Town;
+                objMediatorInfoEntity.ContactNo = Contactno;
+                objMediatorInfoEntity.MobileNo = mobileno;
+                objMediatorInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMediatorInfoEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMediatorInfoEntity(objMediatorInfoEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
+                }
+            }
+            return ResultDTO;            
         }
     }
 }

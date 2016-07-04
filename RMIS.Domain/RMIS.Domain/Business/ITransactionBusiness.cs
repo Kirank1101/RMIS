@@ -45,6 +45,8 @@ namespace RMIS.Domain.Business
         ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);
         ResultDTO SaveProductPaymentInfo(double TotalAmount, char Status);
         ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
+        ResultDTO SaveMediatorInfo(string name, string street, string street1, string town, string city, string district, string state,
+                   string pincode, string contactNo, string mobileNo, string phoneNo);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -81,6 +83,9 @@ namespace RMIS.Domain.Business
         List<WidgetDTO> GetPaddyTotalAmountDueWidget();
         List<WidgetDTO> GetProductTotalAmountDueWidget();
         List<WidgetDTO> GetTotalBagStockWidget();
+        List<MediatorInfoEntity> GetMediatorInfo();
+        List<MediatorInfoDTO> GetAllMediatorInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
+        
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
         int GetPaddyStockTotalSum();
@@ -112,12 +117,14 @@ namespace RMIS.Domain.Business
         List<SellerInfoDTO> GetAllSellerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteSellerInfo(string ID);
         ResultDTO UpdateSellerInfo(string ID, string SellerName, string Town, string Contactno, string mobileno);
-        bool CheckSellerNameExist(string SellerName);
+        bool CheckSellerNameExist(string SellerID, string SellerName);
         List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteBuyerInfo(string ID);
         ResultDTO UpdateBuyerInfo(string ID, string BuyerName, string Town, string Contactno, string mobileno);
-        bool CheckBuyerNameExist(string BuyerName);
-
+        bool CheckBuyerNameExist(string BuyerID,string BuyerName);
+        bool CheckMediatorNameExist(string MediatorID, string MediatorName);
+        ResultDTO DeleteMediatorInfo(string MediatorID);
+        ResultDTO UpdateMediatorInfo(string MediatorID, string MediatorName, string Town, string Contactno, string mobileno);
         ResultDTO CheckISValidSeller(string SellerID, string SellerNae);
 
         double GetBagTotalAmountDueBySeller(string SellerID);

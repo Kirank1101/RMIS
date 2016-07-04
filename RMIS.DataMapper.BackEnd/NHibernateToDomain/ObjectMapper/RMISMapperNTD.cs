@@ -860,6 +860,25 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return BagPaymentDetailsEntity;
         }
+        public static MediatorInfoEntity GetMediatorInfoEntity(MediatorInfo MediatorInfo)
+        {
+            MediatorInfoEntity MediatorInfoEntity = null;
+
+            try
+            {
+                if (MediatorInfo != null)
+                {
+                    MediatorInfoEntity = Mapper.Map<MediatorInfo, MediatorInfoEntity>(MediatorInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMediatorInfoEntity", ex);
+                throw;
+            }
+
+            return MediatorInfoEntity;
+        }
         
     }
 

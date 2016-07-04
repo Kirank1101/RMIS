@@ -57,7 +57,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         ProductPaymentInfo GetProductPaymentInfo(ProductPaymentInfoEntity ProductPaymentInfoEntity);
         ProductPaymentTransaction GetProductPaymentTransaction(ProductPaymentTransactionEntity ProdPayTranEnt);
         BagPaymentInfo GetBagPaymentDetails(BagPaymentInfoEntity bagPaymentDetailsEntity);
-        MessageInfo GetMessageInfo(MessageInfoEntity messageInfoEntity);        
+        MessageInfo GetMessageInfo(MessageInfoEntity messageInfoEntity);
+        MediatorInfo GetMediatorInfo(MediatorInfoEntity MediatorInfoEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -764,6 +765,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return BagPaymentDetails;
+        }
+
+
+        public MediatorInfo GetMediatorInfo(MediatorInfoEntity MediatorInfoEntity)
+        {
+            MediatorInfo MediatorDetails = null;
+            try
+            {
+                MediatorDetails = Mapper.Map<MediatorInfoEntity, MediatorInfo>(MediatorInfoEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMediatorInfo", ex);
+                throw;
+            }
+            return MediatorDetails;
         }
     }
 }

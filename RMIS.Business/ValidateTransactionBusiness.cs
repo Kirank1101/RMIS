@@ -656,6 +656,56 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateMediatorDetails(string MediatorName, string city, string district, string state, string contactNo)
+        {
+
+            if (string.IsNullOrEmpty(MediatorName.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsMediatorNameEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (MediatorName.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsMediatorNameLenth, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(city.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailCityEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (city.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailCityLength, provider.GetCurrentCustomerId()) };
+            }
+
+            else if (string.IsNullOrEmpty(district.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsDistrictEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (district.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsDistrictLength, provider.GetCurrentCustomerId()) };
+            }
+
+            else if (string.IsNullOrEmpty(state.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsStateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (state.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsStateLength, provider.GetCurrentCustomerId()) };
+            }
+
+            else if (string.IsNullOrEmpty(contactNo.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsContactNoEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (contactNo.Trim().Length > 11)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsContactNoLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }
 

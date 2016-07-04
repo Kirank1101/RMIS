@@ -192,6 +192,18 @@ namespace RMIS.Domain.Constant
         public const string ValidateProductPaymentReceivedAmount = "Validate184";
         public const string ValidateProductPaymentAmountDue = "Validate185";
 
+        public const string ValidateMediatorDetailsBuyeTypes = "Validate186";
+        public const string ValidateMediatorDetailsMediatorNameEmpty = "Validate187";
+        public const string ValidateMediatorDetailCityEmpty = "Validate188";
+        public const string ValidateMediatorDetailsDistrictEmpty = "Validate189";
+        public const string ValidateMediatorDetailsStateEmpty = "Validate190";
+        public const string ValidateMediatorDetailsContactNoEmpty = "Validate191";
+        public const string ValidateMediatorDetailsMediatorNameLenth = "Validate192";
+        public const string ValidateMediatorDetailCityLength = "Validate193";
+        public const string ValidateMediatorDetailsDistrictLength = "Validate194";
+        public const string ValidateMediatorDetailsStateLength = "Validate195";
+        public const string ValidateMediatorDetailsContactNoLength = "Validate196";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

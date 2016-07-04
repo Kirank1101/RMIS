@@ -78,6 +78,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateProductPaymentInfoEntity(ProductPaymentInfoEntity ProductPaymentInfoEntity, bool isCopy);
         void SaveOrUpdateProductPaymentTransEntity(ProductPaymentTransactionEntity ProductPaymentTranEntity, bool isCopy);
         void SaveOrUpdateBagPaymentEntity(BagPaymentInfoEntity bagPaymentDetailsEntity, bool isCopy);
+        void SaveOrUpdateMediatorInfoEntity(MediatorInfoEntity MediatorInfoEntity, bool isCopy);
         #endregion
         #region Get
         /// <summary>
@@ -186,6 +187,61 @@ namespace RMIS.Domain.Mediator
         List<HullingProcessEntity> GetAllHullingProcessPaddyStock(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, YesNo yesNo);
         List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo);
         HullingProcessEntity GetHullingProcessEnitity(string CustId, string HullingProcessID, YesNo yesNo);
+        List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo);
+        List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string BrokenRiceTypeID, YesNo yesNo);
+        List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string EmpDesigID, YesNo yesNo);
+        List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo);
+        List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MBagTypeEntity GetMBagTypeEntity(string CustId, string BagType, YesNo yesNo);
+        MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string CustId, string RiceType, YesNo yesNo);
+        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string CustId, string BrokenRiceType, YesNo yesNo);
+        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo);
+        List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceType, string RiceBrand, string UnitType, YesNo yesNo);
+        //Get Total Rice bags sold from ProductSellingInfo
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo);
+        List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
+        //Get Total Broken Rice bags sold from ProductSellingInfo
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
+        List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
+        List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo);
+        BuyerInfoEntity GetBuyerInfoEntity(string CustId, string BuyerID, YesNo yesNo);
+        ProductPaymentInfoEntity GetProductPaymentInfoEntity(string CustId, string ProductPaymentID, YesNo yesNo);
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string ProductPaymentID, YesNo yesNo);
+        List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<SellerInfoEntity> CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo);
+        List<BuyerInfoEntity> CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo);
+        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo);
+        List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntity(string CustId, YesNo yesNo);
+        double GetBagTotalAmount(string CustId, string SellerID, YesNo yesNo);
+        double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo);
+        List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo);
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<SellerInfoEntity> GetSellerInfoEntity(string CustId, YesNo yesNo);
+        List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, YesNo yesNo);
+        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, YesNo yesNo);
+        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        List<MediatorInfoEntity> GetMediatorInfoEntities(string custId, YesNo yesNo);
+        List<MediatorInfoEntity> GetListMediatorInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MediatorInfoEntity GetMediatorInfoEntity(string CustId, string MediatorID, YesNo yesNo);
         #endregion
         #region Check
         /// <summary>
@@ -201,108 +257,10 @@ namespace RMIS.Domain.Mediator
         MSalaryTypeEntity CheckSalaryTypeExist(string CustId, string SalaryType, YesNo yesNo);
         EmployeeDetailsEntity CheckEmployeeExist(string CustId, string EmployeeName, YesNo yesNo);
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID, YesNo yesNo);
+        List<MediatorInfoEntity> GetListBrokerEntities(string CustId, string MediatorName, YesNo yesNo);
         #endregion
         #endregion
 
-
-        List<MUnitsTypeEntity> GetMUnitsTypeEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        List<MGodownDetailsEntity> GetMGodownDetailsEntities(string CustID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        List<MLotDetailsEntity> GetMLotDetailsEntities(string CustId, string GodownID, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        MBagTypeEntity GetMBagTypeEntity(string BagTypeID, YesNo yesNo);
-
-        List<MBagTypeEntity> GetMBagTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        List<MRiceProductionTypeEntity> GetMRiceProductionTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string BrokenRiceTypeID, YesNo yesNo);
-
-        List<MBrokenRiceTypeEntity> GetMBrokenRiceTypeEntitiies(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        List<MRiceBrandDetailsEntity> GetMRiceBrandDetailsEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        MEmployeeDesignationEntity GetMEmployeeDesignationEntity(string EmpDesigID, YesNo yesNo);
-
-        List<MEmployeeDesignationEntity> GetMEmployeeDesignationEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        MSalaryTypeEntity GetMSalaryTypeEntity(string SalaryTypeID, YesNo yesNo);
-
-        List<MSalaryTypeEntity> GetListMSalaryTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        MBagTypeEntity GetMBagTypeEntity(string CustId, string BagType, YesNo yesNo);
-
-        MRiceProductionTypeEntity GetMRiceProductionTypeEntity(string CustId, string RiceType, YesNo yesNo);
-
-        MBrokenRiceTypeEntity GetMBrokenRiceTypeEntity(string CustId, string BrokenRiceType, YesNo yesNo);
-
-        MRiceBrandDetailsEntity GetMRiceBrandDetailsEntity(string CustId, string RiceBrand, YesNo yesNo);
-
-        List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceType, string RiceBrand, string UnitType, YesNo yesNo);
-        //Get Total Rice bags sold from ProductSellingInfo
-        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string RiceTypeID, string RiceBrandID, string UnitTypeID, YesNo yesNo);
-        List<BrokenRiceStockInfoEntity> GetAllBrokenRiceStockInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
-        //Get Total Broken Rice bags sold from ProductSellingInfo
-        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BrokenRiceTypeID, string UnitTypeID, YesNo yesNo);
-
-        List<DustStockInfoEntity> GetAllDustStockInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
-
-        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string UnitTypeID, YesNo yesNo);
-
-        List<ProductSellingInfoEntity> GetAllBuyerproductSellingInfoEntities(string CustId, string BuyerID, YesNo yesNo);
-
-        BuyerInfoEntity GetBuyerInfoEntity(string CustId, string BuyerID, YesNo yesNo);
-
-        ProductPaymentInfoEntity GetProductPaymentInfoEntity(string CustId, string ProductPaymentID, YesNo yesNo);
-
-        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string ProductPaymentID, YesNo yesNo);
-
-
-
-        List<SellerInfoEntity> GetListSellerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        SellerInfoEntity CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo);
-
-        BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo);
-
-        List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
-
-        SellerInfoEntity CheckISValidSeller(string CustId, string SellerID, string SellerName, YesNo yesNo);
-        List<BagPaymentInfoEntity> GetAllBagPaymentDetailsEntity(string CustId, YesNo yesNo);        
-        double GetBagTotalAmount(string CustId, string SellerID, YesNo yesNo);
-
-        double GetBagTotalAmountPaid(string CustId, string SellerID, YesNo yesNo);
-
-        List<HullingProcessEntity> GetAllHullingProcessPaddySpent(string CustId, YesNo yesNo);
-
-        List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<SellerInfoEntity> GetSellerInfoEntity(string CustId, YesNo yesNo);
-
-        List<BagStockInfoEntity> GetBagStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, YesNo yesNo);
-
-        List<RiceStockInfoEntity> GetAllRiceStockInfoEntities(string CustId, string RiceTypeID, YesNo yesNo);
-
-        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
-
-        List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

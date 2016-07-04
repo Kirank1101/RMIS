@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SellerInfoDetails.ascx.cs"
-    Inherits="SellerInfoDetails" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MediatorInfoDetails.ascx.cs"
+    Inherits="MediatorInfoDetails" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
 <style type="text/css">
     .hiddencol
@@ -12,15 +12,15 @@
         <tr>
             <td valign="top">
                 <h3>
-                    Add Seller</h3>
+                    Add Mediator</h3>
                 <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblSellerName" Text="<%$Resources:Resource,SellerName%>"></asp:Label><span
+                            <asp:Label runat="server" ID="lblMediatorName" Text="<%$Resources:Resource,MediatorName%>"></asp:Label><span
                                 style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtSellerName" />
+                            <asp:TextBox runat="server" ID="txtMediatorName" />
                         </td>
                     </tr>
                     <tr>
@@ -50,8 +50,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblCity" Text="<%$Resources:Resource,City%>"></asp:Label>
-                            <span style="color: Red">*</span>
+                            <asp:Label runat="server" ID="lblCity" Text="<%$Resources:Resource,City%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtCity" />
@@ -59,8 +59,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblDistrict" Text="<%$Resources:Resource,District%>"></asp:Label>
-                            <span style="color: Red">*</span>
+                            <asp:Label runat="server" ID="lblDistrict" Text="<%$Resources:Resource,District%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtDistrict" />
@@ -68,8 +68,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblState" Text="<%$Resources:Resource,State%>"></asp:Label>
-                            <span style="color: Red">*</span>
+                            <asp:Label runat="server" ID="lblState" Text="<%$Resources:Resource,State%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtState" />
@@ -85,8 +85,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblContactno" Text="<%$Resources:Resource,ContactNo%>"></asp:Label>
-                            <span style="color: Red">*</span>
+                            <asp:Label runat="server" ID="lblContactno" Text="<%$Resources:Resource,ContactNo%>"></asp:Label><span
+                                style="color: Red">*</span>
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="txtContactNo" />
@@ -116,24 +116,23 @@
                     </tr>
                 </table>
             </td>
-            <td align="left" valign="top" style="padding-left: 15px" valign="top">
+            <td valign="top" align="left" style="padding-left: 15px">
+                <h3>
+                    Mediator Information</h3>
                 <table>
                     <tr>
                         <td>
-                            <h3>
-                                Seller Information</h3>
-                            <asp:PagingGridView ID="rptSellerInfo" runat="server" AllowSorting="true" OnPageIndexChanging="rptSellerInfo_PageIndexChanging"
-                                DataKeyNames="ID" OnSorting="rptSellerInfo_Sorting" AllowPaging="True" AutoGenerateColumns="false"
-                                OrderBy="" OnRowCancelingEdit="rptSellerInfo_RowCancelingEdit" OnRowDeleting="rptSellerInfo_RowDeleting"
-                                OnRowEditing="rptSellerInfo_RowEditing" OnRowUpdating="rptSellerInfo_RowUpdating">
+                            <asp:PagingGridView ID="rptMediatorInfo" runat="server" AllowSorting="true" OnPageIndexChanging="rptMediatorInfo_PageIndexChanging"
+                                DataKeyNames="ID" OnSorting="rptMediatorInfo_Sorting" AllowPaging="True" AutoGenerateColumns="false"
+                                OrderBy="" OnRowCancelingEdit="rptMediatorInfo_RowCancelingEdit" OnRowDeleting="rptMediatorInfo_RowDeleting"
+                                OnRowEditing="rptMediatorInfo_RowEditing" OnRowUpdating="rptMediatorInfo_RowUpdating">
                                 <Columns>
-                                    <asp:BoundField DataField="SellerName" SortExpression="Name" HeaderText="<%$Resources:Resource,Name%>" />
+                                    <asp:BoundField DataField="MediatorName" SortExpression="Name" HeaderText="<%$Resources:Resource,Name%>" />
                                     <asp:BoundField DataField="Town" SortExpression="Name" HeaderText="<%$Resources:Resource,Town%>" />
                                     <asp:BoundField DataField="ContactNo" SortExpression="Name" HeaderText="<%$Resources:Resource,ContactNo%>" />
                                     <asp:BoundField DataField="MobileNo" SortExpression="Name" HeaderText="<%$Resources:Resource,MobileNo%>" />
                                     <asp:BoundField DataField="ID" SortExpression="Name" HeaderText="<%$Resources:Resource,ID%>"
                                         ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                    
                                     <asp:CommandField ShowEditButton="true" />
                                     <asp:CommandField ShowDeleteButton="true" />
                                 </Columns>

@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BuyerInfoDetails.ascx.cs"
     Inherits="BuyerInfoDetails" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<style type="text/css">
+    .hiddencol
+    {
+        display: none;
+    }
+</style>
 <div class="table-responsive">
     <table>
         <tr>
@@ -124,6 +130,9 @@
                                     <asp:BoundField DataField="Town" SortExpression="Name" HeaderText="<%$Resources:Resource,Town%>" />
                                     <asp:BoundField DataField="ContactNo" SortExpression="Name" HeaderText="<%$Resources:Resource,ContactNo%>" />
                                     <asp:BoundField DataField="MobileNo" SortExpression="Name" HeaderText="<%$Resources:Resource,MobileNo%>" />
+                                    <asp:BoundField DataField="ID" SortExpression="Name" HeaderText="<%$Resources:Resource,ID%>"
+                                        ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                    
                                     <asp:CommandField ShowEditButton="true" />
                                     <asp:CommandField ShowDeleteButton="true" />
                                 </Columns>

@@ -64,10 +64,11 @@ public partial class SellerInfoDetails : BaseUserControl
         TextBox textTown = (TextBox)row.Cells[1].Controls[0];
         TextBox textContactNo = (TextBox)row.Cells[2].Controls[0];
         TextBox textMobileNo = (TextBox)row.Cells[3].Controls[0];
+        TextBox textSellerID = (TextBox)row.Cells[4].Controls[0];
         rptSellerInfo.EditIndex = -1;
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         ResultDTO resultDto = new ResultDTO();
-        if (!IsSellerNameExist(textSellerName.Text.Trim()))
+        if (!IsSellerNameExist(textSellerID.Text.Trim(), textSellerName.Text.Trim()))
         {
             resultDto = imp.UpdateSellerInfo(rptSellerInfo.DataKeys[e.RowIndex].Value.ToString(), textSellerName.Text,txtTown.Text,txtContactNo.Text,txtMobileNo.Text);
             if (resultDto.IsSuccess)
@@ -96,7 +97,7 @@ public partial class SellerInfoDetails : BaseUserControl
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateSellerDetails(txtSellerName.Text, txtCity.Text, txtDistrict.Text, txtState.Text, txtContactNo.Text);
-        if (!IsSellerNameExist(txtSellerName.Text.Trim()))
+        if (!IsSellerNameExist(string.Empty,txtSellerName.Text.Trim()))
         {
             if (resultDto.IsSuccess)
             {
@@ -118,10 +119,10 @@ public partial class SellerInfoDetails : BaseUserControl
             SetMessage(resultDto);
         }
     }
-    private bool IsSellerNameExist(string SellerName)
+    private bool IsSellerNameExist(string SellerID,string SellerName)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        return imp.CheckSellerNameExist(SellerName);
+        return imp.CheckSellerNameExist(SellerID,SellerName);
     }
     protected void btnClear_Click(object sender, EventArgs e)
     {

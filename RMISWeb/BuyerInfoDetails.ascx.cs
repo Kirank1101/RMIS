@@ -65,10 +65,11 @@ public partial class BuyerInfoDetails : BaseUserControl
         TextBox textTown = (TextBox)row.Cells[1].Controls[0];
         TextBox textContactNo = (TextBox)row.Cells[2].Controls[0];
         TextBox textMobileNo = (TextBox)row.Cells[3].Controls[0];
+        TextBox textBuyerID = (TextBox)row.Cells[4].Controls[0];
         rptBuyerInfo.EditIndex = -1;
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         ResultDTO resultDto = new ResultDTO();
-        if (!IsBuyerNameExist(textBuyerName.Text.Trim()))
+        if (!IsBuyerNameExist(textBuyerID.Text.Trim(), textBuyerName.Text.Trim()))
         {
             resultDto = imp.UpdateBuyerInfo(rptBuyerInfo.DataKeys[e.RowIndex].Value.ToString(), textBuyerName.Text, txtTown.Text, txtContactNo.Text, txtMobileNo.Text);
             if (resultDto.IsSuccess)
@@ -97,7 +98,7 @@ public partial class BuyerInfoDetails : BaseUserControl
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerDetails(txtBuyerName.Text, txtCity.Text, txtDistrict.Text, txtState.Text, txtContactNo.Text);
-        if (!IsBuyerNameExist(txtBuyerName.Text.Trim()))
+        if (!IsBuyerNameExist(string.Empty, txtBuyerName.Text.Trim()))
         {
             if (resultDto.IsSuccess)
             {
@@ -119,10 +120,10 @@ public partial class BuyerInfoDetails : BaseUserControl
             SetMessage(resultDto);
         }
     }
-    private bool IsBuyerNameExist(string BuyerName)
+    private bool IsBuyerNameExist(string BuyerID, string BuyerName)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        return imp.CheckBuyerNameExist(BuyerName);
+        return imp.CheckBuyerNameExist(BuyerID, BuyerName);
     }
     protected void btnClear_Click(object sender, EventArgs e)
     {

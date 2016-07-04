@@ -254,4 +254,13 @@ namespace RMIS.Domain.DataTranserClass
         public string Percentage { get; set; }
 
     }
+    public class MediatorInfoDTO
+    {
+        public string ID { get; set; }
+        public string MediatorName { get; set; }
+        public string Town { get; set; }
+        public string ContactNo { get; set; }
+        public string MobileNo { get; set; }
+    }
+    
 }

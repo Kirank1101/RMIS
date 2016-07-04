@@ -1304,13 +1304,13 @@ namespace RMIS.Mediator.BackEnd.Impl
             return rmisGateway.GetListSellerInfoEntities(CustId, PageIndex, PageSize, out  count, expression, yesNo);
         }
 
-        public SellerInfoEntity CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo)
+        public List<SellerInfoEntity> CheckSellerNameExist(string CustId, string SellerName, YesNo yesNo)
         {
             return rmisGateway.CheckSellerNameExist(CustId, SellerName, yesNo);
         }
 
 
-        public BuyerInfoEntity CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo)
+        public List<BuyerInfoEntity> CheckBuyerNameExist(string CustId, string BuyerName, YesNo yesNo)
         {
             return rmisGateway.CheckBuyerNameExist(CustId, BuyerName, yesNo);
         }
@@ -1440,6 +1440,44 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
             return rmisGateway.GetAllProductPaymentTranEntities(CustId, BuyerId,pageindex, pageSize, out count, sortExpression, yesNo);
+        }
+
+
+        public void SaveOrUpdateMediatorInfoEntity(MediatorInfoEntity MediatorInfoEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MediatorInfo>(mapper.GetMediatorInfo(MediatorInfoEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMediatorInfoEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMediatorInfoEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
+        public List<MediatorInfoEntity> GetMediatorInfoEntities(string custId, YesNo yesNo)
+        {
+            return rmisGateway.GetMediatorInfoEntities(custId, yesNo);
+        }
+
+
+        public List<MediatorInfoEntity> GetListBrokerEntities(string CustId, string MediatorName, YesNo yesNo)
+        {
+            return rmisGateway.GetListBrokerEntities(CustId, MediatorName, yesNo);
+        }
+
+
+        public List<MediatorInfoEntity> GetListMediatorInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetListMediatorInfoEntities(CustId, PageIndex, PageSize, out  count, expression, yesNo);
+        }
+
+
+        public MediatorInfoEntity GetMediatorInfoEntity(string CustId, string ID, YesNo yesNo)
+        {
+            return rmisGateway.GetMediatorInfoEntity(CustId, ID, yesNo);
         }
     }
 }

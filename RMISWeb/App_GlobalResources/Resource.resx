@@ -381,4 +381,10 @@
   <data name="PaddyStockforHulling" xml:space="preserve">
     <value>Paddy Stock for Hulling Process:</value>
   </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="MediatorName" xml:space="preserve">
+    <value>Mediator Name</value>
+  </data>
 </root>
