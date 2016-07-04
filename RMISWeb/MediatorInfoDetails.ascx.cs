@@ -72,7 +72,7 @@ public partial class MediatorInfoDetails : BaseUserControl
         ResultDTO resultDto = new ResultDTO();
         if (!IsMediatorNameExist(textMediatorID.Text.Trim(), textMediatorName.Text.Trim()))
         {
-            resultDto = imp.UpdateMediatorInfo(rptMediatorInfo.DataKeys[e.RowIndex].Value.ToString(), textMediatorName.Text, txtTown.Text, txtContactNo.Text, txtMobileNo.Text);
+            resultDto = imp.UpdateMediatorInfo(rptMediatorInfo.DataKeys[e.RowIndex].Value.ToString(), textMediatorName.Text, textTown.Text, textContactNo.Text, textMobileNo.Text);
             if (resultDto.IsSuccess)
             {
                 rptMediatorInfo.PageIndex = gridPageIndex;

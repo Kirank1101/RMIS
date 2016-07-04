@@ -70,7 +70,7 @@ public partial class SellerInfoDetails : BaseUserControl
         ResultDTO resultDto = new ResultDTO();
         if (!IsSellerNameExist(textSellerID.Text.Trim(), textSellerName.Text.Trim()))
         {
-            resultDto = imp.UpdateSellerInfo(rptSellerInfo.DataKeys[e.RowIndex].Value.ToString(), textSellerName.Text,txtTown.Text,txtContactNo.Text,txtMobileNo.Text);
+            resultDto = imp.UpdateSellerInfo(rptSellerInfo.DataKeys[e.RowIndex].Value.ToString(), textSellerName.Text,textTown.Text,textContactNo.Text,textMobileNo.Text);
             if (resultDto.IsSuccess)
             {
                 rptSellerInfo.PageIndex = gridPageIndex;

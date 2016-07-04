@@ -71,7 +71,7 @@ public partial class BuyerInfoDetails : BaseUserControl
         ResultDTO resultDto = new ResultDTO();
         if (!IsBuyerNameExist(textBuyerID.Text.Trim(), textBuyerName.Text.Trim()))
         {
-            resultDto = imp.UpdateBuyerInfo(rptBuyerInfo.DataKeys[e.RowIndex].Value.ToString(), textBuyerName.Text, txtTown.Text, txtContactNo.Text, txtMobileNo.Text);
+            resultDto = imp.UpdateBuyerInfo(rptBuyerInfo.DataKeys[e.RowIndex].Value.ToString(), textBuyerName.Text, textTown.Text, textContactNo.Text, textMobileNo.Text);
             if (resultDto.IsSuccess)
             {
                 rptBuyerInfo.PageIndex = gridPageIndex;

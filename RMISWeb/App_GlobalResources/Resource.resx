@@ -387,4 +387,7 @@
   <data name="MediatorName" xml:space="preserve">
     <value>Mediator Name</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Mediator Name</value>
+  </data>
 </root>

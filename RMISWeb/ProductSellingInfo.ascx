@@ -162,6 +162,7 @@
                         class="table table-striped table-bordered">
                         <Columns>
                             <asp:BoundField DataField="ProductID" HeaderText="<%$Resources:Resource,ItemNo%>" />
+                            <asp:BoundField DataField="MediatorName" HeaderText="<%$Resources:Resource,MediatorName%>" />
                             <asp:BoundField DataField="BuyerName" HeaderText="<%$Resources:Resource,Name%>" />
                             <asp:BoundField DataField="ProductName" HeaderText="<%$Resources:Resource,ProductName%>" />
                             <asp:BoundField DataField="ProductType" HeaderText="<%$Resources:Resource,ProductType%>" />

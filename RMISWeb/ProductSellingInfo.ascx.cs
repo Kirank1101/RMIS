@@ -81,6 +81,7 @@ public partial class ProductSellingInfo : BaseUserControl
                 resultDTO = imp.CheckDustStockAvailability(ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
                 break;
             default:
+                resultDTO.IsSuccess=false;
                 break;
         }
         #region Check Rice Stock Information
@@ -96,8 +97,10 @@ public partial class ProductSellingInfo : BaseUserControl
             prodselinfoDTO.UnitsTypeID = ddlUnitsType.SelectedValue;
             prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
             prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
-            prodselinfoDTO.BuyerName = txtBuyerName.SelectedValue;
+            prodselinfoDTO.BuyerName = txtBuyerName.Text;
             prodselinfoDTO.ProductName = rbtProductSellingtype.SelectedValue;
+            prodselinfoDTO.MediatorID = txtMediatorName.SelectedValue;
+            prodselinfoDTO.MediatorName = txtMediatorName.Text;
             if (rbtProductSellingtype.SelectedValue == Rice)
             {
                 prodselinfoDTO.MRiceBrandID = ddlRiceBrand.SelectedValue;
@@ -230,18 +233,20 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSavePayment_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, txtBuyerNamePayment.SelectedValue, txtReceivedAmount.Text.ConvertToDouble(), txtTotalProductCost.Text.ConvertToDouble());
-        if (resultDto.IsSuccess)
-        {
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
 
-            string MediatorID = !string.IsNullOrEmpty(txtMediatorNamePayment.Text.Trim()) ? imp.GetMediatorInfo(txtMediatorNamePayment.Text.Trim()) : string.Empty;
-            string BuyerID = !string.IsNullOrEmpty(txtBuyerNamePayment.Text.Trim()) ? imp.GetBuyerInfo(txtBuyerNamePayment.Text.Trim()) : string.Empty;
-            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
+        string MediatorID = !string.IsNullOrEmpty(txtMediatorNamePayment.Text.Trim()) ? imp.GetMediatorInfo(txtMediatorNamePayment.Text.Trim()) : string.Empty;
+        string BuyerID = !string.IsNullOrEmpty(txtBuyerNamePayment.Text.Trim()) ? imp.GetBuyerInfo(txtBuyerNamePayment.Text.Trim()) : string.Empty;
+
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, BuyerID, txtReceivedAmount.Text.ConvertToDouble(), txtTotalProductCost.Text.ConvertToDouble());
+        if (resultDto.IsSuccess)
+        {   
+           resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();
-
+                txtMediatorNamePayment.Enabled = true;
+                txtBuyerNamePayment.Enabled = true;
                 SetMessage(resultDto);
             }
         }
