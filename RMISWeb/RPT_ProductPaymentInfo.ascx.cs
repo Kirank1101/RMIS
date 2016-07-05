@@ -24,7 +24,7 @@ public partial class RPT_ProductPaymentInfo : BaseUserControl
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         int count;
-        List<ProductPaymentDTO> listProductPaymentDTO = imp.GetProductPaymentDTO(txtBuyerName.SelectedValue, 0, 1000, out count, SortExpression.Desc);
+        List<ProductPaymentDTO> listProductPaymentDTO = imp.GetProductPaymentDTO(txtMediatorName.SelectedValue, txtBuyerName.SelectedValue, 0, 1000, out count, SortExpression.Desc);
         BindReport(listProductPaymentDTO);
     }
     protected void btnCancel_Click(object sender, EventArgs e)

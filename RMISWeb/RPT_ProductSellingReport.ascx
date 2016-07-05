@@ -6,9 +6,19 @@
 <div class="table-responsive">
     <table>
         <tr>
+            <td valign="middle" align="center">
+                <asp:Label runat="server" ID="lblMediatorName" Text="<%$Resources:Resource,MediatorName%>"></asp:Label>:
+                &nbsp;
+            </td>
             <td>
+                <p />
+                <asp:TextBoxAutoExtender ID="txtMediatorName" runat="server" ServiceMethod="GetMediatorNames">
+                </asp:TextBoxAutoExtender>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(And / OR)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td valign="middle" align="center">
                 <asp:Label runat="server" ID="lblBuyerName" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>:
-                <span style="color: Red">*</span>&nbsp;&nbsp;
+                &nbsp;
             </td>
             <td>
                 <p />
@@ -23,7 +33,7 @@
             </td>
         </tr>
     </table>
-    <table>
+    <table width="100%">
         <tr>
             <td>
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"

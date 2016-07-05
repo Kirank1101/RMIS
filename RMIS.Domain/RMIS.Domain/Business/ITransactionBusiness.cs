@@ -153,9 +153,9 @@ namespace RMIS.Domain.Business
 
         List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
-        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string MediatorID,string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
-        List<ProductPaymentDTO> GetProductPaymentDTO(string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<ProductPaymentDTO> GetProductPaymentDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         List<ProductPaymentDTO> GetProductPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 

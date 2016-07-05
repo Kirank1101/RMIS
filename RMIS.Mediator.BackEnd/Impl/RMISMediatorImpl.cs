@@ -1425,9 +1425,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string MediatorID, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductSellingInfoEntities(CustId,BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId,MediatorID,BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 
@@ -1437,9 +1437,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductPaymentTranEntities(CustId, BuyerId,pageindex, pageSize, out count, sortExpression, yesNo);
+            return rmisGateway.GetAllProductPaymentTranEntities(CustId,MediatorId, BuyerId,pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 

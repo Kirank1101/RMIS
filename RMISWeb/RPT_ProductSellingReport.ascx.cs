@@ -24,12 +24,13 @@ public partial class RPT_ProductSellingReport : BaseUserControl
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         int count;
-        List<ProductSellingInfoDTO> listProductSellingInfoDTO = imp.GetProductSellingInfoDTO(txtBuyerNames.SelectedValue, 0, 1000, out count, SortExpression.Desc);
+        List<ProductSellingInfoDTO> listProductSellingInfoDTO = imp.GetProductSellingInfoDTO(txtMediatorName.SelectedValue, txtBuyerNames.SelectedValue, 0, 1000, out count, SortExpression.Desc);
         BindReport(listProductSellingInfoDTO);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         txtBuyerNames.Text = string.Empty;
+        txtMediatorName.Text = string.Empty;
         List<ProductSellingInfoDTO> lstProductSellingInfoDTO = GetAllProductSellingInfo();
         BindReport(lstProductSellingInfoDTO);
     }

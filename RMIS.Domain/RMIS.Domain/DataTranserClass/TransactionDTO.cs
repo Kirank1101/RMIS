@@ -169,11 +169,12 @@ namespace RMIS.Domain.DataTranserClass
     {
         public ProductPaymentDTO()
         {
-            BuyerName = PaymentMode = string.Empty;
+            BuyerName = MediatorName = PaymentMode = string.Empty;
             AmountPaid = 0.0;
         }
 
         public string BuyerName { get; set; }
+        public string MediatorName { get; set; }
         public double AmountPaid { get; set; }
         public DateTime PaidDate { get; set; }
         public string PaymentMode { get; set; }

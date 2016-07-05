@@ -3849,7 +3849,7 @@
             {
                 List<ProductPaymentInfoEntity> listProductPaymentInfoEntity = new List<ProductPaymentInfoEntity>();
                 IRepository<ProductPaymentInfo> UsersRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
-                DetachedCriteria detachedCriteria=null;
+                DetachedCriteria detachedCriteria = null;
                 if (!string.IsNullOrEmpty(MediatorID) && string.IsNullOrEmpty(BuyerID))
                 {
                     detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
@@ -3868,7 +3868,8 @@
                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                        );
                 }
-                else {
+                else
+                {
                     detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
                                                                        .Add(Expression.Eq("CustID", CustId))
                                                                        .Add(Expression.Eq("Status", "P"))
@@ -4074,7 +4075,7 @@
                 if (listBuyerInfo != null && listBuyerInfo.Count > 0)
                 {
                     foreach (BuyerInfo adMInfo in listBuyerInfo)
-                        lstBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));                        
+                        lstBuyerInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBuyerInfoEntity(adMInfo));
                 }
                 else
                     lstBuyerInfoEntity = null;
@@ -4164,7 +4165,7 @@
             try
             {
                 IRepository<BagStockInfo> UsersRepository = new RepositoryImpl<BagStockInfo>(applicationSession);
-                DetachedCriteria detachedCriteria =DetachedCriteria.For(typeof(BagStockInfo))
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagStockInfo))
                                                    .Add(Expression.Eq("CustID", CustId))
                                                    .Add(Expression.Eq("SellerID", SellerID))
                                                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
@@ -4184,7 +4185,7 @@
             try
             {
                 IRepository<BagPaymentInfo> UsersRepository = new RepositoryImpl<BagPaymentInfo>(applicationSession);
-                DetachedCriteria detachedCriteria =DetachedCriteria.For(typeof(BagPaymentInfo))
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BagPaymentInfo))
                                                    .Add(Expression.Eq("CustID", CustId))
                                                    .Add(Expression.Eq("SellerID", SellerID))
                                                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
@@ -4564,7 +4565,7 @@
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   ).AddOrder(Order.Desc("SellingDate"));  
+                                                                   ).AddOrder(Order.Desc("SellingDate"));
                 List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductSellingInfo>;
                 if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
                 {
@@ -4585,18 +4586,40 @@
             }
         }
 
-        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntities(string CustId, string MediatorID, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
 
             try
             {
                 List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
                 IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("BuyerID", BuyerId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   ).AddOrder(Order.Desc("SellingDate"));  
+                DetachedCriteria detachedCriteria = null;
+                if (!string.IsNullOrEmpty(MediatorID) && string.IsNullOrEmpty(BuyerId))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                           .Add(Expression.Eq("CustID", CustId))
+                                                                           .Add(Expression.Eq("MediatorID", MediatorID))
+                                                                             .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                           ).AddOrder(Order.Desc("SellingDate"));
+                }
+                else if (string.IsNullOrEmpty(MediatorID) && !string.IsNullOrEmpty(BuyerId))
+                {
+
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                        .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.Eq("BuyerID", BuyerId))
+                                                                          .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                        ).AddOrder(Order.Desc("SellingDate"));
+                }
+                else
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                            .Add(Expression.Eq("CustID", CustId))
+                                                                           .Add(Expression.Eq("MediatorID", MediatorID))
+                                                                            .Add(Expression.Eq("BuyerID", BuyerId))
+                                                                              .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                            ).AddOrder(Order.Desc("SellingDate"));
+                }
                 List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductSellingInfo>;
                 if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
                 {
@@ -4627,7 +4650,7 @@
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                    ).AddOrder(Order.Desc("LastModifiedDate"));  
+                                                                    ).AddOrder(Order.Desc("LastModifiedDate"));
                 List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentTransaction>;
                 if (listProdPayTran != null && listProdPayTran.Count > 0)
                 {
@@ -4648,17 +4671,38 @@
             }
         }
 
-        internal List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        internal List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
             try
             {
                 List<ProductPaymentTransactionEntity> listProdPayTranEnt = new List<ProductPaymentTransactionEntity>();
                 IRepository<ProductPaymentTransaction> UsersRepository = new RepositoryImpl<ProductPaymentTransaction>(applicationSession);
-                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                   .Add(Expression.Eq("BuyerID", BuyerId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                    ).AddOrder(Order.Desc("LastModifiedDate"));                                                                  
+                DetachedCriteria detachedCriteria = null;
+                if (!string.IsNullOrEmpty(MediatorId) && string.IsNullOrEmpty(BuyerId))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("MediatorID", MediatorId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
+                else if (string.IsNullOrEmpty(MediatorId) && !string.IsNullOrEmpty(BuyerId))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("BuyerID", BuyerId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
+                else
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("MediatorID", MediatorId))   
+                        .Add(Expression.Eq("BuyerID", BuyerId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
                 List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentTransaction>;
                 if (listProdPayTran != null && listProdPayTran.Count > 0)
                 {
@@ -4840,7 +4884,7 @@
             {
                 Logger.Error("Error encountered at GetMediatorInfoEntities", ex);
                 throw;
-            }           
+            }
         }
 
         internal MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo)
