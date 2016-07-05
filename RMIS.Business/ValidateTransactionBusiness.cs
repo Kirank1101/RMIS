@@ -89,7 +89,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsVehicleNoEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (vehicleNo.Trim().Length > 10)
+            else if (vehicleNo.Trim().Length > 13)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateValidatePaddyStockDetailsVehicleNoLength, provider.GetCurrentCustomerId()) };
             }
