@@ -7,7 +7,7 @@
         <Items>
             <asp:MenuItem Text="Paddy Stock " Value="0"></asp:MenuItem>
             <asp:MenuItem Text="Paddy Payment " Value="1"></asp:MenuItem>
-            <asp:MenuItem Text="Paddy Stock Details " Value="2"></asp:MenuItem>
+            <%--<asp:MenuItem Text="Paddy Stock Details " Value="2"></asp:MenuItem>--%>
         </Items>
         <LevelMenuItemStyles>
             <asp:MenuItemStyle CssClass="main_menuTab" />
@@ -270,7 +270,7 @@
                 </tr>
             </table>
         </asp:View>
-        <asp:View ID="Tab3" runat="server">
+        <%--<asp:View ID="Tab3" runat="server">
             <h3>
                 Paddy Stock Details</h3>
             <table>
@@ -296,6 +296,6 @@
                     </td>
                 </tr>
             </table>
-        </asp:View>
+        </asp:View>--%>
     </asp:MultiView>
 </div>

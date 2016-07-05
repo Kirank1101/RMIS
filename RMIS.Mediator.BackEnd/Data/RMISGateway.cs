@@ -548,7 +548,7 @@
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
-                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalQuintals");
             }
             catch (Exception ex)
             {

@@ -34,11 +34,10 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
             ddlUnitsType.DataValueField = "Id";
             ddlUnitsType.DataBind();
 
-            bindPaddyStockInfo();
+            //bindPaddyStockInfo();
             BindPaddyStockOverView();
         }
     }
-
     private void BindPaddyStockOverView()
     {
         int count = 0;
@@ -47,22 +46,18 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         gvPaddyStockOverview.VirtualItemCount = count;
         gvPaddyStockOverview.DataBind();
     }
-
     protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
     {
 
     }
-
-
-    private void bindPaddyStockInfo()
-    {
-        int count = 0;
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        rptPaddyStockInfo.DataSource = imp.GetPaddyStockDTO(rptPaddyStockInfo.PageIndex, rptPaddyStockInfo.PageSize, out count, expression);
-        rptPaddyStockInfo.VirtualItemCount = count;
-        rptPaddyStockInfo.DataBind();
-    }
-
+    //private void bindPaddyStockInfo()
+    //{
+    //    int count = 0;
+    //    ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+    //    rptPaddyStockInfo.DataSource = imp.GetPaddyStockDTO(rptPaddyStockInfo.PageIndex, rptPaddyStockInfo.PageSize, out count, expression);
+    //    rptPaddyStockInfo.VirtualItemCount = count;
+    //    rptPaddyStockInfo.DataBind();
+    //}
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
         IMasterPaddyBusiness impb1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
@@ -78,7 +73,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         }
         TabContainer1.ActiveViewIndex = 0;
     }
-
     protected void btnSellerDetails_Click(object sender, EventArgs e)
     {
         ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
@@ -96,7 +90,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     {
         ClearAllPaddyPaymentFields();
     }
-
     private void ClearAllPaddyPaymentFields()
     {
         txtsellernamePaddyPayment.Text = string.Empty;
@@ -110,7 +103,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         txtPruchaseDate.Text = string.Empty;
         txtNextpaymentdate.Text = string.Empty;
     }
-
     protected void btnPay_Click(object sender, EventArgs e)
     {
         ITransactionBusiness impp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
@@ -122,7 +114,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         }
         SetMessage(resultDto);
     }
-
     protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
     {
         TabContainer1.ActiveViewIndex = Int32.Parse(e.Item.Value);
@@ -141,8 +132,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
             }
         }
     }
-
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         double amtpaid = string.IsNullOrEmpty(txtamountpaid.Text.Trim()) ? 0 : txtamountpaid.Text.ConvertToDouble();
@@ -161,7 +150,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
                 if (resultDto.IsSuccess)
                 {
                     ClearAllPaddyStockFields();
-                    bindPaddyStockInfo();
+                    //bindPaddyStockInfo();
                 }
             }
             else
@@ -172,29 +161,26 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         //else
         //    SetMessage(resultDto);
     }
-    protected void rptPaddyStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
-        bindPaddyStockInfo();
-        TabContainer1.ActiveViewIndex = 2;
-    }
-
-    protected void rptPaddyStockInfo_Sorting(object sender, GridViewSortEventArgs e)
-    {
-        if (expression == SortExpression.Asc)
-            expression = SortExpression.Desc;
-        else if (expression == SortExpression.Desc)
-            expression = SortExpression.Asc;
-        bindPaddyStockInfo();
-        TabContainer1.ActiveViewIndex = 2;
-    }
-
+    //protected void rptPaddyStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    //{
+    //    rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
+    //    bindPaddyStockInfo();
+    //    TabContainer1.ActiveViewIndex = 2;
+    //}
+    //protected void rptPaddyStockInfo_Sorting(object sender, GridViewSortEventArgs e)
+    //{
+    //    if (expression == SortExpression.Asc)
+    //        expression = SortExpression.Desc;
+    //    else if (expression == SortExpression.Desc)
+    //        expression = SortExpression.Asc;
+    //    bindPaddyStockInfo();
+    //    TabContainer1.ActiveViewIndex = 2;
+    //}
     protected void gvPaddyStockOverview_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
-        bindPaddyStockInfo();
+        gvPaddyStockOverview.PageIndex = gridPageIndex = e.NewPageIndex;
+        BindPaddyStockOverView();
     }
-
     protected void gvPaddyStockOverview_Sorting(object sender, GridViewSortEventArgs e)
     {
         if (expression == SortExpression.Asc)
@@ -203,8 +189,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
             expression = SortExpression.Asc;
         BindPaddyStockOverView();
     }
-
-
     private void ClearAllPaddyStockFields()
     {
         txtSellerPaddyStock.Text = string.Empty;
