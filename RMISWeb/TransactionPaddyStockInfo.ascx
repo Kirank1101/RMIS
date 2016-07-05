@@ -29,7 +29,7 @@
                                 </td>
                                 <td>
                                     <p />
-                                    <asp:TextBoxAutoExtender ID="TextBoxAutoExtender1" runat="server" ServiceMethod="GetSellerNames">
+                                    <asp:TextBoxAutoExtender ID="txtSellerPaddyStock" runat="server" ServiceMethod="GetSellerNames">
                                     </asp:TextBoxAutoExtender>
                                 </td>
                             </tr>
@@ -84,7 +84,7 @@
                                     <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="10" />
+                                    <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="13" />
                                 </td>
                             </tr>
                             <tr>
@@ -107,11 +107,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,Price%>"></asp:Label>
+                                    <asp:Label runat="server" ID="lblPrice" Text="<%$Resources:Resource,PricePerQtl%>"></asp:Label>
                                     <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:TextBoxDecimalExtender ID="txtPrice" runat="server" Mask="999.99"></asp:TextBoxDecimalExtender>
+                                    <asp:TextBoxDecimalExtender ID="txtPricePerQuintal" runat="server" Mask="9999.99"></asp:TextBoxDecimalExtender>
                                 </td>
                             </tr>
                             <tr>
@@ -168,7 +168,7 @@
                                 </td>
                                 <td>
                                     <p />
-                                    <asp:TextBoxAutoExtender ID="TextBoxAutoExtender2" runat="server" ServiceMethod="GetSellerNames">
+                                    <asp:TextBoxAutoExtender ID="txtsellernamePaddyPayment" runat="server" ServiceMethod="GetSellerNames">
                                     </asp:TextBoxAutoExtender>
                                     <asp:Button ID="btnSellerDetails" runat="server" Text="Get Payment Details" OnClick="btnSellerDetails_Click"
                                         ValidationGroup="OnSave" />

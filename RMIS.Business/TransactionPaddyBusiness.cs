@@ -58,7 +58,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, int totalBags, double Price, DateTime purchaseDate)
+        public Domain.DataTranserClass.ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, int totalBags, double PriceperQuintal, DateTime purchaseDate,int weightperbag)
         {
             #region Save PaddyStock
             PaddyStockInfoEntity objPaddyStockInfoEntity = new PaddyStockInfoEntity();
@@ -72,11 +72,12 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.PaddyStockID = CommonUtil.CreateUniqueID("PS");
             objPaddyStockInfoEntity.PaddyTypeID = paddyTypeId;
             objPaddyStockInfoEntity.PurchaseDate = purchaseDate;
-            objPaddyStockInfoEntity.Price = Price;
+            objPaddyStockInfoEntity.Price = PriceperQuintal;
             objPaddyStockInfoEntity.SellerID = sellerId;
             objPaddyStockInfoEntity.TotalBags = totalBags;
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
+            objPaddyStockInfoEntity.TotalQuintals = (totalBags * weightperbag) / 100;
             #endregion
 
             try
@@ -1384,13 +1385,13 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             if (!string.IsNullOrEmpty(sellerId))
             {
 
-                double riceSum = imp.GetPaddyTotalAmount(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
-                double riceUsedSum = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
-                if (riceSum > riceUsedSum)
-                    riceSum = riceSum - riceUsedSum;
-                if (riceSum > 0)
+                double TotalpaddyAmount = imp.GetPaddyTotalAmount(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
+                double TotalPaddyAmountPaid = imp.GetPaddyTotalAmountPaid(provider.GetCurrentCustomerId(), sellerId, YesNo.N);
+                if (TotalpaddyAmount > TotalPaddyAmountPaid)
+                    TotalpaddyAmount = TotalpaddyAmount - TotalPaddyAmountPaid;
+                if (TotalpaddyAmount > 0)
                 {
-                    return riceSum;
+                    return TotalpaddyAmount;
                 }
             }
             return 0;

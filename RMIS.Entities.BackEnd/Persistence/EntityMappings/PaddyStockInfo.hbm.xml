@@ -15,7 +15,8 @@
     <property name="UnitsTypeID" column="UnitsTypeID" />    
     <property name="VehicalNo" column="VehicalNo" />
     <property name="DriverName" column="DriverName" />
-    <property name="TotalBags" column="TotalBags" />    
+    <property name="TotalBags" column="TotalBags" />
+    <property name="TotalQuintals" column="TotalQuintals" />
     <property name="Price" column="Price" />
     <property name="PurchaseDate" column="PurchaseDate" />
     <property name="ObsInd" column="ObsInd" />

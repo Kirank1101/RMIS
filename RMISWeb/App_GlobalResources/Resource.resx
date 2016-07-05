@@ -390,4 +390,7 @@
   <data name="String1" xml:space="preserve">
     <value>Mediator Name</value>
   </data>
+  <data name="PricePerQtl" xml:space="preserve">
+    <value>Price/Qtl</value>
+  </data>
 </root>

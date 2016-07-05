@@ -504,12 +504,10 @@
             {
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria =
-                DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                      .Add(Expression.Eq("CustID", CustId))
-                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
-
-                                                                        ;
-                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
+                    DetachedCriteria.For(typeof(PaddyStockInfo))
+                    .Add(Expression.Eq("CustID", CustId))
+                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalQuintals");
             }
             catch (Exception ex)
             {
