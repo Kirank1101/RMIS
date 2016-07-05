@@ -650,6 +650,7 @@ namespace RMIS.Business
                     objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
                     objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    objPaddyStockDTO.Quintals = objPaddyStockInfoEntity.TotalQuintals;
                     objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
                     listPaddyStockDTO.Add(objPaddyStockDTO);
                 }
@@ -2198,6 +2199,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                     objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
                     objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    objPaddyStockDTO.Quintals = objPaddyStockInfoEntity.TotalQuintals;
                     objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
                     listPaddyStockDTO.Add(objPaddyStockDTO);
                 }
