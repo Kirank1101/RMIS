@@ -2385,6 +2385,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                 if (lstPaddyStockOverViewDTO != null && lstPaddyStockOverViewDTO.Count > 0)
                 {
                     List<PaddySpentOnHullingProcessDTO> lstPSOHPDTO = GetTotalPaddySpentOnHullingProcess();
+                    if(lstPSOHPDTO!=null && lstPSOHPDTO.Count>0)
                     lstPSOHPDTO = lstPSOHPDTO.Where(ps => ps.PaddyName == lstPaddyStockOverViewDTO[0].PaddyName).ToList();
                     if (lstPSOHPDTO != null)
                     {
