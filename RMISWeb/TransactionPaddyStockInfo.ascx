@@ -39,7 +39,8 @@
                                     <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true" 
+                                        Width="100px">
                                         <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
@@ -51,7 +52,8 @@
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlGodownname" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged"
-                                        runat="server" AutoPostBack="true" AppendDataBoundItems="true">
+                                        runat="server" AutoPostBack="true" AppendDataBoundItems="true" 
+                                        Width="100px">
                                         <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
@@ -62,7 +64,8 @@
                                     <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true" 
+                                        Width="100px">
                                         <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
@@ -73,7 +76,8 @@
                                     <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" 
+                                        Width="100px">
                                         <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>

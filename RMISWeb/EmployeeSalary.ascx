@@ -25,7 +25,7 @@
                             <asp:Label runat="server" ID="lblHSalaryType" Text="<%$Resources:Resource,SalaryType%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlSalaryType" runat="server">
+                            <asp:DropDownList ID="ddlSalaryType" runat="server" Height="22px" Width="100px">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -34,7 +34,8 @@
                             <asp:Label runat="server" ID="lblHDesignation" Text="<%$Resources:Resource,Designation%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlDesignation" runat="server">
+                            <asp:DropDownList ID="ddlDesignation" runat="server" Height="22px" 
+                                Width="100px">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -43,7 +44,7 @@
                             <asp:Label runat="server" ID="lblHSalary" Text="<%$Resources:Resource,Salary%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtSalary" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtSalary" runat="server" Width="100px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

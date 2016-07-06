@@ -393,4 +393,10 @@
   <data name="PricePerQtl" xml:space="preserve">
     <value>Price/Qtl</value>
   </data>
+  <data name="PriceperQuintal" xml:space="preserve">
+    <value>Price/Qtl</value>
+  </data>
+  <data name="RicePriceperQuintal" xml:space="preserve">
+    <value>Rice Price per Quintal</value>
+  </data>
 </root>

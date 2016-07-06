@@ -58,7 +58,8 @@ namespace RMIS.CustomControls
             txtBox = new TextBox();
             txtBox.ID = "txtBox" + this.ID;
             txtBox.MaxLength = MaxLength;
-            txtBox.Height = Unit.Pixel(20);
+            txtBox.Height = Unit.Pixel(22);
+            txtBox.Width = Unit.Pixel(100);
             this.Controls.Add(txtBox);
             txtBox.Text = "0";
             fltTextBox = new FilteredTextBoxExtender();

@@ -84,7 +84,7 @@ namespace RMIS.CustomControls
         {
             base.CreateChildControls();
             txtBox = new TextBox();
-            txtBox.Height = Unit.Pixel(20);
+            txtBox.Height = Unit.Pixel(22);
             txtBox.ID = "txtBox" + this.ID;
             this.Controls.Add(txtBox);
 

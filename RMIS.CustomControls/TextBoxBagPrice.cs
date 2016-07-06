@@ -11,7 +11,7 @@ using AllInOne.Common.Library.Util;
 
 namespace RMIS.CustomControls
 {
-    public class TextBoxDecimalExtender : CompositeControl
+    public class TextBoxBagPrice : CompositeControl
     {
 
 
@@ -50,7 +50,7 @@ namespace RMIS.CustomControls
             {
                 if (ViewState[viewStateServerMask] == null)
                 {
-                    ViewState[viewStateServerMask] = "99,99,99,999.99";
+                    ViewState[viewStateServerMask] = "9,999.99";
                 }
 
                 return (string)ViewState[viewStateServerMask];

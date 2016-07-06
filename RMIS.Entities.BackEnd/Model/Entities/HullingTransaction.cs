@@ -15,6 +15,7 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private string _UnitsTypeID;
         private int _TotalBags;
+        private decimal _TotalQuintals; 
         private double _Price;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
@@ -66,6 +67,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }
+        }
+        public virtual decimal TotalQuintals
+        {
+            get { return _TotalQuintals; }
+            set { _TotalQuintals = value; }
         }
         public virtual string LastModifiedBy
         {

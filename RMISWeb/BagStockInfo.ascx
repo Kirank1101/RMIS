@@ -35,7 +35,8 @@
                             style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true" 
+                            Width="100px">
                             <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -46,7 +47,8 @@
                             style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" 
+                            Width="100px">
                             <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                         </asp:DropDownList>
                     </td>

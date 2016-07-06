@@ -214,7 +214,7 @@ namespace RMIS.Domain.DataTranserClass
         public string BrokenRiceType { get; set; }
         public string UnitsType { get; set; }
         public int TotalBags { get; set; }
-        public double PricePerBag { get; set; }
+        public double PriceperQuintal { get; set; }
 
     }
     [Serializable]

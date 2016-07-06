@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="HullingProcess.ascx.cs"
     Inherits="HullingProcess" %>
 <%@ Register Assembly="RMIS.CustomControls" Namespace="RMIS.CustomControls" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <div class="table-responsive">
     <h4>
         Hulling Process Paddy Details</h4>
@@ -12,7 +13,7 @@
             </td>
             <td>
                 <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlPaddyType_SelectedIndexChanged"
-                    AutoPostBack="true">
+                    AutoPostBack="true" Width="100px">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -22,7 +23,7 @@
             </td>
             <td>
                 <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlUnitsType_SelectedIndexChanged"
-                    AutoPostBack="true">
+                    AutoPostBack="true" Width="100px">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -32,7 +33,7 @@
             </td>
             <td>
                 <asp:DropDownList ID="ddlGodownName" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged"
-                    AutoPostBack="true">
+                    AutoPostBack="true" Width="100px">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -42,7 +43,7 @@
             </td>
             <td>
                 <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlLotDetails_SelectedIndexChanged"
-                    AutoPostBack="true">
+                    AutoPostBack="true" Width="100px">
                     <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -53,14 +54,17 @@
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBoxIntegerExtender ID="txtTotalBags" runat="server"></asp:TextBoxIntegerExtender>
+                <asp:TextBox ID="txtTotalBags" runat="server" Height="22px" Width="100px" MaxLength="3"></asp:TextBox>
+                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                    FilterType="Numbers" TargetControlID="txtTotalBags">
+                </ajaxToolkit:FilteredTextBoxExtender>
             </td>
             <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,Price%>"></asp:Label><span
+                <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBoxDecimalExtender ID="txtpaddyprice" runat="server" Mask="99,999.99"></asp:TextBoxDecimalExtender>
+                <asp:TextBoxBagPrice ID="txtpaddyprice" runat="server" Mask="99,999.99"></asp:TextBoxBagPrice>
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label><span
@@ -78,10 +82,10 @@
             </td>
         </tr>
         <tr>
-            <td  colspan="8">
+            <td colspan="8">
                 <h4>
                     <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
-                    <asp:Label runat="server" ID="lblpaddyStock" ></asp:Label>
+                    <asp:Label runat="server" ID="lblpaddyStock"></asp:Label>
                 </h4>
             </td>
         </tr>
@@ -117,22 +121,26 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlRiceType" runat="server" AppendDataBoundItems="true" Width="100px">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlRiceBrand" runat="server" AppendDataBoundItems="true" Width="100px">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlriceUnittype" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlriceUnittype" runat="server" AppendDataBoundItems="true"
+                                Width="100px">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBoxIntegerExtender ID="txtricetotalbags" runat="server"></asp:TextBoxIntegerExtender>
+                            <asp:TextBox ID="txtricetotalbags" runat="server" Height="22px" Width="50px" MaxLength="3"></asp:TextBox>
+                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server"
+                                FilterType="Numbers" TargetControlID="txtricetotalbags">
+                            </ajaxToolkit:FilteredTextBoxExtender>
                         </td>
                         <td>
                             <asp:Button ID="btnAddRice" runat="server" Text="Add" OnClick="btnAddRice_Click" />
@@ -158,26 +166,31 @@
                                 style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:Label runat="server" ID="lblBRPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label><span
+                            <asp:Label runat="server" ID="lblBRPricePriceperQuintal" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                                 style="color: Red">*</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:DropDownList ID="ddlBRType" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlBRType" runat="server" AppendDataBoundItems="true" Width="100px">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlBRUnitsType" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlBRUnitsType" runat="server" AppendDataBoundItems="true"
+                                Width="100px">
                                 <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBoxIntegerExtender ID="txtBRTotalBags" runat="server"></asp:TextBoxIntegerExtender>
+                            <asp:TextBox ID="txtBRTotalBags" runat="server" MaxLength="3" Width="50px" 
+                                Height="22px"></asp:TextBox>
+                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
+                                FilterType="Numbers" TargetControlID="txtBRTotalBags">
+                            </ajaxToolkit:FilteredTextBoxExtender>
                         </td>
                         <td>
-                            <asp:TextBoxDecimalExtender ID="txtBRPriceperbag" runat="server"></asp:TextBoxDecimalExtender>
+                            <asp:TextBoxBagPrice ID="txtBRPriceperQuintal" runat="server"></asp:TextBoxBagPrice>
                         </td>
                         <td>
                             <asp:Button ID="btnaddBrokenRice" runat="server" Text="Add" OnClick="btnaddBrokenRice_Click" />
@@ -220,7 +233,7 @@
                                     <asp:BoundField DataField="BrokenRiceType" HeaderText="<%$Resources:Resource,BrokenRiceType%>" />
                                     <asp:BoundField DataField="UnitsType" HeaderText="<%$Resources:Resource,UnitType%>" />
                                     <asp:BoundField DataField="TotalBags" HeaderText="<%$Resources:Resource,TotalBags%>" />
-                                    <asp:BoundField DataField="PricePerBag" HeaderText="<%$Resources:Resource,PricePerBag%>" />
+                                    <asp:BoundField DataField="PriceperQuintal" HeaderText="<%$Resources:Resource,PriceperQuintal%>" />
                                     <asp:CommandField HeaderText="Delete" ShowDeleteButton="true" />
                                 </Columns>
                             </asp:PagingGridView>
@@ -247,7 +260,7 @@
                                             style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbldustPriceperbag" Text="<%$Resources:Resource,PricePerBag%>"></asp:Label><span
+                                        <asp:Label runat="server" ID="lbldustPriceperQuintal" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                                             style="color: Red">*</span>
                                     </td>
                                 </tr>
@@ -258,10 +271,14 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        <asp:TextBoxIntegerExtender ID="txtDustTotalBags" runat="server"></asp:TextBoxIntegerExtender>
+                                        <asp:TextBox ID="txtDustTotalBags" runat="server" MaxLength="3" Width="50px" 
+                                            Height="22px"></asp:TextBox>
+                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
+                                            FilterType="Numbers" TargetControlID="txtDustTotalBags">
+                                        </ajaxToolkit:FilteredTextBoxExtender>
                                     </td>
                                     <td>
-                                        <asp:TextBoxDecimalExtender ID="txtDustPriceperbag" runat="server"></asp:TextBoxDecimalExtender>
+                                        <asp:TextBoxBagPrice ID="txtDustPriceperQuintal" runat="server"></asp:TextBoxBagPrice>
                                     </td>
                                 </tr>
                             </table>
@@ -280,24 +297,33 @@
                                     <td>
                                         <asp:Label runat="server" ID="lblPowerExpenses" Text="<%$Resources:Resource,PowerExpenses%>"></asp:Label>
                                     </td>
-                                    <td>
-                                        <asp:TextBoxDecimalExtender ID="txtPowerExpenses" runat="server"></asp:TextBoxDecimalExtender>
+                                    <td style="padding-left: 5px">
+                                        <asp:TextBox ID="txtPowerExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
+                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
+                                            FilterType="Numbers" TargetControlID="txtPowerExpenses">
+                                        </ajaxToolkit:FilteredTextBoxExtender>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <asp:Label runat="server" ID="lblLabourExpenses" Text="<%$Resources:Resource,LabourExpenses%>"></asp:Label>
                                     </td>
-                                    <td>
-                                        <asp:TextBoxDecimalExtender ID="txtLabourExpenses" runat="server"></asp:TextBoxDecimalExtender>
+                                    <td style="padding-left: 5px">
+                                        <asp:TextBox ID="txtLabourExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
+                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
+                                            FilterType="Numbers" TargetControlID="txtLabourExpenses">
+                                        </ajaxToolkit:FilteredTextBoxExtender>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <asp:Label runat="server" ID="lblOtherExpenses" Text="<%$Resources:Resource,OtherExpenses%>"></asp:Label>
                                     </td>
-                                    <td>
-                                        <asp:TextBoxDecimalExtender ID="txtOtherExpenses" runat="server"></asp:TextBoxDecimalExtender>
+                                    <td style="padding-left: 5px">
+                                        <asp:TextBox ID="txtOtherExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
+                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
+                                            FilterType="Numbers" TargetControlID="txtOtherExpenses">
+                                        </ajaxToolkit:FilteredTextBoxExtender>
                                     </td>
                                 </tr>
                             </table>
@@ -366,7 +392,7 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                <asp:Label runat="server" ID="lblhPricePerRiceBag" Text="<%$Resources:Resource,PricePerRiceBag%>"></asp:Label>
+                                <asp:Label runat="server" ID="lblhRicePriceperQuintal" Text="<%$Resources:Resource,RicePriceperQuintal%>"></asp:Label>
                             </td>
                             <td align="right">
                                 <asp:Label ID="lblpriceperricebag" runat="server" Style="padding-left: 5px"></asp:Label>

@@ -11,7 +11,9 @@
                             <asp:Label runat="server" ID="lblHGodownName" Text="<%$Resources:Resource,GodownName%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlGodownName" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlGodownName_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlGodownName" runat="server" AutoPostBack="true" 
+                                OnSelectedIndexChanged="ddlGodownName_SelectedIndexChanged" Height="22px" 
+                                Width="97px">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -21,7 +23,7 @@
                                 Lot Details</h4>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtLotDetails" />
+                            <asp:TextBox runat="server" ID="txtLotDetails" Height="22px" Width="97px" />
                         </td>
                     </tr>
                     <tr>

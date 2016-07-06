@@ -77,7 +77,7 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.TotalBags = totalBags;
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
-            objPaddyStockInfoEntity.TotalQuintals = (totalBags * weightperbag) / 100;
+            objPaddyStockInfoEntity.TotalQuintals =Convert.ToDecimal(ConverToQuintal(totalBags,weightperbag));
             #endregion
 
             try
@@ -468,7 +468,7 @@ namespace RMIS.Business
             return objHullingProcessDTO;
         }
         public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
-                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses)
+                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses)
         {
             try
             {
@@ -476,6 +476,7 @@ namespace RMIS.Business
                 List<HullingProcessTransactionEntity> lstHPT = new List<HullingProcessTransactionEntity>();
                 List<BrokenRiceStockInfoEntity> lstBRStock = new List<BrokenRiceStockInfoEntity>();
                 List<RiceStockInfoEntity> lstRiceStock = new List<RiceStockInfoEntity>();
+                
                 #region Save HullingTransaction && StockDetails for Rice
                 foreach (RiceStockDetailsDTO RSDTO in listRiceDetails)
                 {
@@ -492,6 +493,7 @@ namespace RMIS.Business
                     RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                     RiceTranEntity.LastModifiedDate = DateTime.Now;
                     RiceTranEntity.ObsInd = YesNo.N;
+                    RiceTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(RSDTO.TotalBags, RSDTO.UnitsType.ConvertToInt()));
                     lstHPT.Add(RiceTranEntity);
 
                     RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
@@ -517,7 +519,8 @@ namespace RMIS.Business
                     BRTranEntity.CustID = provider.GetCurrentCustomerId();
                     BRTranEntity.UnitsTypeID = BRD.UnitsTypeID;
                     BRTranEntity.TotalBags = BRD.TotalBags;
-                    BRTranEntity.Price = BRD.PricePerBag;
+                    BRTranEntity.Price = BRD.PriceperQuintal;
+                    BRTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(BRD.TotalBags, BRD.UnitsType.ConvertToInt()));
                     BRTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                     BRTranEntity.LastModifiedDate = DateTime.Now;
                     BRTranEntity.ObsInd = YesNo.N;
@@ -544,6 +547,7 @@ namespace RMIS.Business
                 DustTranEntity.UnitsTypeID = DustUnitsTypeID;
                 DustTranEntity.TotalBags = DustTotalBags;
                 DustTranEntity.Price = DustPriceperbag;
+                DustTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(DustTotalBags, DustUnits));
                 DustTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                 DustTranEntity.LastModifiedDate = DateTime.Now;
                 DustTranEntity.ObsInd = YesNo.N;
@@ -3012,6 +3016,12 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                 BuyerNameID = Buyerinfo.BuyerID;
 
             return BuyerNameID;            
+        }
+
+
+        public double ConverToQuintal(int TotalBags, int UnitType)
+        {
+            return ((TotalBags * UnitType) / 100);
         }
     }
 }
