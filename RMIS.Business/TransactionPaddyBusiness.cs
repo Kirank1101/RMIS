@@ -1962,6 +1962,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             bool IsBuyerNameExist = false;
 
             List<BuyerInfoEntity> lstBuyerInfoEntity = imp.CheckBuyerNameExist(provider.GetCurrentCustomerId(), BuyerName, YesNo.N);
+            if(lstBuyerInfoEntity!=null)
             foreach (BuyerInfoEntity item in lstBuyerInfoEntity)
             {
                 if (!string.IsNullOrEmpty(BuyerID))
