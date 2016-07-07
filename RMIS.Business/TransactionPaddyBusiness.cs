@@ -1537,6 +1537,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             foreach (ProductSellingInfoDTO PSID in lstProdSellingDTO)
                 productPaymentInfoEntity.TotalAmount += PSID.TotalBags * PSID.Price;
 
+            if(!string.IsNullOrEmpty(lstProdSellingDTO[0].MediatorID))
             productPaymentInfoEntity.MediatorID = lstProdSellingDTO[0].MediatorID; 
             productPaymentInfoEntity.BuyerID = lstProdSellingDTO[0].BuyerID;
             productPaymentInfoEntity.Status = "P";
@@ -1559,6 +1560,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                 objProductSellingInfoEntity.SellingDate = ProSIDTO.ProductSellingDate;
                 objProductSellingInfoEntity.Price = ProSIDTO.Price;
                 objProductSellingInfoEntity.BuyerID = ProSIDTO.BuyerID;
+                if (!string.IsNullOrEmpty(ProSIDTO.MediatorID))
                 objProductSellingInfoEntity.MediatorID = ProSIDTO.MediatorID;
                 objProductSellingInfoEntity.TotalBags = ProSIDTO.TotalBags;
                 objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
@@ -1729,8 +1731,9 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                     lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), PPIE.ProductPaymentID, YesNo.N);
                     if (lstpropaytranent != null && lstpropaytranent.Count > 0)
                         paidamout = lstpropaytranent.Sum(x => x.ReceivedAmount);
-
+                    if(lstBuyerInfoEnt!=null && lstBuyerInfoEnt.Count>0)
                     PBPDTO.BuyerName = lstBuyerInfoEnt.Where(bu => bu.BuyerID == PPIE.BuyerID).Select(bu => bu.Name).SingleOrDefault();
+                    if (lstMediatorInfoEntity != null && lstMediatorInfoEntity.Count > 0)
                     PBPDTO.MediatorName = lstMediatorInfoEntity.Where(me => me.MediatorID == PPIE.MediatorID).Select(me => me.Name).SingleOrDefault();
                     PBPDTO.TotalAmountDue = PPIE.TotalAmount - paidamout;
                     lstprobuyerpayment.Add(PBPDTO);
@@ -1745,6 +1748,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             ProductPaymentTransactionEntity ProPayTraEnt = new ProductPaymentTransactionEntity();
             ProPayTraEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PP");
             ProPayTraEnt.ProductPaymentID = ProductPaymentID;
+            if(!string.IsNullOrEmpty(MediatorID))
             ProPayTraEnt.MediatorID = MediatorID;
             ProPayTraEnt.BuyerID = BuyerID;
             ProPayTraEnt.CustID = provider.GetCurrentCustomerId();
@@ -2600,17 +2604,19 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         {
             List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
             List<ProductSellingInfoEntity> lstProductSellingInfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID == null && ps.MRiceBrandID == null && ps.BrokenRiceTypeID == null).ToList();
-
-            foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+            if (lstProductSellingInfo != null && lstProductSellingInfo.Count > 0)
             {
-                ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
-                PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
-                PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
-                PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
-                PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
-                PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
-                LPSIDTO.Add(PSIDTO);
+                lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID == null && ps.MRiceBrandID == null && ps.BrokenRiceTypeID == null).ToList();
+                foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+                {
+                    ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
+                    PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
+                    PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
+                    PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
+                    PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
+                    PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
+                    LPSIDTO.Add(PSIDTO);
+                }
             }
             return LPSIDTO;
         }
@@ -2618,17 +2624,19 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         {
             List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
             List<ProductSellingInfoEntity> lstProductSellingInfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.BrokenRiceTypeID == BrokenRicetypeID).ToList();
-
-            foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+            if (lstProductSellingInfo != null && lstProductSellingInfo.Count > 0)
             {
-                ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
-                PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
-                PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
-                PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
-                PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
-                PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
-                LPSIDTO.Add(PSIDTO);
+                lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.BrokenRiceTypeID == BrokenRicetypeID).ToList();
+                foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+                {
+                    ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
+                    PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
+                    PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
+                    PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
+                    PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
+                    PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
+                    LPSIDTO.Add(PSIDTO);
+                }
             }
             return LPSIDTO;
         }
@@ -2636,16 +2644,19 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         {
             List<ProductSellingInfoDTO> LPSIDTO = new List<ProductSellingInfoDTO>();
             List<ProductSellingInfoEntity> lstProductSellingInfo = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID == RiceTypeID).ToList();
-            foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+            if (lstProductSellingInfo != null && lstProductSellingInfo.Count > 0)
             {
-                ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
-                PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
-                PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
-                PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
-                PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
-                PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
-                LPSIDTO.Add(PSIDTO);
+                lstProductSellingInfo = lstProductSellingInfo.Where(ps => ps.MRiceProdTypeID == RiceTypeID).ToList();
+                foreach (ProductSellingInfoEntity productSellingInfoEntity in lstProductSellingInfo)
+                {
+                    ProductSellingInfoDTO PSIDTO = new ProductSellingInfoDTO();
+                    PSIDTO.MRiceProdTypeID = productSellingInfoEntity.MRiceProdTypeID;
+                    PSIDTO.MRiceBrandID = productSellingInfoEntity.MRiceBrandID;
+                    PSIDTO.BrokenRiceTypeID = productSellingInfoEntity.BrokenRiceTypeID;
+                    PSIDTO.UnitsTypeID = productSellingInfoEntity.UnitsTypeID;
+                    PSIDTO.TotalBags = productSellingInfoEntity.TotalBags;
+                    LPSIDTO.Add(PSIDTO);
+                }
             }
             return LPSIDTO;
         }
