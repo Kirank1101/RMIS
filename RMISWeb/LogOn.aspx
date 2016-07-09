@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="MasterDataSettings"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogOn.aspx.cs" Inherits="LogOn"
     Async="true" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -24,28 +24,22 @@
     <form id="MainForm" runat="server">
     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"
         CombineScripts="false">
-        <Services>
-            <asp:ServiceReference Path="~/AutoCompleteService.asmx" />
-            <asp:ServiceReference Path="~/AutoComplete.asmx" />
-        </Services>
     </ajaxToolkit:ToolkitScriptManager>
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <asp:LinkButton ID="lnkBtnsite_title"  CommandArgument="DashBoard.ascx"  CssClass="site_title" runat="server" 
-                            onclick="lnkInfo_Click">
-                        <i
-                            class="fa fa-paw"></i><span>RMIS!</span></asp:LinkButton>
+                        <div class="site_title">
+                            <i class="fa fa-paw"></i><span>RMIS!</span>
+                        </div>
                     </div>
                     <div class="clearfix">
                     </div>
                     <!-- menu profile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                        </div>
+                            &nbsp;</div>
                         <div class="profile_info">
                             <asp:LoginView ID="LoginView1" runat="server">
                                 <LoggedInTemplate>
@@ -59,7 +53,6 @@
                                 </AnonymousTemplate>
                             </asp:LoginView>
                             <br />
-                            <asp:LoginStatus ID="LoginStatus1" runat="server" OnLoggingOut="LoginStatus1_LoggingOut" />
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -68,8 +61,7 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>
-                                All</h3>
-                            <asp:PlaceHolder ID="phMenuItems" runat="server"></asp:PlaceHolder>
+                            </h3>
                         </div>
                     </div>
                     <!-- /sidebar menu -->
@@ -94,81 +86,9 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="" />John Doe
-                    
-                  </a>
-
-                </li>
 
                 <li role="presentation" class="dropdown">
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                                </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a href="inbox.html">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
+              
                 </li>
 
               </ul>
@@ -186,14 +106,59 @@
                                 Updating...
                             </div>
                             <img alt="Updating..." src="images/loading.gif" />
-                           
                         </ProgressTemplate>
                     </asp:UpdateProgress>
                     <ajaxToolkit:ModalPopupExtender ID="modalPopup" runat="server" TargetControlID="UpdateProgress"
                         PopupControlID="UpdateProgress" BackgroundCssClass="modalPopup" />
                     <asp:UpdatePanel ID="upMain" runat="server">
                         <ContentTemplate>
-                            <asp:PlaceHolder ID="plHolderMain" runat="server"></asp:PlaceHolder>
+                            <fieldset>
+                                <table width="100%">
+                                    <tr>
+                                        <td colspan="2">
+                                            <div style="float: right;">
+                                            </div>
+                                            <p style="font-family: Calibri; font-size:medium ">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rice Management information system is a first ever
+                                                built software product in India&nbsp; designed to automate all processes of a Rice
+                                                Mill such as Arrivals, Purchases, Production, Sales, Bags stocks, Commodities Stocks
+                                                and all kind of accounting tasks with latest double entry transaction techniques
+                                                but with lots of ease.</p>
+                                            <p style="font-family: Calibri; font-size: medium">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rice Management information
+                                                system is a highly customizable product where one can create unlimited number of
+                                                commodities (Products), processes, bags types or bags classes of his own choice.
+                                                In addition to this richness it is so user friendly that no one feels any difficulty
+                                                to work with Compute Rice.</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="2" >
+                                        <table style="width:70%;">
+                                        <tr>
+                                        <td align="center"  >
+                                         <asp:Login ID="lgAbalone" runat="server" OnAuthenticate="lgAbalone_Authenticate"
+                                                Height="145px" Font-Bold="True" Font-Italic="True" Font-Size="Medium" Font-Names="Calibri">
+                                            </asp:Login>
+                                        </td>
+
+                                        <td>
+
+                                         <div style="font-family: Calibri; font-size: x-large; font-weight: bolder; font-style: oblique;">
+                                                Rice Management</div>
+                                            <div style="font-family: Calibri; font-size: x-large; font-weight: bolder; font-style: oblique;">
+                                                Information System&nbsp;
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                           
+                                        
+                                           
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -211,7 +176,6 @@
         <!-- /footer content -->
     </div>
     <!-- Bootstrap -->
-    
     <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>

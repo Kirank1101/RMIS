@@ -139,8 +139,7 @@ public partial class MasterDataSettings : ApplicationBasePage
     {
         Session.Abandon();
         FormsAuthentication.SignOut();
-        Response.Redirect("LogOnNew.aspx");
-
+        Response.Redirect("LogOn.aspx");
     }
 
 

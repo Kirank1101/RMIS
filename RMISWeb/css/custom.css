@@ -315,7 +315,7 @@ body {
   color: #73879C;
   background: #2A3F54;
   /*#ECF0F1; #FCFCFC*/
-  font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+  font-family: Calibri,"Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.471;
@@ -419,6 +419,7 @@ table.no-margin .progress {
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 10px;
   margin-bottom: 10px;
+   font-family: Calibri,helvetica;
 }
 a {
   color: #5A738E;
@@ -762,6 +763,7 @@ h2 {
   border: 0;
   padding: 7px 0;
   display: flex;
+  font-family: Calibri,helvetica;
   
 }
 #left, #right {
@@ -1682,7 +1684,7 @@ h4.graph_title {
   width: 26px;
   opacity: .99;
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: Calibri,FontAwesome;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -2318,35 +2320,29 @@ textarea:focus {
   outline-width: 2px;
 }
 .btn_ {
-  display: inline-block;
-  padding: 3px 9px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  color: #333333;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
-  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  border: 1px solid #cccccc;
-  border-bottom-color: #b3b3b3;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+  border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #b3b3b3;
+    display: inline-block;
+    padding: 3px 9px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #333333;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    background-color: #f5f5f5;
+    background-repeat: repeat-x;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
 }
 
 /* *********  /form textarea  **************************** */
@@ -2422,7 +2418,7 @@ span.tag {
   margin-right: 5px;
   font-weight: 500;
   margin-bottom: 5px;
-  font-family: helvetica;
+  font-family: Calibri,helvetica;
 }
 span.tag a {
   color: #F1F6F7 !important;
@@ -2436,7 +2432,7 @@ span.tag a {
 .tagsinput input {
   width: 80px;
   margin: 0px;
-  font-family: helvetica;
+  font-family: Calibri,helvetica;
   font-size: 13px;
   border: 1px solid transparent;
   padding: 3px;
@@ -3119,7 +3115,7 @@ ul.project_files li a i {
   padding: 0 4px;
 }
 .view p {
-  font-family: Georgia, serif;
+  font-family:Calibri, Georgia, serif;
   font-style: italic;
   font-size: 12px;
   position: relative;
@@ -3379,7 +3375,7 @@ ul.project_files li a i {
   color: #666;
   background: rgba(243, 242, 243, 0.8);
   border: solid 2px rgba(195, 194, 196, 0.8);
-  font-family: sans-serif;
+  font-family: Calibri,sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -4787,7 +4783,7 @@ ul.notifications {
         width: 170px;
         font-size: 11px;
         text-align: center;
-        font-family: tahoma,verdana,helvetica;
+        font-family: Calibri,tahoma,verdana,helvetica;
     }
 
     .ajax__calendar_body {
@@ -4966,7 +4962,7 @@ ul.notifications {
     
     .MyTabStyle .ajax__tab_header
     {
-        font-family: "Helvetica Neue" , Arial, Sans-Serif;
+        font-family: Calibri,"Helvetica Neue" , Arial, Sans-Serif;
         font-size: 14px;
         font-weight: bold;
         display: block;

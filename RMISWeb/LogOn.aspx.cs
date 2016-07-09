@@ -9,7 +9,7 @@ using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
 using AllInOne.Common.Library.Util;
 
-public partial class LogOnNew : RegisterBasePage
+public partial class LogOn: RegisterBasePage
 {
     protected void lgAbalone_Authenticate(object sender, AuthenticateEventArgs e)
     {
