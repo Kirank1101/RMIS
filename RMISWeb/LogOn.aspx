@@ -112,6 +112,11 @@
                         PopupControlID="UpdateProgress" BackgroundCssClass="modalPopup" />
                     <asp:UpdatePanel ID="upMain" runat="server">
                         <ContentTemplate>
+                        <br />
+                         <br />
+                          <br />
+                           <br />
+                            <br />
                             <fieldset>
                                 <table width="100%">
                                     <tr>
@@ -124,12 +129,14 @@
                                                 of a Rice Mill such as Arrivals, Purchases, Production, Sales, Bags stocks, 
                                                 Commodities Stocks and all kind of accounting tasks with latest double entry 
                                                 transaction techniques but with lots of ease.</p>
+                                                 <br />
                                             <p style="font-family: Calibri; font-size: medium">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><em>Rice Management information system</em></strong> is a 
                                                 highly customizable product where one can create unlimited number of commodities 
                                                 (Products), processes, bags types or bags classes of his own choice. In addition 
                                                 to this richness it is so user friendly that no one feels any difficulty to work 
                                                 with Compute Rice.</p>
+                                                 <br />
                                         </td>
                                     </tr>
                                     <tr>
@@ -159,6 +166,11 @@
                                     </tr>
                                 </table>
                             </fieldset>
+                             <br />
+                              <br />
+                               <br />
+                                <br />
+                                 <br />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
