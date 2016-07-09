@@ -80,25 +80,25 @@ namespace AllInOne.BootStrapper.BackEnd
            // string log4netConfigFile = ConfigurationManager.AppSettings["LogConfigFileLocation"];
             BootStrapper.ConfigLogger(string.Empty);
             BootStrapper.StartUp();
-            AddTask("DoStuff", 180);
+            //AddTask("DoStuff", 180);
         }
 
-        private static CacheItemRemovedCallback OnCacheRemove = null;
+        //private static CacheItemRemovedCallback OnCacheRemove = null;
 
-        private void AddTask(string name, int seconds)
-        {
-            OnCacheRemove = new CacheItemRemovedCallback(CacheItemRemoved);
-            HttpRuntime.Cache.Insert(name, seconds, null,
-                DateTime.Now.AddSeconds(seconds), Cache.NoSlidingExpiration,
-                CacheItemPriority.NotRemovable, OnCacheRemove);
-        }
+        //private void AddTask(string name, int seconds)
+        //{
+        //    OnCacheRemove = new CacheItemRemovedCallback(CacheItemRemoved);
+        //    HttpRuntime.Cache.Insert(name, seconds, null,
+        //        DateTime.Now.AddSeconds(seconds), Cache.NoSlidingExpiration,
+        //        CacheItemPriority.NotRemovable, OnCacheRemove);
+        //}
 
-        public void CacheItemRemoved(string k, object v, CacheItemRemovedReason r)
-        {
-            // do stuff here if it matches our taskname, like WebRequest
-            // re-add our task so it recurs
-            AddTask(k, Convert.ToInt32(v));
-        }
+        //public void CacheItemRemoved(string k, object v, CacheItemRemovedReason r)
+        //{
+        //    // do stuff here if it matches our taskname, like WebRequest
+        //    // re-add our task so it recurs
+        //    AddTask(k, Convert.ToInt32(v));
+        //}
 
         /// <summary>
         /// Handles the End event of the Session control.
