@@ -49,7 +49,7 @@
                         <div class="profile_info">
                             <asp:LoginView ID="LoginView1" runat="server">
                                 <LoggedInTemplate>
-                                    Welcome back,
+                                    Welcome back, <br />
                                     <asp:LoginName ID="LoginName1" runat="server" />
                                     .
                                     <br />

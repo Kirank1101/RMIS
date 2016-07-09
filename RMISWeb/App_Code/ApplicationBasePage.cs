@@ -29,7 +29,7 @@ public class ApplicationBasePage : BasePage
         base.OnInit(e);
         if (!IsAutecticated)
         {
-            Response.Redirect("LogOnNew.aspx");
+            Response.Redirect("LogOn.aspx");
         }
 
     }

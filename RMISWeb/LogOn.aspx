@@ -119,17 +119,17 @@
                                             <div style="float: right;">
                                             </div>
                                             <p style="font-family: Calibri; font-size:medium ">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rice Management information system is a first ever
-                                                built software product in India&nbsp; designed to automate all processes of a Rice
-                                                Mill such as Arrivals, Purchases, Production, Sales, Bags stocks, Commodities Stocks
-                                                and all kind of accounting tasks with latest double entry transaction techniques
-                                                but with lots of ease.</p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><em>&nbsp;&nbsp;&nbsp; Rice Management information system</em></strong> is a 
+                                                first ever built software product in India&nbsp; designed to automate all processes 
+                                                of a Rice Mill such as Arrivals, Purchases, Production, Sales, Bags stocks, 
+                                                Commodities Stocks and all kind of accounting tasks with latest double entry 
+                                                transaction techniques but with lots of ease.</p>
                                             <p style="font-family: Calibri; font-size: medium">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rice Management information
-                                                system is a highly customizable product where one can create unlimited number of
-                                                commodities (Products), processes, bags types or bags classes of his own choice.
-                                                In addition to this richness it is so user friendly that no one feels any difficulty
-                                                to work with Compute Rice.</p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><em>Rice Management information system</em></strong> is a 
+                                                highly customizable product where one can create unlimited number of commodities 
+                                                (Products), processes, bags types or bags classes of his own choice. In addition 
+                                                to this richness it is so user friendly that no one feels any difficulty to work 
+                                                with Compute Rice.</p>
                                         </td>
                                     </tr>
                                     <tr>
