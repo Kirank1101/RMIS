@@ -33,10 +33,19 @@
                     </tr>
                     <tr>
                         <td>
+                            <asp:Label runat="server" ID="lblHPayDate" Text="<%$Resources:Resource,PayDate%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBoxDatenTimeExtender ID="txtPayDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
                             <asp:Label runat="server" ID="lblhReason" Text="<%$Resources:Resource,Reason%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtReason" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" Height="75px" 
+                                Width="281px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

@@ -5029,7 +5029,6 @@
                 throw;
             }
         }
-
         internal MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo)
         {
             try
@@ -5056,6 +5055,130 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetMExpenseTypeEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MJobWorkEntity> GetMJobWorkEntities(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<MJobWorkEntity> ListMJobWorkEntity = new List<MJobWorkEntity>();
+                IRepository<MJobWork> MediatorTypeRepository = new RepositoryImpl<MJobWork>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MJobWork))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+
+                List<MJobWork> listMJobWork = MediatorTypeRepository.GetAll(detachedCriteria) as List<MJobWork>;
+                if (listMJobWork != null && listMJobWork.Count > 0)
+                {
+                    foreach (MJobWork adMInfo in listMJobWork)
+                    {
+                        ListMJobWorkEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMJobWorkEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMJobWorkEntity = null;
+
+                return ListMJobWorkEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMJobWorkEntities", ex);
+                throw;
+            }
+        }
+        internal MJobWorkEntity GetMJobWorkEntity(string CustId, string JobWorkType, YesNo yesNo)
+        {
+            MJobWorkEntity MJobWorkEntity = new MJobWorkEntity();
+            try
+            {
+                IRepository<MJobWork> MJobWorkRepository = new RepositoryImpl<MJobWork>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MJobWork))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("JobWorkType", JobWorkType))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MJobWork> listMJobWorkEntity = MJobWorkRepository.GetAll(detachedCriteria) as List<MJobWork>;
+                if (listMJobWorkEntity != null && listMJobWorkEntity.Count > 0)
+                {
+                    foreach (MJobWork adMInfo in listMJobWorkEntity)
+                        MJobWorkEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMJobWorkEntity(adMInfo);
+                }
+                else
+                    MJobWorkEntity = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMJobWorkEntityByName", ex);
+                throw;
+            }
+            return MJobWorkEntity;
+        }
+        internal List<MJobWorkEntity> GetMJobWorkEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MJobWorkEntity> listMJobWorkEntity = new List<MJobWorkEntity>();
+                IRepository<MJobWork> UsersRepository = new RepositoryImpl<MJobWork>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MJobWork))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("JobWorkType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MJobWork))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("JobWorkType"));
+
+
+                List<MJobWork> listMJobWork = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MJobWork>;
+                if (listMJobWork != null && listMJobWork.Count > 0)
+                {
+                    foreach (MJobWork adMInfo in listMJobWork)
+                    {
+                        listMJobWorkEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMJobWorkEntity(adMInfo));
+                    }
+                }
+                else
+                    listMJobWorkEntity = null;
+
+                return listMJobWorkEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMJobWorkEntities", ex);
+                throw;
+            }
+        }
+        internal MJobWorkEntity GetMJobWorkEntity(string JobWorkID, YesNo yesNo)
+        {
+            try
+            {
+                MJobWorkEntity MJobWorkEntity = new MJobWorkEntity();
+                IRepository<MJobWork> UsersRepository = new RepositoryImpl<MJobWork>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MJobWork))
+                                                                   .Add(Expression.Eq("JobWorkID", JobWorkID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MJobWork> listMJobWorkEntity = UsersRepository.GetAll(detachedCriteria) as List<MJobWork>;
+                if (listMJobWorkEntity != null && listMJobWorkEntity.Count > 0)
+                {
+                    foreach (MJobWork adMInfo in listMJobWorkEntity)
+                    {
+                        MJobWorkEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMJobWorkEntity(adMInfo);
+                    }
+                }
+                else
+                    MJobWorkEntity = null;
+
+                return MJobWorkEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMJobWorkEntity", ex);
                 throw;
             }
         }

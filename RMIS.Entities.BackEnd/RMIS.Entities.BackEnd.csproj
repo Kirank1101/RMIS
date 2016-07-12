@@ -54,6 +54,8 @@
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
     <Compile Include="Model\Entities\BagPaymentInfo.cs" />
+    <Compile Include="Model\Entities\RentalHulling.cs" />
+    <Compile Include="Model\Entities\MJobWork.cs" />
     <Compile Include="Model\Entities\ExpenseTransaction.cs" />
     <Compile Include="Model\Entities\MExpenseType.cs" />
     <Compile Include="Model\Entities\MediatorInfo.cs" />
@@ -196,6 +198,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\ExpenseTransaction.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\MJobWork.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\RentHulling.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

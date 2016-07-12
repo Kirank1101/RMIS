@@ -632,7 +632,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount,double TotalAmountDue)
+        public ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount, double TotalAmountDue)
         {
             if (PaymentMode < 0)
             {
@@ -706,7 +706,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount)
+        public ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount, string PayDate)
         {
             if (ExpenseType <= 0)
             {
@@ -724,16 +724,66 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranReasonEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (Reason.Trim().Length > 50)
+            else if (!string.IsNullOrEmpty(Reason))
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranReasonLength, provider.GetCurrentCustomerId()) };
+                if (Reason.Trim().Length > 400)
+                    return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranReasonLength, provider.GetCurrentCustomerId()) };
             }
             else if (Amount <= 0)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranSAmount, provider.GetCurrentCustomerId()) };
             }
-            
-            return new ResultDTO();            
+            else if (string.IsNullOrEmpty(PayDate.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranPayDateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (!PayDate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranPayDateValidate, provider.GetCurrentCustomerId()) };
+            }
+
+            return new ResultDTO();
+        }
+        public ResultDTO ValidateRentHullingTransaction(int JobWorkType, string Name, string PaddyType, int TotalBags, double Price, string ProcessDate)
+        {
+            if (JobWorkType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingJobWorkType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Name.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingName, provider.GetCurrentCustomerId()) };
+            }
+            else if (Name.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingNameLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(PaddyType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingPaddyTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(PaddyType))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingPaddyTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (TotalBags <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingTotalBags, provider.GetCurrentCustomerId()) };
+            }
+            else if (Price <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingPrice, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(ProcessDate.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingProcessDateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (!ProcessDate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateRentHullingProcessDateValidate, provider.GetCurrentCustomerId()) };
+            }
+
+            return new ResultDTO();
         }
     }
 }

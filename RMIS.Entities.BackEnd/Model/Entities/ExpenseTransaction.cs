@@ -13,6 +13,7 @@ namespace RMIS.Entities.BackEnd
         private string _Name;
         private string _Reason;
         private double _Amount;
+        private DateTime _PayDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -47,6 +48,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _Amount; }
             set { _Amount = value; }
+        }
+        public virtual DateTime PayDate
+        {
+            get { return _PayDate; }
+            set { _PayDate = value; }
         }
         public virtual string LastModifiedBy
         {

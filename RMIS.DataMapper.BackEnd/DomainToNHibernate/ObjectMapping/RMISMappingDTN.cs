@@ -1098,6 +1098,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                     .ForMember(dest => dest.Amount, opts => opts.MapFrom(src => src.Amount))
                     .ForMember(dest => dest.Reason, opts => opts.MapFrom(src => src.Reason))
+                    .ForMember(dest => dest.PayDate, opts => opts.MapFrom(src => src.PayDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
@@ -1105,6 +1106,47 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at MapExpenseTranEntityToExpenseTran", ex);
+                throw;
+            }
+        }
+        internal void MapMJobWorkEntityToMJobWorkType()
+        {
+            try
+            {
+                Mapper.CreateMap<MJobWorkEntity, MJobWork>()
+                    .ForMember(dest => dest.JobWorkID, opts => opts.MapFrom(src => src.JobWorkID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.JobWorkType, opts => opts.MapFrom(src => src.JobWorkType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMJobWorkEntityToMJobWorkType", ex);
+                throw;
+            }
+        }
+        internal void MapRentHullingEntityToRentHulling()
+        {
+            try
+            {
+                Mapper.CreateMap<RentalHullingEntity, RentalHulling>()
+                    .ForMember(dest => dest.RentalHulingID, opts => opts.MapFrom(src => src.RentalHulingID))
+                    .ForMember(dest => dest.JobWorkID, opts => opts.MapFrom(src => src.JobWorkID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.PaddyType, opts => opts.MapFrom(src => src.PaddyType))
+                    .ForMember(dest => dest.TotalBags, opts => opts.MapFrom(src => src.TotalBags))
+                    .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
+                    .ForMember(dest => dest.ProcessedDate, opts => opts.MapFrom(src => src.ProcessedDate))
+                    .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapRentHullingEntityToRentHulling", ex);
                 throw;
             }
         }

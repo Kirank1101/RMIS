@@ -210,5 +210,19 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateJobWork(string JobWork)
+        {
+            if (string.IsNullOrEmpty(JobWork.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateJobWorkTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (JobWork.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateJobWorkTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }

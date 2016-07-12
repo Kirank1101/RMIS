@@ -195,5 +195,19 @@ namespace RMIS.Domain.DataTranserClass
         }
 
     }
+    public class MJobWorkDTO : MasterPaddyDTO
+    {
+        public MJobWorkDTO()
+            : base()
+        {
+            JobWorkType = string.Empty;
+        }
+        public string JobWorkType
+        {
+            get;
+            set;
+        }
+
+    }
 
 }

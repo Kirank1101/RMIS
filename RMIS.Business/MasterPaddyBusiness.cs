@@ -1460,9 +1460,140 @@ namespace RMIS.Business
 
             return IsSalaryTypeExist;
         }
-        
-        
-        
 
+
+
+
+
+
+        public bool CheckJobWorkExist(string JobWork)
+        {
+            bool IsExpenseTypeExist = false;
+
+            MJobWorkEntity MJobWorkEntity = imp.GetMJobWorkEntity(provider.GetCurrentCustomerId(), JobWork, YesNo.N);
+            if (MJobWorkEntity != null)
+                IsExpenseTypeExist = true;
+
+            return IsExpenseTypeExist;
+        }
+
+        public List<MJobWorkDTO> GetMJobWorkEntities()
+        {
+            List<MJobWorkDTO> listMJobWorkDTO = null;
+
+            List<MJobWorkEntity> listMJobWorkEntity = imp.GetMJobWorkEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMJobWorkEntity != null && listMJobWorkEntity.Count > 0)
+            {
+                listMJobWorkDTO = new List<MJobWorkDTO>();
+                foreach (MJobWorkEntity objMJobWorkEntity in listMJobWorkEntity)
+                {
+                    MJobWorkDTO objMJobWorkDTO = new MJobWorkDTO();
+                    objMJobWorkDTO.JobWorkType = objMJobWorkEntity.JobWorkType;
+                    objMJobWorkDTO.Indicator = GetYesorNo(objMJobWorkEntity.ObsInd);
+                    objMJobWorkDTO.Id = objMJobWorkEntity.JobWorkID;
+                    listMJobWorkDTO.Add(objMJobWorkDTO);
+                }
+
+            }
+            return listMJobWorkDTO;
+        }
+
+        public ResultDTO SaveJobWork(string JobWorkType)
+        {
+
+            MJobWorkEntity objMJobWorkEntity = new MJobWorkEntity();
+            objMJobWorkEntity.ObsInd = YesNo.N;
+            objMJobWorkEntity.CustID = provider.GetCurrentCustomerId();
+            objMJobWorkEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMJobWorkEntity.JobWorkType = JobWorkType;
+            objMJobWorkEntity.JobWorkID = CommonUtil.CreateUniqueID("JW");
+            objMJobWorkEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMJobWorkEntity(objMJobWorkEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
+        }
+
+        public ResultDTO DeleteJobWork(string ID)
+        {
+
+            MJobWorkEntity objMJobWorkEntity = imp.GetMJobWorkEntity(ID, YesNo.N);
+            if (objMJobWorkEntity is MJobWorkEntity)
+            {
+                objMJobWorkEntity.ObsInd = YesNo.Y;
+                objMJobWorkEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMJobWorkEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMJobWorkEntity(objMJobWorkEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+
+        public ResultDTO UpdateJobWork(string ID, string JobWorkType)
+        {
+
+            MJobWorkEntity objMJobWorkEntity = imp.GetMJobWorkEntity(ID, YesNo.N);
+            ResultDTO ResultDTO = new ResultDTO();
+            if (objMJobWorkEntity is MJobWorkEntity)
+            {
+                objMJobWorkEntity.JobWorkType = JobWorkType;
+                objMJobWorkEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMJobWorkEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMJobWorkEntity(objMJobWorkEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
+                    Logger.Error(ex);
+                }
+            }
+            return ResultDTO;
+        }
+
+        public List<MJobWorkDTO> GetMJobWorkEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+
+            List<MJobWorkDTO> listExpenseTypeDTO = null;
+
+            List<MJobWorkEntity> listMJobWorkEntity = imp.GetMJobWorkEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMJobWorkEntity != null && listMJobWorkEntity.Count > 0)
+            {
+                listExpenseTypeDTO = new List<MJobWorkDTO>();
+                foreach (MJobWorkEntity objExpenseTypeEntity in listMJobWorkEntity)
+                {
+                    MJobWorkDTO objExpenseTypeDTO = new MJobWorkDTO();
+                    objExpenseTypeDTO.JobWorkType = objExpenseTypeEntity.JobWorkType;
+                    objExpenseTypeDTO.Indicator = GetYesorNo(objExpenseTypeEntity.ObsInd);
+                    objExpenseTypeDTO.Id = objExpenseTypeEntity.JobWorkID;
+                    listExpenseTypeDTO.Add(objExpenseTypeDTO);
+                }
+            }
+            return listExpenseTypeDTO;
+        }
     }
 }

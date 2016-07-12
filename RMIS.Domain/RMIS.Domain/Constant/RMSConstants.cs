@@ -86,9 +86,9 @@ namespace RMIS.Domain.Constant
         public const string ValidateBrokenRiceStockDetailsUnitsType = "Validate52";
         public const string ValidateBrokenRiceStockDetailsTotalbagsEmpty = "Validate53";
         public const string ValidateBrokenRiceStockDetailsTotalbagsValidate = "Validate54";
-        
-        
-        public const string ValidateProductSellingTypeEmpty= "Validate96";
+
+
+        public const string ValidateProductSellingTypeEmpty = "Validate96";
         public const string ValidateProductSellingTypeLength = "Validate97";
         public const string ValidateProductSellingDetailsbuyer = "Validate98";
         public const string ValidateProductSellingDetailsRiceType = "Validate99";
@@ -212,8 +212,22 @@ namespace RMIS.Domain.Constant
         public const string ValidateExpenseTranReasonEmpty = "Validate202";
         public const string ValidateExpenseTranReasonLength = "Validate203";
         public const string ValidateExpenseTranSAmount = "Validate204";
+        public const string ValidateExpenseTranPayDateEmpty = "Validate205";
+        public const string ValidateExpenseTranPayDateValidate = "Validate206";
 
-        
+        public const string ValidateJobWorkTypeEmpty = "Validate207";
+        public const string ValidateJobWorkTypeLength = "Validate208";
+
+        public const string ValidateRentHullingJobWorkType = "Validate209";
+        public const string ValidateRentHullingName = "Validate210";
+        public const string ValidateRentHullingNameLength = "Validate211";
+        public const string ValidateRentHullingPaddyTypeEmpty = "Validate212";
+        public const string ValidateRentHullingPaddyTypeLength = "Validate213";
+        public const string ValidateRentHullingTotalBags = "Validate214";
+        public const string ValidateRentHullingPrice = "Validate215";
+        public const string ValidateRentHullingProcessDateEmpty = "Validate216";
+        public const string ValidateRentHullingProcessDateValidate = "Validate217";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";
@@ -222,7 +236,7 @@ namespace RMIS.Domain.Constant
         public const string UpdatedUnSuccess = "Updated UnSucessfully..";
         public const string DeletedSuccess = "Deleted Sucessfully..";
         public const string DeletedUnSuccess = "Deleted UnSucessfully..";
-        
+
     }
 
     public enum SortExpression

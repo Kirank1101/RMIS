@@ -96,6 +96,8 @@
                 objRMISMappingNTD.MapMediatorInfoEntity();
                 objRMISMappingNTD.MapMExpenseTypeEntity();
                 objRMISMappingNTD.MapExpenseTransEntity();
+                objRMISMappingNTD.MapMJobWorkEntity();
+                objRMISMappingNTD.MapRentalHullingEntity();
             }
             catch (Exception ex)
             {

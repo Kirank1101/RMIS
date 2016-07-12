@@ -3032,7 +3032,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         }
 
 
-        public ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount)
+        public ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount,DateTime PayDate)
         {
             ExpenseTransactionEntity objExpenseTransactionEntity = new ExpenseTransactionEntity();
             objExpenseTransactionEntity.ExpenseTransID = CommonUtil.CreateUniqueID("ExT");
@@ -3041,6 +3041,7 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             objExpenseTransactionEntity.Name = Name;
             objExpenseTransactionEntity.Amount = Amount;
             objExpenseTransactionEntity.Reason = Reason;
+            objExpenseTransactionEntity.PayDate = PayDate;
             objExpenseTransactionEntity.LastModifiedDate = DateTime.Now;
             objExpenseTransactionEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objExpenseTransactionEntity.ObsInd = YesNo.N;
@@ -3049,6 +3050,36 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdateExpenseTransEntity(objExpenseTransactionEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };    
+        }
+
+        public ResultDTO SaveRentHulling(string JobWork, string Name, string PaddyType, int TotalBags, double Price, DateTime ProcessDate)
+        {
+
+            RentalHullingEntity objRentalHullingEntity = new RentalHullingEntity();
+            objRentalHullingEntity.RentalHulingID = CommonUtil.CreateUniqueID("RH");
+            objRentalHullingEntity.JobWorkID = JobWork;
+            objRentalHullingEntity.CustID = provider.GetCurrentCustomerId();
+            objRentalHullingEntity.Name = Name;
+            objRentalHullingEntity.PaddyType = PaddyType;
+            objRentalHullingEntity.TotalBags = TotalBags;
+            objRentalHullingEntity.Price = Price;
+            objRentalHullingEntity.ProcessedDate = ProcessDate;
+            objRentalHullingEntity.LastModifiedDate = DateTime.Now;
+            objRentalHullingEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objRentalHullingEntity.ObsInd = YesNo.N;
+
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateRentalHullingEntity(objRentalHullingEntity, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)

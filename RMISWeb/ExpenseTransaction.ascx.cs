@@ -42,10 +42,10 @@ public partial class ExpenseTransaction : BaseUserControl
 
         ResultDTO resultDto = new ResultDTO();
         ITransactionBusiness impt = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateExpenseTransaction(ddlExpenseType.SelectedIndex, txtName.Text.Trim(), txtReason.Text.Trim(), Convert.ToDouble(txtAmount.Text.Trim()));
+        resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateExpenseTransaction(ddlExpenseType.SelectedIndex, txtName.Text.Trim(), txtReason.Text.Trim(), Convert.ToDouble(txtAmount.Text.Trim()),txtPayDate.Text.Trim());
         if (resultDto.IsSuccess)
         {
-            resultDto = impt.SaveExpenseTrans(ddlExpenseType.SelectedValue, txtName.Text.Trim(), txtReason.Text.Trim(), Convert.ToDouble(txtAmount.Text.Trim()));
+            resultDto = impt.SaveExpenseTrans(ddlExpenseType.SelectedValue, txtName.Text.Trim(), txtReason.Text.Trim(), Convert.ToDouble(txtAmount.Text.Trim()),Convert.ToDateTime(txtPayDate.Text));
             if (resultDto.IsSuccess)
             {
                 //BindEmployeeSalaryInfo();

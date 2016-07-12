@@ -20,5 +20,6 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateDesignationType(string DesignationType);
         ResultDTO ValidateSalaryType(string SalaryType);
         ResultDTO ValidateExpenseType(string ExpenseType);
+        ResultDTO ValidateJobWork(string JobWork);
     }
 }

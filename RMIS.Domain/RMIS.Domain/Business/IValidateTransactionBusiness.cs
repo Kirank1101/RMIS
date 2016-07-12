@@ -30,6 +30,8 @@ namespace RMIS.Domain.Business
 
         ResultDTO ValidateMediatorDetails(string MediatorName, string city, string district, string state, string contactNo);
 
-        ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount);
+        ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount,string PayDate);
+
+        ResultDTO ValidateRentHullingTransaction(int JobWorkType, string Name, string PaddyType, int TotalBags, double Price, string ProcessDate);
     }
 }

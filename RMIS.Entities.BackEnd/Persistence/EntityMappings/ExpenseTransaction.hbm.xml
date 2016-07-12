@@ -12,6 +12,7 @@
     <property name="Name" column="Name" />
     <property name="Reason" column="Reason" />
     <property name="Amount" column="Amount" />
+    <property name="PayDate" column="PayDate" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

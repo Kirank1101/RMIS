@@ -675,6 +675,32 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateMJobWorkEntity(MJobWorkEntity mJobWorkEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MJobWork>(mapper.GetJobWork(mJobWorkEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMJobWorkEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMJobWorkEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+        public void SaveOrUpdateRentalHullingEntity(RentalHullingEntity RentalHullingEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<RentalHulling>(mapper.GetRentalHulling(RentalHullingEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateRentalHullingEntity", ex);
+                Logger.Error("Error in SaveOrUpdateRentalHullingEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
@@ -1301,9 +1327,9 @@ namespace RMIS.Mediator.BackEnd.Impl
         }
 
 
-        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string MediatorID, string BuyerID, YesNo yesNo)
+        public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string MediatorID, string BuyerID, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductPaymentInfoEntities(CustId,MediatorID, BuyerID, yesNo);
+            return rmisGateway.GetAllProductPaymentInfoEntities(CustId, MediatorID, BuyerID, yesNo);
         }
 
 
@@ -1435,7 +1461,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<BagPaymentInfoEntity> GetBagPaymentDetailsEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetBagPaymentDetailsEntity(CustId, pageindex, pageSize, out count, sortExpression, yesNo);            
+            return rmisGateway.GetBagPaymentDetailsEntity(CustId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 
@@ -1453,7 +1479,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<ProductSellingInfoEntity> GetAllproductSellingInfoEntities(string CustId, string MediatorID, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductSellingInfoEntities(CustId,MediatorID,BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
+            return rmisGateway.GetAllProductSellingInfoEntities(CustId, MediatorID, BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 
@@ -1465,7 +1491,7 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<ProductPaymentTransactionEntity> GetAllProductPaymentTranEntities(string CustId, string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductPaymentTranEntities(CustId,MediatorId, BuyerId,pageindex, pageSize, out count, sortExpression, yesNo);
+            return rmisGateway.GetAllProductPaymentTranEntities(CustId, MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 
@@ -1530,14 +1556,28 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMExpenseTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
         }
-
-
         public MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo)
         {
             return rmisGateway.GetMExpenseTypeEntity(ExpenseID, yesNo);
         }
+        public List<MJobWorkEntity> GetMJobWorkEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetMJobWorkEntities(CustId, yesNo);
+        }
 
+        public MJobWorkEntity GetMJobWorkEntity(string CustId, string JobWorkType, YesNo yesNo)
+        {
+            return rmisGateway.GetMJobWorkEntity(CustId, JobWorkType, yesNo);
+        }
 
+        public List<MJobWorkEntity> GetMJobWorkEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMJobWorkEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
 
+        public MJobWorkEntity GetMJobWorkEntity(string JobWorkID, YesNo yesNo)
+        {
+            return rmisGateway.GetMJobWorkEntity(JobWorkID, yesNo);
+        }
     }
 }

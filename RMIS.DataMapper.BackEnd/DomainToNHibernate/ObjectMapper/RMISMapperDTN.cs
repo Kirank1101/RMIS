@@ -61,6 +61,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         MediatorInfo GetMediatorInfo(MediatorInfoEntity MediatorInfoEntity);
         MExpenseType GetExpenseType(MExpenseTypeEntity mExpenseTypeEntity);
         ExpenseTransaction GetExpenseTransaction(ExpenseTransactionEntity mExpenseTransactionEntity);
+        MJobWork GetJobWork(MJobWorkEntity mJobWorkEntity);
+        RentalHulling GetRentalHulling(RentalHullingEntity rentalHullingEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -815,6 +817,38 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return ExpenseTransaction;
+        }
+
+
+        public MJobWork GetJobWork(MJobWorkEntity mJobWorkEntity)
+        {
+            MJobWork MJobWork = null;
+            try
+            {
+                MJobWork = Mapper.Map<MJobWorkEntity, MJobWork>(mJobWorkEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMJobWork", ex);
+                throw;
+            }
+            return MJobWork;
+        }
+
+
+        public RentalHulling GetRentalHulling(RentalHullingEntity rentalHullingEntity)
+        {
+            RentalHulling RentalHulling = null;
+            try
+            {
+                RentalHulling = Mapper.Map<RentalHullingEntity, RentalHulling>(rentalHullingEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetRentalHulling", ex);
+                throw;
+            }
+            return RentalHulling;
         }
     }
 }

@@ -408,7 +408,19 @@
   <data name="IsExpenseDeleted" xml:space="preserve">
     <value>Is Deleted</value>
   </data>
+  <data name="PayDate" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
   <data name="Reason" xml:space="preserve">
     <value>Reason</value>
+  </data>
+  <data name="IsJobWorkDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="JobWorkType" xml:space="preserve">
+    <value>JobWork Type</value>
+  </data>
+  <data name="ProcessDate" xml:space="preserve">
+    <value>Process Date</value>
   </data>
 </root>

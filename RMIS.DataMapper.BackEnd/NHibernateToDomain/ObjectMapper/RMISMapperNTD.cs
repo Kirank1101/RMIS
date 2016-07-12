@@ -910,5 +910,38 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return ExpenseTransactionEntity;
         }
+        public static MJobWorkEntity GetMJobWorkEntity(MJobWork mJobWork)
+        {
+            MJobWorkEntity mJobWorkEntity = null;
+
+            try
+            {
+                if (mJobWork != null)
+                    mJobWorkEntity = Mapper.Map<MJobWork, MJobWorkEntity>(mJobWork);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMJobWorkEntity", ex);
+                throw;
+            }
+
+            return mJobWorkEntity;
+        }
+        public static RentalHullingEntity GetRentalHullingEntity(RentalHulling RentalHulling)
+        {
+            RentalHullingEntity RentalHullingEntity = null;
+            try
+            {
+                if (RentalHulling != null)
+                    RentalHullingEntity = Mapper.Map<RentalHulling, RentalHullingEntity>(RentalHulling);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at RentalHullingEntity", ex);
+                throw;
+            }
+
+            return RentalHullingEntity;
+        }
     }
 }

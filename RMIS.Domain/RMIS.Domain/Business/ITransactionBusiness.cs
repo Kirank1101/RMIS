@@ -39,11 +39,11 @@ namespace RMIS.Domain.Business
            string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SaveEmployeeSalary(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary);
         ResultDTO SaveEmployeeSalaryPayment(string EmployeeID, string SalaryTypeID, string EmpDesigID, double Salary, double AmountSpent, double ExtraCharges);
-        ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);        
+        ResultDTO SaveOtherExpenses(string Description, string GivenTo, double PaidAmount);
         ResultDTO SaveBagPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaymentMode, string ChequeuNo, string BankName);
         ResultDTO SaveMediatorInfo(string name, string street, string street1, string town, string city, string district, string state,
                    string pincode, string contactNo, string mobileNo, string phoneNo);
-        ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount);
+        ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount, DateTime PayDate);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -82,7 +82,7 @@ namespace RMIS.Domain.Business
         List<WidgetDTO> GetTotalBagStockWidget();
         List<MediatorInfoEntity> GetMediatorInfo();
         List<MediatorInfoDTO> GetAllMediatorInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
-        
+
         bool CheckEmployeeExist(string EmployeeName);
         bool CheckEmployeeSalaryExist(string EmployeeID);
         int GetPaddyStockTotalSum();
@@ -118,7 +118,7 @@ namespace RMIS.Domain.Business
         List<BuyerInfoDTO> GetAllBuyerInfoEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         ResultDTO DeleteBuyerInfo(string ID);
         ResultDTO UpdateBuyerInfo(string ID, string BuyerName, string Town, string Contactno, string mobileno);
-        bool CheckBuyerNameExist(string BuyerID,string BuyerName);
+        bool CheckBuyerNameExist(string BuyerID, string BuyerName);
         bool CheckMediatorNameExist(string MediatorID, string MediatorName);
         ResultDTO DeleteMediatorInfo(string MediatorID);
         ResultDTO UpdateMediatorInfo(string MediatorID, string MediatorName, string Town, string Contactno, string mobileno);
@@ -154,7 +154,7 @@ namespace RMIS.Domain.Business
 
         List<ProductSellingInfoDTO> GetProductSellingInfoDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
-        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string MediatorID,string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<ProductSellingInfoDTO> GetProductSellingInfoDTO(string MediatorID, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         List<ProductPaymentDTO> GetProductPaymentDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
@@ -165,5 +165,6 @@ namespace RMIS.Domain.Business
         string GetMediatorInfo(string MediatorName);
 
         string GetBuyerInfo(string BuyerName);
+        ResultDTO SaveRentHulling(string JobWork, string Name, string PaddyType, int TotalBags, double Price, DateTime ProcessDate);
     }
 }
