@@ -81,6 +81,8 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateMediatorInfoEntity(MediatorInfoEntity MediatorInfoEntity, bool isCopy);
         void SaveOrUpdateMExpenseTypeEntity(MExpenseTypeEntity mExpensetypeEntity, bool isCopy);
         void SaveOrUpdateExpenseTransEntity(ExpenseTransactionEntity ExpenseTransactionEntity, bool isCopy);
+        void SaveOrUpdateMJobWorkEntity(MJobWorkEntity mJobWorkEntity, bool isCopy);
+        void SaveOrUpdateRentalHullingEntity(RentalHullingEntity RentalHullingEntity, bool isCopy);
         #endregion
         #region Get
         /// <summary>
@@ -245,6 +247,7 @@ namespace RMIS.Domain.Mediator
         List<MediatorInfoEntity> GetListMediatorInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
         MediatorInfoEntity GetMediatorInfoEntity(string CustId, string MediatorID, YesNo yesNo);
         List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, YesNo yesNo);
+        List<MJobWorkEntity> GetMJobWorkEntities(string CustId, YesNo yesNo);
         #endregion
         #region Check
         /// <summary>
@@ -262,7 +265,7 @@ namespace RMIS.Domain.Mediator
         EmployeeSalaryEntity CheckEmployeeSalaryExist(string CustId, string EmployeeID, YesNo yesNo);
         List<MediatorInfoEntity> GetListBrokerEntities(string CustId, string MediatorName, YesNo yesNo);
         MExpenseTypeEntity GetMExpenseTypeEntity(string CustId, string ExpenseType, YesNo yesNo);
-
+        MJobWorkEntity GetMJobWorkEntity(string CustId, string JobWorkType, YesNo yesNo);
         #endregion
         #endregion
 
@@ -272,6 +275,8 @@ namespace RMIS.Domain.Mediator
         BuyerInfoEntity GetBuyerInfoEntityByName(string CustId, string BuyerName, YesNo yesNo);
         List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
         MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo);
+        List<MJobWorkEntity> GetMJobWorkEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
+        MJobWorkEntity GetMJobWorkEntity(string JobWorkID, YesNo yesNo);
 
         
     }
