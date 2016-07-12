@@ -19,7 +19,6 @@ namespace RMIS.Domain.RiceMill
         public string VehicalNo { get; set; }
         public string DriverName { get; set; }
         public int TotalBags { get; set; }
-        public decimal TotalQuintals { get; set; }
         public double Price { get; set; }
         public DateTime PurchaseDate { get; set; }
         #region Methods

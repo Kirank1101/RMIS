@@ -18,7 +18,6 @@ namespace RMIS.Domain.RiceMill
         public string CustID { get; set; }
         public string UnitsTypeID { get; set; }
         public int TotalBags { get; set; }
-        public decimal TotalQuintals { get; set; }
         
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

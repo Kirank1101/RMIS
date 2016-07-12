@@ -12,7 +12,7 @@
   <xs:element name="PaddyStockDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PaddyStockDataSet" msprop:Generator_UserDSName="PaddyStockDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PaddyStock" msprop:Generator_TableClassName="PaddyStockDataTable" msprop:Generator_TableVarName="tablePaddyStock" msprop:Generator_RowChangedName="PaddyStockRowChanged" msprop:Generator_TablePropName="PaddyStock" msprop:Generator_RowDeletingName="PaddyStockRowDeleting" msprop:Generator_RowChangingName="PaddyStockRowChanging" msprop:Generator_RowEvHandlerName="PaddyStockRowChangeEventHandler" msprop:Generator_RowDeletedName="PaddyStockRowDeleted" msprop:Generator_RowClassName="PaddyStockRow" msprop:Generator_UserTableName="PaddyStock" msprop:Generator_RowEvArgName="PaddyStockRowChangeEvent">
+        <xs:element name="PaddyStock" msprop:Generator_TableClassName="PaddyStockDataTable" msprop:Generator_TableVarName="tablePaddyStock" msprop:Generator_TablePropName="PaddyStock" msprop:Generator_RowDeletingName="PaddyStockRowDeleting" msprop:Generator_RowChangingName="PaddyStockRowChanging" msprop:Generator_RowEvHandlerName="PaddyStockRowChangeEventHandler" msprop:Generator_RowDeletedName="PaddyStockRowDeleted" msprop:Generator_UserTableName="PaddyStock" msprop:Generator_RowChangedName="PaddyStockRowChanged" msprop:Generator_RowEvArgName="PaddyStockRowChangeEvent" msprop:Generator_RowClassName="PaddyStockRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SellerName" msprop:Generator_ColumnVarNameInTable="columnSellerName" msprop:Generator_ColumnPropNameInRow="SellerName" msprop:Generator_ColumnPropNameInTable="SellerNameColumn" msprop:Generator_UserColumnName="SellerName" type="xs:string" minOccurs="0" />
@@ -25,7 +25,6 @@
               <xs:element name="Price" msdata:Caption="PaddyName" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
               <xs:element name="TotalBags" msdata:Caption="PaddyName" msprop:Generator_ColumnVarNameInTable="columnTotalBags" msprop:Generator_ColumnPropNameInRow="TotalBags" msprop:Generator_ColumnPropNameInTable="TotalBagsColumn" msprop:Generator_UserColumnName="TotalBags" type="xs:string" minOccurs="0" />
               <xs:element name="PaddyName" msprop:Generator_ColumnVarNameInTable="columnPaddyName" msprop:Generator_ColumnPropNameInRow="PaddyName" msprop:Generator_ColumnPropNameInTable="PaddyNameColumn" msprop:Generator_UserColumnName="PaddyName" type="xs:string" minOccurs="0" />
-              <xs:element name="Quintals" msprop:Generator_ColumnVarNameInTable="columnQuintals" msprop:Generator_ColumnPropNameInRow="Quintals" msprop:Generator_ColumnPropNameInTable="QuintalsColumn" msprop:Generator_UserColumnName="Quintals" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

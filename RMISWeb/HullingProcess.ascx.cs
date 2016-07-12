@@ -418,9 +418,7 @@ public partial class HullingProcess : BaseUserControl
 
     private double ConverToQuintal(int TotalBags, int UnitType)
     {
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        return imp.ConverToQuintal(TotalBags, UnitType);
-        
+        return (TotalBags* UnitType)/100;
     }
     private double getbrprice()
     {

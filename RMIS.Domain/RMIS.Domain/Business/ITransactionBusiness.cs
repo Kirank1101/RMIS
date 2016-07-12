@@ -164,7 +164,5 @@ namespace RMIS.Domain.Business
         string GetMediatorInfo(string MediatorName);
 
         string GetBuyerInfo(string BuyerName);
-
-        double ConverToQuintal(int TotalBags, int UnitType);
     }
 }

@@ -50,7 +50,6 @@ namespace RMIS.Domain.DataTranserClass
         public string VehicalNo { get; set; }
         public string DriverName { get; set; }
         public double TotalBags { get; set; }
-        public decimal Quintals { get; set; }
         public double Price { get; set; }
         public DateTime PurchaseDate { get; set; }
 

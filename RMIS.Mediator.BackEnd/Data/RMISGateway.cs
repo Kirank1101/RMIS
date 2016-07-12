@@ -507,7 +507,7 @@
                     DetachedCriteria.For(typeof(PaddyStockInfo))
                     .Add(Expression.Eq("CustID", CustId))
                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
-                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalQuintals");
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
             }
             catch (Exception ex)
             {
@@ -548,7 +548,7 @@
                                                                         .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })))
 
                                                                         ;
-                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalQuintals");
+                return UsersRepository.GetMultiplySumResultsAsDouble(detachedCriteria, "Price", "TotalBags");
             }
             catch (Exception ex)
             {

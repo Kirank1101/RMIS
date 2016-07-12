@@ -17,7 +17,6 @@ namespace RMIS.Entities.BackEnd
         private string _VehicalNo;
         private string _DriverName;
         private int _TotalBags;
-        private decimal _TotalQuintals; 
         private double _Price;
         private DateTime _PurchaseDate;
         private string _LastModifiedBy;
@@ -73,11 +72,6 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _TotalBags; }
             set { _TotalBags = value; }
-        }
-        public virtual decimal TotalQuintals
-        {
-            get { return _TotalQuintals; }
-            set { _TotalQuintals = value; }
         }
         public virtual double Price
         {

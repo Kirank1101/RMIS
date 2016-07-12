@@ -72,12 +72,11 @@ namespace RMIS.Business
             objPaddyStockInfoEntity.PaddyStockID = CommonUtil.CreateUniqueID("PS");
             objPaddyStockInfoEntity.PaddyTypeID = paddyTypeId;
             objPaddyStockInfoEntity.PurchaseDate = purchaseDate;
-            objPaddyStockInfoEntity.Price = PriceperQuintal;
+            objPaddyStockInfoEntity.Price = ConverToPriceperBag(weightperbag, PriceperQuintal);
             objPaddyStockInfoEntity.SellerID = sellerId;
             objPaddyStockInfoEntity.TotalBags = totalBags;
             objPaddyStockInfoEntity.VehicalNo = vehicleNo;
             objPaddyStockInfoEntity.DriverName = DriverName;
-            objPaddyStockInfoEntity.TotalQuintals =Convert.ToDecimal(ConverToQuintal(totalBags,weightperbag));
             #endregion
 
             try
@@ -493,7 +492,6 @@ namespace RMIS.Business
                     RiceTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                     RiceTranEntity.LastModifiedDate = DateTime.Now;
                     RiceTranEntity.ObsInd = YesNo.N;
-                    RiceTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(RSDTO.TotalBags, RSDTO.UnitsType.ConvertToInt()));
                     lstHPT.Add(RiceTranEntity);
 
                     RiceStockInfoEntity Ricestockinfo = new RiceStockInfoEntity();
@@ -519,8 +517,7 @@ namespace RMIS.Business
                     BRTranEntity.CustID = provider.GetCurrentCustomerId();
                     BRTranEntity.UnitsTypeID = BRD.UnitsTypeID;
                     BRTranEntity.TotalBags = BRD.TotalBags;
-                    BRTranEntity.Price = BRD.PriceperQuintal;
-                    BRTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(BRD.TotalBags, BRD.UnitsType.ConvertToInt()));
+                    BRTranEntity.Price = ConverToPriceperBag(BRD.UnitsType.ConvertToInt(), BRD.PriceperQuintal);
                     BRTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                     BRTranEntity.LastModifiedDate = DateTime.Now;
                     BRTranEntity.ObsInd = YesNo.N;
@@ -546,8 +543,7 @@ namespace RMIS.Business
                 DustTranEntity.CustID = provider.GetCurrentCustomerId();
                 DustTranEntity.UnitsTypeID = DustUnitsTypeID;
                 DustTranEntity.TotalBags = DustTotalBags;
-                DustTranEntity.Price = DustPriceperbag;
-                DustTranEntity.TotalQuintals = Convert.ToDecimal(ConverToQuintal(DustTotalBags, DustUnits));
+                DustTranEntity.Price = ConverToPriceperBag(DustUnits, DustPriceperbag);
                 DustTranEntity.LastModifiedBy = provider.GetLoggedInUserId();
                 DustTranEntity.LastModifiedDate = DateTime.Now;
                 DustTranEntity.ObsInd = YesNo.N;
@@ -654,7 +650,6 @@ namespace RMIS.Business
                     objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
                     objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
-                    objPaddyStockDTO.Quintals = objPaddyStockInfoEntity.TotalQuintals;
                     objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
                     listPaddyStockDTO.Add(objPaddyStockDTO);
                 }
@@ -2208,7 +2203,6 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
                     objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
                     objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
-                    objPaddyStockDTO.Quintals = objPaddyStockInfoEntity.TotalQuintals;
                     objPaddyStockDTO.VehicalNo = objPaddyStockInfoEntity.VehicalNo;
                     listPaddyStockDTO.Add(objPaddyStockDTO);
                 }
@@ -3032,9 +3026,9 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         }
 
 
-        public double ConverToQuintal(int TotalBags, int UnitType)
+        public double ConverToPriceperBag(int UnitType,double PriceperQuintal)
         {
-            return ((TotalBags * UnitType) / 100);
+            return (UnitType * (PriceperQuintal / 100));
         }
     }
 }
