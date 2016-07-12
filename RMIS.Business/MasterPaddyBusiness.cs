@@ -13,7 +13,6 @@ using log4net;
 
 namespace RMIS.Business
 {
-
     public class MasterPaddyBusiness : IMasterPaddyBusiness
     {
 
@@ -56,6 +55,27 @@ namespace RMIS.Business
             }
             return listMBagTypeDTO;
         }
+        public List<MExpenseTypeDTO> GetMExpenseTypeEntities()
+        {
+            List<MExpenseTypeDTO> listMExpenseTypeDTO = null;
+
+            List<MExpenseTypeEntity> listMExpenseTypeEntity = imp.GetMExpenseTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMExpenseTypeEntity != null && listMExpenseTypeEntity.Count > 0)
+            {
+                listMExpenseTypeDTO = new List<MExpenseTypeDTO>();
+                foreach (MExpenseTypeEntity objMExpenseTypeEntity in listMExpenseTypeEntity)
+                {
+                    MExpenseTypeDTO objMExpenseTypeDTO = new MExpenseTypeDTO();
+                    objMExpenseTypeDTO.ExpenseType = objMExpenseTypeEntity.ExpenseType;
+                    objMExpenseTypeDTO.Indicator = GetYesorNo(objMExpenseTypeEntity.ObsInd);
+                    objMExpenseTypeDTO.Id = objMExpenseTypeEntity.ExpenseID;
+                    listMExpenseTypeDTO.Add(objMExpenseTypeDTO);
+                }
+
+            }
+            return listMExpenseTypeDTO;
+        }
+        
         public List<PaddyTypeDTO> GetMPaddyTypeEntities()
         {
             List<PaddyTypeDTO> listPaddyTypeDTO = null;
@@ -299,8 +319,6 @@ namespace RMIS.Business
             return "No";
         }
         #endregion
-
-
         #region Set Methods
 
         public ResultDTO SaveBagType(string BagType)
@@ -535,12 +553,28 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
-        #endregion
-
-
-
-
-
+        public ResultDTO SaveExpenseType(string ExpenseType)
+        {
+            MExpenseTypeEntity objMExpenseTypeEntity = new MExpenseTypeEntity();
+            objMExpenseTypeEntity.ObsInd = YesNo.N;
+            objMExpenseTypeEntity.CustID = provider.GetCurrentCustomerId();
+            objMExpenseTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objMExpenseTypeEntity.ExpenseType = ExpenseType;
+            objMExpenseTypeEntity.ExpenseID = CommonUtil.CreateUniqueID("ET");
+            objMExpenseTypeEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateMExpenseTypeEntity(objMExpenseTypeEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error01, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success01, provider.GetCurrentCustomerId()) };
+        }
         public ResultDTO SaveRoleEntity(string roleName)
         {
 
@@ -565,39 +599,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = "Role created successfully." };
         }
-
-
-        public List<MRolesEntity> GetAllRolesEntities()
-        {
-            return imp.GetAllRolesEntity(YesNo.N);
-        }
-
-
-        public bool CheckGodownNameExist(string GodownName)
-        {
-            bool IsGodownNameExist = false;
-
-            MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName, YesNo.N);
-            if (MGodownDetailsEntity != null)
-                IsGodownNameExist = true;
-
-            return IsGodownNameExist;
-        }
-
-
-        public bool CheckLotNameExist(string LotName)
-        {
-            bool IsLotNameExist = false;
-
-            MLotDetailsEntity MLotDetailsEntity = imp.CheckLotNameExist(provider.GetCurrentCustomerId(), LotName, YesNo.N);
-            if (MLotDetailsEntity != null)
-                IsLotNameExist = true;
-
-            return IsLotNameExist;
-        }
-
-
-
         public ResultDTO SaveEmpDesigType(string DesignationType)
         {
             MEmployeeDesignationEntity objMEmployeeDesignationEntity = new MEmployeeDesignationEntity();
@@ -621,48 +622,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
-        public bool CheckEmpDesigExist(string DesignationType)
-        {
-            bool IsDesignationExist = false;
-
-            MEmployeeDesignationEntity MEmployeeDesignationEntity = imp.CheckEmpDesigExist(provider.GetCurrentCustomerId(), DesignationType, YesNo.N);
-            if (MEmployeeDesignationEntity != null)
-                IsDesignationExist = true;
-
-            return IsDesignationExist;
-        }
-        public bool CheckSalaryTypeExist(string SalaryType)
-        {
-            bool IsSalaryTypeExist = false;
-
-            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalaryType, YesNo.N);
-            if (MSalaryTypeEntityEntity != null)
-                IsSalaryTypeExist = true;
-
-            return IsSalaryTypeExist;
-        }
-
-        public List<MSalarytypeDTO> GetMSalaryTypeEntities()
-        {
-            List<MSalarytypeDTO> listMSalarytypeDTO = null;
-
-            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
-            {
-                listMSalarytypeDTO = new List<MSalarytypeDTO>();
-                foreach (MSalaryTypeEntity objMEmpDesigEntity in listMSalaryTypeEntity)
-                {
-                    MSalarytypeDTO objMSalarytypeDTO = new MSalarytypeDTO();
-                    objMSalarytypeDTO.SalaryType = objMEmpDesigEntity.Salarytype;
-                    objMSalarytypeDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
-                    objMSalarytypeDTO.Id = objMEmpDesigEntity.MSalaryTypeID;
-                    listMSalarytypeDTO.Add(objMSalarytypeDTO);
-                }
-
-            }
-            return listMSalarytypeDTO;
-        }
-
         public ResultDTO SaveSalaryType(string SalaryType)
         {
             MSalaryTypeEntity objMSalaryTypeEntity = new MSalaryTypeEntity();
@@ -686,8 +645,31 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success02, provider.GetCurrentCustomerId()) };
         }
+        #endregion
+        public List<MRolesEntity> GetAllRolesEntities()
+        {
+            return imp.GetAllRolesEntity(YesNo.N);
+        }
+        public List<MSalarytypeDTO> GetMSalaryTypeEntities()
+        {
+            List<MSalarytypeDTO> listMSalarytypeDTO = null;
 
+            List<MSalaryTypeEntity> listMSalaryTypeEntity = imp.GetListMSalaryTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listMSalaryTypeEntity != null && listMSalaryTypeEntity.Count > 0)
+            {
+                listMSalarytypeDTO = new List<MSalarytypeDTO>();
+                foreach (MSalaryTypeEntity objMEmpDesigEntity in listMSalaryTypeEntity)
+                {
+                    MSalarytypeDTO objMSalarytypeDTO = new MSalarytypeDTO();
+                    objMSalarytypeDTO.SalaryType = objMEmpDesigEntity.Salarytype;
+                    objMSalarytypeDTO.Indicator = GetYesorNo(objMEmpDesigEntity.ObsInd);
+                    objMSalarytypeDTO.Id = objMEmpDesigEntity.MSalaryTypeID;
+                    listMSalarytypeDTO.Add(objMSalarytypeDTO);
+                }
 
+            }
+            return listMSalarytypeDTO;
+        }
         public string GetEmployeeDesignation(string DesignationID)
         {
             string designation = string.Empty;
@@ -706,7 +688,7 @@ namespace RMIS.Business
             return SalaryType;
         }
 
-
+        #region Delete
         public ResultDTO DeleteUnitsType(string Id)
         {
             MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(Id, YesNo.N);
@@ -905,7 +887,31 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+        public ResultDTO DeleteExpenseType(string ID)
+        {
+            MExpenseTypeEntity objMExpenseTypeEntity = imp.GetMExpenseTypeEntity(ID, YesNo.N);
+            if (objMExpenseTypeEntity is MExpenseTypeEntity)
+            {
+                objMExpenseTypeEntity.ObsInd = YesNo.Y;
+                objMExpenseTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMExpenseTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMExpenseTypeEntity(objMExpenseTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return new ResultDTO() { IsSuccess = false, Message = ex.Message };
+                }
+            }
+            return new ResultDTO();
+        }
+        #endregion
 
+        #region Update
         public ResultDTO UpdateUnitsType(string Id, string UnitType)
         {
             ResultDTO ResultDTO = new ResultDTO();
@@ -1144,6 +1150,34 @@ namespace RMIS.Business
             }
             return ResultDTO;
         }
+        public ResultDTO UpdateExpenseType(string ID, string ExpenseType)
+        {
+            MExpenseTypeEntity objMExpenseTypeEntity = imp.GetMExpenseTypeEntity(ID, YesNo.N);
+            ResultDTO ResultDTO = new ResultDTO();
+            if (objMExpenseTypeEntity is MExpenseTypeEntity)
+            {
+                objMExpenseTypeEntity.ExpenseType = ExpenseType;
+                objMExpenseTypeEntity.LastModifiedBy = provider.GetLoggedInUserId();
+                objMExpenseTypeEntity.LastModifiedDate = DateTime.Now;
+                try
+                {
+
+                    imp.BeginTransaction();
+                    imp.SaveOrUpdateMExpenseTypeEntity(objMExpenseTypeEntity, true);
+                    imp.CommitAndCloseSession();
+                    ResultDTO.IsSuccess = true;
+                    ResultDTO.Message = RMSConstants.UpdatedSuccess;
+                }
+                catch (Exception ex)
+                {
+                    ResultDTO.IsSuccess = false;
+                    ResultDTO.Message = RMSConstants.UpdatedUnSuccess;
+                    Logger.Error(ex);
+                }
+            }
+            return ResultDTO;
+        }
+        #endregion
 
         public List<MUnitsTypeDTO> GetMUnitsTypeEntities(int pageindex, int pageSize, out int count, SortExpression expression)
         {
@@ -1316,11 +1350,28 @@ namespace RMIS.Business
             }
             return listSalaryTypeDTO;
         }
+        public List<MExpenseTypeDTO> GetMExpenseTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression)
+        {
+            List<MExpenseTypeDTO> listExpenseTypeDTO = null;
 
+            List<MExpenseTypeEntity> listMExpenseTypeEntity = imp.GetMExpenseTypeEntities(provider.GetCurrentCustomerId(), PageIndex, PageSize, out count, expression, YesNo.N);
+            if (listMExpenseTypeEntity != null && listMExpenseTypeEntity.Count > 0)
+            {
+                listExpenseTypeDTO = new List<MExpenseTypeDTO>();
+                foreach (MExpenseTypeEntity objExpenseTypeEntity in listMExpenseTypeEntity)
+                {
+                    MExpenseTypeDTO objExpenseTypeDTO = new MExpenseTypeDTO();
+                    objExpenseTypeDTO.ExpenseType = objExpenseTypeEntity.ExpenseType;
+                    objExpenseTypeDTO.Indicator = GetYesorNo(objExpenseTypeEntity.ObsInd);
+                    objExpenseTypeDTO.Id = objExpenseTypeEntity.ExpenseID;
+                    listExpenseTypeDTO.Add(objExpenseTypeDTO);
+                }
+            }
+            return listExpenseTypeDTO;
+        }
 
         public bool CheckBagTypeExist(string BagType)
         {
-
             bool IsBagTypeExist = false;
 
             MBagTypeEntity MBagTypeEntity = imp.GetMBagTypeEntity(provider.GetCurrentCustomerId(), BagType, YesNo.N);
@@ -1359,5 +1410,59 @@ namespace RMIS.Business
 
             return IsRiceBrankExist;
         }
+        public bool CheckExpenseTypeExist(string ExpenseType)
+        {
+            bool IsExpenseTypeExist = false;
+
+            MExpenseTypeEntity MExpenseTypeEntity = imp.GetMExpenseTypeEntity(provider.GetCurrentCustomerId(), ExpenseType, YesNo.N);
+            if (MExpenseTypeEntity != null)
+                IsExpenseTypeExist = true;
+
+            return IsExpenseTypeExist;
+        }
+        public bool CheckGodownNameExist(string GodownName)
+        {
+            bool IsGodownNameExist = false;
+
+            MGodownDetailsEntity MGodownDetailsEntity = imp.CheckGodownNameExist(provider.GetCurrentCustomerId(), GodownName, YesNo.N);
+            if (MGodownDetailsEntity != null)
+                IsGodownNameExist = true;
+
+            return IsGodownNameExist;
+        }
+        public bool CheckLotNameExist(string LotName)
+        {
+            bool IsLotNameExist = false;
+
+            MLotDetailsEntity MLotDetailsEntity = imp.CheckLotNameExist(provider.GetCurrentCustomerId(), LotName, YesNo.N);
+            if (MLotDetailsEntity != null)
+                IsLotNameExist = true;
+
+            return IsLotNameExist;
+        }
+        public bool CheckEmpDesigExist(string DesignationType)
+        {
+            bool IsDesignationExist = false;
+
+            MEmployeeDesignationEntity MEmployeeDesignationEntity = imp.CheckEmpDesigExist(provider.GetCurrentCustomerId(), DesignationType, YesNo.N);
+            if (MEmployeeDesignationEntity != null)
+                IsDesignationExist = true;
+
+            return IsDesignationExist;
+        }
+        public bool CheckSalaryTypeExist(string SalaryType)
+        {
+            bool IsSalaryTypeExist = false;
+
+            MSalaryTypeEntity MSalaryTypeEntityEntity = imp.CheckSalaryTypeExist(provider.GetCurrentCustomerId(), SalaryType, YesNo.N);
+            if (MSalaryTypeEntityEntity != null)
+                IsSalaryTypeExist = true;
+
+            return IsSalaryTypeExist;
+        }
+        
+        
+        
+
     }
 }

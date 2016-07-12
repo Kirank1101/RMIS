@@ -19,6 +19,6 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateLotDetails(string lotName, string godownId);
         ResultDTO ValidateDesignationType(string DesignationType);
         ResultDTO ValidateSalaryType(string SalaryType);
-
+        ResultDTO ValidateExpenseType(string ExpenseType);
     }
 }

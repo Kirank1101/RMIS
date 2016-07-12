@@ -399,4 +399,16 @@
   <data name="RicePriceperQuintal" xml:space="preserve">
     <value>Rice Price per Quintal</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="ExpenseType" xml:space="preserve">
+    <value>Expense Type</value>
+  </data>
+  <data name="IsExpenseDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
 </root>

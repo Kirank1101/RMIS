@@ -41,8 +41,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-
-
         internal void MapMessageInfoEntity()
         {
             try
@@ -1007,6 +1005,44 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-        
+        internal void MapMExpenseTypeEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MExpenseType, MExpenseTypeEntity>()
+                    .ForMember(dest => dest.ExpenseID, opts => opts.MapFrom(src => src.ExpenseID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.ExpenseType, opts => opts.MapFrom(src => src.ExpenseType))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MExpenseTypeToMExpenseTypeEntity", ex);
+                throw;
+            }
+        }
+        internal void MapExpenseTransEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<ExpenseTransaction, ExpenseTransactionEntity>()
+                    .ForMember(dest => dest.ExpenseTransID, opts => opts.MapFrom(src => src.ExpenseTransID))
+                    .ForMember(dest => dest.ExpenseID, opts => opts.MapFrom(src => src.ExpenseID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Amount, opts => opts.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.Reason, opts => opts.MapFrom(src => src.Reason))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapExpenseTransToExpenseTransEntity", ex);
+                throw;
+            }
+        }
     }
 }

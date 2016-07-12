@@ -3030,5 +3030,33 @@ public ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Rem
         {
             return (UnitType * (PriceperQuintal / 100));
         }
+
+
+        public ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount)
+        {
+            ExpenseTransactionEntity objExpenseTransactionEntity = new ExpenseTransactionEntity();
+            objExpenseTransactionEntity.ExpenseTransID = CommonUtil.CreateUniqueID("ExT");
+            objExpenseTransactionEntity.ExpenseID = ExpenseID;
+            objExpenseTransactionEntity.CustID = provider.GetCurrentCustomerId();
+            objExpenseTransactionEntity.Name = Name;
+            objExpenseTransactionEntity.Amount = Amount;
+            objExpenseTransactionEntity.Reason = Reason;
+            objExpenseTransactionEntity.LastModifiedDate = DateTime.Now;
+            objExpenseTransactionEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            objExpenseTransactionEntity.ObsInd = YesNo.N;
+            
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateExpenseTransEntity(objExpenseTransactionEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };    
+        }
     }
 }

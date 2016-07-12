@@ -69,6 +69,8 @@
     <Compile Include="RiceMill\BuyerInfoEntity.cs" />
     <Compile Include="RiceMill\BuyerSellerRatingEntity.cs" />
     <Compile Include="RiceMill\BagPaymentInfoEntity.cs" />
+    <Compile Include="RiceMill\ExpenseTransactionEntity.cs" />
+    <Compile Include="RiceMill\MExpenseTypeEntity.cs" />
     <Compile Include="RiceMill\MediatorInfoEntity.cs" />
     <Compile Include="RiceMill\MessageInfoEntity.cs" />
     <Compile Include="RiceMill\ProductPaymentTransactionEntity.cs" />

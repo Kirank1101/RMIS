@@ -686,7 +686,6 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsDistrictLength, provider.GetCurrentCustomerId()) };
             }
-
             else if (string.IsNullOrEmpty(state.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsStateEmpty, provider.GetCurrentCustomerId()) };
@@ -695,7 +694,6 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsStateLength, provider.GetCurrentCustomerId()) };
             }
-
             else if (string.IsNullOrEmpty(contactNo.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsContactNoEmpty, provider.GetCurrentCustomerId()) };
@@ -705,6 +703,37 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateMediatorDetailsContactNoLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
+        }
+
+
+        public ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount)
+        {
+            if (ExpenseType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranExpenseType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Name.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranName, provider.GetCurrentCustomerId()) };
+            }
+            else if (Name.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranNameLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(Reason.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranReasonEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (Reason.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranReasonLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (Amount <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTranSAmount, provider.GetCurrentCustomerId()) };
+            }
+            
+            return new ResultDTO();            
         }
     }
 }

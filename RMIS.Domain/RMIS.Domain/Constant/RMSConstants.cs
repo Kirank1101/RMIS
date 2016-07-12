@@ -203,7 +203,17 @@ namespace RMIS.Domain.Constant
         public const string ValidateMediatorDetailsDistrictLength = "Validate194";
         public const string ValidateMediatorDetailsStateLength = "Validate195";
         public const string ValidateMediatorDetailsContactNoLength = "Validate196";
+        public const string ValidateExpenseTypeEmpty = "Validate197";
+        public const string ValidateExpenseTypeLength = "Validate198";
 
+        public const string ValidateExpenseTranExpenseType = "Validate199";
+        public const string ValidateExpenseTranName = "Validate200";
+        public const string ValidateExpenseTranNameLength = "Validate201";
+        public const string ValidateExpenseTranReasonEmpty = "Validate202";
+        public const string ValidateExpenseTranReasonLength = "Validate203";
+        public const string ValidateExpenseTranSAmount = "Validate204";
+
+        
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

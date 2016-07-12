@@ -20,7 +20,8 @@ namespace RMIS.Domain.Business
         bool CheckRiceTypeExist(string RiceType);
         bool CheckBrokenRiceTypeExist(string BrokenRiceType);
         bool CheckRiceBrandExist(string RiceBrand);
-
+        bool CheckExpenseTypeExist(string ExpenseType);
+        
         List<MBagTypeDTO> GetMBagTypeEntities();
         List<MUnitsTypeDTO> GetMUnitsTypeEntities();
         List<MUserTypeEntity> GetMUserTypeEntities();
@@ -34,6 +35,7 @@ namespace RMIS.Domain.Business
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities();
         List<MEmpDesigDTO> GetMEmpDesigTypeEntities();
         List<MSalarytypeDTO> GetMSalaryTypeEntities();
+        List<MExpenseTypeDTO> GetMExpenseTypeEntities();
 
         ResultDTO SaveBagType(string BagType);
         ResultDTO SaveUnitsType(string UnitsType);
@@ -43,6 +45,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveRiceBrandType(string riceBrand);
         ResultDTO SaveRiceProductType(string riceProduct);
         ResultDTO SaveLotDetails(string lotName, string godownId);
+        ResultDTO SaveExpenseType(string ExpenseType);
         List<MenuInfoEntity> GetMenuInfoEnity();
         List<MRolesEntity> GetAllRolesEntities();
         ResultDTO SaveRoleEntity(string roleName);
@@ -92,7 +95,9 @@ namespace RMIS.Domain.Business
         ResultDTO UpdateSalaryType(string ID, string SalaryType);
         List<MSalarytypeDTO> GetMSalaryTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
 
-
+        ResultDTO DeleteExpenseType(string ID);
+        ResultDTO UpdateExpenseType(string ID, string ExpenseType);
+        List<MExpenseTypeDTO> GetMExpenseTypeEntities(int PageIndex, int PageSize, out int count, SortExpression expression);
         
     }
 }

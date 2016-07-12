@@ -14,11 +14,11 @@ C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\Bin\RMIS.Domain.pdb
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMISGITHUB\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
-C:\Users\nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Domain.dll
-C:\Users\nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Domain.pdb
-C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
-C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMIS\Bin\RMIS.Domain.pdb
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
 C:\Users\kirank\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb
+C:\Users\nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Domain.dll
+C:\Users\nagavardhan\Documents\GitHub\RMIS\Bin\RMIS.Domain.pdb
+C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.dll
+C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Domain\RMIS.Domain\obj\Debug\RMIS.Domain.pdb

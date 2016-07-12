@@ -4778,7 +4778,6 @@
                 throw;
             }
         }
-
         internal List<MediatorInfoEntity> GetListMediatorInfoEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             try
@@ -4817,7 +4816,6 @@
                 throw;
             }
         }
-
         internal MediatorInfoEntity GetMediatorInfoEntity(string CustId, string MediatorID, YesNo yesNo)
         {
             MediatorInfoEntity MediatorInfoEntity = new MediatorInfoEntity();
@@ -4850,7 +4848,6 @@
             }
             return MediatorInfoEntity;
         }
-
         internal List<MediatorInfoEntity> GetMediatorInfoEntities(string CustId, YesNo yesNo, int count, string prefixText)
         {
             try
@@ -4884,7 +4881,6 @@
                 throw;
             }
         }
-
         internal MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo)
         {
             MediatorInfoEntity MediatorInfoEntity = new MediatorInfoEntity();
@@ -4912,7 +4908,6 @@
             }
             return MediatorInfoEntity;
         }
-
         internal BuyerInfoEntity GetBuyerInfoEntityByName(string CustId, string BuyerName, YesNo yesNo)
         {
             BuyerInfoEntity BuyerInfoEntity = new BuyerInfoEntity();
@@ -4939,6 +4934,130 @@
                 throw;
             }
             return BuyerInfoEntity;
+        }
+        internal List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, YesNo yesNo)
+        {
+            try
+            {
+                List<MExpenseTypeEntity> ListMExpenseTypeEntity = new List<MExpenseTypeEntity>();
+                IRepository<MExpenseType> MediatorTypeRepository = new RepositoryImpl<MExpenseType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MExpenseType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+
+                List<MExpenseType> listMExpenseType = MediatorTypeRepository.GetAll(detachedCriteria) as List<MExpenseType>;
+                if (listMExpenseType != null && listMExpenseType.Count > 0)
+                {
+                    foreach (MExpenseType adMInfo in listMExpenseType)
+                    {
+                        ListMExpenseTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMExpenseTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    ListMExpenseTypeEntity = null;
+
+                return ListMExpenseTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMExpenseTypeEntities", ex);
+                throw;
+            }
+        }
+        internal MExpenseTypeEntity GetMExpenseTypeEntity(string CustId, string ExpenseType, YesNo yesNo)
+        {
+            MExpenseTypeEntity MExpenseTypeEntity = new MExpenseTypeEntity();
+            try
+            {
+                IRepository<MExpenseType> MExpenseTypeRepository = new RepositoryImpl<MExpenseType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MExpenseType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("ExpenseType", ExpenseType))
+                                                                   .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MExpenseType> listMExpenseTypeEntity = MExpenseTypeRepository.GetAll(detachedCriteria) as List<MExpenseType>;
+                if (listMExpenseTypeEntity != null && listMExpenseTypeEntity.Count > 0)
+                {
+                    foreach (MExpenseType adMInfo in listMExpenseTypeEntity)
+                        MExpenseTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMExpenseTypeEntity(adMInfo);
+                }
+                else
+                    MExpenseTypeEntity = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMExpenseTypeEntityByName", ex);
+                throw;
+            }
+            return MExpenseTypeEntity;
+        }
+        internal List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            try
+            {
+                List<MExpenseTypeEntity> listMExpenseTypeEntity = new List<MExpenseTypeEntity>();
+                IRepository<MExpenseType> UsersRepository = new RepositoryImpl<MExpenseType>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (expression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(MExpenseType))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("ExpenseType"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(MExpenseType))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("ExpenseType"));
+
+
+                List<MExpenseType> listMExpenseType = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, PageIndex, PageSize, out count) as List<MExpenseType>;
+                if (listMExpenseType != null && listMExpenseType.Count > 0)
+                {
+                    foreach (MExpenseType adMInfo in listMExpenseType)
+                    {
+                        listMExpenseTypeEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMExpenseTypeEntity(adMInfo));
+                    }
+                }
+                else
+                    listMExpenseTypeEntity = null;
+
+                return listMExpenseTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMExpenseTypeEntities", ex);
+                throw;
+            }
+        }
+
+        internal MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo)
+        {
+            try
+            {
+                MExpenseTypeEntity MExpenseTypeEntity = new MExpenseTypeEntity();
+                IRepository<MExpenseType> UsersRepository = new RepositoryImpl<MExpenseType>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MExpenseType))
+                                                                   .Add(Expression.Eq("ExpenseID", ExpenseID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MExpenseType> listMExpenseTypeEntity = UsersRepository.GetAll(detachedCriteria) as List<MExpenseType>;
+                if (listMExpenseTypeEntity != null && listMExpenseTypeEntity.Count > 0)
+                {
+                    foreach (MExpenseType adMInfo in listMExpenseTypeEntity)
+                    {
+                        MExpenseTypeEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMExpenseTypeEntity(adMInfo);
+                    }
+                }
+                else
+                    MExpenseTypeEntity = null;
+
+                return MExpenseTypeEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMExpenseTypeEntity", ex);
+                throw;
+            }
         }
     }
 }

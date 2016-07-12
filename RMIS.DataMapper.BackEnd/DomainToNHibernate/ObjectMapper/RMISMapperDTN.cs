@@ -59,6 +59,8 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         BagPaymentInfo GetBagPaymentDetails(BagPaymentInfoEntity bagPaymentDetailsEntity);
         MessageInfo GetMessageInfo(MessageInfoEntity messageInfoEntity);
         MediatorInfo GetMediatorInfo(MediatorInfoEntity MediatorInfoEntity);
+        MExpenseType GetExpenseType(MExpenseTypeEntity mExpenseTypeEntity);
+        ExpenseTransaction GetExpenseTransaction(ExpenseTransactionEntity mExpenseTransactionEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -781,6 +783,38 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return MediatorDetails;
+        }
+
+
+        public MExpenseType GetExpenseType(MExpenseTypeEntity mExpenseTypeEntity)
+        {
+            MExpenseType MExpenseType = null;
+            try
+            {
+                MExpenseType = Mapper.Map<MExpenseTypeEntity, MExpenseType>(mExpenseTypeEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetExpenseType", ex);
+                throw;
+            }
+            return MExpenseType;
+        }
+
+
+        public ExpenseTransaction GetExpenseTransaction(ExpenseTransactionEntity mExpenseTransactionEntity)
+        {
+            ExpenseTransaction ExpenseTransaction = null;
+            try
+            {
+                ExpenseTransaction = Mapper.Map<ExpenseTransactionEntity, ExpenseTransaction>(mExpenseTransactionEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetExpenseTransaction", ex);
+                throw;
+            }
+            return ExpenseTransaction;
         }
     }
 }

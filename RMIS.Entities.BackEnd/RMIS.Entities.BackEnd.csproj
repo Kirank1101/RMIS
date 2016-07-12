@@ -54,6 +54,8 @@
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
     <Compile Include="Model\Entities\BagPaymentInfo.cs" />
+    <Compile Include="Model\Entities\ExpenseTransaction.cs" />
+    <Compile Include="Model\Entities\MExpenseType.cs" />
     <Compile Include="Model\Entities\MediatorInfo.cs" />
     <Compile Include="Model\Entities\MessageInfo.cs" />
     <Compile Include="Model\Entities\ProductPaymentTransaction.cs" />
@@ -186,6 +188,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\MediatorInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\MExpenseType.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\ExpenseTransaction.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

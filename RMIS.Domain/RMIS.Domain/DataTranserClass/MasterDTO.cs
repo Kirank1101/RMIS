@@ -181,4 +181,19 @@ namespace RMIS.Domain.DataTranserClass
 
     }
 
+    public class MExpenseTypeDTO : MasterPaddyDTO
+    {
+        public MExpenseTypeDTO()
+            : base()
+        {
+            ExpenseType = string.Empty;
+        }
+        public string ExpenseType
+        {
+            get;
+            set;
+        }
+
+    }
+
 }

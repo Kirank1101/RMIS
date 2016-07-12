@@ -39,7 +39,7 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBagTypeEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (BagType.Trim().Length > 10)
+            else if (BagType.Trim().Length > 30)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBagTypeLength, provider.GetCurrentCustomerId()) };
             }
@@ -192,6 +192,21 @@ namespace RMIS.Business
             else if (SalaryType.Trim().Length > 100)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateSalaryTypeLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
+
+
+        public ResultDTO ValidateExpenseType(string ExpenseType)
+        {
+
+            if (string.IsNullOrEmpty(ExpenseType.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTypeEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (ExpenseType.Trim().Length > 50)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateExpenseTypeLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

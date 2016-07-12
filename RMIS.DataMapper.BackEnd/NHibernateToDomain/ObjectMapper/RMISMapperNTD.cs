@@ -45,9 +45,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return mBagTypeEntity;
         }
-
-
-
         public static MessageInfoEntity GetMessageInfoEntity(MessageInfo messageInfo)
         {
             MessageInfoEntity messageInfoEntity = null;
@@ -879,8 +876,39 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return MediatorInfoEntity;
         }
-        
+        public static MExpenseTypeEntity GetMExpenseTypeEntity(MExpenseType mExpenseType)
+        {
+            MExpenseTypeEntity mExpenseTypeEntity = null;
+
+            try
+            {
+                if (mExpenseType != null)
+                    mExpenseTypeEntity = Mapper.Map<MExpenseType, MExpenseTypeEntity>(mExpenseType);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMExpenseTypeEntity", ex);
+                throw;
+            }
+
+            return mExpenseTypeEntity;
+        }
+        public static ExpenseTransactionEntity GetExpenseTransactionEntity(ExpenseTransaction ExpenseTransaction)
+        {
+            ExpenseTransactionEntity ExpenseTransactionEntity = null;
+
+            try
+            {
+                if (ExpenseTransaction != null)
+                    ExpenseTransactionEntity = Mapper.Map<ExpenseTransaction, ExpenseTransactionEntity>(ExpenseTransaction);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetExpenseTransactionEntity", ex);
+                throw;
+            }
+
+            return ExpenseTransactionEntity;
+        }
     }
-
-
 }

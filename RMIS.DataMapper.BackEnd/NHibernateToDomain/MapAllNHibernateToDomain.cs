@@ -94,6 +94,8 @@
                 objRMISMappingNTD.MapBagPaymentDetailsEntity();
                 objRMISMappingNTD.MapMessageInfoEntity();
                 objRMISMappingNTD.MapMediatorInfoEntity();
+                objRMISMappingNTD.MapMExpenseTypeEntity();
+                objRMISMappingNTD.MapExpenseTransEntity();
             }
             catch (Exception ex)
             {

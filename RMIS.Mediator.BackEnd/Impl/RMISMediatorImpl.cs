@@ -649,6 +649,32 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateMExpenseTypeEntity(MExpenseTypeEntity mExpensetypeEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<MExpenseType>(mapper.GetExpenseType(mExpensetypeEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMExpenseTypeEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMExpenseTypeEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+        public void SaveOrUpdateExpenseTransEntity(ExpenseTransactionEntity ExpenseTransactionEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<ExpenseTransaction>(mapper.GetExpenseTransaction(ExpenseTransactionEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMExpenseTransEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMExpenseTransEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
@@ -1479,14 +1505,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMediatorInfoEntity(CustId, ID, yesNo);
         }
-
-
         public List<MediatorInfoEntity> GetMediatorInfoEntities(string CustId, YesNo yesNo, int count, string prefixText)
         {
             return rmisGateway.GetMediatorInfoEntities(CustId, yesNo, count, prefixText);
         }
-
-
         public MediatorInfoEntity GetMediatorInfoEntityByName(string CustId, string MediatorName, YesNo yesNo)
         {
             return rmisGateway.GetMediatorInfoEntityByName(CustId, MediatorName, yesNo);
@@ -1496,5 +1518,26 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBuyerInfoEntityByName(CustId, BuyerName, yesNo);
         }
+        public List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, YesNo yesNo)
+        {
+            return rmisGateway.GetMExpenseTypeEntities(CustId, yesNo);
+        }
+        public MExpenseTypeEntity GetMExpenseTypeEntity(string CustId, string ExpenseType, YesNo yesNo)
+        {
+            return rmisGateway.GetMExpenseTypeEntity(CustId, ExpenseType, yesNo);
+        }
+        public List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetMExpenseTypeEntities(CustId, PageIndex, PageSize, out count, expression, yesNo);
+        }
+
+
+        public MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo)
+        {
+            return rmisGateway.GetMExpenseTypeEntity(ExpenseID, yesNo);
+        }
+
+
+
     }
 }
