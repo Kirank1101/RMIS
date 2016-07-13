@@ -5263,5 +5263,35 @@
                 throw;
             }
         }
+
+        internal List<BankTransactionEntity> GetBankTransactionEntities(string CustID, YesNo yesNo)
+        {
+            try
+            {
+                List<BankTransactionEntity> ListBankTransactionEntity = new List<BankTransactionEntity>();
+                IRepository<BankTransaction> MediatorTypeRepository = new RepositoryImpl<BankTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(BankTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustID))
+                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+
+                List<BankTransaction> listBankTransaction = MediatorTypeRepository.GetAll(detachedCriteria) as List<BankTransaction>;
+                if (listBankTransaction != null && listBankTransaction.Count > 0)
+                {
+                    foreach (BankTransaction adMInfo in listBankTransaction)
+                    {
+                        ListBankTransactionEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBankTransactionEntity(adMInfo));
+                    }
+                }
+                else
+                    ListBankTransactionEntity = null;
+
+                return ListBankTransactionEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBankTransactionEntities", ex);
+                throw;
+            }
+        }
     }
 }

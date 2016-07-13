@@ -83,6 +83,7 @@ namespace RMIS.Domain.Mediator
         void SaveOrUpdateExpenseTransEntity(ExpenseTransactionEntity ExpenseTransactionEntity, bool isCopy);
         void SaveOrUpdateMJobWorkEntity(MJobWorkEntity mJobWorkEntity, bool isCopy);
         void SaveOrUpdateRentalHullingEntity(RentalHullingEntity RentalHullingEntity, bool isCopy);
+        void SaveOrUpdateBankTransactionEntity(BankTransactionEntity BankTransactionEntity, bool isCopy);
         #endregion
         #region Get
         /// <summary>
@@ -153,6 +154,7 @@ namespace RMIS.Domain.Mediator
         List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
+        List<BankTransactionEntity> GetBankTransactionEntities(string CustID, YesNo yesNo); 
         int GetMPaddyTypeEntitiesTotal(string CustId, YesNo yesNo);
         int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo);
         int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);

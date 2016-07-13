@@ -44,6 +44,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveMediatorInfo(string name, string street, string street1, string town, string city, string district, string state,
                    string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount, DateTime PayDate);
+        ResultDTO SaveBankTransaction(string Description, double Withdraw, double Deposit, DateTime TransactionDate);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();

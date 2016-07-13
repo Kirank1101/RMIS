@@ -54,6 +54,7 @@
     <Compile Include="Model\Entities\BuyerInfo.cs" />
     <Compile Include="Model\Entities\BuyerSellerRating.cs" />
     <Compile Include="Model\Entities\BagPaymentInfo.cs" />
+    <Compile Include="Model\Entities\BankTransaction.cs" />
     <Compile Include="Model\Entities\RentalHulling.cs" />
     <Compile Include="Model\Entities\MJobWork.cs" />
     <Compile Include="Model\Entities\ExpenseTransaction.cs" />
@@ -208,6 +209,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\EntityMappings\RentHulling.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\EntityMappings\BankTransaction.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

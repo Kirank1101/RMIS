@@ -3020,7 +3020,32 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
+        public ResultDTO SaveBankTransaction(string Description, double Withdraw, double Deposit, DateTime TransactionDate)
+        {
+            BankTransactionEntity BankTransactionEntity = new BankTransactionEntity();
+            BankTransactionEntity.BankTransID = CommonUtil.CreateUniqueID("BT");
+            BankTransactionEntity.CustID = provider.GetCurrentCustomerId();
+            BankTransactionEntity.Description = Description;
+            BankTransactionEntity.Withdraw = Withdraw;
+            BankTransactionEntity.Deposit = Deposit;
+            BankTransactionEntity.TransactionDate = TransactionDate;
+            BankTransactionEntity.LastModifiedDate = DateTime.Now;
+            BankTransactionEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            BankTransactionEntity.ObsInd = YesNo.N;
 
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateBankTransactionEntity(BankTransactionEntity, false);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
+        }
 
         public List<PaddyStockDTO> GetPaddyPaymentScheduleDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {

@@ -701,6 +701,19 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+        public void SaveOrUpdateBankTransactionEntity(BankTransactionEntity BankTransactionEntity, bool isCopy)
+        {
+            try
+            {
+                genericGateway.SaveOrUpdateEntity<BankTransaction>(mapper.GetBankTransaction(BankTransactionEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateBankTransactionEntity", ex);
+                Logger.Error("Error in SaveOrUpdateBankTransactionEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
         #endregion
         #region Get Enitity
         public MDrierTypeDetailsEntity GetMDrierTypeDetailsEntity(string MDrierTypeID, YesNo yesNo)
@@ -1590,6 +1603,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         public PaddyPaymentDetailsEntity GetPaddyPaymentOnSellerid(string CustID, string SellerID, YesNo yesNo)
         {
             return rmisGateway.GetPaddyPaymentOnSellerid(CustID, SellerID, yesNo);
+        }
+        public List<BankTransactionEntity> GetBankTransactionEntities(string CustID, YesNo yesNo)
+        {
+            return rmisGateway.GetBankTransactionEntities(CustID, yesNo);
         }
     }
 }

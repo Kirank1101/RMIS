@@ -98,6 +98,7 @@
                 objRMISMappingNTD.MapExpenseTransEntity();
                 objRMISMappingNTD.MapMJobWorkEntity();
                 objRMISMappingNTD.MapRentalHullingEntity();
+                objRMISMappingNTD.MapBankTransactionEntity();
             }
             catch (Exception ex)
             {

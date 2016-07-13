@@ -63,6 +63,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
         ExpenseTransaction GetExpenseTransaction(ExpenseTransactionEntity mExpenseTransactionEntity);
         MJobWork GetJobWork(MJobWorkEntity mJobWorkEntity);
         RentalHulling GetRentalHulling(RentalHullingEntity rentalHullingEntity);
+        BankTransaction GetBankTransaction(BankTransactionEntity bankTransactionEntity);
     }
 
     public class RMISMapperDTN : IRMISMapper
@@ -849,6 +850,22 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapper
                 throw;
             }
             return RentalHulling;
+        }
+
+
+        public BankTransaction GetBankTransaction(BankTransactionEntity bankTransactionEntity)
+        {
+            BankTransaction BankTransaction = null;
+            try
+            {
+                BankTransaction = Mapper.Map<BankTransactionEntity, BankTransaction>(bankTransactionEntity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBankTransaction", ex);
+                throw;
+            }
+            return BankTransaction;
         }
     }
 }

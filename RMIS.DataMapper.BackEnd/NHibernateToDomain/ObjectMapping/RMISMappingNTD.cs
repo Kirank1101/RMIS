@@ -1088,6 +1088,27 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+        internal void MapBankTransactionEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<BankTransaction, BankTransactionEntity>()
+                    .ForMember(dest => dest.BankTransID, opts => opts.MapFrom(src => src.BankTransID))
+                    .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
+                    .ForMember(dest => dest.TransactionDate, opts => opts.MapFrom(src => src.TransactionDate))
+                    .ForMember(dest => dest.Withdraw, opts => opts.MapFrom(src => src.Withdraw))
+                    .ForMember(dest => dest.Deposit, opts => opts.MapFrom(src => src.Deposit))
+                    .ForMember(dest => dest.Balance, opts => opts.MapFrom(src => src.Balance))
+                    .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
+                    .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapBankTransactionEntity", ex);
+                throw;
+            }
+        }
         
     }
 }

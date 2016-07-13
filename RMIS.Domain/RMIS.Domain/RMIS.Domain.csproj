@@ -69,6 +69,7 @@
     <Compile Include="RiceMill\BuyerInfoEntity.cs" />
     <Compile Include="RiceMill\BuyerSellerRatingEntity.cs" />
     <Compile Include="RiceMill\BagPaymentInfoEntity.cs" />
+    <Compile Include="RiceMill\BankTransactionEntity.cs" />
     <Compile Include="RiceMill\RentalHullingEntity.cs" />
     <Compile Include="RiceMill\MJobWorkEntity.cs" />
     <Compile Include="RiceMill\ExpenseTransactionEntity.cs" />

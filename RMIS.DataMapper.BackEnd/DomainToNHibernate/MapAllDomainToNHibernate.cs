@@ -121,6 +121,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapExpenseTranEntityToExpenseTran();
                 objRMISMappingDTN.MapMJobWorkEntityToMJobWorkType();
                 objRMISMappingDTN.MapRentHullingEntityToRentHulling();
+                objRMISMappingDTN.MapBankTransactionEntityToBankTransaction();
             }
             catch (Exception exp)
             {

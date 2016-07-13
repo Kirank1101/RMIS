@@ -943,5 +943,21 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return RentalHullingEntity;
         }
+        public static BankTransactionEntity GetBankTransactionEntity(BankTransaction BankTransaction)
+        {
+            BankTransactionEntity BankTransactionEntity = null;
+            try
+            {
+                if (BankTransaction != null)
+                    BankTransactionEntity = Mapper.Map<BankTransaction, BankTransactionEntity>(BankTransaction);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetBankTransactionEntity", ex);
+                throw;
+            }
+
+            return BankTransactionEntity;
+        }
     }
 }
