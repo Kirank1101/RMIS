@@ -68,7 +68,7 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>
-                                All</h3>
+                                </h3>
                             <asp:PlaceHolder ID="phMenuItems" runat="server"></asp:PlaceHolder>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                     <asp:UpdateProgress ID="UpdateProgress" runat="server">
                         <ProgressTemplate>
                             <div style="text-align: center">
-                                Updating...
+                                Please Wait...
                             </div>
                             <img alt="Updating..." src="images/loading.gif" />
                            

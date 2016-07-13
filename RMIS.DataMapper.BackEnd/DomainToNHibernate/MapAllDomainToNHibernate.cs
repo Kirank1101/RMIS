@@ -122,6 +122,7 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate
                 objRMISMappingDTN.MapMJobWorkEntityToMJobWorkType();
                 objRMISMappingDTN.MapRentHullingEntityToRentHulling();
                 objRMISMappingDTN.MapBankTransactionEntityToBankTransaction();
+                objRMISMappingDTN.MapMailQueueEntityToMailQueue();
             }
             catch (Exception exp)
             {

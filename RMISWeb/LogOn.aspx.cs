@@ -8,6 +8,8 @@ using System.Web.Security;
 using RMIS.Domain.Business;
 using RMIS.Binder.BackEnd;
 using AllInOne.Common.Library.Util;
+using RMIS.Domain.RiceMill;
+using System.Drawing;
 
 public partial class LogOn: RegisterBasePage
 {
@@ -48,6 +50,7 @@ public partial class LogOn: RegisterBasePage
     {
         //if (!Page.IsPostBack)
            // bindCustomers();
+        lblMsg.Text = string.Empty;
     }
 
 
@@ -84,4 +87,31 @@ public partial class LogOn: RegisterBasePage
     string sessionApplicationName = "ApplicationName";
     string sessionCustomerId = "sessionCustomerId";
 
+    protected void lnkPassword_Click(object sender, EventArgs e)
+    {
+        mp1.Show();
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        UsersEntity userEntityObj= imp.GetUserEntityOnEmailOrUserName(txtEmailId.Text.Trim(), txtName.Text.Trim());
+        if (userEntityObj != null)
+        {
+            string newPassword = imp.GetUniquePassword();
+            IMailProvider mailImp = BinderSingleton.Instance.GetInstance<IMailProvider>();
+            mailImp.AddToMailQueue("Dear Customer" + ",\r\n\r\nPlease return to the  site and log in using the following information" + "\r\n\r\nYour Username: " + userEntityObj.CustID + @"\" + userEntityObj.Name + "\r\n\r\nPassword: " + newPassword + " \r\n\r\nThank you.", "<h2> Ormer-RMIS | Membership Information </h2>", userEntityObj.EmailId);
+            imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            imp.SaveÜserInfo(userEntityObj, newPassword);
+            lblMsg.ForeColor = Color.Green;
+            lblMsg.Text = "Password is sent to your mail Id";
+        }
+        else
+        {
+            lblMsg.ForeColor = Color.Red ;
+            lblMsg.Text = "Provided User Name or Email Id is not valid";
+        }
+        mp1.Show();
+    }
+   
 }

@@ -615,6 +615,24 @@ namespace RMIS.Business
             return listPaddyStockDTO;
         }
 
+        public ResultDTO SaveÜserInfo(UsersEntity objUsersEntity, string passWord)
+        {          
+            objUsersEntity.PassWord = Utilities.Encrypt(passWord, true);           
+            objUsersEntity.LastModifiedDate = DateTime.Now;
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateUsersEntity(objUsersEntity, true);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = "Not working" };
+            }
+            return new ResultDTO() { Message = "User Name created" };
+        }
+
 
         public ResultDTO SaveÜserInfo(string userName, string passWord, string custId)
         {
@@ -676,6 +694,21 @@ namespace RMIS.Business
 
             }
 
+            return null;
+        }
+
+       
+
+        public UsersEntity GetUserEntityOnEmailOrUserName(string emailId, string userName)
+        {
+            UsersEntity userEntity = imp.GetUsersEntityOnEmail(emailId, YesNo.N);
+            if (userEntity == null)
+            {
+                userEntity = imp.GetUsersEntityOnUserName(userName, YesNo.N);               
+
+            }
+            if (userEntity != null)
+                return userEntity;           
             return null;
         }
 
@@ -3134,6 +3167,12 @@ namespace RMIS.Business
 
             return listPaddyPaymentSchedule;
         }
+
+        public string GetUniquePassword()
+        {
+           return  Utilities.GetUniqueKey(5);
+        }
+
         public double GetBankBalance()
         {
 

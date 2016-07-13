@@ -45,6 +45,7 @@ namespace RMIS.Domain.Business
                    string pincode, string contactNo, string mobileNo, string phoneNo);
         ResultDTO SaveExpenseTrans(string ExpenseID, string Name, string Reason, double Amount, DateTime PayDate);
         ResultDTO SaveBankTransaction(string Description, double Withdraw, double Deposit, DateTime TransactionDate);
+        ResultDTO SaveÜserInfo(UsersEntity objUsersEntity, string passWord);
 
         List<SellerInfoEntity> GetPaddySellerInfo();
         List<RiceStockInfoEntity> GetAllRiceStockInfoEntities();
@@ -58,6 +59,7 @@ namespace RMIS.Domain.Business
         List<HullingProcessTransactionEntity> GetAllHullingProcessTransInfoEntities();
         UsersEntity ValidateUsersEntity(string userName, string custId, string password);
         UsersEntity GetUsersEntity(string userName, string custId);
+        UsersEntity GetUserEntityOnEmailOrUserName(string emailId, string userName);
         List<RMUserRoleEntity> GetUserRoles(string userName, string custId);
         List<HullingProcessExpensesEntity> GetAllHullingProcessExpensesEntities();
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities();
@@ -168,6 +170,7 @@ namespace RMIS.Domain.Business
         string GetBuyerInfo(string BuyerName);
         ResultDTO SaveRentHulling(string JobWork, string Name, string PaddyType, int TotalBags, double Price, DateTime ProcessDate);
         double GetBankBalance();
+        string GetUniquePassword();
 
         string NumberToWord(int Amount);
     }

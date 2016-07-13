@@ -13,6 +13,7 @@ namespace RMIS.Entities.BackEnd
         private string _Name;
         private string _PassWord;
         private string _LastModifiedBy;
+        private string _EmailId;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
 
@@ -43,6 +44,12 @@ namespace RMIS.Entities.BackEnd
             get { return _LastModifiedBy; }
             set { _LastModifiedBy = value; }
         }
+        public virtual string EmailId
+        {
+            get { return _EmailId; }
+            set { _EmailId = value; }
+        }
+
         public virtual DateTime LastModifiedDate
         {
             get { return _LastModifiedDate; }

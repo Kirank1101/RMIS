@@ -155,6 +155,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.PassWord, opts => opts.MapFrom(src => src.PassWord))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
+                     .ForMember(dest => dest.EmailId, opts => opts.MapFrom(src => src.EmailId))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
             }
             catch (Exception ex)
@@ -163,6 +164,29 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
+
+        internal void MapMailQueueEntity()
+        {
+            try
+            {
+                Mapper.CreateMap<MailQueue, MailQueueEntity>()
+                    .ForMember(dest => dest.MailId, opts => opts.MapFrom(src => src.MailId))
+                    .ForMember(dest => dest.MessageBody, opts => opts.MapFrom(src => src.MessageBody))
+                    .ForMember(dest => dest.Subject, opts => opts.MapFrom(src => src.Subject))
+                    .ForMember(dest => dest.ToEmail, opts => opts.MapFrom(src => src.ToEmail))
+                    .ForMember(dest => dest.FromEmail, opts => opts.MapFrom(src => src.FromEmail))
+                    .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate)
+                    );
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at MapMailQueueEntity", ex);
+                throw;
+            }
+        }
+
+
         internal void MapMPaddyTypeEntity()
         {
             try

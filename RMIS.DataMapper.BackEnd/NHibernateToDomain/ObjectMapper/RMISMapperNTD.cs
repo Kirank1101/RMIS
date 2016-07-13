@@ -159,6 +159,28 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper
 
             return usersEntity;
         }
+
+
+        public static MailQueueEntity GetMailQueueEntity(MailQueue mailQueue)
+        {
+            MailQueueEntity mailQueueEntity = null;
+
+            try
+            {
+                if (mailQueue != null)
+                {
+                    mailQueueEntity = Mapper.Map<MailQueue, MailQueueEntity>(mailQueue);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at GetMailQueueEntity", ex);
+                throw;
+            }
+
+            return mailQueueEntity;
+        }
+
         public static MPaddyTypeEntity GetMPaddyTypeEntity(MPaddyType mPaddyType)
         {
             MPaddyTypeEntity mPaddyTypeEntity = null;

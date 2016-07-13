@@ -185,6 +185,23 @@ namespace RMIS.Mediator.BackEnd.Impl
                 throw;
             }
         }
+
+
+        public void SaveOrUpdateMailQueueEntity(MailQueueEntity  mailQueueEntity, bool isCopy)
+        {
+            try
+            {
+
+                genericGateway.SaveOrUpdateEntity<MailQueue>(mapper.GetMailQueue(mailQueueEntity), isCopy);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error at SaveOrUpdateMailQueueEntity", ex);
+                Logger.Error("Error in SaveOrUpdateMailQueueEntity: Message - " + ex.Message + " StackTrace - " + ex.StackTrace);
+                throw;
+            }
+        }
+
         public void SaveOrUpdateUsersEntity(UsersEntity usersEntity, bool isCopy)
         {
             try
@@ -1619,6 +1636,23 @@ namespace RMIS.Mediator.BackEnd.Impl
         public double GetBankTotalDebit(string CustID, YesNo yesNo)
         {
             return rmisGateway.GetBankTotalDebit(CustID, yesNo);
+        }
+
+
+        public List<MailQueueEntity> GetMailQueueEntities(YesNo yesNo)
+        {
+            return rmisGateway.GetMailQueueEntities(yesNo);
+        }
+
+
+        public UsersEntity GetUsersEntityOnEmail(string emailId, YesNo yesNo)
+        {
+            return rmisGateway.GetUsersEntityOnEmail(emailId, yesNo);
+        }
+
+        public UsersEntity GetUsersEntityOnUserName(string userName, YesNo yesNo)
+        {
+            return rmisGateway.GetUsersEntityOnUserName(userName, yesNo);
         }
     }
 }

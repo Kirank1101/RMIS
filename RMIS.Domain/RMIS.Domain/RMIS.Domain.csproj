@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractAllInOne.cs" />
+    <Compile Include="Business\IMailProvider.cs" />
     <Compile Include="Business\IValidateTransactionBusiness.cs" />
     <Compile Include="Business\IMasterPaddyBusiness.cs" />
     <Compile Include="Business\ICustomerProvider.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="RiceMill\BuyerSellerRatingEntity.cs" />
     <Compile Include="RiceMill\BagPaymentInfoEntity.cs" />
     <Compile Include="RiceMill\BankTransactionEntity.cs" />
+    <Compile Include="RiceMill\MailQueueEntity.cs" />
     <Compile Include="RiceMill\RentalHullingEntity.cs" />
     <Compile Include="RiceMill\MJobWorkEntity.cs" />
     <Compile Include="RiceMill\ExpenseTransactionEntity.cs" />

@@ -1347,6 +1347,96 @@
                 throw;
             }
         }
+
+
+        internal UsersEntity GetUsersEntityOnEmail(string emailId, YesNo yesNo)
+        {
+            try
+            {
+                UsersEntity usersEntity = new UsersEntity();
+                IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
+                                                                   .Add(Expression.Eq("EmailId", emailId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
+                if (listUsersEntity != null && listUsersEntity.Count > 0)
+                {
+                    foreach (Users adMInfo in listUsersEntity)
+                    {
+                        usersEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetUsersEntity(adMInfo);
+                    }
+                }
+                else
+                    usersEntity = null;
+
+                return usersEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUsersEntity", ex);
+                throw;
+            }
+        }
+
+        internal UsersEntity GetUsersEntityOnUserName(string userName, YesNo yesNo)
+        {
+            try
+            {
+                UsersEntity usersEntity = new UsersEntity();
+                IRepository<Users> UsersRepository = new RepositoryImpl<Users>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(Users))
+                                                                   .Add(Expression.Eq("Name", userName))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<Users> listUsersEntity = UsersRepository.GetAll(detachedCriteria) as List<Users>;
+                if (listUsersEntity != null && listUsersEntity.Count > 0)
+                {
+                    foreach (Users adMInfo in listUsersEntity)
+                    {
+                        usersEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetUsersEntity(adMInfo);
+                    }
+                }
+                else
+                    usersEntity = null;
+
+                return usersEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetUsersEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<MailQueueEntity> GetMailQueueEntities( YesNo yesNo)
+        {
+            try
+            {
+                List<MailQueueEntity> mailEntites = new List<MailQueueEntity>();
+                IRepository<MailQueue> UsersRepository = new RepositoryImpl<MailQueue>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(MailQueue))
+
+                                                                     .Add(Expression.In("Status", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<MailQueue> listMailQueue = UsersRepository.GetAll(detachedCriteria) as List<MailQueue>;
+                if (listMailQueue != null && listMailQueue.Count > 0)
+                {
+                    foreach (MailQueue  adMInfo in listMailQueue)
+                    {
+                        mailEntites.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMailQueueEntity(adMInfo));
+                    }
+                }
+                return mailEntites;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetMailQueueEntities", ex);
+                throw;
+            }
+        }
+
+
         internal MPaddyTypeEntity GetMPaddyTypeEntity(string PaddyTypeID, YesNo yesNo)
         {
             try

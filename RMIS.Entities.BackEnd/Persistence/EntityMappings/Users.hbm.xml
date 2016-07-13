@@ -7,8 +7,9 @@
     <id name="UserID" column="UserID" >
       <generator class="assigned"/>
     </id>
-    <property name="CustID" column="CustID" />   
+    <property name="CustID" column="CustID" />
     <property name="Name" column="Name" />
+    <property name="EmailId" column="EmailId" />
     <property name="PassWord" column="PassWord" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />

@@ -53,6 +53,7 @@
                   Component.For<IUserMessage>().ImplementedBy<UserMessage>().LifeStyle.Transient,
                  Component.For<IMasterPaddyBusiness>().ImplementedBy<MasterPaddyBusiness>().LifeStyle.Transient,
                   Component.For<ITransactionBusiness>().ImplementedBy<TransactionPaddyBusiness>().LifeStyle.Transient,
+                  Component.For<IMailProvider>().ImplementedBy<MailProvider>().LifeStyle.Transient,
                    Component.For<IValidateMasterBusiness>().ImplementedBy<ValidateMasterBusiness>().LifeStyle.Transient,
                    Component.For<IValidateTransactionBusiness>().ImplementedBy<ValidateTransactionBusiness>().LifeStyle.Transient
                 );

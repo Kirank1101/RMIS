@@ -103,7 +103,7 @@
                     <asp:UpdateProgress ID="UpdateProgress" runat="server">
                         <ProgressTemplate>
                             <div style="text-align: center">
-                                Updating...
+                                Please Wait...
                             </div>
                             <img alt="Updating..." src="images/loading.gif" />
                         </ProgressTemplate>
@@ -120,7 +120,7 @@
                             <fieldset>
                                 <table width="100%">
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             <div style="float: right;">
                                             </div>
                                             <p style="font-family: Calibri; font-size:medium ">
@@ -140,24 +140,27 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td  colspan="2" >
+                                        <td >
                                         <table style="width:70%;">
                                         <tr>
                                         <td align="center"  >
-                                         <asp:Login ID="lgAbalone" runat="server" OnAuthenticate="lgAbalone_Authenticate"
+                                         <asp:Login ID="lgAbalone" runat="server" OnAuthenticate="lgAbalone_Authenticate" 
                                                 Height="145px" Font-Bold="True" Font-Italic="True" Font-Size="Medium" Font-Names="Calibri">
                                             </asp:Login>
+
+                                           
                                         </td>
 
                                         <td>
 
                                          <div style="font-family: Calibri; font-size: x-large; font-weight: bolder; font-style: oblique;">
-                                                Rice Management</div>
+                                                Rice Management&nbsp; </div>
                                             <div style="font-family: Calibri; font-size: x-large; font-weight: bolder; font-style: oblique;">
                                                 Information System&nbsp;
                                             </div>
                                         </td>
                                         </tr>
+                                        
                                         </table>
                                            
                                         
@@ -166,13 +169,63 @@
                                     </tr>
                                 </table>
                             </fieldset>
-                             <br />
-                              <br />
-                               <br />
-                                <br />
-                                 <br />
+                             
                         </ContentTemplate>
                     </asp:UpdatePanel>
+                     <p style="font-family: Calibri; font-size:medium; "> 
+                                            <asp:LinkButton ID="lnkPassword" runat="server" Font-Bold="True" 
+                                                Font-Italic="True" Font-Underline="True"  OnClientClick="return false;" >Forgot Your Password ?</asp:LinkButton></p>
+
+                    <asp:Button ID="btnShow" Visible="false" runat="server" Text="Show Modal Popup" />
+                    <!-- ModalPopupExtender -->
+<ajaxToolkit:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="lnkPassword" CancelControlID="btnClose"
+     BackgroundCssClass="modalBackground">
+</ajaxToolkit:ModalPopupExtender>
+<asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" style = "display:none">
+<h2>Send Password</h2>
+
+
+
+  Enter your email address or your display name/alias to have your password mailed to you.
+<br />
+<div align="center">
+    <asp:Label ID="lblMsg" runat="server"></asp:Label>
+<table >
+                <tr align="center" >
+                    <td>
+                        <asp:Label runat="server" ID="lblEmaild" Text="Your Email"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtEmailId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                    </td> 
+                    </tr> 
+
+                     <tr align="center" >
+                    <td>
+                        <asp:Label runat="server" ID="lblName" Text="Your Name"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtName" />
+                    </td>
+                </tr>
+
+                  <tr>
+                    <td colspan="2" align="center">
+                    &nbsp;&nbsp;
+                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /> &nbsp;&nbsp;
+                        <asp:Button ID="btnClose" runat="server" Text="Close" OnClientClick ="return false;" />
+                    </td> 
+                    </tr> 
+
+                </table> 
+                </div>
+  
+</asp:Panel>
+
                 </div>
             </div>
         </div>
