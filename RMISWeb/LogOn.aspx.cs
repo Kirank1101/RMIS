@@ -100,7 +100,7 @@ public partial class LogOn: RegisterBasePage
         {
             string newPassword = imp.GetUniquePassword();
             IMailProvider mailImp = BinderSingleton.Instance.GetInstance<IMailProvider>();
-            mailImp.AddToMailQueue("Dear Customer" + ",\r\n\r\nPlease return to the  site and log in using the following information" + "\r\n\r\nYour Username: " + userEntityObj.CustID + @"\" + userEntityObj.Name + "\r\n\r\nPassword: " + newPassword + " \r\n\r\nThank you.", "<h2> Ormer-RMIS | Membership Information </h2>", userEntityObj.EmailId);
+            mailImp.AddToMailQueue("Dear Customer" + ",\r\n\r\n   <br />Please return to the  site and log in using the following information" + "\r\n\r\n   <br />Your Username: " + userEntityObj.CustID + @"\" + userEntityObj.Name + "\r\n\r\n   <br />Password: " + newPassword + " \r\n\r\n   <br />Thank you -Ormer Solutions,India.", " Ormer-RMIS | Membership Information ", userEntityObj.EmailId);
             imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             imp.SaveÜserInfo(userEntityObj, newPassword);
             lblMsg.ForeColor = Color.Green;
