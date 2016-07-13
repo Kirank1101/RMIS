@@ -19,6 +19,26 @@
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <title>Rice Management Systems </title>
+    <style type="text/css" >
+    
+    .modalBackground
+    {
+        background-color: Black;
+        filter: alpha(opacity=90);
+        opacity: 0.8;
+    }
+    .modalPopup
+    {
+        background-color: #FFFFFF;
+        border-width: 3px;
+        border-style: solid;
+        border-color: black;
+        padding-top: 10px;
+        padding-left: 10px;
+        width: 450px;
+        height: 250px;
+    }
+    </style>
 </head>
 <body class="nav-md">
     <form id="MainForm" runat="server">
