@@ -120,7 +120,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label runat="server" ID="lblHPrice" Text="<%$Resources:Resource,Price%>"></asp:Label><span
+                    <asp:Label runat="server" ID="lblHPrice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                         style="color: Red">*</span>
                 </td>
                 <td>
@@ -134,6 +134,15 @@
                 </td>
                 <td>
                     <asp:TextBoxDatenTimeExtender ID="txtSellingDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label runat="server" ID="lblHnextpaydate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label><span
+                        style="color: Red">*</span>
+                </td>
+                <td>
+                    <asp:TextBoxDatenTimeExtender ID="txtNextPayDate" runat="server"></asp:TextBoxDatenTimeExtender>
                 </td>
             </tr>
             <tr>
@@ -213,9 +222,7 @@
                             <td colspan="2" align="left">
                                 <asp:Button ID="btnBuyerDetails" runat="server" Text="Search" OnClick="btnBuyerDetails_Click"
                                     ValidationGroup="OnSave" />
-                                    
-                                <asp:Button ID="btnReset" runat="server" Text="Search" OnClick="btnReset_Click"
-                                    ValidationGroup="OnSave" />
+                                <asp:Button ID="btnReset" runat="server" Text="Search" OnClick="btnReset_Click" ValidationGroup="OnSave" />
                             </td>
                         </tr>
                         <tr>

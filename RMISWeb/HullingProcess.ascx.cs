@@ -196,10 +196,13 @@ public partial class HullingProcess : BaseUserControl
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         lstBRSD = GetBrokenRiceStockDetails();
         lstRSD = GetRiceStockDetails();
-        resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, lstRSD, lstBRSD, ddlDustUnitsType.SelectedValue, ddlDustUnitsType.SelectedItem.Text.ConvertToInt(), txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperQuintal.Text.ConvertToDouble(), txtPowerExpenses.Text.ConvertToDouble(), txtLabourExpenses.Text.ConvertToDouble(), txtOtherExpenses.Text.ConvertToDouble());
-        SetMessage(resultDto);
-        if (resultDto.IsSuccess)
-            ClearAllInputFieldsOnSaveAndClose();
+        if (lstRSD.Count > 0 && lstBRSD.Count > 0 && ddlDustUnitsType.SelectedIndex > 0 && txtDustPriceperQuintal.Text.ConvertToDouble() > 0 && txtDustTotalBags.Text.ConvertToInt() > 0)
+        {
+            resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, lstRSD, lstBRSD, ddlDustUnitsType.SelectedValue, ddlDustUnitsType.SelectedItem.Text.ConvertToInt(), txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperQuintal.Text.ConvertToDouble(), txtPowerExpenses.Text.ConvertToDouble(), txtLabourExpenses.Text.ConvertToDouble(), txtOtherExpenses.Text.ConvertToDouble());
+            SetMessage(resultDto);
+            if (resultDto.IsSuccess)
+                ClearAllInputFieldsOnSaveAndClose();
+        }
         //}
         //else
         //{

@@ -50,14 +50,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
     {
 
     }
-    //private void bindPaddyStockInfo()
-    //{
-    //    int count = 0;
-    //    ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-    //    rptPaddyStockInfo.DataSource = imp.GetPaddyStockDTO(rptPaddyStockInfo.PageIndex, rptPaddyStockInfo.PageSize, out count, expression);
-    //    rptPaddyStockInfo.VirtualItemCount = count;
-    //    rptPaddyStockInfo.DataBind();
-    //}
     protected void ddlGodownSelectedIndexChanged(object sender, EventArgs e)
     {
         IMasterPaddyBusiness impb1 = BinderSingleton.Instance.GetInstance<IMasterPaddyBusiness>();
@@ -144,7 +136,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         //{
             if (resultDto.IsSuccess)
             {
-                resultDto = imps.SavePaddyStockInfo(txtSellerPaddyStock.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtPricePerQuintal.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()),ddlUnitsType.SelectedItem.Text.ConvertToInt());
+                resultDto = imps.SavePaddyStockInfo(txtSellerPaddyStock.SelectedValue, ddlPaddyType.SelectedValue, ddlGodownname.SelectedValue, ddlLotDetails.SelectedValue, ddlUnitsType.SelectedValue, txtVehicalNo.Text.Trim(), txtDriverName.Text.Trim(), txtTotalBags.Text.ConvertToInt(), txtPricePerQuintal.Text.ConvertToDouble(), Convert.ToDateTime(txtPruchaseDate.Text.Trim()), ddlUnitsType.SelectedItem.Text.ConvertToInt(), Convert.ToDateTime(txtNextPayDate.Text.Trim()));
 
                 SetMessage(resultDto);
                 if (resultDto.IsSuccess)
@@ -161,21 +153,6 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         //else
         //    SetMessage(resultDto);
     }
-    //protected void rptPaddyStockInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    //{
-    //    rptPaddyStockInfo.PageIndex = gridPageIndex = e.NewPageIndex;
-    //    bindPaddyStockInfo();
-    //    TabContainer1.ActiveViewIndex = 2;
-    //}
-    //protected void rptPaddyStockInfo_Sorting(object sender, GridViewSortEventArgs e)
-    //{
-    //    if (expression == SortExpression.Asc)
-    //        expression = SortExpression.Desc;
-    //    else if (expression == SortExpression.Desc)
-    //        expression = SortExpression.Asc;
-    //    bindPaddyStockInfo();
-    //    TabContainer1.ActiveViewIndex = 2;
-    //}
     protected void gvPaddyStockOverview_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvPaddyStockOverview.PageIndex = gridPageIndex = e.NewPageIndex;
@@ -201,6 +178,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
         txtTotalBags.Text = string.Empty;
         txtPricePerQuintal.Text = string.Empty;
         txtPruchaseDate.Text = string.Empty;
+        txtNextPayDate.Text = string.Empty;
     }
 
 }

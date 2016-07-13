@@ -19,6 +19,7 @@ namespace RMIS.Entities.BackEnd
         private int _TotalBags;
         private double _Price;
         private DateTime _PurchaseDate;
+        private DateTime _NextPayDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -82,6 +83,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _PurchaseDate; }
             set { _PurchaseDate = value; }
+        }
+        public virtual DateTime NextPayDate
+        {
+            get { return _NextPayDate; }
+            set { _NextPayDate = value; }
         }
         public virtual string LastModifiedBy
         {

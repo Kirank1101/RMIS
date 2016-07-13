@@ -15,6 +15,7 @@ namespace RMIS.Domain.RiceMill
         public string MediatorID { get; set; }
         public double TotalAmount { get; set; }
         public string Status { get; set; }
+        public DateTime NextPayDate { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>

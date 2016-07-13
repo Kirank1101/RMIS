@@ -129,6 +129,15 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <asp:Label runat="server" ID="lblHNextPayDate" Text="<%$Resources:Resource,Nextpaymentdate%>"></asp:Label>
+                                    <span style="color: Red">*</span>
+                                </td>
+                                <td>
+                                    <asp:TextBoxDatenTimeExtender ID="txtNextPayDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="OnSave" />
                                     <asp:Button ID="Button2" runat="server" Text="Cancel" />
                                 </td>

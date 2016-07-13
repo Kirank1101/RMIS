@@ -17,6 +17,7 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalAmount { get; set; }
         public double TotalAmountPaid { get; set; }
         public double TotalAmountDue { get; set; }
+        public DateTime NextPayDate { get; set; }
     }
     public class PaddyPaymentDTO
     {
@@ -51,7 +52,9 @@ namespace RMIS.Domain.DataTranserClass
         public string DriverName { get; set; }
         public double TotalBags { get; set; }
         public double Price { get; set; }
+        public double TotalPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
+        public DateTime NextPayDate { get; set; }
 
     }
     public class PaddyStockOverViewDTO
@@ -163,7 +166,7 @@ namespace RMIS.Domain.DataTranserClass
         public int TotalBags { get; set; }
         public double Price { get; set; }
         public double TotalPrice { get; set; }
-        public DateTime ProductSellingDate { get; set; }
+        public DateTime ProductSellingDate { get; set; }        
     }
     public class ProductPaymentDTO
     {

@@ -228,6 +228,9 @@ namespace RMIS.Domain.Constant
         public const string ValidateRentHullingProcessDateEmpty = "Validate216";
         public const string ValidateRentHullingProcessDateValidate = "Validate217";
 
+        public const string ValidateProductSellingDetailsNextPayDateEmpty = "Validate109";
+        public const string ValidateProductSellingDetailsNextPayDateValidate = "Validate110";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

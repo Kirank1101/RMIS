@@ -248,6 +248,7 @@ namespace RMIS.Domain.Mediator
         MediatorInfoEntity GetMediatorInfoEntity(string CustId, string MediatorID, YesNo yesNo);
         List<MExpenseTypeEntity> GetMExpenseTypeEntities(string CustId, YesNo yesNo);
         List<MJobWorkEntity> GetMJobWorkEntities(string CustId, YesNo yesNo);
+        PaddyStockInfoEntity GetPaddyStockOnSellerid(string CustId, string SellerId, YesNo yesNo);
         #endregion
         #region Check
         /// <summary>
@@ -277,8 +278,7 @@ namespace RMIS.Domain.Mediator
         MExpenseTypeEntity GetMExpenseTypeEntity(string ExpenseID, YesNo yesNo);
         List<MJobWorkEntity> GetMJobWorkEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
         MJobWorkEntity GetMJobWorkEntity(string JobWorkID, YesNo yesNo);
-
-        
+        PaddyPaymentDetailsEntity GetPaddyPaymentOnSellerid(string CustID, string SellerID, YesNo yesNo);
     }
 
 }

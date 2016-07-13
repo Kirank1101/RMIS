@@ -18,6 +18,7 @@
     <property name="TotalBags" column="TotalBags" />
     <property name="Price" column="Price" />
     <property name="PurchaseDate" column="PurchaseDate" />
+    <property name="NextPayDate" column="NextPayDate" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

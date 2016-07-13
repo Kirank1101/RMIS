@@ -1579,5 +1579,17 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetMJobWorkEntity(JobWorkID, yesNo);
         }
+
+
+        public PaddyStockInfoEntity GetPaddyStockOnSellerid(string CustId, string SellerId, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockOnSellerid(CustId, SellerId, yesNo);
+        }
+
+
+        public PaddyPaymentDetailsEntity GetPaddyPaymentOnSellerid(string CustID, string SellerID, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyPaymentOnSellerid(CustID, SellerID, yesNo);
+        }
     }
 }

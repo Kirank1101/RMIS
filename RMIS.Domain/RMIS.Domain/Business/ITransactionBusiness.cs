@@ -13,7 +13,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveSellerInfo(string name,
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
-        ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, int totalBags, double PriceperQuintal, DateTime purchaseDate, int weightperbag);
+        ResultDTO SavePaddyStockInfo(string sellerId, string paddyTypeId, string godownId, string lotId, string UnitsTypeID, string vehicleNo, string DriverName, int totalBags, double PriceperQuintal, DateTime purchaseDate, int weightperbag,DateTime NextPayDate);
         ResultDTO SaveBagStockInfo(string sellerId,
                      string vehicleNo, string DriverName, int totalBags, double Price,
                      DateTime purchaseDate, string RiceBrandID, string UnitTypeID);
@@ -24,7 +24,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveDustStockInfo(int totalBags, string UnitsTypeID);
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
-        ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list);
+        ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list,DateTime NextPayDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
             List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses);

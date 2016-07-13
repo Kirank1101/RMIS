@@ -21,6 +21,7 @@ namespace RMIS.Domain.RiceMill
         public int TotalBags { get; set; }
         public double Price { get; set; }
         public DateTime PurchaseDate { get; set; }
+        public DateTime NextPayDate { get; set; }
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>

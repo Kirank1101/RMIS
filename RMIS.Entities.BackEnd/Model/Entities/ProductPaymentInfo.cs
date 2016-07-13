@@ -13,6 +13,7 @@ namespace RMIS.Entities.BackEnd
         private string _MediatorID;
         private double _TotalAmount; 
         private string _Status;
+        private DateTime _NextPayDate;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -47,6 +48,12 @@ namespace RMIS.Entities.BackEnd
             get { return _Status; }
             set { _Status = value; }
         }
+        public virtual DateTime NextPayDate
+        {
+            get { return _NextPayDate; }
+            set { _NextPayDate = value; }
+        }
+        
         public virtual string LastModifiedBy
         {
             get { return _LastModifiedBy; }

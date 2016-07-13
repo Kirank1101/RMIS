@@ -81,7 +81,7 @@ public partial class ProductSellingInfo : BaseUserControl
                 resultDTO = imp.CheckDustStockAvailability(ddlUnitsType.SelectedValue, txtTotalBags.Text.ConvertToInt());
                 break;
             default:
-                resultDTO.IsSuccess=false;
+                resultDTO.IsSuccess = false;
                 break;
         }
         #region Check Rice Stock Information
@@ -94,6 +94,7 @@ public partial class ProductSellingInfo : BaseUserControl
             prodselinfoDTO.ProductID = lstprodselinfoDTO.Count + 1;
             prodselinfoDTO.SellingProductType = rbtProductSellingtype.SelectedValue;
             prodselinfoDTO.BuyerID = txtBuyerName.SelectedValue;
+            prodselinfoDTO.UnitsType = ddlUnitsType.SelectedItem.Text;
             prodselinfoDTO.UnitsTypeID = ddlUnitsType.SelectedValue;
             prodselinfoDTO.TotalBags = txtTotalBags.Text.ConvertToInt();
             prodselinfoDTO.Price = txtprice.Text.ConvertToDouble();
@@ -179,11 +180,19 @@ public partial class ProductSellingInfo : BaseUserControl
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
-        if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(rbtProductSellingtype.SelectedIndex, rbtProductSellingtype.SelectedValue, txtBuyerName.SelectedValue, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtprice.Text, txtSellingDate.Text, txtNextPayDate.Text);
+        if (resultDto.IsSuccess)
         {
-            rptProductSellingDetails.DataSource = lstprodselinfoDTO;
-            rptProductSellingDetails.DataBind();
+            List<ProductSellingInfoDTO> lstprodselinfoDTO = AddProductSellingInfoDetails();
+            if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
+            {
+                rptProductSellingDetails.DataSource = lstprodselinfoDTO;
+                rptProductSellingDetails.DataBind();
+            }
+            else
+            {
+                SetMessage(resultDto);
+            }
         }
     }
     protected void btnclear_click(object sender, EventArgs e)
@@ -192,32 +201,27 @@ public partial class ProductSellingInfo : BaseUserControl
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(rbtProductSellingtype.SelectedIndex, rbtProductSellingtype.SelectedValue, txtBuyerName.SelectedValue, ddlRiceType.SelectedIndex, ddlRiceBrand.SelectedIndex, ddlBrokenRiceType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtprice.Text, txtSellingDate.Text);
-        if (resultDto.IsSuccess)
+        List<ProductSellingInfoDTO> lstprodselinfoDTO = new List<ProductSellingInfoDTO>();
+        lstprodselinfoDTO = AddProductSellingInfoDetails();
+        ResultDTO resultDto = new ResultDTO();
+
+        if (lstprodselinfoDTO.Count > 0)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             string BrokenRiceType = rbtProductSellingtype.SelectedValue == BrokenRice ? ddlBrokenRiceType.SelectedValue : null;
             string RiceType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceType.SelectedValue : null;
             string RiceBrandType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceBrand.SelectedValue : null;
 
-            //resultDto = imp.SaveProductSellingInfo(rbtProductSellingtype.SelectedValue, txtBuyerName.SelectedValue, RiceType,
-            //    RiceBrandType, BrokenRiceType, txtTotalBags.Text.ConvertToInt(), ddlUnitsType.SelectedValue,
-            //    txtprice.Text.ConvertToDouble(), Convert.ToDateTime(txtSellingDate.Text.Trim()), lblOrderNo.Text, rbtPaymnetMode.SelectedValue,
-            //    txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(),
-            //    Convert.ToDateTime(txtNextPaymentDate.Text.Trim()));
-            List<ProductSellingInfoDTO> lstprodselinfoDTO = new List<ProductSellingInfoDTO>();
-            lstprodselinfoDTO = AddProductSellingInfoDetails();
             if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
             {
-                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO);
-                //char status = txtBalanceAmount.Text == 0 ? Convert.ToChar("C") : Convert.ToChar("P");
-                //resultDto = imp.SaveProductPaymentInfo(lbltotalamount, status);
-                //SetMessage(resultDto);
+                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO, txtNextPayDate.Text.ConvertToDate());
                 if (resultDto.IsSuccess)
                 {
-                    ClearAllInputFields();
-                    VstProdSelInfoEnt = null;
+                    ClearAllInputFields();                    
                     SetMessage(resultDto);
+                    VstProdSelInfoEnt = null;
+                    rptProductSellingDetails.DataSource = null;
+                    rptProductSellingDetails.DataBind();       
                 }
             }
             else
@@ -227,6 +231,8 @@ public partial class ProductSellingInfo : BaseUserControl
         }
         else
         {
+            resultDto.IsSuccess = false;
+            resultDto.Message = "Record Saved Unsuccessfully.. ";
             SetMessage(resultDto);
         }
 
@@ -240,8 +246,8 @@ public partial class ProductSellingInfo : BaseUserControl
 
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, BuyerID, txtReceivedAmount.Text.ConvertToDouble(), txtTotalProductCost.Text.ConvertToDouble());
         if (resultDto.IsSuccess)
-        {   
-           resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
+        {
+            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();
@@ -416,8 +422,7 @@ public partial class ProductSellingInfo : BaseUserControl
         ddlBrokenRiceType.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;
         txtTotalBags.Text = string.Empty;
-        txtprice.Text = string.Empty;
-        txtSellingDate.Text = string.Empty;
+        txtprice.Text = string.Empty; 
     }
 
 }
