@@ -8,12 +8,25 @@
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>:
-                <span style="color: Red">*</span>&nbsp;&nbsp;
+                &nbsp;&nbsp;
             </td>
             <td>
                 <p />
                 <asp:TextBoxAutoExtender ID="txtsellername" runat="server" ServiceMethod="GetSellerNames">
                 </asp:TextBoxAutoExtender>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+                <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>:
+                &nbsp;&nbsp; From
+            </td>
+            <td>
+                <asp:TextBoxDatenTimeExtender ID="txtPruchaseDatefrom" runat="server"></asp:TextBoxDatenTimeExtender>
+                &nbsp;&nbsp;
+            </td>
+            <td>
+                To &nbsp;&nbsp;
+                <asp:TextBoxDatenTimeExtender ID="txtPruchaseDateTo" runat="server"></asp:TextBoxDatenTimeExtender>
             </td>
             <td>
                 &nbsp;&nbsp;&nbsp;&nbsp;

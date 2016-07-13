@@ -4256,25 +4256,47 @@
             }
         }
 
-        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo, DateTime PurchaseDateFrom, DateTime PurchaseDateTo)
         {
             try
             {
                 List<PaddyStockInfoEntity> listpaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = null;
-                if (sortExpression == SortExpression.Desc)
+                if (SellerID != null && (PurchaseDateFrom == null && PurchaseDateTo == null))
+                {
+                    if (sortExpression == SortExpression.Desc)
+                        detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                            .Add(Expression.Eq("CustID", CustId))
+                            .Add(Expression.Eq("SellerID", SellerID))
+                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                            ).AddOrder(Order.Asc("PurchaseDate"));
+                    else
+                        detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                            .Add(Expression.Eq("CustID", CustId))
+                            .Add(Expression.Eq("SellerID", SellerID))
+                            .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                            ).AddOrder(Order.Desc("PurchaseDate"));
+                }
+                if (string.IsNullOrEmpty(SellerID) && (PurchaseDateFrom != null && PurchaseDateTo != null))
+                {
                     detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                      .Add(Expression.Eq("CustID", CustId))
-                                                                      .Add(Expression.Eq("SellerID", SellerID))
-                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                      ).AddOrder(Order.Asc("PurchaseDate"));
-                else
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Ge("PurchaseDate", PurchaseDateFrom))
+                        .Add(Expression.Lt("PurchaseDate", PurchaseDateTo))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("PurchaseDate"));
+                }
+                if (!string.IsNullOrEmpty(SellerID) && (PurchaseDateFrom != null && PurchaseDateTo != null))
+                {
                     detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                    .Add(Expression.Eq("SellerID", SellerID))
-                                                                       .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   ).AddOrder(Order.Desc("PurchaseDate"));
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("SellerID", SellerID))
+                        .Add(Expression.Ge("PurchaseDate", PurchaseDateFrom))
+                        .Add(Expression.Lt("PurchaseDate", PurchaseDateTo))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("PurchaseDate"));
+                }
                 List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyStockInfo>;
                 if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
                 {

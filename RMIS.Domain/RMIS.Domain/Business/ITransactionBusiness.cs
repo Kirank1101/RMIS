@@ -128,7 +128,7 @@ namespace RMIS.Domain.Business
 
         List<PaddyStockOverViewDTO> GetPaddyStockOverViewDTO(int PageIndex, int PageSize, out int count, SortExpression expression);
 
-        List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, DateTime PurchaseDateFrom, DateTime PurchaseDateTo);
 
         List<PaddyPaymentDTO> GetPaddyPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 

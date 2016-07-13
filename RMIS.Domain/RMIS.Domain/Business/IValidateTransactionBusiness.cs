@@ -33,5 +33,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount,string PayDate);
 
         ResultDTO ValidateRentHullingTransaction(int JobWorkType, string Name, string PaddyType, int TotalBags, double Price, string ProcessDate);
+
+        ResultDTO ValidatePaddyStockReport(string SellerName, string PurchaseDateFrom, string PurchaseDateTo);
     }
 }

@@ -1450,7 +1450,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO,DateTime NextPayDate)
+        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate)
         {
             ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
             List<ProductSellingInfoDTO> lstProdSellingDTO = lstProductSellingInfoDTO;
@@ -2089,46 +2089,32 @@ namespace RMIS.Business
         }
 
 
-        public List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        public List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, DateTime PurchaseDateFrom, DateTime PurchaseDateTo)
         {
 
             List<PaddyStockDTO> listPaddyStockDTO = null;
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N,PurchaseDateFrom,PurchaseDateTo);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
                 listPaddyStockDTO = new List<PaddyStockDTO>();
+
+                List<MPaddyTypeEntity> lstobjMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.Null);
+                List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                List<MLotDetailsEntity> lstMLotDetailsEntity = imp.GetMLotDetailsEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                List<MGodownDetailsEntity> lstMGodownDetailsEntity = imp.GetMGodownDetailsEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+
                 foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
                 {
                     PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
                     objPaddyStockDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
-                    MGodownDetailsEntity objMGodownDetailsEntity = imp.GetMGodownDetailsEntity(objPaddyStockInfoEntity.MGodownID, YesNo.Null);
-                    if (objMGodownDetailsEntity != null)
-                    {
-                        objPaddyStockDTO.GodownName = objMGodownDetailsEntity.Name;
-                    }
-                    MLotDetailsEntity objMLotDetailsEntity = imp.GetMLotDetailsEntity(objPaddyStockInfoEntity.MLotID, YesNo.Null);
-                    if (objMLotDetailsEntity != null)
-                    {
-                        objPaddyStockDTO.LotName = objMLotDetailsEntity.LotName;
-                    }
                     SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyStockInfoEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
-                    {
                         objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
-                    }
 
-                    MPaddyTypeEntity objMPaddyTypeEntity = imp.GetMPaddyTypeEntity(objPaddyStockInfoEntity.PaddyTypeID, YesNo.Null);
-                    if (objMPaddyTypeEntity != null)
-                    {
-                        objPaddyStockDTO.PaddyName = objMPaddyTypeEntity.Name;
-                    }
-
-                    MUnitsTypeEntity objMUnitsTypeEntity = imp.GetMUnitsTypeEntity(objPaddyStockInfoEntity.UnitsTypeID, YesNo.Null);
-                    if (objMUnitsTypeEntity != null)
-                    {
-                        objPaddyStockDTO.UnitName = objMUnitsTypeEntity.UnitsType;
-                    }
-
+                    objPaddyStockDTO.GodownName = lstMGodownDetailsEntity.Where(gn => gn.MGodownID == objPaddyStockInfoEntity.MGodownID).Select(gn => gn.Name).SingleOrDefault();
+                    objPaddyStockDTO.LotName = lstMLotDetailsEntity.Where(ln => ln.MLotID == objPaddyStockInfoEntity.MLotID).Select(ln => ln.LotName).SingleOrDefault();
+                    objPaddyStockDTO.PaddyName = lstobjMPaddyTypeEntity.Where(pn => pn.PaddyTypeID == objPaddyStockInfoEntity.PaddyTypeID).Select(pn => pn.Name).SingleOrDefault();
+                    objPaddyStockDTO.UnitName = lstMUnitsTypeEntity.Where(un => un.UnitsTypeID == objPaddyStockInfoEntity.UnitsTypeID).Select(un => un.UnitsType).SingleOrDefault();
                     objPaddyStockDTO.DriverName = objPaddyStockInfoEntity.DriverName;
                     objPaddyStockDTO.Price = objPaddyStockInfoEntity.Price;
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
@@ -2220,11 +2206,12 @@ namespace RMIS.Business
                         PaddyStockInfoEntity paddystockent = imp.GetPaddyStockOnSellerid(provider.GetCurrentCustomerId(), PPDDTO.SellerID, YesNo.Null);
                         PPDDTO.NextPayDate = paddystockent.NextPayDate;
                     }
-                    else {
+                    else
+                    {
                         PaddyPaymentDetailsEntity PaddyPaymentDetailsEntity = imp.GetPaddyPaymentOnSellerid(provider.GetCurrentCustomerId(), PPDDTO.SellerID, YesNo.Null);
                         PPDDTO.NextPayDate = PaddyPaymentDetailsEntity.NextPaymentDate;
                     }
-                    
+
                     listPaddyPaymentDueDTO.Add(PPDDTO);
                 }
             }

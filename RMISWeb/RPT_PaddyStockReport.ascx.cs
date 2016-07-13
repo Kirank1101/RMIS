@@ -22,10 +22,18 @@ public partial class RPT_PaddyStockReport : BaseUserControl
     }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        int count;
-        List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockPurchaseDTO(txtsellername.SelectedValue, 0, 1000, out count, SortExpression.Desc);
-        BindReport(listPaddyStockDTO);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockReport(txtsellername.Text.Trim(), txtPruchaseDatefrom.Text.Trim(), txtPruchaseDateTo.Text.Trim());
+        if (resultDto.IsSuccess)
+        {
+            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            int count;
+            List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockPurchaseDTO(txtsellername.SelectedValue, 0, 1000, out count, SortExpression.Desc,txtPruchaseDatefrom.Text.ConvertToDate(),txtPruchaseDateTo.Text.ConvertToDate());
+            BindReport(listPaddyStockDTO);
+        }
+        else
+        {
+            SetMessage(resultDto);
+        }
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {

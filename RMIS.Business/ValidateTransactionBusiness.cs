@@ -793,6 +793,29 @@ namespace RMIS.Business
 
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidatePaddyStockReport(string SellerName, string PurchaseDateFrom, string PurchaseDateTo)
+        {
+            if (string.IsNullOrEmpty(SellerName) && string.IsNullOrEmpty(PurchaseDateFrom) && string.IsNullOrEmpty(PurchaseDateTo))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockReportRequired, provider.GetCurrentCustomerId()) };
+            }
+            else if (!string.IsNullOrEmpty(SellerName))
+            {
+                if (!string.IsNullOrEmpty(PurchaseDateFrom) || !string.IsNullOrEmpty(PurchaseDateTo))
+                {
+                    if (string.IsNullOrEmpty(PurchaseDateFrom) || string.IsNullOrEmpty(PurchaseDateTo))
+                        return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockValidDate, provider.GetCurrentCustomerId()) }; 
+                }
+                
+            }
+            else if (string.IsNullOrEmpty(PurchaseDateFrom) || string.IsNullOrEmpty(PurchaseDateTo))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyStockValidDate, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }
 
