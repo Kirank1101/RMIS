@@ -5293,5 +5293,39 @@
                 throw;
             }
         }
+        internal double GetBankTotalCredit(string CustID, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<BankTransaction> UsersRepository = new RepositoryImpl<BankTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(BankTransaction))
+                        .Add(Expression.Eq("CustID", CustID))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                return UsersRepository.GetSumResults(detachedCriteria, "Withdraw");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBankTotalCredit", ex);
+                throw;
+            }
+        }
+        internal double GetBankTotalDebit(string CustID, YesNo yesNo)
+        {
+            try
+            {
+                IRepository<BankTransaction> UsersRepository = new RepositoryImpl<BankTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria =
+                DetachedCriteria.For(typeof(BankTransaction))
+                        .Add(Expression.Eq("CustID", CustID))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) })));
+                return UsersRepository.GetSumResults(detachedCriteria, "Deposit");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBankTotalDebit", ex);
+                throw;
+            }
+        }
     }
 }

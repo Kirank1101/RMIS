@@ -93,7 +93,8 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName)
+        public Domain.DataTranserClass.ResultDTO 
+            SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName)
         {
             PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
             objPaddyPaymentDetailsEntity.ObsInd = YesNo.N;
@@ -110,10 +111,15 @@ namespace RMIS.Business
             objPaddyPaymentDetailsEntity.PaymentMode = PaymentMode;
             objPaddyPaymentDetailsEntity.ChequeNo = ChequeuNo;
             objPaddyPaymentDetailsEntity.BankName = BankName;
+
+            string sellername = GetSellerName(objPaddyPaymentDetailsEntity.SellerID);
+            string description = sellername + ", " + "Paddy Payment, " + "PaymentID:" + objPaddyPaymentDetailsEntity.PaddyPaymentID + ", Paid Date:" + objPaddyPaymentDetailsEntity.PaidDate;
+            BankTransactionEntity BTE= SaveBankTransactionBusiness(description, objPaddyPaymentDetailsEntity.AmountPaid, 0, DateTime.Now);
             try
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdatePaddyPaymentDetailsEntity(objPaddyPaymentDetailsEntity, false);
+                imp.SaveOrUpdateBankTransactionEntity(BTE, false);
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -122,6 +128,31 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error09, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success09, provider.GetCurrentCustomerId()) };
+        }
+
+        private BankTransactionEntity SaveBankTransactionBusiness(string Description, double Withdraw, double Deposit, DateTime TransactionDate)
+        {
+            BankTransactionEntity BankTransactionEntity = new BankTransactionEntity();
+            BankTransactionEntity.BankTransID = CommonUtil.CreateUniqueID("BT");
+            BankTransactionEntity.CustID = provider.GetCurrentCustomerId();
+            BankTransactionEntity.Description = Description;
+            BankTransactionEntity.Withdraw = Withdraw;
+            BankTransactionEntity.Deposit = Deposit;
+            BankTransactionEntity.TransactionDate = TransactionDate;
+            BankTransactionEntity.LastModifiedDate = DateTime.Now;
+            BankTransactionEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            BankTransactionEntity.ObsInd = YesNo.N;
+            return BankTransactionEntity;
+        }
+
+        private string GetSellerName(string SellerID)
+        {
+            string SellerName = string.Empty;
+            SellerInfoEntity SellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), SellerID, YesNo.N);
+            if (SellerInfoEntity != null)
+                SellerName = SellerInfoEntity.Name;
+
+            return SellerName;
         }
         public List<SellerInfoEntity> GetPaddySellerInfo()
         {
@@ -1687,10 +1718,16 @@ namespace RMIS.Business
             ProPayTraEnt.LastModifiedDate = DateTime.Now;
             ProPayTraEnt.ObsInd = YesNo.N;
 
+            string Buyername = GetBuyerName(ProPayTraEnt.BuyerID);
+            
+            string description = ProPayTraEnt.BankName + ", " + "Product Payment Received, " + "Product PaymentID:" + ProPayTraEnt.ProductPaymentTranID + ", Amount Received Date:" + DateTime.Now.ToString("dd-MMM-YYYY");
+            BankTransactionEntity BTE = SaveBankTransactionBusiness(description, 0, ProPayTraEnt.ReceivedAmount, DateTime.Now);
+            
             try
             {
                 imp.BeginTransaction();
                 imp.SaveOrUpdateProductPaymentTransEntity(ProPayTraEnt, false);
+                imp.SaveOrUpdateBankTransactionEntity(BTE, false);
                 if (ProPayTraEnt.ReceivedAmount >= TotalAmountDue)
                 {
                     ProductPaymentInfoEntity propayinfoent = new ProductPaymentInfoEntity();
@@ -1709,6 +1746,16 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error08, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
+        }
+
+        private string GetBuyerName(string BuyerID)
+        {
+            string BuyerName = string.Empty;
+            BuyerInfoEntity BuyerInfoEntity = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), BuyerID, YesNo.N);
+            if (BuyerInfoEntity != null)
+                BuyerName = BuyerInfoEntity.Name;
+
+            return BuyerName;
         }
 
 
@@ -2093,7 +2140,7 @@ namespace RMIS.Business
         {
 
             List<PaddyStockDTO> listPaddyStockDTO = null;
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N,PurchaseDateFrom,PurchaseDateTo);
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N, PurchaseDateFrom, PurchaseDateTo);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
                 listPaddyStockDTO = new List<PaddyStockDTO>();
@@ -3077,6 +3124,82 @@ namespace RMIS.Business
             }
 
             return listPaddyPaymentSchedule;
+        }
+
+
+        public double GetBankBalance()
+        {
+
+            double BankBalance = 0;
+            double CreditAmount = imp.GetBankTotalCredit(provider.GetCurrentCustomerId(), YesNo.N);
+            BankBalance = imp.GetBankTotalDebit(provider.GetCurrentCustomerId(), YesNo.N);
+            return
+            Math.Round((BankBalance - CreditAmount), 0, MidpointRounding.ToEven);
+        }
+        public string NumberToWord(int num)
+        {
+            if (num == 0)
+                return "Zero";
+
+            if (num < 0)
+                return "Not supported";
+
+            var words = "";
+            string[] strones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+            string[] strtens = { "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+
+
+            int crore = 0, lakhs = 0, thousands = 0, hundreds = 0, tens = 0, single = 0;
+
+
+            crore = num / 10000000; num = num - crore * 10000000;
+            lakhs = num / 100000; num = num - lakhs * 100000;
+            thousands = num / 1000; num = num - thousands * 1000;
+            hundreds = num / 100; num = num - hundreds * 100;
+            if (num > 19)
+            {
+                tens = num / 10; num = num - tens * 10;
+            }
+            single = num;
+
+
+            if (crore > 0)
+            {
+                if (crore > 19)
+                    words += NumberToWord(crore) + "Crore ";
+                else
+                    words += strones[crore - 1] + " Crore ";
+            }
+
+            if (lakhs > 0)
+            {
+                if (lakhs > 19)
+                    words += NumberToWord(lakhs) + "Lakh ";
+                else
+                    words += strones[lakhs - 1] + " Lakh ";
+            }
+
+            if (thousands > 0)
+            {
+                if (thousands > 19)
+                    words += NumberToWord(thousands) + "Thousand ";
+                else
+                    words += strones[thousands - 1] + " Thousand ";
+            }
+
+            if (hundreds > 0)
+            {
+                words += strones[hundreds - 1] + " Hundred ";
+                if (tens > 0 || single > 0)
+                    words += "And ";
+            }
+            if (tens > 0)
+                words += strtens[tens - 2] + " ";
+
+            if (single > 0)
+                words += strones[single - 1] + " ";
+
+            return words;
         }
     }
 }

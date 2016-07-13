@@ -1608,5 +1608,17 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBankTransactionEntities(CustID, yesNo);
         }
+
+
+        public double GetBankTotalCredit(string CustID, YesNo yesNo)
+        {
+            return rmisGateway.GetBankTotalCredit(CustID, yesNo);
+        }
+
+
+        public double GetBankTotalDebit(string CustID, YesNo yesNo)
+        {
+            return rmisGateway.GetBankTotalDebit(CustID, yesNo);
+        }
     }
 }

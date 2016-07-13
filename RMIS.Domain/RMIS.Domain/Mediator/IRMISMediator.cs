@@ -281,6 +281,10 @@ namespace RMIS.Domain.Mediator
         List<MJobWorkEntity> GetMJobWorkEntities(string CustId, int PageIndex, int PageSize, out int count, SortExpression expression, YesNo yesNo);
         MJobWorkEntity GetMJobWorkEntity(string JobWorkID, YesNo yesNo);
         PaddyPaymentDetailsEntity GetPaddyPaymentOnSellerid(string CustID, string SellerID, YesNo yesNo);
+
+        double GetBankTotalCredit(string CustID, YesNo yesNo);
+
+        double GetBankTotalDebit(string CustID, YesNo yesNo);
     }
 
 }

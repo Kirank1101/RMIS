@@ -167,5 +167,8 @@ namespace RMIS.Domain.Business
 
         string GetBuyerInfo(string BuyerName);
         ResultDTO SaveRentHulling(string JobWork, string Name, string PaddyType, int TotalBags, double Price, DateTime ProcessDate);
+        double GetBankBalance();
+
+        string NumberToWord(int Amount);
     }
 }

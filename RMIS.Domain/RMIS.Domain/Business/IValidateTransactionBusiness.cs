@@ -23,17 +23,12 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateEmployeeDetails(string EmployeeName, string city, string district, string state, string contactNo);
         ResultDTO ValidateEmployeeSalary(int EmployeeName, int SalaryType, int Designation, double Salary);
         ResultDTO ValidateEmployeeSalaryPayment(int EmployeeName, int SalaryType, int Designation, double Salary, double SalaryPaid, double OTCharges);
-
         ResultDTO ValidateOtherExpenses(string p, string p_2, double p_3);
-
         ResultDTO ValidateProductPaymentDetails(int PaymentMode, string Buyername, double ReceivedAmount, double TotalDueAmount);
-
         ResultDTO ValidateMediatorDetails(string MediatorName, string city, string district, string state, string contactNo);
-
         ResultDTO ValidateExpenseTransaction(int ExpenseType, string Name, string Reason, double Amount,string PayDate);
-
         ResultDTO ValidateRentHullingTransaction(int JobWorkType, string Name, string PaddyType, int TotalBags, double Price, string ProcessDate);
-
         ResultDTO ValidatePaddyStockReport(string SellerName, string PurchaseDateFrom, string PurchaseDateTo);
+        ResultDTO ValidateBankBalance(double BankBalance);
     }
 }

@@ -816,6 +816,15 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateBankBalance(double BankBalance)
+        {
+            if (BankBalance <= 0)
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBankTransactionBankBalance, provider.GetCurrentCustomerId()) };
+
+            return new ResultDTO();
+        }
     }
 }
 
