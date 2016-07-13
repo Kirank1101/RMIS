@@ -10,9 +10,7 @@ namespace RMIS.Entities.BackEnd
         private string _HullingProcessExpenID; 
         private string _HullingProcessID;        
         private string _CustID;
-        private double _PowerExpenses;
-        private double _LabourExpenses;
-        private double _OtherExpenses;
+        private double _HullingExpenses;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -32,21 +30,11 @@ namespace RMIS.Entities.BackEnd
             get { return _CustID; }
             set { _CustID = value; }
         }
-        public virtual double PowerExpenses
+        public virtual double HullingExpenses
         {
-            get { return _PowerExpenses; }
-            set { _PowerExpenses = value; }
+            get { return _HullingExpenses; }
+            set { _HullingExpenses = value; }
         }        
-        public virtual double LabourExpenses
-        {
-            get { return _LabourExpenses; }
-            set { _LabourExpenses = value; }
-        }
-        public virtual double OtherExpenses
-        {
-            get { return _OtherExpenses; }
-            set { _OtherExpenses = value; }
-        }
         public virtual string LastModifiedBy
         {
             get { return _LastModifiedBy; }

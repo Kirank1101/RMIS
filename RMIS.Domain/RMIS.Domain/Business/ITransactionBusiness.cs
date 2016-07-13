@@ -27,10 +27,10 @@ namespace RMIS.Domain.Business
         ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list,DateTime NextPayDate);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
-            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses);
+            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double HullingExpenses);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
-        ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses);
+        ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double HullingExpenses);
         ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Remarks);
         ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state,
                    string pincode, string contactNo, string mobileNo, string phoneNo);

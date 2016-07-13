@@ -82,6 +82,26 @@
             </td>
         </tr>
         <tr>
+            <td valign="top" colspan="8">
+                <h4>
+                    Hulling Process Expenses Details</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lblHullingExpenses" Text="<%$Resources:Resource,HullingExpenses%>"></asp:Label>
+                        </td>
+                        <td style="padding-left: 5px">
+                            <asp:TextBox ID="txtHullingExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
+                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
+                                FilterType="Numbers" TargetControlID="txtHullingExpenses">
+                            </ajaxToolkit:FilteredTextBoxExtender>
+                            &nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
             <td colspan="8">
                 <h4>
                     <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
@@ -183,8 +203,7 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtBRTotalBags" runat="server" MaxLength="3" Width="50px" 
-                                Height="22px"></asp:TextBox>
+                            <asp:TextBox ID="txtBRTotalBags" runat="server" MaxLength="3" Width="50px" Height="22px"></asp:TextBox>
                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
                                 FilterType="Numbers" TargetControlID="txtBRTotalBags">
                             </ajaxToolkit:FilteredTextBoxExtender>
@@ -271,8 +290,7 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtDustTotalBags" runat="server" MaxLength="3" Width="50px" 
-                                            Height="22px"></asp:TextBox>
+                                        <asp:TextBox ID="txtDustTotalBags" runat="server" MaxLength="3" Width="50px" Height="22px"></asp:TextBox>
                                         <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
                                             FilterType="Numbers" TargetControlID="txtDustTotalBags">
                                         </ajaxToolkit:FilteredTextBoxExtender>
@@ -286,50 +304,7 @@
                     </tr>
                 </table>
             </td>
-            <td valign="top" style="padding-left: 20px">
-                <h4>
-                    Hulling Process Expenses Details</h4>
-                <table>
-                    <tr>
-                        <td valign="top">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblPowerExpenses" Text="<%$Resources:Resource,PowerExpenses%>"></asp:Label>
-                                    </td>
-                                    <td style="padding-left: 5px">
-                                        <asp:TextBox ID="txtPowerExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
-                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
-                                            FilterType="Numbers" TargetControlID="txtPowerExpenses">
-                                        </ajaxToolkit:FilteredTextBoxExtender>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblLabourExpenses" Text="<%$Resources:Resource,LabourExpenses%>"></asp:Label>
-                                    </td>
-                                    <td style="padding-left: 5px">
-                                        <asp:TextBox ID="txtLabourExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
-                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                                            FilterType="Numbers" TargetControlID="txtLabourExpenses">
-                                        </ajaxToolkit:FilteredTextBoxExtender>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblOtherExpenses" Text="<%$Resources:Resource,OtherExpenses%>"></asp:Label>
-                                    </td>
-                                    <td style="padding-left: 5px">
-                                        <asp:TextBox ID="txtOtherExpenses" runat="server" MaxLength="5" Height="22px" Width="100px"></asp:TextBox>
-                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
-                                            FilterType="Numbers" TargetControlID="txtOtherExpenses">
-                                        </ajaxToolkit:FilteredTextBoxExtender>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+            <td>
             </td>
         </tr>
     </table>

@@ -12,9 +12,7 @@ namespace RMIS.Domain.RiceMill
         public string HullingProcessExpenID { get; set; }
         public string HullingProcessID { get; set; }
         public string CustID { get; set; }
-        public double PowerExpenses { get; set; }
-        public double LabourExpenses { get; set; }
-        public double OtherExpenses { get; set; }
+        public double HullingExpenses { get; set; }
         
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

@@ -9,9 +9,7 @@
     </id>
     <property name="HullingProcessID" column="HullingProcessID" />
     <property name="CustID" column="CustID" />
-    <property name="PowerExpenses" column="PowerExpenses" />
-    <property name="LabourExpenses" column="LabourExpenses" />
-    <property name="OtherExpenses" column="OtherExpenses" />
+    <property name="HullingExpenses" column="HullingExpenses" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

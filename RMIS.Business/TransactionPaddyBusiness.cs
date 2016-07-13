@@ -93,7 +93,7 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success08, provider.GetCurrentCustomerId()) };
         }
-        public Domain.DataTranserClass.ResultDTO 
+        public Domain.DataTranserClass.ResultDTO
             SavePaddyPaymentDetails(string sellerId, double amountPaid, DateTime paidDate, string handOverTo, DateTime nextPaymentDate, string PaddyStockID, string PaymentMode, string ChequeuNo, string BankName)
         {
             PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity = new PaddyPaymentDetailsEntity();
@@ -114,7 +114,7 @@ namespace RMIS.Business
 
             string sellername = GetSellerName(objPaddyPaymentDetailsEntity.SellerID);
             string description = sellername + ", " + "Paddy Payment, " + "PaymentID:" + objPaddyPaymentDetailsEntity.PaddyPaymentID + ", Paid Date:" + objPaddyPaymentDetailsEntity.PaidDate;
-            BankTransactionEntity BTE= SaveBankTransactionBusiness(description, objPaddyPaymentDetailsEntity.AmountPaid, 0, DateTime.Now);
+            BankTransactionEntity BTE = SaveBankTransactionBusiness(description, objPaddyPaymentDetailsEntity.AmountPaid, 0, DateTime.Now);
             try
             {
                 imp.BeginTransaction();
@@ -434,7 +434,7 @@ namespace RMIS.Business
             return objHullingProcessDTO;
         }
         public ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
-                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double PowerExpenses, double LabourExpenses, double OtherExpenses)
+                         List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double HullingExpenses)
         {
             try
             {
@@ -531,9 +531,7 @@ namespace RMIS.Business
                 HPEE.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
                 HPEE.CustID = provider.GetCurrentCustomerId();
                 HPEE.HullingProcessID = HullingProcessID;
-                HPEE.LabourExpenses = LabourExpenses;
-                HPEE.OtherExpenses = OtherExpenses;
-                HPEE.PowerExpenses = PowerExpenses;
+                HPEE.HullingExpenses = HullingExpenses;
                 HPEE.LastModifiedBy = provider.GetLoggedInUserId();
                 HPEE.LastModifiedDate = DateTime.Now;
                 HPEE.ObsInd = YesNo.N;
@@ -700,16 +698,14 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double PowerExpenses, double LabourExpenses, double OtherExpenses)
+        public ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double HullingExpenses)
         {
             HullingProcessExpensesEntity objHullingProcessExpensesEntity = new HullingProcessExpensesEntity();
             objHullingProcessExpensesEntity.ObsInd = YesNo.N;
             objHullingProcessExpensesEntity.HullingProcessExpenID = CommonUtil.CreateUniqueID("HPE");
             objHullingProcessExpensesEntity.HullingProcessID = HullingProcessID;
             objHullingProcessExpensesEntity.CustID = provider.GetCurrentCustomerId();
-            objHullingProcessExpensesEntity.PowerExpenses = PowerExpenses;
-            objHullingProcessExpensesEntity.LabourExpenses = LabourExpenses;
-            objHullingProcessExpensesEntity.OtherExpenses = OtherExpenses;
+            objHullingProcessExpensesEntity.HullingExpenses = HullingExpenses;
             objHullingProcessExpensesEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objHullingProcessExpensesEntity.LastModifiedDate = DateTime.Now;
 
@@ -1719,10 +1715,10 @@ namespace RMIS.Business
             ProPayTraEnt.ObsInd = YesNo.N;
 
             string Buyername = GetBuyerName(ProPayTraEnt.BuyerID);
-            
+
             string description = ProPayTraEnt.BankName + ", " + "Product Payment Received, " + "Product PaymentID:" + ProPayTraEnt.ProductPaymentTranID + ", Amount Received Date:" + DateTime.Now.ToString("dd-MMM-YYYY");
             BankTransactionEntity BTE = SaveBankTransactionBusiness(description, 0, ProPayTraEnt.ReceivedAmount, DateTime.Now);
-            
+
             try
             {
                 imp.BeginTransaction();
@@ -2003,9 +1999,14 @@ namespace RMIS.Business
             objBagPaymentDetailsEntity.PaymentMode = PaymentMode;
             objBagPaymentDetailsEntity.ChequeNo = ChequeuNo;
             objBagPaymentDetailsEntity.BankName = BankName;
+
+            string description = GetSellerName(objBagPaymentDetailsEntity.SellerID) + ", " + "Bag Payment, " + "BagPaymentID:" + objBagPaymentDetailsEntity.BagPaymentID + ", Bag Payment Paid On:" + DateTime.Now.ToString("dd-MMM-YYYY");
+            BankTransactionEntity BTE = SaveBankTransactionBusiness(description, objBagPaymentDetailsEntity.AmountPaid, 0, DateTime.Now);
+
             try
             {
                 imp.BeginTransaction();
+                imp.SaveOrUpdateBankTransactionEntity(BTE, false);
                 imp.SaveOrUpdateBagPaymentEntity(objBagPaymentDetailsEntity, false);
                 imp.CommitAndCloseSession();
             }
@@ -3024,9 +3025,13 @@ namespace RMIS.Business
             objExpenseTransactionEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objExpenseTransactionEntity.ObsInd = YesNo.N;
 
+            string description = objExpenseTransactionEntity.Name + ", " + "Expense Amount Paid, " + "ExpenseTransID:" + objExpenseTransactionEntity.ExpenseTransID + ", Amount Paid Date:" + DateTime.Now.ToString("dd-MMM-YYYY");
+            BankTransactionEntity BTE = SaveBankTransactionBusiness(description, objExpenseTransactionEntity.Amount, 0, DateTime.Now);
+
             try
             {
                 imp.BeginTransaction();
+                imp.SaveOrUpdateBankTransactionEntity(BTE, false);
                 imp.SaveOrUpdateExpenseTransEntity(objExpenseTransactionEntity, false);
                 imp.CommitAndCloseSession();
             }
@@ -3054,9 +3059,14 @@ namespace RMIS.Business
             objRentalHullingEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objRentalHullingEntity.ObsInd = YesNo.N;
 
+
+            string description = objRentalHullingEntity.Name + ", " + "Rent Hulling Amount Received, " + "RentHullingID:" + objRentalHullingEntity.RentalHulingID + ", Rent Hulling Amount Received:" + DateTime.Now.ToString("dd-MMM-YYYY");
+            BankTransactionEntity BTE = SaveBankTransactionBusiness(description, 0, (objRentalHullingEntity.TotalBags * objRentalHullingEntity.Price), DateTime.Now);
+
             try
             {
                 imp.BeginTransaction();
+                imp.SaveOrUpdateBankTransactionEntity(BTE, false);
                 imp.SaveOrUpdateRentalHullingEntity(objRentalHullingEntity, false);
                 imp.CommitAndCloseSession();
             }
@@ -3093,7 +3103,6 @@ namespace RMIS.Business
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
-
         public List<PaddyStockDTO> GetPaddyPaymentScheduleDTO(int pageindex, int pageSize, out int count, SortExpression expression)
         {
             List<PaddyStockDTO> listPaddyPaymentSchedule = null;
@@ -3125,8 +3134,6 @@ namespace RMIS.Business
 
             return listPaddyPaymentSchedule;
         }
-
-
         public double GetBankBalance()
         {
 

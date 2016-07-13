@@ -198,7 +198,7 @@ public partial class HullingProcess : BaseUserControl
         lstRSD = GetRiceStockDetails();
         if (lstRSD.Count > 0 && lstBRSD.Count > 0 && ddlDustUnitsType.SelectedIndex > 0 && txtDustPriceperQuintal.Text.ConvertToDouble() > 0 && txtDustTotalBags.Text.ConvertToInt() > 0)
         {
-            resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, lstRSD, lstBRSD, ddlDustUnitsType.SelectedValue, ddlDustUnitsType.SelectedItem.Text.ConvertToInt(), txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperQuintal.Text.ConvertToDouble(), txtPowerExpenses.Text.ConvertToDouble(), txtLabourExpenses.Text.ConvertToDouble(), txtOtherExpenses.Text.ConvertToDouble());
+            resultDto = imp.SaveHullingProcessTransInfo(VSHullingProcessID, lstRSD, lstBRSD, ddlDustUnitsType.SelectedValue, ddlDustUnitsType.SelectedItem.Text.ConvertToInt(), txtDustTotalBags.Text.ConvertToInt(), txtDustPriceperQuintal.Text.ConvertToDouble(), (txtHullingExpenses.Text.ConvertToDouble() * txtTotalBags.Text.ConvertToInt()));
             SetMessage(resultDto);
             if (resultDto.IsSuccess)
                 ClearAllInputFieldsOnSaveAndClose();
@@ -351,9 +351,7 @@ public partial class HullingProcess : BaseUserControl
         txtDustPriceperQuintal.Text = string.Empty;
         txtDustTotalBags.Text = string.Empty;
 
-        txtPowerExpenses.Text = string.Empty;
-        txtOtherExpenses.Text = string.Empty;
-        txtLabourExpenses.Text = string.Empty;
+        txtHullingExpenses.Text = string.Empty;
 
         VststateBrokenRiceStockDetail = null;
         ViewStateRiceStockDetail = null;
@@ -389,7 +387,7 @@ public partial class HullingProcess : BaseUserControl
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
         double totalpaddyprice = getpaddyprice(txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble());
-        double totOtherExpences = GetOtherExpences(txtPowerExpenses.Text.ConvertToDouble(), txtLabourExpenses.Text.ConvertToDouble(), txtOtherExpenses.Text.ConvertToDouble());
+        double totOtherExpences = txtHullingExpenses.Text.ConvertToDouble();
         double totalRiceQuital = gettotalRiceWeight();
         double totalbrprice = getbrprice();
         double totdustprice = getdustprice();
@@ -402,10 +400,6 @@ public partial class HullingProcess : BaseUserControl
         lbltotdustprice.Text = Convert.ToString(totdustprice);
         lbltotriceprice.Text = Convert.ToString(totalbalance);
         lblpriceperricebag.Text = Convert.ToString(Priceperricebag);
-    }
-    private double GetOtherExpences(double PowerExpenses, double LabourExpenses, double OtherExpenses)
-    {
-        return (PowerExpenses + LabourExpenses + OtherExpenses);
     }
     private double GetRicePricePerQuintal(double totalbalance, double TotalRicequintal)
     {
