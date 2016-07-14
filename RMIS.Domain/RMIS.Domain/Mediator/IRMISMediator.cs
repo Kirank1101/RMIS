@@ -291,6 +291,8 @@ namespace RMIS.Domain.Mediator
         double GetBankTotalDebit(string CustID, YesNo yesNo);
 
         List<BankTransactionEntity> GetBankTransactionEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<BankTransactionEntity> GetBankTransactionEntity(string CustID, DateTime TranFromDate, DateTime TranToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }
