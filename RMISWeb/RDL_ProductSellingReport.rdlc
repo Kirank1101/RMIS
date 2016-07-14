@@ -339,7 +339,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Price</Value>
+                              <Value>Price/Qtl</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>

@@ -2783,7 +2783,6 @@ namespace RMIS.Business
                     }
                     ProdSelling.UnitsType = lstUnitType.Where(unt => unt.UnitsTypeID == item.UnitsTypeID).Select(unt => unt.UnitsType).SingleOrDefault();
                     ProdSelling.TotalBags = item.TotalBags;
-                    ProdSelling.Price = item.Price;
                     ProdSelling.TotalPrice = item.TotalBags * item.Price;
                     ProdSelling.ProductSellingDate = item.SellingDate;
                     listProductSellingInfoDTO.Add(ProdSelling);
