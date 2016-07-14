@@ -825,6 +825,16 @@ namespace RMIS.Business
 
             return new ResultDTO();
         }
+
+
+        public ResultDTO ValidateBankTransReport(string TransFromDate, string TransToDate)
+        {
+            if (string.IsNullOrEmpty(TransFromDate) || string.IsNullOrEmpty(TransToDate) || !TransFromDate.IsDate() || !TransToDate.IsDate())
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBankTransValidDate, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();            
+        }
     }
 }
 

@@ -30,5 +30,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateRentHullingTransaction(int JobWorkType, string Name, string PaddyType, int TotalBags, double Price, string ProcessDate);
         ResultDTO ValidatePaddyStockReport(string SellerName, string PurchaseDateFrom, string PurchaseDateTo);
         ResultDTO ValidateBankBalance(double BankBalance);
+
+        ResultDTO ValidateBankTransReport(string TransFromDate, string TransToDate);
     }
 }

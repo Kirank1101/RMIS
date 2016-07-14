@@ -269,5 +269,30 @@ namespace RMIS.Domain.DataTranserClass
         public string ContactNo { get; set; }
         public string MobileNo { get; set; }
     }
-    
+
+    public class BankTransactionDTO
+    {
+        public DateTime TransactionDate { get; set; }
+        public string Description { get; set; }
+        public double Withdrawal { get; set; }
+        public double Deposits { get; set; }
+        public double Balance { get; set; }
+    }
+    public class RentHullingDTO
+    {
+        public string JobType { get; set; }
+        public string Name { get; set; }
+        public string PaddyType { get; set; }
+        public int TotalBags { get; set; }
+        public double Price { get; set; }
+        public DateTime ProcessDate { get; set; }
+    }
+    public class OtherExpenses
+    {
+        public string ExpenseType { get; set; }
+        public string Name { get; set; }
+        public double PaidAmount { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string Reason { get; set; }
+    }
 }

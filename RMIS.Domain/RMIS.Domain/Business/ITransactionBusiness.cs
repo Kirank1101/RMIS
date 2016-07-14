@@ -130,16 +130,12 @@ namespace RMIS.Domain.Business
         double GetBagTotalAmountDueBySeller(string SellerID);
 
         List<PaddyStockOverViewDTO> GetPaddyStockOverViewDTO(int PageIndex, int PageSize, out int count, SortExpression expression);
-
         List<PaddyStockDTO> GetPaddyStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, DateTime PurchaseDateFrom, DateTime PurchaseDateTo);
-
         List<PaddyPaymentDTO> GetPaddyPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
-
         List<PaddyPaymentDTO> GetPaddyPaymentDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
-
         List<PaddyPaymentDueDTO> GetPaddyPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
-
         List<BagStockDTO> GetBagStockPurchaseDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<BankTransactionDTO> GetBankTransactionDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
         int GetPaddyStockOnPaddyType(string PaddyTypeID, string UnitTypeName, string GodownName, string LotName);
 
@@ -173,5 +169,9 @@ namespace RMIS.Domain.Business
         string GetUniquePassword();
 
         string NumberToWord(int Amount);
+
+
+
+        List<BankTransactionDTO> GetBankTransactionDTO(DateTime TranFromDate, DateTime TranToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }

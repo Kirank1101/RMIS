@@ -1654,5 +1654,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetUsersEntityOnUserName(userName, yesNo);
         }
+
+
+        public List<BankTransactionEntity> GetBankTransactionEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetBankTransactionEntities(CustID, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
     }
 }

@@ -417,4 +417,10 @@
   <data name="ProcessDate" xml:space="preserve">
     <value>Process Date</value>
   </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
 </root>

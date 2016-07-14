@@ -5417,5 +5417,43 @@
                 throw;
             }
         }
+
+        internal List<BankTransactionEntity> GetBankTransactionEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<BankTransactionEntity> listBankTransactionEntity = new List<BankTransactionEntity>();
+                IRepository<BankTransaction> UsersRepository = new RepositoryImpl<BankTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(BankTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustID))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("TransactionDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(BankTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("TransactionDate"));
+
+
+                List<BankTransaction> listBankTransaction = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<BankTransaction>;
+                if (listBankTransaction != null && listBankTransaction.Count > 0)
+                {
+                    foreach (BankTransaction adMInfo in listBankTransaction)
+                        listBankTransactionEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetBankTransactionEntity(adMInfo));
+                }
+                else
+                    listBankTransactionEntity = null;
+
+                return listBankTransactionEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetBankTransactionEntities", ex);
+                throw;
+            }
+        }
     }
 }

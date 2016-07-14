@@ -1747,9 +1747,7 @@ namespace RMIS.Business
             ProPayTraEnt.LastModifiedDate = DateTime.Now;
             ProPayTraEnt.ObsInd = YesNo.N;
 
-            string Buyername = GetBuyerName(ProPayTraEnt.BuyerID);
-
-            string description = ProPayTraEnt.BankName + ", " + "Product Payment Received, " + "Product PaymentID:" + ProPayTraEnt.ProductPaymentTranID + ", Amount Received Date:" + DateTime.Now.ToString("dd-MMM-YYYY");
+            string description = GetBuyerName(ProPayTraEnt.BuyerID) + ", " + "Product Payment Received, " + "Product PaymentID:" + ProPayTraEnt.ProductPaymentTranID + ", Amount Received Date:" + DateTime.Now.ToString("dd-MMM-YYYY");
             BankTransactionEntity BTE = SaveBankTransactionBusiness(description, 0, ProPayTraEnt.ReceivedAmount, DateTime.Now);
 
             try
@@ -3246,6 +3244,61 @@ namespace RMIS.Business
                 words += strones[single - 1] + " ";
 
             return words;
+        }
+
+
+        public List<BankTransactionDTO> GetBankTransactionDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+
+            List<BankTransactionDTO> listBankTransactionDTO = null;
+            List<BankTransactionEntity> listBankTransactionEntity = imp.GetBankTransactionEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            if (listBankTransactionEntity != null && listBankTransactionEntity.Count > 0)
+            {
+                listBankTransactionDTO = new List<BankTransactionDTO>();
+                bool flg = true;
+                double Deposits = 0, Withdrawals = 0;
+                DateTime transdate=DateTime.Now;
+                int runningcount = 0;
+                    
+                foreach (BankTransactionEntity objBankTransactionEntity in listBankTransactionEntity)
+                {
+                    int lstcount = listBankTransactionEntity.Count;
+                    BankTransactionDTO objBankTransactionDTO = new BankTransactionDTO();
+                    objBankTransactionDTO.TransactionDate = objBankTransactionEntity.TransactionDate;
+                    objBankTransactionDTO.Description = objBankTransactionEntity.Description;
+                    if (flg)
+                    {
+                        transdate = objBankTransactionDTO.TransactionDate;
+                        flg = false;
+                    }
+                    else
+                    {
+                        if (transdate != objBankTransactionDTO.TransactionDate)
+                        {
+                            listBankTransactionDTO[listBankTransactionDTO.Count-1].Balance = (Deposits - Withdrawals);
+                            transdate = objBankTransactionDTO.TransactionDate;
+                        }
+                    }
+                    objBankTransactionDTO.Withdrawal = objBankTransactionEntity.Withdraw;
+                    objBankTransactionDTO.Deposits = objBankTransactionEntity.Deposit;
+                    Deposits += objBankTransactionDTO.Deposits;
+                    Withdrawals += objBankTransactionDTO.Withdrawal;
+                    
+                    listBankTransactionDTO.Add(objBankTransactionDTO);
+                    runningcount += 1;
+                    if(lstcount==runningcount)
+                        listBankTransactionDTO[listBankTransactionDTO.Count - 1].Balance = (Deposits - Withdrawals);
+                            
+                }
+            }
+
+            return listBankTransactionDTO;            
+        }
+
+
+        public List<BankTransactionDTO> GetBankTransactionDTO(DateTime TranFromDate, DateTime TranToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            throw new NotImplementedException();
         }
     }
 }
