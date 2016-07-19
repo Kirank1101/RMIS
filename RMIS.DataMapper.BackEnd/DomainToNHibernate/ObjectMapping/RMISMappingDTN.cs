@@ -245,6 +245,9 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    .ForMember(dest => dest.AllBagsUsed, opts => opts.MapFrom(src => src.AllBagsUsed))
+                    .ForMember(dest => dest.PriceAdjust, opts => opts.MapFrom(src => src.PriceAdjust))
+                    .ForMember(dest => dest.UsedBags, opts => opts.MapFrom(src => src.UsedBags))
                     ;
 
             }

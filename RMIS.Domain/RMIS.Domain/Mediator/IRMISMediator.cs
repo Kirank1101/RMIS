@@ -155,7 +155,7 @@ namespace RMIS.Domain.Mediator
         List<SellerInfoEntity> GetSellerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<EmployeeDetailsEntity> GetEmployeeDetailsEntities(string custId, YesNo yesNo, int count, string prefixText);
         List<BuyerInfoEntity> GetBuyerInfoEntities(string custId, YesNo yesNo, int count, string prefixText);
-        List<BankTransactionEntity> GetBankTransactionEntities(string CustID, YesNo yesNo); 
+        List<BankTransactionEntity> GetBankTransactionEntities(string CustID, YesNo yesNo);
         int GetMPaddyTypeEntitiesTotal(string CustId, YesNo yesNo);
         int GetBrokenRiceStockInfoCount(string CustId, YesNo yesNo);
         int GetMRiceProductionTypeCount(string CustId, YesNo yesNo);
@@ -293,6 +293,9 @@ namespace RMIS.Domain.Mediator
         List<BankTransactionEntity> GetBankTransactionEntities(string CustID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
 
         List<BankTransactionEntity> GetBankTransactionEntity(string CustID, DateTime TranFromDate, DateTime TranToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+        HullingProcessExpensesEntity GetAllHullingProcessExpensesEntity(string CustID, string HullingProcessID, YesNo yesNo);
+
+        List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID,int TotalBags, YesNo yesNo);
     }
 
 }

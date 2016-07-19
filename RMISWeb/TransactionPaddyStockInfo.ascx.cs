@@ -142,7 +142,7 @@ public partial class TransactionPaddyStockInfo : BaseUserControl
                 if (resultDto.IsSuccess)
                 {
                     ClearAllPaddyStockFields();
-                    //bindPaddyStockInfo();
+                    BindPaddyStockOverView();
                 }
             }
             else

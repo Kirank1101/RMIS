@@ -225,7 +225,10 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                     .ForMember(dest => dest.NextPayDate, opts => opts.MapFrom(src => src.NextPayDate))
                     .ForMember(dest => dest.ObsInd, opts => opts.MapFrom(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
-                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));
+                    .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate))
+                    .ForMember(dest => dest.AllBagsUsed, opts => opts.MapFrom(src => src.AllBagsUsed))
+                    .ForMember(dest => dest.PriceAdjust, opts => opts.MapFrom(src => src.PriceAdjust))
+                    .ForMember(dest => dest.UsedBags, opts => opts.MapFrom(src => src.UsedBags));
             }
             catch (Exception ex)
             {
@@ -239,7 +242,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
             {
                 Mapper.CreateMap<BagStockInfo, BagStockInfoEntity>()
                     .ForMember(dest => dest.BagStockID, opts => opts.MapFrom(src => src.BagStockID))
-                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))                   
+                    .ForMember(dest => dest.SellerID, opts => opts.MapFrom(src => src.SellerID))
                     .ForMember(dest => dest.CustID, opts => opts.MapFrom(src => src.CustID))
                     .ForMember(dest => dest.UnitsTypeID, opts => opts.MapFrom(src => src.UnitsTypeID))
                     .ForMember(dest => dest.MRiceBrandID, opts => opts.MapFrom(src => src.MRiceBrandID))
@@ -605,7 +608,7 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-        
+
         internal void MapProductSellingInfoEntity()
         {
             try
@@ -1131,6 +1134,6 @@ namespace RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapping
                 throw;
             }
         }
-        
+
     }
 }

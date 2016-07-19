@@ -23,6 +23,9 @@ namespace RMIS.Entities.BackEnd
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
+        private int _UsedBags;
+        private decimal _PriceAdjust;
+        private string _AllBagsUsed;
 
         public virtual string PaddyStockID
         {
@@ -104,5 +107,21 @@ namespace RMIS.Entities.BackEnd
             get { return _ObsInd; }
             set { _ObsInd = value; }
         }
+        public virtual string AllBagsUsed
+        {
+            get { return _AllBagsUsed; }
+            set { _AllBagsUsed = value; }
+        }
+        public virtual decimal PriceAdjust
+        {
+            get { return _PriceAdjust; }
+            set { _PriceAdjust = value; }
+        }
+        public virtual int UsedBags
+        {
+            get { return _UsedBags; }
+            set { _UsedBags = value; }
+        }        
     }
+
 }

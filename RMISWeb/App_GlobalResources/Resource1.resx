@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="City" xml:space="preserve">
+    <value>ನಗರ</value>
+  </data>
+  <data name="ContactNo" xml:space="preserve">
+    <value>ಸಂಪರ್ಕ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>ಜಿಲ್ಲೆ</value>
+  </data>
+  <data name="GodownName" xml:space="preserve">
+    <value>ಗೋದಾಮು ಹೆಸರು</value>
+  </data>
+  <data name="IsGodownDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="IsLotDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="IsPaddyDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="IsRiceDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="LotDetails" xml:space="preserve">
+    <value>ಲಾಟ್ ವಿವರ</value>
+  </data>
+  <data name="MobileNo" xml:space="preserve">
+    <value>ಮೊಬೈಲ್ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="PaddyType" xml:space="preserve">
+    <value>ಭತ್ತ ಮಾದರಿ</value>
+  </data>
+  <data name="PhoneNo" xml:space="preserve">
+    <value>ದೂರವಾಣಿ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="Pincode" xml:space="preserve">
+    <value>ಪಿನ್ ಕೋಡ್</value>
+  </data>
+  <data name="PruchaseDate" xml:space="preserve">
+    <value>Purchase Date</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>ಬೆಲೆ</value>
+  </data>
+  <data name="QWeight" xml:space="preserve">
+    <value>Total Weight</value>
+  </data>
+  <data name="RiceType" xml:space="preserve">
+    <value>Rice Type</value>
+  </data>
+  <data name="SellerName" xml:space="preserve">
+    <value>Seller Name</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Street1" xml:space="preserve">
+    <value>Street1</value>
+  </data>
+  <data name="Street2" xml:space="preserve">
+    <value>Street2</value>
+  </data>
+  <data name="totalbags" xml:space="preserve">
+    <value>Total Bags</value>
+  </data>
+  <data name="Town" xml:space="preserve">
+    <value>Town</value>
+  </data>
+  <data name="VehicalNo" xml:space="preserve">
+    <value>Vehical No</value>
+  </data>
+  <data name="AmountPaid" xml:space="preserve">
+    <value>ಹಣ ಪಾವತಿಗಳು</value>
+  </data>
+  <data name="Nextpaymentdate" xml:space="preserve">
+    <value>ಮುಂದಿನ ಹಣ ಪಾವತಿ ದಿನಾಂಕ</value>
+  </data>
+  <data name="PaidDate" xml:space="preserve">
+    <value>ಪಾವತಿ ದಿನಾಂಕ</value>
+  </data>
+  <data name="AmountGivenTo" xml:space="preserve">
+    <value>ಹಣ ಪಡೆದವರು</value>
+  </data>
+  <data name="BagType" xml:space="preserve">
+    <value>ಚೀಲ ಮಾದರಿ</value>
+  </data>
+  <data name="IsBagDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="DriverName" xml:space="preserve">
+    <value>ಚಾಲಕನ ಹೆಸರು</value>
+  </data>
+  <data name="IsUnitsDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="PricePerBag" xml:space="preserve">
+    <value>ಪ್ರತಿ ಚೀಲದ ಬೆಲೆ</value>
+  </data>
+  <data name="UnitsType" xml:space="preserve">
+    <value>Units Mesured In</value>
+  </data>
+  <data name="BrokenRiceType" xml:space="preserve">
+    <value>ನುಚ್ಚು ಮಾದರಿ</value>
+  </data>
+  <data name="IsBrokenRiceDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="SellingDate" xml:space="preserve">
+    <value>Selling Date</value>
+  </data>
+  <data name="QPrice" xml:space="preserve">
+    <value>Price per Quintal</value>
+  </data>
+  <data name="IsProductDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="ProductSellingType" xml:space="preserve">
+    <value>Selling Product Type</value>
+  </data>
+  <data name="HullingProcessBy" xml:space="preserve">
+    <value>ಪ್ರಕ್ರಿಯೆ By</value>
+  </data>
+  <data name="HullingProcessDate" xml:space="preserve">
+    <value>ಪ್ರಕ್ರಿಯೆ ದಿನಾಂಕ</value>
+  </data>
+  <data name="PaddyPurchasedDate" xml:space="preserve">
+    <value>ಖರೀದಿಸಿದ ದಿನಾಂಕ</value>
+  </data>
+  <data name="HullingExpenses" xml:space="preserve">
+    <value>Hulling Expenses</value>
+  </data>
+  <data name="PricePerBags" xml:space="preserve">
+    <value>ಪ್ರತಿ ಚೀಲದ ಬೆಲೆ</value>
+  </data>
+  <data name="BalanceAmount" xml:space="preserve">
+    <value>ಬಾಕಿ ಹಣ</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>ಬ್ಯಾಂಕ್ ಹೆಸರು</value>
+  </data>
+  <data name="ChequeNo" xml:space="preserve">
+    <value>ಚಕ್ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="DDNo" xml:space="preserve">
+    <value>ಡಿ ಡಿ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="OrderNo" xml:space="preserve">
+    <value>OrderNo</value>
+  </data>
+  <data name="PaymentMode" xml:space="preserve">
+    <value>ಪಾವತಿ ವಿಧಾನ</value>
+  </data>
+  <data name="ReceivedAmount" xml:space="preserve">
+    <value>Received Amount</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="IsRiceBrandDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="BuyerName" xml:space="preserve">
+    <value>ಖರೀದಿದಾರ ಹೆಸರು</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>ಹುದ್ದೆ</value>
+  </data>
+  <data name="DesigType" xml:space="preserve">
+    <value>ಹುದ್ದೆ ಮಾದರಿ</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>ಉದ್ಯೋಗಿ ಹೆಸರು</value>
+  </data>
+  <data name="IsDesigDeleted" xml:space="preserve">
+    <value>IsDeleted</value>
+  </data>
+  <data name="IsSalaryDeleted" xml:space="preserve">
+    <value>IsDeleted</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>Salary Type</value>
+  </data>
+  <data name="OTPay" xml:space="preserve">
+    <value>ಬಾರಿ ಪಾವತಿ ಮೇಲೆ</value>
+  </data>
+  <data name="PaymentDt" xml:space="preserve">
+    <value>ಪಾವತಿ ದಿನಾಂಕ</value>
+  </data>
+  <data name="SalaryPaid" xml:space="preserve">
+    <value>Salary Payment</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>ವಿವರಣೆ</value>
+  </data>
+  <data name="GivenTo" xml:space="preserve">
+    <value>ಹಣ ಪಡೆದವರು</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ಹೆಸರು</value>
+  </data>
+  <data name="ProductID" xml:space="preserve">
+    <value>ಉತ್ಪನ್ನ ಐಡಿ</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>ಉತ್ಪನ್ನ ಹೆಸರು</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="PricePerRiceBag" xml:space="preserve">
+    <value>ಪ್ರತಿ ಅಕ್ಕಿ ಚೀಲದ ಬೆಲೆ</value>
+  </data>
+  <data name="TotalBrokenRicePrice" xml:space="preserve">
+    <value>Total Broken Rice Price</value>
+  </data>
+  <data name="TotalDustPrice" xml:space="preserve">
+    <value>Total Dust Price</value>
+  </data>
+  <data name="TotalExpenses" xml:space="preserve">
+    <value>Total Expenses</value>
+  </data>
+  <data name="TotalPaddyCost" xml:space="preserve">
+    <value>Total Paddy Cost</value>
+  </data>
+  <data name="TotalRicePrice" xml:space="preserve">
+    <value>Total Rice Price</value>
+  </data>
+  <data name="BrandName" xml:space="preserve">
+    <value>ಬ್ರ್ಯಾಂಡ್ ಹೆಸರು</value>
+  </data>
+  <data name="ItemNo" xml:space="preserve">
+    <value>ಐಟಂ ಸಂಖ್ಯೆ</value>
+  </data>
+  <data name="PaymentID" xml:space="preserve">
+    <value>Payment ID</value>
+  </data>
+  <data name="SlNo" xml:space="preserve">
+    <value>Sl No</value>
+  </data>
+  <data name="TotalAmountDue" xml:space="preserve">
+    <value>Total Amount Due</value>
+  </data>
+  <data name="PaddyStockforHulling" xml:space="preserve">
+    <value>Paddy Stock for Hulling Process:</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="MediatorName" xml:space="preserve">
+    <value>ಮಧ್ಯವರ್ತಿ ಹೆಸರು</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Mediator Name</value>
+  </data>
+  <data name="PricePerQtl" xml:space="preserve">
+    <value>ಬೆಲೆ / ಕ್ವಿಂಟಾಲ್</value>
+  </data>
+  <data name="PriceperQuintal" xml:space="preserve">
+    <value>ಬೆಲೆ / ಕ್ವಿಂಟಾಲ್</value>
+  </data>
+  <data name="RicePriceperQuintal" xml:space="preserve">
+    <value>Rice Price per Quintal</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>ಹಣ</value>
+  </data>
+  <data name="ExpenseType" xml:space="preserve">
+    <value>ವೆಚ್ಚ ಮಾದರಿ</value>
+  </data>
+  <data name="IsExpenseDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="PayDate" xml:space="preserve">
+    <value>ಪಾವತಿ ದಿನಾಂಕ</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="IsJobWorkDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="JobWorkType" xml:space="preserve">
+    <value>ಪ್ರಕ್ರಿಯೆ ಮಾದರಿ</value>
+  </data>
+  <data name="ProcessDate" xml:space="preserve">
+    <value>ಪ್ರಕ್ರಿಯೆ ದಿನಾಂಕ</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+</root>

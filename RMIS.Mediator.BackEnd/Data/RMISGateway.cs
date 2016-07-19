@@ -5496,6 +5496,83 @@
             }
         }
 
-        
+
+
+     
+
+        internal HullingProcessExpensesEntity GetAllHullingProcessExpensesEntity(string CustID, string HullingProcessID, YesNo yesNo)
+        {
+            try
+            {
+                HullingProcessExpensesEntity HullingProcessExpensesEntity = new HullingProcessExpensesEntity();
+                IRepository<HullingProcessExpenses> UsersRepository = new RepositoryImpl<HullingProcessExpenses>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(HullingProcessExpenses))
+                                                                   .Add(Expression.Eq("CustID", CustID))
+                                                                   .Add(Expression.Eq("HullingProcessID", HullingProcessID))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<HullingProcessExpenses> listHullingProcessExpensesEntity = UsersRepository.GetAll(detachedCriteria) as List<HullingProcessExpenses>;
+                if (listHullingProcessExpensesEntity != null && listHullingProcessExpensesEntity.Count > 0)
+                {
+                    foreach (HullingProcessExpenses adMInfo in listHullingProcessExpensesEntity)
+                    {
+                        HullingProcessExpensesEntity = RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetHullingProcessExpensesEntityInfoEntity(adMInfo);
+                    }
+                }
+                else
+                    HullingProcessExpensesEntity = null;
+
+                return HullingProcessExpensesEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetHullingProcessExpensesEntity", ex);
+                throw;
+            }           
+        }
+
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID,int TotalBags, YesNo yesNo)
+        {
+            try
+            {
+                List<PaddyStockInfoEntity> listPaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("PaddyTypeID", PaddyTypeID))
+                                                                   .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
+                                                                   .Add(Expression.Eq("MGodownID", GodownID))
+                                                                   .Add(Expression.Eq("MLotID", LotID))
+                                                                   .AddOrder(Order.Asc("LastModifiedDate"))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+
+                                                                   );
+                List<PaddyStockInfo> listPaddyStockInfo = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
+                if (listPaddyStockInfo != null && listPaddyStockInfo.Count > 0)
+                {
+                    int totbags=0;
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfo)
+                    {
+                        listPaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                        if (adMInfo.UsedBags > 0)
+                            totbags += (adMInfo.TotalBags - adMInfo.UsedBags);
+                        else
+                            totbags += adMInfo.TotalBags;
+
+                        if (totbags >= TotalBags)
+                            break;
+                    }
+                }
+                else
+                    listPaddyStockInfoEntity = null;
+
+                return listPaddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyStockInfoEntities", ex);
+                throw;
+            }           
+        }
     }
 }

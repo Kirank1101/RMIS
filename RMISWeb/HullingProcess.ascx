@@ -59,12 +59,19 @@
                     FilterType="Numbers" TargetControlID="txtTotalBags">
                 </ajaxToolkit:FilteredTextBoxExtender>
             </td>
+
+            <td>
+            <asp:Button ID="btnGetPaddyPrice" runat="server" Text="Get Paddy Price" OnClick="btnGetPaddyPrice_Click" />
+            </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBoxBagPrice ID="txtpaddyprice" runat="server" Mask="99,999.99"></asp:TextBoxBagPrice>
+                <asp:TextBox ID="txtpaddyprice" runat="server" MaxLength="4" Height="22px" Width="100px" ></asp:TextBox>
+                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
+                    FilterType="Numbers" TargetControlID="txtpaddyprice">
+                </ajaxToolkit:FilteredTextBoxExtender>
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label><span

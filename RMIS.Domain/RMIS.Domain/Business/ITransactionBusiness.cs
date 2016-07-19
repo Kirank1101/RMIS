@@ -25,9 +25,9 @@ namespace RMIS.Domain.Business
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
         ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list,DateTime NextPayDate);
-        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status);
+        ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status, double HullingExpenses);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
-            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag, double HullingExpenses);
+            List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag);
         ResultDTO SaveÜserInfo(string userName, string passWord, string custId);
         ResultDTO SaveÜserRole(string userId, string roleId, string custId);
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double HullingExpenses);
@@ -173,5 +173,10 @@ namespace RMIS.Domain.Business
 
 
         List<BankTransactionDTO> GetBankTransactionDTO(DateTime TranFromDate, DateTime TranToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        double ConverToPriceperBag(int UnitType, double PriceperQuintal);
+
+        HullingProcessExpenseDTO GetAllHullingProcessExpensesEntity(string HullingProcessID);
+
+        double GetAvgPaddyPrice(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags);
     }
 }

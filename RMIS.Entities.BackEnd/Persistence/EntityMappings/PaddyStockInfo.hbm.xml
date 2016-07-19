@@ -22,6 +22,9 @@
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />
+    <property name="PriceAdjust" column="PriceAdjust" />
+    <property name="UsedBags" column="UsedBags" />
+    <property name="AllBagsUsed" column="AllBagsUsed" />
 
   </class>
 </hibernate-mapping>

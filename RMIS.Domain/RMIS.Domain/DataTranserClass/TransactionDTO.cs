@@ -234,6 +234,14 @@ namespace RMIS.Domain.DataTranserClass
         public DateTime ProcessDate { get; set; }
         public string Status { get; set; }
     }
+
+    public class HullingProcessExpenseDTO
+    {
+        public string HullingProcessExpenID { get; set; }
+        public string HullingProcessID { get; set; }
+        public double HullingExpenses { get; set; }
+        
+    }
     public class PaddySpentOnHullingProcessDTO
     {
         public PaddySpentOnHullingProcessDTO()

@@ -1666,5 +1666,17 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetBankTransactionEntity(CustID, TranFromDate, TranToDate, pageindex, pageSize, out count, sortExpression, yesNo);
         }
+
+
+        public HullingProcessExpensesEntity GetAllHullingProcessExpensesEntity(string CustID, string HullingProcessID, YesNo yesNo)
+        {
+            return rmisGateway.GetAllHullingProcessExpensesEntity(CustID,HullingProcessID,yesNo);
+        }
+
+
+        public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyStockInfoEntities(CustId, PaddyTypeID, UnitTypeID, GodownID, LotID,TotalBags, yesNo);
+        }
     }
 }
