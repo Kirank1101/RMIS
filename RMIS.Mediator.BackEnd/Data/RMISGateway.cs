@@ -5543,6 +5543,7 @@
                                                                    .Add(Expression.Eq("UnitsTypeID", UnitTypeID))
                                                                    .Add(Expression.Eq("MGodownID", GodownID))
                                                                    .Add(Expression.Eq("MLotID", LotID))
+                                                                   .Add(Expression.Eq("AllBagsUsed", "N"))
                                                                    .AddOrder(Order.Asc("LastModifiedDate"))
                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
 

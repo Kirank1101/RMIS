@@ -55,7 +55,8 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
         public DateTime NextPayDate { get; set; }
-
+        public int UsedBags { get; set; }
+        public string AllBagsUsed { get; set; }
     }
     public class PaddyStockOverViewDTO
     {

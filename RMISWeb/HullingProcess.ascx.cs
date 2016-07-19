@@ -5,6 +5,7 @@ using RMIS.Domain.DataTranserClass;
 using System.Collections.Generic;
 using AllInOne.Common.Library.Util;
 using System.Web.UI.WebControls;
+using System.Linq;
 
 public partial class HullingProcess : BaseUserControl
 {
@@ -215,7 +216,10 @@ public partial class HullingProcess : BaseUserControl
     protected void btnGetPaddyPrice_Click(object sender, EventArgs e)
     { 
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        double GetPaddyPrice = imp.GetAvgPaddyPrice(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue, txtTotalBags.Text.ConvertToInt());
+
+        List<PaddyStockDTO> lstPSDTO = imp.GetAvgPaddyPrice(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue, txtTotalBags.Text.ConvertToInt());
+        double GetPaddyPrice = lstPSDTO.Sum(x => x.Price)/lstPSDTO.Count;
+        txtpaddyprice.Text = Convert.ToString(GetPaddyPrice);
     }
     protected void ddlPaddyType_SelectedIndexChanged(object sender, EventArgs e)
     {

@@ -412,6 +412,16 @@ namespace RMIS.Business
                 imp.BeginTransaction();
                 imp.SaveOrUpdateHullingProcessInfoEntity(objHullingProcessEntity, false);
                 imp.SaveOrUpdateHullingProcessExpensesInfoEntity(HPEE, false);
+
+                List<PaddyStockDTO> lstPSDTO = GetAvgPaddyPrice(PaddyTypeID, UnitsTypeID, GodownID, LotID, TotalPaddyBags);
+                foreach (PaddyStockDTO PSDTO in lstPSDTO)
+                {
+                    PaddyStockInfoEntity PSIE = imp.GetPaddyStockInfoEntity(PSDTO.Id, YesNo.N);
+                    PSIE.UsedBags = PSDTO.UsedBags;
+                    PSIE.AllBagsUsed = PSDTO.AllBagsUsed;
+                    imp.SaveOrUpdatePaddyStockInfoEntity(PSIE, true);
+                }
+
                 imp.CommitAndCloseSession();
             }
             catch (Exception ex)
@@ -3327,7 +3337,7 @@ namespace RMIS.Business
             HullingProcessExpenseDTO objHPEDTO = null;
             HullingProcessExpensesEntity HPEE = new HullingProcessExpensesEntity();
             HPEE = imp.GetAllHullingProcessExpensesEntity(provider.GetCurrentCustomerId(), HullingProcessID, YesNo.N);
-            if (objHPEDTO != null)
+            if (HPEE != null)
             {
 
                 objHPEDTO = new HullingProcessExpenseDTO();
@@ -3341,27 +3351,26 @@ namespace RMIS.Business
         }
 
 
-        public double GetAvgPaddyPrice(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBagsRequired)
+        public List<PaddyStockDTO> GetAvgPaddyPrice(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBagsRequired)
         {
             List<PaddyStockInfoEntity> lstpaddystock = new List<PaddyStockInfoEntity>();
-            lstpaddystock = imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), PaddyTypeID, UnitTypeID, GodownID, LotID,TotalBagsRequired, YesNo.N);
-            int noofiterate = 0;
-            double paddyprice = 0;
-            int requiredbags = 0;
-            List<PaddyStockInfoEntity> lstpaddystocknew = new List<PaddyStockInfoEntity>();    
+            lstpaddystock = imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), PaddyTypeID, UnitTypeID, GodownID, LotID, TotalBagsRequired, YesNo.N);
+            int requiredbags = TotalBagsRequired;
+            List<PaddyStockDTO> lstpaddystocknew = new List<PaddyStockDTO>();
+
             foreach (PaddyStockInfoEntity PSIE in lstpaddystock)
             {
-                noofiterate += 1;
-                paddyprice += PSIE.Price;   
+
+
                 if (PSIE.UsedBags > 0)
                 {
-                    int ExistingBags = 0; 
+                    int ExistingBags = 0;
                     ExistingBags = (PSIE.TotalBags - PSIE.UsedBags);
-                    if (ExistingBags < TotalBagsRequired || ExistingBags==TotalBagsRequired)
+                    if (ExistingBags < TotalBagsRequired || ExistingBags == TotalBagsRequired)
                     {
                         requiredbags = TotalBagsRequired - ExistingBags;
                         PSIE.UsedBags = PSIE.TotalBags;
-                        PSIE.AllBagsUsed = "Y";                        
+                        PSIE.AllBagsUsed = "Y";
                     }
                     else if (ExistingBags > TotalBagsRequired)
                     {
@@ -3371,6 +3380,7 @@ namespace RMIS.Business
                 }
                 else if (PSIE.UsedBags == 0)
                 {
+
                     if (requiredbags < PSIE.TotalBags)
                     {
                         PSIE.UsedBags = requiredbags;
@@ -3389,15 +3399,18 @@ namespace RMIS.Business
                         requiredbags = 0;
                     }
                 }
-                
-                imp.BeginTransaction();
-                imp.SaveOrUpdatePaddyStockInfoEntity(PSIE, true);
-                imp.CommitAndCloseSession();
+                PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
+                objPaddyStockDTO.Id = PSIE.PaddyStockID;
+                objPaddyStockDTO.Price = PSIE.Price;
+                objPaddyStockDTO.UsedBags = PSIE.UsedBags;
+                objPaddyStockDTO.AllBagsUsed = PSIE.AllBagsUsed;
+
+                lstpaddystocknew.Add(objPaddyStockDTO);
                 if (requiredbags == 0)
                     break;
             }
-            return paddyprice = paddyprice / noofiterate;
-            
+            return lstpaddystocknew;
+
         }
     }
 }

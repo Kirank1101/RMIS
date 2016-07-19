@@ -7,6 +7,14 @@
         Hulling Process Paddy Details</h4>
     <table>
         <tr>
+            <td colspan="8">
+                <h4>
+                    <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
+                    <asp:Label runat="server" ID="lblpaddyStock"></asp:Label>
+                </h4>
+            </td>
+        </tr>
+        <tr>
             <td>
                 <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
                 <span style="color: Red">*</span>
@@ -56,21 +64,20 @@
             <td>
                 <asp:TextBox ID="txtTotalBags" runat="server" Height="22px" Width="100px" MaxLength="3"></asp:TextBox>
                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                    FilterType="Numbers" TargetControlID="txtTotalBags">
+                    FilterType="Numbers"  TargetControlID="txtTotalBags">
                 </ajaxToolkit:FilteredTextBoxExtender>
             </td>
-
             <td>
-            <asp:Button ID="btnGetPaddyPrice" runat="server" Text="Get Paddy Price" OnClick="btnGetPaddyPrice_Click" />
+                <asp:Button ID="btnGetPaddyPrice" runat="server" Text="Get Paddy Price" OnClick="btnGetPaddyPrice_Click" />
             </td>
             <td style="padding-left: 20px">
                 <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
                     style="color: Red">*</span>
             </td>
             <td>
-                <asp:TextBox ID="txtpaddyprice" runat="server" MaxLength="4" Height="22px" Width="100px" ></asp:TextBox>
+                <asp:TextBox ID="txtpaddyprice" runat="server" MaxLength="4" Height="22px" Width="100px"></asp:TextBox>
                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                    FilterType="Numbers" TargetControlID="txtpaddyprice">
+                    FilterType="Numbers, Custom" ValidChars="." TargetControlID="txtpaddyprice">
                 </ajaxToolkit:FilteredTextBoxExtender>
             </td>
             <td style="padding-left: 20px">
@@ -106,14 +113,6 @@
                         </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="8">
-                <h4>
-                    <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
-                    <asp:Label runat="server" ID="lblpaddyStock"></asp:Label>
-                </h4>
             </td>
         </tr>
         <tr>
