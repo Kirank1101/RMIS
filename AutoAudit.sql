@@ -6462,3 +6462,23 @@ EXEC	 [Audit].[pAutoAudit]
 EXEC	 [Audit].[pAutoAudit]
 		@TableName = RentalHulling,
 		@ColumnNames = '[CustID],[TotalBags],[Price]'	
+		
+EXEC	 [Audit].[pAutoAudit]
+		@TableName = PaddyPaymentDetails,
+		@ColumnNames = '[CustID],[AmountPaid]'	
+		
+EXEC	 [Audit].[pAutoAudit]
+		@TableName = PaddyStockInfo,
+		@ColumnNames = '[CustID],[Price],[TotalBags]'	
+		
+EXEC	 [Audit].[pAutoAudit]
+		@TableName = ProductPaymentInfo,
+		@ColumnNames = '[CustID],[TotalAmount]'
+		
+EXEC	 [Audit].[pAutoAudit]
+		@TableName = ProductPaymentTransaction,
+		@ColumnNames = '[CustID],[ReceivedAmount]'
+		
+EXEC	 [Audit].[pAutoAudit]
+		@TableName = ProductSellingInfo,
+		@ColumnNames = '[CustID],[Price],[TotalBags]'
