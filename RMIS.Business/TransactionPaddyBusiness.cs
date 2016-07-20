@@ -377,7 +377,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, DateTime HullingProcessDate, string HullingProcessBy, string Status, double HullingExpenses)
+        public ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, string Status, double HullingExpenses)
         {
             HullingProcessEntity objHullingProcessEntity = new HullingProcessEntity();
             objHullingProcessEntity.ObsInd = YesNo.N;
@@ -389,8 +389,6 @@ namespace RMIS.Business
             objHullingProcessEntity.MLotID = LotID;
             objHullingProcessEntity.TotalBags = TotalPaddyBags;
             objHullingProcessEntity.Price = paddyprice;
-            objHullingProcessEntity.ProcessDate = HullingProcessDate;
-            objHullingProcessEntity.ProcessedBy = HullingProcessBy;
             objHullingProcessEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objHullingProcessEntity.LastModifiedDate = DateTime.Now;
             objHullingProcessEntity.Status = Status;
@@ -448,8 +446,6 @@ namespace RMIS.Business
                     objHullingProcessDTO.MLotID = objHullingProcessEntity.MLotID;
                     objHullingProcessDTO.Price = objHullingProcessEntity.Price;
                     objHullingProcessDTO.TotalBags = objHullingProcessEntity.TotalBags;
-                    objHullingProcessDTO.ProcessedBy = objHullingProcessEntity.ProcessedBy;
-                    objHullingProcessDTO.ProcessDate = objHullingProcessEntity.ProcessDate;
                     objHullingProcessDTO.Status = objHullingProcessEntity.Status;
                 }
             }

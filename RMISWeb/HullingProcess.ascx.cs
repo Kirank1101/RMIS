@@ -73,6 +73,7 @@ public partial class HullingProcess : BaseUserControl
             #region Bind Hulling Process Details
             HullingProcessDTO Hullingprocessdto = new HullingProcessDTO();
             Hullingprocessdto = imp.GetAllHullingProcessInfoEntities();
+            btnGetPaddyPrice.Enabled = false;
             if (Hullingprocessdto != null)
             {
                 ddlPaddyType.SelectedValue = Hullingprocessdto.PaddyTypeID;
@@ -82,20 +83,17 @@ public partial class HullingProcess : BaseUserControl
                 ddlLotDetails.SelectedValue = Hullingprocessdto.MLotID;
                 txtTotalBags.Text = Convert.ToString(Hullingprocessdto.TotalBags);
                 txtpaddyprice.Text = Convert.ToString(Hullingprocessdto.Price);
-                txtHullingProcessBy.Text = Hullingprocessdto.ProcessedBy;
-                txtHullingProcessDate.Text = Hullingprocessdto.ProcessDate.ToString("dd/MM/yyyy");
                 VSHullingProcessID = Hullingprocessdto.HullingProcessID;
-                btnSave.Enabled = false;
+                btnSave.Enabled = btnGetPaddyPrice.Enabled = false;
                 ddlPaddyType.Enabled = ddlUnitsType.Enabled = ddlGodownName.Enabled =
                     ddlLotDetails.Enabled = txtTotalBags.Enabled =
-                    txtTotalBags.Enabled = txtpaddyprice.Enabled =
-                    txtHullingProcessBy.Enabled = txtHullingProcessDate.Enabled = false;
+                    txtTotalBags.Enabled = txtpaddyprice.Enabled = false;
 
                 HullingProcessExpenseDTO objHPE = new HullingProcessExpenseDTO();
                 objHPE = imp.GetAllHullingProcessExpensesEntity(Hullingprocessdto.HullingProcessID);
-                txtHullingExpenses.Text =Convert.ToString(objHPE.HullingExpenses / txtTotalBags.Text.ConvertToInt());
+                txtHullingExpenses.Text = Convert.ToString(objHPE.HullingExpenses / txtTotalBags.Text.ConvertToInt());
             }
-            
+
             lblpaddystockhulling.Visible = false;
             lblpaddyStock.Text = string.Empty;
             #endregion
@@ -104,18 +102,22 @@ public partial class HullingProcess : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtHullingProcessBy.Text, txtHullingProcessDate.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text,txtpaddyprice.Text);
         long totalpaddycount = imp.CheckHullingProcessPaddyCount(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue);
         if (resultDto.IsSuccess)
         {
             if (totalpaddycount >= txtTotalBags.Text.ConvertToInt())
             {
                 resultDto = imp.SaveHullingProcessInfo(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue,
-                   txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), Convert.ToDateTime(txtHullingProcessDate.Text), txtHullingProcessBy.Text.Trim(), "P", (txtHullingExpenses.Text.ConvertToDouble() * txtTotalBags.Text.ConvertToInt()));
+                   txtTotalBags.Text.ConvertToInt(), txtpaddyprice.Text.ConvertToDouble(), "P", (txtHullingExpenses.Text.ConvertToDouble() * txtTotalBags.Text.ConvertToInt()));
                 SetMessage(resultDto);
                 if (resultDto.IsSuccess)
                 {
-                    // ClearAllInputFields();
+                    btnSave.Enabled = btnGetPaddyPrice.Enabled = false;
+                    ddlPaddyType.Enabled = ddlUnitsType.Enabled = ddlGodownName.Enabled =
+                    ddlLotDetails.Enabled = txtTotalBags.Enabled =
+                    txtTotalBags.Enabled = txtpaddyprice.Enabled = false;
+
                     VSHullingProcessID = resultDto.ID;
                 }
             }
@@ -131,6 +133,10 @@ public partial class HullingProcess : BaseUserControl
         {
             SetMessage(resultDto);
         }
+    }
+    protected void GetPrice()
+    {
+        txtpaddyprice.Text = "1000";
     }
     protected void btnAddRice_Click(object sender, EventArgs e)
     {
@@ -214,12 +220,20 @@ public partial class HullingProcess : BaseUserControl
         //}
     }
     protected void btnGetPaddyPrice_Click(object sender, EventArgs e)
-    { 
+    {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-
-        List<PaddyStockDTO> lstPSDTO = imp.GetAvgPaddyPrice(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue, txtTotalBags.Text.ConvertToInt());
-        double GetPaddyPrice = lstPSDTO.Sum(x => x.Price)/lstPSDTO.Count;
-        txtpaddyprice.Text = Convert.ToString(GetPaddyPrice);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateGetPaddyPrice(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, ddlGodownName.SelectedIndex, ddlLotDetails.SelectedIndex, txtTotalBags.Text);
+        if (resultDto.IsSuccess)
+        {
+            List<PaddyStockDTO> lstPSDTO = imp.GetAvgPaddyPrice(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue, txtTotalBags.Text.ConvertToInt());
+            double GetPaddyPrice = lstPSDTO.Sum(x => x.Price) / lstPSDTO.Count;
+            txtpaddyprice.Text = Convert.ToString(GetPaddyPrice);
+        }
+        else
+        {
+            resultDto.Message = "Please enter Total Bags";
+            SetMessage(resultDto);
+        }
     }
     protected void ddlPaddyType_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -229,6 +243,7 @@ public partial class HullingProcess : BaseUserControl
     protected void ddlLotDetails_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetPaddyStockCount();
+        btnGetPaddyPrice.Enabled = true;
     }
     protected void ddlUnitsType_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -335,8 +350,6 @@ public partial class HullingProcess : BaseUserControl
         ddlPaddyType.SelectedIndex = 0;
         ddlUnitsType.SelectedIndex = 0;
         txtTotalBags.Text = string.Empty;
-        
-        txtHullingProcessBy.Text = string.Empty;
     }
     private void ClearAllInputFieldsOnSaveAndClose()
     {
@@ -346,14 +359,10 @@ public partial class HullingProcess : BaseUserControl
         ddlLotDetails.SelectedIndex = 0;
         txtTotalBags.Text = string.Empty;
         txtpaddyprice.Text = string.Empty;
-        
-        txtHullingProcessBy.Text = string.Empty;
-
         ddlRiceType.SelectedIndex = 0;
         ddlRiceBrand.SelectedIndex = 0;
         ddlriceUnittype.SelectedIndex = 0;
         txtricetotalbags.Text = string.Empty;
-
         ddlBRType.SelectedIndex = 0;
         ddlBRUnitsType.SelectedIndex = 0;
         txtBRTotalBags.Text = string.Empty;
@@ -399,7 +408,7 @@ public partial class HullingProcess : BaseUserControl
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
         double totalpaddyprice = getpaddyprice();
-        double totOtherExpences = txtHullingExpenses.Text.ConvertToDouble()*txtTotalBags.Text.ConvertToInt();
+        double totOtherExpences = txtHullingExpenses.Text.ConvertToDouble() * txtTotalBags.Text.ConvertToInt();
         double totalRiceQuital = gettotalRiceWeight();
         double totalbrprice = getbrprice();
         double totdustprice = getdustprice();
@@ -427,7 +436,7 @@ public partial class HullingProcess : BaseUserControl
 
     private double ConverToQuintal(int TotalBags, int UnitType)
     {
-        return (TotalBags* UnitType)/100;
+        return (TotalBags * UnitType) / 100;
     }
     private double getbrprice()
     {
@@ -438,7 +447,7 @@ public partial class HullingProcess : BaseUserControl
             totbrprice += (ConverToQuintal(item.TotalBags, item.UnitsType.ConvertToInt()) * item.PriceperQuintal);
 
         if (ddlBRType.SelectedIndex > 0 && ddlBRUnitsType.SelectedIndex > 0 && txtBRPriceperQuintal.Text.ConvertToDouble() > 0 && txtBRTotalBags.Text.ConvertToInt() > 0)
-            totbrprice += (ConverToQuintal( txtBRTotalBags.Text.ConvertToInt(),ddlBRUnitsType.SelectedItem.Text.ConvertToInt()) * txtBRPriceperQuintal.Text.ConvertToDouble());
+            totbrprice += (ConverToQuintal(txtBRTotalBags.Text.ConvertToInt(), ddlBRUnitsType.SelectedItem.Text.ConvertToInt()) * txtBRPriceperQuintal.Text.ConvertToDouble());
 
         return totbrprice;
     }
@@ -449,10 +458,10 @@ public partial class HullingProcess : BaseUserControl
 
         List<RiceStockDetailsDTO> lstRSD = ViewStateRiceStockDetail;
         foreach (RiceStockDetailsDTO item in lstRSD)
-            totRiceQuintal += ConverToQuintal( item.TotalBags,item.UnitsType.ConvertToInt());
+            totRiceQuintal += ConverToQuintal(item.TotalBags, item.UnitsType.ConvertToInt());
 
         if (ddlRiceType.SelectedIndex > 0 && ddlRiceBrand.SelectedIndex > 0 && ddlriceUnittype.SelectedIndex > 0 && txtricetotalbags.Text.ConvertToInt() > 0)
-            totRiceQuintal += ConverToQuintal(txtricetotalbags.Text.ConvertToInt(),ddlriceUnittype.SelectedItem.Text.ConvertToInt());
+            totRiceQuintal += ConverToQuintal(txtricetotalbags.Text.ConvertToInt(), ddlriceUnittype.SelectedItem.Text.ConvertToInt());
 
 
         return totRiceQuintal;

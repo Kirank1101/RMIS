@@ -17,8 +17,6 @@ namespace RMIS.Domain.RiceMill
         public string MLotID { get; set; }
         public double Price { get; set; }
         public int TotalBags { get; set; }
-        public string ProcessedBy { get; set; }
-        public DateTime ProcessDate { get; set; }
         public string Status { get; set; }
         
         #region Methods

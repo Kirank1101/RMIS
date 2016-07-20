@@ -7,7 +7,7 @@
         Hulling Process Paddy Details</h4>
     <table>
         <tr>
-            <td colspan="8">
+            <td>
                 <h4>
                     <asp:Label runat="server" ID="lblpaddystockhulling" Text="<%$Resources:Resource,PaddyStockforHulling%>"></asp:Label>
                     <asp:Label runat="server" ID="lblpaddyStock"></asp:Label>
@@ -16,92 +16,81 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
-                <span style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlPaddyType_SelectedIndexChanged"
-                    AutoPostBack="true" Width="100px">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlUnitsType_SelectedIndexChanged"
-                    AutoPostBack="true" Width="100px">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,GodownName%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlGodownName" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged"
-                    AutoPostBack="true" Width="100px">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlLotDetails_SelectedIndexChanged"
-                    AutoPostBack="true" Width="100px">
-                    <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:TextBox ID="txtTotalBags" runat="server" Height="22px" Width="100px" MaxLength="3"></asp:TextBox>
-                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                    FilterType="Numbers"  TargetControlID="txtTotalBags">
-                </ajaxToolkit:FilteredTextBoxExtender>
-            </td>
-            <td>
-                <asp:Button ID="btnGetPaddyPrice" runat="server" Text="Get Paddy Price" OnClick="btnGetPaddyPrice_Click" />
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:TextBox ID="txtpaddyprice" runat="server" MaxLength="4" Height="22px" Width="100px"></asp:TextBox>
-                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                    FilterType="Numbers, Custom" ValidChars="." TargetControlID="txtpaddyprice">
-                </ajaxToolkit:FilteredTextBoxExtender>
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblProcessDate" Text="<%$Resources:Resource,HullingProcessDate%>"></asp:Label><span
-                    style="color: Red">*</span>
-            </td>
-            <td>
-                <asp:TextBoxDatenTimeExtender ID="txtHullingProcessDate" runat="server"></asp:TextBoxDatenTimeExtender>
-            </td>
-            <td style="padding-left: 20px">
-                <asp:Label runat="server" ID="lblProcessBy" Text="<%$Resources:Resource,HullingProcessBy%>"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBoxAutoExtender ID="txtHullingProcessBy" runat="server" ServiceMethod="GetEmployeeNames">
-                </asp:TextBoxAutoExtender>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top" colspan="8">
-                <h4>
-                    Hulling Process Expenses Details</h4>
                 <table>
                     <tr>
                         <td>
+                            <asp:Label runat="server" ID="lblPaddyType" Text="<%$Resources:Resource,PaddyType%>"></asp:Label>
+                            <span style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlPaddyType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlPaddyType_SelectedIndexChanged"
+                                AutoPostBack="true" Width="100px">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td style="padding-left: 20px">
+                            <asp:Label runat="server" ID="lblUnits" Text="<%$Resources:Resource,UnitType%>"></asp:Label><span
+                                style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlUnitsType" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlUnitsType_SelectedIndexChanged"
+                                AutoPostBack="true" Width="100px">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td style="padding-left: 20px">
+                            <asp:Label runat="server" ID="Label1" Text="<%$Resources:Resource,GodownName%>"></asp:Label><span
+                                style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlGodownName" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGodownSelectedIndexChanged"
+                                AutoPostBack="true" Width="100px">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td style="padding-left: 20px">
+                            <asp:Label runat="server" ID="lblLotDetails" Text="<%$Resources:Resource,LotDetails%>"></asp:Label><span
+                                style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlLotDetails" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlLotDetails_SelectedIndexChanged"
+                                AutoPostBack="true" Width="100px">
+                                <asp:ListItem Selected="True" Text="[Select]" Value=""></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" ID="lbltotalbags" Text="<%$Resources:Resource,TotalBags%>"></asp:Label><span
+                                style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtTotalBags" runat="server" Height="22px" Width="100px" MaxLength="3" onblur="GetPrice"></asp:TextBox>
+                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                                FilterType="Numbers" TargetControlID="txtTotalBags">
+                            </ajaxToolkit:FilteredTextBoxExtender>
+                        </td>
+                        <td>
+                            <asp:Button ID="btnGetPaddyPrice" runat="server" Text="Get Paddy Price" OnClick="btnGetPaddyPrice_Click" />
+                        </td>
+                        <td style="padding-left: 20px">
+                            <asp:Label runat="server" ID="lbltotalpaddyprice" Text="<%$Resources:Resource,PriceperQuintal%>"></asp:Label><span
+                                style="color: Red">*</span>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtpaddyprice" Enabled="false" runat="server" MaxLength="4" Height="22px"
+                                Width="100px"></asp:TextBox>
+                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
+                                FilterType="Numbers, Custom" ValidChars="." TargetControlID="txtpaddyprice">
+                            </ajaxToolkit:FilteredTextBoxExtender>
+                        </td>
+                        <td style="padding-left: 20px">
                             <asp:Label runat="server" ID="lblHullingExpenses" Text="<%$Resources:Resource,HullingExpenses%>"></asp:Label>
                         </td>
                         <td style="padding-left: 5px">
@@ -110,6 +99,8 @@
                                 FilterType="Numbers" TargetControlID="txtHullingExpenses">
                             </ajaxToolkit:FilteredTextBoxExtender>
                             &nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
                         </td>
                     </tr>
                 </table>

@@ -14,8 +14,6 @@
     <property name="MLotID" column="MLotID" />    
     <property name="TotalBags" column="TotalBags" />
     <property name="Price" column="Price" />
-    <property name="ProcessedBy" column="ProcessedBy" />
-    <property name="ProcessDate" column="ProcessDate" />
     <property name="Status" column="Status" />  
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />

@@ -325,7 +325,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string ProcessBy, string ProcessDate)
+        public ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string PaddyPrice)
         {
             if (paddyType <= 0)
             {
@@ -343,17 +343,14 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(ProcessBy.Trim()))
+
+            else if (string.IsNullOrEmpty(PaddyPrice.Trim()))
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessBy, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsPaddyPriceEmpty, provider.GetCurrentCustomerId()) };
             }
-            else if (string.IsNullOrEmpty(ProcessDate.Trim()))
+            else if (PaddyPrice.ConvertToDouble() <= 0)
             {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessDateEmpty, provider.GetCurrentCustomerId()) };
-            }
-            else if (!ProcessDate.IsDate())
-            {
-                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsProcessDateValidate, provider.GetCurrentCustomerId()) };
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsPaddyPriceValidate, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }
@@ -832,6 +829,36 @@ namespace RMIS.Business
             if (string.IsNullOrEmpty(TransFromDate) || string.IsNullOrEmpty(TransToDate) || !TransFromDate.IsDate() || !TransToDate.IsDate())
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBankTransValidDate, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();            
+        }
+
+
+        public ResultDTO ValidateGetPaddyPrice(int PaddyType, int UnitType, int GodownType, int LotType, string totalbags)
+        {
+            if (PaddyType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPricePaddyType, provider.GetCurrentCustomerId()) };
+            }
+            else if (UnitType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPriceUnitType, provider.GetCurrentCustomerId()) };
+            }
+            else if (GodownType <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPriceGodownType, provider.GetCurrentCustomerId()) };
+            }
+            else if (LotType <= 0)  
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPriceLotType, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(totalbags.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPriceTotalbagsEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (totalbags.ConvertToInt() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateGetPaddyPriceTotalbagsValidate, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();            
         }

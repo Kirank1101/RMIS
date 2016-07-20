@@ -109,9 +109,6 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessDetailsUnitsType = "Validate115";
         public const string ValidateHullingProcessDetailsTotalbagsEmpty = "Validate116";
         public const string ValidateHullingProcessDetailsTotalbagsValidate = "Validate117";
-        public const string ValidateHullingProcessDetailsProcessBy = "Validate118";
-        public const string ValidateHullingProcessDetailsProcessDateEmpty = "Validate119";
-        public const string ValidateHullingProcessDetailsProcessDateValidate = "Validate120";
 
         public const string ValidateValidatePaddyStockDetailsUnitstype = "Validate121";
 
@@ -234,6 +231,15 @@ namespace RMIS.Domain.Constant
         public const string ValidatePaddyStockValidDate = "Validate112";
         public const string ValidateBankTransactionBankBalance = "Validate113";
         public const string ValidateBankTransValidDate = "Validate114";
+        public const string ValidateGetPaddyPricePaddyType = "Validate115";
+        public const string ValidateGetPaddyPriceUnitType = "Validate116";
+        public const string ValidateGetPaddyPriceGodownType = "Validate117";
+        public const string ValidateGetPaddyPriceLotType = "Validate118";
+        public const string ValidateGetPaddyPriceTotalbagsEmpty="Validate119";
+        public const string ValidateGetPaddyPriceTotalbagsValidate = "Validate120";
+        public const string ValidateHullingProcessDetailsPaddyPriceEmpty = "Validate121";
+        public const string ValidateHullingProcessDetailsPaddyPriceValidate = "Validate122";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";
