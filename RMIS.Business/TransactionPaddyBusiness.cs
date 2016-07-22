@@ -3042,8 +3042,14 @@ namespace RMIS.Business
 
             return BuyerNameID;
         }
-
-
+        public decimal RiceYieldCalculate(decimal TotPaddyQuintals, decimal TotRiceQuintals)
+        {
+            return Math.Round(((TotRiceQuintals / TotPaddyQuintals) * 100), 2, MidpointRounding.ToEven);
+        }
+        public decimal ConvertUnitsToQuintal(decimal UnitType, int Bags)
+        {
+            return ((UnitType / 100) * Bags);
+        }
         public double ConverToPriceperBag(int UnitType, double PriceperQuintal)
         {
             return (UnitType * (PriceperQuintal / 100));

@@ -102,7 +102,7 @@ public partial class HullingProcess : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text,txtpaddyprice.Text,txtHullingExpenses.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text, txtpaddyprice.Text, txtHullingExpenses.Text);
         long totalpaddycount = imp.CheckHullingProcessPaddyCount(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue);
         if (resultDto.IsSuccess)
         {
@@ -387,7 +387,7 @@ public partial class HullingProcess : BaseUserControl
 
         rptBrokenRiceDetails.DataSource = null;
         rptBrokenRiceDetails.DataBind();
-
+        HullingprocessTable.Visible = false;
     }
     private void ClearAllRiceFields()
     {
@@ -414,7 +414,7 @@ public partial class HullingProcess : BaseUserControl
         double totdustprice = getdustprice();
         double totalbalance = totalpaddyprice - (totalbrprice + totdustprice);
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            
+
         double Priceperricebag = GetRicePricePerQuintal(totalbalance, totalRiceQuital);
         lbltotpaddycost.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totalpaddyprice));
         lbltotexp.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totOtherExpences));
@@ -422,6 +422,12 @@ public partial class HullingProcess : BaseUserControl
         lbltotdustprice.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totdustprice));
         lbltotriceprice.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totalbalance));
         lblpriceperricebag.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(Priceperricebag));
+
+        decimal TotalPaddyQuintal = imp.ConvertUnitsToQuintal(Convert.ToDecimal(ddlUnitsType.SelectedItem.Text), txtTotalBags.Text.ConvertToInt());
+        decimal TotalRiceQuintal = imp.ConvertUnitsToQuintal(Convert.ToDecimal(ddlriceUnittype.SelectedItem.Text), txtricetotalbags.Text.ConvertToInt());
+        decimal RiceYield = imp.RiceYieldCalculate(TotalPaddyQuintal, TotalRiceQuintal);
+        lblriceYield.Text = Convert.ToString(RiceYield) + "%";
+        HullingprocessTable.Visible = true;
     }
     private double GetRicePricePerQuintal(double totalbalance, double TotalRicequintal)
     {

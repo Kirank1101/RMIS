@@ -179,5 +179,7 @@ namespace RMIS.Domain.Business
 
         List<PaddyStockDTO> GetAvgPaddyPrice(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags);
         string ConverDoubleMoneyToStringMoney(string Amount);
+        decimal ConvertUnitsToQuintal(decimal UnitType, int Bags);
+        decimal RiceYieldCalculate(decimal TotPaddyQuintals, decimal TotRiceQuintals);
     }
 }

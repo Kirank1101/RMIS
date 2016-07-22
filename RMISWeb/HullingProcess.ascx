@@ -91,8 +91,7 @@
                                 style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtpaddyprice" Enabled="false" runat="server" MaxLength="4" Height="22px"
-                                Width="100px"></asp:TextBox>
+                            <asp:TextBox ID="txtpaddyprice" runat="server" MaxLength="4" Height="22px" Width="100px"></asp:TextBox>
                             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                 FilterType="Numbers, Custom" ValidChars="." TargetControlID="txtpaddyprice">
                             </ajaxToolkit:FilteredTextBoxExtender>
@@ -318,85 +317,151 @@
         </tr>
     </table>
     <br />
-    <h3>
-        Hulling Process Calculation
-    </h3>
-    <table width="70%" style="font-weight: bold">
-        <tr>
-            <td colspan="3">
-                <table border="Solid" width="50%">
-                    <tr>
-                        <td style="width: 18%; padding-left: 15px" class="style1">
-                            <h4><asp:Label runat="server" ID="Label4" Text="<%$Resources:Resource,ItemName%>"></asp:Label></h4>
-                        </td>
-                        <td style="width: 15%; text-align: center;" class="style1">
-                            <h4><asp:Label runat="server" ID="Label8" Text="<%$Resources:Resource,RawMeterialCost%>"></asp:Label></h4>
-                        </td>
-                        <td style="width: 15%; text-align: center;" class="style1">
-                            <h4><asp:Label runat="server" ID="Label9" Text="<%$Resources:Resource,ProductCost%>"></asp:Label></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 15px">
-                            <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,Paddy%>"></asp:Label>
-                        </td>
-                        <td align="right" style="padding-right: 15px">
-                            <asp:Label ID="lbltotpaddycost" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 15px">
-                            <asp:Label runat="server" ID="Label5" Text="<%$Resources:Resource,HullingExpenses%>"></asp:Label>
-                        </td>
-                        <td align="right" style="padding-right: 15px">
-                            <asp:Label ID="lbltotexp" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 15px">
-                            <asp:Label runat="server" ID="Label6" Text="<%$Resources:Resource,Rice%>"></asp:Label>
-                        </td>
-                        <td>
-                        </td>
-                        <td align="right" style="padding-right: 15px">
-                            <asp:Label ID="lbltotriceprice" runat="server" Style="padding-left: 5px"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 15px">
-                            <asp:Label runat="server" ID="Label7" Text="<%$Resources:Resource,BrokenRiceandBran%>"></asp:Label>
-                        </td>
-                        <td>
-                        </td>
-                        <td align="right" style="padding-right: 15px">
-                            <asp:Label ID="lbltotbrokenriceprice" runat="server" Style="padding-left: 5px"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 15px">
-                            <asp:Label runat="server" ID="Label11" Text="<%$Resources:Resource,Husk%>"></asp:Label>
-                        </td>
-                        <td>
-                        </td>
-                        <td align="right" style="padding-right: 15px">
-                            <asp:Label ID="lbltotdustprice" runat="server" Style="padding-left: 5px"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="padding-left: 15px">
-                            <h3><b><asp:Label runat="server" ID="Label10" Text="<%$Resources:Resource,RicePriceperQuintal%>"></asp:Label>
-                            =
-                            <asp:Label ID="lblpriceperricebag" runat="server" Style="padding-left: 5px"></asp:Label></b></h3>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <div id="HullingprocessTable" runat="server">
+        <table style="font-weight: bold">
+            <tr>
+                <td valign="top" style="padding-right: 20px">
+                    <h3>
+                        Hulling Process Calculation
+                    </h3>
+                    <table border="Solid" width="100%">
+                        <tr>
+                            <td style="width: 18%; padding-left: 15px" class="style1">
+                                <h4>
+                                    <asp:Label runat="server" ID="Label4" Text="<%$Resources:Resource,ItemName%>"></asp:Label></h4>
+                            </td>
+                            <td style="width: 25%; text-align: center;" class="style1">
+                                <h4>
+                                    <asp:Label runat="server" ID="Label8" Text="<%$Resources:Resource,RawMeterialCost%>"></asp:Label></h4>
+                            </td>
+                            <td style="width: 15%; text-align: center;" class="style1">
+                                <h4>
+                                    <asp:Label runat="server" ID="Label9" Text="<%$Resources:Resource,ProductCost%>"></asp:Label></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label3" Text="<%$Resources:Resource,Paddy%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 15px">
+                                <asp:Label ID="lbltotpaddycost" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label5" Text="<%$Resources:Resource,HullingExpenses%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 15px">
+                                <asp:Label ID="lbltotexp" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label6" Text="<%$Resources:Resource,Rice%>"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                            <td align="right" style="padding-right: 15px">
+                                <asp:Label ID="lbltotriceprice" runat="server" Style="padding-left: 5px"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label7" Text="<%$Resources:Resource,BrokenRiceandBran%>"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                            <td align="right" style="padding-right: 15px">
+                                <asp:Label ID="lbltotbrokenriceprice" runat="server" Style="padding-left: 5px"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label11" Text="<%$Resources:Resource,Husk%>"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                            <td align="right" style="padding-right: 15px">
+                                <asp:Label ID="lbltotdustprice" runat="server" Style="padding-left: 5px"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="padding-left: 15px">
+                                <h3>
+                                    <b>
+                                        <asp:Label runat="server" ID="Label10" Text="<%$Resources:Resource,RicePriceperQuintal%>"></asp:Label>
+                                        =
+                                        <asp:Label ID="lblpriceperricebag" runat="server" Style="padding-left: 5px"></asp:Label></b></h3>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top">
+                    <h3>
+                        Production Yield Calculation
+                    </h3>
+                    <table border="Solid">
+                        <tr>
+                            <td style="width: 18%; padding-left: 15px" class="style1">
+                                <h4>
+                                    <asp:Label runat="server" ID="Label12" Text="<%$Resources:Resource,ProductType%>"></asp:Label></h4>
+                            </td>
+                            <td style="width: 17%; padding-left: 15px" class="style1" align="center">
+                                <h4>
+                                    <asp:Label runat="server" ID="Label13" Text="<%$Resources:Resource,Yield%>"></asp:Label></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label14" Text="<%$Resources:Resource,Rice%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 25px">
+                                <asp:Label ID="lblriceYield" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label15" Text="<%$Resources:Resource,HalfBrokenRice%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 25px">
+                                <asp:Label ID="lblHalfBRYield" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label16" Text="<%$Resources:Resource,SmallBrokenRice%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 25px">
+                                <asp:Label ID="lblSmallBRYield" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label17" Text="<%$Resources:Resource,Bran%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 25px">
+                                <asp:Label ID="lblBranYield" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 15px">
+                                <asp:Label runat="server" ID="Label18" Text="<%$Resources:Resource,Husk%>"></asp:Label>
+                            </td>
+                            <td align="right" style="padding-right: 25px">
+                                <asp:Label ID="lblHuskYield" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
     <table>
         <tr>
             <td>

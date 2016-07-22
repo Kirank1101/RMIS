@@ -420,6 +420,12 @@
   <data name="ToDate" xml:space="preserve">
     <value>To Date</value>
   </data>
+  <data name="Bran" xml:space="preserve">
+    <value>Bran</value>
+  </data>
+  <data name="HalfBrokenRice" xml:space="preserve">
+    <value>Half Broken Rice</value>
+  </data>
   <data name="ItemName" xml:space="preserve">
     <value>Item Name</value>
   </data>
@@ -428,5 +434,11 @@
   </data>
   <data name="RawMeterialCost" xml:space="preserve">
     <value>Raw Meterial Cost</value>
+  </data>
+  <data name="SmallBrokenRice" xml:space="preserve">
+    <value>Small Broken Rice</value>
+  </data>
+  <data name="Yield" xml:space="preserve">
+    <value>Yield (%)</value>
   </data>
 </root>
