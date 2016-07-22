@@ -102,7 +102,7 @@ public partial class HullingProcess : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text,txtpaddyprice.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateHullingProcess(ddlPaddyType.SelectedIndex, ddlUnitsType.SelectedIndex, txtTotalBags.Text,txtpaddyprice.Text,txtHullingExpenses.Text);
         long totalpaddycount = imp.CheckHullingProcessPaddyCount(ddlPaddyType.SelectedValue, ddlUnitsType.SelectedValue, ddlGodownName.SelectedValue, ddlLotDetails.SelectedValue);
         if (resultDto.IsSuccess)
         {
@@ -412,15 +412,16 @@ public partial class HullingProcess : BaseUserControl
         double totalRiceQuital = gettotalRiceWeight();
         double totalbrprice = getbrprice();
         double totdustprice = getdustprice();
-        double totalbalance = (totalpaddyprice + totOtherExpences) - (totalbrprice + totdustprice);
-
+        double totalbalance = totalpaddyprice - (totalbrprice + totdustprice);
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            
         double Priceperricebag = GetRicePricePerQuintal(totalbalance, totalRiceQuital);
-        lbltotpaddycost.Text = Convert.ToString(totalpaddyprice);
-        lbltotexp.Text = Convert.ToString(totOtherExpences);
-        lbltotbrokenriceprice.Text = Convert.ToString(totalbrprice);
-        lbltotdustprice.Text = Convert.ToString(totdustprice);
-        lbltotriceprice.Text = Convert.ToString(totalbalance);
-        lblpriceperricebag.Text = Convert.ToString(Priceperricebag);
+        lbltotpaddycost.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totalpaddyprice));
+        lbltotexp.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totOtherExpences));
+        lbltotbrokenriceprice.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totalbrprice));
+        lbltotdustprice.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totdustprice));
+        lbltotriceprice.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(totalbalance));
+        lblpriceperricebag.Text = imp.ConverDoubleMoneyToStringMoney(Convert.ToString(Priceperricebag));
     }
     private double GetRicePricePerQuintal(double totalbalance, double TotalRicequintal)
     {

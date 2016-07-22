@@ -342,20 +342,17 @@
   <data name="PricePerRiceBag" xml:space="preserve">
     <value>Price Per Rice Bag</value>
   </data>
-  <data name="TotalBrokenRicePrice" xml:space="preserve">
-    <value>Total Broken Rice Price</value>
+  <data name="BrokenRiceandBran" xml:space="preserve">
+    <value>BrokenRice &amp; Bran</value>
   </data>
-  <data name="TotalDustPrice" xml:space="preserve">
-    <value>Total Dust Price</value>
+  <data name="Husk" xml:space="preserve">
+    <value>Husk</value>
   </data>
-  <data name="TotalExpenses" xml:space="preserve">
-    <value>Total Expenses</value>
+  <data name="Paddy" xml:space="preserve">
+    <value>Paddy</value>
   </data>
-  <data name="TotalPaddyCost" xml:space="preserve">
-    <value>Total Paddy Cost</value>
-  </data>
-  <data name="TotalRicePrice" xml:space="preserve">
-    <value>Total Rice Price</value>
+  <data name="Rice" xml:space="preserve">
+    <value>Rice</value>
   </data>
   <data name="BrandName" xml:space="preserve">
     <value>Brand Name</value>
@@ -422,5 +419,14 @@
   </data>
   <data name="ToDate" xml:space="preserve">
     <value>To Date</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ProductCost" xml:space="preserve">
+    <value>Product Cost</value>
+  </data>
+  <data name="RawMeterialCost" xml:space="preserve">
+    <value>Raw Meterial Cost</value>
   </data>
 </root>

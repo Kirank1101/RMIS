@@ -325,7 +325,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string PaddyPrice)
+        public ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags, string PaddyPrice,string HullingExpenses)
         {
             if (paddyType <= 0)
             {
@@ -352,6 +352,15 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsPaddyPriceValidate, provider.GetCurrentCustomerId()) };
             }
+            else if (string.IsNullOrEmpty(HullingExpenses.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsHullingExpensesEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (HullingExpenses.ConvertToDouble() <= 0)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateHullingProcessDetailsHullingExpensesValidate, provider.GetCurrentCustomerId()) };
+            }
+            
             return new ResultDTO();
         }
         public ResultDTO ValidateHullingProcessTrans(int Ricestockadded, int BrokenRiceStockadded, int RiceType, int BrokenRiceType, int RiceUnitsType, int BrokenRiceUnitsType, int DustUnitsType, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string BrokenRicePrice, string DustPrice, int RiceBrand)

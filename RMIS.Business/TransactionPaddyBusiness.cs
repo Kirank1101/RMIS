@@ -10,6 +10,8 @@ using RMIS.Domain;
 using AllInOne.Common.Library.Util;
 using RMIS.Domain.DataTranserClass;
 using RMIS.Domain.Constant;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace RMIS.Business
 {
@@ -610,7 +612,9 @@ namespace RMIS.Business
 
 
                     objPaddyStockDTO.DriverName = objPaddyStockInfoEntity.DriverName;
+                    string displayamount=Convert.ToString(Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
                     objPaddyStockDTO.Price = Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);
+                    objPaddyStockDTO.PriceDisplay = ConverDoubleMoneyToStringMoney(displayamount);
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
                     objPaddyStockDTO.NextPayDate = objPaddyStockInfoEntity.NextPayDate;
                     objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
@@ -3353,7 +3357,8 @@ namespace RMIS.Business
             lstpaddystock = imp.GetPaddyStockInfoEntities(provider.GetCurrentCustomerId(), PaddyTypeID, UnitTypeID, GodownID, LotID, TotalBagsRequired, YesNo.N);
             int requiredbags = TotalBagsRequired;
             List<PaddyStockDTO> lstpaddystocknew = new List<PaddyStockDTO>();
-
+            List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                
             foreach (PaddyStockInfoEntity PSIE in lstpaddystock)
             {
 
@@ -3397,7 +3402,8 @@ namespace RMIS.Business
                 }
                 PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
                 objPaddyStockDTO.Id = PSIE.PaddyStockID;
-                objPaddyStockDTO.Price = PSIE.Price;
+                string units = lstMUnitsTypeEntity.Where(ut => ut.UnitsTypeID == PSIE.UnitsTypeID).Select(ut => ut.UnitsType).SingleOrDefault();
+                objPaddyStockDTO.Price = Math.Round(ConverToPriceperQuintal(units.ConvertToInt(), PSIE.Price), 0, MidpointRounding.ToEven);
                 objPaddyStockDTO.UsedBags = PSIE.UsedBags;
                 objPaddyStockDTO.AllBagsUsed = PSIE.AllBagsUsed;
 
@@ -3406,6 +3412,25 @@ namespace RMIS.Business
                     break;
             }
             return lstpaddystocknew;
+
+        }
+        public decimal ConvertStringAmountToDecimal(string Amount)
+        {
+            decimal money = 0;
+            if (!string.IsNullOrEmpty(Amount))
+                money = Convert.ToDecimal(decimal.Parse(Regex.Replace(Amount, @"[^\d.]", "")).ToString());
+            return money;
+        }
+        public string ConverDoubleMoneyToStringMoney(string Amount)
+        {
+            string money = string.Empty;
+            if (!string.IsNullOrEmpty(Amount))
+            {
+                decimal parsed = decimal.Parse(Amount, CultureInfo.InvariantCulture);
+                CultureInfo hindi = new CultureInfo("hi-IN");
+                money = string.Format(hindi, "{0:c}", parsed);
+            }
+            return money;
 
         }
     }

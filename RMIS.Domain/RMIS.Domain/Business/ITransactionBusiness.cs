@@ -178,5 +178,6 @@ namespace RMIS.Domain.Business
         HullingProcessExpenseDTO GetAllHullingProcessExpensesEntity(string HullingProcessID);
 
         List<PaddyStockDTO> GetAvgPaddyPrice(string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags);
+        string ConverDoubleMoneyToStringMoney(string Amount);
     }
 }

@@ -52,6 +52,10 @@
           <DataField>PaddyName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="PriceDisplay">
+          <DataField>PriceDisplay</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>PaddyStockDataSet</DataSourceName>
@@ -674,7 +678,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Price.Value</Value>
+                              <Value>=Fields!PriceDisplay.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
