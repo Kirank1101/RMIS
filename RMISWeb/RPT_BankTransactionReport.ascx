@@ -8,7 +8,7 @@
         <tr>
             <td>
                 <asp:Label runat="server" ID="lblTransFromDate" Text="<%$Resources:Resource,FromDate%>"></asp:Label>:
-                &nbsp;&nbsp; 
+                &nbsp;&nbsp;
             </td>
             <td>
                 <asp:TextBoxDatenTimeExtender ID="txtTransFromDate" runat="server"></asp:TextBoxDatenTimeExtender>
@@ -16,7 +16,7 @@
             </td>
             <td>
                 <asp:Label runat="server" ID="lbltransToDate" Text="<%$Resources:Resource,ToDate%>"></asp:Label>:
-                &nbsp;&nbsp; 
+                &nbsp;&nbsp;
             </td>
             <td>
                 To &nbsp;&nbsp;
@@ -31,6 +31,11 @@
         </tr>
     </table>
     <table>
+        <tr>
+            <td>
+                <asp:Label ID="lblreportnodata" runat="server"></asp:Label>
+            </td>
+        </tr>
         <tr>
             <td>
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"

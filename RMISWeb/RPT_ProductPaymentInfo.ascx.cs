@@ -45,16 +45,24 @@ public partial class RPT_ProductPaymentInfo : BaseUserControl
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
         if (listProductPaymentDTO != null && listProductPaymentDTO.Count > 0)
         {
+            ReportViewer1.Visible = true;
+            lblreportnodata.Visible = false;
+            lblreportnodata.Text = string.Empty;
             ReportDataSource datasource = null;
             datasource = new ReportDataSource("ProductPayment", CollectionHelper.ConvertTo<ProductPaymentDTO>(listProductPaymentDTO));
 
             ReportViewer1.AsyncRendering = false;
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
-
             ReportViewer1.LocalReport.Refresh();
-
-
+        }
+        else
+        {
+            ReportViewer1.Visible = false;
+            lblreportnodata.Visible = true;
+            lblreportnodata.Text = "No Data Available";
+            lblreportnodata.ForeColor = System.Drawing.Color.LightBlue;
+            lblreportnodata.Font.Size = 22;
         }
     }
 }

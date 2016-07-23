@@ -39,6 +39,11 @@
     <table>
         <tr>
             <td>
+                <asp:Label ID="lblreportnodata" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
                     Height="900px" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana"
                     WaitMessageFont-Size="14pt" Width="100%">

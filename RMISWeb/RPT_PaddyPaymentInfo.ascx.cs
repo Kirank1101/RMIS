@@ -44,8 +44,11 @@ public partial class RPT_PaddyPaymentInfo : BaseUserControl
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
         if (listPaddyPaymentDTO != null && listPaddyPaymentDTO.Count > 0)
         {
+            ReportViewer1.Visible = true;
+            lblreportnodata.Visible = false;
+            lblreportnodata.Text = string.Empty;
             ReportDataSource datasource = null;
-            datasource= new ReportDataSource("PaddyPayment", CollectionHelper.ConvertTo<PaddyPaymentDTO>(listPaddyPaymentDTO));
+            datasource = new ReportDataSource("PaddyPayment", CollectionHelper.ConvertTo<PaddyPaymentDTO>(listPaddyPaymentDTO));
 
             ReportViewer1.AsyncRendering = false;
             ReportViewer1.LocalReport.DataSources.Clear();
@@ -54,6 +57,13 @@ public partial class RPT_PaddyPaymentInfo : BaseUserControl
             ReportViewer1.LocalReport.Refresh();
 
 
+        }
+        else {
+            ReportViewer1.Visible = false;
+            lblreportnodata.Visible = true;
+            lblreportnodata.Text = "No Data Available";
+            lblreportnodata.ForeColor = System.Drawing.Color.LightBlue;
+            lblreportnodata.Font.Size = 22;
         }
     }
 }

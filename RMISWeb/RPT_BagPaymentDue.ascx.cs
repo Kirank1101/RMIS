@@ -31,6 +31,9 @@ public partial class RPT_BagPaymentDue : BaseUserControl
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
         if (listBagPaymentDueDTO != null && listBagPaymentDueDTO.Count > 0)
         {
+            ReportViewer1.Visible = true;
+            lblreportnodata.Visible = false;
+            lblreportnodata.Text = string.Empty;
             ReportDataSource datasource = new ReportDataSource("BagPaymentDue", CollectionHelper.ConvertTo<BagPaymentDueDTO>(listBagPaymentDueDTO));
 
             ReportViewer1.AsyncRendering = false;
@@ -40,6 +43,14 @@ public partial class RPT_BagPaymentDue : BaseUserControl
             ReportViewer1.LocalReport.Refresh();
 
 
+        }
+        else
+        {
+            ReportViewer1.Visible = false;
+            lblreportnodata.Visible = true;
+            lblreportnodata.Text = "No Data Available";
+            lblreportnodata.ForeColor = System.Drawing.Color.LightBlue;
+            lblreportnodata.Font.Size = 22;
         }
     }
 }
