@@ -84,6 +84,7 @@
                               <Value>Transaction Date</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -95,6 +96,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -115,6 +117,7 @@
                               <Value>Description</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -126,6 +129,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -146,6 +150,7 @@
                               <Value>withdrawal</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -159,6 +164,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -179,6 +185,7 @@
                               <Value>Deposits</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -192,6 +199,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -212,6 +220,7 @@
                               <Value>Balance</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -225,6 +234,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -415,7 +425,7 @@
         <DataSetName>BankTransaction</DataSetName>
         <Top>0.24667in</Top>
         <Left>0.33in</Left>
-        <Height>0.54167in</Height>
+        <Height>0.54166in</Height>
         <Width>7.15624in</Width>
         <Style>
           <Border>
@@ -438,7 +448,7 @@
   <Width>8.5in</Width>
   <Page>
     <PageHeader>
-      <Height>1in</Height>
+      <Height>0.83333in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -451,11 +461,11 @@
                 <TextRun>
                   <Value>Bank Transaction Detail Report</Value>
                   <Style>
-                    <FontFamily>Calibri</FontFamily>
-                    <FontSize>15pt</FontSize>
+                    <FontFamily>Shruti</FontFamily>
+                    <FontSize>22pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <TextDecoration>Underline</TextDecoration>
-                    <Color>SlateBlue</Color>
+                    <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -465,10 +475,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox11</rd:DefaultName>
-          <Top>0.33in</Top>
-          <Left>2.69458in</Left>
-          <Height>0.36458in</Height>
-          <Width>2.94792in</Width>
+          <Top>0.13208in</Top>
+          <Left>0.84041in</Left>
+          <Height>0.55208in</Height>
+          <Width>6.11459in</Width>
           <Style>
             <Border>
               <Style>None</Style>
