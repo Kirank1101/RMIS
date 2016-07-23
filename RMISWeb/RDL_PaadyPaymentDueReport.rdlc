@@ -491,7 +491,7 @@
             <Value>=Fields!SellerName.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>0.3175in</Top>
+        <Top>0.1925in</Top>
         <Left>0.19792in</Left>
         <Height>0.56249in</Height>
         <Width>6.21876in</Width>
@@ -507,6 +507,55 @@
   </Body>
   <Width>11.07292in</Width>
   <Page>
+    <PageHeader>
+      <Height>0.84375in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Paddy Payment Due Report</Value>
+                  <Style>
+                    <FontFamily>Shruti</FontFamily>
+                    <FontSize>22pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>CornflowerBlue</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.23959in</Top>
+          <Left>0.61459in</Left>
+          <Height>0.52083in</Height>
+          <Width>4.98958in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
