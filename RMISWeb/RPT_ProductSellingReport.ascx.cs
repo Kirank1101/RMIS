@@ -58,6 +58,8 @@ public partial class RPT_ProductSellingReport : BaseUserControl
         }
         else
         {
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.Refresh();
             ReportViewer1.Visible = false;
             lblreportnodata.Visible = true;
             lblreportnodata.Text = "No Data Available";
