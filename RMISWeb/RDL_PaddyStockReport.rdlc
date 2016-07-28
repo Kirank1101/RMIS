@@ -136,7 +136,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -180,7 +180,7 @@
                         <RightBorder>
                           <Color>Black</Color>
                         </RightBorder>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -224,7 +224,7 @@
                         <RightBorder>
                           <Color>Black</Color>
                         </RightBorder>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -271,7 +271,7 @@
                         <RightBorder>
                           <Color>Black</Color>
                         </RightBorder>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -305,7 +305,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -349,7 +349,7 @@
                         <RightBorder>
                           <Color>Black</Color>
                         </RightBorder>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -385,7 +385,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -421,7 +421,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -455,7 +455,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -489,7 +489,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <BackgroundColor>Turquoise</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -713,7 +713,7 @@
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>15pt</PaddingRight>
+                        <PaddingRight>12pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -838,6 +838,9 @@
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -867,7 +870,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>10in</Height>
+    <Height>1.37166in</Height>
     <Style />
   </Body>
   <Width>13.38539in</Width>
@@ -921,6 +924,16 @@
         </Border>
       </Style>
     </PageHeader>
+    <PageFooter>
+      <Height>1.13542in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
