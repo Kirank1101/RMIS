@@ -1688,5 +1688,11 @@ namespace RMIS.Mediator.BackEnd.Impl
         {
             return rmisGateway.GetReceiptPaddyStockInfoEntity(CustId, PaddyStockId, yesNo);
         }
+
+
+        public List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string PaddyPaymentID, YesNo yesNo)
+        {
+            return rmisGateway.GetPaddyPaymentDetailsEntity(CustId, PaddyPaymentID, yesNo);
+        }
     }
 }

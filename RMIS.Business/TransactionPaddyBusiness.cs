@@ -612,7 +612,7 @@ namespace RMIS.Business
 
 
                     objPaddyStockDTO.DriverName = objPaddyStockInfoEntity.DriverName;
-                    string displayamount=Convert.ToString(Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
+                    string displayamount = Convert.ToString(Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
                     objPaddyStockDTO.Price = Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);
                     objPaddyStockDTO.PriceDisplay = ConverDoubleMoneyToStringMoney(displayamount);
                     objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
@@ -2232,7 +2232,9 @@ namespace RMIS.Business
                     {
                         objPaddyPaymentDTO.SellerName = objSellerInfoEntity.Name;
                     }
+                    objPaddyPaymentDTO.ID = objPaddyPaymentDetailsEntity.PaddyPaymentID;
                     objPaddyPaymentDTO.AmountPaid = objPaddyPaymentDetailsEntity.AmountPaid;
+                    objPaddyPaymentDTO.DisplayAmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString(objPaddyPaymentDetailsEntity.AmountPaid));
                     objPaddyPaymentDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
                     objPaddyPaymentDTO.NextPayDate = objPaddyPaymentDetailsEntity.NextPaymentDate;
                     objPaddyPaymentDTO.PaymentMode = objPaddyPaymentDetailsEntity.PaymentMode;
@@ -2257,6 +2259,8 @@ namespace RMIS.Business
                     {
                         objPaddyPaymentDTO.SellerName = objSellerInfoEntity.Name;
                     }
+                    objPaddyPaymentDTO.ID = objPaddyPaymentDetailsEntity.PaddyPaymentID;
+                    objPaddyPaymentDTO.DisplayAmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString(objPaddyPaymentDetailsEntity.AmountPaid));
                     objPaddyPaymentDTO.AmountPaid = objPaddyPaymentDetailsEntity.AmountPaid;
                     objPaddyPaymentDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
                     objPaddyPaymentDTO.NextPayDate = objPaddyPaymentDetailsEntity.NextPaymentDate;
@@ -3364,7 +3368,7 @@ namespace RMIS.Business
             int requiredbags = TotalBagsRequired;
             List<PaddyStockDTO> lstpaddystocknew = new List<PaddyStockDTO>();
             List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
-                
+
             foreach (PaddyStockInfoEntity PSIE in lstpaddystock)
             {
 
@@ -3465,7 +3469,7 @@ namespace RMIS.Business
                     objPaddyStockDTO.PaddyName = lstobjMPaddyTypeEntity.Where(pt => pt.PaddyTypeID == objPaddyStockInfoEntity.PaddyTypeID).Select(pt => pt.Name).SingleOrDefault();
 
                     objPaddyStockDTO.UnitName = lstMUnitsTypeEntity.Where(ut => ut.UnitsTypeID == objPaddyStockInfoEntity.UnitsTypeID).Select(ut => ut.UnitsType).SingleOrDefault();
-                
+
 
                     string displayamount = Convert.ToString(Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
                     objPaddyStockDTO.Price = Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);
@@ -3487,8 +3491,8 @@ namespace RMIS.Business
             PaddyPurchaseReceiptDTO PPRDTO = null;
             List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetReceiptPaddyStockInfoEntity(provider.GetCurrentCustomerId(), PaddyStockId, YesNo.Null);
             CustomerAddressInfoEntity custaddres = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
-            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0 && custaddres!=null)
-            {   
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0 && custaddres != null)
+            {
                 List<MPaddyTypeEntity> lstobjMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.Null);
                 List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
                 foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
@@ -3515,14 +3519,92 @@ namespace RMIS.Business
                     PPRDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
                     PPRDTO.Quintals = ConvertUnitsToQuintal(Convert.ToDecimal(PPRDTO.UnitName), PPRDTO.TotalBags);
                     string displayamount = Convert.ToString(Math.Round(ConverToPriceperQuintal(PPRDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
-                    PPRDTO.QuintalPrice = ConverDoubleMoneyToStringMoney(displayamount);                    
-                    PPRDTO.Price = Math.Round(ConverToPriceperQuintal(PPRDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);                    
-                    PPRDTO.TotalPrice =ConverDoubleMoneyToStringMoney(Convert.ToString( Convert.ToDouble( PPRDTO.Quintals )* PPRDTO.Price));
-                    
+                    PPRDTO.QuintalPrice = ConverDoubleMoneyToStringMoney(displayamount);
+                    PPRDTO.Price = Math.Round(ConverToPriceperQuintal(PPRDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);
+                    PPRDTO.TotalPrice = ConverDoubleMoneyToStringMoney(Convert.ToString(Convert.ToDouble(PPRDTO.Quintals) * PPRDTO.Price));
+
                 }
             }
 
             return PPRDTO;
+        }
+
+
+        public PaddyPaymentReceiptDTO GetPaddyPaymentReceiptDTO(string PaddyPaymentID)
+        {
+
+            PaddyPaymentReceiptDTO PPRDTO = null;
+            List<PaddyPaymentDetailsEntity> listPaddypaymentInfoEntity = imp.GetPaddyPaymentDetailsEntity(provider.GetCurrentCustomerId(), PaddyPaymentID, YesNo.Null);
+            CustomerAddressInfoEntity custaddres = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listPaddypaymentInfoEntity != null && listPaddypaymentInfoEntity.Count > 0 && custaddres != null)
+            {
+                foreach (PaddyPaymentDetailsEntity objPaddyPaymentDetailsEntity in listPaddypaymentInfoEntity)
+                {
+                    PPRDTO = new PaddyPaymentReceiptDTO();
+
+                    PPRDTO.CustomerName = custaddres.MillName;
+                    PPRDTO.Address = GetAddressformat(custaddres);
+                    PPRDTO.PinCode = custaddres.Pincode;
+                    PPRDTO.ContactNo = custaddres.ContactNo;
+                    PPRDTO.TIN = custaddres.TINNumber;
+
+                    PPRDTO.ID = objPaddyPaymentDetailsEntity.PaddyPaymentID;
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyPaymentDetailsEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                        PPRDTO.SellerName = objSellerInfoEntity.Name;
+                    PPRDTO.PaidAmount =ConverDoubleMoneyToStringMoney(Convert.ToString( objPaddyPaymentDetailsEntity.AmountPaid));
+                    PPRDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
+                    PPRDTO.NextPayDate= objPaddyPaymentDetailsEntity.NextPaymentDate;
+                    PPRDTO.PaymentMode = objPaddyPaymentDetailsEntity.PaymentMode;
+
+                }
+            }
+
+            return PPRDTO;
+        }
+
+        private string GetAddressformat(CustomerAddressInfoEntity custaddres)
+        {
+            string Address = string.Empty;
+            if (!string.IsNullOrEmpty(custaddres.Street1))
+                Address = custaddres.Street1;
+
+            if (!string.IsNullOrEmpty(custaddres.Street2))
+            {
+                if (Address != string.Empty)
+                    Address += ", " + custaddres.Street2;
+                else
+                    Address = custaddres.Street2;
+            }
+
+            if (!string.IsNullOrEmpty(custaddres.Town))
+            {
+
+                if (Address != string.Empty)
+                    Address += ", " + custaddres.Town;
+                else
+                    Address = custaddres.Town;
+            }
+
+            if (!string.IsNullOrEmpty(custaddres.City) && custaddres.Town!=custaddres.City)
+            {
+
+                if (Address != string.Empty)
+                    Address += ", " + custaddres.City;
+                else
+                    Address = custaddres.City;
+            }
+
+            if (!string.IsNullOrEmpty(custaddres.District) && custaddres.City!= custaddres.District)
+            {
+
+                if (Address != string.Empty)
+                    Address += ", " + custaddres.District;
+                else
+                    Address = custaddres.District;
+            }
+
+            return Address;
         }
     }
 }

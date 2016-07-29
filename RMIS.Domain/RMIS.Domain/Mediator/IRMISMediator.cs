@@ -299,6 +299,8 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID,int TotalBags, YesNo yesNo);
 
         List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string PaddyStockId, YesNo yesNo);
+
+        List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string PaddyPaymentID, YesNo yesNo);
     }
 
 }

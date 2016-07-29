@@ -5638,5 +5638,36 @@
                 throw;
             }
         }
+
+        internal List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string PaddyPaymentID, YesNo yesNo)
+        {
+            try
+            {
+                List<PaddyPaymentDetailsEntity> listPaddyPaymentDetailsEntity = new List<PaddyPaymentDetailsEntity>();
+                IRepository<PaddyPaymentDetails> UsersRepository = new RepositoryImpl<PaddyPaymentDetails>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(PaddyPaymentDetails))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("PaddyPaymentID", PaddyPaymentID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<PaddyPaymentDetails> listPaddyPaymentDetails = UsersRepository.GetAll(detachedCriteria) as List<PaddyPaymentDetails>;
+                if (listPaddyPaymentDetails != null && listPaddyPaymentDetails.Count > 0)
+                {
+                    foreach (PaddyPaymentDetails adMInfo in listPaddyPaymentDetails)
+                    {
+                        listPaddyPaymentDetailsEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyPaymentDetailsEntity(adMInfo));
+                    }
+                }
+                else
+                    listPaddyPaymentDetailsEntity = null;
+
+                return listPaddyPaymentDetailsEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetPaddyPaymentDetailsEntity", ex);
+                throw;
+            }
+        }
     }
 }

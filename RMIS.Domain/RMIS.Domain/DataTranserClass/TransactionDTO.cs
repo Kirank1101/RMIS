@@ -19,16 +19,35 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalAmountDue { get; set; }
         public DateTime NextPayDate { get; set; }
     }
+    public class PaddyPaymentReceiptDTO
+    {
+        public PaddyPaymentReceiptDTO()
+        {
+            SellerName =PaymentMode=  string.Empty;            
+        }
+        public string ID { get; set; }
+        public string SellerName { get; set; }
+        public string PaidAmount { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string PaymentMode { get; set; }
+        public DateTime NextPayDate { get; set; }
+        public string CustomerName { get; set; }
+        public string Address { get; set; }
+        public int PinCode { get; set; }
+        public string ContactNo { get; set; }
+        public string TIN { get; set; }
+    }
     public class PaddyPaymentDTO
     {
         public PaddyPaymentDTO()
         {
-            SellerName =PaymentMode=  string.Empty;
+            ID=SellerName = PaymentMode = string.Empty;
             AmountPaid = 0.0;
         }
-        
+        public string ID { get; set; }
         public string SellerName { get; set; }
         public double AmountPaid { get; set; }
+        public string DisplayAmountPaid { get; set; }
         public DateTime PaidDate { get; set; }
         public string PaymentMode { get; set; }
         public DateTime NextPayDate { get; set; }
