@@ -59,6 +59,39 @@ namespace RMIS.Domain.DataTranserClass
         public int UsedBags { get; set; }
         public string AllBagsUsed { get; set; }
     }
+
+    public class PaddyPurchaseReceiptDTO
+    {
+        public PaddyPurchaseReceiptDTO()
+        {
+            Id = SellerName = PaddyType = UnitName =string.Empty;
+            Price = 0.0;
+        }
+
+        public string Id { get; set; }
+        public string SellerName { get; set; }
+        public string PaddyType { get; set; }
+        public string UnitName { get; set; }
+        public int TotalBags { get; set; }
+        public decimal Quintals { get; set; }
+        public string QuintalPrice { get; set; }
+        public string TotalPrice { get; set; }
+        public double Price { get; set; }
+        public string PriceDisplay { get; set; }
+        public string GrandTotalPrice { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public string CustomerName { get; set; }
+        public string Street1 { get; set; }
+        public string Street2 { get; set; }
+        public string Town { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public int PinCode { get; set; }
+        public string ContactNo { get; set; }
+        public string TIN { get; set; }
+
+
+    }
     public class PaddyStockOverViewDTO
     {
         public PaddyStockOverViewDTO()

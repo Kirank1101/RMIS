@@ -18,6 +18,8 @@
     <property name="ContactNo" column="ContactNo" />
     <property name="MobileNo" column="MobileNo" />
     <property name="PhoneNo" column="PhoneNo" />
+    <property name="TINNumber" column="TINNumber" />
+    <property name="MillName" column="MillName" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

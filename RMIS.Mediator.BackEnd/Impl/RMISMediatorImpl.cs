@@ -753,10 +753,10 @@ namespace RMIS.Mediator.BackEnd.Impl
 
             return rmisGateway.GetPaddyPaymentDetailsEntity(PaddyPaymentID, yesNo);
         }
-        public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo)
+        public CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustID, YesNo yesNo)
         {
 
-            return rmisGateway.GetCustomerAddressInfoEntity(CustAdrsID, yesNo);
+            return rmisGateway.GetCustomerAddressInfoEntity(CustID, yesNo);
         }
         public CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID, YesNo yesNo)
         {
@@ -948,6 +948,10 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
+        }
+        public List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo)
+        {
+            return rmisGateway.GetReceiptPaddyStockInfoEntity(CustId, pageindex, pageSize, out  count, expression, yesNo);
         }
         public List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId, YesNo yesNo)
         {
@@ -1677,6 +1681,12 @@ namespace RMIS.Mediator.BackEnd.Impl
         public List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags, YesNo yesNo)
         {
             return rmisGateway.GetPaddyStockInfoEntities(CustId, PaddyTypeID, UnitTypeID, GodownID, LotID,TotalBags, yesNo);
+        }
+
+
+        public List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string PaddyStockId, YesNo yesNo)
+        {
+            return rmisGateway.GetReceiptPaddyStockInfoEntity(CustId, PaddyStockId, yesNo);
         }
     }
 }

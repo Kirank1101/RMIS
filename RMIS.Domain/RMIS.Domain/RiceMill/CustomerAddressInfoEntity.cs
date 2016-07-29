@@ -21,6 +21,8 @@ namespace RMIS.Domain.RiceMill
         public string ContactNo { get; set; }
         public string MobileNo { get; set; }
         public string PhoneNo { get; set; }
+        public string TINNumber { get; set; }
+        public string MillName { get; set; }
 
         #region Methods
         /// <summary>Determines whether the specified object is equal to this instance.</summary>

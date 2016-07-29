@@ -103,7 +103,7 @@ namespace RMIS.Domain.Mediator
         PaddyStockInfoEntity GetPaddyStockInfoEntity(string PaddyStockID, YesNo yesNo);
         BagStockInfoEntity GetBagStockInfoEntity(string BagStockID, YesNo yesNo);
         PaddyPaymentDetailsEntity GetPaddyPaymentDetailsEntity(string CustId, YesNo yesNo);
-        CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustAdrsID, YesNo yesNo);
+        CustomerAddressInfoEntity GetCustomerAddressInfoEntity(string CustID, YesNo yesNo);
         CustomerActivationEntity GetCustomerActivationEntity(string CustActiveID, YesNo yesNo);
         CustTrailUsageEntity GetCustTrailUsageEntity(string CustTrailID, YesNo yesNo);
         CustomerPaymentEntity GetCustomerPaymentEntity(string CustPaymentID, YesNo yesNo);
@@ -139,6 +139,7 @@ namespace RMIS.Domain.Mediator
         List<RMUserRoleEntity> GetUserRoleEntities(string userId, YesNo yesNo);
         List<MPaddyTypeEntity> GetMPaddyTypeEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
+        List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression expression, YesNo yesNo);
         List<BuyerSellerRatingEntity> GetAllBuyerSellerRatingEntities(string CustId, YesNo yesNo);
         List<BuyerInfoEntity> GetListBuyerInfoEntities(string CustID, YesNo yesNo);
         List<MEmployeeDesignationEntity> GetListMEmployeeDesignationEntities(string CustId, YesNo yesNo);
@@ -296,6 +297,8 @@ namespace RMIS.Domain.Mediator
         HullingProcessExpensesEntity GetAllHullingProcessExpensesEntity(string CustID, string HullingProcessID, YesNo yesNo);
 
         List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID,int TotalBags, YesNo yesNo);
+
+        List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string PaddyStockId, YesNo yesNo);
     }
 
 }

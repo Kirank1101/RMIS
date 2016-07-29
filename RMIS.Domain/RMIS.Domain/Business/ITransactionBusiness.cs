@@ -181,5 +181,8 @@ namespace RMIS.Domain.Business
         string ConverDoubleMoneyToStringMoney(string Amount);
         decimal ConvertUnitsToQuintal(decimal UnitType, int Bags);
         decimal RiceYieldCalculate(decimal TotPaddyQuintals, decimal TotRiceQuintals);
+        List<PaddyStockDTO> GetPaddyPurchaseDTO(int pageindex, int pageSize, out int count, SortExpression expression);
+
+        PaddyPurchaseReceiptDTO GetPaddyPurchaseReceiptDTO(string PaddyStockId);
     }
 }

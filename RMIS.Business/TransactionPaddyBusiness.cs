@@ -3439,5 +3439,90 @@ namespace RMIS.Business
             return money;
 
         }
+
+
+        public List<PaddyStockDTO> GetPaddyPurchaseDTO(int pageindex, int pageSize, out int count, SortExpression expression)
+        {
+
+            List<PaddyStockDTO> listPaddyStockDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetReceiptPaddyStockInfoEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, expression, YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+            {
+                listPaddyStockDTO = new List<PaddyStockDTO>();
+                List<MPaddyTypeEntity> lstobjMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.Null);
+                List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                {
+                    PaddyStockDTO objPaddyStockDTO = new PaddyStockDTO();
+                    objPaddyStockDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
+
+
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyStockInfoEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                    {
+                        objPaddyStockDTO.SellerName = objSellerInfoEntity.Name;
+                    }
+                    objPaddyStockDTO.PaddyName = lstobjMPaddyTypeEntity.Where(pt => pt.PaddyTypeID == objPaddyStockInfoEntity.PaddyTypeID).Select(pt => pt.Name).SingleOrDefault();
+
+                    objPaddyStockDTO.UnitName = lstMUnitsTypeEntity.Where(ut => ut.UnitsTypeID == objPaddyStockInfoEntity.UnitsTypeID).Select(ut => ut.UnitsType).SingleOrDefault();
+                
+
+                    string displayamount = Convert.ToString(Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
+                    objPaddyStockDTO.Price = Math.Round(ConverToPriceperQuintal(objPaddyStockDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);
+                    objPaddyStockDTO.PriceDisplay = ConverDoubleMoneyToStringMoney(displayamount);
+                    objPaddyStockDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
+                    objPaddyStockDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    listPaddyStockDTO.Add(objPaddyStockDTO);
+                }
+            }
+
+            return listPaddyStockDTO;
+        }
+
+
+
+
+        public PaddyPurchaseReceiptDTO GetPaddyPurchaseReceiptDTO(string PaddyStockId)
+        {
+            PaddyPurchaseReceiptDTO PPRDTO = null;
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetReceiptPaddyStockInfoEntity(provider.GetCurrentCustomerId(), PaddyStockId, YesNo.Null);
+            CustomerAddressInfoEntity custaddres = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0 && custaddres!=null)
+            {   
+                List<MPaddyTypeEntity> lstobjMPaddyTypeEntity = imp.GetMPaddyTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.Null);
+                List<MUnitsTypeEntity> lstMUnitsTypeEntity = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                foreach (PaddyStockInfoEntity objPaddyStockInfoEntity in listPaddyStockInfoEntity)
+                {
+                    PPRDTO = new PaddyPurchaseReceiptDTO();
+
+                    PPRDTO.CustomerName = custaddres.MillName;
+                    PPRDTO.Street1 = custaddres.Street1;
+                    PPRDTO.Street2 = custaddres.Street2;
+                    PPRDTO.Town = custaddres.Town;
+                    PPRDTO.City = custaddres.City;
+                    PPRDTO.District = custaddres.District;
+                    PPRDTO.PinCode = custaddres.Pincode;
+                    PPRDTO.ContactNo = custaddres.ContactNo;
+                    PPRDTO.TIN = custaddres.TINNumber;
+
+                    PPRDTO.Id = objPaddyStockInfoEntity.PaddyStockID;
+                    SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyStockInfoEntity.SellerID, YesNo.Null);
+                    if (objSellerInfoEntity != null)
+                        PPRDTO.SellerName = objSellerInfoEntity.Name;
+                    PPRDTO.PaddyType = lstobjMPaddyTypeEntity.Where(pt => pt.PaddyTypeID == objPaddyStockInfoEntity.PaddyTypeID).Select(pt => pt.Name).SingleOrDefault();
+                    PPRDTO.UnitName = lstMUnitsTypeEntity.Where(ut => ut.UnitsTypeID == objPaddyStockInfoEntity.UnitsTypeID).Select(ut => ut.UnitsType).SingleOrDefault();
+                    PPRDTO.PurchaseDate = objPaddyStockInfoEntity.PurchaseDate;
+                    PPRDTO.TotalBags = objPaddyStockInfoEntity.TotalBags;
+                    PPRDTO.Quintals = ConvertUnitsToQuintal(Convert.ToDecimal(PPRDTO.UnitName), PPRDTO.TotalBags);
+                    string displayamount = Convert.ToString(Math.Round(ConverToPriceperQuintal(PPRDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven));
+                    PPRDTO.QuintalPrice = ConverDoubleMoneyToStringMoney(displayamount);                    
+                    PPRDTO.Price = Math.Round(ConverToPriceperQuintal(PPRDTO.UnitName.ConvertToInt(), objPaddyStockInfoEntity.Price), 0, MidpointRounding.ToEven);                    
+                    PPRDTO.TotalPrice =ConverDoubleMoneyToStringMoney(Convert.ToString( Convert.ToDouble( PPRDTO.Quintals )* PPRDTO.Price));
+                    
+                }
+            }
+
+            return PPRDTO;
+        }
     }
 }
