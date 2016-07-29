@@ -837,13 +837,14 @@
           <rd:DefaultName>ContactNo</rd:DefaultName>
           <Top>0.30917in</Top>
           <Left>5.69631in</Left>
-          <Height>0.3125in</Height>
+          <Height>0.23264in</Height>
           <Width>1.55036in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <VerticalAlign>Bottom</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -862,7 +863,7 @@
                     <FontFamily>Castellar</FontFamily>
                     <FontSize>26pt</FontSize>
                     <FontWeight>Bold</FontWeight>
-                    <TextDecoration>None</TextDecoration>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -901,6 +902,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -910,6 +912,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -919,6 +922,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -928,6 +932,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -937,6 +942,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -946,6 +952,7 @@
                     <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
                   </Style>
                 </TextRun>
@@ -1024,14 +1031,95 @@
           </Paragraphs>
           <rd:DefaultName>SellerName</rd:DefaultName>
           <Top>1.60083in</Top>
-          <Left>1.80744in</Left>
+          <Left>1.79355in</Left>
           <Height>0.25in</Height>
-          <Width>5.43923in</Width>
+          <Width>4.06943in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Purchase Receipt</Value>
+                  <Style>
+                    <FontFamily>Copperplate Gothic Light</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                    <Color>Maroon</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.30917in</Top>
+          <Left>2.13903in</Left>
+          <Height>0.25in</Height>
+          <Width>3.54339in</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Date: </Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=CDate( Today()).ToString("dd-MMM-yy")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>1.58695in</Top>
+          <Left>5.90464in</Left>
+          <Height>0.30208in</Height>
+          <Width>1.34203in</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Top</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
