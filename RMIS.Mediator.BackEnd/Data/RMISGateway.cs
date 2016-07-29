@@ -5669,5 +5669,39 @@
                 throw;
             }
         }
+
+        internal List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<PaddyStockInfoEntity> listpaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
+                IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+
+                detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                               .Add(Expression.Eq("CustID", CustId))
+                                                               .Add(Expression.Eq("SellerID", SellerID))
+                                                                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                               ).AddOrder(Order.Desc("PurchaseDate"));
+                List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyStockInfo>;
+                if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
+                {
+                    foreach (PaddyStockInfo adMInfo in listPaddyStockInfoEntity)
+                    {
+                        listpaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listpaddyStockInfoEntity = null;
+
+                return listpaddyStockInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetReceiptPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
     }
 }

@@ -34,5 +34,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateBankTransReport(string TransFromDate, string TransToDate);
 
         ResultDTO ValidateGetPaddyPrice(int PaddyType, int UnitType, int GodownType, int LotType,string TotalBags);
+
+        ResultDTO ValidatePaddyPurchaseReport(string SellerId);
     }
 }

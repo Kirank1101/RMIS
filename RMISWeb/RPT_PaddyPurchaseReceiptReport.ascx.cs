@@ -17,6 +17,8 @@ public partial class RPT_PaddyPurchaseReceiptReport : BaseUserControl
         if (!IsControlPostBack)
         {
             bindPaddyStockInfo();
+            BindReport(null);
+            lblreportnodata.Text = string.Empty;
         }
     }
     private void bindPaddyStockInfo()
@@ -54,13 +56,24 @@ public partial class RPT_PaddyPurchaseReceiptReport : BaseUserControl
     }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyStockReport(txtsellername.Text.Trim(), txtPruchaseDatefrom.Text.Trim(), txtPruchaseDateTo.Text.Trim());
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidatePaddyPurchaseReport(txtsellername.Text.Trim());
         if (resultDto.IsSuccess)
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             int count;
-            List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockPurchaseDTO(txtsellername.SelectedValue, 0, 1000, out count, SortExpression.Desc, txtPruchaseDatefrom.Text.ConvertToDate(), txtPruchaseDateTo.Text.ConvertToDate());
-            //BindReport(listPaddyStockDTO);
+            List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyPurchaseReceptOnSellerDTO(txtsellername.SelectedValue, 0, 1000, out count, SortExpression.Desc);
+            if (listPaddyStockDTO != null && listPaddyStockDTO.Count > 0)
+            {
+                rptPaddyStockInfo.DataSource = listPaddyStockDTO;
+                rptPaddyStockInfo.VirtualItemCount = count;
+                rptPaddyStockInfo.DataBind();
+            }
+            else {
+                rptPaddyStockInfo.DataSource = null;
+                rptPaddyStockInfo.DataBind();
+            }
+            BindReport(null);
+            lblreportnodata.Text = string.Empty;
         }
         else
         {
@@ -70,15 +83,9 @@ public partial class RPT_PaddyPurchaseReceiptReport : BaseUserControl
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         txtsellername.Text = string.Empty;
-        List<PaddyStockDTO> lstpaddystockDTO = GetAllPaddyStock();
-        //BindReport(lstpaddystockDTO);
-    }
-    private List<PaddyStockDTO> GetAllPaddyStock()
-    {
-        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        int count;
-        List<PaddyStockDTO> listPaddyStockDTO = imp.GetPaddyStockDTO(0, 1000, out count, SortExpression.Desc);
-        return listPaddyStockDTO;
+        bindPaddyStockInfo();
+        BindReport(null);
+        lblreportnodata.Text = string.Empty;
     }
     private void BindReport(List<PaddyPurchaseReceiptDTO> listPaddyPurchaseReceiptDTO)
     {

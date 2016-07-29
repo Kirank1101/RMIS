@@ -241,7 +241,8 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessDetailsPaddyPriceValidate = "Validate122";
         public const string ValidateHullingProcessDetailsHullingExpensesEmpty = "Validate123";
         public const string ValidateHullingProcessDetailsHullingExpensesValidate= "Validate124";
-        
+        public const string ValidatePaddyPurchaseReportRequired = "Validate125";
+
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

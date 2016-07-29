@@ -871,6 +871,17 @@ namespace RMIS.Business
             }
             return new ResultDTO();            
         }
+
+
+        public ResultDTO ValidatePaddyPurchaseReport(string SellerId)
+        {
+
+            if (string.IsNullOrEmpty(SellerId))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidatePaddyPurchaseReportRequired, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
     }
 }
 

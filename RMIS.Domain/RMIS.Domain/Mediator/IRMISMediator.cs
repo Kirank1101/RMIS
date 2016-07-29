@@ -301,6 +301,8 @@ namespace RMIS.Domain.Mediator
         List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string PaddyStockId, YesNo yesNo);
 
         List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string PaddyPaymentID, YesNo yesNo);
+
+        List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

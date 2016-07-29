@@ -17,18 +17,6 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:Label runat="server" ID="lblPruchaseDate" Text="<%$Resources:Resource,PruchaseDate%>"></asp:Label>:
-                &nbsp;&nbsp; From
-            </td>
-            <td>
-                <asp:TextBoxDatenTimeExtender ID="txtPruchaseDatefrom" runat="server"></asp:TextBoxDatenTimeExtender>
-                &nbsp;&nbsp;
-            </td>
-            <td>
-                To &nbsp;&nbsp;
-                <asp:TextBoxDatenTimeExtender ID="txtPruchaseDateTo" runat="server"></asp:TextBoxDatenTimeExtender>
-            </td>
-            <td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
                 &nbsp;&nbsp;
@@ -48,7 +36,7 @@
                         <asp:BoundField DataField="PaddyName" SortExpression="PaddyName" HeaderText="Paddy Name" />
                         <asp:BoundField DataField="UnitName" SortExpression="UnitName" HeaderText="Unit Name" />
                         <asp:BoundField DataField="TotalBags" SortExpression="TotalBags" HeaderText="Total Bags" />
-                        <asp:BoundField DataField="Price" SortExpression="Price" HeaderText="Price" />
+                        <asp:BoundField DataField="PriceDisplay" SortExpression="Price" HeaderText="Price" />
                         <asp:BoundField DataField="PurchaseDate" SortExpression="PurchaseDate" HeaderText="Purchase Date" />
                          <asp:ButtonField ButtonType="Button" CommandName="PayAmount" Text="Pay" />
                     </Columns>

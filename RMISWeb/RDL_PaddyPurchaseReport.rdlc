@@ -96,7 +96,7 @@
               <Width>1.09899in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.3837in</Width>
+              <Width>1.24828in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -724,9 +724,9 @@
         </TablixRowHierarchy>
         <DataSetName>PaddyPurchaseBillDS</DataSetName>
         <Top>0.20486in</Top>
-        <Left>0.52792in</Left>
+        <Left>0.56956in</Left>
         <Height>4.34375in</Height>
-        <Width>6.71878in</Width>
+        <Width>6.58336in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
