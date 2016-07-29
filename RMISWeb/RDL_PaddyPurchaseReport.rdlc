@@ -97,22 +97,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.08161in</Width>
+              <Width>1.04342in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.1961in</Width>
+              <Width>1.28291in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.95661in</Width>
+              <Width>1.04342in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.77953in</Width>
+              <Width>0.86634in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.88718in</Width>
+              <Width>1.09899in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.29689in</Width>
+              <Width>1.3837in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -328,7 +328,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.3125in</Height>
+              <Height>3.82292in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -739,10 +739,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>PaddyPurchaseBillDS</DataSetName>
-        <Top>0.06944in</Top>
-        <Left>0.15292in</Left>
-        <Height>0.83333in</Height>
-        <Width>6.19792in</Width>
+        <Top>0.20486in</Top>
+        <Left>0.52792in</Left>
+        <Height>4.34375in</Height>
+        <Width>6.71875in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -754,13 +754,18 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>8.7in</Height>
-    <Style />
+    <Height>5.51042in</Height>
+    <Style>
+      <Border>
+        <Style>Solid</Style>
+        <Width>2pt</Width>
+      </Border>
+    </Style>
   </Body>
-  <Width>6.85084in</Width>
+  <Width>8in</Width>
   <Page>
     <PageHeader>
-      <Height>1.53834in</Height>
+      <Height>2.05917in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -771,9 +776,17 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Value>TIN : </Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
                   <Value>=First(Fields!TIN.Value, "PaddyPurchaseBillDS")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -781,42 +794,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>TIN</rd:DefaultName>
-          <Top>0.18417in</Top>
-          <Left>0.67375in</Left>
-          <Height>0.20833in</Height>
-          <Width>1.0625in</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox8">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>TIN : </Value>
-                  <Style>
-                    <FontSize>12pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox8</rd:DefaultName>
-          <Top>0.18417in</Top>
-          <Left>0.15292in</Left>
-          <Height>0.20833in</Height>
-          <Width>0.47916in</Width>
-          <ZIndex>1</ZIndex>
+          <Top>0.30917in</Top>
+          <Left>0.52792in</Left>
+          <Height>0.3125in</Height>
+          <Width>1.58333in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -834,9 +815,17 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Value>Cell : </Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
                   <Value>=First(Fields!ContactNo.Value, "PaddyPurchaseBillDS")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -846,43 +835,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ContactNo</rd:DefaultName>
-          <Top>0.18417in</Top>
-          <Left>5.31784in</Left>
-          <Height>0.20833in</Height>
-          <Width>1.033in</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox9">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Cell : </Value>
-                  <Style>
-                    <FontSize>12pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox8</rd:DefaultName>
-          <Top>0.18417in</Top>
-          <Left>4.7275in</Left>
-          <Height>0.20833in</Height>
-          <Width>0.5209in</Width>
-          <ZIndex>3</ZIndex>
+          <Top>0.30917in</Top>
+          <Left>5.69631in</Left>
+          <Height>0.3125in</Height>
+          <Width>1.55036in</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -902,8 +859,8 @@
                 <TextRun>
                   <Value>=First(Fields!CustomerName.Value, "PaddyPurchaseBillDS")</Value>
                   <Style>
-                    <FontFamily>Bell MT</FontFamily>
-                    <FontSize>24pt</FontSize>
+                    <FontFamily>Castellar</FontFamily>
+                    <FontSize>26pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <TextDecoration>None</TextDecoration>
                     <Color>CornflowerBlue</Color>
@@ -916,15 +873,16 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>CustomerName</rd:DefaultName>
-          <Top>0.56958in</Top>
-          <Left>0.15292in</Left>
+          <Top>0.94458in</Top>
+          <Left>0.52792in</Left>
           <Height>0.32292in</Height>
-          <Width>6.19792in</Width>
-          <ZIndex>4</ZIndex>
+          <Width>6.71875in</Width>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <VerticalAlign>Middle</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -940,6 +898,7 @@
                 <TextRun>
                   <Value>=First(Fields!Street1.Value, "PaddyPurchaseBillDS")</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -948,6 +907,7 @@
                 <TextRun>
                   <Value>=Fields!Street2.Value</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -956,6 +916,7 @@
                 <TextRun>
                   <Value>=Fields!Town.Value</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -964,6 +925,7 @@
                 <TextRun>
                   <Value>=Fields!City.Value</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -972,6 +934,7 @@
                 <TextRun>
                   <Value>=Fields!District.Value</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -980,6 +943,7 @@
                 <TextRun>
                   <Value>=Fields!PinCode.Value</Value>
                   <Style>
+                    <FontFamily>Centaur</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>CornflowerBlue</Color>
@@ -992,11 +956,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Street1</rd:DefaultName>
-          <Top>0.90639in</Top>
-          <Left>0.15292in</Left>
+          <Top>1.28139in</Top>
+          <Left>0.52792in</Left>
           <Height>0.25in</Height>
-          <Width>6.19792in</Width>
-          <ZIndex>5</ZIndex>
+          <Width>6.71875in</Width>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1025,11 +989,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox75</rd:DefaultName>
-          <Top>1.23625in</Top>
-          <Left>0.15292in</Left>
+          <Top>1.61125in</Top>
+          <Left>0.52792in</Left>
           <Height>0.25in</Height>
           <Width>1.22396in</Width>
-          <ZIndex>6</ZIndex>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1059,11 +1023,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>SellerName</rd:DefaultName>
-          <Top>1.22583in</Top>
-          <Left>1.43244in</Left>
+          <Top>1.60083in</Top>
+          <Left>1.80744in</Left>
           <Height>0.25in</Height>
-          <Width>4.91839in</Width>
-          <ZIndex>7</ZIndex>
+          <Width>5.43923in</Width>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1077,7 +1041,8 @@
       </ReportItems>
       <Style>
         <Border>
-          <Style>None</Style>
+          <Style>Solid</Style>
+          <Width>2pt</Width>
         </Border>
       </Style>
     </PageHeader>
