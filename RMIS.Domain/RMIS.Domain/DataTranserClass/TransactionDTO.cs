@@ -100,11 +100,7 @@ namespace RMIS.Domain.DataTranserClass
         public string GrandTotalPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
         public string CustomerName { get; set; }
-        public string Street1 { get; set; }
-        public string Street2 { get; set; }
-        public string Town { get; set; }
-        public string City { get; set; }
-        public string District { get; set; }
+        public string Address { get; set; }
         public int PinCode { get; set; }
         public string ContactNo { get; set; }
         public string TIN { get; set; }

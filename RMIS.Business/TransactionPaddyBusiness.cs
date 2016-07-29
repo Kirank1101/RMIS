@@ -3500,11 +3500,7 @@ namespace RMIS.Business
                     PPRDTO = new PaddyPurchaseReceiptDTO();
 
                     PPRDTO.CustomerName = custaddres.MillName;
-                    PPRDTO.Street1 = custaddres.Street1;
-                    PPRDTO.Street2 = custaddres.Street2;
-                    PPRDTO.Town = custaddres.Town;
-                    PPRDTO.City = custaddres.City;
-                    PPRDTO.District = custaddres.District;
+                    PPRDTO.Address = GetAddressformat(custaddres);
                     PPRDTO.PinCode = custaddres.Pincode;
                     PPRDTO.ContactNo = custaddres.ContactNo;
                     PPRDTO.TIN = custaddres.TINNumber;
