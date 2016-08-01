@@ -969,11 +969,11 @@
                 List<PaddyStockInfoEntity> listpaddyStockInfoEntity = new List<PaddyStockInfoEntity>();
                 IRepository<PaddyStockInfo> UsersRepository = new RepositoryImpl<PaddyStockInfo>(applicationSession);
                 DetachedCriteria detachedCriteria = null;
-                
-                    detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
-                                                                   .Add(Expression.Eq("CustID", CustId))
-                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
-                                                                   ).AddOrder(Order.Desc("PurchaseDate"));
+
+                detachedCriteria = DetachedCriteria.For(typeof(PaddyStockInfo))
+                                                               .Add(Expression.Eq("CustID", CustId))
+                                                                 .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                               ).AddOrder(Order.Desc("PurchaseDate"));
                 List<PaddyStockInfo> listPaddyStockInfoEntity = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<PaddyStockInfo>;
                 if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
                 {
@@ -1440,7 +1440,7 @@
             }
         }
 
-        internal List<MailQueueEntity> GetMailQueueEntities( YesNo yesNo)
+        internal List<MailQueueEntity> GetMailQueueEntities(YesNo yesNo)
         {
             try
             {
@@ -1453,9 +1453,9 @@
                 List<MailQueue> listMailQueue = UsersRepository.GetAll(detachedCriteria) as List<MailQueue>;
                 if (listMailQueue != null && listMailQueue.Count > 0)
                 {
-                    foreach (MailQueue  adMInfo in listMailQueue)
+                    foreach (MailQueue adMInfo in listMailQueue)
                     {
-                        mailEntites.Add( RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMailQueueEntity(adMInfo));
+                        mailEntites.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetMailQueueEntity(adMInfo));
                     }
                 }
                 return mailEntites;
@@ -4092,6 +4092,7 @@
                 DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentTransaction))
                                                                    .Add(Expression.Eq("CustID", CustId))
                                                                    .Add(Expression.Eq("ProductPaymentID", ProductPaymentID))
+                                                                   .AddOrder(Order.Asc("LastModifiedDate"))
                                                                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
                                                                    );
                 List<ProductPaymentTransaction> listProdPayTran = UsersRepository.GetAll(detachedCriteria) as List<ProductPaymentTransaction>;
@@ -5529,7 +5530,7 @@
 
 
 
-     
+
 
         internal HullingProcessExpensesEntity GetAllHullingProcessExpensesEntity(string CustID, string HullingProcessID, YesNo yesNo)
         {
@@ -5559,10 +5560,10 @@
             {
                 Logger.Error("Error encountered at GetHullingProcessExpensesEntity", ex);
                 throw;
-            }           
+            }
         }
 
-        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID,int TotalBags, YesNo yesNo)
+        internal List<PaddyStockInfoEntity> GetPaddyStockInfoEntities(string CustId, string PaddyTypeID, string UnitTypeID, string GodownID, string LotID, int TotalBags, YesNo yesNo)
         {
             try
             {
@@ -5582,7 +5583,7 @@
                 List<PaddyStockInfo> listPaddyStockInfo = UsersRepository.GetAll(detachedCriteria) as List<PaddyStockInfo>;
                 if (listPaddyStockInfo != null && listPaddyStockInfo.Count > 0)
                 {
-                    int totbags=0;
+                    int totbags = 0;
                     foreach (PaddyStockInfo adMInfo in listPaddyStockInfo)
                     {
                         listPaddyStockInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetPaddyStockInfoEntity(adMInfo));
@@ -5604,7 +5605,7 @@
             {
                 Logger.Error("Error encountered at GetPaddyStockInfoEntities", ex);
                 throw;
-            }           
+            }
         }
 
         internal List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string PaddyStockId, YesNo yesNo)
@@ -5700,6 +5701,92 @@
             catch (Exception ex)
             {
                 Logger.Error("Error encountered at GetReceiptPaddyStockInfoEntity", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ProductPaymentInfoEntity> listProductPaymentInfoEnt = new List<ProductPaymentInfoEntity>();
+                IRepository<ProductPaymentInfo> UsersRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (!string.IsNullOrEmpty(MediatorId) && string.IsNullOrEmpty(BuyerId))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("MediatorID", MediatorId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
+                else if (string.IsNullOrEmpty(MediatorId) && !string.IsNullOrEmpty(BuyerId))
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("BuyerID", BuyerId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
+                else
+                {
+                    detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                        .Add(Expression.Eq("CustID", CustId))
+                        .Add(Expression.Eq("MediatorID", MediatorId))
+                        .Add(Expression.Eq("BuyerID", BuyerId))
+                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                        ).AddOrder(Order.Desc("LastModifiedDate"));
+                }
+                List<ProductPaymentInfo> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentInfo>;
+                if (listProdPayTran != null && listProdPayTran.Count > 0)
+                {
+                    foreach (ProductPaymentInfo adMInfo in listProdPayTran)
+                    {
+                        listProductPaymentInfoEnt.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductPaymentInfoEnt = null;
+
+                return listProductPaymentInfoEnt;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllProductPaymentInfoEntities for reports by buyerID", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductPaymentInfoEntity> listProductPaymentInfoEnt = new List<ProductPaymentInfoEntity>();
+                IRepository<ProductPaymentInfo> UsersRepository = new RepositoryImpl<ProductPaymentInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+
+                detachedCriteria = DetachedCriteria.For(typeof(ProductPaymentInfo))
+                    .Add(Expression.Eq("CustID", CustId))
+                    .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                    ).AddOrder(Order.Desc("LastModifiedDate"));
+
+                List<ProductPaymentInfo> listProdPayTran = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductPaymentInfo>;
+                if (listProdPayTran != null && listProdPayTran.Count > 0)
+                {
+                    foreach (ProductPaymentInfo adMInfo in listProdPayTran)
+                    {
+                        listProductPaymentInfoEnt.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductPaymentInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductPaymentInfoEnt = null;
+
+                return listProductPaymentInfoEnt;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetAllProductPaymentInfoEntities", ex);
                 throw;
             }
         }

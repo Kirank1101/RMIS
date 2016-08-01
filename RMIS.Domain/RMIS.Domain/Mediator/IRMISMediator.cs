@@ -303,6 +303,10 @@ namespace RMIS.Domain.Mediator
         List<PaddyPaymentDetailsEntity> GetPaddyPaymentDetailsEntity(string CustId, string PaddyPaymentID, YesNo yesNo);
 
         List<PaddyStockInfoEntity> GetReceiptPaddyStockInfoEntity(string CustId, string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
     }
 
 }

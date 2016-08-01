@@ -1521,7 +1521,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate,int DiscountPercentage)
+        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate, int DiscountPercentage)
         {
             ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
             List<ProductSellingInfoDTO> lstProdSellingDTO = lstProductSellingInfoDTO;
@@ -1740,7 +1740,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue,bool IsSettlementPay)
+        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue, bool IsSettlementPay)
         {
             ProductPaymentTransactionEntity ProPayTraEnt = new ProductPaymentTransactionEntity();
             ProPayTraEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PP");
@@ -2784,7 +2784,8 @@ namespace RMIS.Business
                 foreach (ProductSellingInfoEntity item in listProductSellingInfoEntity)
                 {
                     ProductSellingInfoDTO ProdSelling = new ProductSellingInfoDTO();
-                    ProdSelling.MediatorName = lstMediatorInfo.Where(med => med.MediatorID == item.MediatorID).Select(med => med.Name).SingleOrDefault();
+                    if (item.MediatorID != null)
+                        ProdSelling.MediatorName = lstMediatorInfo.Where(med => med.MediatorID == item.MediatorID).Select(med => med.Name).SingleOrDefault();
                     ProdSelling.BuyerName = lstbuyerInfo.Where(buy => buy.BuyerID == item.BuyerID).Select(buy => buy.Name).SingleOrDefault();
                     ProdSelling.ProductName = item.MRiceProdTypeID != null ? "Rice" : (item.BrokenRiceTypeID != null ? "Broken Rice" : "Dust");
                     if (item.MRiceProdTypeID != null)
@@ -2821,36 +2822,73 @@ namespace RMIS.Business
         }
         public List<ProductPaymentDTO> GetProductPaymentDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
-            List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
-            lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
-            return GetProductPaymentDetails(lstpropaytranent);
+            List<ProductPaymentInfoEntity> lstProdPayInfo = new List<ProductPaymentInfoEntity>();
+            lstProdPayInfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(), MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
+
+            return GetProductPaymentDetails(lstProdPayInfo);
 
         }
         public List<ProductPaymentDTO> GetProductPaymentDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
-            List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
-            lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
-            return GetProductPaymentDetails(lstpropaytranent);
+            List<ProductPaymentInfoEntity> lstProdPayInfo = new List<ProductPaymentInfoEntity>();
+            lstProdPayInfo = imp.GetAllProductPaymentInfoEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+
+            return GetProductPaymentDetails(lstProdPayInfo);
 
         }
 
-        private List<ProductPaymentDTO> GetProductPaymentDetails(List<ProductPaymentTransactionEntity> lstpropaytranent)
+        private List<ProductPaymentDTO> GetProductPaymentDetails(List<ProductPaymentInfoEntity> lstProdPayInfo)
         {
+
+
+
             List<ProductPaymentDTO> lstProductPaymentDTO = new List<ProductPaymentDTO>();
             List<BuyerInfoEntity> lstbuyerinfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             List<MediatorInfoEntity> lstMediatorinfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-
-            if (lstpropaytranent != null && lstpropaytranent.Count > 0)
-                foreach (ProductPaymentTransactionEntity PPIE in lstpropaytranent)
+            if (lstProdPayInfo != null && lstProdPayInfo.Count > 0)
+                foreach (ProductPaymentInfoEntity PPIE in lstProdPayInfo)
                 {
-                    ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
-                    productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
-                    productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
-                    productPaymentDTO.AmountPaid = PPIE.ReceivedAmount;
-                    productPaymentDTO.PaidDate = PPIE.LastModifiedDate;
-                    productPaymentDTO.PaymentMode = PPIE.Paymentmode;
-                    productPaymentDTO.NextPayDate = PPIE.PaymentDueDate;
-                    lstProductPaymentDTO.Add(productPaymentDTO);
+                    List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
+                    lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), PPIE.ProductPaymentID, YesNo.N);
+                    bool newtran = true;
+                    double totbalfornexttrans = 0;
+                    if (lstpropaytranent != null && lstpropaytranent.Count > 0)
+                        foreach (ProductPaymentTransactionEntity ProdPTE in lstpropaytranent)
+                        {
+                            ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
+                            productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
+                            if (PPIE.MediatorID != null)
+                                productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
+                            if (newtran)
+                            {
+                                productPaymentDTO.TotalAmount = PPIE.TotalAmount;
+                                totbalfornexttrans = PPIE.TotalAmount - ProdPTE.ReceivedAmount;
+
+                                newtran = false;
+                            }
+                            else
+                            {
+                                productPaymentDTO.TotalAmount = totbalfornexttrans;
+                                totbalfornexttrans -= ProdPTE.ReceivedAmount;
+
+                            }
+                            if (PPIE.IsSettlement == "Y")
+                                productPaymentDTO.PaySettlement = "Yes";
+                            else
+                                productPaymentDTO.PaySettlement = "No";
+                            if (PPIE.Status == "A")
+                                productPaymentDTO.CompPayment = "Done";
+                            else
+                                productPaymentDTO.CompPayment = "Pending";
+                            productPaymentDTO.BalanceAmount = totbalfornexttrans;
+                            productPaymentDTO.AmountPaid = ProdPTE.ReceivedAmount;
+                            productPaymentDTO.PaidDate = ProdPTE.LastModifiedDate;
+                            productPaymentDTO.PaymentMode = ProdPTE.Paymentmode;
+                            productPaymentDTO.NextPayDate = ProdPTE.PaymentDueDate;
+                            lstProductPaymentDTO.Add(productPaymentDTO);
+                        }
+
+
                 }
             return lstProductPaymentDTO;
         }
@@ -3554,9 +3592,9 @@ namespace RMIS.Business
                     SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objPaddyPaymentDetailsEntity.SellerID, YesNo.Null);
                     if (objSellerInfoEntity != null)
                         PPRDTO.SellerName = objSellerInfoEntity.Name;
-                    PPRDTO.PaidAmount =ConverDoubleMoneyToStringMoney(Convert.ToString( objPaddyPaymentDetailsEntity.AmountPaid));
+                    PPRDTO.PaidAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(objPaddyPaymentDetailsEntity.AmountPaid));
                     PPRDTO.PaidDate = objPaddyPaymentDetailsEntity.PaidDate;
-                    PPRDTO.NextPayDate= objPaddyPaymentDetailsEntity.NextPaymentDate;
+                    PPRDTO.NextPayDate = objPaddyPaymentDetailsEntity.NextPaymentDate;
                     PPRDTO.PaymentMode = objPaddyPaymentDetailsEntity.PaymentMode;
 
                 }
@@ -3588,7 +3626,7 @@ namespace RMIS.Business
                     Address = custaddres.Town;
             }
 
-            if (!string.IsNullOrEmpty(custaddres.City) && custaddres.Town!=custaddres.City)
+            if (!string.IsNullOrEmpty(custaddres.City) && custaddres.Town != custaddres.City)
             {
 
                 if (Address != string.Empty)
@@ -3597,7 +3635,7 @@ namespace RMIS.Business
                     Address = custaddres.City;
             }
 
-            if (!string.IsNullOrEmpty(custaddres.District) && custaddres.City!= custaddres.District)
+            if (!string.IsNullOrEmpty(custaddres.District) && custaddres.City != custaddres.District)
             {
 
                 if (Address != string.Empty)
@@ -3613,8 +3651,8 @@ namespace RMIS.Business
         public List<PaddyStockDTO> GetPaddyPurchaseReceptOnSellerDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<PaddyStockDTO> listPaddyStockDTO = null;
-            
-            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetReceiptPaddyStockInfoEntity(provider.GetCurrentCustomerId(),SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+
+            List<PaddyStockInfoEntity> listPaddyStockInfoEntity = imp.GetReceiptPaddyStockInfoEntity(provider.GetCurrentCustomerId(), SellerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
             if (listPaddyStockInfoEntity != null && listPaddyStockInfoEntity.Count > 0)
             {
                 listPaddyStockDTO = new List<PaddyStockDTO>();
