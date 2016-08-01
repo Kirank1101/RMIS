@@ -441,4 +441,10 @@
   <data name="Yield" xml:space="preserve">
     <value>Yield (%)</value>
   </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="SettlementPay" xml:space="preserve">
+    <value>Settlement Pay</value>
+  </data>
 </root>

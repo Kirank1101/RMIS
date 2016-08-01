@@ -1521,7 +1521,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate)
+        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate,int DiscountPercentage)
         {
             ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
             List<ProductSellingInfoDTO> lstProdSellingDTO = lstProductSellingInfoDTO;
@@ -1535,6 +1535,7 @@ namespace RMIS.Business
                 productPaymentInfoEntity.MediatorID = lstProdSellingDTO[0].MediatorID;
             productPaymentInfoEntity.BuyerID = lstProdSellingDTO[0].BuyerID;
             productPaymentInfoEntity.Status = "P";
+            productPaymentInfoEntity.Discount = DiscountPercentage;
             productPaymentInfoEntity.NextPayDate = NextPayDate;
             productPaymentInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             productPaymentInfoEntity.LastModifiedDate = DateTime.Now;
@@ -1739,7 +1740,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue)
+        public ResultDTO SaveProductPaymentTransaction(string ProductPaymentID, string MediatorID, string BuyerID, string PaymentMode, string ChequeueNo, string DDNo, string BankName, double ReceivedAmount, DateTime NextPaymentDueDate, double TotalAmountDue,bool IsSettlementPay)
         {
             ProductPaymentTransactionEntity ProPayTraEnt = new ProductPaymentTransactionEntity();
             ProPayTraEnt.ProductPaymentTranID = CommonUtil.CreateUniqueID("PP");
@@ -1766,13 +1767,18 @@ namespace RMIS.Business
                 imp.BeginTransaction();
                 imp.SaveOrUpdateProductPaymentTransEntity(ProPayTraEnt, false);
                 imp.SaveOrUpdateBankTransactionEntity(BTE, false);
-                if (ProPayTraEnt.ReceivedAmount >= TotalAmountDue)
+                if (ProPayTraEnt.ReceivedAmount >= TotalAmountDue || IsSettlementPay)
                 {
                     ProductPaymentInfoEntity propayinfoent = new ProductPaymentInfoEntity();
                     propayinfoent = imp.GetProductPaymentInfoEntity(provider.GetCurrentCustomerId(), ProductPaymentID, YesNo.N);
                     propayinfoent.Status = "A";
                     propayinfoent.LastModifiedBy = provider.GetLoggedInUserId();
                     propayinfoent.LastModifiedDate = DateTime.Now;
+                    if (IsSettlementPay)
+                    {
+                        propayinfoent.settlementbalance = TotalAmountDue - ProPayTraEnt.ReceivedAmount;
+                        propayinfoent.IsSettlement = "Y";
+                    }
                     propayinfoent.ObsInd = YesNo.N;
                     imp.SaveOrUpdateProductPaymentInfoEntity(propayinfoent, true);
                 }

@@ -74,6 +74,7 @@ namespace RMIS.Entities.BackEnd
             get { return _TotalBags; }
             set { _TotalBags = value; }
         }
+        
         public virtual double Price
         {
             get { return _Price; }

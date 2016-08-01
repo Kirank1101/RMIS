@@ -214,7 +214,7 @@ public partial class ProductSellingInfo : BaseUserControl
 
             if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
             {
-                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO, txtNextPayDate.Text.ConvertToDate());
+                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO, txtNextPayDate.Text.ConvertToDate(),txtDiscount.Text.ConvertToInt());
                 if (resultDto.IsSuccess)
                 {
                     ClearAllInputFields();                    
@@ -247,7 +247,7 @@ public partial class ProductSellingInfo : BaseUserControl
         ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductPaymentDetails(rbtPaymnetMode.SelectedIndex, BuyerID, txtReceivedAmount.Text.ConvertToDouble(), txtTotalProductCost.Text.ConvertToDouble());
         if (resultDto.IsSuccess)
         {
-            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble());
+            resultDto = imp.SaveProductPaymentTransaction(hfProdPaymentID.Value, MediatorID, BuyerID, rbtPaymnetMode.SelectedValue, txtChequeNo.Text.Trim(), txtDDno.Text.Trim(), txtBankName.Text.Trim(), txtReceivedAmount.Text.ConvertToDouble(), txtNextPaymentDate.Text.ConvertToDate(), txtTotalProductCost.Text.ConvertToDouble(),ChkSettlementPay.Checked);
             if (resultDto.IsSuccess)
             {
                 ClearAllPaymentInputFields();

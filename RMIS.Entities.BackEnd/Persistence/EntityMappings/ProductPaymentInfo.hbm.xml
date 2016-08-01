@@ -13,6 +13,9 @@
     <property name="TotalAmount" column="TotalAmount" />
     <property name="Status" column="Status" />
     <property name="NextPayDate" column="NextPayDate" />
+    <property name="Discount" column="Discount" />
+    <property name="settlementbalance" column="settlementbalance" />
+    <property name="IsSettlement" column="IsSettlement" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

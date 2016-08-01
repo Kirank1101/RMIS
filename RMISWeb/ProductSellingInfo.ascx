@@ -146,6 +146,14 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <asp:Label runat="server" ID="lbldiscount" Text="<%$Resources:Resource,Discount%>"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBoxIntegerExtender ID="txtDiscount" runat="server"></asp:TextBoxIntegerExtender>
+                </td>
+            </tr>
+            <tr>
                 <td align="center">
                     <br />
                     <br />
@@ -297,6 +305,14 @@
                             </td>
                             <td>
                                 <asp:TextBoxDatenTimeExtender ID="txtNextPaymentDate" runat="server"></asp:TextBoxDatenTimeExtender>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label runat="server" ID="lblsettlementPay" Text="<%$Resources:Resource,SettlementPay%>"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="ChkSettlementPay" Text="Yes" runat="server" />
                             </td>
                         </tr>
                         <tr>

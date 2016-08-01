@@ -982,7 +982,10 @@ namespace RMIS.DataMapper.BackEnd.DomainToNHibernate.ObjectMapping
                     .ForMember(dest => dest.MediatorID, opts => opts.MapFrom(src => src.MediatorID))
                     .ForMember(dest => dest.TotalAmount, opts => opts.MapFrom(src => src.TotalAmount))
                     .ForMember(dest => dest.Status, opts => opts.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.Discount, opts => opts.MapFrom(src => src.Discount))
                     .ForMember(dest => dest.NextPayDate, opts => opts.MapFrom(src => src.NextPayDate))
+                    .ForMember(dest => dest.settlementbalance, opts => opts.MapFrom(src => src.settlementbalance))
+                    .ForMember(dest => dest.IsSettlement, opts => opts.MapFrom(src => src.IsSettlement))
                     .ForMember(dest => dest.ObsInd, opts => opts.ResolveUsing<YesNoToStringResolver>().FromMember(src => src.ObsInd))
                     .ForMember(dest => dest.LastModifiedBy, opts => opts.MapFrom(src => src.LastModifiedBy))
                     .ForMember(dest => dest.LastModifiedDate, opts => opts.MapFrom(src => src.LastModifiedDate));

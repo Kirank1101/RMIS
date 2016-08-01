@@ -14,6 +14,9 @@ namespace RMIS.Entities.BackEnd
         private double _TotalAmount; 
         private string _Status;
         private DateTime _NextPayDate;
+        private int _Discount;
+        private double _settlementbalance;
+        private string _IsSettlement;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -43,6 +46,16 @@ namespace RMIS.Entities.BackEnd
             get { return _TotalAmount; }
             set { _TotalAmount = value; }
         }
+        public virtual double settlementbalance
+        {
+            get { return _settlementbalance; }
+            set { _settlementbalance = value; }
+        }
+        public virtual string IsSettlement
+        {
+            get { return _IsSettlement; }
+            set { _IsSettlement = value; }
+        }
         public virtual string Status
         {
             get { return _Status; }
@@ -53,7 +66,12 @@ namespace RMIS.Entities.BackEnd
             get { return _NextPayDate; }
             set { _NextPayDate = value; }
         }
-        
+
+        public virtual int Discount
+        {
+            get { return _Discount; }
+            set { _Discount = value; }
+        }        
         public virtual string LastModifiedBy
         {
             get { return _LastModifiedBy; }
