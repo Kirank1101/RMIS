@@ -226,7 +226,7 @@ namespace RMIS.Domain.DataTranserClass
             BuyerName = MediatorName = PaymentMode = string.Empty;
             
         }
-
+        public int TranNo { get; set; }
         public string BuyerName { get; set; }
         public string MediatorName { get; set; }
         public string AmountPaid { get; set; }

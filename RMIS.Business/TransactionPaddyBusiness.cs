@@ -2846,6 +2846,8 @@ namespace RMIS.Business
             List<BuyerInfoEntity> lstbuyerinfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             List<MediatorInfoEntity> lstMediatorinfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (lstProdPayInfo != null && lstProdPayInfo.Count > 0)
+            {
+                int TranNo = 0;
                 foreach (ProductPaymentInfoEntity PPIE in lstProdPayInfo)
                 {
                     List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
@@ -2853,9 +2855,11 @@ namespace RMIS.Business
                     bool newtran = true;
                     double totbalfornexttrans = 0;
                     if (lstpropaytranent != null && lstpropaytranent.Count > 0)
+                        TranNo += 1;
                         foreach (ProductPaymentTransactionEntity ProdPTE in lstpropaytranent)
                         {
                             ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
+                            productPaymentDTO.TranNo = TranNo;
                             productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
                             if (PPIE.MediatorID != null)
                                 productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
@@ -2880,8 +2884,8 @@ namespace RMIS.Business
                                 productPaymentDTO.CompPayment = "Done";
                             else
                                 productPaymentDTO.CompPayment = "Pending";
-                            productPaymentDTO.BalanceAmount = ConverDoubleMoneyToStringMoney(Convert.ToString( totbalfornexttrans));
-                            productPaymentDTO.AmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString( ProdPTE.ReceivedAmount));
+                            productPaymentDTO.BalanceAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
+                            productPaymentDTO.AmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString(ProdPTE.ReceivedAmount));
                             productPaymentDTO.PaidDate = ProdPTE.LastModifiedDate;
                             productPaymentDTO.PaymentMode = ProdPTE.Paymentmode;
                             productPaymentDTO.NextPayDate = ProdPTE.PaymentDueDate;
@@ -2890,6 +2894,7 @@ namespace RMIS.Business
 
 
                 }
+            }
             return lstProductPaymentDTO;
         }
 

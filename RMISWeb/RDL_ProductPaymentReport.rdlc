@@ -12,6 +12,10 @@
   <DataSets>
     <DataSet Name="ProductPayment">
       <Fields>
+        <Field Name="TranNo">
+          <DataField>TranNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="BuyerName">
           <DataField>BuyerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -477,6 +481,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -506,6 +511,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -535,6 +541,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -566,6 +573,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -597,6 +605,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -628,6 +637,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -659,6 +669,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -690,6 +701,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -721,6 +733,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -752,6 +765,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -781,10 +795,91 @@
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="Textbox36">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Group1</Value>
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox36</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>Turquoise</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
             </TablixMember>
             <TablixMember>
-              <Group Name="Details" />
+              <Group Name="Group1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!TranNo.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!TranNo.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="Group1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!TranNo.Value</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Group1</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -792,7 +887,7 @@
         <Top>0.21333in</Top>
         <Left>0.19792in</Left>
         <Height>0.5in</Height>
-        <Width>10.46354in</Width>
+        <Width>11.46354in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -803,7 +898,7 @@
     <Height>5in</Height>
     <Style />
   </Body>
-  <Width>11.07292in</Width>
+  <Width>11.66146in</Width>
   <Page>
     <PageHeader>
       <Height>0.83333in</Height>
