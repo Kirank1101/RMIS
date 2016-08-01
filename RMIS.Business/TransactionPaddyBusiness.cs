@@ -2861,14 +2861,14 @@ namespace RMIS.Business
                                 productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
                             if (newtran)
                             {
-                                productPaymentDTO.TotalAmount = PPIE.TotalAmount;
+                                productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(PPIE.TotalAmount));
                                 totbalfornexttrans = PPIE.TotalAmount - ProdPTE.ReceivedAmount;
 
                                 newtran = false;
                             }
                             else
                             {
-                                productPaymentDTO.TotalAmount = totbalfornexttrans;
+                                productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
                                 totbalfornexttrans -= ProdPTE.ReceivedAmount;
 
                             }
@@ -2880,8 +2880,8 @@ namespace RMIS.Business
                                 productPaymentDTO.CompPayment = "Done";
                             else
                                 productPaymentDTO.CompPayment = "Pending";
-                            productPaymentDTO.BalanceAmount = totbalfornexttrans;
-                            productPaymentDTO.AmountPaid = ProdPTE.ReceivedAmount;
+                            productPaymentDTO.BalanceAmount = ConverDoubleMoneyToStringMoney(Convert.ToString( totbalfornexttrans));
+                            productPaymentDTO.AmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString( ProdPTE.ReceivedAmount));
                             productPaymentDTO.PaidDate = ProdPTE.LastModifiedDate;
                             productPaymentDTO.PaymentMode = ProdPTE.Paymentmode;
                             productPaymentDTO.NextPayDate = ProdPTE.PaymentDueDate;

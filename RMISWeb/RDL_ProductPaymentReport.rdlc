@@ -79,16 +79,16 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.03125in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.05208in</Width>
+              <Width>0.96875in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.02604in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.04167in</Width>
+              <Width>1.09375in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.15625in</Width>
@@ -100,7 +100,7 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.05208in</Width>
+              <Width>1.08333in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -355,7 +355,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Pay Settlement</Value>
+                              <Value>Settlement</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
@@ -390,7 +390,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Comp Payment</Value>
+                              <Value>Payment Status</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
@@ -536,7 +536,7 @@
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -567,7 +567,7 @@
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>15pt</PaddingRight>
+                        <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -598,7 +598,7 @@
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>15pt</PaddingRight>
+                        <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -614,7 +614,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDate(Fields!PaidDate.Value).ToString("dd - MMM - yyyy")</Value>
+                              <Value>=CDate(Fields!PaidDate.Value).ToString("dd-MMM-yyyy")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -738,7 +738,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDate(Fields!NextPayDate.Value).ToString("dd - MMM - yyyy")</Value>
+                              <Value>=CDate(Fields!NextPayDate.Value).ToString("dd-MMM-yyyy")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -792,7 +792,7 @@
         <Top>0.21333in</Top>
         <Left>0.19792in</Left>
         <Height>0.5in</Height>
-        <Width>10.40625in</Width>
+        <Width>10.46354in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -836,7 +836,7 @@
           <Top>0.23958in</Top>
           <Left>0.61979in</Left>
           <Height>0.52083in</Height>
-          <Width>5.45834in</Width>
+          <Width>9.39584in</Width>
           <Style>
             <Border>
               <Style>None</Style>
