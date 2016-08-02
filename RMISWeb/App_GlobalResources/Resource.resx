@@ -447,4 +447,10 @@
   <data name="SettlementPay" xml:space="preserve">
     <value>Settlement Pay</value>
   </data>
+  <data name="MillName" xml:space="preserve">
+    <value>Mill Name</value>
+  </data>
+  <data name="TIN" xml:space="preserve">
+    <value>TIN Number</value>
+  </data>
 </root>

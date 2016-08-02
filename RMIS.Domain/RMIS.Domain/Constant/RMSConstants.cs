@@ -243,6 +243,21 @@ namespace RMIS.Domain.Constant
         public const string ValidateHullingProcessDetailsHullingExpensesValidate= "Validate124";
         public const string ValidatePaddyPurchaseReportRequired = "Validate125";
 
+        public const string  ValidateProfileDetailsMillerNameEmpty= "Validate126";
+        public const string  ValidateProfileDetailsMillerNameLength= "Validate127";
+        public const string  ValidateProfileDetailsTinNumberEmpty= "Validate128";
+        public const string  ValidateProfileDetailsTinNumberLength= "Validate129";
+        public const string  ValidateProfileDetailsDistrictEmpty= "Validate130";
+        public const string  ValidateProfileDetailsDistrictLength= "Validate131";
+        public const string  ValidateProfileDetailsStateEmpty= "Validate132";
+        public const string  ValidateProfileDetailsStateLength= "Validate133";
+        public const string  ValidateProfileDetailsCityEmpty= "Validate134";
+        public const string  ValidateProfileDetailsCityLength= "Validate135";
+        public const string  ValidateProfileDetailsPinCodeEmpty= "Validate136";
+        public const string  ValidateProfileDetailsPinCodeLength= "Validate137";
+        public const string  ValidateProfileDetailsContactNoEmpty= "Validate138";
+        public const string  ValidateProfileDetailsContactNoLength= "Validate139";
+        
         public const string InsufficiantRiceStock = "InSufficiant Rice Stock";
         public const string NoStock = "No Stock";
         public const string InsufficiantBrokenRiceStock = "InSufficiant Broken Rice Stock";

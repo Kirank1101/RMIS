@@ -3743,5 +3743,112 @@ namespace RMIS.Business
             }
             return lstProductPaymentDueDTO;
         }
+
+
+        public List<ExpenseDetailsDTO> GetExpenseDetailsDTO(DateTime FromDate, DateTime ToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
+            List<ExpenseTransactionEntity> listExpenseTransactionEntity = imp.GetExpenseTransactionEntity(provider.GetCurrentCustomerId(), FromDate, ToDate, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listExpenseDetailsDTO= GetExpenseDetailsDTO(listExpenseTransactionEntity);
+            return listExpenseDetailsDTO;
+            
+        }
+
+        private List<ExpenseDetailsDTO> GetExpenseDetailsDTO(List<ExpenseTransactionEntity> listExpenseTransactionEntity)
+        {
+            List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
+            if (listExpenseTransactionEntity != null && listExpenseTransactionEntity.Count > 0)
+            {
+                listExpenseDetailsDTO = new List<ExpenseDetailsDTO>();
+                List<MExpenseTypeEntity> lstMexptypes = imp.GetMExpenseTypeEntities(provider.GetCurrentCustomerId(), YesNo.Null);
+                foreach (ExpenseTransactionEntity ETE in listExpenseTransactionEntity)
+                {
+                    ExpenseDetailsDTO ExpDet = new ExpenseDetailsDTO();
+
+                    ExpDet.ExpenseType = lstMexptypes.Where(et => et.ExpenseID == ETE.ExpenseID).Select(et => et.ExpenseType).SingleOrDefault();
+                    ExpDet.GivenTo = ETE.Name;
+                    ExpDet.Amount = ConverDoubleMoneyToStringMoney(Convert.ToString(ETE.Amount));
+                    ExpDet.PaidDate = ETE.PayDate;
+                    ExpDet.Reason = ETE.Reason;
+                    listExpenseDetailsDTO.Add(ExpDet);
+                }
+            }
+            return listExpenseDetailsDTO;            
+        }
+
+        public List<ExpenseDetailsDTO> GetExpenseDetailsDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
+            List<ExpenseTransactionEntity> listExpenseTransactionEntity = imp.GetExpenseTransactionEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listExpenseDetailsDTO = GetExpenseDetailsDTO(listExpenseTransactionEntity);
+            return listExpenseDetailsDTO;
+            
+        }
+
+
+        public ProfileDTO GetMyProfile()
+        {
+            ProfileDTO profileDTO = null;
+            CustomerAddressInfoEntity CustomerAddressInfoEntity = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (CustomerAddressInfoEntity != null )
+            {
+                profileDTO = new ProfileDTO();
+                profileDTO.MillName = CustomerAddressInfoEntity.MillName;
+                profileDTO.TINNumber = CustomerAddressInfoEntity.TINNumber;
+                profileDTO.Street1 = CustomerAddressInfoEntity.Street1;
+                profileDTO.Street2 = CustomerAddressInfoEntity.Street2;
+                profileDTO.Town = CustomerAddressInfoEntity.Town;
+                profileDTO.City = CustomerAddressInfoEntity.City;
+                profileDTO.District = CustomerAddressInfoEntity.District;
+                profileDTO.State = CustomerAddressInfoEntity.State;
+                profileDTO.PinCode = CustomerAddressInfoEntity.Pincode;
+                profileDTO.ContactNo = CustomerAddressInfoEntity.ContactNo;
+                profileDTO.MobileNo = CustomerAddressInfoEntity.MobileNo;
+                profileDTO.PhoneNo = CustomerAddressInfoEntity.PhoneNo;
+
+            }
+            return profileDTO;
+        }
+
+
+        public ResultDTO SaveProfileDetails(string name, string TinNumber, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        {
+
+            CustomerAddressInfoEntity objCustomerAddressInfoEntity = new CustomerAddressInfoEntity();
+            CustomerAddressInfoEntity CustomerAddressInfoEntity = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (CustomerAddressInfoEntity == null)
+                objCustomerAddressInfoEntity.CustAdrsID = CommonUtil.CreateUniqueID("CA");
+            else
+                objCustomerAddressInfoEntity.CustAdrsID = CustomerAddressInfoEntity.CustAdrsID;
+            objCustomerAddressInfoEntity.CustID = provider.GetCurrentCustomerId();
+            objCustomerAddressInfoEntity.MillName = name;
+            objCustomerAddressInfoEntity.TINNumber = TinNumber;
+            objCustomerAddressInfoEntity.Street1 = street;
+            objCustomerAddressInfoEntity.Street2 = street1;
+            objCustomerAddressInfoEntity.Town = town;
+            objCustomerAddressInfoEntity.City = city;
+            objCustomerAddressInfoEntity.District = district;
+            objCustomerAddressInfoEntity.State = state;
+            objCustomerAddressInfoEntity.Pincode = Convert.ToInt32(pincode);
+            objCustomerAddressInfoEntity.ContactNo = contactNo;
+            objCustomerAddressInfoEntity.MobileNo = mobileNo;
+            objCustomerAddressInfoEntity.PhoneNo = phoneNo;
+            objCustomerAddressInfoEntity.ObsInd = YesNo.N;
+            objCustomerAddressInfoEntity.LastModifiedDate = DateTime.Now;
+            objCustomerAddressInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
+            
+            try
+            {
+                imp.BeginTransaction();
+                imp.SaveOrUpdateCustomerAddressInfoEntity(objCustomerAddressInfoEntity, true);
+                imp.CommitAndCloseSession();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };            
+        }
     }
 }

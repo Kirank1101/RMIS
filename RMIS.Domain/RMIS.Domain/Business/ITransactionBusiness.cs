@@ -184,13 +184,15 @@ namespace RMIS.Domain.Business
         List<PaddyStockDTO> GetPaddyPurchaseDTO(int pageindex, int pageSize, out int count, SortExpression expression);
 
         PaddyPurchaseReceiptDTO GetPaddyPurchaseReceiptDTO(string PaddyStockId);
-
         PaddyPaymentReceiptDTO GetPaddyPaymentReceiptDTO(string PaddyPaymentID);
-
         List<PaddyStockDTO> GetPaddyPurchaseReceptOnSellerDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
-
         List<ProductPaymentDueDTO> GetProductPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
-
         List<ProductPaymentDueDTO> GetProductPaymentDueDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<ExpenseDetailsDTO> GetExpenseDetailsDTO(DateTime FromDate, DateTime ToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        List<ExpenseDetailsDTO> GetExpenseDetailsDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+        ProfileDTO GetMyProfile();
+
+        ResultDTO SaveProfileDetails(string name, string TinNumber, string street, string street1, string town, string city, string district, string state,
+           string pincode, string contactNo, string mobileNo, string phoneNo);
     }
 }

@@ -5881,5 +5881,81 @@
                 throw;
             }
         }
+
+        internal List<ExpenseTransactionEntity> GetExpenseTransactionEntity(string CustId, DateTime FromDate, DateTime ToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ExpenseTransactionEntity> listExpenseTransactionEntity = new List<ExpenseTransactionEntity>();
+                IRepository<ExpenseTransaction> UsersRepository = new RepositoryImpl<ExpenseTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(ExpenseTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PayDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(ExpenseTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PayDate"));
+
+
+                List<ExpenseTransaction> listExpenseTransaction = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ExpenseTransaction>;
+                if (listExpenseTransaction != null && listExpenseTransaction.Count > 0)
+                {
+                    foreach (ExpenseTransaction adMInfo in listExpenseTransaction)
+                        listExpenseTransactionEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetExpenseTransactionEntity(adMInfo));
+                }
+                else
+                    listExpenseTransactionEntity = null;
+
+                return listExpenseTransactionEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetExpenseTransactionEntities", ex);
+                throw;
+            }           
+        }
+
+        internal List<ExpenseTransactionEntity> GetExpenseTransactionEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ExpenseTransactionEntity> listExpenseTransactionEntity = new List<ExpenseTransactionEntity>();
+                IRepository<ExpenseTransaction> UsersRepository = new RepositoryImpl<ExpenseTransaction>(applicationSession);
+                DetachedCriteria detachedCriteria = null;
+                if (sortExpression == SortExpression.Desc)
+                    detachedCriteria = DetachedCriteria.For(typeof(ExpenseTransaction))
+                                                                      .Add(Expression.Eq("CustID", CustId))
+                                                                        .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                      ).AddOrder(Order.Asc("PayDate"));
+                else
+                    detachedCriteria = DetachedCriteria.For(typeof(ExpenseTransaction))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("PayDate"));
+
+
+                List<ExpenseTransaction> listExpenseTransaction = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ExpenseTransaction>;
+                if (listExpenseTransaction != null && listExpenseTransaction.Count > 0)
+                {
+                    foreach (ExpenseTransaction adMInfo in listExpenseTransaction)
+                        listExpenseTransactionEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetExpenseTransactionEntity(adMInfo));
+                }
+                else
+                    listExpenseTransactionEntity = null;
+
+                return listExpenseTransactionEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetExpenseTransactionEntities", ex);
+                throw;
+            }           
+        }
     }
 }

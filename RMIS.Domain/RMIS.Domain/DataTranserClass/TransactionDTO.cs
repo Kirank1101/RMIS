@@ -5,6 +5,18 @@ using System.Text;
 
 namespace RMIS.Domain.DataTranserClass
 {
+    public class ExpenseDetailsDTO
+    {
+        public ExpenseDetailsDTO()
+        {
+            ExpenseType = GivenTo = Amount = Reason = string.Empty;
+        }
+        public string ExpenseType { get; set; }
+        public string GivenTo { get; set; }
+        public string Amount { get; set; }
+        public DateTime PaidDate { get; set; }
+        public string Reason { get; set; }
+    }
     public class PaddyPaymentDueDTO
     {
         public PaddyPaymentDueDTO()
@@ -368,5 +380,24 @@ namespace RMIS.Domain.DataTranserClass
         public double PaidAmount { get; set; }
         public DateTime PaidDate { get; set; }
         public string Reason { get; set; }
+    }
+    public class ProfileDTO
+    {
+        public ProfileDTO()
+        { 
+        
+        }
+        public string MillName { get; set; }
+        public string TINNumber { get; set; }
+        public string Street1 { get; set; }
+        public string Street2 { get; set; }
+        public string Town { get; set; }
+        public string City { get; set; }
+        public string  District { get; set; }
+        public string State { get; set; }
+        public int PinCode { get; set; }
+        public string ContactNo { get; set; }
+        public string MobileNo { get; set; }
+        public string PhoneNo { get; set; }
     }
 }

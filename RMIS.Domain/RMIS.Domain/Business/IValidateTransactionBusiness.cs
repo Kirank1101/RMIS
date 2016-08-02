@@ -36,5 +36,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateGetPaddyPrice(int PaddyType, int UnitType, int GodownType, int LotType,string TotalBags);
 
         ResultDTO ValidatePaddyPurchaseReport(string SellerId);
+
+        ResultDTO ValidateProfileDetails(string MillName, string TinNumber, string City, string District, string State, string PinCode, string ContactNo);
     }
 }
