@@ -3690,5 +3690,58 @@ namespace RMIS.Business
 
             return listPaddyStockDTO;
         }
+        public List<ProductPaymentDueDTO> GetProductPaymentDueDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+
+            List<ProductPaymentInfoEntity> lstProdPayInfo = new List<ProductPaymentInfoEntity>();
+            lstProdPayInfo = imp.GetAllProductPaymentDueInfoEntities(provider.GetCurrentCustomerId(), MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, YesNo.N);
+
+            return GetProductPaymentDueDetails(lstProdPayInfo);
+        }
+        public List<ProductPaymentDueDTO> GetProductPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductPaymentInfoEntity> lstProdPayInfo = new List<ProductPaymentInfoEntity>();
+            lstProdPayInfo = imp.GetAllPendingProductPaymentInfoEntities(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+
+            return GetProductPaymentDueDetails(lstProdPayInfo);
+
+        }
+
+        private List<ProductPaymentDueDTO> GetProductPaymentDueDetails(List<ProductPaymentInfoEntity> lstProdPayInfo)
+        {
+
+
+
+            List<ProductPaymentDueDTO> lstProductPaymentDueDTO = new List<ProductPaymentDueDTO>();
+            List<BuyerInfoEntity> lstbuyerinfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            List<MediatorInfoEntity> lstMediatorinfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            if (lstProdPayInfo != null && lstProdPayInfo.Count > 0)
+            {
+                foreach (ProductPaymentInfoEntity PPIE in lstProdPayInfo)
+                {
+                    List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
+                    lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), PPIE.ProductPaymentID, YesNo.N);
+                    
+                    double totReceivedAmount = 0;
+
+                    ProductPaymentDueDTO ProductPaymentDueDTO = new ProductPaymentDueDTO();
+                    ProductPaymentDueDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
+                    if (PPIE.MediatorID != null)
+                        ProductPaymentDueDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
+                    ProductPaymentDueDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(PPIE.TotalAmount));
+
+                    foreach (ProductPaymentTransactionEntity ProdPTE in lstpropaytranent)
+                    {
+                        totReceivedAmount += ProdPTE.ReceivedAmount;
+                        ProductPaymentDueDTO.NextPayDate = ProdPTE.PaymentDueDate;
+                    }
+                    ProductPaymentDueDTO.ReceivedAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totReceivedAmount));
+                    ProductPaymentDueDTO.OutstandingDue = ConverDoubleMoneyToStringMoney(Convert.ToString(PPIE.TotalAmount - totReceivedAmount));
+                    lstProductPaymentDueDTO.Add(ProductPaymentDueDTO);
+
+                }
+            }
+            return lstProductPaymentDueDTO;
+        }
     }
 }

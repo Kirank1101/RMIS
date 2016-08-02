@@ -17,7 +17,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(And / OR)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <asp:Label runat="server" ID="lblsellername" Text="<%$Resources:Resource,SellerName%>"></asp:Label>:
+                <asp:Label runat="server" ID="lblBuyername" Text="<%$Resources:Resource,BuyerName%>"></asp:Label>:
                 <span style="color: Red">*</span>&nbsp;
             </td>
             <td>

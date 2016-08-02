@@ -238,7 +238,20 @@ namespace RMIS.Domain.DataTranserClass
         public string CompPayment { get; set; }
         public string PaySettlement { get; set; }
     }
-    
+    public class ProductPaymentDueDTO
+    {
+
+        public ProductPaymentDueDTO()
+        {
+            BuyerName = MediatorName = string.Empty;
+
+        }public string BuyerName { get; set; }
+        public string MediatorName { get; set; }
+        public string TotalAmount { get; set; }
+        public string ReceivedAmount { get; set; }
+        public string OutstandingDue { get; set; }
+        public DateTime NextPayDate { get; set; }
+    }
     public class DustStockDetailsDTO 
     {
         public string DustStockID { get; set; }

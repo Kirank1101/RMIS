@@ -188,5 +188,9 @@ namespace RMIS.Domain.Business
         PaddyPaymentReceiptDTO GetPaddyPaymentReceiptDTO(string PaddyPaymentID);
 
         List<PaddyStockDTO> GetPaddyPurchaseReceptOnSellerDTO(string SellerID, int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductPaymentDueDTO> GetProductPaymentDueDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression);
+
+        List<ProductPaymentDueDTO> GetProductPaymentDueDTO(string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression);
     }
 }

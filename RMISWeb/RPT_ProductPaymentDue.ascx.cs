@@ -15,26 +15,42 @@ public partial class RPT_ProductPaymentDue : BaseUserControl
         if (!IsControlPostBack)
         {
 
-            List<PaddyPaymentDueDTO> listPaddyPaymentDueDTO = GetAllPaddyPaymentDue();
-            BindReport(listPaddyPaymentDueDTO);
+            List<ProductPaymentDueDTO> listProductPaymentDueDTO = GetAllProductPaymentDue();
+            BindReport(listProductPaymentDueDTO);
         }
     }
-    private List<PaddyPaymentDueDTO> GetAllPaddyPaymentDue()
+
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         int count;
-        List<PaddyPaymentDueDTO> listPaddyPaymentDueDTO = imp.GetPaddyPaymentDueDTO(0, 1000, out count, SortExpression.Desc);
-        return listPaddyPaymentDueDTO;
+        List<ProductPaymentDueDTO> listProductPaymentDueDTO = imp.GetProductPaymentDueDTO(txtMediatorName.SelectedValue, txtBuyerName.SelectedValue, 0, 1000, out count, SortExpression.Desc);
+        BindReport(listProductPaymentDueDTO);
     }
-    private void BindReport(List<PaddyPaymentDueDTO> listPaddyPaymentDueDTO)
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        txtBuyerName.Text = string.Empty;
+        List<ProductPaymentDueDTO> lstProductPaymentDueDTO = GetAllProductPaymentDue();
+        BindReport(lstProductPaymentDueDTO);
+    }
+    private List<ProductPaymentDueDTO> GetAllProductPaymentDue()
+    {
+        ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+        int count;
+        List<ProductPaymentDueDTO> listProductPaymentDueDTO = imp.GetProductPaymentDueDTO(0, 1000, out count, SortExpression.Desc);
+        return listProductPaymentDueDTO;
+    }
+    private void BindReport(List<ProductPaymentDueDTO> listProductPaymentDueDTO)
     {
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
-        if (listPaddyPaymentDueDTO != null && listPaddyPaymentDueDTO.Count > 0)
+        if (listProductPaymentDueDTO != null && listProductPaymentDueDTO.Count > 0)
         {
             ReportViewer1.Visible = true;
             lblreportnodata.Visible = false;
             lblreportnodata.Text = string.Empty;
-            ReportDataSource datasource = new ReportDataSource("PaddyPaymentDue", CollectionHelper.ConvertTo<PaddyPaymentDueDTO>(listPaddyPaymentDueDTO));
+            ReportDataSource datasource = null;
+            datasource = new ReportDataSource("ProductPaymentDue", CollectionHelper.ConvertTo<ProductPaymentDueDTO>(listProductPaymentDueDTO));
+
             ReportViewer1.AsyncRendering = false;
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
   <DataSources>
-    <DataSource Name="ProductPaymentDataSet">
+    <DataSource Name="ProductPaymentDueDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>43092dce-8d61-4fa9-987d-67a50c77357a</rd:DataSourceID>
+      <rd:DataSourceID>e8e41c32-2ec0-4be8-a7f2-4bcc1b4ef81c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ProductPayment">
+    <DataSet Name="ProductPaymentDue">
       <Fields>
-        <Field Name="TranNo">
-          <DataField>TranNo</DataField>
+        <Field Name="MediatorName">
+          <DataField>MediatorName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="BuyerName">
@@ -24,47 +24,27 @@
           <DataField>TotalAmount</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="AmountPaid">
-          <DataField>AmountPaid</DataField>
+        <Field Name="ReceivedAmount">
+          <DataField>ReceivedAmount</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="BalanceAmount">
-          <DataField>BalanceAmount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PaySettlement">
-          <DataField>PaySettlement</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CompPayment">
-          <DataField>CompPayment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PaidDate">
-          <DataField>PaidDate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PaymentMode">
-          <DataField>PaymentMode</DataField>
+        <Field Name="OutstandingDue">
+          <DataField>OutstandingDue</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="NextPayDate">
           <DataField>NextPayDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="MediatorName">
-          <DataField>MediatorName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <Query>
-        <DataSourceName>ProductPaymentDataSet</DataSourceName>
+        <DataSourceName>ProductPaymentDueDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <rd:DataSetInfo>
-        <rd:DataSetName>ProductPaymentDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\nagavardhan\documents\visual studio 2010\Projects\WebApplication2\WebApplication2\ProductPaymentDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>ProductPayment</rd:TableName>
+        <rd:DataSetName>ProductPaymentDueDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\nagavardhan\documents\visual studio 2010\Projects\WebApplication2\WebApplication2\ProductPaymentDueDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>ProductPaymentDue</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -77,31 +57,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.10417in</Width>
+              <Width>1.19792in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.03125in</Width>
+              <Width>1.07292in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.96875in</Width>
+              <Width>1.33333in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.02604in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.09375in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.15625in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.36458in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.08333in</Width>
@@ -146,7 +114,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox2">
+                    <Textbox Name="Textbox3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -163,7 +131,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -193,7 +161,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -212,14 +182,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
+                    <Textbox Name="Textbox11">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Amount Paid</Value>
+                              <Value>Received Amount</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
@@ -231,7 +201,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -254,7 +224,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Balance Amount</Value>
+                              <Value>Outstanding Due</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
@@ -282,147 +252,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Paid Date</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Turquoise</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox10">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Payment Mode</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Turquoise</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox12">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Settlement</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Turquoise</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox16">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Payment Status</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox16</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Turquoise</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox6">
+                    <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -441,7 +271,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox6</rd:DefaultName>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -481,7 +311,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -511,7 +341,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -533,7 +363,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>TotalAmount</rd:DefaultName>
@@ -541,7 +373,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -552,14 +384,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="AmountPaid">
+                    <Textbox Name="ReceivedAmount">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!AmountPaid.Value</Value>
+                              <Value>=Fields!ReceivedAmount.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -568,12 +400,12 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>AmountPaid</rd:DefaultName>
+                      <rd:DefaultName>ReceivedAmount</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -584,14 +416,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="BalanceAmount">
+                    <Textbox Name="OutstandingDue">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!BalanceAmount.Value</Value>
+                              <Value>=Fields!OutstandingDue.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -600,142 +432,14 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>BalanceAmount</rd:DefaultName>
+                      <rd:DefaultName>OutstandingDue</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>5pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="PaidDate">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=CDate(Fields!PaidDate.Value).ToString("dd-MMM-yyyy")</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>PaidDate</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="PaymentMode">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!PaymentMode.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>PaymentMode</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="PaySettlement">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!PaySettlement.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>PaySettlement</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="CompPayment">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!CompPayment.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>CompPayment</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
@@ -765,7 +469,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
+                        <BackgroundColor>=IIF(CDate(Today()) &gt; CDate(Fields!NextPayDate.Value), "IndianRed", "")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -786,133 +490,53 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
-              <TablixHeader>
-                <Size>1in</Size>
-                <CellContents>
-                  <Textbox Name="Textbox36">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Group1</Value>
-                            <Style>
-                              <FontWeight>Bold</FontWeight>
-                              <Color>White</Color>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox36</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Style>Solid</Style>
-                      </Border>
-                      <BackgroundColor>Turquoise</BackgroundColor>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
+              <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Group1">
-                <GroupExpressions>
-                  <GroupExpression>=Fields!TranNo.Value</GroupExpression>
-                </GroupExpressions>
-              </Group>
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!TranNo.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-              <TablixHeader>
-                <Size>1in</Size>
-                <CellContents>
-                  <Textbox Name="Group1">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=Fields!TranNo.Value</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Group1</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Style>Solid</Style>
-                      </Border>
-                      <BackgroundColor>=IIF(Fields!TranNo.Value MOD 2, "LightGrey", "Weight")</BackgroundColor>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-              <TablixMembers>
-                <TablixMember>
-                  <Group Name="Details" />
-                </TablixMember>
-              </TablixMembers>
+              <Group Name="Details" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>ProductPayment</DataSetName>
-        <Top>0.21333in</Top>
-        <Left>0.19792in</Left>
+        <DataSetName>ProductPaymentDue</DataSetName>
+        <Top>0.19444in</Top>
+        <Left>0.31417in</Left>
         <Height>0.5in</Height>
-        <Width>11.46354in</Width>
+        <Width>7.05208in</Width>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
+            <Width>1.5pt</Width>
           </Border>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>5in</Height>
-    <Style />
+    <Height>2in</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
   </Body>
-  <Width>11.66146in</Width>
+  <Width>7.63543in</Width>
   <Page>
     <PageHeader>
-      <Height>0.83333in</Height>
+      <Height>1in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox3">
+        <Textbox Name="Textbox4">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Product Payment Report</Value>
+                  <Value>Product Payment Due Report</Value>
                   <Style>
                     <FontFamily>Shruti</FontFamily>
                     <FontSize>22pt</FontSize>
@@ -929,9 +553,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>0.23958in</Top>
-          <Left>0.61979in</Left>
+          <Left>0.17187in</Left>
           <Height>0.52083in</Height>
-          <Width>10.31251in</Width>
+          <Width>7.29855in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -955,6 +579,6 @@
     <BottomMargin>1in</BottomMargin>
     <Style />
   </Page>
-  <rd:ReportID>ae621945-8794-4a8b-89f7-47c529bfe943</rd:ReportID>
+  <rd:ReportID>6964753e-363d-49c9-9329-125e0c52ebc5</rd:ReportID>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
 </Report>

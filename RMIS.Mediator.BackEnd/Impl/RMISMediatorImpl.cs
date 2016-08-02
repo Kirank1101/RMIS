@@ -1704,13 +1704,25 @@ namespace RMIS.Mediator.BackEnd.Impl
 
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId,string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
-            return rmisGateway.GetAllProductPaymentInfoEntities(CustId,MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
+            return rmisGateway.GetAllProductPaymentInfoEntities(CustId, MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
 
 
         public List<ProductPaymentInfoEntity> GetAllProductPaymentInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
         {
             return rmisGateway.GetAllProductPaymentInfoEntities(CustId, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
+
+
+        public List<ProductPaymentInfoEntity> GetAllPendingProductPaymentInfoEntities(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetAllPendingProductPaymentInfoEntities(CustId, pageindex, pageSize, out count, sortExpression, yesNo);
+        }
+
+
+        public List<ProductPaymentInfoEntity> GetAllProductPaymentDueInfoEntities(string CustId, string MediatorId, string BuyerId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            return rmisGateway.GetAllProductPaymentDueInfoEntities(CustId, MediatorId, BuyerId, pageindex, pageSize, out count, sortExpression, yesNo);
         }
     }
 }
