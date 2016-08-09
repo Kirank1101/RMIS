@@ -2771,15 +2771,15 @@ namespace RMIS.Business
         private List<ProductSellingInfoDTO> GetProductSellingDetails(List<ProductSellingInfoEntity> listProductSellingInfoEntity)
         {
             List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
-            List<MediatorInfoEntity> lstMediatorInfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            List<BuyerInfoEntity> lstbuyerInfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            List<MRiceProductionTypeEntity> lstRiceType = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            List<MRiceBrandDetailsEntity> lstbrand = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            List<MBrokenRiceTypeEntity> lstbrokenricetype = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
-            List<MUnitsTypeEntity> lstUnitType = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
             if (listProductSellingInfoEntity != null && listProductSellingInfoEntity.Count > 0)
             {
-
+                List<MediatorInfoEntity> lstMediatorInfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                List<BuyerInfoEntity> lstbuyerInfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                List<MRiceProductionTypeEntity> lstRiceType = imp.GetMRiceProductionTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                List<MRiceBrandDetailsEntity> lstbrand = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
+                List<MBrokenRiceTypeEntity> lstbrokenricetype = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
+                List<MUnitsTypeEntity> lstUnitType = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
+            
                 listProductSellingInfoDTO = new List<ProductSellingInfoDTO>();
                 foreach (ProductSellingInfoEntity item in listProductSellingInfoEntity)
                 {
@@ -3709,9 +3709,6 @@ namespace RMIS.Business
 
         private List<ProductPaymentDueDTO> GetProductPaymentDueDetails(List<ProductPaymentInfoEntity> lstProdPayInfo)
         {
-
-
-
             List<ProductPaymentDueDTO> lstProductPaymentDueDTO = new List<ProductPaymentDueDTO>();
             List<BuyerInfoEntity> lstbuyerinfo = imp.GetBuyerInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
             List<MediatorInfoEntity> lstMediatorinfo = imp.GetMediatorInfoEntities(provider.GetCurrentCustomerId(), YesNo.N);
@@ -3743,8 +3740,6 @@ namespace RMIS.Business
             }
             return lstProductPaymentDueDTO;
         }
-
-
         public List<ExpenseDetailsDTO> GetExpenseDetailsDTO(DateTime FromDate, DateTime ToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
@@ -3753,7 +3748,6 @@ namespace RMIS.Business
             return listExpenseDetailsDTO;
             
         }
-
         private List<ExpenseDetailsDTO> GetExpenseDetailsDTO(List<ExpenseTransactionEntity> listExpenseTransactionEntity)
         {
             List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
@@ -3775,7 +3769,6 @@ namespace RMIS.Business
             }
             return listExpenseDetailsDTO;            
         }
-
         public List<ExpenseDetailsDTO> GetExpenseDetailsDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
             List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
@@ -3784,8 +3777,6 @@ namespace RMIS.Business
             return listExpenseDetailsDTO;
             
         }
-
-
         public ProfileDTO GetMyProfile()
         {
             ProfileDTO profileDTO = null;
@@ -3849,6 +3840,57 @@ namespace RMIS.Business
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };            
+        }
+
+
+
+
+        public List<ProductSellingInfoDTO> GetProductSellingInfoDTOforInvoice(string MediatorID, string BuyerID, int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+
+            List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
+            List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetAllproductSellingInfoEntities(provider.GetCurrentCustomerId(), MediatorID, BuyerID, pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
+            return listProductSellingInfoDTO;
+        }
+        public List<ProductSellingInfoDTO> GetProductSellingInfoDTOforInvoice(int pageindex, int pageSize, out int count, SortExpression sortExpression)
+        {
+            List<ProductSellingInfoDTO> listProductSellingInfoDTO = null;
+            List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetAllproductSellingInfoEntitiesforInvoice(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
+            listProductSellingInfoDTO = GetProductSellingDetails(listProductSellingInfoEntity);
+            return listProductSellingInfoDTO;
+        }
+
+
+        public ProductSellingInvoiceDTO GetProductSellingInvoiceDTO(string ProductID)
+        {
+            ProductSellingInvoiceDTO PPRDTO = null;
+            List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetProductSellingInfoforInvoice(provider.GetCurrentCustomerId(), ProductID, YesNo.Null);
+            CustomerAddressInfoEntity custaddres = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            if (listProductSellingInfoEntity != null && listProductSellingInfoEntity.Count > 0 && custaddres != null)
+            {
+                foreach (ProductSellingInfoEntity objProductSellingInfoEntity in listProductSellingInfoEntity)
+                {
+                    PPRDTO = new ProductSellingInvoiceDTO();
+
+                    PPRDTO.MillName = custaddres.MillName;
+                    PPRDTO.Address1 = GetAddressformat(custaddres);
+                    PPRDTO.Address2="";
+                    PPRDTO.Address3 =Convert.ToString( custaddres.Pincode);
+                    PPRDTO.TINNumber = custaddres.TINNumber;
+
+                    //SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.SellerID, YesNo.Null);
+                    //if (objSellerInfoEntity != null)
+                    //    PPRDTO.SellerName = objSellerInfoEntity.Name;
+                    //PPRDTO.PaidAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(objProductSellingInfoEntity.AmountPaid));
+                    //PPRDTO.PaidDate = objProductSellingInfoEntity.PaidDate;
+                    //PPRDTO.NextPayDate = objProductSellingInfoEntity.NextPaymentDate;
+                    //PPRDTO.PaymentMode = objProductSellingInfoEntity.PaymentMode;
+
+                }
+            }
+
+            return PPRDTO;            
         }
     }
 }

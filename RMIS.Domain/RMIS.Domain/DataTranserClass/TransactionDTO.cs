@@ -230,6 +230,31 @@ namespace RMIS.Domain.DataTranserClass
         public double TotalPrice { get; set; }
         public DateTime ProductSellingDate { get; set; }        
     }
+    public class ProductSellingInvoiceDTO
+    {
+        public string MillName { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
+        public string EmailId { get; set; }
+        public string BuyerName { get; set; }
+        public string BuyerAddress1 { get; set; }
+        public string BuyerAddress2 { get; set; }
+        public string BuyerAddress3 { get; set; }
+        public string MediatorName { get; set; }
+        public string MediatorContactNo { get; set; }
+        public string VehicalNo { get; set; }
+        public string DriverName { get; set; }
+        public string ItemName { get; set; }
+        public int TotalBags { get; set; }
+        public int Weight { get; set; }
+        public decimal TotalQtl { get; set; }
+        public string Price { get; set; }
+        public string Amount { get; set; }
+        public string TotalAmount { get; set; }
+        public string TINNumber { get; set; }
+        public string BuyerTINNumber { get; set; }
+    }
     public class ProductPaymentDTO
     {
         

@@ -315,6 +315,10 @@ namespace RMIS.Domain.Mediator
         List<ExpenseTransactionEntity> GetExpenseTransactionEntity(string CustId, DateTime FromDate, DateTime ToDate, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
 
         List<ExpenseTransactionEntity> GetExpenseTransactionEntity(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetAllproductSellingInfoEntitiesforInvoice(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo);
+
+        List<ProductSellingInfoEntity> GetProductSellingInfoforInvoice(string CustId, string ProductID, YesNo yesNo);
     }
 
 }

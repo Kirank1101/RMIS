@@ -5957,5 +5957,66 @@
                 throw;
             }           
         }
+        internal List<ProductSellingInfoEntity> GetAllProductSellingInfoEntitiesforInvoice(string CustId, int pageindex, int pageSize, out int count, SortExpression sortExpression, YesNo yesNo)
+        {
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                     .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   ).AddOrder(Order.Desc("SellingDate"));
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAllWithPagingMultiCriteria(detachedCriteria, pageindex, pageSize, out count) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoEntities for invoice", ex);
+                throw;
+            }
+        }
+
+        internal List<ProductSellingInfoEntity> GetProductSellingInfoforInvoice(string CustId, string ProductID, YesNo yesNo)
+        {
+
+            try
+            {
+                List<ProductSellingInfoEntity> listProductSellingInfoEntity = new List<ProductSellingInfoEntity>();
+                IRepository<ProductSellingInfo> UsersRepository = new RepositoryImpl<ProductSellingInfo>(applicationSession);
+                DetachedCriteria detachedCriteria = DetachedCriteria.For(typeof(ProductSellingInfo))
+                                                                   .Add(Expression.Eq("CustID", CustId))
+                                                                   .Add(Expression.Eq("ProductID", ProductID))
+                                                                      .Add(Expression.In("ObsInd", (yesNo == YesNo.Null ? new string[] { Enum.GetName(typeof(YesNo), YesNo.Y), Enum.GetName(typeof(YesNo), YesNo.N) } : new string[] { Enum.GetName(typeof(YesNo), yesNo) }))
+                                                                   );
+                List<ProductSellingInfo> listProductSellingInfo = UsersRepository.GetAll(detachedCriteria) as List<ProductSellingInfo>;
+                if (listProductSellingInfo != null && listProductSellingInfo.Count > 0)
+                {
+                    foreach (ProductSellingInfo adMInfo in listProductSellingInfo)
+                    {
+                        listProductSellingInfoEntity.Add(RMIS.DataMapper.BackEnd.NHibernateToDomain.ObjectMapper.RMISMapperNTD.GetProductSellingInfoEntity(adMInfo));
+                    }
+                }
+                else
+                    listProductSellingInfoEntity = null;
+
+                return listProductSellingInfoEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error encountered at GetProductSellingInfoforInvoice", ex);
+                throw;
+            }
+        }
     }
 }
