@@ -24,7 +24,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveDustStockInfo(int totalBags, string UnitsTypeID);
         bool SaveCustomerInformation(string customerName, string organizationName, string custId);
         bool SaveMenuConfiguration(string custId, string roleId, string menuId);
-        ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list, DateTime NextPayDate, int discountPercent);
+        ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> list, DateTime NextPayDate, int discountPercent,string DriverName,string VehicalNo);
         ResultDTO SaveHullingProcessInfo(string PaddyTypeID, string UnitsTypeID, string GodownID, string LotID, int TotalPaddyBags, double paddyprice, string Status, double HullingExpenses);
         ResultDTO SaveHullingProcessTransInfo(string HullingProcessID, List<RiceStockDetailsDTO> listRiceDetails,
             List<BrokenRiceStockDetailsDTO> listBrokenRiceDetails, string DustUnitsTypeID, int DustUnits, int DustTotalBags, double DustPriceperbag);
@@ -33,7 +33,7 @@ namespace RMIS.Domain.Business
         ResultDTO SaveHullingProcessExpensesInfo(string HullingProcessID, double HullingExpenses);
         ResultDTO SaveBuyerSellerRating(string SellerID, Int16 Rating, string Remarks);
         ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state,
-                   string pincode, string contactNo, string mobileNo, string phoneNo);
+                   string pincode, string contactNo, string mobileNo, string phoneNo,string TINNumber);
         ResultDTO SaveEmployeeDetails(string name,
            string street, string street1, string town, string city, string district, string state,
            string pincode, string contactNo, string mobileNo, string phoneNo);
@@ -199,6 +199,6 @@ namespace RMIS.Domain.Business
 
         List<ProductSellingInfoDTO> GetProductSellingInfoDTOforInvoice(int pageindex, int pageSize, out int count, SortExpression sortExpression);
 
-        ProductSellingInvoiceDTO GetProductSellingInvoiceDTO(string ProductID);
+        List<ProductSellingInvoiceDTO> GetProductSellingInvoiceDTO(string ProductID);
     }
 }

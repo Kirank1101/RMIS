@@ -97,12 +97,12 @@ public partial class BuyerInfoDetails : BaseUserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerDetails(txtBuyerName.Text, txtCity.Text, txtDistrict.Text, txtState.Text, txtContactNo.Text);
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateBuyerDetails(txtBuyerName.Text, txtCity.Text, txtDistrict.Text, txtState.Text, txtContactNo.Text,txtbuyerTINNumber.Text);
         if (!IsBuyerNameExist(string.Empty, txtBuyerName.Text.Trim()))
         {
             if (resultDto.IsSuccess)
             {
-                resultDto = imp.SaveBuyerInfo(txtBuyerName.Text.Trim(), txtStreet1.Text.Trim(), txtStreet2.Text.Trim(), txtTown.Text.Trim(), txtCity.Text.Trim(), txtDistrict.Text.Trim(), txtState.Text.Trim(), txtPincode.Text.Trim(), txtContactNo.Text.Trim(), txtMobileNo.Text.Trim(), txtPhoneNo.Text.Trim());
+                resultDto = imp.SaveBuyerInfo(txtBuyerName.Text.Trim(), txtStreet1.Text.Trim(), txtStreet2.Text.Trim(), txtTown.Text.Trim(), txtCity.Text.Trim(), txtDistrict.Text.Trim(), txtState.Text.Trim(), txtPincode.Text.Trim(), txtContactNo.Text.Trim(), txtMobileNo.Text.Trim(), txtPhoneNo.Text.Trim(),txtbuyerTINNumber.Text);
                 if (resultDto.IsSuccess)
                 {
                     bindBuyerInfo();

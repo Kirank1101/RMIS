@@ -10,6 +10,7 @@ namespace RMIS.Entities.BackEnd
         private string _CustID;
         private string _Name;
         private string _OrganizationName;
+        private string _EmailId;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -28,6 +29,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _OrganizationName; }
             set { _OrganizationName = value; }
+        }
+        public virtual string EmailId
+        {
+            get { return _EmailId; }
+            set { _EmailId = value; }
         }
         public virtual string LastModifiedBy
         {

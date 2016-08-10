@@ -9,6 +9,7 @@
     </id>
     <property name="Name" column="Name" />
     <property name="OrganizationName" column="OrganizationName" />
+    <property name="EmailId" column="EmailId" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

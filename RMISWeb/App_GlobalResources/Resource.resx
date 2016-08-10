@@ -453,4 +453,7 @@
   <data name="TIN" xml:space="preserve">
     <value>TIN Number</value>
   </data>
+  <data name="TINNumber" xml:space="preserve">
+    <value>TINNumber</value>
+  </data>
 </root>

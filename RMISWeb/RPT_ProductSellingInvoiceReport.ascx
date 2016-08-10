@@ -37,7 +37,7 @@
         <tr>
             <td>
                 <asp:PagingGridView ID="rptProductSellingInvoicInfo" runat="server" OnPageIndexChanging="rptProductSellingInvoicInfo_PageIndexChanging"
-                    DataKeyNames="ProductID" AllowPaging="True" AutoGenerateColumns="false" OnRowCommand="rptProductSellingInvoicInfo_RowCommand"
+                    DataKeyNames="ProdID" AllowPaging="True" AutoGenerateColumns="false" OnRowCommand="rptProductSellingInvoicInfo_RowCommand"
                     CssClass="table table-hover table-striped" AlternatingRowStyle-Font-Bold="true">
                     <Columns>
                         <asp:BoundField DataField="MediatorName" SortExpression="MediatorName" HeaderText="Mediator Name" />

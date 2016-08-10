@@ -80,7 +80,7 @@
                             <asp:Label runat="server" ID="lblPincode" Text="<%$Resources:Resource,Pincode%>"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="txtPincode" />
+                            <asp:TextBox runat="server" ID="txtPincode" MaxLength="6" />
                         </td>
                     </tr>
                     <tr>

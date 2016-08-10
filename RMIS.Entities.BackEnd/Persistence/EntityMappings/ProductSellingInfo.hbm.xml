@@ -19,6 +19,8 @@
     <property name="SellingDate" column="SellingDate" />
     <property name="TotalBags" column="TotalBags" />
     <property name="Price" column="Price" />
+    <property name="DriverName" column="DriverName" />
+    <property name="VehicalNo" column="VehicalNo" />
     <property name="ObsInd" column="ObsInd" />
     <property name="LastModifiedBy" column="LastModifiedBy" />
     <property name="LastModifiedDate" column="LastModifiedDate" />

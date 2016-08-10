@@ -203,39 +203,46 @@ public partial class ProductSellingInfo : BaseUserControl
     {
         List<ProductSellingInfoDTO> lstprodselinfoDTO = new List<ProductSellingInfoDTO>();
         lstprodselinfoDTO = AddProductSellingInfoDetails();
-        ResultDTO resultDto = new ResultDTO();
-
-        if (lstprodselinfoDTO.Count > 0)
+        ResultDTO resultDto = BinderSingleton.Instance.GetInstance<IValidateTransactionBusiness>().ValidateProductSellingDetails(txtDriverName.Text,txtVehicalNo.Text);
+        if (resultDto.IsSuccess)
         {
-            ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            string BrokenRiceType = rbtProductSellingtype.SelectedValue == BrokenRice ? ddlBrokenRiceType.SelectedValue : null;
-            string RiceType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceType.SelectedValue : null;
-            string RiceBrandType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceBrand.SelectedValue : null;
 
-            if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
+            if (lstprodselinfoDTO.Count > 0)
             {
-                resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO, txtNextPayDate.Text.ConvertToDate(),txtDiscount.Text.ConvertToInt());
-                if (resultDto.IsSuccess)
+                ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+                string BrokenRiceType = rbtProductSellingtype.SelectedValue == BrokenRice ? ddlBrokenRiceType.SelectedValue : null;
+                string RiceType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceType.SelectedValue : null;
+                string RiceBrandType = rbtProductSellingtype.SelectedValue == Rice ? ddlRiceBrand.SelectedValue : null;
+
+                if (lstprodselinfoDTO != null && lstprodselinfoDTO.Count > 0)
                 {
-                    ClearAllInputFields();                    
-                    SetMessage(resultDto);
-                    VstProdSelInfoEnt = null;
-                    rptProductSellingDetails.DataSource = null;
-                    rptProductSellingDetails.DataBind();       
+                    resultDto = imp.SaveProductSellingInfo(lstprodselinfoDTO, txtNextPayDate.Text.ConvertToDate(), txtDiscount.Text.ConvertToInt(),txtDriverName.Text,txtVehicalNo.Text);
+                    if (resultDto.IsSuccess)
+                    {
+                        ClearAllInputFields();
+                        SetMessage(resultDto);
+                        VstProdSelInfoEnt = null;
+                        rptProductSellingDetails.DataSource = null;
+                        rptProductSellingDetails.DataBind();
+                    }
+                }
+                else
+                {
+                    resultDto.Message += "Saved Unsuccessfully..";
                 }
             }
             else
             {
-                resultDto.Message += "Saved Unsuccessfully..";
+                resultDto.IsSuccess = false;
+                resultDto.Message = "Record Saved Unsuccessfully.. ";
+                SetMessage(resultDto);
             }
         }
         else
         {
             resultDto.IsSuccess = false;
-            resultDto.Message = "Record Saved Unsuccessfully.. ";
             SetMessage(resultDto);
         }
-
     }
     protected void btnSavePayment_Click(object sender, EventArgs e)
     {

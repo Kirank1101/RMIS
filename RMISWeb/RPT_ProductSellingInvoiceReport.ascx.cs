@@ -18,7 +18,6 @@ public partial class RPT_ProductSellingInvoiceReport : BaseUserControl
         {
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
             List<ProductSellingInfoDTO> listProductSellingInfoDTO = GetAllProductSellingInfoInvoic();
-
             bindProductSellingInfoInvoice(listProductSellingInfoDTO);
             BindReport(null);
         }
@@ -51,15 +50,14 @@ public partial class RPT_ProductSellingInvoiceReport : BaseUserControl
         {
             int rowindex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = rptProductSellingInvoicInfo.Rows[rowindex];
+            string MediatorName = row.Cells[0].Text;
+            string BuyerName = row.Cells[1].Text;
+            
             string ProductID = rptProductSellingInvoicInfo.DataKeys[rowindex].Value.ToString();
             ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-            ProductSellingInvoiceDTO PSIDTO = imp.GetProductSellingInvoiceDTO(ProductID);
-            if (PSIDTO != null)
-            {
-                List<ProductSellingInvoiceDTO> lstPPRDTO = new List<ProductSellingInvoiceDTO>();
-                lstPPRDTO.Add(PSIDTO);
-                BindReport(lstPPRDTO);
-            }
+            List<ProductSellingInvoiceDTO> lstPSIDTO = imp.GetProductSellingInvoiceDTO(ProductID);
+            if (lstPSIDTO != null &&lstPSIDTO.Count>0)
+                BindReport(lstPSIDTO);
             else
                 BindReport(null);
         }
@@ -69,7 +67,7 @@ public partial class RPT_ProductSellingInvoiceReport : BaseUserControl
 
         ITransactionBusiness imp = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         int count;
-        List<ProductSellingInfoDTO> listProductSellingInfoDTO = imp.GetProductSellingInfoDTOforInvoice(txtMediatorName.Text.Trim(), txtBuyerNames.Text.Trim(), 0, 1000, out count, SortExpression.Desc);
+        List<ProductSellingInfoDTO> listProductSellingInfoDTO = imp.GetProductSellingInfoDTOforInvoice(txtMediatorName.SelectedValue, txtBuyerNames.SelectedValue, 0, 1000, out count, SortExpression.Desc);
         bindProductSellingInfoInvoice(listProductSellingInfoDTO);
         BindReport(null);
     }

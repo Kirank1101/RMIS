@@ -470,7 +470,7 @@ namespace RMIS.Business
             }
             return new ResultDTO();
         }
-        public ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo)
+        public ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo,string TINNumber)
         {
             if (string.IsNullOrEmpty(BuyerName.Trim()))
             {
@@ -497,7 +497,6 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsDistrictLength, provider.GetCurrentCustomerId()) };
             }
-
             else if (string.IsNullOrEmpty(state.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsStateEmpty, provider.GetCurrentCustomerId()) };
@@ -506,7 +505,6 @@ namespace RMIS.Business
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsStateLength, provider.GetCurrentCustomerId()) };
             }
-
             else if (string.IsNullOrEmpty(contactNo.Trim()))
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsContactNoEmpty, provider.GetCurrentCustomerId()) };
@@ -514,6 +512,14 @@ namespace RMIS.Business
             else if (contactNo.Trim().Length > 11)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsContactNoLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(TINNumber.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsStateEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (TINNumber.Trim().Length > 60)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateBuyerDetailsStateLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }
@@ -945,6 +951,28 @@ namespace RMIS.Business
             else if (ContactNo.Trim().Length > 13)
             {
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProfileDetailsContactNoLength, provider.GetCurrentCustomerId()) };
+            }
+            return new ResultDTO();
+        }
+
+
+        public ResultDTO ValidateProductSellingDetails(string DriverName, string VehicleNo)
+        {
+            if (string.IsNullOrEmpty(VehicleNo.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingVehicleNoEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (VehicleNo.Trim().Length > 13)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingVehicleNoLength, provider.GetCurrentCustomerId()) };
+            }
+            else if (string.IsNullOrEmpty(DriverName.Trim()))
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDriverNameEmpty, provider.GetCurrentCustomerId()) };
+            }
+            else if (DriverName.Trim().Length > 100)
+            {
+                return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.ValidateProductSellingDriverNameLength, provider.GetCurrentCustomerId()) };
             }
             return new ResultDTO();
         }

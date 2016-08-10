@@ -211,6 +211,7 @@ namespace RMIS.Domain.DataTranserClass
     [Serializable]
     public class ProductSellingInfoDTO
     {
+        public string ProdID { get; set; }
         public int ProductID { get; set; }
         public string SellingProductType { get; set; }
         public string BuyerID { get; set; }
@@ -247,7 +248,7 @@ namespace RMIS.Domain.DataTranserClass
         public string DriverName { get; set; }
         public string ItemName { get; set; }
         public int TotalBags { get; set; }
-        public int Weight { get; set; }
+        public string Weight { get; set; }
         public decimal TotalQtl { get; set; }
         public string Price { get; set; }
         public string Amount { get; set; }

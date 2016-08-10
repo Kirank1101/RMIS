@@ -110,6 +110,14 @@
                     </tr>
                     <tr>
                         <td>
+                            <asp:Label runat="server" ID="lblTINNumber" Text="<%$Resources:Resource,TINNumber%>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txtbuyerTINNumber" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <asp:Button ID="btnSubmit" runat="server" Text="Save" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnClear" runat="server" Text="Clear"  OnClick="btnClear_Click" />
                         </td>

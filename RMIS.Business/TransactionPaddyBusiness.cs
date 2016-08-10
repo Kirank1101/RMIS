@@ -801,7 +801,7 @@ namespace RMIS.Business
         {
             return imp.GetAllBuyerSellerRatingEntities(provider.GetCurrentCustomerId(), YesNo.N);
         }
-        public ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo)
+        public ResultDTO SaveBuyerInfo(string name, string street, string street1, string town, string city, string district, string state, string pincode, string contactNo, string mobileNo, string phoneNo,string TINNumber)
         {
             BuyerInfoEntity objBuyerInfoEntity = new BuyerInfoEntity();
             objBuyerInfoEntity.BuyerID = CommonUtil.CreateUniqueID("BI");
@@ -816,6 +816,7 @@ namespace RMIS.Business
             objBuyerInfoEntity.ContactNo = contactNo;
             objBuyerInfoEntity.MobileNo = mobileNo;
             objBuyerInfoEntity.PhoneNo = phoneNo;
+            objBuyerInfoEntity.TINNumber = TINNumber;
             objBuyerInfoEntity.PinCode = pincode;
             objBuyerInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
             objBuyerInfoEntity.LastModifiedDate = DateTime.Now;
@@ -1521,7 +1522,7 @@ namespace RMIS.Business
         }
 
 
-        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate, int DiscountPercentage)
+        public ResultDTO SaveProductSellingInfo(List<ProductSellingInfoDTO> lstProductSellingInfoDTO, DateTime NextPayDate, int DiscountPercentage,string DriverName,string VehicalNo)
         {
             ProductPaymentInfoEntity productPaymentInfoEntity = new ProductPaymentInfoEntity();
             List<ProductSellingInfoDTO> lstProdSellingDTO = lstProductSellingInfoDTO;
@@ -1559,6 +1560,8 @@ namespace RMIS.Business
                 if (!string.IsNullOrEmpty(ProSIDTO.MediatorID))
                     objProductSellingInfoEntity.MediatorID = ProSIDTO.MediatorID;
                 objProductSellingInfoEntity.TotalBags = ProSIDTO.TotalBags;
+                objProductSellingInfoEntity.VehicalNo = VehicalNo;
+                objProductSellingInfoEntity.DriverName = DriverName;
                 objProductSellingInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
                 objProductSellingInfoEntity.LastModifiedDate = DateTime.Now;
                 objProductSellingInfoEntity.ObsInd = YesNo.N;
@@ -2779,7 +2782,7 @@ namespace RMIS.Business
                 List<MRiceBrandDetailsEntity> lstbrand = imp.GetMRiceBrandDetailsEntities(provider.GetCurrentCustomerId(), YesNo.N);
                 List<MBrokenRiceTypeEntity> lstbrokenricetype = imp.GetMBrokenRiceTypeEntitiies(provider.GetCurrentCustomerId(), YesNo.N);
                 List<MUnitsTypeEntity> lstUnitType = imp.GetMUnitsTypeEntities(provider.GetCurrentCustomerId(), YesNo.N);
-            
+
                 listProductSellingInfoDTO = new List<ProductSellingInfoDTO>();
                 foreach (ProductSellingInfoEntity item in listProductSellingInfoEntity)
                 {
@@ -2808,6 +2811,7 @@ namespace RMIS.Business
                     ProdSelling.Price = Math.Round(ConverToPriceperQuintal(ProdSelling.UnitsType.ConvertToInt(), item.Price), 0, MidpointRounding.ToEven);
                     ProdSelling.TotalPrice = item.TotalBags * item.Price;
                     ProdSelling.ProductSellingDate = item.SellingDate;
+                    ProdSelling.ProdID = item.ProductID;
                     listProductSellingInfoDTO.Add(ProdSelling);
                 }
             }
@@ -2856,41 +2860,41 @@ namespace RMIS.Business
                     double totbalfornexttrans = 0;
                     if (lstpropaytranent != null && lstpropaytranent.Count > 0)
                         TranNo += 1;
-                        foreach (ProductPaymentTransactionEntity ProdPTE in lstpropaytranent)
+                    foreach (ProductPaymentTransactionEntity ProdPTE in lstpropaytranent)
+                    {
+                        ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
+                        productPaymentDTO.TranNo = TranNo;
+                        productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
+                        if (PPIE.MediatorID != null)
+                            productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
+                        if (newtran)
                         {
-                            ProductPaymentDTO productPaymentDTO = new ProductPaymentDTO();
-                            productPaymentDTO.TranNo = TranNo;
-                            productPaymentDTO.BuyerName = lstbuyerinfo.Where(bn => bn.BuyerID == PPIE.BuyerID).Select(bn => bn.Name).SingleOrDefault();
-                            if (PPIE.MediatorID != null)
-                                productPaymentDTO.MediatorName = lstMediatorinfo.Where(med => med.MediatorID == PPIE.MediatorID).Select(med => med.Name).SingleOrDefault();
-                            if (newtran)
-                            {
-                                productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(PPIE.TotalAmount));
-                                totbalfornexttrans = PPIE.TotalAmount - ProdPTE.ReceivedAmount;
+                            productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(PPIE.TotalAmount));
+                            totbalfornexttrans = PPIE.TotalAmount - ProdPTE.ReceivedAmount;
 
-                                newtran = false;
-                            }
-                            else
-                            {
-                                productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
-                                totbalfornexttrans -= ProdPTE.ReceivedAmount;
-
-                            }
-                            if (PPIE.IsSettlement == "Y")
-                                productPaymentDTO.PaySettlement = "Yes";
-                            else
-                                productPaymentDTO.PaySettlement = "No";
-                            if (PPIE.Status == "A")
-                                productPaymentDTO.CompPayment = "Done";
-                            else
-                                productPaymentDTO.CompPayment = "Pending";
-                            productPaymentDTO.BalanceAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
-                            productPaymentDTO.AmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString(ProdPTE.ReceivedAmount));
-                            productPaymentDTO.PaidDate = ProdPTE.LastModifiedDate;
-                            productPaymentDTO.PaymentMode = ProdPTE.Paymentmode;
-                            productPaymentDTO.NextPayDate = ProdPTE.PaymentDueDate;
-                            lstProductPaymentDTO.Add(productPaymentDTO);
+                            newtran = false;
                         }
+                        else
+                        {
+                            productPaymentDTO.TotalAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
+                            totbalfornexttrans -= ProdPTE.ReceivedAmount;
+
+                        }
+                        if (PPIE.IsSettlement == "Y")
+                            productPaymentDTO.PaySettlement = "Yes";
+                        else
+                            productPaymentDTO.PaySettlement = "No";
+                        if (PPIE.Status == "A")
+                            productPaymentDTO.CompPayment = "Done";
+                        else
+                            productPaymentDTO.CompPayment = "Pending";
+                        productPaymentDTO.BalanceAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(totbalfornexttrans));
+                        productPaymentDTO.AmountPaid = ConverDoubleMoneyToStringMoney(Convert.ToString(ProdPTE.ReceivedAmount));
+                        productPaymentDTO.PaidDate = ProdPTE.LastModifiedDate;
+                        productPaymentDTO.PaymentMode = ProdPTE.Paymentmode;
+                        productPaymentDTO.NextPayDate = ProdPTE.PaymentDueDate;
+                        lstProductPaymentDTO.Add(productPaymentDTO);
+                    }
 
 
                 }
@@ -3718,7 +3722,7 @@ namespace RMIS.Business
                 {
                     List<ProductPaymentTransactionEntity> lstpropaytranent = new List<ProductPaymentTransactionEntity>();
                     lstpropaytranent = imp.GetAllProductPaymentTranEntities(provider.GetCurrentCustomerId(), PPIE.ProductPaymentID, YesNo.N);
-                    
+
                     double totReceivedAmount = 0;
 
                     ProductPaymentDueDTO ProductPaymentDueDTO = new ProductPaymentDueDTO();
@@ -3744,9 +3748,9 @@ namespace RMIS.Business
         {
             List<ExpenseDetailsDTO> listExpenseDetailsDTO = null;
             List<ExpenseTransactionEntity> listExpenseTransactionEntity = imp.GetExpenseTransactionEntity(provider.GetCurrentCustomerId(), FromDate, ToDate, pageindex, pageSize, out count, sortExpression, YesNo.N);
-            listExpenseDetailsDTO= GetExpenseDetailsDTO(listExpenseTransactionEntity);
+            listExpenseDetailsDTO = GetExpenseDetailsDTO(listExpenseTransactionEntity);
             return listExpenseDetailsDTO;
-            
+
         }
         private List<ExpenseDetailsDTO> GetExpenseDetailsDTO(List<ExpenseTransactionEntity> listExpenseTransactionEntity)
         {
@@ -3767,7 +3771,7 @@ namespace RMIS.Business
                     listExpenseDetailsDTO.Add(ExpDet);
                 }
             }
-            return listExpenseDetailsDTO;            
+            return listExpenseDetailsDTO;
         }
         public List<ExpenseDetailsDTO> GetExpenseDetailsDTO(int pageindex, int pageSize, out int count, SortExpression sortExpression)
         {
@@ -3775,13 +3779,13 @@ namespace RMIS.Business
             List<ExpenseTransactionEntity> listExpenseTransactionEntity = imp.GetExpenseTransactionEntity(provider.GetCurrentCustomerId(), pageindex, pageSize, out count, sortExpression, YesNo.N);
             listExpenseDetailsDTO = GetExpenseDetailsDTO(listExpenseTransactionEntity);
             return listExpenseDetailsDTO;
-            
+
         }
         public ProfileDTO GetMyProfile()
         {
             ProfileDTO profileDTO = null;
             CustomerAddressInfoEntity CustomerAddressInfoEntity = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
-            if (CustomerAddressInfoEntity != null )
+            if (CustomerAddressInfoEntity != null)
             {
                 profileDTO = new ProfileDTO();
                 profileDTO.MillName = CustomerAddressInfoEntity.MillName;
@@ -3827,7 +3831,7 @@ namespace RMIS.Business
             objCustomerAddressInfoEntity.ObsInd = YesNo.N;
             objCustomerAddressInfoEntity.LastModifiedDate = DateTime.Now;
             objCustomerAddressInfoEntity.LastModifiedBy = provider.GetLoggedInUserId();
-            
+
             try
             {
                 imp.BeginTransaction();
@@ -3839,7 +3843,7 @@ namespace RMIS.Business
                 Logger.Error(ex);
                 return new ResultDTO() { IsSuccess = false, Message = msgInstance.GetMessage(RMSConstants.Error07, provider.GetCurrentCustomerId()) };
             }
-            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };            
+            return new ResultDTO() { Message = msgInstance.GetMessage(RMSConstants.Success07, provider.GetCurrentCustomerId()) };
         }
 
 
@@ -3862,35 +3866,75 @@ namespace RMIS.Business
         }
 
 
-        public ProductSellingInvoiceDTO GetProductSellingInvoiceDTO(string ProductID)
+        public List<ProductSellingInvoiceDTO> GetProductSellingInvoiceDTO(string ProductID)
         {
-            ProductSellingInvoiceDTO PPRDTO = null;
+            List<ProductSellingInvoiceDTO> lstPPRDTO = new List<ProductSellingInvoiceDTO>();
             List<ProductSellingInfoEntity> listProductSellingInfoEntity = imp.GetProductSellingInfoforInvoice(provider.GetCurrentCustomerId(), ProductID, YesNo.Null);
             CustomerAddressInfoEntity custaddres = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
+            CustomerInfoEntity custinfo = imp.GetCustomerInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
             if (listProductSellingInfoEntity != null && listProductSellingInfoEntity.Count > 0 && custaddres != null)
             {
+                //double totalamount = 0;
                 foreach (ProductSellingInfoEntity objProductSellingInfoEntity in listProductSellingInfoEntity)
                 {
-                    PPRDTO = new ProductSellingInvoiceDTO();
-
+                    ProductSellingInvoiceDTO PPRDTO = new ProductSellingInvoiceDTO();
+                    BuyerInfoEntity buyerinfo = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.BuyerID, YesNo.N);
+                    MediatorInfoEntity Mediatorinfo = imp.GetMediatorInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.MediatorID, YesNo.N);
+                    MUnitsTypeEntity munit = imp.GetMUnitsTypeEntity(objProductSellingInfoEntity.UnitsTypeID, YesNo.Null);
                     PPRDTO.MillName = custaddres.MillName;
-                    PPRDTO.Address1 = GetAddressformat(custaddres);
-                    PPRDTO.Address2="";
-                    PPRDTO.Address3 =Convert.ToString( custaddres.Pincode);
-                    PPRDTO.TINNumber = custaddres.TINNumber;
 
-                    //SellerInfoEntity objSellerInfoEntity = imp.GetSellerInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.SellerID, YesNo.Null);
-                    //if (objSellerInfoEntity != null)
-                    //    PPRDTO.SellerName = objSellerInfoEntity.Name;
-                    //PPRDTO.PaidAmount = ConverDoubleMoneyToStringMoney(Convert.ToString(objProductSellingInfoEntity.AmountPaid));
-                    //PPRDTO.PaidDate = objProductSellingInfoEntity.PaidDate;
-                    //PPRDTO.NextPayDate = objProductSellingInfoEntity.NextPaymentDate;
-                    //PPRDTO.PaymentMode = objProductSellingInfoEntity.PaymentMode;
+                    PPRDTO.Address1 = AddressWithComma(custaddres.Street1, custaddres.Street2);
+                    PPRDTO.Address2 = AddressWithComma(custaddres.Town, custaddres.City);
+                    PPRDTO.Address3 = custaddres.District + "-" + custaddres.Pincode + custaddres.State;
+                    PPRDTO.EmailId = custinfo.EmailId;
+                    PPRDTO.BuyerName = buyerinfo.Name;
+                    PPRDTO.BuyerAddress1 = AddressWithComma(buyerinfo.Street, buyerinfo.Street1);
+                    PPRDTO.BuyerAddress2 = AddressWithComma(buyerinfo.Town, buyerinfo.City);
+                    PPRDTO.BuyerAddress3 = buyerinfo.District + "-" + buyerinfo.PinCode + buyerinfo.State; ;
+                    if (Mediatorinfo != null)
+                    {
+                        PPRDTO.MediatorName = Mediatorinfo.Name;
+                        PPRDTO.MediatorContactNo = Mediatorinfo.ContactNo;
+                    }
+                    PPRDTO.VehicalNo = objProductSellingInfoEntity.VehicalNo;
+                    PPRDTO.DriverName = objProductSellingInfoEntity.DriverName;
+                    if (!string.IsNullOrEmpty(objProductSellingInfoEntity.MRiceProdTypeID))
+                        PPRDTO.ItemName = "Rice";
+                    else if (!string.IsNullOrEmpty(objProductSellingInfoEntity.BrokenRiceTypeID))
+                        PPRDTO.ItemName = "Broken Rice";
+                    else
+                        PPRDTO.ItemName = "Dust";
+
+                    PPRDTO.TotalBags = objProductSellingInfoEntity.TotalBags;
+                    PPRDTO.Weight = munit.UnitsType;
+                    PPRDTO.TotalQtl = ConvertUnitsToQuintal(Convert.ToDecimal(munit.UnitsType), objProductSellingInfoEntity.TotalBags);
+                    PPRDTO.Price = Convert.ToString(Math.Round(ConverToPriceperQuintal(munit.UnitsType.ConvertToInt(), objProductSellingInfoEntity.Price), 0, MidpointRounding.ToEven));
+                    PPRDTO.Amount = Convert.ToString(objProductSellingInfoEntity.TotalBags * objProductSellingInfoEntity.Price);
+                    PPRDTO.TINNumber = custaddres.TINNumber;
+                    PPRDTO.BuyerTINNumber = buyerinfo.TINNumber;
+                    lstPPRDTO.Add(PPRDTO);
 
                 }
             }
 
-            return PPRDTO;            
+            return lstPPRDTO;
+        }
+
+        private string AddressWithComma(string string1, string string2)
+        {
+            string address = string.Empty;
+            if (string1 != string2)
+            {
+                if (!string.IsNullOrEmpty(string1))
+                    address = string1;
+                else if (!string.IsNullOrEmpty(string1) && !string.IsNullOrEmpty(string2))
+                    address = string1+", " + string2;
+                else if(string.IsNullOrEmpty(string1) && !string.IsNullOrEmpty(string2))
+                    address = string2;
+            }
+            else
+                address = string1;
+            return address;
         }
     }
 }

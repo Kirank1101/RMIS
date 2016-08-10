@@ -19,7 +19,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidateHullingProcess(int paddyType, int UnitsType, string totalbags,string PaddyPrice,string HullingExpenses);
         ResultDTO ValidateHullingProcessTrans(int Ricestockadded, int BrokenRiceStockadded, int RiceType, int BrokenRiceType, int RiceUnitsType, int BrokenRiceUnitsType, int DustUnitsType, string Ricetotalbags, string BrokenRicetotalbags, string Dusttotalbags, string BrokenRicePrice, string DustPrice, int RiceBrand);
         ResultDTO ValidateBuyerSellerRating(int SellerID, Int16 Rating, string Remark);
-        ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo);
+        ResultDTO ValidateBuyerDetails(string BuyerName, string city, string district, string state, string contactNo,string TINNumber);
         ResultDTO ValidateEmployeeDetails(string EmployeeName, string city, string district, string state, string contactNo);
         ResultDTO ValidateEmployeeSalary(int EmployeeName, int SalaryType, int Designation, double Salary);
         ResultDTO ValidateEmployeeSalaryPayment(int EmployeeName, int SalaryType, int Designation, double Salary, double SalaryPaid, double OTCharges);
@@ -38,5 +38,7 @@ namespace RMIS.Domain.Business
         ResultDTO ValidatePaddyPurchaseReport(string SellerId);
 
         ResultDTO ValidateProfileDetails(string MillName, string TinNumber, string City, string District, string State, string PinCode, string ContactNo);
+
+        ResultDTO ValidateProductSellingDetails(string DriverName, string VehicleNo);
     }
 }

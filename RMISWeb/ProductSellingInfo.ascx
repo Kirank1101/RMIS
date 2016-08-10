@@ -154,6 +154,24 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <asp:Label runat="server" ID="lblvehicalno" Text="<%$Resources:Resource,VehicalNo%>"></asp:Label>
+                    <span style="color: Red">*</span>
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="txtVehicalNo" MaxLength="13" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label runat="server" ID="lblDriverName" Text="<%$Resources:Resource,DriverName%>"></asp:Label>
+                    <span style="color: Red">*</span>
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="txtDriverName" MaxLength="50" />
+                </td>
+            </tr>
+            <tr>
                 <td align="center">
                     <br />
                     <br />

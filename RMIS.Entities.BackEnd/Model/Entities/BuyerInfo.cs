@@ -20,6 +20,7 @@ namespace RMIS.Entities.BackEnd
         private string _ContactNo;
         private string _MobileNo;
         private string _PhoneNo;
+        private string _TINNumber;
         private string _LastModifiedBy;
         private DateTime _LastModifiedDate;
         private string _ObsInd;
@@ -88,6 +89,11 @@ namespace RMIS.Entities.BackEnd
         {
             get { return _PhoneNo; }
             set { _PhoneNo = value; }
+        }
+        public virtual string TINNumber
+        {
+            get { return _TINNumber; }
+            set { _TINNumber = value; }
         }
         public virtual string LastModifiedBy
         {
