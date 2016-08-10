@@ -81,22 +81,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.04342in</Width>
+              <Width>1.00175in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.28291in</Width>
+              <Width>1.17874in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.04342in</Width>
+              <Width>0.94095in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.86634in</Width>
+              <Width>0.71009in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09899in</Width>
+              <Width>1.05732in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.24828in</Width>
+              <Width>1.30036in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -114,7 +114,7 @@
                             <TextRun>
                               <Value>Paddy Type</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -147,7 +147,7 @@
                             <TextRun>
                               <Value>Purchase Date</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -180,7 +180,7 @@
                             <TextRun>
                               <Value>Total Bags</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -215,7 +215,7 @@
                             <TextRun>
                               <Value>Quintals</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -250,7 +250,7 @@
                             <TextRun>
                               <Value>Quintal Price</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -285,7 +285,7 @@
                             <TextRun>
                               <Value>Total Price</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -477,9 +477,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!TotalPrice.Value</Value>
-                              <Style>
-                                <FontSize>12pt</FontSize>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -672,9 +670,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!TotalPrice.Value</Value>
-                              <Style>
-                                <FontSize>12pt</FontSize>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -724,9 +720,9 @@
         </TablixRowHierarchy>
         <DataSetName>PaddyPurchaseBillDS</DataSetName>
         <Top>0.20486in</Top>
-        <Left>0.56956in</Left>
+        <Left>0.19456in</Left>
         <Height>4.34375in</Height>
-        <Width>6.58336in</Width>
+        <Width>6.18923in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -746,7 +742,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>8in</Width>
+  <Width>6.54167in</Width>
   <Page>
     <PageHeader>
       <Height>2.05917in</Height>
@@ -779,8 +775,8 @@
           </Paragraphs>
           <rd:DefaultName>TIN</rd:DefaultName>
           <Top>0.30917in</Top>
-          <Left>0.52792in</Left>
-          <Height>0.3125in</Height>
+          <Left>0.15292in</Left>
+          <Height>0.25in</Height>
           <Width>1.58333in</Width>
           <Style>
             <Border>
@@ -819,8 +815,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ContactNo</rd:DefaultName>
-          <Top>0.30917in</Top>
-          <Left>5.69631in</Left>
+          <Top>0.32653in</Top>
+          <Left>4.83343in</Left>
           <Height>0.23264in</Height>
           <Width>1.55036in</Width>
           <ZIndex>1</ZIndex>
@@ -845,7 +841,7 @@
                   <Value>=Fields!CustomerName.Value</Value>
                   <Style>
                     <FontFamily>Castellar</FontFamily>
-                    <FontSize>26pt</FontSize>
+                    <FontSize>22pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
@@ -858,10 +854,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>CustomerName</rd:DefaultName>
-          <Top>0.94458in</Top>
-          <Left>0.52792in</Left>
-          <Height>0.32292in</Height>
-          <Width>6.71875in</Width>
+          <Top>0.84041in</Top>
+          <Left>0.15292in</Left>
+          <Height>0.42709in</Height>
+          <Width>6.23087in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -918,9 +914,9 @@
           </Paragraphs>
           <rd:DefaultName>Street1</rd:DefaultName>
           <Top>1.28139in</Top>
-          <Left>0.52792in</Left>
+          <Left>0.15292in</Left>
           <Height>0.25in</Height>
-          <Width>6.71875in</Width>
+          <Width>6.23087in</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -951,7 +947,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox75</rd:DefaultName>
           <Top>1.61125in</Top>
-          <Left>0.52792in</Left>
+          <Left>0.15292in</Left>
           <Height>0.25in</Height>
           <Width>1.22396in</Width>
           <ZIndex>4</ZIndex>
@@ -985,9 +981,9 @@
           </Paragraphs>
           <rd:DefaultName>SellerName</rd:DefaultName>
           <Top>1.60083in</Top>
-          <Left>1.79355in</Left>
+          <Left>1.41855in</Left>
           <Height>0.25in</Height>
-          <Width>4.06943in</Width>
+          <Width>3.56765in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -1023,9 +1019,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>0.30917in</Top>
-          <Left>2.13903in</Left>
+          <Left>1.76403in</Left>
           <Height>0.25in</Height>
-          <Width>3.54339in</Width>
+          <Width>3.04162in</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -1065,7 +1061,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>1.58695in</Top>
-          <Left>5.90464in</Left>
+          <Left>5.04176in</Left>
           <Height>0.30208in</Height>
           <Width>1.34203in</Width>
           <ZIndex>7</ZIndex>

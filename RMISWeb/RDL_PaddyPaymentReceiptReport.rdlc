@@ -79,10 +79,10 @@
               <Width>1.50082in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.51823in</Width>
+              <Width>1.3099in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.92107in</Width>
+              <Width>1.54607in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -518,9 +518,9 @@
         </TablixRowHierarchy>
         <DataSetName>PaddyPaymentBill</DataSetName>
         <Top>0.20486in</Top>
-        <Left>0.6208in</Left>
+        <Left>0.2458in</Left>
         <Height>4.34375in</Height>
-        <Width>6.45833in</Width>
+        <Width>5.87502in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -540,7 +540,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>8.24667in</Width>
+  <Width>7.37167in</Width>
   <Page>
     <PageHeader>
       <Height>2.05917in</Height>
@@ -573,9 +573,9 @@
           </Paragraphs>
           <rd:DefaultName>TIN</rd:DefaultName>
           <Top>0.30917in</Top>
-          <Left>0.52792in</Left>
-          <Height>0.3125in</Height>
-          <Width>1.58333in</Width>
+          <Left>0.15292in</Left>
+          <Height>0.25in</Height>
+          <Width>1.55555in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -603,7 +603,7 @@
                   <Value>=Fields!ContactNo.Value</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
+                    <FontWeight>Normal</FontWeight>
                   </Style>
                 </TextRun>
                 <TextRun>
@@ -620,10 +620,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ContactNo</rd:DefaultName>
-          <Top>0.30917in</Top>
-          <Left>5.69631in</Left>
+          <Top>0.32653in</Top>
+          <Left>4.89072in</Left>
           <Height>0.23264in</Height>
-          <Width>1.55036in</Width>
+          <Width>1.49051in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -646,7 +646,7 @@
                   <Value>=Fields!CustomerName.Value</Value>
                   <Style>
                     <FontFamily>Castellar</FontFamily>
-                    <FontSize>26pt</FontSize>
+                    <FontSize>22pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <TextDecoration>Underline</TextDecoration>
                     <Color>CornflowerBlue</Color>
@@ -659,10 +659,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>CustomerName</rd:DefaultName>
-          <Top>0.94458in</Top>
-          <Left>0.52792in</Left>
-          <Height>0.32292in</Height>
-          <Width>6.71875in</Width>
+          <Top>0.79875in</Top>
+          <Left>0.15292in</Left>
+          <Height>0.46875in</Height>
+          <Width>6.22831in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -719,9 +719,9 @@
           </Paragraphs>
           <rd:DefaultName>Street1</rd:DefaultName>
           <Top>1.28139in</Top>
-          <Left>0.52792in</Left>
+          <Left>0.15292in</Left>
           <Height>0.25in</Height>
-          <Width>6.71875in</Width>
+          <Width>6.22831in</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -759,9 +759,9 @@
           </Paragraphs>
           <rd:DefaultName>SellerName</rd:DefaultName>
           <Top>1.60083in</Top>
-          <Left>0.52792in</Left>
+          <Left>0.15292in</Left>
           <Height>0.25in</Height>
-          <Width>5.33506in</Width>
+          <Width>4.88016in</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -797,9 +797,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>0.30917in</Top>
-          <Left>2.13903in</Left>
+          <Left>1.76403in</Left>
           <Height>0.25in</Height>
-          <Width>3.54339in</Width>
+          <Width>3.1128in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -828,7 +828,7 @@
                   <Value>=CDate( Today()).ToString("dd-MMM-yy")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
+                    <FontWeight>Normal</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -839,9 +839,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>1.58695in</Top>
-          <Left>5.90464in</Left>
+          <Left>5.04697in</Left>
           <Height>0.30208in</Height>
-          <Width>1.34203in</Width>
+          <Width>1.33426in</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>

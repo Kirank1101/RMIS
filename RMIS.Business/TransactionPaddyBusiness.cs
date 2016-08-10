@@ -3881,6 +3881,7 @@ namespace RMIS.Business
                     BuyerInfoEntity buyerinfo = imp.GetBuyerInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.BuyerID, YesNo.N);
                     MediatorInfoEntity Mediatorinfo = imp.GetMediatorInfoEntity(provider.GetCurrentCustomerId(), objProductSellingInfoEntity.MediatorID, YesNo.N);
                     MUnitsTypeEntity munit = imp.GetMUnitsTypeEntity(objProductSellingInfoEntity.UnitsTypeID, YesNo.Null);
+                    CustomerAddressInfoEntity custadd = imp.GetCustomerAddressInfoEntity(provider.GetCurrentCustomerId(), YesNo.N);
                     PPRDTO.MillName = custaddres.MillName;
 
                     PPRDTO.Address1 = AddressWithComma(custaddres.Street1, custaddres.Street2);
@@ -3888,6 +3889,9 @@ namespace RMIS.Business
                     PPRDTO.Address3 = custaddres.District + "-" + custaddres.Pincode + custaddres.State;
                     PPRDTO.EmailId = custinfo.EmailId;
                     PPRDTO.BuyerName = buyerinfo.Name;
+                    PPRDTO.CustContactNo = custadd.ContactNo;
+                    PPRDTO.CustOffPhNo = custadd.PhoneNo;
+                    PPRDTO.BuyerContactNo = buyerinfo.ContactNo;
                     PPRDTO.BuyerAddress1 = AddressWithComma(buyerinfo.Street, buyerinfo.Street1);
                     PPRDTO.BuyerAddress2 = AddressWithComma(buyerinfo.Town, buyerinfo.City);
                     PPRDTO.BuyerAddress3 = buyerinfo.District + "-" + buyerinfo.PinCode + buyerinfo.State; ;

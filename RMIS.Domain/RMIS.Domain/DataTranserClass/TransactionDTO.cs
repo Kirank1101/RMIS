@@ -255,6 +255,9 @@ namespace RMIS.Domain.DataTranserClass
         public string TotalAmount { get; set; }
         public string TINNumber { get; set; }
         public string BuyerTINNumber { get; set; }
+        public string CustContactNo { get; set; }
+        public string CustOffPhNo { get; set; }
+        public string BuyerContactNo { get; set; }
     }
     public class ProductPaymentDTO
     {

@@ -100,6 +100,18 @@
           <DataField>BuyerTINNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CustContactNo">
+          <DataField>CustContactNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CustOffPhNo">
+          <DataField>CustOffPhNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BuyerContactNo">
+          <DataField>BuyerContactNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>ProductSellingInvoiceDataSet</DataSourceName>
@@ -107,7 +119,7 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>ProductSellingInvoiceDataSet</rd:DataSetName>
-        <rd:SchemaPath>c:\users\nagavardhan\documents\visual studio 2010\Projects\WebApplication5\WebApplication5\ProductSellingInvoiceDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\nagavardhan\documents\visual studio 2010\Projects\WebApplication2\WebApplication2\ProductSellingInvoiceDataSet.xsd</rd:SchemaPath>
         <rd:TableName>ProductSellingInvoiceTable</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -124,19 +136,19 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.90625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.69791in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.77083in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.07292in</Width>
+              <Width>0.88542in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.11458in</Width>
+              <Width>1.02083in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -773,9 +785,9 @@
         </TablixRowHierarchy>
         <DataSetName>ProductSellingInvoiceDS</DataSetName>
         <Top>0.17708in</Top>
-        <Left>0.37167in</Left>
+        <Left>0.83001in</Left>
         <Height>0.83333in</Height>
-        <Width>6.1875in</Width>
+        <Width>5.28124in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -783,13 +795,17 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>7.89583in</Height>
-    <Style />
+    <Height>3.08333in</Height>
+    <Style>
+      <Border>
+        <Style>Solid</Style>
+      </Border>
+    </Style>
   </Body>
-  <Width>8.1807in</Width>
+  <Width>7.09737in</Width>
   <Page>
     <PageHeader>
-      <Height>2.91709in</Height>
+      <Height>3.01084in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -811,56 +827,6 @@
                   </TextRuns>
                   <Style />
                 </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>MillName</rd:DefaultName>
-              <Top>0.00347in</Top>
-              <Height>0.20833in</Height>
-              <Width>3.55209in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Address2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!Address2.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Address2</rd:DefaultName>
-              <Top>0.41666in</Top>
-              <Height>0.20833in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Address1">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
@@ -872,12 +838,119 @@
                   </TextRuns>
                   <Style />
                 </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!Address2.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!Address3.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>EmailId:</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!EmailId.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Company VAT TIN : </Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!TINNumber.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Ref By:</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!MediatorName.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Off Ph No: </Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!CustOffPhNo.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Address1</rd:DefaultName>
-              <Top>0.20833in</Top>
-              <Height>0.20833in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>2</ZIndex>
+              <rd:DefaultName>MillName</rd:DefaultName>
+              <Left>0in</Left>
+              <Height>1.74652in</Height>
+              <Width>3.32292in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -895,39 +968,6 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Fields!BuyerName.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BuyerName</rd:DefaultName>
-              <Top>0.20833in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox12">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
                       <Value>Buyer</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
@@ -937,27 +977,70 @@
                   </TextRuns>
                   <Style />
                 </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.00347in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>0.71875in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox17">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!BuyerName.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!BuyerAddress1.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!BuyerAddress2.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!BuyerAddress3.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Ph No: </Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!BuyerContactNo.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
@@ -976,27 +1059,6 @@
                   </TextRuns>
                   <Style />
                 </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox16</rd:DefaultName>
-              <Top>1.04165in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox14">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
@@ -1022,278 +1084,12 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox13</rd:DefaultName>
-              <Top>1.26387in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.23266in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>6</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="BuyerAddress1">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!BuyerAddress1.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BuyerAddress1</rd:DefaultName>
-              <Top>0.41666in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>7</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="BuyerAddress3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!BuyerAddress3.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BuyerAddress1</rd:DefaultName>
-              <Top>0.83332in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>8</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="BuyerAddress2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!BuyerAddress2.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BuyerAddress1</rd:DefaultName>
-              <Top>0.62499in</Top>
-              <Left>4.61459in</Left>
-              <Height>0.20833in</Height>
-              <Width>2.86459in</Width>
-              <ZIndex>9</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Line Name="Line1">
-              <Top>0.00347in</Top>
-              <Left>3.98958in</Left>
-              <Height>1.8996in</Height>
-              <Width>0in</Width>
-              <ZIndex>10</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
-            <Textbox Name="MediatorName">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Ref By:</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value xml:space="preserve"> </Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Fields!MediatorName.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>MediatorName</rd:DefaultName>
-              <Top>1.37153in</Top>
-              <Height>0.20486in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>11</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox16">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Company VAT TIN : </Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Fields!TINNumber.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Normal</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox16</rd:DefaultName>
-              <Top>1.09375in</Top>
-              <Height>0.25in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>12</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="EmailId">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>EmailId:</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value xml:space="preserve"> </Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Fields!EmailId.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>EmailId</rd:DefaultName>
-              <Top>0.87153in</Top>
-              <Height>0.20833in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>13</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Address3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!Address3.Value</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Address3</rd:DefaultName>
-              <Top>0.63889in</Top>
-              <Height>0.20833in</Height>
-              <Width>3.55209in</Width>
-              <ZIndex>14</ZIndex>
+              <rd:DefaultName>BuyerName</rd:DefaultName>
+              <Top>0.01735in</Top>
+              <Left>3.84375in</Left>
+              <Height>1.72917in</Height>
+              <Width>2.83334in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1308,8 +1104,8 @@
           <KeepTogether>true</KeepTogether>
           <Top>0.63208in</Top>
           <Left>0.11125in</Left>
-          <Height>1.90307in</Height>
-          <Width>7.59376in</Width>
+          <Height>2.18779in</Height>
+          <Width>6.84376in</Width>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -1326,10 +1122,10 @@
                   <Value>INVOICE DETAILS</Value>
                   <Style>
                     <FontFamily>Shruti</FontFamily>
-                    <FontSize>22pt</FontSize>
+                    <FontSize>16pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <TextDecoration>Underline</TextDecoration>
-                    <Color>CornflowerBlue</Color>
+                    <Color>Brown</Color>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1342,7 +1138,7 @@
           <Top>0.11125in</Top>
           <Left>0.11125in</Left>
           <Height>0.45139in</Height>
-          <Width>7.59376in</Width>
+          <Width>6.84376in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1357,7 +1153,7 @@
       </ReportItems>
       <Style>
         <Border>
-          <Style>None</Style>
+          <Style>Solid</Style>
         </Border>
       </Style>
     </PageHeader>
